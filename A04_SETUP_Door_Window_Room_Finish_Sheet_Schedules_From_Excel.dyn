@@ -1,0 +1,353 @@
+{
+  "Uuid": "05d7fa89-4a50-4cf2-a7f6-13cd28f6ea2f",
+  "IsCustomNode": false,
+  "Description": "Standard schedules from an office Excel list: doors, windows, rooms, finishes, walls, floors, ceilings, sheet list - missing ones created, missing fields added",
+  "Name": "CAD2BIM_Schedules_Setup",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "e2835dc20f1e422e863fde75e70e9c40",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1b39a9f3af0f49c89439903791ab7065",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "",
+      "InputValue": "No file selected."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "928b2441b30344ee9a351304a8b897a5",
+          "Name": "path",
+          "Description": "Path to the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+          "Name": "file",
+          "Description": "File object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a file object from the given path",
+      "Id": "86337e6929b34db8a0abe470f28ed0e9"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f805a5952b2846c5a4872752b6961cd7",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - SCHEDULES SETUP (standard schedules from Excel)\n#  one Excel = the list of schedules: name, category, fields (in order), sort, itemize, totals\n#  missing schedules are created, existing ones get their missing fields added (nothing is removed)\n#  first run with no Excel: a standard set is written (doors, windows, rooms, finishes, walls, floors, ceilings, sheet list)\nimport os\nimport traceback\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\nimport os\nimport re\nimport zipfile\nimport xml.etree.ElementTree as ET\n\n# ======================================================================== tiny .xlsx reader / writer\nNS = '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'\nRNS = '{http://schemas.openxmlformats.org/officeDocument/2006/relationships}'\n\n\ndef _esc(s):\n    s = re.sub(u'[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f]', '', u'%s' % s)\n    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('\"', '&quot;')\n\n\ndef _ref(ci, ri):\n    s, ci = '', ci + 1\n    while ci:\n        ci, rem = divmod(ci - 1, 26)\n        s = chr(65 + rem) + s\n    return '%s%d' % (s, ri + 1)\n\n\ndef _colidx(ref):\n    n = 0\n    for ch in ''.join(c for c in ref if c.isalpha()):\n        n = n * 26 + (ord(ch.upper()) - 64)\n    return n - 1\n\n\ndef xlsx_read(path, sheet_name):\n    z = zipfile.ZipFile(path)\n    try:\n        shared = []\n        if 'xl/sharedStrings.xml' in z.namelist():\n            for si in ET.fromstring(z.read('xl/sharedStrings.xml')).iter(NS + 'si'):\n                shared.append(''.join(t.text or '' for t in si.iter(NS + 't')))\n        wb = ET.fromstring(z.read('xl/workbook.xml'))\n        rmap = dict((r.get('Id'), r.get('Target')) for r in ET.fromstring(z.read('xl/_rels/workbook.xml.rels')))\n        target = None\n        for sh in wb.iter(NS + 'sheet'):\n            if sh.get('name', '').strip().upper() == sheet_name.upper():\n                target = rmap.get(sh.get(RNS + 'id'))\n        if target is None:\n            return None\n        target = target.lstrip('/')\n        if not target.startswith('xl/'):\n            target = 'xl/' + target\n        root = ET.fromstring(z.read(target))\n    finally:\n        z.close()\n    rows = []\n    for r in root.iter(NS + 'row'):\n        vals = {}\n        for c in r.iter(NS + 'c'):\n            t, v = c.get('t'), c.find(NS + 'v')\n            if t == 's' and v is not None:\n                val = shared[int(v.text)]\n            elif t == 'inlineStr':\n                val = ''.join(x.text or '' for x in c.iter(NS + 't'))\n            elif v is not None and v.text not in (None, ''):\n                val = v.text\n                if t not in ('str', 'e', 'b'):\n                    try:\n                        fl = float(val)\n                        val = str(int(fl)) if fl == int(fl) else str(fl)\n                    except ValueError:\n                        pass\n            else:\n                val = ''\n            vals[_colidx(c.get('r'))] = (val or '').strip()\n        rno = int(r.get('r')) if r.get('r') else len(rows) + 1\n        while len(rows) < rno - 1:\n            rows.append([])\n        rows.append([vals.get(i, '') for i in range(max(vals) + 1)] if vals else [])\n    return rows\n\n\nSTYLES = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<styleSheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">'\n          '<fonts count=\"5\"><font><sz val=\"11\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"10\"/><color rgb=\"FFFFFFFF\"/><name val=\"Arial\"/></font>'\n          '<font><sz val=\"11\"/><color rgb=\"FF0000FF\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"14\"/><name val=\"Arial\"/></font>'\n          '<font><i/><sz val=\"10\"/><color rgb=\"FF595959\"/><name val=\"Arial\"/></font></fonts>'\n          '<fills count=\"4\"><fill><patternFill patternType=\"none\"/></fill><fill><patternFill patternType=\"gray125\"/></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FF1F3864\"/><bgColor indexed=\"64\"/></patternFill></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FFF2F2F2\"/><bgColor indexed=\"64\"/></patternFill></fill></fills>'\n          '<borders count=\"2\"><border><left/><right/><top/><bottom/><diagonal/></border>'\n          '<border><left style=\"thin\"><color rgb=\"FFBFBFBF\"/></left><right style=\"thin\"><color rgb=\"FFBFBFBF\"/></right>'\n          '<top style=\"thin\"><color rgb=\"FFBFBFBF\"/></top><bottom style=\"thin\"><color rgb=\"FFBFBFBF\"/></bottom><diagonal/></border></borders>'\n          '<cellStyleXfs count=\"1\"><xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\"/></cellStyleXfs>'\n          '<cellXfs count=\"7\">'\n          '<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\"/>'                                         # 0 normal\n          '<xf numFmtId=\"49\" fontId=\"1\" fillId=\"2\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\" applyAlignment=\"1\">'\n          '<alignment wrapText=\"1\" vertical=\"center\" horizontal=\"center\"/></xf>'                                  # 1 header\n          '<xf numFmtId=\"49\" fontId=\"2\" fillId=\"0\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyBorder=\"1\"/>'  # 2 blue input (text)\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 3 grey calculated\n          '<xf numFmtId=\"0\" fontId=\"3\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyFont=\"1\"/>'                           # 4 title\n          '<xf numFmtId=\"49\" fontId=\"4\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\"/>'     # 5 note\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 6 grey key\n          '</cellXfs><cellStyles count=\"1\"><cellStyle name=\"Normal\" xfId=\"0\" builtinId=\"0\"/></cellStyles></styleSheet>')\n\n\ndef _sheet_xml(rows, widths, freeze=None, validations=None, col_styles=None, heights=None):\n    \"\"\"rows: list of lists; a cell = value, or (value, style), or ('=formula', cached, style)\"\"\"\n    cs = col_styles or {}\n    out = ['<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n           '<worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">']\n    if freeze:\n        out.append('<sheetViews><sheetView workbookViewId=\"0\"><pane ySplit=\"%d\" topLeftCell=\"A%d\" activePane=\"bottomLeft\" '\n                   'state=\"frozen\"/></sheetView></sheetViews>' % (freeze, freeze + 1))\n    out.append('<cols>' + ''.join('<col min=\"%d\" max=\"%d\" width=\"%s\" customWidth=\"1\"%s/>'\n                                  % (i + 1, i + 1, w, (' style=\"%d\"' % cs[i]) if i in cs else '')\n                                  for i, w in enumerate(widths)) + '</cols><sheetData>')\n    for ri, row in enumerate(rows):\n        cells = []\n        for ci, cell in enumerate(row):\n            ref, style, f = _ref(ci, ri), cs.get(ci, 0), None\n            if isinstance(cell, tuple):\n                if len(cell) == 3:\n                    f, val, style = cell\n                else:\n                    val, style = cell\n            else:\n                val = cell\n            sa = ' s=\"%d\"' % style if style else ''\n            if f:\n                cells.append('<c r=\"%s\"%s t=\"str\"><f>%s</f><v>%s</v></c>' % (ref, sa, _esc(f.lstrip('=')), _esc(val)))\n            elif val is None or val == '':\n                if style:\n                    cells.append('<c r=\"%s\"%s/>' % (ref, sa))\n            else:\n                cells.append('<c r=\"%s\"%s t=\"inlineStr\"><is><t xml:space=\"preserve\">%s</t></is></c>' % (ref, sa, _esc(val)))\n        ht = (' ht=\"%s\" customHeight=\"1\"' % heights[ri]) if heights and ri in heights else ''\n        out.append('<row r=\"%d\"%s>%s</row>' % (ri + 1, ht, ''.join(cells)))\n    out.append('</sheetData>')\n    if validations:\n        out.append('<dataValidations count=\"%d\">' % len(validations))\n        for sqref, formula in validations:\n            out.append('<dataValidation type=\"list\" allowBlank=\"1\" showErrorMessage=\"0\" sqref=\"%s\"><formula1>%s</formula1>'\n                       '</dataValidation>' % (sqref, _esc(formula)))\n        out.append('</dataValidations>')\n    out.append('</worksheet>')\n    return ''.join(out)\n\n\ndef xlsx_write(path, sheets):\n    \"\"\"sheets: list of (name, sheet_xml)\"\"\"\n    n = len(sheets)\n    ct = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">'\n          '<Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>'\n          '<Default Extension=\"xml\" ContentType=\"application/xml\"/>'\n          '<Override PartName=\"/xl/workbook.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml\"/>'\n          '<Override PartName=\"/xl/styles.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml\"/>'\n          + ''.join('<Override PartName=\"/xl/worksheets/sheet%d.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml\"/>' % (i + 1)\n                    for i in range(n)) + '</Types>')\n    rels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n            '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n            '<Relationship Id=\"rId1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\" Target=\"xl/workbook.xml\"/>'\n            '</Relationships>')\n    wb = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<workbook xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" '\n          'xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">'\n          '<bookViews><workbookView activeTab=\"0\"/></bookViews><sheets>'\n          + ''.join('<sheet name=\"%s\" sheetId=\"%d\" r:id=\"rId%d\"/>' % (_esc(s[0]), i + 1, i + 1) for i, s in enumerate(sheets))\n          + '</sheets><calcPr calcId=\"191029\" fullCalcOnLoad=\"1\"/></workbook>')\n    wrels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n             '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n             + ''.join('<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet\" '\n                       'Target=\"worksheets/sheet%d.xml\"/>' % (i + 1, i + 1) for i in range(n))\n             + '<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles\" '\n               'Target=\"styles.xml\"/></Relationships>' % (n + 1))\n    tmp = path + '.tmp'\n    z = zipfile.ZipFile(tmp, 'w', zipfile.ZIP_DEFLATED)\n    try:\n        z.writestr('[Content_Types].xml', ct)\n        z.writestr('_rels/.rels', rels)\n        z.writestr('xl/workbook.xml', wb)\n        z.writestr('xl/_rels/workbook.xml.rels', wrels)\n        z.writestr('xl/styles.xml', STYLES)\n        for i, (name, xml) in enumerate(sheets):\n            z.writestr('xl/worksheets/sheet%d.xml' % (i + 1), xml.encode('utf-8'))\n    finally:\n        z.close()\n    try:\n        if os.path.exists(path):\n            os.remove(path)\n        os.rename(tmp, path)\n    except Exception:\n        os.remove(tmp)\n        raise\n\n\n\n\nCATS = [('Doors', 'OST_Doors'), ('Windows', 'OST_Windows'), ('Rooms', 'OST_Rooms'), ('Areas', 'OST_Areas'),\n        ('Walls', 'OST_Walls'), ('Floors', 'OST_Floors'), ('Ceilings', 'OST_Ceilings'), ('Roofs', 'OST_Roofs'),\n        ('Stairs', 'OST_Stairs'), ('Railings', 'OST_StairsRailing'), ('Columns', 'OST_Columns'),\n        ('Structural Columns', 'OST_StructuralColumns'), ('Structural Framing', 'OST_StructuralFraming'),\n        ('Furniture', 'OST_Furniture'), ('Casework', 'OST_Casework'), ('Plumbing Fixtures', 'OST_PlumbingFixtures'),\n        ('Lighting Fixtures', 'OST_LightingFixtures'), ('Specialty Equipment', 'OST_SpecialityEquipment'),\n        ('Generic Models', 'OST_GenericModel'), ('Curtain Panels', 'OST_CurtainWallPanels'), ('Parking', 'OST_Parking'),\n        ('Sheets (sheet list)', 'SHEETLIST'), ('Views (view list)', 'VIEWLIST')]\nCAT_BY = dict((c[0].lower(), c[1]) for c in CATS)\nDEFAULTS = [\n    ['YES', 'DOOR SCHEDULE', 'Doors', 'Mark, Type, Width, Height, Level, From Room: Number, To Room: Number, Fire Rating, Comments', 'Mark', 'YES', 'YES'],\n    ['YES', 'WINDOW SCHEDULE', 'Windows', 'Mark, Type, Width, Height, Sill Height, Level, Comments', 'Mark', 'YES', 'YES'],\n    ['YES', 'ROOM SCHEDULE', 'Rooms', 'Level, Number, Name, Department, Target Area, Area, Perimeter', 'Number', 'YES', 'YES'],\n    ['YES', 'ROOM FINISH SCHEDULE', 'Rooms', 'Number, Name, Floor Finish, Wall Finish, Ceiling Finish, Base Finish, Area', 'Number', 'YES', 'NO'],\n    ['YES', 'WALL SCHEDULE', 'Walls', 'Type, Width, Base Constraint, Length, Area, Volume', 'Type', 'NO', 'YES'],\n    ['YES', 'FLOOR SCHEDULE', 'Floors', 'Type, Level, Area, Volume', 'Type', 'NO', 'YES'],\n    ['YES', 'CEILING SCHEDULE', 'Ceilings', 'Type, Level, Height Offset From Level, Area', 'Type', 'NO', 'YES'],\n    ['YES', 'SHEET LIST', 'Sheets (sheet list)', 'Sheet Number, Sheet Name, Current Revision, Current Revision Date, Drawn By, Checked By', 'Sheet Number', 'YES', 'NO'],\n    ['NO', 'FURNITURE SCHEDULE', 'Furniture', 'Family and Type, Level, Count', 'Family and Type', 'NO', 'YES'],\n    ['NO', 'PLUMBING FIXTURE SCHEDULE', 'Plumbing Fixtures', 'Family and Type, Level, Count', 'Family and Type', 'NO', 'YES'],\n]\nCOLS = [('CREATE\\n(YES/NO)', 9), ('SCHEDULE NAME', 30), ('CATEGORY', 22), ('FIELDS  (Revit parameter names, comma separated, in order)', 80),\n        ('SORT BY', 16), ('ITEMIZE\\nEVERY ROW', 10), ('GRAND\\nTOTALS', 9), ('STATUS\\n(written)', 40)]\nTOTAL_FIELDS = ('area', 'volume', 'length', 'count', 'perimeter')\n\n\ndef yes(v):\n    return str(v).strip().upper() in ('YES', 'Y', 'X', 'TRUE', '1')\n\n\ndef write_book(path, rows, avail, title):\n    sh = [[('CAD2BIM  SCHEDULES  -  ' + (title or 'PROJECT'), 4)], [('One row per schedule.  Field names must match Revit (see the AVAILABLE FIELDS tab after the first run).', 5)],\n          [(c[0], 1) for c in COLS]]\n    for r in rows:\n        r = (list(r) + [''] * 8)[:8]\n        sh.append([(r[i], 2 if i < 7 else 3) for i in range(8)])\n    for i in range(30):\n        sh.append([('', 2)] * 7)\n    n = len(sh) + 1\n    val = [('A4:A%d' % n, '\"YES,NO\"'), ('F4:G%d' % n, '\"YES,NO\"'), ('C4:C%d' % n, 'LISTS!$A$2:$A$%d' % (len(CATS) + 1))]\n    lists = [[('Categories', 1)]] + [[(c[0], 0)] for c in CATS]\n    fields_tab = [[(k, 1) for k in sorted(avail)]]\n    depth = max([len(v) for v in avail.values()] or [0])\n    keys = sorted(avail)\n    for i in range(depth):\n        fields_tab.append([(avail[k][i] if i < len(avail[k]) else '', 0) for k in keys])\n    help_rows = [[('HOW TO USE', 4)], [],\n                 ['1.  CREATE = YES for the schedules you want.  Edit names / fields / sort as you like, add rows for more schedules.'],\n                 ['2.  FIELDS: Revit parameter names separated by commas, in the order of the columns.  Example: Mark, Type, Width, Height'],\n                 ['    The AVAILABLE FIELDS tab lists every field Revit offers for each category used in the list (refreshed every run).'],\n                 ['3.  Save, close, run CAD2BIM_Schedules_Setup (APPLY on).'],\n                 ['    A schedule that does not exist is created.  A schedule that exists gets its missing fields added at the end.'],\n                 ['    Nothing is deleted and existing fields are never removed or reordered.'],\n                 ['4.  ITEMIZE = NO groups identical rows (use it with Count / Type).  GRAND TOTALS = YES shows totals of Area / Length / Volume / Count.'],\n                 ['5.  STATUS shows what happened for each row.  Keep this Excel as the office standard and copy it to every new project.']]\n    xlsx_write(path, [('SCHEDULES', _sheet_xml(sh, [c[1] for c in COLS], freeze=3, heights={2: 32}, validations=val)),\n                      ('AVAILABLE FIELDS', _sheet_xml(fields_tab or [[('run the script once', 5)]], [28] * max(1, len(keys)), freeze=1)),\n                      ('LISTS', _sheet_xml(lists, [26])),\n                      ('HOW TO USE', _sheet_xml(help_rows, [130]))])\n\n\ndef read_book(path):\n    rows = xlsx_read(path, 'SCHEDULES')\n    if rows is None:\n        raise Exception('the Excel has no SCHEDULES tab - leave the file box empty once to create a new Excel')\n    hi = next((i for i, r in enumerate(rows) if r and r[0].strip().upper().startswith('CREATE')), 2)\n    out = []\n    for n, r in enumerate(rows[hi + 1:], start=hi + 2):\n        r = (list(r) + [''] * 8)[:8]\n        if not r[1].strip():\n            continue\n        out.append({'row': n, 'create': r[0], 'name': r[1].strip(), 'cat': r[2].strip(),\n                    'fields': [f.strip() for f in r[3].split(',') if f.strip()], 'sort': r[4].strip(),\n                    'itemize': r[5], 'totals': r[6], 'raw': r[:7]})\n    return out\n\n\n# ======================================================================== Revit part\ndef run(doc, XL, APPLY, out):\n    import System\n    from Autodesk.Revit.DB import (FilteredElementCollector, ViewSchedule, ElementId, BuiltInCategory, Element,\n                                   ScheduleSortGroupField, ScheduleSortOrder)\n\n    def nm(e):\n        for get in (lambda: Element.Name.GetValue(e), lambda: Element.Name.__get__(e), lambda: e.Name):\n            try:\n                n = get()\n                if n:\n                    return n\n            except Exception:\n                pass\n        return ''\n\n    def fname(sf):\n        try:\n            return sf.GetName(doc)\n        except Exception:\n            return ''\n\n    schedules = [v for v in FilteredElementCollector(doc).OfClass(ViewSchedule)\n                 if not v.IsTemplate and not getattr(v, 'IsTitleblockRevisionSchedule', False)]\n    by_name = dict((nm(v).lower(), v) for v in schedules)\n\n    def cat_id(code):\n        return ElementId(System.Int64(int(getattr(BuiltInCategory, code))))\n\n    avail = {}\n    if not os.path.exists(XL):\n        rows = DEFAULTS\n        write_book(XL, rows, {}, doc.Title)\n        out.append('CAD2BIM SCHEDULES  -  EXCEL CREATED')\n        out.append('File   : ' + XL)\n        out.append('%d standard schedules listed (%d set to YES).  Edit, save, Browse... to this file and Run.'\n                   % (len(rows), len([r for r in rows if r[0] == 'YES'])))\n        return\n\n    rows = read_book(XL)\n    acts, notes = [], []\n    status = {}\n    for d in rows:\n        code = CAT_BY.get(d['cat'].lower())\n        if not yes(d['create']):\n            status[d['row']] = 'skipped (CREATE is not YES)'\n            continue\n        if code is None:\n            status[d['row']] = 'ERROR: unknown category \"%s\"' % d['cat']\n            notes.append('row %d: unknown category \"%s\" - pick one from the list' % (d['row'], d['cat']))\n            continue\n        vs = by_name.get(d['name'].lower())\n        is_new = vs is None\n        if is_new:\n            # also done when APPLY is off: the whole run is rolled back, it only lets us read the fields\n            if code == 'SHEETLIST':\n                vs = ViewSchedule.CreateSheetList(doc)\n            elif code == 'VIEWLIST':\n                vs = ViewSchedule.CreateViewList(doc)\n            else:\n                vs = ViewSchedule.CreateSchedule(doc, cat_id(code))\n            vs.Name = d['name']\n            by_name[d['name'].lower()] = vs\n        sd = vs.Definition\n        sfs = list(sd.GetSchedulableFields())\n        sf_by = {}\n        for sf in sfs:\n            sf_by.setdefault(fname(sf).lower(), sf)\n        avail[d['cat']] = sorted(set(fname(sf) for sf in sfs if fname(sf)), key=lambda s: s.lower())\n        have = {}\n        for i in range(sd.GetFieldCount()):\n            f = sd.GetField(i)\n            have[f.GetName().lower()] = f\n        added, missing = [], []\n        for fn in d['fields']:\n            if fn.lower() in have:\n                continue\n            sf = sf_by.get(fn.lower())\n            if sf is None:\n                missing.append(fn)\n                continue\n            have[fn.lower()] = sd.AddField(sf)\n            added.append(fn)\n        if is_new:\n            sd.IsItemized = yes(d['itemize']) or d['itemize'].strip() == ''\n            tot = yes(d['totals'])\n            try:\n                sd.ShowGrandTotal = tot\n                sd.ShowGrandTotalTitle = tot\n                sd.ShowGrandTotalCount = tot\n            except Exception:\n                pass\n            if tot:\n                for k, f in have.items():\n                    if k in TOTAL_FIELDS or k.endswith(' area'):\n                        try:\n                            from Autodesk.Revit.DB import ScheduleFieldDisplayType\n                            f.DisplayType = ScheduleFieldDisplayType.Totals\n                        except Exception:\n                            pass\n            if d['sort']:\n                f = have.get(d['sort'].lower())\n                if f is not None:\n                    sd.AddSortGroupField(ScheduleSortGroupField(f.FieldId, ScheduleSortOrder.Ascending))\n                else:\n                    notes.append('row %d: SORT BY \"%s\" is not one of the fields' % (d['row'], d['sort']))\n        if is_new:\n            acts.append('%-10s %s  (%s, %d fields)' % ('CREATED', d['name'], d['cat'], len(added)))\n            st = ('created, %d fields' if APPLY else 'will be created, %d fields') % len(added)\n        elif added:\n            acts.append('%-10s %s  + %s' % ('FIELDS', d['name'], ', '.join(added)))\n            st = ('fields added: ' if APPLY else 'fields to add: ') + ', '.join(added)\n        else:\n            st = 'OK - exists, all fields present'\n        if missing:\n            st += '  |  NOT FOUND: ' + ', '.join(missing)\n            notes.append('%s: field(s) not found in Revit: %s  (see the AVAILABLE FIELDS tab)' % (d['name'], ', '.join(missing)))\n        status[d['row']] = st\n\n    out.append('CAD2BIM SCHEDULES  -  %s' % ('APPLIED' if APPLY else 'CHECK ONLY (APPLY is off - Revit not changed)'))\n    out.append('File   : ' + XL)\n    if acts:\n        out.append('Changes:')\n        out.extend('  ' + a for a in acts)\n    else:\n        out.append('Revit already matches the Excel - nothing to change.')\n    try:\n        write_book(XL, [d['raw'] + [status.get(d['row'], '')] for d in rows], avail, doc.Title)\n        out.append('Excel updated: STATUS and AVAILABLE FIELDS written.')\n    except Exception:\n        notes.append('the Excel is open - close it and Run again to get the STATUS written back')\n    if notes:\n        out.append('')\n        out.append('Notes:')\n        out.extend('  ' + n for n in notes)\n\n\n# ======================================================================== Dynamo entry point\ntry:\n    IN\n    _IN_DYNAMO = True\nexcept NameError:\n    _IN_DYNAMO = False\n\nif _IN_DYNAMO:\n    import clr\n    clr.AddReference('RevitAPI')\n    clr.AddReference('RevitServices')\n    from RevitServices.Persistence import DocumentManager\n    from RevitServices.Transactions import TransactionManager\n\n    def file_path(x):\n        if x is None:\n            return ''\n        for a in ('FullName', 'FullPath'):\n            v = getattr(x, a, None)\n            if v:\n                return str(v)\n        s = str(x)\n        return '' if s.strip().lower() in ('', 'no file selected.', 'none', 'null') else s.strip().strip('\"')\n\n    def good_xl(p):\n        if not p:\n            return ''\n        base = os.path.basename(p).lower()\n        if base.startswith('no file selected') or not base.endswith(('.xlsx', '.xlsm')):\n            return ''\n        return p\n\n    out = []\n    doc = DocumentManager.Instance.CurrentDBDocument\n    _sub = None\n    try:\n        XL = good_xl(file_path(IN[0]))\n        APPLY = bool(IN[1])\n        log('--- schedules started  xl \"%s\" apply %s' % (XL, APPLY))\n        if not XL:\n            folder = os.path.dirname(doc.PathName) if doc.PathName else os.path.join(os.environ.get('USERPROFILE', ''), 'Documents')\n            XL = os.path.join(folder, '%s_SCHEDULES.xlsx' % doc.Title)\n        if os.path.exists(XL):\n            # a sub-transaction even for CHECK ONLY: fields are read from the schedules, nothing is kept when APPLY is off\n            from Autodesk.Revit.DB import SubTransaction\n            TransactionManager.Instance.EnsureInTransaction(doc)\n            _sub = SubTransaction(doc)\n            _sub.Start()\n        run(doc, XL, APPLY, out)\n        if _sub is not None:\n            if APPLY:\n                _sub.Commit()\n            else:\n                _sub.RollBack()\n            TransactionManager.Instance.TransactionTaskDone()\n    except Exception as ex:\n        try:\n            if _sub is not None:\n                _sub.RollBack()\n                out.append('Nothing was changed in Revit (the whole run was undone).')\n            TransactionManager.Instance.TransactionTaskDone()\n        except Exception:\n            pass\n        out.insert(0, 'FAILED: ' + str(ex))\n        log(traceback.format_exc())\n    log('\\n'.join(out))\n    OUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "309c2923834249aab68e7b7e75d2b8f5",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "78c62500e9aa4ee4bb15dab1bfa226d1",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2b56964f41c44775a1009c90ff2683e3",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9f80e8edde5e4c94b3f0db12addfbac2",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "7765f2d35d294e36b7d46cbc1c446edd",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6ba3f9cbe59244ec8c8a512ad42e0ed9",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1b39a9f3af0f49c89439903791ab7065",
+      "End": "928b2441b30344ee9a351304a8b897a5",
+      "Id": "7c4ac70096cf48358722bdc7497a08a2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+      "End": "78c62500e9aa4ee4bb15dab1bfa226d1",
+      "Id": "c08435ce400a4abb9de09bb13f2f17cd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f805a5952b2846c5a4872752b6961cd7",
+      "End": "2b56964f41c44775a1009c90ff2683e3",
+      "Id": "6ce98d3d3b494a9ba82f4855169fb9ac",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9f80e8edde5e4c94b3f0db12addfbac2",
+      "End": "7765f2d35d294e36b7d46cbc1c446edd",
+      "Id": "cee4af63509a4c43867a29afdfcbcfb5",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e2835dc20f1e422e863fde75e70e9c40",
+        "Name": "SCHEDULES Excel file (Browse...)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "86337e6929b34db8a0abe470f28ed0e9",
+        "Name": "File From Path (watches the Excel)",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 260.0,
+        "Y": 120.0
+      },
+      {
+        "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+        "Name": "APPLY to Revit  (off = only report)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 330.0
+      },
+      {
+        "Id": "309c2923834249aab68e7b7e75d2b8f5",
+        "Name": "CAD2BIM  Schedules  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "10abe6d7044b47d0b258b37b7bdae795",
+        "Title": "1  EXCEL FILE  (Browse... -> your <project>_SCHEDULES.xlsx)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "e2835dc20f1e422e863fde75e70e9c40",
+          "86337e6929b34db8a0abe470f28ed0e9"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 270.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "37c8342e63134e659ffd9d44699d3e16",
+        "Title": "2  OPTIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3c535e8d6607453bbb34dd05968bb1cd"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 235.0,
+        "Width": 440.0,
+        "Height": 275.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 330.0,
+        "InitialHeight": 180.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "c50663de5fc345f49f49903920e782c6",
+        "Title": "3  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "309c2923834249aab68e7b7e75d2b8f5",
+          "f858a1cd0a8f4aaf9052d486f19bcc36"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "baf15940426346eb846b0adf0932e6cd",
+        "Title": "HOW TO USE  -  1st run: leave the file empty -> <project>_SCHEDULES.xlsx is made next to the .rvt with a standard set\nThen Browse... to that Excel.  CREATE = YES per schedule, FIELDS = Revit parameter names, comma separated.  Save + close, Run.\nMissing schedules are created, existing ones only get missing fields added.  AVAILABLE FIELDS tab lists the field names Revit offers.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

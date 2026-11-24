@@ -1,0 +1,511 @@
+{
+  "Uuid": "2ba24bdb-2ab7-48e2-913d-71c3af6e9a60",
+  "IsCustomNode": false,
+  "Description": "ISO 19650 type names, worksets, discipline view templates with colours and hatches, applied to sheet views",
+  "Name": "CAD2BIM_ISO19650_Standards",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "3ae1d60ead4c4c778d40069813dbd873",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f5954d99ea7741168909fb5590bda809",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "face39287d2a4d6395a00f4990b88432",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d3dc4ede5ffc4b329377c959191649d5",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "2ef26db4abc945359c671e3d7e82202e",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d9d4f4b8a2274d8898c00077d654b686",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "3b92fb9094c24404b4af3f466983a08c",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f8919f054b0642959eb260d1832d5ebd",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "12eb8368c11c4ca4a903e25637832d16",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7a8d7c28f0ad4e849fd0121a910dd6f3",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "fec3fc16039549b4ad016f57bff171e4",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0b5c7315335348b2ba0209fc40c56220",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "A,S,I,M,E,P"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - ISO 19650 PROJECT STANDARDS (professional, any project)\n#  1 TYPE NAMES  : Role_Type_Material_Size   e.g. S_COL_RC_300x600, S_BM_RC_300x450, S_PB_RC_300x600,\n#                  S_FTG_RC_900x900x500, S_SLB_RC_150, A_WAL_BLK_230, A_DOR_900x2100, A_STAIR_RC_Concrete\n#  2 WORKSETS    : Role-Zone-Content (ISO 19650 / AEC UK)  A-ZZ-Walls, S-ZZ-Columns, M-ZZ-Ducts, Z-ZZ-Shared Levels and Grids\n#  3 VIEW TEMPLATES per discipline (A, S, I, M, E, P): own discipline in colour + hatch, the others grey / halftone,\n#                  grids + levels light grey; scale stays per view\n#  4 templates applied to the plan views on sheets by sheet role (A / S / I / M / E / P in number or name)\nimport os\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\nlog('--- ISO 19650 standards v1 started')\nimport clr, math, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nclr.AddReference('RevitServices')\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nclr.AddReference('System')\nfrom System.Collections.Generic import List\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\nMMF = 1.0 / 304.8\nCOL_PARAMS = [('b', 'h'), ('Width', 'Depth'), ('Width', 'Length')]\nout = []\n\n\ndef num(v, d=0.0):\n    try:\n        return float(v)\n    except Exception:\n        return d\n\n\ndef f(v):\n    return '{0:.0f}'.format(v)\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\n_CAT = {}\ndef catid(bic):\n    if bic not in _CAT:\n        _CAT[bic] = idv(Category.GetCategory(doc, bic).Id)\n    return _CAT[bic]\n\n\ndef cat_is(e, bic):\n    return e is not None and e.Category is not None and idv(e.Category.Id) == catid(bic)\n\n\ndef tname(t):\n    p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n    return p.AsString() if p else ''\n\n\ndef setp(e, bip, val):\n    p = e.get_Parameter(bip)\n    if p is not None and not p.IsReadOnly:\n        p.Set(val)\n        return True\n    return False\n\n\ndef getd(e, bip):\n    p = e.get_Parameter(bip)\n    return p.AsDouble() if p is not None else None\n\n\ndef getlvl(e, bip):\n    p = e.get_Parameter(bip)\n    if p is None:\n        return None\n    x = doc.GetElement(p.AsElementId())\n    return x if isinstance(x, Level) else None\n\n\ndef tagged(e):\n    p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n    return (p.AsString() or '') if p is not None else ''\n\n\ndef mark(e, txt):\n    setp(e, BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS, txt)\n\n\ndef workset_for(keys):\n    if not doc.IsWorkshared:\n        return None\n    for ws in FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset):\n        if any(k in ws.Name.upper() for k in keys):\n            return ws.Id.IntegerValue\n    return None\n\n\ndef put_ws(e, wid):\n    if wid is not None:\n        try:\n            setp(e, BuiltInParameter.ELEM_PARTITION_PARAM, wid)\n        except Exception:\n            pass\n\n\ndef material(keys):\n    mats = list(FilteredElementCollector(doc).OfClass(Material))\n    for k in keys:\n        hit = [m for m in mats if k in m.Name.upper()]\n        if hit:\n            hit.sort(key=lambda m: len(m.Name))\n            return hit[0].Id\n    return ElementId.InvalidElementId\n\n\nLEVELS = sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.ProjectElevation)\nLIDX = dict((idv(l.Id), i) for i, l in enumerate(LEVELS))\n\n\ndef parse_levels(text, base=None):\n    \"\"\"'L2, L3' / 'L2..L5' / 'ALL' (= every level above base)\"\"\"\n    res = []\n    names = dict((l.Name.strip().upper(), l) for l in LEVELS)\n    for tok in [t.strip() for t in str(text or '').replace(';', ',').split(',') if t.strip()]:\n        T = tok.upper()\n        if T in ('ALL', '*', 'ALL ABOVE'):\n            b = LIDX[idv(base.Id)] if base is not None else -1\n            res += LEVELS[b + 1:]\n        elif '..' in T:\n            a, b = [names.get(x.strip()) for x in T.split('..', 1)]\n            if a is None or b is None:\n                raise Exception('Unknown level in \"{0}\". Levels: {1}'.format(tok, ', '.join(l.Name for l in LEVELS)))\n            i, j = sorted([LIDX[idv(a.Id)], LIDX[idv(b.Id)]])\n            res += LEVELS[i:j + 1]\n        else:\n            if T not in names:\n                raise Exception('Unknown level \"{0}\". Levels: {1}'.format(tok, ', '.join(l.Name for l in LEVELS)))\n            res.append(names[T])\n    seen, uniq = set(), []\n    for l in res:\n        if idv(l.Id) not in seen:\n            seen.add(idv(l.Id))\n            uniq.append(l)\n    return uniq\n\n\ndef col_size(c):\n    sym = c.Symbol\n    for a, b in COL_PARAMS:\n        if sym.LookupParameter(a) is not None and sym.LookupParameter(b) is not None:\n            return sym.LookupParameter(a).AsDouble() / MMF, sym.LookupParameter(b).AsDouble() / MMF\n    bb = c.get_BoundingBox(None)\n    return (bb.Max.X - bb.Min.X) / MMF, (bb.Max.Y - bb.Min.Y) / MMF\n\n\ndef angle_of(e):\n    bx = e.GetTransform().BasisX\n    return math.degrees(math.atan2(bx.Y, bx.X))\n\n\nimport re\n\nBIC = BuiltInCategory\nROLE_NAMES = {'A': 'ARCHITECTURE', 'S': 'STRUCTURE', 'I': 'INTERIOR', 'M': 'MECHANICAL', 'E': 'ELECTRICAL', 'P': 'PLUMBING'}\n\n\n# ================================================================ 1  TYPE NAMES  (Role_Type_Material_Size)\ndef mat_code(t):\n    try:\n        cs = t.GetCompoundStructure()\n        lid = cs.GetLayers()[cs.StructuralMaterialIndex if cs.StructuralMaterialIndex >= 0 else 0].MaterialId\n        m = doc.GetElement(lid)\n        n = (m.Name if m is not None else '').upper()\n    except Exception:\n        n = ''\n    for k, c in (('CONCRETE', 'RC'), ('BLOCK', 'BLK'), ('MASONRY', 'BLK'), ('BRICK', 'BRK'), ('GYPSUM', 'GYP'),\n                 ('PLASTER', 'PLS'), ('GLASS', 'GL'), ('STEEL', 'STL'), ('WOOD', 'TMB'), ('TIMBER', 'TMB'), ('TILE', 'TIL')):\n        if k in n:\n            return c\n    return 'GEN'\n\n\ndef pmm(t, names):\n    for n in names:\n        p = t.LookupParameter(n)\n        if p is not None and p.StorageType == StorageType.Double and p.AsDouble() > 0:\n            return p.AsDouble() / MMF\n    return None\n\n\ndef iso_name(t, cat, plinth_types):\n    nm = tname(t)\n    if re.match(r'^[ASIMEPZ]_[A-Z]+_', nm):\n        return None                                                     # already ISO\n    if cat == 'col':\n        b, h = pmm(t, ('b', 'Width')), pmm(t, ('h', 'Depth', 'Length'))\n        if b and h:\n            return 'S_COL_RC_{0}x{1}'.format(f(b), f(h))\n        return 'S_COL_STL_' + re.sub(r'\\s+', '', nm)\n    if cat == 'beam':\n        m = re.match(r'^(PB|B) (\\d+)x(\\d+)$', nm)\n        if m:\n            return '{0}_RC_{1}x{2}'.format('S_PB' if m.group(1) == 'PB' else 'S_BM', m.group(2), m.group(3))\n        b, h = pmm(t, ('b', 'Width')), pmm(t, ('h', 'Depth', 'Height'))\n        if b and h:\n            return '{0}_RC_{1}x{2}'.format('S_PB' if idv(t.Id) in plinth_types else 'S_BM', f(b), f(h))\n        return 'S_BM_STL_' + re.sub(r'\\s+', '', nm)\n    if cat == 'ftg':\n        L, B, T = pmm(t, ('Length',)), pmm(t, ('Width',)), pmm(t, ('Foundation Thickness', 'Thickness'))\n        if L and B and T:\n            return 'S_FTG_RC_{0}x{1}x{2}'.format(f(L), f(B), f(T))\n        return None\n    if cat == 'floor':\n        try:\n            w = t.GetCompoundStructure().GetWidth() / MMF\n        except Exception:\n            return None\n        if nm.upper().startswith('SLAB') or mat_code(t) == 'RC':\n            return 'S_SLB_RC_{0}'.format(f(w))\n        return 'A_FLR_{0}_{1}'.format(mat_code(t), f(w))\n    if cat == 'wall':\n        if t.Kind != WallKind.Basic:\n            return None\n        try:\n            w = t.GetCompoundStructure().GetWidth() / MMF\n        except Exception:\n            return None\n        mc = 'BLK' if 'BLOCK' in nm.upper() else mat_code(t)\n        return 'A_WAL_{0}_{1}'.format(mc, f(w))\n    if cat == 'roof':\n        try:\n            return 'A_ROF_{0}_{1}'.format(mat_code(t), f(t.GetCompoundStructure().GetWidth() / MMF))\n        except Exception:\n            return None\n    if cat == 'ceiling':\n        try:\n            return 'A_CLG_{0}_{1}'.format(mat_code(t), f(t.GetCompoundStructure().GetWidth() / MMF))\n        except Exception:\n            return None\n    if cat in ('door', 'window'):\n        w, h = pmm(t, ('Width', 'Rough Width')), pmm(t, ('Height', 'Rough Height'))\n        if w and h:\n            return '{0}_{1}x{2}'.format('A_DOR' if cat == 'door' else 'A_WIN', f(w), f(h))\n        return None\n    if cat == 'stair':\n        return 'A_STAIR_RC_Concrete' if 'CONCRETE' in nm.upper() or 'CAST' in nm.upper() else 'A_STAIR_' + re.sub(r'\\s+', '', nm)\n    return None\n\n\nRENAME_CATS = [('col', BIC.OST_StructuralColumns), ('beam', BIC.OST_StructuralFraming), ('ftg', BIC.OST_StructuralFoundation),\n               ('floor', BIC.OST_Floors), ('wall', BIC.OST_Walls), ('roof', BIC.OST_Roofs), ('ceiling', BIC.OST_Ceilings),\n               ('door', BIC.OST_Doors), ('window', BIC.OST_Windows), ('stair', BIC.OST_Stairs)]\n\n\ndef rename_types():\n    done, skipped = [], 0\n    plinth_types = set()\n    for e in FilteredElementCollector(doc).OfCategory(BIC.OST_StructuralFraming).WhereElementIsNotElementType():\n        if tagged(e) == 'CAD2BIM-PB':\n            plinth_types.add(idv(e.GetTypeId()))\n    for cat, bic in RENAME_CATS:\n        used = {}\n        for e in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType():\n            tid = idv(e.GetTypeId())\n            if tid > 0 and tid not in used:\n                used[tid] = doc.GetElement(e.GetTypeId())\n        for tid, t in used.items():\n            if t is None:\n                continue\n            new = iso_name(t, cat, plinth_types)\n            if not new or new == tname(t):\n                continue\n            # names must be unique inside a family (loadable) / the type class (system)\n            if isinstance(t, FamilySymbol):\n                sibs = set(tname(doc.GetElement(i)) for i in t.Family.GetFamilySymbolIds())\n            else:\n                sibs = set(tname(x) for x in FilteredElementCollector(doc).OfClass(t.GetType()))\n            cand, k = new, 2\n            while cand in sibs:\n                cand = '{0}_{1}'.format(new, k)\n                k += 1\n            try:\n                old = tname(t)\n                t.Name = cand\n                done.append('{0} -> {1}'.format(old, cand))\n            except Exception:\n                skipped += 1\n    return done, skipped\n\n\n# ================================================================ 2  WORKSETS  (Role-Zone-Content)\ndef ws_of(e):\n    \"\"\"target workset name for an element\"\"\"\n    c = e.Category\n    if c is None:\n        return None\n    cid = idv(c.Id)\n    def isc(b):\n        return cid == catid(b)\n    if isinstance(e, RevitLinkInstance):\n        return 'Z-ZZ-Links Revit'\n    if isinstance(e, ImportInstance):\n        return 'Z-ZZ-Links CAD'\n    if isc(BIC.OST_Walls):\n        try:\n            fn = e.WallType.get_Parameter(BuiltInParameter.FUNCTION_PARAM).AsInteger()\n        except Exception:\n            fn = 0\n        return 'A-ZZ-Walls External' if fn == 1 else 'A-ZZ-Walls Internal'\n    if isc(BIC.OST_StructuralColumns):\n        return 'S-ZZ-Columns'\n    if isc(BIC.OST_StructuralFraming):\n        t = doc.GetElement(e.GetTypeId())\n        n = tname(t).upper() if t is not None else ''\n        return 'S-ZZ-Beams Plinth' if (n.startswith('S_PB') or n.startswith('PB ') or tagged(e) == 'CAD2BIM-PB') else 'S-ZZ-Beams Floor'\n    if isc(BIC.OST_StructuralFoundation):\n        return 'S-ZZ-Foundations'\n    if isc(BIC.OST_Floors):\n        try:\n            s = e.get_Parameter(BuiltInParameter.FLOOR_PARAM_IS_STRUCTURAL).AsInteger() == 1\n        except Exception:\n            s = False\n        t = doc.GetElement(e.GetTypeId())\n        n = tname(t).upper() if t is not None else ''\n        return 'S-ZZ-Slabs' if (s or n.startswith('S_SLB') or n.startswith('SLAB')) else 'A-ZZ-Floor Finishes'\n    table = [\n        (BIC.OST_Roofs, 'S-ZZ-Roof'), (BIC.OST_Stairs, 'A-ZZ-Stairs and Railings'), (BIC.OST_StairsRailing, 'A-ZZ-Stairs and Railings'),\n        (BIC.OST_Doors, 'A-ZZ-Doors'), (BIC.OST_Windows, 'A-ZZ-Windows'), (BIC.OST_CurtainWallPanels, 'A-ZZ-Walls External'),\n        (BIC.OST_Ceilings, 'I-ZZ-Ceilings'), (BIC.OST_Rooms, 'A-ZZ-Rooms'), (BIC.OST_Furniture, 'I-ZZ-Furniture'),\n        (BIC.OST_Casework, 'I-ZZ-Casework'), (BIC.OST_GenericModel, 'A-ZZ-Generic'), (BIC.OST_SpecialityEquipment, 'I-ZZ-Equipment'),\n        (BIC.OST_DuctCurves, 'M-ZZ-Ducts'), (BIC.OST_DuctFitting, 'M-ZZ-Ducts'), (BIC.OST_DuctTerminal, 'M-ZZ-Ducts'),\n        (BIC.OST_DuctAccessory, 'M-ZZ-Ducts'), (BIC.OST_FlexDuctCurves, 'M-ZZ-Ducts'), (BIC.OST_MechanicalEquipment, 'M-ZZ-Equipment'),\n        (BIC.OST_PipeCurves, 'P-ZZ-Pipes'), (BIC.OST_PipeFitting, 'P-ZZ-Pipes'), (BIC.OST_PipeAccessory, 'P-ZZ-Pipes'),\n        (BIC.OST_FlexPipeCurves, 'P-ZZ-Pipes'), (BIC.OST_PlumbingFixtures, 'P-ZZ-Sanitary'), (BIC.OST_Sprinklers, 'P-ZZ-Fire'),\n        (BIC.OST_CableTray, 'E-ZZ-Containment'), (BIC.OST_CableTrayFitting, 'E-ZZ-Containment'), (BIC.OST_Conduit, 'E-ZZ-Containment'),\n        (BIC.OST_ConduitFitting, 'E-ZZ-Containment'), (BIC.OST_LightingFixtures, 'E-ZZ-Lighting'), (BIC.OST_LightingDevices, 'E-ZZ-Lighting'),\n        (BIC.OST_ElectricalEquipment, 'E-ZZ-Power'), (BIC.OST_ElectricalFixtures, 'E-ZZ-Power'),\n    ]\n    for b, n in table:\n        try:\n            if isc(b):\n                return n\n        except Exception:\n            pass\n    return None\n\n\ndef worksets(enable):\n    if not doc.IsWorkshared:\n        if not enable:\n            return 'skipped - model is not workshared (switch on \"Enable worksharing\" or Collaborate > Worksets)', 0, 0\n        doc.EnableWorksharing('Z-ZZ-Shared Levels and Grids', 'Z-ZZ-General')\n    existing = dict((w.Name, w) for w in FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset))\n    # rename Revit's defaults to the ISO names\n    for old, new in (('Shared Levels and Grids', 'Z-ZZ-Shared Levels and Grids'), ('Workset1', 'Z-ZZ-General')):\n        if old in existing and new not in existing:\n            try:\n                WorksetTable.RenameWorkset(doc, existing[old].Id, new)\n            except Exception:\n                pass\n    existing = dict((w.Name, w) for w in FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset))\n    made_c, moved = [0], 0          # (list counter instead of nonlocal: runs in IronPython 2.7 and CPython3)\n    def get(name):\n        if name not in existing:\n            existing[name] = Workset.Create(doc, name)\n            made_c[0] += 1\n        return existing[name]\n    get('Z-ZZ-Shared Levels and Grids')\n    for e in FilteredElementCollector(doc).WhereElementIsNotElementType():\n        try:\n            if isinstance(e, (Level, Grid)) or (e.Category is not None and idv(e.Category.Id) == catid(BIC.OST_Levels)):\n                target = 'Z-ZZ-Shared Levels and Grids'\n            else:\n                target = ws_of(e)\n            if not target:\n                continue\n            p = e.get_Parameter(BuiltInParameter.ELEM_PARTITION_PARAM)\n            if p is None or p.IsReadOnly:\n                continue\n            w = get(target)\n            if p.AsInteger() != idv(w.Id):\n                p.Set(idv(w.Id))\n                moved += 1\n        except Exception:\n            pass\n    return 'ok', made_c[0], moved\n\n\n# ================================================================ 3  VIEW TEMPLATES\ndef rgb(r, g, b):\n    return Color(r, g, b)\n\n\n_PAT = {}\ndef pattern(kind):\n    \"\"\"'solid', 'concrete', 'masonry', 'diagonal', 'cross' -> drafting FillPatternElement (created if missing)\"\"\"\n    if kind in _PAT:\n        return _PAT[kind]\n    fps = list(FilteredElementCollector(doc).OfClass(FillPatternElement))\n    res = None\n    if kind == 'solid':\n        res = next((p for p in fps if p.GetFillPattern().IsSolidFill), None)\n    else:\n        keys = {'concrete': ('CONCRETE',), 'masonry': ('MASONRY', 'BRICK', 'BLOCK'),\n                'diagonal': ('DIAGONAL UP', 'DIAGONAL'), 'cross': ('CROSSHATCH', 'DIAGONAL CROSS')}[kind]\n        for k in keys:\n            res = next((p for p in fps if k in p.Name.upper() and p.GetFillPattern().Target == FillPatternTarget.Drafting), None)\n            if res is not None:\n                break\n        if res is None:\n            name = {'concrete': 'CAD2BIM Concrete 45 1.5mm', 'masonry': 'CAD2BIM Masonry Cross 2mm',\n                    'diagonal': 'CAD2BIM Diagonal 45 2mm', 'cross': 'CAD2BIM Cross 45 2mm'}[kind]\n            res = next((p for p in fps if p.Name == name), None)\n            if res is None:\n                if kind in ('masonry', 'cross'):\n                    fp = FillPattern(name, FillPatternTarget.Drafting, FillPatternHostOrientation.ToView,\n                                     math.radians(45), 2.0 * MMF, 2.0 * MMF)\n                else:\n                    fp = FillPattern(name, FillPatternTarget.Drafting, FillPatternHostOrientation.ToView,\n                                     math.radians(45), (1.5 if kind == 'concrete' else 2.0) * MMF)\n                res = FillPatternElement.Create(doc, fp)\n    _PAT[kind] = res\n    return res\n\n\ndef ogs(fill=None, hatch=None, hatch_col=(70, 70, 70), line=None, half=False, surface=None, transp=0):\n    o = OverrideGraphicSettings()\n    if fill is not None:\n        o.SetCutBackgroundPatternId(pattern('solid').Id)\n        o.SetCutBackgroundPatternColor(rgb(*fill))\n    if hatch is not None:\n        o.SetCutForegroundPatternId(pattern(hatch).Id)\n        o.SetCutForegroundPatternColor(rgb(*hatch_col))\n    if surface is not None:\n        o.SetSurfaceBackgroundPatternId(pattern('solid').Id)\n        o.SetSurfaceBackgroundPatternColor(rgb(*surface))\n    if line is not None:\n        o.SetProjectionLineColor(rgb(*line))\n        o.SetCutLineColor(rgb(*line))\n    if half:\n        o.SetHalftone(True)\n    if transp:\n        o.SetSurfaceTransparency(int(transp))\n    return o\n\n\nGREY = dict(line=(150, 150, 150), half=True)\nLIGHT = dict(line=(185, 185, 185), half=True)\nCOL = dict(fill=(217, 83, 79), hatch='concrete')               # columns  - red + concrete\nBEAM = dict(fill=(66, 139, 202), hatch='concrete', surface=(205, 225, 245))     # beams - blue\nPLINTH = dict(fill=(142, 68, 173), hatch='concrete', surface=(225, 205, 235))   # plinth beams - purple\nFTG = dict(fill=(240, 173, 78), hatch='concrete', surface=(250, 225, 185))      # footings - orange\nSLAB = dict(fill=(120, 170, 120), hatch='concrete', surface=(215, 235, 215), transp=40)  # slabs - green\nWALL_A = dict(fill=(245, 222, 179), hatch='masonry', hatch_col=(120, 100, 80))  # walls - sand + masonry\n\nARCH_CATS = [BIC.OST_Walls, BIC.OST_Doors, BIC.OST_Windows, BIC.OST_Furniture, BIC.OST_Casework, BIC.OST_Stairs,\n             BIC.OST_StairsRailing, BIC.OST_Ceilings, BIC.OST_PlumbingFixtures, BIC.OST_GenericModel, BIC.OST_Roofs]\nSTR_CATS = [BIC.OST_StructuralColumns, BIC.OST_StructuralFraming, BIC.OST_StructuralFoundation]\nMEP = {'M': [(BIC.OST_DuctCurves, (52, 152, 219)), (BIC.OST_DuctFitting, (52, 152, 219)), (BIC.OST_FlexDuctCurves, (52, 152, 219)),\n             (BIC.OST_DuctTerminal, (41, 128, 185)), (BIC.OST_MechanicalEquipment, (31, 97, 141))],\n       'P': [(BIC.OST_PipeCurves, (39, 174, 96)), (BIC.OST_PipeFitting, (39, 174, 96)), (BIC.OST_FlexPipeCurves, (39, 174, 96)),\n             (BIC.OST_PlumbingFixtures, (22, 160, 133)), (BIC.OST_Sprinklers, (192, 57, 43))],\n       'E': [(BIC.OST_CableTray, (230, 126, 34)), (BIC.OST_CableTrayFitting, (230, 126, 34)), (BIC.OST_Conduit, (243, 156, 18)),\n             (BIC.OST_LightingFixtures, (241, 196, 15)), (BIC.OST_ElectricalEquipment, (231, 76, 60)),\n             (BIC.OST_ElectricalFixtures, (211, 84, 0))]}\nTEMPLATES = {\n    'A': ('A-ZZ-VT-Architectural Plan', 1, 2), 'S': ('S-ZZ-VT-Structural Plan', 2, 2), 'I': ('I-ZZ-VT-Interior Plan', 1, 3),\n    'M': ('M-ZZ-VT-Mechanical Plan', 4, 2), 'E': ('E-ZZ-VT-Electrical Plan', 8, 2), 'P': ('P-ZZ-VT-Plumbing Plan', 16, 2)}\n\n\ndef plinth_filter():\n    name = 'S-PLINTH BEAMS'\n    for pf in FilteredElementCollector(doc).OfClass(ParameterFilterElement):\n        if pf.Name == name:\n            return pf\n    pid = ElementId(BuiltInParameter.ALL_MODEL_TYPE_NAME)\n    rules = []\n    for txt in ('S_PB', 'PB '):\n        try:\n            r = ParameterFilterRuleFactory.CreateBeginsWithRule(pid, txt)\n        except Exception:\n            r = ParameterFilterRuleFactory.CreateBeginsWithRule(pid, txt, False)\n        rules.append(ElementParameterFilter(r))\n    lst = List[ElementFilter]()\n    for r in rules:\n        lst.Add(r)\n    cats = List[ElementId]()\n    cats.Add(Category.GetCategory(doc, BIC.OST_StructuralFraming).Id)\n    return ParameterFilterElement.Create(doc, name, cats, LogicalOrFilter(lst))\n\n\ndef set_cat(v, bic, o):\n    try:\n        v.SetCategoryOverrides(Category.GetCategory(doc, bic).Id, o)\n    except Exception:\n        pass\n\n\ndef style_template(v, role):\n    for b in (BIC.OST_Grids, BIC.OST_Levels):\n        set_cat(v, b, ogs(**LIGHT))\n    if role == 'S':\n        for b in ARCH_CATS:\n            set_cat(v, b, ogs(**GREY))\n        set_cat(v, BIC.OST_StructuralColumns, ogs(**COL))\n        set_cat(v, BIC.OST_StructuralFraming, ogs(**BEAM))\n        set_cat(v, BIC.OST_StructuralFoundation, ogs(**FTG))\n        set_cat(v, BIC.OST_Floors, ogs(**SLAB))\n        try:\n            pf = plinth_filter()\n            if not any(idv(i) == idv(pf.Id) for i in v.GetFilters()):\n                v.AddFilter(pf.Id)\n            v.SetFilterOverrides(pf.Id, ogs(**PLINTH))\n        except Exception as ex:\n            log('plinth filter: ' + str(ex))\n    elif role == 'A':\n        set_cat(v, BIC.OST_Walls, ogs(**WALL_A))\n        set_cat(v, BIC.OST_StructuralColumns, ogs(**COL))\n        set_cat(v, BIC.OST_StructuralFraming, ogs(**GREY))\n        set_cat(v, BIC.OST_StructuralFoundation, ogs(**GREY))\n        set_cat(v, BIC.OST_Floors, ogs(line=(120, 120, 120)))\n    elif role == 'I':\n        set_cat(v, BIC.OST_Walls, ogs(fill=(225, 225, 225), line=(90, 90, 90)))\n        for b in STR_CATS:\n            set_cat(v, b, ogs(fill=(200, 200, 200), **GREY))\n        set_cat(v, BIC.OST_Furniture, ogs(line=(0, 128, 128), surface=(210, 236, 236)))\n        set_cat(v, BIC.OST_Casework, ogs(line=(142, 68, 173), surface=(232, 218, 239)))\n        set_cat(v, BIC.OST_Floors, ogs(surface=(245, 240, 225), line=(150, 140, 120)))\n    else:                                                    # M / E / P: building as grey underlay\n        for b in ARCH_CATS + STR_CATS + [BIC.OST_Floors]:\n            if b == BIC.OST_PlumbingFixtures and role == 'P':\n                continue\n            set_cat(v, b, ogs(**GREY))\n        for r_, items in MEP.items():\n            for b, col in items:\n                if r_ == role:\n                    set_cat(v, b, ogs(line=col, surface=tuple(min(255, int(c * 0.35 + 255 * 0.65)) for c in col)))\n                else:\n                    set_cat(v, b, ogs(**GREY))\n\n\ndef make_templates(roles):\n    vft = next((t for t in FilteredElementCollector(doc).OfClass(ViewFamilyType) if t.ViewFamily == ViewFamily.FloorPlan), None)\n    lvl = LEVELS[0]\n    names = dict((v.Name, v) for v in FilteredElementCollector(doc).OfClass(View) if v.IsTemplate)\n    res = {}\n    for role in roles:\n        name, disc, detail = TEMPLATES[role]\n        tpl = names.get(name)\n        if tpl is None:\n            tmp = ViewPlan.Create(doc, vft.Id, lvl.Id)\n            tpl = tmp.CreateViewTemplate()\n            tpl.Name = name\n            doc.Delete(tmp.Id)\n        setp(tpl, BuiltInParameter.VIEW_DISCIPLINE, disc)\n        setp(tpl, BuiltInParameter.VIEW_DETAIL_LEVEL, detail)\n        style_template(tpl, role)\n        try:                                                 # each view keeps its own scale\n            nc = List[ElementId]()\n            for bip in ('VIEW_SCALE_PULLDOWN_METRIC', 'VIEW_SCALE_PULLDOWN_IMPERIAL', 'VIEW_SCALE'):\n                if hasattr(BuiltInParameter, bip):\n                    nc.Add(ElementId(getattr(BuiltInParameter, bip)))\n            tpl.SetNonControlledTemplateParameterIds(nc)\n        except Exception as ex:\n            log('scale not freed: ' + str(ex))\n        res[role] = tpl\n    return res\n\n\ndef role_of(sheet, view):\n    toks = []\n    for t in ((sheet.SheetNumber if sheet else ''), (sheet.Name if sheet else ''), view.Name):\n        u = (t or '').upper()\n        for ch in '-_.,/()[]':\n            u = u.replace(ch, ' ')\n        toks += u.split()\n    txt = ' '.join(toks)\n    for role, keys in (('S', ('STR', 'STRUCT', 'STRUCTURAL', 'S', 'ST', 'FOUNDATION', 'COLUMN', 'BEAM', 'FRAMING')),\n                       ('I', ('ID', 'INTERIOR', 'I', 'INT', 'FURNITURE', 'FINISH', 'FINISHES')),\n                       ('M', ('MECH', 'MECHANICAL', 'HVAC', 'M')), ('E', ('ELEC', 'ELECTRICAL', 'E', 'LIGHTING', 'POWER')),\n                       ('P', ('PLUMB', 'PLUMBING', 'P', 'SANITARY', 'DRAINAGE')), ('A', ('ARCH', 'ARCHITECTURAL', 'A', 'AR'))):\n        if any(k in toks for k in keys):\n            return role\n    try:\n        d = view.Discipline\n        return {ViewDiscipline.Structural: 'S', ViewDiscipline.Mechanical: 'M', ViewDiscipline.Electrical: 'E',\n                ViewDiscipline.Plumbing: 'P', ViewDiscipline.Architectural: 'A'}.get(d)\n    except Exception:\n        return None\n\n\ntry:\n    DO_NAMES = bool(IN[0]); DO_WS = bool(IN[1]); ENABLE_WS = bool(IN[2]); DO_TPL = bool(IN[3]); APPLY = bool(IN[4])\n    ROLES = [r.strip().upper() for r in str(IN[5] or 'A,S,I,M,E,P').split(',') if r.strip().upper() in TEMPLATES]\n    log('inputs: names {0} worksets {1} enable {2} templates {3} apply {4} roles {5}'.format(\n        DO_NAMES, DO_WS, ENABLE_WS, DO_TPL, APPLY, ROLES))\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    out.append('CAD2BIM ISO 19650 STANDARDS  -  DONE')\n    if DO_NAMES:\n        done, skipped = rename_types()\n        out.append('Type names  : {0} renamed to Role_Type_Material_Size{1}'.format(\n            len(done), ', {0} could not be renamed'.format(skipped) if skipped else ''))\n        out.extend('    ' + d for d in done[:25])\n        if len(done) > 25:\n            out.append('    ... {0} more'.format(len(done) - 25))\n    if DO_WS:\n        st, made, moved = worksets(ENABLE_WS)\n        out.append('Worksets    : {0}{1}'.format(st, '' if st != 'ok' else ' - {0} created, {1} elements placed (Role-ZZ-Content)'.format(made, moved)))\n    tpls = {}\n    if DO_TPL and ROLES:\n        tpls = make_templates(ROLES)\n        out.append('Templates   : ' + ', '.join(t.Name for t in tpls.values()))\n        out.append('    own discipline in colour + hatch (columns red, beams blue, plinth purple, footings orange, slabs green,')\n        out.append('    walls sand + masonry hatch), other disciplines grey / halftone, grids + levels light grey')\n    if APPLY and tpls:\n        n, rows = 0, {}\n        for sh in FilteredElementCollector(doc).OfClass(ViewSheet):\n            for vid in sh.GetAllPlacedViews():\n                v = doc.GetElement(vid)\n                if not isinstance(v, ViewPlan) or v.IsTemplate or v.ViewType not in (ViewType.FloorPlan, ViewType.EngineeringPlan):\n                    continue\n                r = role_of(sh, v)\n                if r in tpls:\n                    try:\n                        v.ViewTemplateId = tpls[r].Id\n                        n += 1\n                        rows[r] = rows.get(r, 0) + 1\n                    except Exception:\n                        pass\n        out.append('Applied     : {0} plan views on sheets ({1})'.format(n, ', '.join('{0} {1}'.format(v, k) for k, v in sorted(rows.items()))))\n    TransactionManager.Instance.TransactionTaskDone()\n    out.append('Other CAD2BIM graphs keep working with the ISO names. Save / Sync with Central.')\nexcept Exception as ex:\n    try:\n        TransactionManager.Instance.ForceCloseTransaction()\n    except Exception:\n        pass\n    out.insert(0, 'FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "a608061546c843cbb0d8ebfe0c4885bc",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "754d7bcf37ab4b34a94d4f1b05bd9dcf",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1b4d76ab65294bb9a2b66020206621ca",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e792a5f07ad448589e3699fdeae192b1",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "caeff395740a471caa06b4141a25f263",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "afaae26d87154b59b3b913be5f0e57b3",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9a961f5941fb42a2a3fd107d246b08e9",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "eb39af96944744eab0319c68262be9cf",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "319d76f0b4db4acb811fa2bda8a1e627",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "678a1a28508046fbac73743cc39a0728",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "62f6c0033f7b4b24adf3e46b5d37e949",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "f5954d99ea7741168909fb5590bda809",
+      "End": "754d7bcf37ab4b34a94d4f1b05bd9dcf",
+      "Id": "e7f46cd8554b48edb124bfa46cd1193d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d3dc4ede5ffc4b329377c959191649d5",
+      "End": "1b4d76ab65294bb9a2b66020206621ca",
+      "Id": "1df2956a20ce44589daec28cf08587e7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d9d4f4b8a2274d8898c00077d654b686",
+      "End": "e792a5f07ad448589e3699fdeae192b1",
+      "Id": "c84988bde3794414a437db6ad4c2b231",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f8919f054b0642959eb260d1832d5ebd",
+      "End": "caeff395740a471caa06b4141a25f263",
+      "Id": "b36503b99f0d4cc3afa001abcde6aab2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7a8d7c28f0ad4e849fd0121a910dd6f3",
+      "End": "afaae26d87154b59b3b913be5f0e57b3",
+      "Id": "facfe7b491b4487a83ef973f39ec1df9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0b5c7315335348b2ba0209fc40c56220",
+      "End": "9a961f5941fb42a2a3fd107d246b08e9",
+      "Id": "83a7712283934c9eb925edf0d94d1354",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "eb39af96944744eab0319c68262be9cf",
+      "End": "678a1a28508046fbac73743cc39a0728",
+      "Id": "2d0b1160e89f4218a8fc077b4088393b",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "3ae1d60ead4c4c778d40069813dbd873",
+        "Name": "Rename element types  e.g. S_COL_RC_300x600, S_BM_RC_300x450, A_WAL_BLK_230",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "face39287d2a4d6395a00f4990b88432",
+        "Name": "Create ISO worksets + put every element on its workset",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 300.0
+      },
+      {
+        "Id": "2ef26db4abc945359c671e3d7e82202e",
+        "Name": "Enable worksharing if the model is not workshared",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 435.0
+      },
+      {
+        "Id": "3b92fb9094c24404b4af3f466983a08c",
+        "Name": "Create / update discipline view templates (colour + hatch)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "12eb8368c11c4ca4a903e25637832d16",
+        "Name": "Apply templates to plan views on sheets (by sheet role A / S / I / M / E / P)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "fec3fc16039549b4ad016f57bff171e4",
+        "Name": "Disciplines",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 270.0
+      },
+      {
+        "Id": "a608061546c843cbb0d8ebfe0c4885bc",
+        "Name": "CAD2BIM  MEP Openings  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "319d76f0b4db4acb811fa2bda8a1e627",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "624993f4e94c4f39a4bd2edefe48a424",
+        "Title": "1  NAMES  (Role_Type_Material_Size)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3ae1d60ead4c4c778d40069813dbd873"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 270.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "8c29759d579b4ebe96a47a317eb26b49",
+        "Title": "2  WORKSETS  (ISO 19650: Role-ZZ-Content)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "face39287d2a4d6395a00f4990b88432",
+          "2ef26db4abc945359c671e3d7e82202e"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 205.0,
+        "Width": 440.0,
+        "Height": 405.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 300.0,
+        "InitialHeight": 310.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "552bc25d08784a2d8fd43ad060118863",
+        "Title": "3  VIEW TEMPLATES + SHEETS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3b92fb9094c24404b4af3f466983a08c",
+          "12eb8368c11c4ca4a903e25637832d16",
+          "fec3fc16039549b4ad016f57bff171e4"
+        ],
+        "HasNestedGroups": false,
+        "Left": 460.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 540.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 445.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF9FDF8F"
+      },
+      {
+        "Id": "da7af5a9d176496d8a31330b61de392e",
+        "Title": "5  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "a608061546c843cbb0d8ebfe0c4885bc",
+          "319d76f0b4db4acb811fa2bda8a1e627"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "1ae30e337ecc4a3ca231584379b6dcf6",
+        "Title": "HOW TO USE  -  any project, Run once after modelling (and again any time)\nTypes -> Role_Type_Material_Size (S_COL_RC_300x600, S_PB_RC_300x600, S_FTG_RC_900x900x500, S_SLB_RC_150, A_WAL_BLK_230 ...).\nWorksets -> A-ZZ-Walls Internal, S-ZZ-Columns, S-ZZ-Beams Plinth, M-ZZ-Ducts, Z-ZZ-Shared Levels and Grids ...\nTemplates A / S / I / M / E / P: own discipline in colour + hatch, others grey halftone, grids light grey; applied to sheet views by role.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

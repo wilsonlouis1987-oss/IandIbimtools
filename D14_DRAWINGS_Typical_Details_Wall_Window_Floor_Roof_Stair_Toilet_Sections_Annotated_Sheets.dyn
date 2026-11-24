@@ -1,0 +1,785 @@
+{
+  "Uuid": "a46d50b9-638d-4736-becc-4e6271030003",
+  "IsCustomNode": false,
+  "Description": "TYPICAL DETAILS cut from the model: wall section (through a window, footing to parapet), window head + sill, floor build-up, roof + parapet, staircase section, toilet section - with layer notes, dimensions, levels - on new TYPICAL DETAILS sheets TD-01 ... Run again = remade.",
+  "Name": "D14_DRAWINGS_Typical_Details_Wall_Window_Floor_Roof_Stair_Toilet_Sections_Annotated_Sheets",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "df38a75e02f44a19a1377a28a6953232",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "609fa1f8ad72410ab6e4c1c4b2c0f31b",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "a901159c687c45ac90317c444482a4d1",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6d64ad7e38434a14a001a92f00ee30a6",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "c573c640132049518eb7f25a0225a644",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "39e1e38282744a008838fe784a8af9d0",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "c9a5621d2b8a41909f3b8d078028fa09",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7ee0bcd2b9804e1bac33b7f8afd939d6",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "2a629602cb4f4b16a70a57be30ae1a03",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "654a1a0c3dfc414885f022b2dd7dc881",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "78fb2852943c4cfcb7e411b1ef46ef66",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2420a66ecd7d4f399ccc91d4ff04bce5",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "24f5c4283a764618a9f2d00d01d994ac",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c1c9b06b82be4f3fbcc84eb1b93b9d73",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "665f0dfd24094aafbe9f9eaa06d7cf8e",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "33a208536b1340459412299dd2166609",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "9b89f4a7c52f4b0ba25e8559c3323793",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "27e5aee3c82b406589b5a3f7f9e6957f",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "TD-"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "1a47b3dfe56f459682a0468d05cbc83d",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b33607acb5bc4bfb9e51db07a1ea0ad9",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "TYPICAL DETAILS"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "7cf027493c0c4d51a0e368058ac34b93",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "40a6801ccf444adbb0c38583c56e9c79",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "TOILET, WC, W.C, BATH, LAVATORY, WASH"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "aee97c36b3664857b3d9ad454f4ab62a",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c60a6959f01449a3bfae08b9ed8650e9",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  D14 TYPICAL DETAILS   (Revit 2026)   v1\n#  Typical details CUT FROM THE MODEL, annotated, on new TYPICAL DETAILS sheets:\n#    TD01 WALL SECTION          outer wall through a window, footing / plinth to parapet  (1:20 .. 1:50 to fit)\n#    TD02 WINDOW HEAD + SILL    callout on the wall section                                (1:10)\n#    TD03 FLOOR BUILD-UP        callout at an upper floor slab on the wall section          (1:10)\n#    TD04 ROOF + PARAPET        callout at the top of the wall section                      (1:10)\n#    TD05 STAIRCASE SECTION     along the run of a stair                                    (1:25)\n#    TD06 TOILET SECTION        through a TOILET / WC / BATH room                          (1:20)\n#  Annotation: layer notes with leaders (wall / slab / roof build-up from the types), dimensions (wall thickness,\n#  level to level, sill / head), stair data (risers, treads, waist), sunken slab depth, level heads (datums).\n#  Run again = the SD-TD views are made again and the TYPICAL DETAILS sheets refilled.  One Ctrl+Z undoes a run.\n#  pyRevit (IronPython 2.7) and Dynamo CPython3.\n# =====================================================================\nimport os, re, math, datetime\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *                           # noqa\nclr.AddReference('System')\nfrom System.Collections.Generic import List\n\nD14_TITLE = 'D14 Typical Details'\nD14_LOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'D14_details_log.txt')\nMMF = 1.0 / 304.8\nPREFIX = 'SD-TD '\nD14_DEFAULTS = {\n    'wall': True, 'window': True, 'floor': True, 'roof': True, 'stair': True, 'toilet': True,\n    'notes': True, 'dims': True,\n    'sheet_prefix': 'TD-',            # sheet numbers TD-01, TD-02 ..\n    'sheet_name': 'TYPICAL DETAILS',\n    'toilet_words': 'TOILET, WC, W.C, BATH, LAVATORY, WASH',\n}\nSCALES = (10, 20, 25, 50, 100)\n\n\ndef log14(msg):\n    try:\n        d = os.path.dirname(D14_LOG)\n        if not os.path.isdir(d):\n            os.makedirs(d)\n        with open(D14_LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef cat_val(bic):\n    try:\n        return int(bic)\n    except Exception:\n        return idv(ElementId(bic))\n\n\ndef tname(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef ename(e):\n    for bip in (BuiltInParameter.ROOM_NAME, BuiltInParameter.SYMBOL_NAME_PARAM, BuiltInParameter.ALL_MODEL_TYPE_NAME):\n        try:\n            p = e.get_Parameter(bip)\n            if p is not None and p.AsString():\n                return p.AsString()\n        except Exception:\n            pass\n    try:\n        return Element.Name.GetValue(e)\n    except Exception:\n        try:\n            return e.Name\n        except Exception:\n            return ''\n\n\ndef d14_settings(s):\n    r = dict(D14_DEFAULTS)\n    if s:\n        r.update(s)\n    return r\n\n\ndef mm(v):\n    return int(round(v / MMF))\n\n\n# ----------------------------------------------------------------- what to cut\ndef levels_of(doc):\n    return sorted(FilteredElementCollector(doc).OfClass(Level).ToElements(), key=lambda l: l.Elevation)\n\n\ndef wall_func(w):\n    try:\n        return w.WallType.Function\n    except Exception:\n        return None\n\n\ndef is_exterior(w):\n    try:\n        return wall_func(w) == WallFunction.Exterior\n    except Exception:\n        return False\n\n\ndef straight_wall(w):\n    try:\n        return tname(w.Location.Curve) == 'Line'\n    except Exception:\n        return False\n\n\ndef pick_window(doc):\n    \"\"\"a window in a straight outer wall, lowest level first, most common type -> (window, wall) or (None, wall).\"\"\"\n    wins = []\n    for e in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Windows).WhereElementIsNotElementType():\n        try:\n            h = e.Host\n            if h is not None and tname(h) == 'Wall' and straight_wall(h):\n                wins.append(e)\n        except Exception:\n            continue\n    if wins:\n        count = {}\n        for e in wins:\n            count[idv(e.GetTypeId())] = count.get(idv(e.GetTypeId()), 0) + 1\n\n        def key(e):\n            lv = doc.GetElement(e.LevelId)\n            return (0 if is_exterior(e.Host) else 1, lv.Elevation if lv else 0, -count[idv(e.GetTypeId())])\n        wins.sort(key=key)\n        return wins[0], wins[0].Host\n    walls = [w for w in FilteredElementCollector(doc).OfClass(Wall) if straight_wall(w)]\n    if not walls:\n        return None, None\n    walls.sort(key=lambda w: (0 if is_exterior(w) else 1, -w.Location.Curve.Length))\n    return None, walls[0]\n\n\ndef wall_frame(w, at=None):\n    \"\"\"(point on the wall axis, along-wall unit dir d, normal n) - at = point to project on the axis.\"\"\"\n    c = w.Location.Curve\n    a, b = c.GetEndPoint(0), c.GetEndPoint(1)\n    d = XYZ(b.X - a.X, b.Y - a.Y, 0).Normalize()\n    n = XYZ(-d.Y, d.X, 0)\n    if at is None:\n        p = a.Add(b).Multiply(0.5)\n    else:\n        t = XYZ(at.X - a.X, at.Y - a.Y, 0).DotProduct(d)\n        p = XYZ(a.X + d.X * t, a.Y + d.Y * t, 0)\n    return XYZ(p.X, p.Y, 0), d, n\n\n\ndef vft(doc, fam):\n    for x in FilteredElementCollector(doc).OfClass(ViewFamilyType):\n        try:\n            if x.ViewFamily == fam:\n                return x\n        except Exception:\n            continue\n    return None\n\n\ndef fit_scale(height_ft, max_mm=480.0, low=20):\n    for s in SCALES:\n        if s >= low and height_ft / MMF / s <= max_mm:\n            return s\n    return 100\n\n\ndef make_section(doc, name, origin, xdir, x0, x1, z0, z1, depth, scale, out):\n    \"\"\"section view: horizontal axis xdir (through origin), up = Z, cut at origin, looking along xdir x Z.\"\"\"\n    t = Transform.Identity\n    t.Origin = XYZ(origin.X, origin.Y, 0)\n    t.BasisX = xdir\n    t.BasisY = XYZ.BasisZ\n    t.BasisZ = xdir.CrossProduct(XYZ.BasisZ)\n    bb = BoundingBoxXYZ()\n    bb.Transform = t\n    bb.Min = XYZ(x0, z0, -0.05)\n    bb.Max = XYZ(x1, z1, depth)\n    v = ViewSection.CreateSection(doc, vft(doc, ViewFamily.Section).Id, bb)\n    set_view(v, name, scale)\n    try:\n        doc.Regenerate()\n        if v.RightDirection.DotProduct(xdir) < 0:      # u > 0 must be the view's right side\n            xdir = xdir.Negate()\n    except Exception:\n        pass\n    FRAMES[idv(v.Id)] = (XYZ(origin.X, origin.Y, 0), xdir)\n    try:\n        doc.Regenerate()\n        cb = v.CropBox\n        log14('{0}: asked z {1:.1f}..{2:.1f} ft, crop min ({3:.1f},{4:.1f}) max ({5:.1f},{6:.1f}), view dir {7}'.format(\n            name, z0, z1, cb.Min.X, cb.Min.Y, cb.Max.X, cb.Max.Y, v.ViewDirection))\n    except Exception:\n        pass\n    return v\n\n\ndef set_view(v, name, scale):\n    try:\n        v.Name = name\n    except Exception:\n        try:\n            v.Name = name + ' ' + datetime.datetime.now().strftime('%H%M%S')\n        except Exception:\n            pass\n    try:\n        v.Scale = scale\n    except Exception:\n        pass\n    try:\n        v.DetailLevel = ViewDetailLevel.Fine\n    except Exception:\n        pass\n    try:\n        v.ViewTemplateId = ElementId.InvalidElementId\n    except Exception:\n        pass\n    try:\n        v.CropBoxActive = True\n    except Exception:\n        pass\n    try:                                    # notes beside the detail must stay visible\n        pa = v.get_Parameter(BuiltInParameter.VIEWER_ANNOTATION_CROP_ACTIVE)\n        if pa is not None and not pa.IsReadOnly:\n            pa.Set(0)\n    except Exception:\n        pass\n\n\nFRAMES = {}     # view id -> (origin on the cut line at z = 0, horizontal direction of the section)\n\n\ndef view_pt(v, u, h):\n    \"\"\"model point on the view's cut plane: u along the section line from its origin, h = height (Z).\"\"\"\n    o, x = FRAMES.get(idv(v.Id), (None, None))\n    if o is None:\n        o, x = v.Origin, v.RightDirection\n    return XYZ(o.X + x.X * u, o.Y + x.Y * u, h)\n\n\ndef make_callout(doc, parent, name, u0, u1, h0, h1, scale):\n    \"\"\"callout on a section / plan: box in the parent's view coordinates (u along right, h = up / elevation).\"\"\"\n    p1 = view_pt(parent, u0, h0)\n    p2 = view_pt(parent, u1, h1)\n    fam = ViewFamily.Detail\n    t = vft(doc, fam)\n    if t is None:\n        t = vft(doc, ViewFamily.Section)\n    v = ViewSection.CreateCallout(doc, parent.Id, t.Id, p1, p2)\n    set_view(v, name, scale)\n    FRAMES[idv(v.Id)] = FRAMES.get(idv(parent.Id), (parent.Origin, parent.RightDirection))\n    return v\n\n\n# ----------------------------------------------------------------- annotation helpers\ndef func_name(f):\n    \"\"\"layer role as a word (CPython hands .NET enums over as numbers).\"\"\"\n    for nm in ('Structure', 'Substrate', 'Insulation', 'Finish1', 'Finish2', 'Membrane', 'StructuralDeck'):\n        try:\n            if f == getattr(MaterialFunctionAssignment, nm) or str(f) == nm:\n                return {'Finish1': 'FINISH', 'Finish2': 'FINISH', 'StructuralDeck': 'STRUCTURAL DECK'}.get(nm, nm.upper())\n        except Exception:\n            pass\n    return 'LAYER'\n\n\ndef layers_text(t, title):\n    \"\"\"'title' + one line per layer: '230  BRICK' from a compound wall / floor / roof type.\"\"\"\n    lines = [title]\n    try:\n        cs = t.GetCompoundStructure()\n    except Exception:\n        cs = None\n    if cs is None:\n        try:\n            lines.append('{0} mm  {1}'.format(mm(t.Width), ename(t)))\n        except Exception:\n            lines.append(ename(t))\n        return '\\n'.join(lines)\n    doc = t.Document\n    for l in cs.GetLayers():\n        m = doc.GetElement(l.MaterialId) if idv(l.MaterialId) > 0 else None\n        nm = ename(m) if m is not None else func_name(l.Function)\n        if l.Width > 1e-6:\n            lines.append('{0} mm  {1}'.format(mm(l.Width), nm.upper()))\n    try:\n        lines.append('TOTAL {0} mm'.format(mm(cs.GetWidth())))\n    except Exception:\n        pass\n    return '\\n'.join(lines)\n\n\ndef note(doc, v, at, txt, leader_to=None, cnt=None):\n    \"\"\"text note at point 'at' (view plane) with an optional leader to 'leader_to'.\"\"\"\n    try:\n        tt = doc.GetDefaultElementTypeId(ElementTypeGroup.TextNoteType)\n        tn = TextNote.Create(doc, v.Id, at, txt, tt)\n        if leader_to is not None:\n            try:\n                side = TextNoteLeaderTypes.TNLT_STRAIGHT_R if leader_to.Subtract(at).DotProduct(v.RightDirection) > 0 \\\n                    else TextNoteLeaderTypes.TNLT_STRAIGHT_L\n                ld = tn.AddLeader(side)\n                ld.End = leader_to\n            except Exception as ex:\n                log14('leader: {0}'.format(ex))\n        if cnt is not None:\n            cnt['notes'] = cnt.get('notes', 0) + 1\n        return tn\n    except Exception as ex:\n        log14('note: {0}'.format(ex))\n        return None\n\n\ndef dim(doc, v, refs, p0, p1, cnt=None):\n    try:\n        ra = ReferenceArray()\n        for r in refs:\n            ra.Append(r)\n        d = doc.Create.NewDimension(v, Line.CreateBound(p0, p1), ra)\n        if cnt is not None:\n            cnt['dims'] = cnt.get('dims', 0) + 1\n        return d\n    except Exception as ex:\n        log14('dim: {0}'.format(ex))\n        return None\n\n\ndef side_face_refs(w):\n    res = []\n    for sh in (ShellLayerType.Exterior, ShellLayerType.Interior):\n        try:\n            r = list(HostObjectUtils.GetSideFaces(w, sh))\n            if r:\n                res.append(r[0])\n        except Exception:\n            pass\n    return res\n\n\ndef floor_at(doc, p, z, tol=1.5):\n    \"\"\"the floor slab under point p whose top is near height z (within tol ft).\"\"\"\n    best = None\n    for f in FilteredElementCollector(doc).OfClass(Floor).WhereElementIsNotElementType():\n        try:\n            bb = f.get_BoundingBox(None)\n            if not (bb.Min.X - 0.5 <= p.X <= bb.Max.X + 0.5 and bb.Min.Y - 0.5 <= p.Y <= bb.Max.Y + 0.5):\n                continue\n            if abs(bb.Max.Z - z) > tol:\n                continue\n            if best is None or abs(bb.Max.Z - z) < abs(best.get_BoundingBox(None).Max.Z - z):\n                best = f\n        except Exception:\n            continue\n    return best\n\n\ndef roof_over(doc, p):\n    best = None\n    for r in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Roofs).WhereElementIsNotElementType():\n        try:\n            bb = r.get_BoundingBox(None)\n            if bb.Min.X - 1 <= p.X <= bb.Max.X + 1 and bb.Min.Y - 1 <= p.Y <= bb.Max.Y + 1:\n                if best is None or bb.Max.Z > best.get_BoundingBox(None).Max.Z:\n                    best = r\n        except Exception:\n            continue\n    return best\n\n\n# ----------------------------------------------------------------- the details\ndef detail_wall(doc, s, cnt, out, made):\n    win, wall = pick_window(doc)\n    if wall is None:\n        out.append('  CHECK no straight wall in the model - no wall section / window / floor / roof details')\n        return None\n    lv = levels_of(doc)\n    at = None\n    if win is not None:\n        try:\n            at = win.Location.Point\n        except Exception:\n            at = None\n    p, d, n = wall_frame(wall, at)\n    th = wall.Width\n    log14('levels: ' + ', '.join('{0} {1:.1f}'.format(l.Name, l.Elevation) for l in lv))\n    bot = min(l.Elevation for l in lv) - 1200 * MMF\n    tops = [l.Elevation for l in lv]\n    try:\n        tops.append(wall.get_BoundingBox(None).Max.Z)\n    except Exception:\n        pass\n    rf = roof_over(doc, p)\n    if rf is not None:\n        tops.append(rf.get_BoundingBox(None).Max.Z)\n    top = max(tops) + 900 * MMF\n    sc = fit_scale(top - bot, 480.0, 20)\n    half = th / 2.0 + 1500 * MMF\n    v = make_section(doc, PREFIX + 'TD01 WALL SECTION', p, n, -half, half, bot, top, 2.0, sc, out)\n    made.append(v)\n    doc.Regenerate()\n    info = {'view': v, 'wall': wall, 'win': win, 'p': p, 'n': n, 'th': th, 'levels': lv, 'bot': bot, 'top': top, 'roof': rf}\n    # annotation\n    if s['notes']:\n        mid = (lv[0].Elevation + (lv[1].Elevation if len(lv) > 1 else lv[0].Elevation + 3.0)) / 2.0\n        note(doc, v, view_pt(v, -half + 150 * MMF * sc / 20.0, mid + 600 * MMF), layers_text(wall.WallType, 'WALL - ' + ename(wall.WallType).upper()),\n             view_pt(v, -th / 2.0, mid), cnt)\n    if s['dims']:\n        fr = side_face_refs(wall)\n        if len(fr) == 2:\n            h = lv[0].Elevation + 900 * MMF\n            dim(doc, v, fr, view_pt(v, -half, h), view_pt(v, half, h), cnt)\n        refs = []\n        for l in lv:\n            if bot < l.Elevation < top:\n                try:\n                    refs.append(l.GetPlaneReference())\n                except Exception:\n                    pass\n        if len(refs) >= 2:\n            u = half - 300 * MMF\n            dim(doc, v, refs, view_pt(v, u, bot), view_pt(v, u, top), cnt)\n        if win is not None:\n            try:\n                wl = doc.GetElement(win.LevelId)\n                rb = list(win.GetReferences(FamilyInstanceReferenceType.Bottom))\n                rt = list(win.GetReferences(FamilyInstanceReferenceType.Top))\n                if wl is not None and rb and rt:\n                    u = -half + 400 * MMF\n                    dim(doc, v, [wl.GetPlaneReference(), rb[0], rt[0]], view_pt(v, u, bot), view_pt(v, u, top), cnt)\n            except Exception as ex:\n                log14('window dims: {0}'.format(ex))\n    out.append('  TD01 WALL SECTION 1:{0} - wall \"{1}\" ({2} mm){3}'.format(\n        sc, ename(wall.WallType), mm(th), ', through window \"{0}\"'.format(ename(doc.GetElement(win.GetTypeId()))) if win else\n        ' (no window in the model - section at the middle of the longest outer wall)'))\n    return info\n\n\ndef detail_window(doc, s, info, cnt, out, made):\n    win = info['win']\n    if win is None:\n        out.append('  CHECK no window in a wall - TD02 WINDOW HEAD + SILL not made')\n        return\n    v0 = info['view']\n    try:\n        bb = win.get_BoundingBox(None)\n        z0, z1 = bb.Min.Z - 400 * MMF, bb.Max.Z + 600 * MMF\n    except Exception:\n        out.append('  CHECK window has no size - TD02 not made')\n        return\n    w = info['th'] / 2.0 + 700 * MMF\n    v = make_callout(doc, v0, PREFIX + 'TD02 WINDOW HEAD + SILL', -w, w, z0, z1, 10)\n    made.append(v)\n    doc.Regenerate()\n    t = doc.GetElement(win.GetTypeId())\n    if s['notes']:\n        sill = head = None\n        for bip, key in ((BuiltInParameter.INSTANCE_SILL_HEIGHT_PARAM, 'sill'), (BuiltInParameter.INSTANCE_HEAD_HEIGHT_PARAM, 'head')):\n            try:\n                val = win.get_Parameter(bip).AsDouble()\n                if key == 'sill':\n                    sill = val\n                else:\n                    head = val\n            except Exception:\n                pass\n        txt = 'WINDOW - {0}'.format(ename(t).upper())\n        if sill is not None:\n            txt += '\\nSILL AT {0} mm FROM FFL'.format(mm(sill))\n        if head is not None:\n            txt += '\\nHEAD / LINTEL BOTTOM AT {0} mm FROM FFL'.format(mm(head))\n        txt += '\\nLINTEL + CHAJJA AS PER STRUCTURE'\n        note(doc, v, view_pt(v, w - 50 * MMF, z1 - 100 * MMF), txt, view_pt(v, 0, (bb.Min.Z + bb.Max.Z) / 2.0), cnt)\n    if s['dims']:\n        try:\n            rb = list(win.GetReferences(FamilyInstanceReferenceType.Bottom))\n            rt = list(win.GetReferences(FamilyInstanceReferenceType.Top))\n            if rb and rt:\n                u = -w + 150 * MMF\n                dim(doc, v, [rb[0], rt[0]], view_pt(v, u, z0), view_pt(v, u, z1), cnt)\n        except Exception as ex:\n            log14('TD02 dims: {0}'.format(ex))\n    out.append('  TD02 WINDOW HEAD + SILL 1:10 - \"{0}\"'.format(ename(t)))\n\n\ndef detail_floor(doc, s, info, cnt, out, made):\n    lv = info['levels']\n    up = [l for l in lv if l.Elevation > lv[0].Elevation + 1.0 and l.Elevation < info['top'] - 1.0]\n    l = up[0] if up else lv[0]\n    f = floor_at(doc, info['p'], l.Elevation)\n    if f is None:\n        for l2 in lv:\n            f = floor_at(doc, info['p'], l2.Elevation)\n            if f is not None:\n                l = l2\n                break\n    if f is None:\n        out.append('  CHECK no floor slab at the wall section - TD03 FLOOR BUILD-UP not made')\n        return\n    w = info['th'] / 2.0 + 900 * MMF\n    v = make_callout(doc, info['view'], PREFIX + 'TD03 FLOOR BUILD-UP', -w, w, l.Elevation - 700 * MMF, l.Elevation + 500 * MMF, 10)\n    made.append(v)\n    doc.Regenerate()\n    t = doc.GetElement(f.GetTypeId())\n    if s['notes']:\n        note(doc, v, view_pt(v, w - 50 * MMF, l.Elevation + 450 * MMF), layers_text(t, 'FLOOR - ' + ename(t).upper()),\n             view_pt(v, -w + 300 * MMF, l.Elevation - 50 * MMF), cnt)\n    if s['dims']:\n        try:\n            top = list(HostObjectUtils.GetTopFaces(f))\n            botf = list(HostObjectUtils.GetBottomFaces(f))\n            if top and botf:\n                u = -w + 200 * MMF\n                dim(doc, v, [top[0], botf[0]], view_pt(v, u, l.Elevation - 600 * MMF), view_pt(v, u, l.Elevation + 400 * MMF), cnt)\n        except Exception as ex:\n            log14('TD03 dims: {0}'.format(ex))\n    out.append('  TD03 FLOOR BUILD-UP 1:10 - \"{0}\" at {1}'.format(ename(t), l.Name))\n\n\ndef detail_roof(doc, s, info, cnt, out, made):\n    lv = info['levels']\n    host = info['roof']\n    ztop = None\n    if host is not None:\n        ztop = host.get_BoundingBox(None).Max.Z\n    else:\n        for l in reversed(lv):\n            if l.Elevation < lv[0].Elevation + 2000 * MMF:      # the ground slab is not a roof\n                break\n            f = floor_at(doc, info['p'], l.Elevation)\n            if f is not None:\n                host, ztop = f, f.get_BoundingBox(None).Max.Z\n                break\n    if host is None:\n        out.append('  CHECK no roof / top slab at the wall section - TD04 ROOF + PARAPET not made')\n        return\n    w = info['th'] / 2.0 + 1000 * MMF\n    v = make_callout(doc, info['view'], PREFIX + 'TD04 ROOF + PARAPET', -w, w, ztop - 900 * MMF, min(info['top'], ztop + 1500 * MMF), 10)\n    made.append(v)\n    doc.Regenerate()\n    t = doc.GetElement(host.GetTypeId())\n    if s['notes']:\n        note(doc, v, view_pt(v, w - 50 * MMF, ztop + 1200 * MMF), layers_text(t, 'ROOF - ' + ename(t).upper()) +\n             '\\nWATERPROOFING + SLOPE TO RAIN WATER OUTLETS', view_pt(v, w - 400 * MMF, ztop - 50 * MMF), cnt)\n    out.append('  TD04 ROOF + PARAPET 1:10 - \"{0}\"'.format(ename(t)))\n\n\ndef detail_stair(doc, s, cnt, out, made):\n    st = None\n    for e in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Stairs).WhereElementIsNotElementType():\n        if tname(e) == 'Stairs':\n            st = e\n            break\n    lv = levels_of(doc)\n    if st is None:\n        out.append('  CHECK no stair (Revit stair element) in the model - TD05 STAIRCASE not made')\n        return\n    bb = st.get_BoundingBox(None)\n    d = None\n    try:\n        runs = [st.Document.GetElement(i) for i in st.GetStairsRuns()]\n        path = list(runs[0].GetStairsPath())\n        a, b = path[0].GetEndPoint(0), path[-1].GetEndPoint(1)\n        d = XYZ(b.X - a.X, b.Y - a.Y, 0).Normalize()\n        p = a.Add(b).Multiply(0.5)\n    except Exception:\n        dx, dy = bb.Max.X - bb.Min.X, bb.Max.Y - bb.Min.Y\n        d = XYZ.BasisX if dx >= dy else XYZ.BasisY\n        p = bb.Min.Add(bb.Max).Multiply(0.5)\n    ext = max(bb.Max.X - bb.Min.X, bb.Max.Y - bb.Min.Y) / 2.0 + 1000 * MMF\n    z0, z1 = bb.Min.Z - 800 * MMF, bb.Max.Z + 1500 * MMF\n    v = make_section(doc, PREFIX + 'TD05 STAIRCASE SECTION', p, d, -ext, ext, z0, z1, 3.0, fit_scale(z1 - z0, 480.0, 25), out)\n    made.append(v)\n    doc.Regenerate()\n    if s['notes']:\n        txt = 'STAIRCASE'\n        for nm, getter in (('RISER', lambda: mm(st.ActualRiserHeight)), ('TREAD', lambda: mm(st.ActualTreadDepth)),\n                           ('NO. OF RISERS', lambda: st.ActualRisersNumber)):\n            try:\n                txt += '\\n{0} {1}{2}'.format(nm, getter(), ' mm' if nm != 'NO. OF RISERS' else '')\n            except Exception:\n                pass\n        try:\n            rt = doc.GetElement(runs[0].GetTypeId())\n            txt += '\\nWAIST SLAB {0} mm RCC'.format(mm(rt.StructuralDepth))\n            txt += '\\nRUN WIDTH {0} mm'.format(mm(runs[0].ActualRunWidth))\n        except Exception:\n            pass\n        txt += '\\nHANDRAIL 900 mm HIGH'\n        note(doc, v, view_pt(v, -ext + 200 * MMF, z1 - 200 * MMF), txt, None, cnt)\n    if s['dims']:\n        refs = []\n        for l in lv:\n            if z0 < l.Elevation < z1:\n                refs.append(l.GetPlaneReference())\n        if len(refs) >= 2:\n            dim(doc, v, refs, view_pt(v, ext - 300 * MMF, z0), view_pt(v, ext - 300 * MMF, z1), cnt)\n    out.append('  TD05 STAIRCASE SECTION 1:{0} - \"{1}\"'.format(v.Scale, ename(doc.GetElement(st.GetTypeId()))))\n\n\ndef detail_toilet(doc, s, cnt, out, made):\n    ws = [w.strip().upper() for w in s['toilet_words'].split(',') if w.strip()]\n    room = None\n    rooms = [r for r in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Rooms).WhereElementIsNotElementType()\n             if r.Area > 0]\n    rooms.sort(key=lambda r: doc.GetElement(r.LevelId).Elevation if doc.GetElement(r.LevelId) else 0)\n    for r in rooms:\n        n = ' ' + re.sub(r'[^A-Z0-9.]+', ' ', ename(r).upper()) + ' '\n        if any(' ' + w + ' ' in n or n.strip().startswith(w) for w in ws):\n            room = r\n            break\n    if room is None:\n        out.append('  CHECK no room named TOILET / WC / BATH - TD06 TOILET SECTION not made')\n        return\n    bb = room.get_BoundingBox(None)\n    lvl = doc.GetElement(room.LevelId)\n    dx, dy = bb.Max.X - bb.Min.X, bb.Max.Y - bb.Min.Y\n    d = XYZ.BasisX if dx >= dy else XYZ.BasisY            # cut along the longer side\n    p = room.Location.Point\n    ext = max(dx, dy) / 2.0 + 700 * MMF\n    z0, z1 = lvl.Elevation - 900 * MMF, lvl.Elevation + 3200 * MMF\n    v = make_section(doc, PREFIX + 'TD06 TOILET SECTION', p, d, -ext, ext, z0, z1, 0.5, 20, out)\n    made.append(v)\n    doc.Regenerate()\n    f = floor_at(doc, p, lvl.Elevation, tol=2.0)\n    if s['notes']:\n        txt = 'TOILET - {0}'.format(ename(room).upper())\n        if f is not None:\n            txt += '\\n' + layers_text(doc.GetElement(f.GetTypeId()), 'FLOOR BUILD-UP')\n            sunk = lvl.Elevation - f.get_BoundingBox(None).Max.Z\n            if sunk > 20 * MMF:\n                txt += '\\nSUNKEN SLAB {0} mm BELOW FFL, FILLED + WATERPROOFED'.format(mm(sunk))\n            else:\n                txt += '\\nWATERPROOFING TURNED UP 300 mm ON WALLS'\n        txt += '\\nWALL TILES / DADO AS PER FINISH SCHEDULE'\n        note(doc, v, view_pt(v, ext - 100 * MMF, z1 - 200 * MMF), txt, view_pt(v, 0, lvl.Elevation - 50 * MMF), cnt)\n    if s['dims'] and f is not None:\n        try:\n            top = list(HostObjectUtils.GetTopFaces(f))\n            if top:\n                dim(doc, v, [lvl.GetPlaneReference(), top[0]], view_pt(v, -ext + 200 * MMF, z0), view_pt(v, -ext + 200 * MMF, z1), cnt)\n        except Exception as ex:\n            log14('TD06 dims: {0}'.format(ex))\n    out.append('  TD06 TOILET SECTION 1:20 - room \"{0}\" ({1})'.format(ename(room), lvl.Name))\n\n\n# ----------------------------------------------------------------- sheets\ndef clear_old(doc, out):\n    ids = [v.Id for v in FilteredElementCollector(doc).OfClass(View) if not v.IsTemplate and v.Name.startswith(PREFIX)]\n    if ids:\n        doc.Delete(List[ElementId](ids))\n    return len(ids)\n\n\ndef pick_titleblock(doc):\n    \"\"\"the title block used most on the project's sheets, else one with A1 / A0 in its name, else the first.\"\"\"\n    types = list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_TitleBlocks).WhereElementIsElementType())\n    if not types:\n        return None\n    count = {}\n    for tbi in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_TitleBlocks).WhereElementIsNotElementType():\n        count[idv(tbi.GetTypeId())] = count.get(idv(tbi.GetTypeId()), 0) + 1\n    if count:\n        best = max(count.items(), key=lambda kv: kv[1])[0]\n        for t in types:\n            if idv(t.Id) == best:\n                return t\n    for word in ('A1', 'A0', 'A2'):\n        for t in types:\n            n = (ename(t) + ' ' + (t.FamilyName or '')).upper()\n            if re.search(r'(^|[^A-Z0-9])' + word + r'($|[^A-Z0-9])', n):\n                return t\n    return types[0]\n\n\ndef place_views(doc, s, views, out):\n    \"\"\"shelf-pack the detail views on TYPICAL DETAILS sheets; new sheet when one is full.\"\"\"\n    sheets = sorted([sh for sh in FilteredElementCollector(doc).OfClass(ViewSheet) if sh.SheetNumber.startswith(s['sheet_prefix'])],\n                    key=lambda x: x.SheetNumber)\n    tb = pick_titleblock(doc)\n\n    def new_sheet(i):\n        sh = ViewSheet.Create(doc, tb.Id if tb is not None else ElementId.InvalidElementId)\n        sh.SheetNumber = '{0}{1:02d}'.format(s['sheet_prefix'], i)\n        sh.Name = '{0} {1}'.format(s['sheet_name'], i)\n        doc.Regenerate()\n        return sh\n    used = 0\n    si = 0\n    sheet = None\n    x = y = rowh = 0.0\n    box = None\n    for v in views:\n        placed = False\n        for attempt in range(2):\n            if sheet is None:\n                si += 1\n                sheet = sheets[si - 1] if si <= len(sheets) else new_sheet(si)\n                ol = sheet.Outline\n                W, H = ol.Max.U - ol.Min.U, ol.Max.V - ol.Min.V\n                box = (ol.Min.U + 0.04 * W, ol.Min.V + 0.06 * H, ol.Max.U - 0.20 * W, ol.Max.V - 0.04 * H)   # keep the title strip free\n                x, y, rowh = box[0], box[3], 0.0\n            try:\n                vp = Viewport.Create(doc, sheet.Id, v.Id, XYZ((box[0] + box[2]) / 2.0, (box[1] + box[3]) / 2.0, 0))\n            except Exception as ex:\n                log14('viewport {0}: {1}'.format(v.Name, ex))\n                break\n            doc.Regenerate()\n            ob = vp.GetBoxOutline()\n            w, h = ob.MaximumPoint.X - ob.MinimumPoint.X, ob.MaximumPoint.Y - ob.MinimumPoint.Y\n            bw, bh = box[2] - box[0], box[3] - box[1]\n            while (w > bw or h > bh) and v.Scale < SCALES[-1]:        # too big for the sheet: next smaller scale\n                bigger = [x for x in SCALES if x > v.Scale]\n                try:\n                    v.Scale = bigger[0]\n                except Exception:\n                    break\n                doc.Regenerate()\n                ob = vp.GetBoxOutline()\n                w, h = ob.MaximumPoint.X - ob.MinimumPoint.X, ob.MaximumPoint.Y - ob.MinimumPoint.Y\n            log14('place {0}: viewport {1:.0f} x {2:.0f} mm, sheet box {3:.0f} x {4:.0f} mm, at x {5:.0f} y {6:.0f}'.format(\n                v.Name, w / MMF, h / MMF, (box[2] - box[0]) / MMF, (box[3] - box[1]) / MMF, (x - box[0]) / MMF, (box[3] - y) / MMF))\n            if x + w > box[2] and x > box[0] + 1e-6:          # next row\n                x, y, rowh = box[0], y - rowh - 0.03, 0.0\n            if y - h < box[1] and (x > box[0] + 1e-6 or y < box[3] - 1e-6):   # sheet full -> next sheet\n                doc.Delete(vp.Id)\n                sheet = None\n                continue\n            c = vp.GetBoxCenter()\n            vp.SetBoxCenter(XYZ(x + w / 2.0, y - h / 2.0, c.Z))\n            x += w + 0.03\n            rowh = max(rowh, h)\n            used = max(used, si)\n            placed = True\n            break\n        if not placed:\n            out.append('  CHECK could not place {0} on a sheet'.format(v.Name))\n    out.append('Sheets: {0} TYPICAL DETAILS sheet(s) ({1}01 ..)'.format(used, s['sheet_prefix']))\n\n\n# ----------------------------------------------------------------- main\ndef d14_run(doc, uidoc=None, settings=None, preview=False):\n    s = d14_settings(settings)\n    head = ['{0}  -  {1}  -  {2}'.format(D14_TITLE, doc.Title, datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))]\n    out, made, cnt = [], [], {}\n    tg = TransactionGroup(doc, D14_TITLE)\n    tg.Start()\n    try:\n        t = Transaction(doc, 'D14 typical details')\n        t.Start()\n        try:\n            n = clear_old(doc, out)\n            if n:\n                out.append('Old SD-TD views replaced: {0}'.format(n))\n            info = None\n            if s['wall'] or s['window'] or s['floor'] or s['roof']:\n                info = detail_wall(doc, s, cnt, out, made)\n            if info is not None:\n                for key, fn in (('window', detail_window), ('floor', detail_floor), ('roof', detail_roof)):\n                    if s[key]:\n                        try:\n                            fn(doc, s, info, cnt, out, made)\n                        except Exception as ex:\n                            out.append('  FAILED {0}: {1}'.format(key, ex))\n                            log14('{0}: {1}'.format(key, ex))\n            for key, fn in (('stair', detail_stair), ('toilet', detail_toilet)):\n                if s[key]:\n                    try:\n                        fn(doc, s, cnt, out, made)\n                    except Exception as ex:\n                        out.append('  FAILED {0}: {1}'.format(key, ex))\n                        log14('{0}: {1}'.format(key, ex))\n            if made:\n                place_views(doc, s, made, out)\n            st = t.Commit()\n            if st != TransactionStatus.Committed:\n                out.append('FAILED: Revit rolled the run back (a warning was cancelled)')\n        except Exception:\n            if t.HasStarted() and not t.HasEnded():\n                t.RollBack()\n            raise\n        head.append('{0} detail views, {1} notes, {2} dimensions'.format(len(made), cnt.get('notes', 0), cnt.get('dims', 0)))\n        if preview:\n            tg.RollBack()\n            head.append('PREVIEW ONLY - nothing kept (RUN = True to make it)')\n        else:\n            tg.Assimilate()\n    except Exception:\n        if tg.HasStarted() and not tg.HasEnded():\n            tg.RollBack()\n        raise\n    lines = head + [''] + out\n    log14('\\n=== ' + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '\\n' + '\\n'.join(lines))\n    return lines\n\n\n# =====================================================================\n#  DYNAMO PART - reads the inputs and runs the D14 engine above.\n#  RUN = False -> preview: everything is made, counted and undone again (nothing kept).\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        doc = DocumentManager.Instance.CurrentDBDocument\n        try:\n            uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n        except Exception:\n            uidoc = None\n        TM = TransactionManager\n    except Exception:\n        pass\n\n_IN = list(IN) if DYNAMO else list(globals().get('D14_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = _IN[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and not v.strip()):\n        return default\n    return v\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y', 'ON')\n    return bool(v)\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).replace('%', '').strip())\n    except Exception:\n        return default\n\n\nS = {\n    'wall': _flag(0, True), 'window': _flag(1, True), 'floor': _flag(2, True), 'roof': _flag(3, True),\n    'stair': _flag(4, True), 'toilet': _flag(5, True), 'notes': _flag(6, True), 'dims': _flag(7, True),\n    'sheet_prefix': str(_inp(8, 'TD-')).strip(), 'sheet_name': str(_inp(9, 'TYPICAL DETAILS')).strip(),\n    'toilet_words': str(_inp(10, D14_DEFAULTS['toilet_words'])),\n}\nGO = _flag(11, False)\n\nout = []\ntry:\n    if doc is None:\n        raise Exception('No Revit document.')\n    if TM is not None:\n        TM.Instance.ForceCloseTransaction()              # the engine runs its own transactions (one undo)\n    out = d14_run(doc, uidoc, S, preview=not GO)\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    out.append(traceback.format_exc())\n    log14('\\n'.join(out))\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('D14 Typical Details')\n        td.MainInstruction = (out[1] if len(out) > 1 and out[1] else out[0]) if out else 'done'\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "f227aa8848284b10a0843644f35682d3",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "d1cb4649d8f94e3f94e48ff905044486",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "83a95af69ca047e8bd7fa862fb803ca6",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b83fcb9932ac406ebaaadcbcbcb15b7d",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "84386be26d65418eab564e9a31dd32f1",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b7a9cd75d44248f6b0c30a21dbdc43fd",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d47b9aa7e1d840dca188d0fa50cac070",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "80f1129e76da4ddb92f94b5d756303d4",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "24e476cf9b054354865dcc2f42fa6a86",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1d80c95d99c34411a1f8373d3db4538a",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8a9e4f04ada94d41b9e4885616582fb0",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "86f62867349243648112c2edc0a43271",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b75abf8c9dc04a1c8c0ee36c966043af",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "03b67ac860a342489f87c57b0c783eda",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "4c97a983239244d2874b7da61e6cde00",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "904ed37b1d524d37b862b2d4a2047772",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cae068a21f8845b8bbecd2e2dc9e6ddd",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "609fa1f8ad72410ab6e4c1c4b2c0f31b",
+      "End": "d1cb4649d8f94e3f94e48ff905044486",
+      "Id": "4f5aea859cd34fd181479e63cbbbaa39",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6d64ad7e38434a14a001a92f00ee30a6",
+      "End": "83a95af69ca047e8bd7fa862fb803ca6",
+      "Id": "057c1eeef8ec42bb9adca6f1e3599a58",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "39e1e38282744a008838fe784a8af9d0",
+      "End": "b83fcb9932ac406ebaaadcbcbcb15b7d",
+      "Id": "7eb2c7529ff94b3ba61f3af5cc1797fe",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7ee0bcd2b9804e1bac33b7f8afd939d6",
+      "End": "84386be26d65418eab564e9a31dd32f1",
+      "Id": "e0f5cd3bf0ea4611b14fef6b320406b6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "654a1a0c3dfc414885f022b2dd7dc881",
+      "End": "b7a9cd75d44248f6b0c30a21dbdc43fd",
+      "Id": "5feb5e43d77b4753b64841912a20e409",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2420a66ecd7d4f399ccc91d4ff04bce5",
+      "End": "d47b9aa7e1d840dca188d0fa50cac070",
+      "Id": "1c6403ff012f4466a55f5d84910b7ee7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c1c9b06b82be4f3fbcc84eb1b93b9d73",
+      "End": "80f1129e76da4ddb92f94b5d756303d4",
+      "Id": "087a20d591734066a807f35f7b0313aa",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "33a208536b1340459412299dd2166609",
+      "End": "24e476cf9b054354865dcc2f42fa6a86",
+      "Id": "8f91fc7046ea4e6c95a245b4f5248fd8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "27e5aee3c82b406589b5a3f7f9e6957f",
+      "End": "1d80c95d99c34411a1f8373d3db4538a",
+      "Id": "0be361f52a344b36b5746e2d238b7aa8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b33607acb5bc4bfb9e51db07a1ea0ad9",
+      "End": "8a9e4f04ada94d41b9e4885616582fb0",
+      "Id": "1234eb5bb0f942bf9fafc3c37effd572",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "40a6801ccf444adbb0c38583c56e9c79",
+      "End": "86f62867349243648112c2edc0a43271",
+      "Id": "9a5ac4f384e2416dac704711e778e911",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c60a6959f01449a3bfae08b9ed8650e9",
+      "End": "b75abf8c9dc04a1c8c0ee36c966043af",
+      "Id": "ae502057b82742e2b220e9aaa43de440",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "03b67ac860a342489f87c57b0c783eda",
+      "End": "904ed37b1d524d37b862b2d4a2047772",
+      "Id": "5c26692003a14d748c42d071bb1efc2c",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "df38a75e02f44a19a1377a28a6953232",
+        "Name": "WALL SECTION (outer wall through a window)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "a901159c687c45ac90317c444482a4d1",
+        "Name": "WINDOW HEAD + SILL callout 1:10",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "c573c640132049518eb7f25a0225a644",
+        "Name": "FLOOR BUILD-UP callout 1:10",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 300
+      },
+      {
+        "Id": "c9a5621d2b8a41909f3b8d078028fa09",
+        "Name": "ROOF + PARAPET callout 1:10",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 450
+      },
+      {
+        "Id": "2a629602cb4f4b16a70a57be30ae1a03",
+        "Name": "STAIRCASE SECTION",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 600
+      },
+      {
+        "Id": "78fb2852943c4cfcb7e411b1ef46ef66",
+        "Name": "TOILET SECTION",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 750
+      },
+      {
+        "Id": "24f5c4283a764618a9f2d00d01d994ac",
+        "Name": "LAYER NOTES with leaders",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "665f0dfd24094aafbe9f9eaa06d7cf8e",
+        "Name": "DIMENSIONS (thickness, levels, sill / head)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "9b89f4a7c52f4b0ba25e8559c3323793",
+        "Name": "Sheet number prefix (TD- -> TD-01, TD-02 ..)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "1a47b3dfe56f459682a0468d05cbc83d",
+        "Name": "Sheet name",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "7cf027493c0c4d51a0e368058ac34b93",
+        "Name": "Toilet room words",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 300
+      },
+      {
+        "Id": "aee97c36b3664857b3d9ad454f4ab62a",
+        "Name": "RUN  (False = preview: count, then undo)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1680,
+        "Y": 0
+      },
+      {
+        "Id": "f227aa8848284b10a0843644f35682d3",
+        "Name": "D14 TYPICAL DETAILS ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2260.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "4c97a983239244d2874b7da61e6cde00",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2660.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "e9bbecb573e94a12b7300c4ebced33a2",
+        "Title": "1  WHICH DETAILS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "df38a75e02f44a19a1377a28a6953232",
+          "a901159c687c45ac90317c444482a4d1",
+          "c573c640132049518eb7f25a0225a644",
+          "c9a5621d2b8a41909f3b8d078028fa09",
+          "2a629602cb4f4b16a70a57be30ae1a03",
+          "78fb2852943c4cfcb7e411b1ef46ef66"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 1035,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 940,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "9a18cfa33a474a358331ff187ef2e235",
+        "Title": "2  ANNOTATION",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "24f5c4283a764618a9f2d00d01d994ac",
+          "665f0dfd24094aafbe9f9eaa06d7cf8e"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 435,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 340,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "c0c1194f22d64f8d9027ccf36c3f5bbc",
+        "Title": "3  SHEETS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "9b89f4a7c52f4b0ba25e8559c3323793",
+          "1a47b3dfe56f459682a0468d05cbc83d",
+          "7cf027493c0c4d51a0e368058ac34b93"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 585,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 490,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFF8A8A"
+      },
+      {
+        "Id": "0aa88a407dba4e04b82d6c23fd71a440",
+        "Title": "4  RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "aee97c36b3664857b3d9ad454f4ab62a"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1660.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 285,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 190,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "fab05352e4384d37becf418c349bb738",
+        "Title": "HOW TO USE:  open your project (walls with windows, slabs, a Revit stair, a room named TOILET), RUN = False and run = preview (report only), then RUN = True.  The details are CUT FROM THE MODEL (views named SD-TD ..) with layer notes from the wall / floor / roof types, dimensions and level heads, and placed on new sheets TD-01, TD-02 ..  Run again = the SD-TD views are made again.  Ctrl+Z undoes a run.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 2200.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

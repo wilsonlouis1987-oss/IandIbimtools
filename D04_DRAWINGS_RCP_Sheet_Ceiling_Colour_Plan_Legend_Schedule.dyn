@@ -1,0 +1,3219 @@
+{
+  "Uuid": "4b129073-188f-4721-9f52-17450feeee59",
+  "IsCustomNode": false,
+  "Description": "RCP setup (template, grey floor, dims, CH labels, legend + notes, ISO sheet) + ceiling colour plan sheet + CEILING LEGEND + CEILING SCHEDULE - one ceiling list: C01 Ceiling 1 ... same number and colour everywhere.",
+  "Name": "CAD2BIM_RCP_Ceilings_Colour_Schedule",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "82a12c8d0a30457b9a03236f0722da0d",
+      "Name": "Run (set True, then press Run)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "ee067e8a94fd4cf7af69f3c297cb00ca",
+      "Name": "Ceiling plan name (EMPTY = active view / its sheet)",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "fe2a3bb2bc9048dc95a2573d7da21746",
+      "Name": "View template name",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "SD_AR_RCP_1-100",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "6d715a9e4e9f4143bf7c64c747c9e667",
+      "Name": "Apply the view template",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "9b683705b8aa434c8421b2958793c1e1",
+      "Name": "Sheet / view title (EMPTY = REFLECTED CEILING PLAN - <LEVEL>)",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "7d3ded5e4bce4dae881fafee04166722",
+      "Name": "Ceiling name prefix (Ceiling -> Ceiling 1, 2 ...)",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "Ceiling",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "0573cc157481476a915193e4d1d2b285",
+      "Name": "Type Mark prefix (C -> C01, C02 ...)",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "C",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "7f53142804744b7b993cf5fa472e66f6",
+      "Name": "RCP colour transparency % (0-100)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "35",
+      "NumberType": "Double",
+      "Description": "Creates a number."
+    },
+    {
+      "Id": "a13c4f40050c493dabab129791c376fe",
+      "Name": "RCP: hatch on top of colour",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "ccc777f842964c8ba67ff9c1a551a22e",
+      "Name": "Write C01.. into each ceiling's Mark",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "false",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "08c30fbbe2104dae86a025bbdbccffc7",
+      "Name": "Replace previous output of this script",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "b17635a117694b718425a7aa3cb06b90",
+      "Name": "Grey floor below (underlay)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "1c0ff435b08b4002b1c052efca8fddb7",
+      "Name": "Ceiling colours in the RCP",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "4713532f549645ea8bf1e35925127fc1",
+      "Name": "Grid dimensions (chain + overall)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "1611ab3ae9454059a8d0ef5857180e75",
+      "Name": "Ceiling perimeter dimensions (every edge)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "4bd83d4f96bd48439e61c6f39c6ea5e3",
+      "Name": "Light fitting set-out dimensions",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "33839e196fff430c93c4b8452a22546c",
+      "Name": "Ceiling labels (C01 CEILING 1 - CH +2700)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "fc53e9add00949efb2ed941cad94ff57",
+      "Name": "Bulkhead labels (BULKHEAD - CH +...)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "062ee1ce61ba4186b3435bb86035428f",
+      "Name": "Room names (room tags)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "7798b0c7b21446e0b3ee8cb89cdc9e24",
+      "Name": "RCP legend (colour, mark, name, type, CH, area)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "542ba91ab9744452b770b84a65834544",
+      "Name": "Level note + general notes",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "f85d967d98114143b65997ba24c8bf0d",
+      "Name": "Ceiling colour plan (copy of the RCP)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "46533cdc624a4cf1815b6b2bd500514e",
+      "Name": "Colour plan scale 1:x",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "150",
+      "NumberType": "Double",
+      "Description": "Creates a number."
+    },
+    {
+      "Id": "20d27e8d2893420fa5c2a99dfb9880f3",
+      "Name": "CEILING LEGEND (colour, mark, name, type, qty, area)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "1c9f168daf3544be9f657646c9c47467",
+      "Name": "CEILING SCHEDULE (with colour swatch)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "6c593484e447449ca9f7f770743f5fd8",
+      "Name": "Colour sheet with plan + legend + schedule",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "a7bb38d9b1034af5aa1a2340c4d3e646",
+      "Name": "Text type - notes + legend",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "2.5mm Arial",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "89366cd2d1e942c49443efaed2468d76",
+      "Name": "Text type - headings + level note",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "3.5mm Arial",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "3a9e41f947fa449695176da4ff7e9fbd",
+      "Name": "Dimension type - grids",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "Diagonal - 3mm Arial",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "2f4294bfae3c48fc9046a92a75217bcf",
+      "Name": "Dimension type - ceiling perimeter + lights",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "Diagonal - 2.5mm Arial - Line Leader - Text Above",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "ff571c7400e4425cb422c56be5ba80da",
+      "Name": "Spot elevation type - ceiling / bulkhead labels",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "No Symbol (Project)",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "cf425c168abb431f8e6f7ccd8731b66e",
+      "Name": "Room tag type - room names",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "Room Tag",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "d421e7114d624a7597f9324542be682d",
+      "Name": "Grid dims below lowest grid (paper mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "32.5",
+      "NumberType": "Double",
+      "Description": "Creates a number."
+    },
+    {
+      "Id": "78da0282bf494515b6a004c7e2d36558",
+      "Name": "Grid dims past rightmost grid (paper mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "16.3",
+      "NumberType": "Double",
+      "Description": "Creates a number."
+    },
+    {
+      "Id": "fda909e1f7694c4babe1bee990cd7de8",
+      "Name": "Grid chain to overall spacing (paper mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "8",
+      "NumberType": "Double",
+      "Description": "Creates a number."
+    },
+    {
+      "Id": "b3c7a6b61bf24eebb696de617c79f1c0",
+      "Name": "Perimeter dims inside ceiling edge (paper mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "8",
+      "NumberType": "Double",
+      "Description": "Creates a number."
+    },
+    {
+      "Id": "62d619c94e17409aba0d6df294355f69",
+      "Name": "Legend + notes block: auto-place in empty space",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "f3cacdfe7a3843509796e0b3e956c326",
+      "Name": "Block fallback X (% of sheet width)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "79",
+      "NumberType": "Double",
+      "Description": "Creates a number."
+    },
+    {
+      "Id": "49df86e136604651836adbf67c060db5",
+      "Name": "Block fallback Y (% of sheet height)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "20",
+      "NumberType": "Double",
+      "Description": "Creates a number."
+    },
+    {
+      "Id": "519c1c7324544c039e674a5df261a537",
+      "Name": "Renumber RCP sheet to ISO 19650",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "false",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "2851f2f40a144a5c8b4f3ba1135deb6b",
+      "Name": "Project",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "2524",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "e5e0a54c4e284ac3b279453f748eaa18",
+      "Name": "Originator",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "SD",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "7bdb1373c4904aeca95ad1efc3ae4248",
+      "Name": "Volume / system",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "ZZ",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "9d97d64f224d4abdbe92d2f4fa473900",
+      "Name": "Level / location",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "00",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "9fd56bdb4b0146798fdbf4a2cc00e8ad",
+      "Name": "Type",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "DR",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "15a09db0decc46efb6521b18e57ed027",
+      "Name": "Role",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "A",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "d2554ee1084949058cbb464412ee521b",
+      "Name": "Number",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "0003",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "3e46aa7d00634b4299913c2d4af9223f",
+      "Name": "Status (suitability)",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "S2",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "57597c3c4cc141e98b2b67fce4ee0de0",
+      "Name": "Revision",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "P01",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "aabb7f941a37453a9d7d1fd3c07be4af",
+      "Name": "Drawn by",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "5efc194e88104a3bb8a6cb719c6949be",
+      "Name": "Checked by",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "2d61fe4accd9404bb78cf2fd9e61a556",
+      "Name": "Approved by",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "",
+      "Description": "Creates a string."
+    }
+  ],
+  "Outputs": [
+    {
+      "Id": "c8a093489acc495586b5b5ae8fb77465",
+      "Name": "CAD2BIM  RCP + Ceilings  ENGINE",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Runs an embedded Python script."
+    }
+  ],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "82a12c8d0a30457b9a03236f0722da0d",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2fbd1608fe1d44938b71712c7850d26b",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "ee067e8a94fd4cf7af69f3c297cb00ca",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "98bc48aea250466fac8072a8dba1250a",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "fe2a3bb2bc9048dc95a2573d7da21746",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9fdca08504a1465a8e0ea8f37ba4601d",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "SD_AR_RCP_1-100"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "6d715a9e4e9f4143bf7c64c747c9e667",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a5c0e5b9260a45e8a5ed3c3d9029ad1e",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "9b683705b8aa434c8421b2958793c1e1",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bcf0b66fe0d84b7787f3bb6cf1a6b702",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "7d3ded5e4bce4dae881fafee04166722",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bd769328a64d4b2a98424af57d099a5e",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Ceiling"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "0573cc157481476a915193e4d1d2b285",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "15a6ba40489c486da06fa365a2b67a3e",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "C"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "7f53142804744b7b993cf5fa472e66f6",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fee280fdf52b492ba66b8fb09ea4cdfd",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 35.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "a13c4f40050c493dabab129791c376fe",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "002bf7aa64a84bed807f5506b6812d92",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "ccc777f842964c8ba67ff9c1a551a22e",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "916e42477d224b0e9bbdc90b4c6cc963",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "08c30fbbe2104dae86a025bbdbccffc7",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "44285b00c9e6435bae9723e82c2ad908",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b17635a117694b718425a7aa3cb06b90",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b388ac25b0c44c21be7efd44453c0c64",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "1c0ff435b08b4002b1c052efca8fddb7",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cc2409bb59174750a973965fe1a2da01",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4713532f549645ea8bf1e35925127fc1",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "446e9a3318f04c57acdc7f7d7decb669",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "1611ab3ae9454059a8d0ef5857180e75",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "93f049851ccd4a4280bc12a267c273f8",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4bd83d4f96bd48439e61c6f39c6ea5e3",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b78bd78962b1408bbf42ea717001cd9d",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "33839e196fff430c93c4b8452a22546c",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "69fb07508ca54be3b6dba9e8baa664ec",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "fc53e9add00949efb2ed941cad94ff57",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "53962098e1b4475e99ee6460a823175b",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "062ee1ce61ba4186b3435bb86035428f",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c91b1ad0c6084f788f25c7cf4c1f5b11",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "7798b0c7b21446e0b3ee8cb89cdc9e24",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "dff4ba79e0804393a8b2de5eeaeb56b6",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "542ba91ab9744452b770b84a65834544",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9d2fe113086a418496c19e95d1f23167",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "f85d967d98114143b65997ba24c8bf0d",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a7bd14c753224ec0b58247f4c7c962de",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "46533cdc624a4cf1815b6b2bd500514e",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "faf5634e68504b9d842e080d34b4890a",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 150.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "20d27e8d2893420fa5c2a99dfb9880f3",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7a1398b265ea44028b5f7bc7673a170b",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "1c9f168daf3544be9f657646c9c47467",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2c78a53038c54488934946887cba5e9f",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "6c593484e447449ca9f7f770743f5fd8",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f348b62a783646a788c46650f685ecdb",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "a7bb38d9b1034af5aa1a2340c4d3e646",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "082346a4068e4ffb866df3ad71c9a29f",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "2.5mm Arial"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "89366cd2d1e942c49443efaed2468d76",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "122fd13429f94e6c9e9230a470f3ba1d",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "3.5mm Arial"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "3a9e41f947fa449695176da4ff7e9fbd",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9b8db1092e9d4553b35d7f4f892cb198",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Diagonal - 3mm Arial"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "2f4294bfae3c48fc9046a92a75217bcf",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "178b00fcaa244dd3b66b12da42a976f4",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Diagonal - 2.5mm Arial - Line Leader - Text Above"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "ff571c7400e4425cb422c56be5ba80da",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c4afc2bca3334d56bb39f35d923d8c61",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "No Symbol (Project)"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "cf425c168abb431f8e6f7ccd8731b66e",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a6ff26f480b74b0685bab8a6af8a55f4",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Room Tag"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "d421e7114d624a7597f9324542be682d",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "505e74c7f48d4f7083aa9ce255dcda02",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 32.5
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "78da0282bf494515b6a004c7e2d36558",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2475a56a6d13492b89d25f9034ee1b87",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 16.3
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "fda909e1f7694c4babe1bee990cd7de8",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fad5340445b24ea6bfe60380f7b5b35b",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 8.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "b3c7a6b61bf24eebb696de617c79f1c0",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1e24341dc43f4a9bbc18a3ce82842f03",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 8.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "62d619c94e17409aba0d6df294355f69",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "70e3749db0fc47aca2c7e466054a76aa",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "f3cacdfe7a3843509796e0b3e956c326",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7962e77ee94844e4a27060b72eb51563",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 79.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "49df86e136604651836adbf67c060db5",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0ebd190ce79846d281aeedc27dce14e2",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 20.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "519c1c7324544c039e674a5df261a537",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "866c5d1e42b0478581a8d7a26820da85",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "2851f2f40a144a5c8b4f3ba1135deb6b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "015aca4d2e6a4500b02ae7e8d7679b66",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "2524"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "e5e0a54c4e284ac3b279453f748eaa18",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f93d4e551e024e289cddaf703a2233bb",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "SD"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "7bdb1373c4904aeca95ad1efc3ae4248",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "13daec3378f5415aae6577f197cf4110",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "ZZ"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "9d97d64f224d4abdbe92d2f4fa473900",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "17bd911c0afe4a5985b514e5427caeda",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "00"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "9fd56bdb4b0146798fdbf4a2cc00e8ad",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2850f5ab8ff24f889952bb01ce881a2e",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "DR"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "15a09db0decc46efb6521b18e57ed027",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "237a3932c52f4512b7fdfce531711126",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "A"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "d2554ee1084949058cbb464412ee521b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d90f7804713f4dac9201c34eb2b61711",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "0003"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "3e46aa7d00634b4299913c2d4af9223f",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "90f884b1408b475da12a72f5829d85af",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "S2"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "57597c3c4cc141e98b2b67fce4ee0de0",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c6472e699dd24ed59569932418d925d8",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "P01"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "aabb7f941a37453a9d7d1fd3c07be4af",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "94880d7ff2044c208382aa50fea7e2db",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "5efc194e88104a3bb8a6cb719c6949be",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9099324c586f4f3282125ecfb686bf99",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "2d61fe4accd9404bb78cf2fd9e61a556",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c3517cb55f254f428c30bfedfbdea659",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n\"\"\"\nCAD2BIM - RCP + CEILING COLOURS + SCHEDULE  (Dynamo for Revit 2026, Python Script node, CPython3)\n= RCP_Setup_ISO19650 + Ceiling_Colour_Legend_Schedule in ONE run, with ONE ceiling list.\n\nONE ceiling list for everything: every ceiling TYPE gets one number, one name, one colour\n    C01  Ceiling 1  colour 1      C02  Ceiling 2  colour 2 ...\n(types whose name ends in a number keep that order: \"Ceilings 3\" -> Ceiling 3; numbering is project-wide,\nso the same ceiling has the same number and colour on every level and every sheet)\nThe colours are applied with view filters (\"CLG - C01 Ceiling 1\" ...) - the RCP, the colour plan, both legends,\nthe schedule and the labels always agree.\n\nSteps (each in its own sub-transaction; a failing step rolls back alone and is reported in RESULT):\n  A  NAMES           Type Mark C01.. + Description \"Ceiling 1\".. on every ceiling type\n  B  FILTERS         view filters by Type Mark (one per ceiling)\n  RCP  (the active ceiling plan, or the one on the active sheet, or the name in group 2)\n  0  REPLACE         removes this script's earlier labels / dims / legend block in the RCP\n  1  VIEW TEMPLATE   created from the RCP if missing and applied\n  2  GREY FLOOR      floor below as halftone underlay\n  3  CEILING COLOURS filters on the RCP (or on its template when the template controls filters),\n                     colour + hatch + transparency; old per-element ceiling colours are cleared\n  4-8                grid dims, ceiling perimeter dims, light set-out dims, CH labels, room tags\n  9  LEGEND + NOTES  drafting view on the RCP sheet: colour, mark, name, type, CH, area + general notes\n 10  SHEET           title, ISO 19650 number (optional), status, revision, names\n  COLOUR SHEET\n 11  COLOUR PLAN     copy of the RCP \"CEILING COLOUR PLAN - <LEVEL>\": solid colours + C01 labels\n 12  SWATCHES        colour image in each type's Type Image (for the schedule)\n 13  CEILING LEGEND  drafting view: colour, mark, name, type, qty, area, total\n 14  SCHEDULE        \"CEILING SCHEDULE\": colour, mark, name, type, qty, area, totals\n 15  COLOUR SHEET    sheet with colour plan + legend + schedule (same title block as the RCP sheet)\nRe-running is safe: everything is updated in place.  Revit Undo removes the whole run.\n\"\"\"\nimport clr\nimport os\nimport re\nimport struct\nimport zlib\nclr.AddReference('RevitAPI')\nclr.AddReference('RevitServices')\nfrom Autodesk.Revit.DB import *\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nfrom System.Collections.Generic import List\n\ndoc = DocumentManager.Instance.CurrentDBDocument\n\nKEYS = ['run', 'view', 'template', 'do_template', 'title', 'name_prefix', 'mark_prefix', 'transparency', 'do_hatch', 'do_mark', 'do_replace', 'do_underlay', 'do_zones', 'do_dims', 'do_perim', 'do_lights', 'do_labels', 'do_bulkheads', 'do_rooms', 'do_legend', 'do_notes', 'do_colour_plan', 'colour_scale', 'do_colour_legend', 'do_schedule', 'do_colour_sheet', 't_text', 't_head', 't_dim', 't_dim_ceil', 't_spot', 't_room', 'dim_bottom', 'dim_right', 'dim_spacing', 'perim_offset', 'block_auto', 'block_x', 'block_y', 'renumber', 'iso_project', 'iso_orig', 'iso_vol', 'iso_level', 'iso_type', 'iso_role', 'iso_number', 'iso_status', 'iso_rev', 'drawn', 'checked', 'approved']  # filled by build_rcp_combo.py - the order of the input nodes\n\n\ndef cfg(key, default):\n    try:\n        v = IN[KEYS.index(key)]\n    except Exception:\n        return default\n    return default if v is None or v == \"\" else v\n\n\ndef cs(key, default):\n    return str(cfg(key, default)).strip()\n\n\nRUN = bool(cfg(\"run\", False))\nVIEW_NAME = cs(\"view\", \"\")\nTEMPLATE_NAME = cs(\"template\", \"SD_AR_RCP_1-100\")\nSHEET_TITLE = cs(\"title\", \"\")\nNAME_PREFIX = cs(\"name_prefix\", \"Ceiling\")\nMARK_PREFIX = cs(\"mark_prefix\", \"C\").upper()\nTRANSPARENCY = int(cfg(\"transparency\", 35))\nDO_HATCH = bool(cfg(\"do_hatch\", True))\nDO_MARK = bool(cfg(\"do_mark\", False))\nDO_REPLACE = bool(cfg(\"do_replace\", True))\nDO_TEMPLATE = bool(cfg(\"do_template\", True))\nDO_UNDERLAY = bool(cfg(\"do_underlay\", True))\nDO_ZONES = bool(cfg(\"do_zones\", True))\nDO_DIMS = bool(cfg(\"do_dims\", True))\nDO_PERIM = bool(cfg(\"do_perim\", True))\nDO_LIGHTS = bool(cfg(\"do_lights\", True))\nDO_LABELS = bool(cfg(\"do_labels\", True))\nDO_BULKHEADS = bool(cfg(\"do_bulkheads\", True))\nDO_ROOMS = bool(cfg(\"do_rooms\", True))\nDO_LEGEND = bool(cfg(\"do_legend\", True))\nDO_NOTES = bool(cfg(\"do_notes\", True))\nDO_COLOUR_PLAN = bool(cfg(\"do_colour_plan\", True))\nCOLOUR_SCALE = int(cfg(\"colour_scale\", 150))\nDO_COLOUR_LEGEND = bool(cfg(\"do_colour_legend\", True))\nDO_SCHEDULE = bool(cfg(\"do_schedule\", True))\nDO_COLOUR_SHEET = bool(cfg(\"do_colour_sheet\", True))\nTEXT_TYPE = cs(\"t_text\", \"2.5mm Arial\")\nHEADING_TYPE = cs(\"t_head\", \"3.5mm Arial\")\nDIM_TYPE = cs(\"t_dim\", \"Diagonal - 3mm Arial\")\nDIM_CEIL_TYPE = cs(\"t_dim_ceil\", \"Diagonal - 2.5mm Arial - Line Leader - Text Above\")\nSPOT_TYPE = cs(\"t_spot\", \"No Symbol (Project)\")\nROOM_TAG_TYPE = cs(\"t_room\", \"Room Tag\")\nDIM_BOTTOM_MM = float(cfg(\"dim_bottom\", 32.5))\nDIM_RIGHT_MM = float(cfg(\"dim_right\", 16.3))\nDIM_SPACING_MM = float(cfg(\"dim_spacing\", 8.0))\nPERIM_OFFSET_MM = float(cfg(\"perim_offset\", 8.0))\nBLOCK_AUTO = bool(cfg(\"block_auto\", True))\nBLOCK_X = float(cfg(\"block_x\", 79.0))\nBLOCK_Y = float(cfg(\"block_y\", 20.0))\nRENUMBER = bool(cfg(\"renumber\", False))\nPROJECT = cs(\"iso_project\", \"2524\").upper()\nORIGINATOR = cs(\"iso_orig\", \"SD\").upper()\nVOLUME = cs(\"iso_vol\", \"ZZ\").upper()\nLEVEL_CODE = cs(\"iso_level\", \"00\").upper()\nDOC_TYPE = cs(\"iso_type\", \"DR\").upper()\nROLE = cs(\"iso_role\", \"A\").upper()\nNUMBER = cs(\"iso_number\", \"0003\").upper()\nSTATUS = cs(\"iso_status\", \"S2\").upper()\nREVISION = cs(\"iso_rev\", \"P01\").upper()\nDRAWN_BY = cs(\"drawn\", \"\")\nCHECKED_BY = cs(\"checked\", \"\")\nAPPROVED_BY = cs(\"approved\", \"\")\n\nPLAN_PREFIX = \"CEILING COLOUR PLAN - \"\nLEGEND_NAME = \"CEILING LEGEND\"\nSCHEDULE_NAME = \"CEILING SCHEDULE\"\nFILTER_PREFIX = \"CLG - \"\nMIN_CEILING_M2 = 3.0       # smaller ceiling pieces in the RCP are labelled as bulkheads\nMIN_BULKHEAD_M2 = 0.05\nMIN_EDGE_MM = 300.0        # perimeter edges shorter than this are not dimensioned\nMIN_LABEL_M2 = 1.0         # colour plan: smaller ceilings are coloured but not labelled\nLABEL_SPACING_MM = 1500    # colour plan: skip a label closer than this to one already placed\nSWATCH_DIR = os.path.join(os.environ.get(\"TEMP\") or os.path.expanduser(\"~\"), \"Ceiling_Colour_Swatches\")\nPALETTE = [(166, 206, 227), (251, 154, 153), (178, 223, 138), (253, 191, 111),\n           (202, 178, 214), (255, 255, 153), (141, 211, 199), (251, 128, 114),\n           (128, 177, 211), (179, 222, 105), (252, 205, 229), (188, 128, 189),\n           (204, 235, 197), (255, 237, 111), (190, 186, 218), (217, 217, 217)]\nHATCHES = [\"Diagonal up\", \"Diagonal down\", \"Crosshatch\", \"Diagonal crosshatch\", \"Horizontal\", \"Vertical\"]\nMM = 1.0 / 304.8\nSQFT_TO_M2 = 0.09290304\nMARK_RE = re.compile(r'^' + re.escape(MARK_PREFIX) + r'\\d+$')\nlog = []\n\n\ndef say(m):\n    log.append(str(m))\n\n\ndef ft(v_mm):\n    return v_mm / 304.8\n\n\n# ---------------------------------------------------------------- pythonnet-safe helpers\ndef nm(e):\n    \"\"\"Element / type name - works in Dynamo CPython3 (pythonnet cannot read ElementType.Name directly).\"\"\"\n    if e is None:\n        return \"\"\n    for get in (lambda: Element.Name.GetValue(e), lambda: Element.Name.__get__(e), lambda: e.Name):\n        try:\n            n = get()\n            if n:\n                return n\n        except Exception:\n            pass\n    for bip in (BuiltInParameter.SYMBOL_NAME_PARAM, BuiltInParameter.ALL_MODEL_TYPE_NAME, BuiltInParameter.VIEW_NAME):\n        try:\n            p = e.get_Parameter(bip)\n            if p is not None and p.AsString():\n                return p.AsString()\n        except Exception:\n            pass\n    return \"\"\n\n\ntype_name = nm\n\n\ndef _change_type(el, type_id):\n    \"\"\"el.ChangeTypeId with a fallback: in Dynamo CPython3 (pythonnet) the call can fail to resolve.\"\"\"\n    try:\n        el.ChangeTypeId(type_id)\n        return\n    except Exception:\n        pass\n    el.get_Parameter(BuiltInParameter.ELEM_TYPE_PARAM).Set(type_id)\n\n\ndef _valid_types(el):\n    try:\n        return list(el.GetValidTypes())\n    except Exception:\n        pass\n    cur = doc.GetElement(el.GetTypeId())\n    fam = cur.FamilyName if cur is not None else \"Viewport\"\n    out = []\n    for t in FilteredElementCollector(doc).OfClass(ElementType):\n        try:\n            if t.FamilyName == fam:\n                out.append(t.Id)\n        except Exception:\n            pass\n    return out\n\n\ndef valid(eid):\n    return eid is not None and eid.Value > 0\n\n\ndef type_param(t, bip, name):\n    p = t.get_Parameter(bip)\n    return p if p is not None else t.LookupParameter(name)\n\n\ndef area_m2(el):\n    p = el.get_Parameter(BuiltInParameter.HOST_AREA_COMPUTED)\n    return p.AsDouble() * SQFT_TO_M2 if p is not None else 0.0\n\n\ndef find_type(name, cls=None, cat=None, linear=False):\n    \"\"\"Type by exact name; if missing, the closest usable type of the same kind (reported in RESULT).\"\"\"\n    col = (FilteredElementCollector(doc).OfCategory(cat).WhereElementIsElementType() if cat is not None\n           else FilteredElementCollector(doc).OfClass(cls))\n    pool = []\n    for t in col:\n        if linear:\n            try:\n                if t.StyleType != DimensionStyleType.Linear:\n                    continue\n            except Exception:\n                continue\n        pool.append(t)\n        if type_name(t).lower() == name.lower():\n            return t\n    if not pool:\n        raise Exception(\"no type of this kind in the project (wanted '{}')\".format(name))\n    best = None\n    want = wanted_mm(name)\n    if want and cls is TextNoteType:\n        sized = []\n        for t in pool:\n            if \"schedule\" in type_name(t).lower():\n                continue\n            ps = t.get_Parameter(BuiltInParameter.TEXT_SIZE)\n            if ps:\n                sized.append((abs(ps.AsDouble() * 304.8 - want), t))\n        if sized:\n            best = min(sized, key=lambda x: x[0])[1]\n    if best is None:\n        words = [w for w in name.lower().replace(\"-\", \" \").split() if len(w) > 1]\n        best = max(pool, key=lambda t: sum(1 for w in words if w in type_name(t).lower()))\n    say(\"NOTE   type '{}' not in this project - using '{}' instead. Available: {}\".format(\n        name, type_name(best), \", \".join(sorted(set(type_name(t) for t in pool)))[:300]))\n    return best\n\n\ndef wanted_mm(name):\n    m = re.search(r\"(\\d+(?:\\.\\d+)?)\\s*mm\", name.lower())\n    if m:\n        return float(m.group(1))\n    m = re.search(r\"(\\d+)\\s*/\\s*(\\d+)\\s*\\\"\", name)\n    if m:\n        return float(m.group(1)) / float(m.group(2)) * 25.4\n    return None\n\n\ndef step(label, fn):\n    \"\"\"Runs fn in its own sub-transaction.  Returns fn's result (True when it returns None), or None on failure.\"\"\"\n    st = SubTransaction(doc)\n    st.Start()\n    try:\n        r = fn()\n        st.Commit()\n        say(\"OK     \" + label + (\" -> \" + r if isinstance(r, str) and r else \"\"))\n        return True if r is None else r\n    except Exception as e:\n        try:\n            st.RollBack()\n        except Exception:\n            pass\n        import traceback\n        tb = traceback.format_exc().strip().splitlines()\n        say(\"FAILED \" + label + \" -> \" + str(e) + \" | at: \" + \" / \".join(l.strip() for l in tb[-4:-1]))\n        return None\n\n\ndef fmt_level(feet):\n    m = feet * 0.3048\n    return u\"±0.000\" if abs(m) < 0.0005 else u\"{:+.3f}\".format(m)\n\n\ndef darker(c, k=0.55):\n    return Color(int(c[0] * k), int(c[1] * k), int(c[2] * k))\n\n\ndef solid_fill_id():\n    for fp in FilteredElementCollector(doc).OfClass(FillPatternElement):\n        p = fp.GetFillPattern()\n        if p.Target == FillPatternTarget.Drafting and p.IsSolidFill:\n            return fp.Id\n    raise Exception(\"no solid fill pattern in the project\")\n\n\ndef drafting_pattern_id(name):\n    for fp in FilteredElementCollector(doc).OfClass(FillPatternElement):\n        p = fp.GetFillPattern()\n        if p.Target == FillPatternTarget.Drafting and nm(fp).lower() == name.lower():\n            return fp.Id\n    return None\n\n\ndef is_line(c):\n    return isinstance(c, Line)\n\n\ndef by_name(cls, name):\n    for e in FilteredElementCollector(doc).OfClass(cls):\n        if nm(e) == name and not (isinstance(e, View) and e.IsTemplate):\n            return e\n    return None\n\n\ndef write_png(path, rgb, w=120, h=60, border=3):\n    \"\"\"Plain solid-colour PNG with a dark border (no external libraries).\"\"\"\n    edge = bytes(bytearray((40, 40, 40)))\n    fill = bytes(bytearray(rgb))\n    full = b\"\\x00\" + edge * w\n    mid = b\"\\x00\" + edge * border + fill * (w - 2 * border) + edge * border\n    raw = full * border + mid * (h - 2 * border) + full * border\n\n    def chunk(tag, data):\n        return struct.pack(\">I\", len(data)) + tag + data + struct.pack(\">I\", zlib.crc32(tag + data) & 0xffffffff)\n    png = (b\"\\x89PNG\\r\\n\\x1a\\n\" + chunk(b\"IHDR\", struct.pack(\">IIBBBBB\", w, h, 8, 2, 0, 0, 0)) +\n           chunk(b\"IDAT\", zlib.compress(raw, 9)) + chunk(b\"IEND\", b\"\"))\n    with open(path, \"wb\") as f:\n        f.write(png)\n\n\ndef solid_ogs(rgb, solid):\n    \"\"\"Colour plan look: solid colour, no hatch, no transparency.\"\"\"\n    o = OverrideGraphicSettings()\n    c = Color(*rgb)\n    o.SetSurfaceForegroundPatternId(solid)\n    o.SetSurfaceForegroundPatternColor(c)\n    o.SetSurfaceForegroundPatternVisible(True)\n    o.SetSurfaceBackgroundPatternId(solid)\n    o.SetSurfaceBackgroundPatternColor(c)\n    o.SetSurfaceBackgroundPatternVisible(True)\n    o.SetCutForegroundPatternId(solid)\n    o.SetCutForegroundPatternColor(c)\n    o.SetCutForegroundPatternVisible(True)\n    return o\n\n\ndef rcp_ogs(g, solid):\n    \"\"\"RCP look: colour + optional hatch in a darker shade + transparency.\"\"\"\n    o = OverrideGraphicSettings()\n    col = Color(*g[\"rgb\"])\n    o.SetSurfaceBackgroundPatternId(solid)\n    o.SetSurfaceBackgroundPatternColor(col)\n    o.SetSurfaceBackgroundPatternVisible(True)\n    o.SetCutBackgroundPatternId(solid)\n    o.SetCutBackgroundPatternColor(col)\n    hid = drafting_pattern_id(g[\"hatch\"]) if DO_HATCH else None\n    if hid is not None:\n        o.SetSurfaceForegroundPatternId(hid)\n        o.SetSurfaceForegroundPatternColor(darker(g[\"rgb\"]))\n        o.SetSurfaceForegroundPatternVisible(True)\n        o.SetCutForegroundPatternId(hid)\n        o.SetCutForegroundPatternColor(darker(g[\"rgb\"]))\n    o.SetSurfaceTransparency(max(0, min(100, TRANSPARENCY)))\n    return o\n\n\ndef filter_host(view):\n    \"\"\"The view itself, or its template when the template controls V/G filters.\"\"\"\n    if view is not None and valid(view.ViewTemplateId):\n        t = doc.GetElement(view.ViewTemplateId)\n        try:\n            nc = set(x.Value for x in t.GetNonControlledTemplateParameterIds())\n            if ElementId(BuiltInParameter.VIS_GRAPHICS_FILTERS).Value not in nc:\n                return t\n        except Exception:\n            return t\n    return view\n\n\ndef apply_filters(host, ordered, make_ogs):\n    applied = set(x.Value for x in host.GetFilters())\n    for g in ordered:\n        fid = g[\"filter\"].Id\n        if fid.Value not in applied:\n            host.AddFilter(fid)\n        host.SetFilterVisibility(fid, True)\n        host.SetFilterOverrides(fid, make_ogs(g))\n\n\ndef clear_ceiling_overrides(view):\n    n = 0\n    empty = OverrideGraphicSettings()\n    for c in FilteredElementCollector(doc, view.Id).OfCategory(BuiltInCategory.OST_Ceilings).WhereElementIsNotElementType():\n        o = view.GetElementOverrides(c.Id)\n        if o.SurfaceBackgroundPatternId.Value > 0 or o.SurfaceForegroundPatternId.Value > 0 or \\\n                o.Transparency > 0 or o.CutBackgroundPatternId.Value > 0 or o.CutForegroundPatternId.Value > 0:\n            n += 1\n        view.SetElementOverrides(c.Id, empty)\n    return n\n\n\ndef region_type(g, solid, hatched):\n    \"\"\"Filled region type for a legend swatch: 'CLG - C01' (solid) or 'CLG - C01 RCP' (colour + hatch).\"\"\"\n    name = FILTER_PREFIX + g[\"mark\"] + (\" RCP\" if hatched else \"\")\n    frt = None\n    base = None\n    for f in FilteredElementCollector(doc).OfClass(FilledRegionType):\n        if nm(f) == name:\n            frt = f\n        if base is None or nm(f).lower() == \"solid black\":\n            base = f\n    if frt is None:\n        frt = doc.GetElement(base.Duplicate(name).Id)\n    hid = drafting_pattern_id(g[\"hatch\"]) if (hatched and DO_HATCH) else None\n    frt.BackgroundPatternId = solid\n    frt.BackgroundPatternColor = Color(*g[\"rgb\"])\n    frt.ForegroundPatternId = hid if hid is not None else solid\n    frt.ForegroundPatternColor = darker(g[\"rgb\"]) if hid is not None else Color(*g[\"rgb\"])\n    return frt\n\n\ndef rect_region(frt, view, x0, y0, x1, y1):\n    pts = [XYZ(x0, y0, 0), XYZ(x1, y0, 0), XYZ(x1, y1, 0), XYZ(x0, y1, 0)]\n    loop = CurveLoop()\n    for i in range(4):\n        loop.Append(Line.CreateBound(pts[i], pts[(i + 1) % 4]))\n    loops = List[CurveLoop]()\n    loops.Add(loop)\n    return FilledRegion.Create(doc, frt.Id, view.Id, loops)\n\n\ndef label_point(c, opt):\n    \"\"\"A point inside the ceiling's largest horizontal face, close to its centre (colour plan labels).\"\"\"\n    faces = []\n\n    def walk(geo):\n        for g in geo:\n            if isinstance(g, Solid) and g.Volume > 0:\n                for fc in g.Faces:\n                    if isinstance(fc, PlanarFace) and abs(fc.FaceNormal.Z) > 0.99:\n                        faces.append(fc)\n            elif isinstance(g, GeometryInstance):\n                walk(g.GetInstanceGeometry())\n    geo = c.get_Geometry(opt)\n    if geo is None:\n        return None\n    walk(geo)\n    if not faces:\n        return None\n    fc = max(faces, key=lambda x: x.Area)\n    bb = fc.GetBoundingBox()\n    n = 12\n    du, dv = (bb.Max.U - bb.Min.U) / n, (bb.Max.V - bb.Min.V) / n\n    cu, cv = (bb.Min.U + bb.Max.U) / 2.0, (bb.Min.V + bb.Max.V) / 2.0\n    pts = [UV(bb.Min.U + du * i, bb.Min.V + dv * j) for i in range(n + 1) for j in range(n + 1)]\n    pts = [p for p in pts if fc.IsInside(p)]\n    if not pts:\n        return None\n    inner = [p for p in pts if all(fc.IsInside(UV(p.U + a, p.V + b))\n                                   for a, b in ((du, 0), (-du, 0), (0, dv), (0, -dv)))]\n    p = min(inner or pts, key=lambda q: (q.U - cu) ** 2 + (q.V - cv) ** 2)\n    return fc.Evaluate(p), fc.Area * SQFT_TO_M2\n\n\n# ------------------------------------------------------------------ main\ndef main():\n    # ================= the ONE ceiling list (project-wide, by type name)\n    all_ceilings = [c for c in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Ceilings)\n                    .WhereElementIsNotElementType() if valid(c.GetTypeId())]\n    if not all_ceilings:\n        say(\"STOPPED - no ceilings in the model\")\n        return\n    groups = {}\n    for c in all_ceilings:\n        tp = doc.GetElement(c.GetTypeId())\n        g = groups.setdefault(nm(tp), dict(types={}, els=[], area=0.0, label=nm(tp)))\n        g[\"types\"][tp.Id.Value] = tp\n        g[\"els\"].append(c)\n        g[\"area\"] += area_m2(c)\n\n    def sort_key(g):\n        m = re.search(r'(\\d+)\\s*$', g[\"label\"])\n        return (0, int(m.group(1)), g[\"label\"]) if m else (1, 0, g[\"label\"].lower())\n    ordered = sorted(groups.values(), key=sort_key)\n    group_of = {}\n    for i, g in enumerate(ordered):\n        g[\"mark\"] = \"%s%02d\" % (MARK_PREFIX, i + 1)\n        g[\"name\"] = \"%s %d\" % (NAME_PREFIX, i + 1)\n        g[\"rgb\"] = PALETTE[i % len(PALETTE)]\n        g[\"hatch\"] = HATCHES[(i // len(PALETTE) + i) % len(HATCHES)]\n        g[\"qty\"] = len(g[\"els\"])\n        for c in g[\"els\"]:\n            group_of[c.Id.Value] = g\n    first = list(ordered[0][\"types\"].values())[0]\n    mark_pid = type_param(first, BuiltInParameter.ALL_MODEL_TYPE_MARK, \"Type Mark\").Id\n    desc_pid = type_param(first, BuiltInParameter.ALL_MODEL_DESCRIPTION, \"Description\").Id\n    say(\"Ceiling list: %d ceiling(s) in %d ceiling type(s)\" % (len(all_ceilings), len(ordered)))\n\n    # A names\n    def names():\n        for g in ordered:\n            for tp in g[\"types\"].values():\n                type_param(tp, BuiltInParameter.ALL_MODEL_TYPE_MARK, \"Type Mark\").Set(g[\"mark\"])\n                type_param(tp, BuiltInParameter.ALL_MODEL_DESCRIPTION, \"Description\").Set(g[\"name\"])\n            say(\"       %s  %-11s colour %-15s <- %-28s qty %3d  %9.2f m2\" % (\n                g[\"mark\"], g[\"name\"], \"%d,%d,%d\" % g[\"rgb\"], g[\"label\"], g[\"qty\"], g[\"area\"]))\n        return \"Type Mark + Description on %d type(s)\" % len(ordered)\n    names_ok = step(\"A names: Type Mark + Description\", names)\n\n    # B filters\n    def filters():\n        cats = List[ElementId]()\n        cats.Add(ElementId(BuiltInCategory.OST_Ceilings))\n        filterable = set(x.Value for x in ParameterFilterUtilities.GetFilterableParametersInCommon(doc, cats))\n        if mark_pid.Value not in filterable:\n            raise Exception(\"Type Mark is not filterable for ceilings\")\n        wanted = dict((FILTER_PREFIX + g[\"mark\"] + \" \" + g[\"name\"], g) for g in ordered)\n        for f in list(FilteredElementCollector(doc).OfClass(ParameterFilterElement)):\n            if nm(f).startswith(FILTER_PREFIX) and nm(f) not in wanted:\n                doc.Delete(f.Id)\n        existing = dict((nm(f), f) for f in FilteredElementCollector(doc).OfClass(ParameterFilterElement))\n        for n, g in wanted.items():\n            try:\n                rule = ParameterFilterRuleFactory.CreateEqualsRule(mark_pid, g[\"mark\"])\n            except Exception:\n                rule = ParameterFilterRuleFactory.CreateEqualsRule(mark_pid, g[\"mark\"], False)\n            epf = ElementParameterFilter(rule)\n            f = existing.get(n)\n            if f is None:\n                f = ParameterFilterElement.Create(doc, n, cats, epf)\n            else:\n                f.SetCategories(cats)\n                f.SetElementFilter(epf)\n            g[\"filter\"] = f\n        return \"%d filter(s) '%s<mark> <name>'\" % (len(wanted), FILTER_PREFIX)\n    filters_ok = bool(names_ok) and bool(step(\"B view filters\", filters))\n    solid = solid_fill_id()\n\n    # ================= the RCP\n    av = doc.ActiveView\n    v, how = None, \"\"\n\n    def rcp_ok(x):\n        return x is not None and x.ViewType == ViewType.CeilingPlan and not x.IsTemplate and not nm(x).startswith(PLAN_PREFIX)\n    if rcp_ok(av):\n        v, how = av, \"active view\"\n    elif av is not None and av.ViewType == ViewType.DrawingSheet:\n        for vpid in av.GetAllViewports():\n            pv = doc.GetElement(doc.GetElement(vpid).ViewId)\n            if rcp_ok(pv):\n                v, how = pv, \"ceiling plan on the active sheet \" + av.SheetNumber\n                break\n    if v is None and VIEW_NAME:\n        named = [x for x in FilteredElementCollector(doc).OfClass(ViewPlan) if rcp_ok(x) and nm(x) == VIEW_NAME]\n        if named:\n            v, how = named[0], \"name '{}'\".format(VIEW_NAME)\n    if v is None:\n        # started from the colour sheet / colour plan: use the RCP of the same level (preferably one on a sheet)\n        cps = []\n        if av is not None and av.ViewType == ViewType.CeilingPlan and nm(av).startswith(PLAN_PREFIX):\n            cps = [av]\n        elif av is not None and av.ViewType == ViewType.DrawingSheet:\n            cps = [doc.GetElement(doc.GetElement(i).ViewId) for i in av.GetAllViewports()]\n            cps = [x for x in cps if x is not None and x.ViewType == ViewType.CeilingPlan and nm(x).startswith(PLAN_PREFIX)]\n        if cps and cps[0].GenLevel is not None:\n            lid = cps[0].GenLevel.Id.Value\n            same = [x for x in FilteredElementCollector(doc).OfClass(ViewPlan)\n                    if rcp_ok(x) and x.GenLevel is not None and x.GenLevel.Id.Value == lid]\n\n            def on_sheet(x):\n                p = x.get_Parameter(BuiltInParameter.VIEWER_SHEET_NUMBER)\n                return p is not None and p.AsString() not in (None, \"\", \"---\")\n            same.sort(key=lambda x: (not on_sheet(x), nm(x)))\n            if same:\n                v, how = same[0], \"RCP of the same level as the colour plan '{}'\".format(nm(cps[0]))\n    if v is None:\n        names_ = [nm(x) for x in FilteredElementCollector(doc).OfClass(ViewPlan) if rcp_ok(x)]\n        say(\"STOPPED - open a ceiling plan (or its sheet) first, or type its name in group 2. \"\n            \"Ceiling plans in '{}': {}\".format(doc.Title, \", \".join(names_) or \"none\"))\n        return\n    lvl = v.GenLevel\n    scale = float(v.Scale)\n\n    def paper(mm_):\n        return ft(mm_ * scale)\n\n    sheet = None\n    sn = v.get_Parameter(BuiltInParameter.VIEWER_SHEET_NUMBER)\n    if sn and sn.AsString() and sn.AsString() != \"---\":\n        for sh in FilteredElementCollector(doc).OfClass(ViewSheet):\n            if sh.SheetNumber == sn.AsString():\n                sheet = sh\n    say(\"RCP: '{}' ({}), level {}, 1:{}, sheet {}\".format(nm(v), how, lvl.Name, int(scale), sheet.SheetNumber if sheet else \"none\"))\n    block_name = \"RCP LEGEND & NOTES - {}\".format(lvl.Name.upper())\n    crop = v.CropBox if v.CropBoxActive else None     # only an active crop limits labels / dims\n    ceil_cat = Category.GetCategory(doc, BuiltInCategory.OST_Ceilings).Id.Value\n    light_cat = Category.GetCategory(doc, BuiltInCategory.OST_LightingFixtures).Id.Value\n\n    # 0 replace this script's earlier output\n    if DO_REPLACE:\n        def replace():\n            kill = []\n            for sd in FilteredElementCollector(doc, v.Id).OfClass(SpotDimension):\n                p = sd.get_Parameter(BuiltInParameter.SPOT_ELEV_SINGLE_OR_UPPER_PREFIX)\n                if p and p.AsString() and \"CH +\" in p.AsString():\n                    kill.append(sd.Id)\n            nd = 0\n            for d in FilteredElementCollector(doc, v.Id).OfClass(Dimension):\n                if isinstance(d, SpotDimension) or d.References.Size == 0:\n                    continue\n                cats = set()\n                for r in d.References:\n                    e = doc.GetElement(r)\n                    cats.add(e.Category.Id.Value if e is not None and e.Category is not None else -1)\n                if cats and cats <= set([ceil_cat, light_cat]):\n                    kill.append(d.Id)\n                    nd += 1\n            nb = 0\n            for dv in FilteredElementCollector(doc).OfClass(ViewDrafting):\n                if nm(dv) == block_name:\n                    kill.append(dv.Id)\n                    nb += 1\n            if kill:\n                ids = List[ElementId]()\n                for k in kill:\n                    ids.Add(k)\n                doc.Delete(ids)\n            return \"removed {} labels, {} ceiling/light dims, {} legend block\".format(len(kill) - nd - nb, nd, nb)\n        step(\"0 replace previous output\", replace)\n        doc.Regenerate()\n\n    # ---- ceilings in the RCP: bottom face, its solid\n    opt = Options()\n    opt.ComputeReferences = True\n    opt.View = v\n\n    def bottom(el):\n        holder = [None]\n\n        def walk(geo, from_instance):\n            for o in geo:\n                if isinstance(o, Solid) and o.Faces.Size > 0:\n                    for f in o.Faces:\n                        if isinstance(f, PlanarFace) and f.FaceNormal.Z < -0.99 and f.Reference is not None:\n                            if holder[0] is None or f.Area > holder[0][0].Area:\n                                holder[0] = (f, o, from_instance)\n                elif isinstance(o, GeometryInstance):\n                    walk(o.GetInstanceGeometry(), True)\n        g = el.get_Geometry(opt)\n        if g:\n            walk(g, False)\n        return holder[0]\n\n    ceilings, bulkheads = [], []\n    for c in FilteredElementCollector(doc, v.Id).OfCategory(BuiltInCategory.OST_Ceilings).WhereElementIsNotElementType():\n        g = group_of.get(c.Id.Value)\n        b = bottom(c)\n        if b is None or g is None:\n            continue\n        f, sol, from_instance = b\n        area = f.Area * SQFT_TO_M2\n        bb = c.get_BoundingBox(v)\n        info = {\"el\": c, \"g\": g, \"face\": f, \"solid\": sol, \"inst\": from_instance, \"area\": area,\n                \"ch\": int(round((f.Origin.Z - lvl.Elevation) * 304.8 / 10.0)) * 10,\n                \"cx\": (bb.Min.X + bb.Max.X) / 2, \"cy\": (bb.Min.Y + bb.Max.Y) / 2}\n        if area >= MIN_CEILING_M2:\n            ceilings.append(info)\n        elif area >= MIN_BULKHEAD_M2:\n            bulkheads.append(info)\n    in_view = [g for g in ordered if any(z[\"g\"] is g for z in ceilings + bulkheads)]\n    say(\"RCP ceilings: {} piece(s) of {} ceiling(s) ({}), bulkheads: {}\".format(\n        len(ceilings), len(in_view), \", \".join(g[\"mark\"] for g in in_view), len(bulkheads)))\n\n    # 1 template\n    if DO_TEMPLATE:\n        def template():\n            ex = [x for x in FilteredElementCollector(doc).OfClass(View) if x.IsTemplate and nm(x) == TEMPLATE_NAME]\n            t = ex[0] if ex else v.CreateViewTemplate()\n            if not ex:\n                t.Name = TEMPLATE_NAME\n            t.Scale = 100\n            t.DetailLevel = ViewDetailLevel.Medium\n            hidden = []\n            for label, bic in ((\"cameras\", BuiltInCategory.OST_Cameras), (\"scope boxes\", BuiltInCategory.OST_VolumeOfInterest),\n                               (\"section boxes\", BuiltInCategory.OST_SectionBox), (\"reference planes\", BuiltInCategory.OST_CLines)):\n                cat = Category.GetCategory(doc, bic)\n                if cat is not None and t.CanCategoryBeHidden(cat.Id):\n                    t.SetCategoryHidden(cat.Id, True)\n                    hidden.append(label)\n            shown = []\n            for label, bic in ((\"dimensions\", BuiltInCategory.OST_Dimensions), (\"spot elevations\", BuiltInCategory.OST_SpotElevations),\n                               (\"text\", BuiltInCategory.OST_TextNotes), (\"room tags\", BuiltInCategory.OST_RoomTags),\n                               (\"grids\", BuiltInCategory.OST_Grids), (\"ceilings\", BuiltInCategory.OST_Ceilings),\n                               (\"lighting fixtures\", BuiltInCategory.OST_LightingFixtures)):\n                cat = Category.GetCategory(doc, bic)\n                if cat is not None and t.CanCategoryBeHidden(cat.Id) and t.GetCategoryHidden(cat.Id):\n                    t.SetCategoryHidden(cat.Id, False)\n                    shown.append(label)\n            v.ViewTemplateId = t.Id\n            return \"{} {} applied, hidden: {}{}\".format(\"existing\" if ex else \"created\", TEMPLATE_NAME, \", \".join(hidden),\n                                                       \"; turned ON: \" + \", \".join(shown) if shown else \"\")\n        step(\"1 view template\", template)\n        scale = float(v.Scale)\n\n    # 2 grey floor\n    if DO_UNDERLAY:\n        def underlay():\n            levels = sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation)\n            above = [l for l in levels if l.Elevation > lvl.Elevation + 1e-6]\n            v.SetUnderlayRange(lvl.Id, above[0].Id if above else ElementId.InvalidElementId)\n            v.SetUnderlayOrientation(UnderlayOrientation.LookingDown)\n            return \"{} floor plan shown grey (halftone underlay)\".format(lvl.Name)\n        step(\"2 grey floor below\", underlay)\n\n    # 3 ceiling colours by filter (same list / colours as the colour sheet)\n    if DO_ZONES and filters_ok:\n        def colour():\n            cleared = clear_ceiling_overrides(v)\n            host = filter_host(v)\n            apply_filters(host, ordered, lambda g: rcp_ogs(g, solid))\n            if DO_MARK:\n                for z in ceilings + bulkheads:\n                    mk = z[\"el\"].get_Parameter(BuiltInParameter.ALL_MODEL_MARK)\n                    if mk and not mk.IsReadOnly:\n                        mk.Set(z[\"g\"][\"mark\"])\n            return \"{} ceiling colours{} on {}{}{}\".format(\n                len(ordered), \" + hatch\" if DO_HATCH else \"\",\n                \"view template '%s' (it controls filters - every RCP using it is coloured)\" % nm(host) if host is not v else \"the RCP\",\n                \"; %d old per-element ceiling colour(s) cleared\" % cleared if cleared else \"\",\n                \"; Mark = C01.. on each ceiling\" if DO_MARK else \"\")\n        step(\"3 ceiling colours (filters)\", colour)\n\n    # refresh ceiling faces (the steps above regenerate the view; old references are no longer valid)\n    doc.Regenerate()\n    for z in ceilings + bulkheads:\n        b = bottom(z[\"el\"])\n        if b is not None:\n            z[\"face\"], z[\"solid\"], z[\"inst\"] = b\n\n    # 4 grid dimensions\n    if DO_DIMS:\n        grids = list(FilteredElementCollector(doc, v.Id).OfClass(Grid))\n        vert = sorted([g for g in grids if abs(g.Curve.Direction.X) < 0.01], key=lambda g: g.Curve.GetEndPoint(0).X)\n        horz = sorted([g for g in grids if abs(g.Curve.Direction.Y) < 0.01], key=lambda g: g.Curve.GetEndPoint(0).Y)\n        existing_dims = [d for d in FilteredElementCollector(doc, v.Id).OfClass(Dimension)\n                         if not isinstance(d, SpotDimension) and d.References.Size > 0\n                         and all(isinstance(doc.GetElement(r), Grid) for r in d.References)]\n        if existing_dims:\n            say(\"SKIP   4 grid dimensions -> {} grid dimensions already in the view\".format(len(existing_dims)))\n        elif len(vert) < 2 or len(horz) < 2:\n            say(\"SKIP   4 grid dimensions -> needs 2+ grids each way\")\n        else:\n            def dims():\n                dt = find_type(DIM_TYPE, cls=DimensionType, linear=True)\n\n                def dim(gl, a, b):\n                    ra = ReferenceArray()\n                    for g in gl:\n                        ra.Append(Reference(g))\n                    return doc.Create.NewDimension(v, Line.CreateBound(a, b), ra, dt)\n                xs = [g.Curve.GetEndPoint(0).X for g in vert]\n                ys = [g.Curve.GetEndPoint(0).Y for g in horz]\n                sp = paper(DIM_SPACING_MM)\n                yb = min(ys) - paper(DIM_BOTTOM_MM)\n                xr = max(xs) + paper(DIM_RIGHT_MM)\n                if crop is not None:\n                    yb = max(yb, crop.Min.Y + sp + paper(8))\n                    xr = min(xr, crop.Max.X - sp - paper(14))\n                dim(vert, XYZ(min(xs), yb, 0), XYZ(max(xs), yb, 0))\n                o1 = dim([vert[0], vert[-1]], XYZ(min(xs), yb - sp, 0), XYZ(max(xs), yb - sp, 0))\n                dim(horz, XYZ(xr, min(ys), 0), XYZ(xr, max(ys), 0))\n                o2 = dim([horz[0], horz[-1]], XYZ(xr + sp, min(ys), 0), XYZ(xr + sp, max(ys), 0))\n                return \"grids {}-{} and {}-{}, overall {} x {} mm\".format(\n                    vert[0].Name, vert[-1].Name, horz[0].Name, horz[-1].Name, o1.ValueString, o2.ValueString)\n            step(\"4 grid dimensions\", dims)\n\n    def side_faces(z):\n        return [sf for sf in z[\"solid\"].Faces if isinstance(sf, PlanarFace) and abs(sf.FaceNormal.Z) < 0.01\n                and sf.Reference is not None]\n\n    def side_ref_for(sides, seg):\n        d = seg.Direction\n        m = seg.Evaluate(0.5, True)\n        for sf in sides:\n            if abs(sf.FaceNormal.DotProduct(d)) < 0.01 and abs(m.Subtract(sf.Origin).DotProduct(sf.FaceNormal)) < ft(2):\n                return sf\n        return None\n\n    def inside(z, x, y):\n        f = z[\"face\"]\n        r = f.Project(XYZ(x, y, f.Origin.Z))\n        return r is not None and r.Distance < ft(20)\n\n    # 5 perimeter dims\n    if DO_PERIM and ceilings:\n        def perim():\n            dt = find_type(DIM_CEIL_TYPE, cls=DimensionType, linear=True)\n            made, skipped, fam = 0, 0, 0\n            perr = []\n            off = paper(PERIM_OFFSET_MM)\n            for z in ceilings:\n                if z[\"inst\"]:\n                    fam += 1\n                    continue\n                sides = side_faces(z)\n                loops = z[\"face\"].GetEdgesAsCurveLoops()\n                outer = max(loops, key=lambda l: l.GetExactLength())\n                segs = [cv for cv in outer]\n                n = len(segs)\n                sf_of = [side_ref_for(sides, s_) if is_line(s_) else None for s_ in segs]\n                for i, seg in enumerate(segs):\n                    if not is_line(seg) or seg.Length < ft(MIN_EDGE_MM):\n                        continue\n                    a, b = sf_of[(i - 1) % n], sf_of[(i + 1) % n]\n                    d = seg.Direction\n                    if a is None or b is None or abs(a.FaceNormal.DotProduct(d)) < 0.99 \\\n                            or abs(b.FaceNormal.DotProduct(d)) < 0.99:\n                        skipped += 1\n                        continue\n                    nin = XYZ(-d.Y, d.X, 0)\n                    m = seg.Evaluate(0.5, True)\n                    if not inside(z, m.X + nin.X * off, m.Y + nin.Y * off):\n                        nin = nin.Negate()\n                    p0 = seg.GetEndPoint(0).Add(nin.Multiply(off))\n                    p1 = seg.GetEndPoint(1).Add(nin.Multiply(off))\n                    ra = ReferenceArray()\n                    ra.Append(a.Reference)\n                    ra.Append(b.Reference)\n                    try:\n                        doc.Create.NewDimension(v, Line.CreateBound(XYZ(p0.X, p0.Y, 0), XYZ(p1.X, p1.Y, 0)), ra, dt)\n                        made += 1\n                    except Exception as e:\n                        skipped += 1\n                        if not perr:\n                            perr.append(str(e).splitlines()[0])\n            if perr:\n                say(\"NOTE   perimeter dimension error: \" + perr[0])\n            return \"{} edge dimensions, {} edges skipped (curved / not square ends){}\".format(\n                made, skipped, \", {} family-type ceilings skipped\".format(fam) if fam else \"\")\n        step(\"5 ceiling perimeter dimensions\", perim)\n\n    # 6 light fitting set-out dims\n    if DO_LIGHTS and ceilings:\n        def lights():\n            dt = find_type(DIM_CEIL_TYPE, cls=DimensionType, linear=True)\n            fixtures = []\n            for fi in FilteredElementCollector(doc, v.Id).OfCategory(BuiltInCategory.OST_LightingFixtures).WhereElementIsNotElementType():\n                loc = fi.Location\n                if loc is not None and hasattr(loc, \"Point\"):\n                    fixtures.append(fi)\n            made = 0\n            used = set()\n            for z in ceilings:\n                inside_lights = [fi for fi in fixtures if fi.Id.Value not in used\n                                 and inside(z, fi.Location.Point.X, fi.Location.Point.Y)]\n                if not inside_lights:\n                    continue\n                for fi in inside_lights:\n                    used.add(fi.Id.Value)\n                sides = side_faces(z) if not z[\"inst\"] else []\n                for axis in (\"X\", \"Y\"):\n                    picks = {}\n                    for fi in inside_lights:\n                        h = fi.HandOrientation\n                        along_x = abs(h.X) > 0.9\n                        if axis == \"X\":\n                            rt = FamilyInstanceReferenceType.CenterLeftRight if along_x else FamilyInstanceReferenceType.CenterFrontBack\n                            key = int(round(fi.Location.Point.X * 304.8 / 10.0))\n                        else:\n                            rt = FamilyInstanceReferenceType.CenterFrontBack if along_x else FamilyInstanceReferenceType.CenterLeftRight\n                            key = int(round(fi.Location.Point.Y * 304.8 / 10.0))\n                        refs = fi.GetReferences(rt)\n                        if refs.Count > 0 and key not in picks:\n                            picks[key] = refs[0]\n                    if not picks:\n                        continue\n                    keys = sorted(picks)\n                    lo, hi = keys[0] * 10.0, keys[-1] * 10.0\n                    ra = ReferenceArray()\n                    norm = XYZ.BasisX if axis == \"X\" else XYZ.BasisY\n                    before = [sf for sf in sides if abs(sf.FaceNormal.DotProduct(norm)) > 0.99\n                              and (sf.Origin.X if axis == \"X\" else sf.Origin.Y) * 304.8 < lo - 1]\n                    after = [sf for sf in sides if abs(sf.FaceNormal.DotProduct(norm)) > 0.99\n                             and (sf.Origin.X if axis == \"X\" else sf.Origin.Y) * 304.8 > hi + 1]\n                    pos = lambda sf: sf.Origin.X if axis == \"X\" else sf.Origin.Y\n                    if before:\n                        ra.Append(max(before, key=pos).Reference)\n                    for k in keys:\n                        ra.Append(picks[k])\n                    if after:\n                        ra.Append(min(after, key=pos).Reference)\n                    if ra.Size < 2:\n                        continue\n                    pts = [fi.Location.Point for fi in inside_lights]\n                    if axis == \"X\":\n                        yl = max(p.Y for p in pts) + paper(5)\n                        if not inside(z, (lo + hi) / 2 / 304.8, yl):\n                            yl = min(p.Y for p in pts) - paper(5)\n                        line = Line.CreateBound(XYZ(ft(lo) - paper(3), yl, 0), XYZ(ft(hi) + paper(3), yl, 0))\n                    else:\n                        xl = max(p.X for p in pts) + paper(5)\n                        if not inside(z, xl, (lo + hi) / 2 / 304.8):\n                            xl = min(p.X for p in pts) - paper(5)\n                        line = Line.CreateBound(XYZ(xl, ft(lo) - paper(3), 0), XYZ(xl, ft(hi) + paper(3), 0))\n                    try:\n                        doc.Create.NewDimension(v, line, ra, dt)\n                        made += 1\n                    except Exception:\n                        pass\n            loose = len([fi for fi in fixtures if fi.Id.Value not in used])\n            return \"{} light set-out dimension strings ({} fittings in ceilings, {} outside numbered ceilings)\".format(\n                made, len(used), loose)\n        step(\"6 light fitting dimensions\", lights)\n\n    # 7 labels: \"C01 CEILING 1 - CH +2700\" on each ceiling, \"BULKHEAD - CH +...\" on bulkheads\n    if DO_LABELS or DO_BULKHEADS:\n        def labels():\n            spt = find_type(SPOT_TYPE, cls=SpotDimensionType)\n\n            def point_on(f):\n                bb = f.GetBoundingBox()\n                cu, cv = (bb.Min.U + bb.Max.U) / 2, (bb.Min.V + bb.Max.V) / 2\n                best = None\n                for i in range(9):\n                    for j in range(9):\n                        uv = UV(bb.Min.U + (bb.Max.U - bb.Min.U) * (i + 0.5) / 9,\n                                bb.Min.V + (bb.Max.V - bb.Min.V) * (j + 0.5) / 9)\n                        if not f.IsInside(uv):\n                            continue\n                        p = f.Evaluate(uv)\n                        if crop is not None and not (crop.Min.X < p.X < crop.Max.X and crop.Min.Y < p.Y < crop.Max.Y):\n                            continue\n                        d = (uv.U - cu) ** 2 + (uv.V - cv) ** 2\n                        if best is None or d < best[0]:\n                            best = (d, p)\n                return best[1] if best else None\n\n            def spot(z, prefix):\n                p = point_on(z[\"face\"])\n                if p is None:\n                    return False\n                sp = doc.Create.NewSpotElevation(v, z[\"face\"].Reference, p, p, p, p, False)\n                _change_type(sp, spt.Id)\n                pre = sp.get_Parameter(BuiltInParameter.SPOT_ELEV_SINGLE_OR_UPPER_PREFIX)\n                if pre and not pre.IsReadOnly:\n                    pre.Set(prefix)\n                return True\n            nc = nb = bad = 0\n            errs = []\n            if DO_LABELS:\n                for z in ceilings:\n                    try:\n                        nc += 1 if spot(z, u\"{} {} - CH +\".format(z[\"g\"][\"mark\"], z[\"g\"][\"name\"].upper())) else 0\n                    except Exception as e:\n                        bad += 1\n                        errs.append(str(e).splitlines()[0])\n            if DO_BULKHEADS:\n                for z in bulkheads:\n                    try:\n                        nb += 1 if spot(z, u\"BULKHEAD - CH +\") else 0\n                    except Exception as e:\n                        bad += 1\n                        errs.append(str(e).splitlines()[0])\n            if errs:\n                say(\"NOTE   label error: \" + errs[0])\n            return \"{} ceiling labels ('C01 CEILING 1 - CH +...'), {} bulkhead labels, {} failed\".format(nc, nb, bad)\n        step(\"7 ceiling + bulkhead labels\", labels)\n\n    # 8 room names\n    if DO_ROOMS:\n        def rooms():\n            rtt = find_type(ROOM_TAG_TYPE, cat=BuiltInCategory.OST_RoomTags)\n            tagged = set()\n            for t in FilteredElementCollector(doc, v.Id).OfCategory(BuiltInCategory.OST_RoomTags).WhereElementIsNotElementType():\n                try:\n                    tagged.add(t.Room.Id.Value)\n                except Exception:\n                    pass\n            n = 0\n            for r in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Rooms).WhereElementIsNotElementType():\n                if r.LevelId != lvl.Id or r.Location is None or r.Area <= 0 or r.Id.Value in tagged:\n                    continue\n                p = r.Location.Point\n                tag = doc.Create.NewRoomTag(LinkElementId(r.Id), UV(p.X, p.Y), v.Id)\n                if tag:\n                    _change_type(tag, rtt.Id)\n                    n += 1\n            return \"{} new room tags ({} already tagged)\".format(n, len(tagged))\n        step(\"8 room names (tags)\", rooms)\n\n    # 9 legend + notes block (RCP sheet)\n    if DO_LEGEND or DO_NOTES:\n        existing = [x for x in FilteredElementCollector(doc).OfClass(ViewDrafting) if nm(x) == block_name]\n        dv = existing[0] if existing else None\n        if existing:\n            say(\"SKIP   9 legend + notes block -> '{}' already exists (turn on 'Replace previous output' to rebuild)\".format(block_name))\n        else:\n            created = []\n\n            def block_build():\n                tt = find_type(TEXT_TYPE, cls=TextNoteType)\n                ht = find_type(HEADING_TYPE, cls=TextNoteType)\n                vft = [x for x in FilteredElementCollector(doc).OfClass(ViewFamilyType)\n                       if x.ViewFamily == ViewFamily.Drafting][0]\n                d = ViewDrafting.Create(doc, vft.Id)\n                d.Name = block_name\n                d.Scale = int(scale)\n                created.append(d)\n\n                def text(x_mm, y_mm, s_, tid, width_mm=None):\n                    o = TextNoteOptions(tid)\n                    o.HorizontalAlignment = HorizontalTextAlignment.Left\n                    n = TextNote.Create(doc, d.Id, XYZ(paper(x_mm), -paper(y_mm), 0), s_, o)\n                    if width_mm:\n                        n.Width = ft(width_mm)\n                    return n\n                y = 0.0\n                parts = []\n                if DO_LEGEND and in_view:\n                    text(0, y, \"CEILING LEGEND\", ht.Id)\n                    y += 8.0\n                    cols = [0.0, 15.0, 27.0, 50.0, 96.0, 114.0]\n                    for cx, hd in zip(cols[1:], [\"MARK\", \"NAME\", \"CEILING TYPE\", \"CH (mm)\", u\"AREA (m²)\"]):\n                        text(cx, y, hd, tt.Id)\n                    for g in in_view:\n                        y += 6.5\n                        pieces = [z for z in ceilings + bulkheads if z[\"g\"] is g]\n                        chs = sorted(set(z[\"ch\"] for z in pieces))\n                        frt = region_type(g, solid, True)\n                        rect_region(frt, d, 0, -paper(y - 0.5), paper(12), -paper(y + 4.5))\n                        for cx, val in zip(cols[1:], [g[\"mark\"], g[\"name\"].upper(), g[\"label\"],\n                                                      \" / \".join(str(c) for c in chs),\n                                                      \"%.1f\" % sum(z[\"area\"] for z in pieces)]):\n                            text(cx, y, val, tt.Id)\n                    if bulkheads and DO_BULKHEADS:\n                        y += 6.5\n                        text(15.0, y, \"BULKHEADS: {} NO. - SEE 'BULKHEAD - CH' LABELS ON PLAN\".format(len(bulkheads)), tt.Id)\n                    y += 12.0\n                    parts.append(\"legend {} ceilings\".format(len(in_view)))\n                if DO_NOTES:\n                    lvname = lvl.Name.upper()\n                    ffl = fmt_level(lvl.ProjectElevation)\n                    text(0, y, u\"{} - FFL {}\".format(lvname, ffl), ht.Id)\n                    y += 8.0\n                    body = (u\"GENERAL NOTES\\n\"\n                            u\"1. ALL DIMENSIONS ARE IN MILLIMETRES UNLESS NOTED OTHERWISE.\\n\"\n                            u\"2. DO NOT SCALE FROM THIS DRAWING. USE FIGURED DIMENSIONS ONLY.\\n\"\n                            u\"3. CH = CEILING HEIGHT FROM {0} FFL ({1}) TO UNDERSIDE OF CEILING / BULKHEAD.\\n\"\n                            u\"4. {0} FLOOR PLAN SHOWN GREY (HALFTONE) FOR REFERENCE ONLY.\\n\"\n                            u\"5. CEILINGS ARE NUMBERED AND COLOURED AS PER CEILING LEGEND AND CEILING SCHEDULE.\\n\"\n                            u\"6. LIGHT FITTING SET-OUT DIMENSIONS ARE TO FITTING CENTRES.\\n\"\n                            u\"7. LIGHT FITTING POSITIONS TO BE COORDINATED WITH ELECTRICAL CONSULTANT.\\n\"\n                            u\"8. REPORT ANY DISCREPANCY TO THE ARCHITECT BEFORE PROCEEDING.\").format(lvname, ffl)\n                    text(0, y, body, tt.Id, width_mm=104.0)\n                    parts.append(\"level note '{} - FFL {}' + general notes\".format(lvname, ffl))\n                return \"drafting view '{}': {}\".format(block_name, \", \".join(parts))\n            if step(\"9 legend + notes block\", block_build) and created:\n                dv = created[0]\n\n        if dv is not None and sheet is not None:\n            on_sheet = [doc.GetElement(i) for i in sheet.GetAllViewports()]\n            if any(vp.ViewId == dv.Id for vp in on_sheet):\n                say(\"SKIP   9b place block on sheet -> already on {}\".format(sheet.SheetNumber))\n            else:\n                def free_sheet_spot(block_vp):\n                    main_ = [doc.GetElement(i) for i in sheet.GetAllViewports()]\n                    main_ = [m for m in main_ if m.ViewId == v.Id]\n                    if not main_:\n                        return None\n                    mvp = main_[0]\n                    box = mvp.GetBoxOutline()\n                    bo = block_vp.GetBoxOutline()\n                    bw = bo.MaximumPoint.X - bo.MinimumPoint.X\n                    bh = bo.MaximumPoint.Y - bo.MinimumPoint.Y\n                    try:\n                        m2p = v.GetModelToProjectionTransforms()[0].GetModelToProjectionTransform()\n                        p2s = mvp.GetProjectionToSheetTransform()\n                    except Exception:\n                        return None\n                    cell = ft(3)\n                    x0, y0 = box.MinimumPoint.X, box.MinimumPoint.Y\n                    nx = int((box.MaximumPoint.X - x0) / cell)\n                    ny = int((box.MaximumPoint.Y - y0) / cell)\n                    if nx < 4 or ny < 4:\n                        return None\n                    occ = [[False] * nx for _ in range(ny)]\n\n                    def mark(ax, ay, bx2, by2):\n                        i0, i1 = max(0, int((ax - x0) / cell)), min(nx - 1, int((bx2 - x0) / cell))\n                        j0, j1 = max(0, int((ay - y0) / cell)), min(ny - 1, int((by2 - y0) / cell))\n                        for j in range(j0, j1 + 1):\n                            for i in range(i0, i1 + 1):\n                                occ[j][i] = True\n                    keep = set()\n                    for bic in (BuiltInCategory.OST_Ceilings, BuiltInCategory.OST_Dimensions,\n                                BuiltInCategory.OST_SpotElevations, BuiltInCategory.OST_TextNotes,\n                                BuiltInCategory.OST_RoomTags, BuiltInCategory.OST_LightingFixtures,\n                                BuiltInCategory.OST_Walls, BuiltInCategory.OST_Doors, BuiltInCategory.OST_Windows,\n                                BuiltInCategory.OST_Columns, BuiltInCategory.OST_StructuralColumns,\n                                BuiltInCategory.OST_GenericAnnotation, BuiltInCategory.OST_DetailComponents):\n                        c_ = Category.GetCategory(doc, bic)\n                        if c_ is not None:\n                            keep.add(c_.Id.Value)\n                    vp_area = (box.MaximumPoint.X - x0) * (box.MaximumPoint.Y - y0)\n                    for e in FilteredElementCollector(doc, v.Id).WhereElementIsNotElementType():\n                        if e.Category is None or e.Category.Id.Value not in keep:\n                            continue\n                        eb = e.get_BoundingBox(v)\n                        if eb is None:\n                            continue\n                        xs_, ys_ = [], []\n                        for cx_ in (eb.Min.X, eb.Max.X):\n                            for cy_ in (eb.Min.Y, eb.Max.Y):\n                                q = p2s.OfPoint(m2p.OfPoint(XYZ(cx_, cy_, eb.Min.Z)))\n                                xs_.append(q.X)\n                                ys_.append(q.Y)\n                        if (max(xs_) - min(xs_)) * (max(ys_) - min(ys_)) > 0.5 * vp_area:\n                            continue\n                        mark(min(xs_), min(ys_), max(xs_), max(ys_))\n                    mark(x0, y0, box.MaximumPoint.X, y0 + ft(6))\n                    mark(x0, box.MaximumPoint.Y - ft(6), box.MaximumPoint.X, box.MaximumPoint.Y)\n                    mark(x0, y0, x0 + ft(6), box.MaximumPoint.Y)\n                    mark(box.MaximumPoint.X - ft(6), y0, box.MaximumPoint.X, box.MaximumPoint.Y)\n                    for other in sheet.GetAllViewports():\n                        o = doc.GetElement(other)\n                        if o.Id in (mvp.Id, block_vp.Id):\n                            continue\n                        ob = o.GetBoxOutline()\n                        mark(ob.MinimumPoint.X, ob.MinimumPoint.Y, ob.MaximumPoint.X, ob.MaximumPoint.Y)\n                    wn, hn = int(bw / cell) + 3, int(bh / cell) + 3\n                    if wn > nx or hn > ny:\n                        return None\n                    S = [[0] * (nx + 1) for _ in range(ny + 1)]\n                    for j in range(ny):\n                        acc = 0\n                        for i in range(nx):\n                            acc += 1 if occ[j][i] else 0\n                            S[j + 1][i + 1] = S[j][i + 1] + acc\n                    best = None\n                    for j in range(0, ny - hn + 1):\n                        for i in range(0, nx - wn + 1):\n                            if S[j + hn][i + wn] - S[j][i + wn] - S[j + hn][i] + S[j][i] == 0:\n                                score = float(i) / nx - 0.5 * float(j) / ny\n                                if best is None or score > best[0]:\n                                    best = (score, i, j)\n                    if best is None:\n                        return None\n                    _, i, j = best\n                    return XYZ(x0 + (i + wn / 2.0) * cell, y0 + (j + hn / 2.0) * cell, 0)\n\n                def place_block():\n                    doc.Regenerate()\n                    tb = list(FilteredElementCollector(doc, sheet.Id).OfCategory(BuiltInCategory.OST_TitleBlocks))\n                    bb = tb[0].get_BoundingBox(sheet) if tb else None\n                    if bb is None:\n                        raise Exception(\"no title block on the sheet\")\n                    W, H = bb.Max.X - bb.Min.X, bb.Max.Y - bb.Min.Y\n                    pt = XYZ(bb.Min.X + W * BLOCK_X / 100.0, bb.Min.Y + H * BLOCK_Y / 100.0, 0)\n                    vp = Viewport.Create(doc, sheet.Id, dv.Id, pt)\n                    for tid in _valid_types(vp):\n                        if nm(doc.GetElement(tid)).lower() == \"no title\":\n                            _change_type(vp, tid)\n                            break\n                    doc.Regenerate()\n                    where = \"at {:.0f}% / {:.0f}% of the sheet\".format(BLOCK_X, BLOCK_Y)\n                    if BLOCK_AUTO:\n                        spot_ = free_sheet_spot(vp)\n                        if spot_ is not None:\n                            vp.SetBoxCenter(spot_)\n                            where = \"in empty space inside the plan\"\n                        else:\n                            where += \" (no empty space big enough - drag it)\"\n                    return \"on {} {}\".format(sheet.SheetNumber, where)\n                step(\"9b place legend + notes block on sheet\", place_block)\n\n    # 10 sheet\n    title = SHEET_TITLE or \"REFLECTED CEILING PLAN - {}\".format(lvl.Name.upper())\n\n    def sheet_work():\n        p = v.get_Parameter(BuiltInParameter.VIEW_DESCRIPTION)\n        if p is not None and not p.IsReadOnly:\n            p.Set(title)\n        if sheet is None:\n            return \"view title set; view is not on a sheet\"\n        sheet.get_Parameter(BuiltInParameter.SHEET_NAME).Set(title)\n        done = [\"name\"]\n        if RENUMBER:\n            number = \"-\".join([PROJECT, ORIGINATOR, VOLUME, LEVEL_CODE, DOC_TYPE, ROLE, NUMBER])\n            sheet.SheetNumber = number\n            done.append(\"number \" + number)\n        wanted = {\"Status\": STATUS, \"Document Status\": STATUS, \"Status Code\": STATUS, \"Suitability\": STATUS,\n                  \"Suitability Code\": STATUS, \"Revision\": REVISION, \"Document Revision\": REVISION, \"Rev\": REVISION}\n        hit = False\n        for pname, val in wanted.items():\n            p = sheet.LookupParameter(pname)\n            if p is not None and not p.IsReadOnly and p.StorageType == StorageType.String:\n                p.Set(val)\n                done.append(pname)\n                hit = True\n        if not hit:\n            say(\"NOTE   no Status/Revision parameter on this sheet - add shared parameters 'Status' and \"\n                \"'Revision' (text, Sheets) to show {} / {}\".format(STATUS, REVISION))\n        for label, bip, val in ((\"drawn by\", BuiltInParameter.SHEET_DRAWN_BY, DRAWN_BY),\n                                (\"checked by\", BuiltInParameter.SHEET_CHECKED_BY, CHECKED_BY),\n                                (\"approved by\", BuiltInParameter.SHEET_APPROVED_BY, APPROVED_BY)):\n            if val:\n                sheet.get_Parameter(bip).Set(val)\n                done.append(label)\n        return \"sheet {}: {}\".format(sheet.SheetNumber, \", \".join(done))\n    step(\"10 RCP sheet (title, ISO 19650 fields)\", sheet_work)\n\n    # ================= colour sheet\n    plan_view = None\n    if DO_COLOUR_PLAN and filters_ok:\n        def plan():\n            name = PLAN_PREFIX + lvl.Name.upper()\n            cp = by_name(ViewPlan, name)\n            if cp is None:\n                cp = doc.GetElement(v.Duplicate(ViewDuplicateOption.Duplicate))\n                cp.Name = name\n                if valid(v.ViewTemplateId):\n                    cp.ApplyViewTemplateParameters(doc.GetElement(v.ViewTemplateId))\n                say(\"       created '%s' from '%s'\" % (name, nm(v)))\n            cp.ViewTemplateId = ElementId.InvalidElementId\n            cp.Scale = COLOUR_SCALE\n            p = cp.get_Parameter(BuiltInParameter.VIEW_DESCRIPTION)\n            if p is not None and not p.IsReadOnly:\n                p.Set(name)\n            cleared = clear_ceiling_overrides(cp)\n            apply_filters(cp, ordered, lambda g: solid_ogs(g[\"rgb\"], solid))\n            for tn in [x for x in FilteredElementCollector(doc, cp.Id).OfClass(TextNote) if MARK_RE.match(x.Text.strip())]:\n                doc.Delete(tn.Id)\n            opt2 = Options()\n            items = []\n            for c in FilteredElementCollector(doc, cp.Id).OfCategory(BuiltInCategory.OST_Ceilings).WhereElementIsNotElementType():\n                g = group_of.get(c.Id.Value)\n                r = label_point(c, opt2) if g is not None else None\n                if r is None:\n                    continue\n                items.append((c.get_BoundingBox(None).Min.Z, g[\"mark\"], r[0], r[1]))\n            items.sort(key=lambda x: x[0])      # lowest ceiling first (the one seen in a reflected ceiling plan)\n            tt = doc.GetDefaultElementTypeId(ElementTypeGroup.TextNoteType)\n            placed, skipped = [], 0\n            for z, mk, pt, a in items:\n                if a < MIN_LABEL_M2 or any(((pt.X - q.X) ** 2 + (pt.Y - q.Y) ** 2) ** 0.5 < LABEL_SPACING_MM * MM for q in placed):\n                    skipped += 1\n                    continue\n                o = TextNoteOptions(tt)\n                o.HorizontalAlignment = HorizontalTextAlignment.Center\n                o.VerticalAlignment = VerticalTextAlignment.Middle\n                tn = TextNote.Create(doc, cp.Id, XYZ(pt.X, pt.Y, 0), mk, o)\n                ftx = tn.GetFormattedText()\n                ftx.SetBoldStatus(True)\n                tn.SetFormattedText(ftx)\n                placed.append(pt)\n            say(\"       %d labels, %d skipped (under %.1f m2 or stacked)%s\" % (\n                len(placed), skipped, MIN_LABEL_M2, \", %d old per-element colour(s) cleared\" % cleared if cleared else \"\"))\n            return cp\n        r = step(\"11 ceiling colour plan '%s%s'\" % (PLAN_PREFIX, lvl.Name.upper()), plan)\n        plan_view = r if isinstance(r, View) else None\n\n    swatch_ok = False\n    if DO_SCHEDULE:\n        def swatches():\n            if not os.path.isdir(SWATCH_DIR):\n                os.makedirs(SWATCH_DIR)\n            existing = dict((nm(it), it) for it in FilteredElementCollector(doc).OfClass(ImageType))\n            keep = set()\n            for g in ordered:\n                r_, g_, b_ = g[\"rgb\"]\n                fn = \"CLG_%s_%02X%02X%02X.png\" % (g[\"mark\"], r_, g_, b_)\n                keep.add(fn)\n                it = existing.get(fn)\n                if it is None:\n                    path = os.path.join(SWATCH_DIR, fn)\n                    write_png(path, g[\"rgb\"])\n                    it = ImageType.Create(doc, ImageTypeOptions(path, False, ImageTypeSource.Import))\n                for tp in g[\"types\"].values():\n                    type_param(tp, BuiltInParameter.ALL_MODEL_TYPE_IMAGE, \"Type Image\").Set(it.Id)\n            for n, it in existing.items():\n                if n.startswith(\"CLG_\") and n not in keep:\n                    doc.Delete(it.Id)\n            return \"%d colour swatch image(s)\" % len(ordered)\n        swatch_ok = bool(step(\"12 colour swatches -> Type Image\", swatches))\n\n    legend_view = None\n    if DO_COLOUR_LEGEND:\n        def legend():\n            dv = by_name(ViewDrafting, LEGEND_NAME)\n            if dv is None:\n                vft = [x for x in FilteredElementCollector(doc).OfClass(ViewFamilyType) if x.ViewFamily == ViewFamily.Drafting][0]\n                dv = ViewDrafting.Create(doc, vft.Id)\n                dv.Name = LEGEND_NAME\n            else:\n                ids = List[ElementId]()\n                for e in FilteredElementCollector(doc, dv.Id).WhereElementIsNotElementType():\n                    if isinstance(e, (TextNote, FilledRegion, DetailCurve)):\n                        ids.Add(e.Id)\n                if ids.Count:\n                    doc.Delete(ids)\n            dv.Scale = 1\n            tt = doc.GetDefaultElementTypeId(ElementTypeGroup.TextNoteType)\n            heavy = None\n            for sub in Category.GetCategory(doc, BuiltInCategory.OST_Lines).SubCategories:\n                if sub.Name == \"Medium Lines\":\n                    heavy = sub.GetGraphicsStyle(GraphicsStyleType.Projection)\n            cols = [(\"COLOUR\", 18), (\"MARK\", 15), (\"CEILING NAME\", 27), (\"CEILING TYPE\", 42), (\"QTY\", 12), (u\"AREA (m²)\", 24)]\n            row_h = 8.0\n            xs = [0.0]\n            for c in cols:\n                xs.append(xs[-1] + c[1])\n            width = xs[-1]\n            n_rows = len(ordered) + 3\n            total_h = n_rows * row_h\n\n            def P(x, y):\n                return XYZ(x * MM, y * MM, 0)\n\n            def line(a, b, hv=False):\n                dc = doc.Create.NewDetailCurve(dv, Line.CreateBound(a, b))\n                if hv and heavy is not None:\n                    dc.LineStyle = heavy\n\n            def text(col, row, s, bold=False, centre=False, whole=False):\n                o = TextNoteOptions(tt)\n                o.VerticalAlignment = VerticalTextAlignment.Middle\n                if whole:\n                    o.HorizontalAlignment = HorizontalTextAlignment.Center\n                    x = width / 2.0\n                elif centre:\n                    o.HorizontalAlignment = HorizontalTextAlignment.Center\n                    x = (xs[col] + xs[col + 1]) / 2.0\n                else:\n                    o.HorizontalAlignment = HorizontalTextAlignment.Left\n                    x = xs[col] + 2.0\n                tn = TextNote.Create(doc, dv.Id, P(x, -(row + 0.5) * row_h), s, o)\n                if bold:\n                    ftx = tn.GetFormattedText()\n                    ftx.SetBoldStatus(True)\n                    tn.SetFormattedText(ftx)\n\n            for r in range(n_rows + 1):\n                line(P(0, -r * row_h), P(width, -r * row_h), r in (0, 1, 2, n_rows - 1, n_rows))\n            for i, x in enumerate(xs):\n                outer = i in (0, len(xs) - 1)\n                line(P(x, 0 if outer else -row_h), P(x, -total_h), outer)\n            text(0, 0, LEGEND_NAME, bold=True, whole=True)\n            for i, c in enumerate(cols):\n                text(i, 1, c[0], bold=True, centre=True)\n            tot_a, tot_q = 0.0, 0\n            for ri, g in enumerate(ordered):\n                row = ri + 2\n                frt = region_type(g, solid, False)\n                rect_region(frt, dv, (xs[0] + 2.5) * MM, (-row * row_h - 1.3) * MM, (xs[1] - 2.5) * MM, (-(row + 1) * row_h + 1.3) * MM)\n                text(1, row, g[\"mark\"], bold=True, centre=True)\n                text(2, row, g[\"name\"])\n                text(3, row, g[\"label\"])\n                text(4, row, str(g[\"qty\"]), centre=True)\n                text(5, row, \"%.2f\" % g[\"area\"], centre=True)\n                tot_a += g[\"area\"]\n                tot_q += g[\"qty\"]\n            last = n_rows - 1\n            text(2, last, \"TOTAL\", bold=True)\n            text(4, last, str(tot_q), bold=True, centre=True)\n            text(5, last, \"%.2f\" % tot_a, bold=True, centre=True)\n            say(\"       legend total: %d ceiling(s), %.2f m2\" % (tot_q, tot_a))\n            return dv\n        r = step(\"13 legend '%s'\" % LEGEND_NAME, legend)\n        legend_view = r if isinstance(r, View) else None\n\n    sched = None\n    if DO_SCHEDULE:\n        def schedule():\n            cat = ElementId(BuiltInCategory.OST_Ceilings)\n            sch = by_name(ViewSchedule, SCHEDULE_NAME)\n            if sch is not None and sch.Definition.CategoryId.Value != cat.Value:\n                raise Exception(\"a schedule named '%s' exists but is not a ceiling schedule\" % SCHEDULE_NAME)\n            if sch is None:\n                sch = ViewSchedule.CreateSchedule(doc, cat)\n                sch.Name = SCHEDULE_NAME\n            type_col = BuiltInParameter.ELEM_TYPE_PARAM\n            tps = [tp for g in ordered for tp in g[\"types\"].values()]\n            if all((tp.get_Parameter(BuiltInParameter.ALL_MODEL_TYPE_COMMENTS).AsString() or nm(tp)) == nm(tp) for tp in tps):\n                for tp in tps:\n                    tp.get_Parameter(BuiltInParameter.ALL_MODEL_TYPE_COMMENTS).Set(nm(tp))\n                type_col = BuiltInParameter.ALL_MODEL_TYPE_COMMENTS\n            d = sch.Definition\n            d.ClearSortGroupFields()\n            d.ClearFilters()\n            while d.GetFieldCount() > 0:\n                d.RemoveField(0)\n            sfs = list(d.GetSchedulableFields())\n\n            def find(pid=None, count=False):\n                for sf in sfs:\n                    if count and sf.FieldType == ScheduleFieldType.Count:\n                        return sf\n                    if (not count) and sf.FieldType in (ScheduleFieldType.Instance, ScheduleFieldType.ElementType) \\\n                            and sf.ParameterId.Value == pid.Value:\n                        return sf\n                return None\n            wanted = []\n            if swatch_ok:\n                wanted.append((\"colour\", find(ElementId(BuiltInParameter.ALL_MODEL_TYPE_IMAGE)), \"COLOUR\", 22))\n            wanted += [(\"mark\", find(mark_pid), \"MARK\", 14),\n                       (\"name\", find(desc_pid), \"CEILING NAME\", 26),\n                       (\"type\", find(ElementId(type_col)), \"CEILING TYPE\", 30),\n                       (\"qty\", find(count=True), \"QTY\", 12),\n                       (\"area\", find(ElementId(BuiltInParameter.HOST_AREA_COMPUTED)), u\"AREA (m²)\", 24)]\n            fields = {}\n            for key, sf, head, w in wanted:\n                if sf is None:\n                    say(\"WARN   schedule field not available: \" + head)\n                    continue\n                f = d.AddField(sf)\n                f.ColumnHeading = head\n                f.GridColumnWidth = w * MM\n                fields[key] = f\n            if \"mark\" in fields:\n                d.AddSortGroupField(ScheduleSortGroupField(fields[\"mark\"].FieldId, ScheduleSortOrder.Ascending))\n            d.IsItemized = False\n            for k in (\"qty\", \"area\"):\n                if k in fields:\n                    fields[k].DisplayType = ScheduleFieldDisplayType.Totals\n            if \"area\" in fields:\n                try:\n                    fo = FormatOptions(UnitTypeId.SquareMeters)\n                    fo.Accuracy = 0.01\n                    fields[\"area\"].SetFormatOptions(fo)\n                except Exception as ex:\n                    say(\"WARN   area format left at project units: \" + str(ex))\n            for k in (\"colour\", \"mark\", \"qty\", \"area\"):\n                if k in fields:\n                    fields[k].HorizontalAlignment = ScheduleHorizontalAlignment.Center\n            d.ShowGrandTotal = True\n            d.ShowGrandTotalTitle = True\n            d.GrandTotalTitle = \"TOTAL\"\n            return sch\n        r = step(\"14 schedule '%s'\" % SCHEDULE_NAME, schedule)\n        sched = r if isinstance(r, View) else None\n\n    # stale legend swatch types of ceilings that no longer exist\n    def tidy():\n        marks = set(g[\"mark\"] for g in ordered)\n        n = 0\n        for f in list(FilteredElementCollector(doc).OfClass(FilledRegionType)):\n            fn_ = nm(f)\n            if fn_.startswith(FILTER_PREFIX) and fn_[len(FILTER_PREFIX):].split(\" \")[0] not in marks:\n                try:\n                    doc.Delete(f.Id)\n                    n += 1\n                except Exception:\n                    pass\n        return \"%d unused legend swatch type(s) removed\" % n if n else \"\"\n    step(\"tidy legend swatch types\", tidy)\n\n    if DO_COLOUR_SHEET and (plan_view is not None or legend_view is not None or sched is not None):\n        def colour_sheet():\n            ref_sheet = sheet if sheet is not None else (av if isinstance(av, ViewSheet) else None)\n            title_ = nm(plan_view) if plan_view is not None else PLAN_PREFIX + lvl.Name.upper()\n            sh = None\n            for s in FilteredElementCollector(doc).OfClass(ViewSheet):\n                if s.Name == title_:\n                    sh = s\n            if sh is None:\n                tb_type = None\n                if ref_sheet is not None:\n                    tbs = list(FilteredElementCollector(doc, ref_sheet.Id).OfCategory(BuiltInCategory.OST_TitleBlocks))\n                    if tbs:\n                        tb_type = tbs[0].GetTypeId()\n                if tb_type is None:\n                    tb_type = (FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_TitleBlocks)\n                               .WhereElementIsElementType().FirstElementId())\n                sh = ViewSheet.Create(doc, tb_type)\n                nums = set(s.SheetNumber for s in FilteredElementCollector(doc).OfClass(ViewSheet))\n                base_no = ref_sheet.SheetNumber if ref_sheet is not None else \"A-100\"\n                m = re.match(r'^(.*?)(\\d+)$', base_no)\n                no = base_no + \"-CLG\"\n                if m:\n                    k = int(m.group(2)) + 1\n                    while \"%s%0*d\" % (m.group(1), len(m.group(2)), k) in nums:\n                        k += 1\n                    no = \"%s%0*d\" % (m.group(1), len(m.group(2)), k)\n                sh.SheetNumber = no\n                sh.Name = title_\n                if ref_sheet is not None:\n                    for pn in (\"Approved By\", \"Designed By\", \"Checked By\", \"Drawn By\", \"Sheet Issue Date\"):\n                        a, b = ref_sheet.LookupParameter(pn), sh.LookupParameter(pn)\n                        if a is not None and b is not None and not b.IsReadOnly and a.StorageType == StorageType.String:\n                            b.Set(a.AsString() or \"\")\n                say(\"       created sheet %s - %s\" % (no, title_))\n            doc.Regenerate()\n            tb = list(FilteredElementCollector(doc, sh.Id).OfCategory(BuiltInCategory.OST_TitleBlocks))\n            bb = tb[0].get_BoundingBox(sh) if tb else None\n            ox, oy = (bb.Min.X, bb.Min.Y) if bb else (0.0, 0.0)\n            W = (bb.Max.X - bb.Min.X) if bb else 841 * MM\n            H = (bb.Max.Y - bb.Min.Y) if bb else 594 * MM\n            right = ox + W * 0.835\n            placed = dict((doc.GetElement(x).ViewId.Value, doc.GetElement(x)) for x in sh.GetAllViewports())\n            leg_vp = None\n            if legend_view is not None:\n                leg_vp = placed.get(legend_view.Id.Value)\n                if leg_vp is None and Viewport.CanAddViewToSheet(doc, sh.Id, legend_view.Id):\n                    leg_vp = Viewport.Create(doc, sh.Id, legend_view.Id, XYZ(ox + W * 0.75, oy + H * 0.8, 0))\n                if leg_vp is not None:\n                    for tid in _valid_types(leg_vp):\n                        if \"no title\" in nm(doc.GetElement(tid)).lower():\n                            _change_type(leg_vp, tid)\n                            break\n                    doc.Regenerate()\n                    o = leg_vp.GetBoxOutline()\n                    w, h = o.MaximumPoint.X - o.MinimumPoint.X, o.MaximumPoint.Y - o.MinimumPoint.Y\n                    leg_vp.SetBoxCenter(XYZ(right - w / 2.0 - 20 * MM, oy + H - 22 * MM - h / 2.0, 0))\n                    doc.Regenerate()\n            if sched is not None:\n                si = [s for s in FilteredElementCollector(doc, sh.Id).OfClass(ScheduleSheetInstance)\n                      if s.ScheduleId.Value == sched.Id.Value]\n                si = si[0] if si else ScheduleSheetInstance.Create(doc, sh.Id, sched.Id, XYZ(ox + W * 0.67, oy + H * 0.55, 0))\n                doc.Regenerate()\n                b = si.get_BoundingBox(sh)\n                if leg_vp is not None:\n                    lo = leg_vp.GetBoxOutline()\n                    target = XYZ(lo.MinimumPoint.X, lo.MinimumPoint.Y - 12 * MM, 0)\n                else:\n                    target = XYZ(right - (b.Max.X - b.Min.X) - 20 * MM, oy + H - 22 * MM, 0)\n                ElementTransformUtils.MoveElement(doc, si.Id, XYZ(target.X - b.Min.X, target.Y - b.Max.Y, 0))\n            if plan_view is not None:\n                pvp = placed.get(plan_view.Id.Value)\n                if pvp is None:\n                    pvp = Viewport.Create(doc, sh.Id, plan_view.Id, XYZ(ox + W * 0.33, oy + H * 0.5, 0))\n                doc.Regenerate()\n                limit = (leg_vp.GetBoxOutline().MinimumPoint.X if leg_vp is not None else right) - 15 * MM\n                pvp.SetBoxCenter(XYZ((ox + 15 * MM + limit) / 2.0, oy + H * 0.5, 0))\n                o = pvp.GetBoxOutline()\n                if o.MaximumPoint.X > limit:\n                    say(\"WARN   colour plan is wider than the free space - raise 'Colour plan scale' (e.g. 200)\")\n            return \"sheet %s - %s\" % (sh.SheetNumber, sh.Name)\n        step(\"15 colour sheet (plan + legend + schedule)\", colour_sheet)\n\n    # check: dimensions really there and visible?\n    doc.Regenerate()\n    dcat = Category.GetCategory(doc, BuiltInCategory.OST_Dimensions)\n    owned = [d for d in FilteredElementCollector(doc).OfClass(Dimension)\n             if d.OwnerViewId == v.Id and not isinstance(d, SpotDimension)]\n    seen = [d for d in FilteredElementCollector(doc, v.Id).OfClass(Dimension) if not isinstance(d, SpotDimension)]\n    tmpl = doc.GetElement(v.ViewTemplateId)\n    hid_v = v.GetCategoryHidden(dcat.Id)\n    hid_t = tmpl.GetCategoryHidden(dcat.Id) if tmpl is not None else False\n    say(\"CHECK  dimensions in RCP: {} created/owned, {} visible{}{}\".format(\n        len(owned), len(seen),\n        \" | Dimensions category HIDDEN in view template\" if hid_t else \"\",\n        \" | Dimensions category HIDDEN in view\" if hid_v else \"\"))\n\n\nif RUN:\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    try:\n        main()\n    except Exception:\n        import traceback\n        say(\"STOPPED - error: \" + traceback.format_exc())\n    finally:\n        TransactionManager.Instance.TransactionTaskDone()\n    say(\"Done in the open file only - not synchronized with central. Revit Undo removes this run.\")\n    try:\n        import datetime\n        path = os.path.join(os.environ.get(\"APPDATA\", \"\"), \"pyRevit\", \"CAD2BIM_dynamo_log.txt\")\n        with open(path, \"a\", encoding=\"utf-8\") as fh:\n            fh.write(\"--- rcp ceilings run {} | model: {}\\n\".format(datetime.datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\"), doc.Title))\n            fh.write(\"\\n\".join(log) + \"\\n\")\n    except Exception:\n        pass\n    OUT = log\nelse:\n    OUT = \"Run is False - nothing changed. Set 'Run' to True, then press Run.\"\n",
+      "Engine": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "c8a093489acc495586b5b5ae8fb77465",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "05307acc38bf46edae75d7aa633e0474",
+          "Name": "IN[0]",
+          "Description": "Input #0 (run)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "893cd3facdd8422cbda45c1e52eeb31d",
+          "Name": "IN[1]",
+          "Description": "Input #1 (view)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0b9f8ba1f5824c1eba758c26fa32a973",
+          "Name": "IN[2]",
+          "Description": "Input #2 (template)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ba729f028cda4cd5905e02bbc8ff415f",
+          "Name": "IN[3]",
+          "Description": "Input #3 (do_template)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a00a254fc95847138d698ed872fc811d",
+          "Name": "IN[4]",
+          "Description": "Input #4 (title)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8c658fe775fc4bf18a8c8ca33931d612",
+          "Name": "IN[5]",
+          "Description": "Input #5 (name_prefix)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "547c155237f04c03a0918bf5041c0c26",
+          "Name": "IN[6]",
+          "Description": "Input #6 (mark_prefix)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "49ce463c7d544bc3906a55b8e5f3830d",
+          "Name": "IN[7]",
+          "Description": "Input #7 (transparency)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0a751fc6a0534a1aafaeedc1954c4098",
+          "Name": "IN[8]",
+          "Description": "Input #8 (do_hatch)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "08a4ffa4a177447a8e51cba525c7a99d",
+          "Name": "IN[9]",
+          "Description": "Input #9 (do_mark)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b238c4c7320e464e9700dc0ff94e5a5d",
+          "Name": "IN[10]",
+          "Description": "Input #10 (do_replace)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0bc103c9c747459dacd24b31f5fd5fa3",
+          "Name": "IN[11]",
+          "Description": "Input #11 (do_underlay)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1d078b80724a4f2186634a3679de7d52",
+          "Name": "IN[12]",
+          "Description": "Input #12 (do_zones)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "169067496d724de9992d8256c7ad01dd",
+          "Name": "IN[13]",
+          "Description": "Input #13 (do_dims)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "38bdd4b146e742cd8a6cf2f80d63f214",
+          "Name": "IN[14]",
+          "Description": "Input #14 (do_perim)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "92d712074add4f4da538285289278696",
+          "Name": "IN[15]",
+          "Description": "Input #15 (do_lights)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8c7e96fd4d3749b48d6ccd86053639b8",
+          "Name": "IN[16]",
+          "Description": "Input #16 (do_labels)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7c0c6ae994db48b2844b8baa9aad32b3",
+          "Name": "IN[17]",
+          "Description": "Input #17 (do_bulkheads)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "090f09f581a9457db95a63508a48a974",
+          "Name": "IN[18]",
+          "Description": "Input #18 (do_rooms)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d6c75cbd73a249dc994f92f47633a0ac",
+          "Name": "IN[19]",
+          "Description": "Input #19 (do_legend)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fa38db433288411d9cd4b2932a33f137",
+          "Name": "IN[20]",
+          "Description": "Input #20 (do_notes)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9679e98be28146bd97423fc41b39047b",
+          "Name": "IN[21]",
+          "Description": "Input #21 (do_colour_plan)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3007892c7d39421b936ad1c7711a0fc0",
+          "Name": "IN[22]",
+          "Description": "Input #22 (colour_scale)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ee8f02aecb04400aaaf451e565d465cc",
+          "Name": "IN[23]",
+          "Description": "Input #23 (do_colour_legend)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a32fd4c2b58e491c9042796708ba1cb4",
+          "Name": "IN[24]",
+          "Description": "Input #24 (do_schedule)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "38ad86b401b7458e851bae6483ed8f0a",
+          "Name": "IN[25]",
+          "Description": "Input #25 (do_colour_sheet)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3a1f795e01ec45d099ba82ff8384013c",
+          "Name": "IN[26]",
+          "Description": "Input #26 (t_text)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e24979248d99456da90c13e7f034493d",
+          "Name": "IN[27]",
+          "Description": "Input #27 (t_head)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8c67c0566f6d4ba69a7d6469e2eba930",
+          "Name": "IN[28]",
+          "Description": "Input #28 (t_dim)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9ebc7a2ed8374140b421bf95de1869e9",
+          "Name": "IN[29]",
+          "Description": "Input #29 (t_dim_ceil)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8d3d1a4c836042db943cf58aae86f106",
+          "Name": "IN[30]",
+          "Description": "Input #30 (t_spot)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ec9883799bce4891bd60dc507c651626",
+          "Name": "IN[31]",
+          "Description": "Input #31 (t_room)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d0a400618aec4cc7ba368d3cb5116c34",
+          "Name": "IN[32]",
+          "Description": "Input #32 (dim_bottom)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "590abe5507d44356a9ff4d4938c43faa",
+          "Name": "IN[33]",
+          "Description": "Input #33 (dim_right)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "57ab28f5edbb4c1ab745c89436d73aaa",
+          "Name": "IN[34]",
+          "Description": "Input #34 (dim_spacing)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0994b8541ad64a89af332f3dfad3ca36",
+          "Name": "IN[35]",
+          "Description": "Input #35 (perim_offset)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "57a3888078384e1d8ee71b2a0f9f8e29",
+          "Name": "IN[36]",
+          "Description": "Input #36 (block_auto)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "253a156871bf44999148cf6e2a06e57d",
+          "Name": "IN[37]",
+          "Description": "Input #37 (block_x)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ce900b933f4042df8f618417f2a72970",
+          "Name": "IN[38]",
+          "Description": "Input #38 (block_y)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7b59d0f0d3d64b668f5517014fdd23ed",
+          "Name": "IN[39]",
+          "Description": "Input #39 (renumber)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7e0f9a7fa04a441ca058e22a261fb57c",
+          "Name": "IN[40]",
+          "Description": "Input #40 (iso_project)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9d937dc2539f4f77ba33ca24ad661854",
+          "Name": "IN[41]",
+          "Description": "Input #41 (iso_orig)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "082a9f1fc3ff43d9bfcef27d60f4ec49",
+          "Name": "IN[42]",
+          "Description": "Input #42 (iso_vol)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "663a2d9d36f14c45ba7c64143617a8a6",
+          "Name": "IN[43]",
+          "Description": "Input #43 (iso_level)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7554e0376ef04481a974d6aca1c8cb5b",
+          "Name": "IN[44]",
+          "Description": "Input #44 (iso_type)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f2c4107ca05543afb0aac4fc8b85e22c",
+          "Name": "IN[45]",
+          "Description": "Input #45 (iso_role)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "80321727ff224386a2701e24b75753ce",
+          "Name": "IN[46]",
+          "Description": "Input #46 (iso_number)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0cf89eff39b94f42954335b89f4e1c67",
+          "Name": "IN[47]",
+          "Description": "Input #47 (iso_status)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ebad3fdb73b742d3aa3db8c090320ddf",
+          "Name": "IN[48]",
+          "Description": "Input #48 (iso_rev)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b65d36947d0a42cf97c7a96b3bd9e300",
+          "Name": "IN[49]",
+          "Description": "Input #49 (drawn)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "efa3abb5ea4b4f9e937a8baa68b8dd89",
+          "Name": "IN[50]",
+          "Description": "Input #50 (checked)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "71e1f1b8950f4fb1ac79991fdaf07aea",
+          "Name": "IN[51]",
+          "Description": "Input #51 (approved)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "eb0a11a8c9414eb381c9fa8d285ca64b",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 900.0,
+      "WatchHeight": 700.0,
+      "Id": "e316b0e5b5764813af13e94442947a6e",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "c8f6bfd5a22a440aaa79bc19b6bdef6e",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ab8d13c9a51b41b6bb24a955f16f9251",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "2fbd1608fe1d44938b71712c7850d26b",
+      "End": "05307acc38bf46edae75d7aa633e0474",
+      "Id": "16f84de6707e4246833e42ff45f6e63e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "98bc48aea250466fac8072a8dba1250a",
+      "End": "893cd3facdd8422cbda45c1e52eeb31d",
+      "Id": "c11bef2997c64d46ac0dac9f6f0b258c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9fdca08504a1465a8e0ea8f37ba4601d",
+      "End": "0b9f8ba1f5824c1eba758c26fa32a973",
+      "Id": "bbf2fb628fc64c129c49723fed1bf52b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a5c0e5b9260a45e8a5ed3c3d9029ad1e",
+      "End": "ba729f028cda4cd5905e02bbc8ff415f",
+      "Id": "67ef4c60b3cd42cbb5351975c253de1e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bcf0b66fe0d84b7787f3bb6cf1a6b702",
+      "End": "a00a254fc95847138d698ed872fc811d",
+      "Id": "eb6b69b5ef524e43823a579c50add6b6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bd769328a64d4b2a98424af57d099a5e",
+      "End": "8c658fe775fc4bf18a8c8ca33931d612",
+      "Id": "a6c2749e1fa64dbb8a46b09ac9d7d9fc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "15a6ba40489c486da06fa365a2b67a3e",
+      "End": "547c155237f04c03a0918bf5041c0c26",
+      "Id": "81e19bf505c8437ca97748d58e69cb0e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fee280fdf52b492ba66b8fb09ea4cdfd",
+      "End": "49ce463c7d544bc3906a55b8e5f3830d",
+      "Id": "d9d4fa5707d14e58bf76be2a040a316d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "002bf7aa64a84bed807f5506b6812d92",
+      "End": "0a751fc6a0534a1aafaeedc1954c4098",
+      "Id": "1c22672431db45b3ba2322d2ce87574e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "916e42477d224b0e9bbdc90b4c6cc963",
+      "End": "08a4ffa4a177447a8e51cba525c7a99d",
+      "Id": "c20768e63d0a49edb772fb75f69d3d53",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "44285b00c9e6435bae9723e82c2ad908",
+      "End": "b238c4c7320e464e9700dc0ff94e5a5d",
+      "Id": "2a2f1fe70dcf40cba309952611143e14",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b388ac25b0c44c21be7efd44453c0c64",
+      "End": "0bc103c9c747459dacd24b31f5fd5fa3",
+      "Id": "253def333f384559b84279f1884bd0bb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "cc2409bb59174750a973965fe1a2da01",
+      "End": "1d078b80724a4f2186634a3679de7d52",
+      "Id": "16a5ed3a53ae47e3912f3165f4bcfc6d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "446e9a3318f04c57acdc7f7d7decb669",
+      "End": "169067496d724de9992d8256c7ad01dd",
+      "Id": "29359d6777e84f11be779c8402249bcf",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "93f049851ccd4a4280bc12a267c273f8",
+      "End": "38bdd4b146e742cd8a6cf2f80d63f214",
+      "Id": "fe8c9fc00adc46f1860681da6b8fadd3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b78bd78962b1408bbf42ea717001cd9d",
+      "End": "92d712074add4f4da538285289278696",
+      "Id": "3b3632919c664cd38b7299551678cf11",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "69fb07508ca54be3b6dba9e8baa664ec",
+      "End": "8c7e96fd4d3749b48d6ccd86053639b8",
+      "Id": "449b15fcd6184675b14d635bebdad87f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "53962098e1b4475e99ee6460a823175b",
+      "End": "7c0c6ae994db48b2844b8baa9aad32b3",
+      "Id": "036f006de45c4b3c84e6aaec4afca482",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c91b1ad0c6084f788f25c7cf4c1f5b11",
+      "End": "090f09f581a9457db95a63508a48a974",
+      "Id": "d28ef2f802df4a6d95518f71562c1c3d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dff4ba79e0804393a8b2de5eeaeb56b6",
+      "End": "d6c75cbd73a249dc994f92f47633a0ac",
+      "Id": "953daaa368b14ef0823f3647269c9443",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9d2fe113086a418496c19e95d1f23167",
+      "End": "fa38db433288411d9cd4b2932a33f137",
+      "Id": "fa9e464014274e5b989bd5ae56203cbc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a7bd14c753224ec0b58247f4c7c962de",
+      "End": "9679e98be28146bd97423fc41b39047b",
+      "Id": "6174b936472d475e893bd4cdc852bdad",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "faf5634e68504b9d842e080d34b4890a",
+      "End": "3007892c7d39421b936ad1c7711a0fc0",
+      "Id": "4cca69fb6539424f83459817e3a13a99",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7a1398b265ea44028b5f7bc7673a170b",
+      "End": "ee8f02aecb04400aaaf451e565d465cc",
+      "Id": "48a31bee30e2476da515ed4ad0948348",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2c78a53038c54488934946887cba5e9f",
+      "End": "a32fd4c2b58e491c9042796708ba1cb4",
+      "Id": "e3a943dc8ded42a9951adc2272867283",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f348b62a783646a788c46650f685ecdb",
+      "End": "38ad86b401b7458e851bae6483ed8f0a",
+      "Id": "42790e7006904780a851535c67919197",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "082346a4068e4ffb866df3ad71c9a29f",
+      "End": "3a1f795e01ec45d099ba82ff8384013c",
+      "Id": "dbb1395ad5c4430f8c49346e7b32faea",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "122fd13429f94e6c9e9230a470f3ba1d",
+      "End": "e24979248d99456da90c13e7f034493d",
+      "Id": "e4440220acd2463e88c75df8a14c9e9d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9b8db1092e9d4553b35d7f4f892cb198",
+      "End": "8c67c0566f6d4ba69a7d6469e2eba930",
+      "Id": "12d48b9c76c245c083dfcf6dfc75ff30",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "178b00fcaa244dd3b66b12da42a976f4",
+      "End": "9ebc7a2ed8374140b421bf95de1869e9",
+      "Id": "14841d2be090490780273738729c3d31",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c4afc2bca3334d56bb39f35d923d8c61",
+      "End": "8d3d1a4c836042db943cf58aae86f106",
+      "Id": "34bde8112b84425198bdd2a14b6fd133",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a6ff26f480b74b0685bab8a6af8a55f4",
+      "End": "ec9883799bce4891bd60dc507c651626",
+      "Id": "e9dce2b6b59f41b4b1dffbb66081f1c5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "505e74c7f48d4f7083aa9ce255dcda02",
+      "End": "d0a400618aec4cc7ba368d3cb5116c34",
+      "Id": "e267554a164c431aab4824e1b4fa8996",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2475a56a6d13492b89d25f9034ee1b87",
+      "End": "590abe5507d44356a9ff4d4938c43faa",
+      "Id": "b1ab3a2c4e7845b99b53e2d4347477a8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fad5340445b24ea6bfe60380f7b5b35b",
+      "End": "57ab28f5edbb4c1ab745c89436d73aaa",
+      "Id": "e8cf036c38354d4c9f94389da05e60cd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1e24341dc43f4a9bbc18a3ce82842f03",
+      "End": "0994b8541ad64a89af332f3dfad3ca36",
+      "Id": "a8cd7ff1cd71455aab498893d72b1d85",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "70e3749db0fc47aca2c7e466054a76aa",
+      "End": "57a3888078384e1d8ee71b2a0f9f8e29",
+      "Id": "ab767723ac2943e69ac2d25e541f3b9c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7962e77ee94844e4a27060b72eb51563",
+      "End": "253a156871bf44999148cf6e2a06e57d",
+      "Id": "b4bd551b65cc4a7ebb0094bdca58cb72",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0ebd190ce79846d281aeedc27dce14e2",
+      "End": "ce900b933f4042df8f618417f2a72970",
+      "Id": "437a8f4922e94828852477a2b6b9b01d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "866c5d1e42b0478581a8d7a26820da85",
+      "End": "7b59d0f0d3d64b668f5517014fdd23ed",
+      "Id": "d31a481e8e434426b31aece2f02b5256",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "015aca4d2e6a4500b02ae7e8d7679b66",
+      "End": "7e0f9a7fa04a441ca058e22a261fb57c",
+      "Id": "4fed86385e3e473289e39e6bb6ac0080",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f93d4e551e024e289cddaf703a2233bb",
+      "End": "9d937dc2539f4f77ba33ca24ad661854",
+      "Id": "d3e52ea4887141ed9668c6ce2dfecc19",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "13daec3378f5415aae6577f197cf4110",
+      "End": "082a9f1fc3ff43d9bfcef27d60f4ec49",
+      "Id": "692ce4710f074ff6a4cf2aac8741a91b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "17bd911c0afe4a5985b514e5427caeda",
+      "End": "663a2d9d36f14c45ba7c64143617a8a6",
+      "Id": "a5e367a8e75d41f69b605bfe4d3909cf",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2850f5ab8ff24f889952bb01ce881a2e",
+      "End": "7554e0376ef04481a974d6aca1c8cb5b",
+      "Id": "d1a5eb8a7e95418395dd3727d81d3441",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "237a3932c52f4512b7fdfce531711126",
+      "End": "f2c4107ca05543afb0aac4fc8b85e22c",
+      "Id": "ecaa8cd316c249fabaa8a0fc8111e926",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d90f7804713f4dac9201c34eb2b61711",
+      "End": "80321727ff224386a2701e24b75753ce",
+      "Id": "2e421262ff134cdc98e78e561d47660d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "90f884b1408b475da12a72f5829d85af",
+      "End": "0cf89eff39b94f42954335b89f4e1c67",
+      "Id": "475e6bb8e099455f8cc1ef293118c7a8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c6472e699dd24ed59569932418d925d8",
+      "End": "ebad3fdb73b742d3aa3db8c090320ddf",
+      "Id": "57ed9775971b4a45a3d412961bca03a0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "94880d7ff2044c208382aa50fea7e2db",
+      "End": "b65d36947d0a42cf97c7a96b3bd9e300",
+      "Id": "170d1c79cce74306b00bbd6da40d2db6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9099324c586f4f3282125ecfb686bf99",
+      "End": "efa3abb5ea4b4f9e937a8baa68b8dd89",
+      "Id": "ff0381bf3eda43ae8a30556cd661fe92",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c3517cb55f254f428c30bfedfbdea659",
+      "End": "71e1f1b8950f4fb1ac79991fdaf07aea",
+      "Id": "0fea42b210fd474fbc67a17d70376662",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "eb0a11a8c9414eb381c9fa8d285ca64b",
+      "End": "c8f6bfd5a22a440aaa79bc19b6bdef6e",
+      "Id": "cd8f1cfa1d684411848fb0c751985c8b",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.0",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.2.11575",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "82a12c8d0a30457b9a03236f0722da0d",
+        "Name": "Run (set True, then press Run)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": -525.0
+      },
+      {
+        "Id": "ee067e8a94fd4cf7af69f3c297cb00ca",
+        "Name": "Ceiling plan name (EMPTY = active view / its sheet)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": -218.0
+      },
+      {
+        "Id": "fe2a3bb2bc9048dc95a2573d7da21746",
+        "Name": "View template name",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": -106.0
+      },
+      {
+        "Id": "6d715a9e4e9f4143bf7c64c747c9e667",
+        "Name": "Apply the view template",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 6.0
+      },
+      {
+        "Id": "9b683705b8aa434c8421b2958793c1e1",
+        "Name": "Sheet / view title (EMPTY = REFLECTED CEILING PLAN - <LEVEL>)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 118.0
+      },
+      {
+        "Id": "7d3ded5e4bce4dae881fafee04166722",
+        "Name": "Ceiling name prefix (Ceiling -> Ceiling 1, 2 ...)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 425.0
+      },
+      {
+        "Id": "0573cc157481476a915193e4d1d2b285",
+        "Name": "Type Mark prefix (C -> C01, C02 ...)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 537.0
+      },
+      {
+        "Id": "7f53142804744b7b993cf5fa472e66f6",
+        "Name": "RCP colour transparency % (0-100)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 649.0
+      },
+      {
+        "Id": "a13c4f40050c493dabab129791c376fe",
+        "Name": "RCP: hatch on top of colour",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 761.0
+      },
+      {
+        "Id": "ccc777f842964c8ba67ff9c1a551a22e",
+        "Name": "Write C01.. into each ceiling's Mark",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 873.0
+      },
+      {
+        "Id": "08c30fbbe2104dae86a025bbdbccffc7",
+        "Name": "Replace previous output of this script",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 1180.0
+      },
+      {
+        "Id": "b17635a117694b718425a7aa3cb06b90",
+        "Name": "Grey floor below (underlay)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 1292.0
+      },
+      {
+        "Id": "1c0ff435b08b4002b1c052efca8fddb7",
+        "Name": "Ceiling colours in the RCP",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 1404.0
+      },
+      {
+        "Id": "4713532f549645ea8bf1e35925127fc1",
+        "Name": "Grid dimensions (chain + overall)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 1516.0
+      },
+      {
+        "Id": "1611ab3ae9454059a8d0ef5857180e75",
+        "Name": "Ceiling perimeter dimensions (every edge)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 1628.0
+      },
+      {
+        "Id": "4bd83d4f96bd48439e61c6f39c6ea5e3",
+        "Name": "Light fitting set-out dimensions",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 1740.0
+      },
+      {
+        "Id": "33839e196fff430c93c4b8452a22546c",
+        "Name": "Ceiling labels (C01 CEILING 1 - CH +2700)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 1852.0
+      },
+      {
+        "Id": "fc53e9add00949efb2ed941cad94ff57",
+        "Name": "Bulkhead labels (BULKHEAD - CH +...)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 1964.0
+      },
+      {
+        "Id": "062ee1ce61ba4186b3435bb86035428f",
+        "Name": "Room names (room tags)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 2076.0
+      },
+      {
+        "Id": "7798b0c7b21446e0b3ee8cb89cdc9e24",
+        "Name": "RCP legend (colour, mark, name, type, CH, area)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 2188.0
+      },
+      {
+        "Id": "542ba91ab9744452b770b84a65834544",
+        "Name": "Level note + general notes",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1500.0,
+        "Y": 2300.0
+      },
+      {
+        "Id": "f85d967d98114143b65997ba24c8bf0d",
+        "Name": "Ceiling colour plan (copy of the RCP)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": -525.0
+      },
+      {
+        "Id": "46533cdc624a4cf1815b6b2bd500514e",
+        "Name": "Colour plan scale 1:x",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": -413.0
+      },
+      {
+        "Id": "20d27e8d2893420fa5c2a99dfb9880f3",
+        "Name": "CEILING LEGEND (colour, mark, name, type, qty, area)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": -301.0
+      },
+      {
+        "Id": "1c9f168daf3544be9f657646c9c47467",
+        "Name": "CEILING SCHEDULE (with colour swatch)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": -189.0
+      },
+      {
+        "Id": "6c593484e447449ca9f7f770743f5fd8",
+        "Name": "Colour sheet with plan + legend + schedule",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": -77.0
+      },
+      {
+        "Id": "a7bb38d9b1034af5aa1a2340c4d3e646",
+        "Name": "Text type - notes + legend",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 230.0
+      },
+      {
+        "Id": "89366cd2d1e942c49443efaed2468d76",
+        "Name": "Text type - headings + level note",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 342.0
+      },
+      {
+        "Id": "3a9e41f947fa449695176da4ff7e9fbd",
+        "Name": "Dimension type - grids",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 454.0
+      },
+      {
+        "Id": "2f4294bfae3c48fc9046a92a75217bcf",
+        "Name": "Dimension type - ceiling perimeter + lights",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 566.0
+      },
+      {
+        "Id": "ff571c7400e4425cb422c56be5ba80da",
+        "Name": "Spot elevation type - ceiling / bulkhead labels",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 678.0
+      },
+      {
+        "Id": "cf425c168abb431f8e6f7ccd8731b66e",
+        "Name": "Room tag type - room names",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 790.0
+      },
+      {
+        "Id": "d421e7114d624a7597f9324542be682d",
+        "Name": "Grid dims below lowest grid (paper mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 1097.0
+      },
+      {
+        "Id": "78da0282bf494515b6a004c7e2d36558",
+        "Name": "Grid dims past rightmost grid (paper mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 1209.0
+      },
+      {
+        "Id": "fda909e1f7694c4babe1bee990cd7de8",
+        "Name": "Grid chain to overall spacing (paper mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 1321.0
+      },
+      {
+        "Id": "b3c7a6b61bf24eebb696de617c79f1c0",
+        "Name": "Perimeter dims inside ceiling edge (paper mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 1433.0
+      },
+      {
+        "Id": "62d619c94e17409aba0d6df294355f69",
+        "Name": "Legend + notes block: auto-place in empty space",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 1545.0
+      },
+      {
+        "Id": "f3cacdfe7a3843509796e0b3e956c326",
+        "Name": "Block fallback X (% of sheet width)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 1657.0
+      },
+      {
+        "Id": "49df86e136604651836adbf67c060db5",
+        "Name": "Block fallback Y (% of sheet height)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 1769.0
+      },
+      {
+        "Id": "519c1c7324544c039e674a5df261a537",
+        "Name": "Renumber RCP sheet to ISO 19650",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 2076.0
+      },
+      {
+        "Id": "2851f2f40a144a5c8b4f3ba1135deb6b",
+        "Name": "Project",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 2188.0
+      },
+      {
+        "Id": "e5e0a54c4e284ac3b279453f748eaa18",
+        "Name": "Originator",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 2300.0
+      },
+      {
+        "Id": "7bdb1373c4904aeca95ad1efc3ae4248",
+        "Name": "Volume / system",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 2412.0
+      },
+      {
+        "Id": "9d97d64f224d4abdbe92d2f4fa473900",
+        "Name": "Level / location",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 2524.0
+      },
+      {
+        "Id": "9fd56bdb4b0146798fdbf4a2cc00e8ad",
+        "Name": "Type",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 2636.0
+      },
+      {
+        "Id": "15a09db0decc46efb6521b18e57ed027",
+        "Name": "Role",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 2748.0
+      },
+      {
+        "Id": "d2554ee1084949058cbb464412ee521b",
+        "Name": "Number",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 2860.0
+      },
+      {
+        "Id": "3e46aa7d00634b4299913c2d4af9223f",
+        "Name": "Status (suitability)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 2972.0
+      },
+      {
+        "Id": "57597c3c4cc141e98b2b67fce4ee0de0",
+        "Name": "Revision",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 3084.0
+      },
+      {
+        "Id": "aabb7f941a37453a9d7d1fd3c07be4af",
+        "Name": "Drawn by",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 3196.0
+      },
+      {
+        "Id": "5efc194e88104a3bb8a6cb719c6949be",
+        "Name": "Checked by",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 3308.0
+      },
+      {
+        "Id": "2d61fe4accd9404bb78cf2fd9e61a556",
+        "Name": "Approved by",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -900.0,
+        "Y": 3420.0
+      },
+      {
+        "Id": "c8a093489acc495586b5b5ae8fb77465",
+        "Name": "CAD2BIM  RCP + Ceilings  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -200.0,
+        "Y": -600.0
+      },
+      {
+        "Id": "e316b0e5b5764813af13e94442947a6e",
+        "Name": "RESULT (read after Run)",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 150.0,
+        "Y": -600.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "7ffebc620b08433ab384dd5e9370f5cc",
+        "Title": "1  RUN",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "82a12c8d0a30457b9a03236f0722da0d"
+        ],
+        "HasNestedGroups": false,
+        "Left": -1510.0,
+        "Top": -600.0,
+        "Width": 520.0,
+        "Height": 207.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -525.0,
+        "InitialHeight": 132.0,
+        "TextblockHeight": 63.0,
+        "Background": "#FFFF7BAC"
+      },
+      {
+        "Id": "0375d57f67054ce0bf666b520a033bbd",
+        "Title": "2  RCP VIEW & SHEET",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "ee067e8a94fd4cf7af69f3c297cb00ca",
+          "fe2a3bb2bc9048dc95a2573d7da21746",
+          "6d715a9e4e9f4143bf7c64c747c9e667",
+          "9b683705b8aa434c8421b2958793c1e1"
+        ],
+        "HasNestedGroups": false,
+        "Left": -1510.0,
+        "Top": -293.0,
+        "Width": 520.0,
+        "Height": 543.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -218.0,
+        "InitialHeight": 468.0,
+        "TextblockHeight": 63.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "e9174ab8bffb437182a3186a3fe83e6d",
+        "Title": "3  CEILING NAMES & COLOURS (one list for every sheet)",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "7d3ded5e4bce4dae881fafee04166722",
+          "0573cc157481476a915193e4d1d2b285",
+          "7f53142804744b7b993cf5fa472e66f6",
+          "a13c4f40050c493dabab129791c376fe",
+          "ccc777f842964c8ba67ff9c1a551a22e"
+        ],
+        "HasNestedGroups": false,
+        "Left": -1510.0,
+        "Top": 350.0,
+        "Width": 520.0,
+        "Height": 655.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 425.0,
+        "InitialHeight": 580.0,
+        "TextblockHeight": 63.0,
+        "Background": "#FFFFD54F"
+      },
+      {
+        "Id": "b46a30167ecb41aca29a791fee0938fb",
+        "Title": "4  RCP - WHAT TO ADD",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "08c30fbbe2104dae86a025bbdbccffc7",
+          "b17635a117694b718425a7aa3cb06b90",
+          "1c0ff435b08b4002b1c052efca8fddb7",
+          "4713532f549645ea8bf1e35925127fc1",
+          "1611ab3ae9454059a8d0ef5857180e75",
+          "4bd83d4f96bd48439e61c6f39c6ea5e3",
+          "33839e196fff430c93c4b8452a22546c",
+          "fc53e9add00949efb2ed941cad94ff57",
+          "062ee1ce61ba4186b3435bb86035428f",
+          "7798b0c7b21446e0b3ee8cb89cdc9e24",
+          "542ba91ab9744452b770b84a65834544"
+        ],
+        "HasNestedGroups": false,
+        "Left": -1510.0,
+        "Top": 1105.0,
+        "Width": 520.0,
+        "Height": 1327.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 1180.0,
+        "InitialHeight": 1252.0,
+        "TextblockHeight": 63.0,
+        "Background": "#FFFFAA45"
+      },
+      {
+        "Id": "6b6c8ac34e9540668a84996ce1da354e",
+        "Title": "5  COLOUR SHEET + SCHEDULE",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "f85d967d98114143b65997ba24c8bf0d",
+          "46533cdc624a4cf1815b6b2bd500514e",
+          "20d27e8d2893420fa5c2a99dfb9880f3",
+          "1c9f168daf3544be9f657646c9c47467",
+          "6c593484e447449ca9f7f770743f5fd8"
+        ],
+        "HasNestedGroups": false,
+        "Left": -910.0,
+        "Top": -600.0,
+        "Width": 520.0,
+        "Height": 655.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -525.0,
+        "InitialHeight": 580.0,
+        "TextblockHeight": 63.0,
+        "Background": "#FF80DEEA"
+      },
+      {
+        "Id": "d07d04946c8c473eb4e2fc9991f69372",
+        "Title": "6  ANNOTATION TYPES (names as in Revit)",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "a7bb38d9b1034af5aa1a2340c4d3e646",
+          "89366cd2d1e942c49443efaed2468d76",
+          "3a9e41f947fa449695176da4ff7e9fbd",
+          "2f4294bfae3c48fc9046a92a75217bcf",
+          "ff571c7400e4425cb422c56be5ba80da",
+          "cf425c168abb431f8e6f7ccd8731b66e"
+        ],
+        "HasNestedGroups": false,
+        "Left": -910.0,
+        "Top": 155.0,
+        "Width": 520.0,
+        "Height": 767.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 230.0,
+        "InitialHeight": 692.0,
+        "TextblockHeight": 63.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "04b321af16b7481181a405b48a6d529b",
+        "Title": "7  RCP LOOK & PLACEMENT",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "d421e7114d624a7597f9324542be682d",
+          "78da0282bf494515b6a004c7e2d36558",
+          "fda909e1f7694c4babe1bee990cd7de8",
+          "b3c7a6b61bf24eebb696de617c79f1c0",
+          "62d619c94e17409aba0d6df294355f69",
+          "f3cacdfe7a3843509796e0b3e956c326",
+          "49df86e136604651836adbf67c060db5"
+        ],
+        "HasNestedGroups": false,
+        "Left": -910.0,
+        "Top": 1022.0,
+        "Width": 520.0,
+        "Height": 879.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 1097.0,
+        "InitialHeight": 804.0,
+        "TextblockHeight": 63.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "986355baf60346e2a947954bf70a9a00",
+        "Title": "8  ISO 19650 RCP SHEET",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "519c1c7324544c039e674a5df261a537",
+          "2851f2f40a144a5c8b4f3ba1135deb6b",
+          "e5e0a54c4e284ac3b279453f748eaa18",
+          "7bdb1373c4904aeca95ad1efc3ae4248",
+          "9d97d64f224d4abdbe92d2f4fa473900",
+          "9fd56bdb4b0146798fdbf4a2cc00e8ad",
+          "15a09db0decc46efb6521b18e57ed027",
+          "d2554ee1084949058cbb464412ee521b",
+          "3e46aa7d00634b4299913c2d4af9223f",
+          "57597c3c4cc141e98b2b67fce4ee0de0",
+          "aabb7f941a37453a9d7d1fd3c07be4af",
+          "5efc194e88104a3bb8a6cb719c6949be",
+          "2d61fe4accd9404bb78cf2fd9e61a556"
+        ],
+        "HasNestedGroups": false,
+        "Left": -910.0,
+        "Top": 2001.0,
+        "Width": 520.0,
+        "Height": 1551.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 2076.0,
+        "InitialHeight": 1476.0,
+        "TextblockHeight": 63.0,
+        "Background": "#FFD4B6DB"
+      },
+      {
+        "Id": "c88aa4f24cc6430fabd7ff6e6ad01f0e",
+        "Title": "HOW TO USE  -  CAD2BIM RCP + CEILING COLOURS + SCHEDULE\n1. Open the RCP (or its sheet).  Local file only - Dynamo never syncs to central.\n2. Check groups 2-8.  Group 1: Run = True, press Run (bottom left).\n3. Every ceiling TYPE gets ONE number + colour: C01 Ceiling 1, C02 Ceiling 2 ...\n   The RCP, colour plan, both legends, schedule and labels all use the same list.\n4. Read RESULT.  Re-run any time - everything is updated in place.  Revit Undo removes the run.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": -200.0,
+        "Top": -1000.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 900.0,
+    "Y": 500.0,
+    "Zoom": 0.45
+  }
+}

@@ -1,0 +1,573 @@
+{
+  "Uuid": "4cf744cc-48f5-4597-9a0a-401c9a42cdd8",
+  "IsCustomNode": false,
+  "Description": "DISCIPLINES: put views under Discipline > Sub-Discipline (Lighting, Power, HVAC, Plumbing, Fire ...) - assign, copy per discipline, clear, list; per-project discipline list; adds the Sub-Discipline parameter",
+  "Name": "A10_SETUP_View_Discipline_SubDiscipline_Lighting_HVAC_Plumbing_Fire",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "InputValue": "SELECTED",
+      "NodeType": "StringInputNode",
+      "Id": "7f856d72d95840b0bbff7d9cde4e3f83",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b6934bd7e28a40939b061e5ebc10a602",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "InputValue": "LIGHTING",
+      "NodeType": "StringInputNode",
+      "Id": "887ccb3a50024920a923c45c95ed0220",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "45233094318f4b74912bed220bf811e6",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "InputValue": "AUTO",
+      "NodeType": "StringInputNode",
+      "Id": "d84f1c2e0ddd4469b40cf6f67809583c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0e1ef8a9afad4d00bd6d3182f61c7ef4",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "InputValue": "ASSIGN",
+      "NodeType": "StringInputNode",
+      "Id": "48c480a366c64b448442f0f412d9852d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "045092bff7b24347aa50f89a028ef7c8",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "InputValue": "{VIEW} - {SUB}",
+      "NodeType": "StringInputNode",
+      "Id": "fa09bdec8c324eef90ae3b39ed11dc15",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b7c07a8fce7e4df19112a1fb44229335",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "InputValue": "",
+      "NodeType": "StringInputNode",
+      "Id": "82a6019906ce43d3bcc455b347703366",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8afe97a65633433ab05df50df3b8e854",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "InputValue": false,
+      "Id": "690fc3c400b144d48d23b800dcf1fd03",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b2673fcecc934bd7a943a789f1f1fd28",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  A10 VIEW DISCIPLINE + SUB-DISCIPLINE - Lighting / Power / HVAC / Plumbing / Fire ...   (Revit 2026)   v4\n#  Puts views under  Discipline > Sub-Discipline  in the Project Browser, e.g.\n#     Electrical > Lighting      Electrical > Power        Electrical > Fire Alarm\n#     Mechanical > HVAC          Plumbing > Plumbing       Plumbing > Fire Fighting   ...\n#  - Adds the view parameter \"Sub-Discipline\" (Text, Identity Data) if the project does not have it.\n#  - ASSIGN: sets Discipline + Sub-Discipline on the views you choose.\n#  - COPY:   duplicates the chosen views (with detailing) once per sub-discipline you list,\n#            names them \"<view> - <SUB>\" and files each copy under its discipline.\n#  - CLEAR:  empties Sub-Discipline on the chosen views.\n#  - LIST:   overview of every view by Discipline > Sub-Discipline (changes nothing).\n#  PROJECT DISCIPLINES: each project keeps its own list of allowed sub-disciplines (saved in Project\n#  Information as \"SD Sub-Disciplines\").  Sub-disciplines not on the list are refused.  ALL = no limit.\n#  Discipline AUTO picks it from the sub-discipline (Lighting -> Electrical, HVAC -> Mechanical ...).\n#  Views whose Discipline is locked by a view template are reported, not changed.\n#  PREVIEW (RUN = False) reports what would change and changes nothing.  One undo (Ctrl+Z).\n#  Runs in pyRevit (IronPython 2.7) and Dynamo CPython3.\n#\n#  INPUTS\n#   0  Views:  SELECTED (views picked in the Project Browser) / ACTIVE / text = view names containing (comma list)\n#   1  Sub-discipline(s): LIGHTING, POWER, FIRE ALARM, ELV, HVAC, MECHANICAL, PLUMBING, DRAINAGE,\n#      FIRE FIGHTING, STRUCTURAL, INTERIOR, COORDINATION ... or your own word.  Comma list for COPY.\n#      COPY + PROJECT = one copy for every sub-discipline in the project list (new project setup).\n#   2  Discipline: AUTO / ARCHITECTURAL / STRUCTURAL / MECHANICAL / ELECTRICAL / PLUMBING / COORDINATION\n#   3  Mode: ASSIGN / COPY / CLEAR / LIST\n#   4  Copy name format, {VIEW} and {SUB} are replaced  (default \"{VIEW} - {SUB}\")\n#   5  Project disciplines: blank = use the list saved in this project (none saved = ALL),\n#      ALL = no limit, or a comma list e.g. LIGHTING, POWER, HVAC, PLUMBING  (saved on RUN = True)\n#   6  RUN  (False = preview, nothing changes;  True = change)\n#\n#  NO ??? FOLDERS (v4): on RUN = True (ASSIGN / COPY) every other view that has no Sub-Discipline gets its\n#  discipline's name (Architectural > Architectural, Coordination > Coordination ...).  FILL_EMPTY = False\n#  near the top of the script switches this off.\n#  PROJECT BROWSER (v3): on RUN = True the script adds the browser scheme \"SD Discipline\" (Discipline >\n#  Sub-Discipline > Family and Type) from its seed file and switches the browser to it - the Browser\n#  Organization window opens and closes by itself.  The seed file is saved the first time A10 runs in a\n#  project that has the scheme:  %APPDATA%\\pyRevit\\A10_SD_Discipline_Browser_Seed.rvt\n#  (copy that file to another PC, or make the scheme once by hand there:  right-click Views > Browser\n#  Organization > New \"SD Discipline\" > Grouping: Discipline, then Sub-Discipline, then Family and Type).\n# =====================================================================\nimport os\nimport traceback\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *                           # noqa\nfrom System import Guid\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'A10_discipline_log.txt')\nNOTES = []\nPARAM = 'Sub-Discipline'\nPARAM_GUID = 'c6b7a1d2-5f3e-4a8b-9d10-a10d15c1b001'      # fixed so every project gets the same shared parameter\nPROJ_PARAM = 'SD Sub-Disciplines'                         # Project Information: allowed list for this project\nPROJ_GUID = 'c6b7a1d2-5f3e-4a8b-9d10-a10d15c1b002'\nFILL_EMPTY = True                                         # views without a Sub-Discipline get their discipline's name (no ??? folders); False = leave them\nORG_NAME = 'SD Discipline'                                # Project Browser scheme: Discipline > Sub-Discipline\nSEED = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'A10_SD_Discipline_Browser_Seed.rvt')\n# Revit has no API to switch the browser scheme: this helper ticks it in the Browser Organization window.\nSWITCH_PS1 = r'''param([int]$RevitPid = 0, [string]$Org = 'SD Discipline', [int]$Timeout = 180, [string]$Log = '')\n# A10 helper: waits for Revit's \"Browser Organization\" dialog, ticks the organization named $Org and presses OK.\n# Run ONLY when $Org is not the current organization (a click on a ticked row would do nothing useful).\nAdd-Type -AssemblyName UIAutomationClient, UIAutomationTypes\nAdd-Type @\"\nusing System;\nusing System.Text;\nusing System.Runtime.InteropServices;\npublic static class A10Win {\n    [DllImport(\"user32.dll\", CharSet = CharSet.Unicode)] public static extern IntPtr SendMessage(IntPtr h, uint m, IntPtr w, string l);\n    [DllImport(\"user32.dll\", CharSet = CharSet.Unicode)] public static extern IntPtr SendMessage(IntPtr h, uint m, IntPtr w, IntPtr l);\n    [DllImport(\"user32.dll\", CharSet = CharSet.Unicode)] public static extern IntPtr SendMessage(IntPtr h, uint m, IntPtr w, StringBuilder l);\n    [DllImport(\"user32.dll\")] public static extern IntPtr SendMessage(IntPtr h, uint m, IntPtr w, ref RECT l);\n    [DllImport(\"user32.dll\")] public static extern bool PostMessage(IntPtr h, uint m, IntPtr w, IntPtr l);\n    [StructLayout(LayoutKind.Sequential)] public struct RECT { public int L, T, R, B; }\n}\n\"@\n$AE = [System.Windows.Automation.AutomationElement]\n$TS = [System.Windows.Automation.TreeScope]\nfunction Say($m) { if ($Log) { Add-Content -Path $Log -Value (\"switch: \" + $m) } }\nfunction Cond($prop, $val) { New-Object System.Windows.Automation.PropertyCondition($prop, $val) }\n$deadline = (Get-Date).AddSeconds($Timeout)\n$win = $null\nwhile ((Get-Date) -lt $deadline -and -not $win) {\n    Start-Sleep -Milliseconds 400\n    $c = Cond $AE::NameProperty 'Browser Organization'\n    $tops = if ($RevitPid -gt 0) { $AE::RootElement.FindAll($TS::Children, (Cond $AE::ProcessIdProperty $RevitPid)) } else { @() }\n    foreach ($top in $tops) {\n        if ($top.Current.Name -eq 'Browser Organization') { $win = $top; break }\n        $win = $top.FindFirst($TS::Children, $c)\n        if ($win) { break }\n    }\n    if (-not $win -and $RevitPid -le 0) { $win = $AE::RootElement.FindFirst($TS::Children, $c) }\n}\nif (-not $win) { Say 'dialog not found'; exit 1 }\nStart-Sleep -Milliseconds 600\n$lbEl = $win.FindFirst($TS::Descendants, (Cond $AE::ClassNameProperty 'ListBox'))\nif (-not $lbEl) { Say 'no list in the dialog'; exit 2 }\n$lb = [IntPtr]$lbEl.Current.NativeWindowHandle\n$n = [A10Win]::SendMessage($lb, 0x018B, [IntPtr]::Zero, [IntPtr]::Zero).ToInt32()          # LB_GETCOUNT\n$idx = -1\nfor ($i = 0; $i -lt $n; $i++) {\n    $sb = New-Object System.Text.StringBuilder 512\n    [void][A10Win]::SendMessage($lb, 0x0189, [IntPtr]$i, $sb)                               # LB_GETTEXT\n    if ($sb.ToString().Trim() -eq $Org) { $idx = $i; break }\n}\nif ($idx -lt 0) { Say \"no row named $Org ($n rows)\"; exit 3 }\n$r = New-Object A10Win+RECT\n[void][A10Win]::SendMessage($lb, 0x0198, [IntPtr]$idx, [ref]$r)                             # LB_GETITEMRECT\n$x = $r.L + 7\n$y = [int](($r.T + $r.B) / 2)\n$lp = [IntPtr](($y -shl 16) -bor $x)\n[void][A10Win]::PostMessage($lb, 0x0201, [IntPtr]1, $lp)                                    # WM_LBUTTONDOWN on the tick box\n[void][A10Win]::PostMessage($lb, 0x0202, [IntPtr]0, $lp)                                    # WM_LBUTTONUP\nSay \"clicked the tick box of row $idx ($Org)\"\nStart-Sleep -Milliseconds 700\n$ok = $null\nforeach ($b in $win.FindAll($TS::Descendants, (Cond $AE::ClassNameProperty 'Button'))) { if ($b.Current.Name -eq 'OK') { $ok = $b; break } }\nif (-not $ok) { Say 'no OK button'; exit 4 }\n[void][A10Win]::PostMessage([IntPtr]$ok.Current.NativeWindowHandle, 0x00F5, [IntPtr]::Zero, [IntPtr]::Zero)   # BM_CLICK\nSay 'OK pressed'\nexit 0\n'''\n\nDISC = {'ARCHITECTURAL': 1, 'STRUCTURAL': 2, 'MECHANICAL': 4, 'ELECTRICAL': 8, 'PLUMBING': 16,\n        'COORDINATION': 4095}\nDISC_NAME = dict((v, k.title()) for k, v in DISC.items())\n\n# typed word -> (Sub-Discipline text written on the view, discipline)\nSUBS = [\n    (('LIGHTING', 'LIGHT', 'LIGHTS'), 'Lighting', 'ELECTRICAL'),\n    (('POWER', 'SMALL POWER', 'SOCKETS'), 'Power', 'ELECTRICAL'),\n    (('ELECTRICAL', 'ELEC'), 'Electrical', 'ELECTRICAL'),\n    (('FIRE ALARM', 'FA', 'FIRE DETECTION'), 'Fire Alarm', 'ELECTRICAL'),\n    (('ELV', 'LOW VOLTAGE', 'DATA', 'CCTV', 'SECURITY', 'IT'), 'ELV', 'ELECTRICAL'),\n    (('HVAC', 'AC', 'AIR CONDITIONING'), 'HVAC', 'MECHANICAL'),\n    (('MECHANICAL', 'MECH'), 'Mechanical', 'MECHANICAL'),\n    (('VENTILATION', 'VENT', 'EXHAUST'), 'Ventilation', 'MECHANICAL'),\n    (('PLUMBING', 'PLUMB', 'WATER SUPPLY'), 'Plumbing', 'PLUMBING'),\n    (('DRAINAGE', 'SANITARY', 'STORM'), 'Drainage', 'PLUMBING'),\n    (('FIRE', 'FIRE FIGHTING', 'FIREFIGHTING', 'FIRE PROTECTION', 'SPRINKLER', 'SPRINKLERS'), 'Fire Fighting',\n     'PLUMBING'),\n    (('STRUCTURAL', 'STRUCTURE', 'STR'), 'Structural', 'STRUCTURAL'),\n    (('ARCHITECTURAL', 'ARCH'), 'Architectural', 'ARCHITECTURAL'),\n    (('INTERIOR', 'INTERIORS', 'FINISHES', 'FURNITURE'), 'Interior', 'ARCHITECTURAL'),\n    (('COORDINATION', 'COORD', 'MEP', 'SERVICES'), 'Coordination', 'COORDINATION'),\n]\n\n\ndef log(msg):\n    try:\n        folder = os.path.dirname(LOG)\n        if folder and not os.path.isdir(folder):\n            os.makedirs(folder)\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ndef _key(s):\n    return ' '.join(str(s or '').upper().replace('_', ' ').replace('-', ' ').split())\n\n\ndef parse_sub(word):\n    \"\"\"-> (sub text, discipline key or None)\"\"\"\n    k = _key(word)\n    for keys, text, disc in SUBS:\n        if k in keys:\n            return text, disc\n    return str(word).strip(), None          # own word: keep as typed, discipline must come from input 2\n\n\ndef parse_disc(word):\n    k = _key(word)\n    if k in ('', 'AUTO'):\n        return None\n    for name in DISC:\n        if name.startswith(k) or k.startswith(name[:4]):\n            return name\n    raise Exception('Discipline \"%s\" not known. Use AUTO, ' % word + ', '.join(sorted(DISC)))\n\n\n# ---------------------------------------------------------------- parameter\ndef find_param(doc, name=PARAM):\n    it = doc.ParameterBindings.ForwardIterator()\n    it.Reset()\n    while it.MoveNext():\n        if it.Key is not None and it.Key.Name == name:\n            return it.Key\n    return None\n\n\ndef create_param(doc, name=PARAM, guid=PARAM_GUID, bic=BuiltInCategory.OST_Views,\n                 desc='Project Browser sub-folder under Discipline (Lighting, HVAC, Plumbing ...)'):\n    \"\"\"Bind a shared text parameter (instance, Identity Data) to one category.\n    Uses a temporary shared parameter file; the user's own shared parameter file setting is put back.\"\"\"\n    app = doc.Application\n    orig = app.SharedParametersFilename\n    tmp = os.path.join(os.environ.get('TEMP', 'C:\\\\Temp'), 'A10_SD_SharedParam.txt')\n    with open(tmp, 'w') as f:\n        f.write('')\n    try:\n        app.SharedParametersFilename = tmp\n        dfile = app.OpenSharedParameterFile()\n        grp = dfile.Groups.Create('SD A10')\n        opt = ExternalDefinitionCreationOptions(name, SpecTypeId.String.Text)\n        opt.GUID = Guid(guid)\n        opt.Description = desc\n        defn = grp.Definitions.Create(opt)\n        cats = app.Create.NewCategorySet()\n        cats.Insert(Category.GetCategory(doc, bic))\n        ok = doc.ParameterBindings.Insert(defn, app.Create.NewInstanceBinding(cats), GroupTypeId.IdentityData)\n        if not ok:\n            raise Exception('Revit refused to add the parameter \"%s\".' % name)\n    finally:\n        try:\n            if orig:\n                app.SharedParametersFilename = orig\n        except Exception:\n            pass\n\n\n# ---------------------------------------------------------------- project list\ndef parse_list(txt):\n    \"\"\"'LIGHTING, hvac' -> ['Lighting', 'HVAC'];  ALL / blank -> None (no limit)\"\"\"\n    k = _key(txt)\n    if k in ('', 'ALL', 'ANY', 'NONE'):\n        return None\n    out = []\n    for w in str(txt).split(','):\n        if w.strip():\n            t = parse_sub(w)[0]\n            if t not in out:\n                out.append(t)\n    return out or None\n\n\ndef saved_list(doc):\n    p = doc.ProjectInformation.LookupParameter(PROJ_PARAM)\n    return (p.AsString() or '') if p is not None else ''\n\n\ndef save_list(doc, allowed):\n    if find_param(doc, PROJ_PARAM) is None:\n        create_param(doc, PROJ_PARAM, PROJ_GUID, BuiltInCategory.OST_ProjectInformation,\n                     'Sub-disciplines this project uses (A10). ALL = no limit.')\n        doc.Regenerate()\n    doc.ProjectInformation.LookupParameter(PROJ_PARAM).Set(', '.join(allowed) if allowed else 'ALL')\n\n\n_NAMEPROP = []\n\n\ndef ename(e):\n    \"\"\"element name - also where Dynamo CPython3 cannot read .Name\"\"\"\n    try:\n        n = e.Name\n        if n:\n            return n\n    except Exception:\n        pass\n    try:\n        if not _NAMEPROP:\n            _NAMEPROP.append(clr.GetClrType(Element).GetProperty('Name'))\n        return str(_NAMEPROP[0].GetValue(e, None))\n    except Exception:\n        return ''\n\n\ndef find_org(doc):\n    \"\"\"the views browser scheme called ORG_NAME, or None\"\"\"\n    for b in FilteredElementCollector(doc).OfClass(BrowserOrganization).ToElements():\n        try:\n            if b.Type == BrowserOrganizationType.Views and ename(b) == ORG_NAME:\n                return b\n        except Exception:\n            pass\n    return None\n\n\ndef copy_org(seed_doc, doc):\n    \"\"\"inside a transaction of doc: copy the scheme from the seed file\"\"\"\n    try:\n        from System.Collections.Generic import List\n        s = find_org(seed_doc)\n        if s is None:\n            return 'Browser seed file has no scheme \"%s\".' % ORG_NAME\n        ids = List[ElementId]()\n        ids.Add(s.Id)\n        ElementTransformUtils.CopyElements(seed_doc, ids, doc, Transform.Identity, CopyPasteOptions())\n        doc.Regenerate()\n        return 'Browser scheme \"%s\": ADDED to this project.' % ORG_NAME\n    except Exception as ex:\n        return 'Browser scheme could not be copied in (%s).' % str(ex).splitlines()[0][:90]\n\n\ndef save_seed(doc, org):\n    \"\"\"keep the scheme in a small empty project so other projects can get it\"\"\"\n    from System.Collections.Generic import List\n    nd = doc.Application.NewProjectDocument(UnitSystem.Metric)\n    try:\n        t = Transaction(nd, 'A10 seed')\n        t.Start()\n        ids = List[ElementId]()\n        ids.Add(org.Id)\n        ElementTransformUtils.CopyElements(doc, ids, nd, Transform.Identity, CopyPasteOptions())\n        t.Commit()\n        o = SaveAsOptions()\n        o.OverwriteExistingFile = True\n        nd.SaveAs(SEED, o)\n    finally:\n        nd.Close(False)\n\n\ndef switch_org(uidoc):\n    \"\"\"open Revit's Browser Organization window and let the helper tick ORG_NAME + OK\"\"\"\n    if uidoc is None:\n        raise Exception('no Revit window')\n    clr.AddReference('RevitAPIUI')\n    from Autodesk.Revit.UI import RevitCommandId, PostableCommand\n    from System.Diagnostics import Process, ProcessStartInfo\n    uiapp = uidoc.Application\n    cid = RevitCommandId.LookupPostableCommandId(PostableCommand.BrowserOrganization)\n    if not uiapp.CanPostCommand(cid):\n        raise Exception('Revit is busy')\n    ps1 = os.path.join(os.environ.get('TEMP', 'C:\\\\Temp'), 'A10_browser_switch.ps1')\n    with open(ps1, 'w') as f:\n        f.write(SWITCH_PS1)\n    uiapp.PostCommand(cid)\n    psi = ProcessStartInfo('powershell.exe',\n                           '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File \"%s\" -RevitPid %d '\n                           '-Org \"%s\" -Timeout 180 -Log \"%s\"' % (ps1, Process.GetCurrentProcess().Id, ORG_NAME, LOG))\n    psi.UseShellExecute = False\n    psi.CreateNoWindow = True\n    Process.Start(psi)\n\n\ndef browser_setup(doc, uidoc, sample, note=''):\n    \"\"\"after a real run: make sure the Project Browser shows Discipline > Sub-Discipline\"\"\"\n    lines = [note] if note else []\n    try:\n        cur = BrowserOrganization.GetCurrentBrowserOrganizationForViews(doc)\n        cur_name = ename(cur)\n    except Exception:\n        return lines\n    s = sample.LookupParameter(PARAM)\n    sub = (s.AsString() or '') if s is not None else ''\n\n    def shows(o):\n        try:\n            return (not sub) or sub in [fi.Name for fi in o.GetFolderItems(sample.Id)]\n        except Exception:\n            return False\n\n    org = find_org(doc)\n    if org is None:\n        if shows(cur):\n            lines.append('Project Browser scheme \"%s\" already shows Discipline > Sub-Discipline.' % cur_name)\n            return lines\n        lines.append('>> Project Browser: this project has no scheme \"%s\" and this PC has no seed file yet.' % ORG_NAME)\n        lines.append('   ONE TIME: right-click Views > Browser Organization > New \"%s\" > Grouping: Discipline, then %s, '\n                     'then Family and Type > OK > tick it > OK.  Run A10 once more there - after that A10 adds and '\n                     'switches the scheme in every project by itself.' % (ORG_NAME, PARAM))\n        return lines\n    if shows(org) and not os.path.exists(SEED):\n        try:\n            save_seed(doc, org)\n            lines.append('Browser scheme \"%s\" remembered for all projects: %s' % (ORG_NAME, SEED))\n        except Exception as ex:\n            lines.append('Could not save the browser seed file (%s).' % str(ex).splitlines()[0][:90])\n    if cur_name == ORG_NAME:\n        lines.append('Project Browser scheme \"%s\" is on - views show under Discipline > Sub-Discipline.' % ORG_NAME)\n        return lines\n    try:\n        switch_org(uidoc)\n        lines.append('Project Browser: switching from \"%s\" to \"%s\" - the Browser Organization window opens and '\n                     'closes by itself after this message.' % (cur_name, ORG_NAME))\n    except Exception as ex:\n        lines.append('>> Could not switch the Project Browser by itself (%s).  Right-click Views > Browser '\n                     'Organization > tick \"%s\" > OK.' % (str(ex).splitlines()[0][:80], ORG_NAME))\n    return lines\n\n\ndef browser_check(doc, sample):\n    \"\"\"Where does the Project Browser put this view?  (Revit API can read the scheme, not switch it.)\"\"\"\n    try:\n        bo = BrowserOrganization.GetCurrentBrowserOrganizationForViews(doc)\n        scheme = ename(bo)\n        path = [fi.Name for fi in bo.GetFolderItems(sample.Id)] if sample is not None else []\n    except Exception:\n        return []\n    s = sample.LookupParameter(PARAM) if sample is not None else None\n    sub = (s.AsString() or '') if s is not None else ''\n    disc = DISC_NAME.get(sample.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE).AsInteger(), '') \\\n        if sample is not None else ''\n    where = ' > '.join(path) if path else '(top level)'\n    lines = ['Project Browser scheme: \"%s\".  \"%s\" shows under: %s' % (scheme, sample.Name, where)]\n    if sub and not (disc in path and sub in path):\n        others = []\n        try:\n            for bid in FilteredElementCollector(doc).OfClass(BrowserOrganization).ToElementIds():\n                b = doc.GetElement(bid)\n                if b is not None and ename(b) != scheme:\n                    others.append(ename(b))\n        except Exception:\n            pass\n        hint = [n for n in others if 'DISC' in n.upper()]\n        lines.append('>> NOT grouped by Discipline > Sub-Discipline.  View > User Interface > Browser Organization'\n                     ' > Views > tick %s > OK  (one time per project; the API cannot tick it).'\n                     % ('\"%s\"' % hint[0] if hint else 'a scheme grouped by Discipline, then Sub-Discipline'))\n    return lines\n\n\ndef select_views(uidoc, ids):\n    \"\"\"Select the views so they are highlighted in the Project Browser.\"\"\"\n    if uidoc is None or not ids:\n        return\n    try:\n        from System.Collections.Generic import List\n        uidoc.Selection.SetElementIds(List[ElementId](ids))\n    except Exception:\n        pass\n\n\ndef all_views(doc):\n    out = []\n    for v in FilteredElementCollector(doc).OfClass(View).ToElements():\n        if v.IsTemplate or v.ViewType in (ViewType.ProjectBrowser, ViewType.SystemBrowser,\n                                          ViewType.Internal, ViewType.Undefined, ViewType.DrawingSheet):\n            continue\n        if v.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE) is None:\n            continue\n        out.append(v)\n    return out\n\n\ndef fill_empty(doc):\n    \"\"\"views with an empty Sub-Discipline get the name of their discipline -> no ??? folder.  -> count\"\"\"\n    n = 0\n    for v in all_views(doc):\n        try:\n            s = v.LookupParameter(PARAM)\n            if s is None or s.IsReadOnly or (s.AsString() or ''):\n                continue\n            d = DISC_NAME.get(v.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE).AsInteger(), '')\n            if d:\n                s.Set(d)\n                n += 1\n        except Exception:\n            pass\n    return n\n\n\ndef overview(doc, allowed):\n    groups = {}\n    for v in all_views(doc):\n        p = v.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE)\n        d = DISC_NAME.get(p.AsInteger(), '?')\n        s = v.LookupParameter(PARAM)\n        s = (s.AsString() or '') if s is not None else ''\n        groups.setdefault((d, s), []).append(v.Name)\n    rows = []\n    if allowed:      # allowed sub-disciplines that have no views yet\n        for a in allowed:\n            d = (parse_sub(a)[1] or '?').title()\n            if (d, a) not in groups:\n                rows.append('  %s > %s : 0 views' % (d, a))\n    bad = []\n    for (d, s) in sorted(groups):\n        names = sorted(groups[(d, s)])\n        tag = ''\n        if not s:\n            tag = '   (no sub-discipline - shows as ???)'\n        elif allowed and s not in allowed:\n            tag = '   NOT IN PROJECT LIST'\n            bad.append(s)\n        rows.append('  %s > %s : %d view%s%s' % (d, s or '???', len(names), '' if len(names) == 1 else 's', tag))\n        for n in names[:6]:\n            rows.append('      ' + n)\n        if len(names) > 6:\n            rows.append('      ... +%d more' % (len(names) - 6))\n    return rows, bad\n\n\n# ---------------------------------------------------------------- views\ndef get_views(doc, uidoc, how):\n    k = _key(how)\n    views = []\n    if k in ('', 'SELECTED', 'SELECTION', 'SEL'):\n        if uidoc is None:\n            raise Exception('No selection available - type ACTIVE or view names in input 0.')\n        for eid in uidoc.Selection.GetElementIds():\n            e = doc.GetElement(eid)\n            if isinstance(e, View) and not e.IsTemplate:\n                views.append(e)\n            elif isinstance(e, Viewport):\n                views.append(doc.GetElement(e.ViewId))\n        if not views:      # nothing picked in the browser -> use the open view\n            views = [doc.ActiveView]\n            NOTES.append('Nothing selected in the Project Browser - used the open view \"%s\".'\n                         % doc.ActiveView.Name)\n    elif k in ('ACTIVE', 'CURRENT'):\n        views = [doc.ActiveView]\n    else:\n        words = [_key(w) for w in str(how).split(',') if w.strip()]\n        for v in FilteredElementCollector(doc).OfClass(View).ToElements():\n            if v.IsTemplate or v.ViewType in (ViewType.ProjectBrowser, ViewType.SystemBrowser,\n                                              ViewType.Internal, ViewType.Undefined):\n                continue\n            if any(w in _key(v.Name) for w in words):\n                views.append(v)\n        if not views:\n            raise Exception('No view name contains: ' + str(how))\n    seen, out = set(), []\n    for v in views:\n        if v.Id.ToString() not in seen:\n            seen.add(v.Id.ToString())\n            out.append(v)\n    return out\n\n\ndef disc_locked(doc, v):\n    p = v.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE)\n    if p is None:\n        return 'no Discipline'\n    if p.IsReadOnly:\n        t = doc.GetElement(v.ViewTemplateId) if not v.ViewTemplateId.Equals(ElementId.InvalidElementId) else None\n        return 'Discipline locked by view template \"%s\"' % (t.Name if t is not None else '?')\n    return ''\n\n\ndef current(v):\n    p = v.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE)\n    d = DISC_NAME.get(p.AsInteger(), '?') if p is not None else '-'\n    s = v.LookupParameter(PARAM)\n    return '%s > %s' % (d, (s.AsString() or '-') if s is not None else '-')\n\n\ndef apply(v, disc, sub):\n    if disc is not None:\n        v.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE).Set(DISC[disc])\n    s = v.LookupParameter(PARAM)\n    if s is not None and not s.IsReadOnly:\n        s.Set(sub or '')\n\n\ndef unique_name(doc, name):\n    names = set(v.Name for v in FilteredElementCollector(doc).OfClass(View).ToElements())\n    if name not in names:\n        return name\n    i = 2\n    while '%s (%d)' % (name, i) in names:\n        i += 1\n    return '%s (%d)' % (name, i)\n\n\n# ---------------------------------------------------------------- main\ndef run(doc, uidoc, views_how='SELECTED', subs_txt='LIGHTING', disc_txt='AUTO', mode='ASSIGN',\n        name_fmt='{VIEW} - {SUB}', proj_txt='', make=False):\n    if doc is None:\n        raise Exception('No Revit document open.')\n    mode = _key(mode) or 'ASSIGN'\n    if mode not in ('ASSIGN', 'COPY', 'CLEAR', 'LIST'):\n        raise Exception('Mode must be ASSIGN, COPY, CLEAR or LIST.')\n\n    # ---- this project's allowed sub-disciplines\n    saved = saved_list(doc)\n    typed = str(proj_txt or '').strip()\n    allowed = parse_list(typed if typed else saved)\n    save_new = bool(typed) and (', '.join(allowed) if allowed else 'ALL') != (saved or '')\n    proj_line = 'Project disciplines: %s%s' % (', '.join(allowed) if allowed else 'ALL (no limit)',\n                                               '' if not save_new else\n                                               ('   - SAVED in Project Information' if make else\n                                                '   - will be saved on RUN = True'))\n\n    force = parse_disc(disc_txt)\n    plan = []\n    if mode in ('ASSIGN', 'COPY', 'CLEAR'):\n        words = [w for w in str(subs_txt or '').split(',') if w.strip()] or ['']\n        if _key(subs_txt) in ('PROJECT', 'ALL') and mode == 'COPY':     # one copy per project sub-discipline\n            if not allowed:\n                raise Exception('Input 1 = %s needs the project list: type it in input 5, e.g. '\n                                'LIGHTING, POWER, HVAC, PLUMBING, FIRE.' % _key(subs_txt))\n            words = list(allowed)\n        for w in (words if mode == 'COPY' else words[:1]):\n            sub, d = parse_sub(w) if mode != 'CLEAR' else ('', None)\n            d = force or d\n            if mode != 'CLEAR' and d is None:\n                raise Exception('\"%s\" is not in the list - set input 2 to the discipline it goes under '\n                                '(e.g. ELECTRICAL).' % w.strip())\n            if mode != 'CLEAR' and allowed and sub not in allowed:\n                raise Exception('\"%s\" is not used in this project.\\nThis project uses: %s\\n'\n                                'Add it in input 5 (Project disciplines) if the project needs it.'\n                                % (sub, ', '.join(allowed)))\n            plan.append((sub, d))\n\n    out = ['PREVIEW - nothing changed' if not make else 'DONE - ' + mode, proj_line]\n\n    if mode == 'LIST':\n        if make and save_new:\n            t = Transaction(doc, 'A10 Project disciplines')\n            t.Start()\n            try:\n                save_list(doc, allowed)\n                t.Commit()\n            except Exception:\n                t.RollBack()\n                raise\n        rows, bad = overview(doc, allowed)\n        out.append('Views by Discipline > Sub-Discipline:')\n        out += rows\n        if bad:\n            out.append('Not in project list: %s - re-file those views (ASSIGN) or add them to input 5.'\n                       % ', '.join(sorted(set(bad))))\n        withsub = [v for v in all_views(doc) if v.LookupParameter(PARAM) is not None\n                   and (v.LookupParameter(PARAM).AsString() or '')]\n        if withsub:\n            out += browser_check(doc, withsub[0])\n        log('\\n'.join(out))\n        return out\n\n    views = get_views(doc, uidoc, views_how)\n    has_param = find_param(doc) is not None\n    out.append('Parameter \"%s\": %s' % (PARAM, 'already in project' if has_param else\n                                       ('ADDED to views (Identity Data)' if make else 'missing - will be added')))\n    rows, skipped, touched = [], [], []\n    seed_doc, org_note, filled = None, '', 0\n    if make and find_org(doc) is None and os.path.exists(SEED):\n        try:\n            seed_doc = doc.Application.OpenDocumentFile(SEED)\n        except Exception as ex:\n            org_note = 'Browser seed file could not be opened (%s).' % str(ex).splitlines()[0][:90]\n    if make:\n        t = Transaction(doc, 'A10 Discipline / Sub-Discipline - ' + mode)\n        t.Start()\n    try:\n        if make and not has_param:\n            create_param(doc)\n            doc.Regenerate()\n        if make and save_new:\n            save_list(doc, allowed)\n        if seed_doc is not None:\n            org_note = copy_org(seed_doc, doc)\n        for v in views:\n            lock = disc_locked(doc, v)\n            if mode == 'COPY':\n                if not v.CanViewBeDuplicated(ViewDuplicateOption.WithDetailing):\n                    skipped.append('%s: cannot be duplicated' % v.Name)\n                    continue\n                for sub, d in plan:\n                    nm = (name_fmt or '{VIEW} - {SUB}').replace('{VIEW}', v.Name).replace('{SUB}', sub.upper())\n                    if make:\n                        nv = doc.GetElement(v.Duplicate(ViewDuplicateOption.WithDetailing))\n                        nm = unique_name(doc, nm)\n                        nv.Name = nm\n                        if not nv.ViewTemplateId.Equals(ElementId.InvalidElementId) and \\\n                                nv.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE).IsReadOnly:\n                            nv.ViewTemplateId = ElementId.InvalidElementId    # copy only: free it to file it\n                        apply(nv, d, sub)\n                        touched.append(nv.Id)\n                    rows.append('NEW  %s  ->  %s > %s' % (nm, d.title(), sub))\n            else:\n                sub, d = plan[0]\n                if lock and d is not None and mode != 'CLEAR':\n                    skipped.append('%s: %s (remove the template or tick off Discipline in it)' % (v.Name, lock))\n                    continue\n                was = current(v)\n                if make:\n                    apply(v, None if mode == 'CLEAR' else d, sub)\n                    touched.append(v.Id)\n                now = '%s > %s' % ((d or '').title() or was.split(' >')[0], sub or '-')\n                rows.append('%s :  %s  ->  %s' % (v.Name, was, now))\n        if make and FILL_EMPTY and mode != 'CLEAR':\n            filled = fill_empty(doc)\n        if make:\n            t.Commit()\n    except Exception:\n        if make and t.HasStarted() and not t.HasEnded():\n            t.RollBack()\n        raise\n    finally:\n        if seed_doc is not None:\n            try:\n                seed_doc.Close(False)\n            except Exception:\n                pass\n    out += NOTES\n    out.append('Views: %d   Changes: %d   Skipped: %d' % (len(views), len(rows), len(skipped)))\n    out += rows\n    if skipped:\n        out.append('SKIPPED:')\n        out += ['  ' + s for s in skipped]\n    if filled:\n        out.append('Other views without a Sub-Discipline: %d filled with their discipline name (no ??? folders).' % filled)\n    sample = doc.GetElement(touched[0]) if touched else None\n    if make and sample is not None:\n        select_views(uidoc, touched)\n        out += browser_setup(doc, uidoc, sample, org_note)\n        out.append('The %d view(s) are now SELECTED - look for the highlight in the Project Browser.' % len(touched))\n    log('\\n'.join(out))\n    return out\n\n\n# =====================================================================\n#  host glue - Dynamo (IN / OUT) or pyRevit (doc, uidoc, A10_INPUTS)\n# =====================================================================\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _d = DocumentManager.Instance.CurrentDBDocument\n        if _d is not None:\n            doc = _d\n            TM = TransactionManager\n        try:\n            uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n        except Exception:\n            uidoc = None\n    except Exception:\n        pass\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('A10_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and not v.strip()):\n        return default\n    return v\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\nout = []\ntry:\n    if TM is not None:\n        TM.Instance.ForceCloseTransaction()\n    out = run(doc, uidoc, str(_inp(0, 'SELECTED')), str(_inp(1, 'LIGHTING')), str(_inp(2, 'AUTO')),\n              str(_inp(3, 'ASSIGN')), str(_inp(4, '{VIEW} - {SUB}')), str(_inp(5, '')), _flag(6, False))\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('A10 Discipline / Sub-Discipline')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else (\n            'Preview - nothing changed' if out and out[0].startswith('PREVIEW') else 'Done')\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "a4bdb1e4aeb340b9861a6d866ebf5d34",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "3e287a4b74b84bae8f84334d85f9a2b1",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bf73c6f18adb42c493edaef6f772b10d",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "369156f8ad7c46cdb5ed22b61fd486c9",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4cb26ffd36ed4802a29cc195ef105376",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3b1f0b13f179458f94716e3e37ca1734",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "36d75e0a03ec4ad59070e2e7d1cac5db",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3b9ec09fbfa845669411b68302c28aa3",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ccec53b4f42545d58c61be18a75e536b",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "Id": "676b57e0edfb4261b3ae5bee6aa7abec",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "e36a2b28784b41d4aa60f852423a05c3",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c1587bc0e00a4975aecb35767b24dd4f",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "b6934bd7e28a40939b061e5ebc10a602",
+      "End": "3e287a4b74b84bae8f84334d85f9a2b1",
+      "Id": "00c8b984342942a4beabe58e0c8f1ea1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "45233094318f4b74912bed220bf811e6",
+      "End": "bf73c6f18adb42c493edaef6f772b10d",
+      "Id": "f23397b4c6524ad0860d7a3b0ebd5099",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0e1ef8a9afad4d00bd6d3182f61c7ef4",
+      "End": "369156f8ad7c46cdb5ed22b61fd486c9",
+      "Id": "60231f7b9146455784a2f6327f937460",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "045092bff7b24347aa50f89a028ef7c8",
+      "End": "4cb26ffd36ed4802a29cc195ef105376",
+      "Id": "73817264907042d395e22da9cdd59cc8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b7c07a8fce7e4df19112a1fb44229335",
+      "End": "3b1f0b13f179458f94716e3e37ca1734",
+      "Id": "7c718133e11f4b0f80992bdb65eebeac",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8afe97a65633433ab05df50df3b8e854",
+      "End": "36d75e0a03ec4ad59070e2e7d1cac5db",
+      "Id": "7d140fd4831f4d6eae7271deda162f7d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b2673fcecc934bd7a943a789f1f1fd28",
+      "End": "3b9ec09fbfa845669411b68302c28aa3",
+      "Id": "d02d236e5a4c4044a913a795458959af",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ccec53b4f42545d58c61be18a75e536b",
+      "End": "e36a2b28784b41d4aa60f852423a05c3",
+      "Id": "fc584e68d19b45d4a5e0910bc1ca119a",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.2.11575",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "7f856d72d95840b0bbff7d9cde4e3f83",
+        "Name": "0  Views: SELECTED / ACTIVE / names contains",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "887ccb3a50024920a923c45c95ed0220",
+        "Name": "1  Sub-discipline(s): LIGHTING, POWER, HVAC, PLUMBING, FIRE ...",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "d84f1c2e0ddd4469b40cf6f67809583c",
+        "Name": "2  Discipline: AUTO / ELECTRICAL / MECHANICAL / PLUMBING ...",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "48c480a366c64b448442f0f412d9852d",
+        "Name": "3  Mode: ASSIGN / COPY / CLEAR / LIST",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "fa09bdec8c324eef90ae3b39ed11dc15",
+        "Name": "4  Copy name format ({VIEW} {SUB})",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "82a6019906ce43d3bcc455b347703366",
+        "Name": "5  Project disciplines: blank = saved list / ALL / LIGHTING, POWER, HVAC ...",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1680,
+        "Y": 0
+      },
+      {
+        "Id": "690fc3c400b144d48d23b800dcf1fd03",
+        "Name": "6  RUN (False = preview)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2240,
+        "Y": 0
+      },
+      {
+        "Id": "a4bdb1e4aeb340b9861a6d866ebf5d34",
+        "Name": "A10 DISCIPLINE ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2860.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "676b57e0edfb4261b3ae5bee6aa7abec",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 3210.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "1b774235d30949b08ba3b3134ce3da6a",
+        "Title": "1  VIEWS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "7f856d72d95840b0bbff7d9cde4e3f83"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 285,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -95.0,
+        "InitialHeight": 190,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "1b89f906ee2949fb9c7cdf66288b21ee",
+        "Title": "2  DISCIPLINE",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "887ccb3a50024920a923c45c95ed0220",
+          "d84f1c2e0ddd4469b40cf6f67809583c"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 435,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -95.0,
+        "InitialHeight": 340,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "fcaf27eb8d184a4387a3444a15d0403d",
+        "Title": "3  MODE",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "48c480a366c64b448442f0f412d9852d",
+          "fa09bdec8c324eef90ae3b39ed11dc15"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 435,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -95.0,
+        "InitialHeight": 340,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "b80556a822f84bd79f92b842a90c69ea",
+        "Title": "4  THIS PROJECT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "82a6019906ce43d3bcc455b347703366"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1660.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 285,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -95.0,
+        "InitialHeight": 190,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE0C8FF"
+      },
+      {
+        "Id": "e1cff184c9ae4656bccd7f02719c1a24",
+        "Title": "5  RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "690fc3c400b144d48d23b800dcf1fd03"
+        ],
+        "HasNestedGroups": false,
+        "Left": 2220.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 285,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -95.0,
+        "InitialHeight": 190,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFAA45"
+      },
+      {
+        "Id": "49082c9845b44eba98bc9de2ad3ee4c4",
+        "Title": "HOW TO USE:  0 = which views: SELECTED (click views in the Project Browser, Ctrl = more), ACTIVE, or words in the view names (comma list).  1 = sub-discipline: LIGHTING, POWER, FIRE ALARM, ELV, HVAC, MECHANICAL, VENTILATION, PLUMBING, DRAINAGE, FIRE FIGHTING, STRUCTURAL, INTERIOR, COORDINATION, or your own word (then set 2).  2 = AUTO picks the discipline (Lighting > Electrical, HVAC > Mechanical, Fire Fighting > Plumbing) or type ARCHITECTURAL / STRUCTURAL / MECHANICAL / ELECTRICAL / PLUMBING / COORDINATION.  3 = ASSIGN files the views, COPY duplicates each view once per sub-discipline in 1 (comma list, e.g. LIGHTING, HVAC, PLUMBING, FIRE, or PROJECT = every sub-discipline in 5), CLEAR empties Sub-Discipline, LIST shows every view by Discipline > Sub-Discipline.  4 = name of copies.  5 = THIS PROJECT's sub-disciplines, e.g. LIGHTING, POWER, HVAC, PLUMBING - saved in the project on the first RUN = True, then leave blank; others are refused; ALL = no limit.  6 RUN False = preview, True = change.  Adds the Sub-Discipline view parameter if missing.  PROJECT BROWSER: on RUN = True the script adds the scheme \"SD Discipline\" (Discipline > Sub-Discipline) and switches to it by itself - the Browser Organization window opens and closes on its own.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -470.0,
+        "Width": 2740.0,
+        "Height": 310.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -470.0,
+        "InitialHeight": 215.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 100.0,
+    "Y": 500.0,
+    "Zoom": 0.45
+  }
+}

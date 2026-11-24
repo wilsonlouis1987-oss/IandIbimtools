@@ -1,0 +1,353 @@
+{
+  "Uuid": "82b6e182-b52d-449a-a1e6-09b69f67adad",
+  "IsCustomNode": false,
+  "Description": "Room data sheet in Excel: numbers, names, departments, finishes, target area - Revit rooms follow; actual area and OK / OVER / UNDER written back",
+  "Name": "CAD2BIM_Rooms_From_Excel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "e2835dc20f1e422e863fde75e70e9c40",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1b39a9f3af0f49c89439903791ab7065",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "",
+      "InputValue": "No file selected."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "928b2441b30344ee9a351304a8b897a5",
+          "Name": "path",
+          "Description": "Path to the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+          "Name": "file",
+          "Description": "File object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a file object from the given path",
+      "Id": "86337e6929b34db8a0abe470f28ed0e9"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f805a5952b2846c5a4872752b6961cd7",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - ROOMS FROM EXCEL (room data sheet)\n#  one Excel = the room list: number, name, department, finishes, target area\n#  Revit rooms are renamed / renumbered / filled; new rows become unplaced rooms (Revit: Room > pick from the list);\n#  the actual area, difference % and OK / OVER / UNDER are written back.  First run with no Excel: made from Revit rooms.\nimport os\nimport re\nimport traceback\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\nimport os\nimport re\nimport zipfile\nimport xml.etree.ElementTree as ET\n\n# ======================================================================== tiny .xlsx reader / writer\nNS = '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'\nRNS = '{http://schemas.openxmlformats.org/officeDocument/2006/relationships}'\n\n\ndef _esc(s):\n    s = re.sub(u'[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f]', '', u'%s' % s)\n    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('\"', '&quot;')\n\n\ndef _ref(ci, ri):\n    s, ci = '', ci + 1\n    while ci:\n        ci, rem = divmod(ci - 1, 26)\n        s = chr(65 + rem) + s\n    return '%s%d' % (s, ri + 1)\n\n\ndef _colidx(ref):\n    n = 0\n    for ch in ''.join(c for c in ref if c.isalpha()):\n        n = n * 26 + (ord(ch.upper()) - 64)\n    return n - 1\n\n\ndef xlsx_read(path, sheet_name):\n    z = zipfile.ZipFile(path)\n    try:\n        shared = []\n        if 'xl/sharedStrings.xml' in z.namelist():\n            for si in ET.fromstring(z.read('xl/sharedStrings.xml')).iter(NS + 'si'):\n                shared.append(''.join(t.text or '' for t in si.iter(NS + 't')))\n        wb = ET.fromstring(z.read('xl/workbook.xml'))\n        rmap = dict((r.get('Id'), r.get('Target')) for r in ET.fromstring(z.read('xl/_rels/workbook.xml.rels')))\n        target = None\n        for sh in wb.iter(NS + 'sheet'):\n            if sh.get('name', '').strip().upper() == sheet_name.upper():\n                target = rmap.get(sh.get(RNS + 'id'))\n        if target is None:\n            return None\n        target = target.lstrip('/')\n        if not target.startswith('xl/'):\n            target = 'xl/' + target\n        root = ET.fromstring(z.read(target))\n    finally:\n        z.close()\n    rows = []\n    for r in root.iter(NS + 'row'):\n        vals = {}\n        for c in r.iter(NS + 'c'):\n            t, v = c.get('t'), c.find(NS + 'v')\n            if t == 's' and v is not None:\n                val = shared[int(v.text)]\n            elif t == 'inlineStr':\n                val = ''.join(x.text or '' for x in c.iter(NS + 't'))\n            elif v is not None and v.text not in (None, ''):\n                val = v.text\n                if t not in ('str', 'e', 'b'):\n                    try:\n                        fl = float(val)\n                        val = str(int(fl)) if fl == int(fl) else str(fl)\n                    except ValueError:\n                        pass\n            else:\n                val = ''\n            vals[_colidx(c.get('r'))] = (val or '').strip()\n        rno = int(r.get('r')) if r.get('r') else len(rows) + 1\n        while len(rows) < rno - 1:\n            rows.append([])\n        rows.append([vals.get(i, '') for i in range(max(vals) + 1)] if vals else [])\n    return rows\n\n\nSTYLES = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<styleSheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">'\n          '<fonts count=\"5\"><font><sz val=\"11\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"10\"/><color rgb=\"FFFFFFFF\"/><name val=\"Arial\"/></font>'\n          '<font><sz val=\"11\"/><color rgb=\"FF0000FF\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"14\"/><name val=\"Arial\"/></font>'\n          '<font><i/><sz val=\"10\"/><color rgb=\"FF595959\"/><name val=\"Arial\"/></font></fonts>'\n          '<fills count=\"4\"><fill><patternFill patternType=\"none\"/></fill><fill><patternFill patternType=\"gray125\"/></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FF1F3864\"/><bgColor indexed=\"64\"/></patternFill></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FFF2F2F2\"/><bgColor indexed=\"64\"/></patternFill></fill></fills>'\n          '<borders count=\"2\"><border><left/><right/><top/><bottom/><diagonal/></border>'\n          '<border><left style=\"thin\"><color rgb=\"FFBFBFBF\"/></left><right style=\"thin\"><color rgb=\"FFBFBFBF\"/></right>'\n          '<top style=\"thin\"><color rgb=\"FFBFBFBF\"/></top><bottom style=\"thin\"><color rgb=\"FFBFBFBF\"/></bottom><diagonal/></border></borders>'\n          '<cellStyleXfs count=\"1\"><xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\"/></cellStyleXfs>'\n          '<cellXfs count=\"7\">'\n          '<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\"/>'                                         # 0 normal\n          '<xf numFmtId=\"49\" fontId=\"1\" fillId=\"2\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\" applyAlignment=\"1\">'\n          '<alignment wrapText=\"1\" vertical=\"center\" horizontal=\"center\"/></xf>'                                  # 1 header\n          '<xf numFmtId=\"49\" fontId=\"2\" fillId=\"0\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyBorder=\"1\"/>'  # 2 blue input (text)\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 3 grey calculated\n          '<xf numFmtId=\"0\" fontId=\"3\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyFont=\"1\"/>'                           # 4 title\n          '<xf numFmtId=\"49\" fontId=\"4\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\"/>'     # 5 note\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 6 grey key\n          '</cellXfs><cellStyles count=\"1\"><cellStyle name=\"Normal\" xfId=\"0\" builtinId=\"0\"/></cellStyles></styleSheet>')\n\n\ndef _sheet_xml(rows, widths, freeze=None, validations=None, col_styles=None, heights=None):\n    \"\"\"rows: list of lists; a cell = value, or (value, style), or ('=formula', cached, style)\"\"\"\n    cs = col_styles or {}\n    out = ['<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n           '<worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">']\n    if freeze:\n        out.append('<sheetViews><sheetView workbookViewId=\"0\"><pane ySplit=\"%d\" topLeftCell=\"A%d\" activePane=\"bottomLeft\" '\n                   'state=\"frozen\"/></sheetView></sheetViews>' % (freeze, freeze + 1))\n    out.append('<cols>' + ''.join('<col min=\"%d\" max=\"%d\" width=\"%s\" customWidth=\"1\"%s/>'\n                                  % (i + 1, i + 1, w, (' style=\"%d\"' % cs[i]) if i in cs else '')\n                                  for i, w in enumerate(widths)) + '</cols><sheetData>')\n    for ri, row in enumerate(rows):\n        cells = []\n        for ci, cell in enumerate(row):\n            ref, style, f = _ref(ci, ri), cs.get(ci, 0), None\n            if isinstance(cell, tuple):\n                if len(cell) == 3:\n                    f, val, style = cell\n                else:\n                    val, style = cell\n            else:\n                val = cell\n            sa = ' s=\"%d\"' % style if style else ''\n            if f:\n                cells.append('<c r=\"%s\"%s t=\"str\"><f>%s</f><v>%s</v></c>' % (ref, sa, _esc(f.lstrip('=')), _esc(val)))\n            elif val is None or val == '':\n                if style:\n                    cells.append('<c r=\"%s\"%s/>' % (ref, sa))\n            else:\n                cells.append('<c r=\"%s\"%s t=\"inlineStr\"><is><t xml:space=\"preserve\">%s</t></is></c>' % (ref, sa, _esc(val)))\n        ht = (' ht=\"%s\" customHeight=\"1\"' % heights[ri]) if heights and ri in heights else ''\n        out.append('<row r=\"%d\"%s>%s</row>' % (ri + 1, ht, ''.join(cells)))\n    out.append('</sheetData>')\n    if validations:\n        out.append('<dataValidations count=\"%d\">' % len(validations))\n        for sqref, formula in validations:\n            out.append('<dataValidation type=\"list\" allowBlank=\"1\" showErrorMessage=\"0\" sqref=\"%s\"><formula1>%s</formula1>'\n                       '</dataValidation>' % (sqref, _esc(formula)))\n        out.append('</dataValidations>')\n    out.append('</worksheet>')\n    return ''.join(out)\n\n\ndef xlsx_write(path, sheets):\n    \"\"\"sheets: list of (name, sheet_xml)\"\"\"\n    n = len(sheets)\n    ct = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">'\n          '<Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>'\n          '<Default Extension=\"xml\" ContentType=\"application/xml\"/>'\n          '<Override PartName=\"/xl/workbook.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml\"/>'\n          '<Override PartName=\"/xl/styles.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml\"/>'\n          + ''.join('<Override PartName=\"/xl/worksheets/sheet%d.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml\"/>' % (i + 1)\n                    for i in range(n)) + '</Types>')\n    rels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n            '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n            '<Relationship Id=\"rId1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\" Target=\"xl/workbook.xml\"/>'\n            '</Relationships>')\n    wb = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<workbook xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" '\n          'xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">'\n          '<bookViews><workbookView activeTab=\"0\"/></bookViews><sheets>'\n          + ''.join('<sheet name=\"%s\" sheetId=\"%d\" r:id=\"rId%d\"/>' % (_esc(s[0]), i + 1, i + 1) for i, s in enumerate(sheets))\n          + '</sheets><calcPr calcId=\"191029\" fullCalcOnLoad=\"1\"/></workbook>')\n    wrels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n             '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n             + ''.join('<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet\" '\n                       'Target=\"worksheets/sheet%d.xml\"/>' % (i + 1, i + 1) for i in range(n))\n             + '<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles\" '\n               'Target=\"styles.xml\"/></Relationships>' % (n + 1))\n    tmp = path + '.tmp'\n    z = zipfile.ZipFile(tmp, 'w', zipfile.ZIP_DEFLATED)\n    try:\n        z.writestr('[Content_Types].xml', ct)\n        z.writestr('_rels/.rels', rels)\n        z.writestr('xl/workbook.xml', wb)\n        z.writestr('xl/_rels/workbook.xml.rels', wrels)\n        z.writestr('xl/styles.xml', STYLES)\n        for i, (name, xml) in enumerate(sheets):\n            z.writestr('xl/worksheets/sheet%d.xml' % (i + 1), xml.encode('utf-8'))\n    finally:\n        z.close()\n    try:\n        if os.path.exists(path):\n            os.remove(path)\n        os.rename(tmp, path)\n    except Exception:\n        os.remove(tmp)\n        raise\n\n\n\n\nCOLS = [('LEVEL', 16), ('ROOM NUMBER', 13), ('ROOM NAME', 30), ('DEPARTMENT', 18), ('FLOOR FINISH', 20),\n        ('WALL FINISH', 20), ('CEILING FINISH', 20), ('BASE FINISH', 16), ('TARGET AREA\\n(m2)', 12),\n        ('ACTUAL AREA\\n(m2, written)', 13), ('DIFF %\\n(written)', 10), ('STATUS\\n(written)', 14), ('REVIT ID\\n(do not edit)', 13)]\nFIELDS = ['level', 'number', 'name', 'dept', 'floor', 'wall', 'ceiling', 'base', 'target', 'actual', 'diff', 'status', 'rid']\nSQM = 0.09290304\n\n\ndef natural(s):\n    return [int(t) if t.isdigit() else t.lower() for t in re.split(r'(\\d+)', s or '')]\n\n\ndef num(v):\n    try:\n        return float(str(v).replace(',', '').strip())\n    except Exception:\n        return None\n\n\ndef write_book(path, rows, tol, levels, title):\n    sh = [[('CAD2BIM  ROOMS  -  ' + (title or 'PROJECT'), 4)],\n          [('Area tolerance %', 6), (str(tol), 2), ('rooms within +/- this % of the TARGET AREA are OK', 5)],\n          [(c[0], 1) for c in COLS]]\n    for r in rows:\n        r = (list(r) + [''] * 13)[:13]\n        sh.append([(r[i], 2 if i < 9 else 3) for i in range(13)])\n    for i in range(80):\n        sh.append([('', 2)] * 9)\n    val = [('A4:A%d' % (len(sh) + 1), 'LISTS!$A$2:$A$%d' % (len(levels) + 1))] if levels else []\n    lists = [[('Revit levels', 1)]] + [[(l, 0)] for l in levels]\n    help_rows = [[('HOW TO USE', 4)], [],\n                 ['1.  One row per room: LEVEL (Revit level name), ROOM NUMBER, ROOM NAME, DEPARTMENT, finishes, TARGET AREA in m2.'],\n                 ['2.  Save, close, run CAD2BIM_Rooms_From_Excel (APPLY on).'],\n                 ['    Existing rooms (REVIT ID or same level + number) are updated.  New rows become UNPLACED rooms:'],\n                 ['    in Revit use Architecture > Room, then pick the room from the \"Room\" list in the Options Bar and click in the space.'],\n                 ['3.  Run again: ACTUAL AREA, DIFF % and STATUS (OK / OVER / UNDER / NOT PLACED / NOT ENCLOSED) are written back.'],\n                 ['4.  TARGET AREA is stored in the room parameter \"Target Area\" (added by CAD2BIM_Project_Setup).'],\n                 ['    Rooms are never deleted by the script.'],\n                 [], ['Blue = you type.   Grey = written by the script.']]\n    xlsx_write(path, [('ROOMS', _sheet_xml(sh, [c[1] for c in COLS], freeze=3, heights={2: 32}, validations=val)),\n                      ('LISTS', _sheet_xml(lists, [30])),\n                      ('HOW TO USE', _sheet_xml(help_rows, [130]))])\n\n\ndef read_book(path):\n    rows = xlsx_read(path, 'ROOMS')\n    if rows is None:\n        raise Exception('the Excel has no ROOMS tab - leave the file box empty once to create a new Excel')\n    tol = 5.0\n    for r in rows[:3]:\n        if r and r[0].strip().lower().startswith('area tolerance') and len(r) > 1 and num(r[1]) is not None:\n            tol = num(r[1])\n    hi = next((i for i, r in enumerate(rows) if r and r[0].strip().upper() == 'LEVEL'), 2)\n    out = []\n    for n, r in enumerate(rows[hi + 1:], start=hi + 2):\n        r = (list(r) + [''] * 13)[:13]\n        if not (r[1] or r[2]):\n            continue\n        d = dict(zip(FIELDS, r))\n        d['row'] = n\n        out.append(d)\n    return tol, out\n\n\n# ======================================================================== Revit part\ndef run(doc, XL, APPLY, out):\n    from Autodesk.Revit.DB import (FilteredElementCollector, BuiltInCategory, BuiltInParameter, Level, Phase,\n                                   StorageType)\n\n    def idv(eid):\n        try:\n            return eid.Value\n        except Exception:\n            return eid.IntegerValue\n\n    levels = sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation)\n    lvl_name = dict((idv(l.Id), l.Name) for l in levels)\n    rooms = [r for r in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Rooms).WhereElementIsNotElementType()]\n\n    def P(r, bip):\n        p = r.get_Parameter(bip)\n        return (p.AsString() or '') if p is not None else ''\n\n    def room_level(r):\n        try:\n            return lvl_name.get(idv(r.LevelId), '') if r.LevelId is not None else ''\n        except Exception:\n            return ''\n\n    def target(r):\n        p = r.LookupParameter('Target Area')\n        return p.AsDouble() * SQM if p is not None and p.HasValue else None\n\n    def status_of(r, tgt, tol):\n        if r.Location is None:\n            return 'NOT PLACED', '', ''\n        a = r.Area * SQM\n        if a <= 0:\n            return 'NOT ENCLOSED', '0.00', ''\n        if tgt:\n            d = (a - tgt) / tgt * 100.0\n            return ('OK' if abs(d) <= tol else ('OVER' if d > 0 else 'UNDER')), '%.2f' % a, '%+.1f' % d\n        return 'OK', '%.2f' % a, ''\n\n    def row_of(r, tol):\n        tg = target(r)\n        stt, a, d = status_of(r, tg, tol)\n        return [room_level(r), P(r, BuiltInParameter.ROOM_NUMBER), P(r, BuiltInParameter.ROOM_NAME),\n                P(r, BuiltInParameter.ROOM_DEPARTMENT), P(r, BuiltInParameter.ROOM_FINISH_FLOOR),\n                P(r, BuiltInParameter.ROOM_FINISH_WALL), P(r, BuiltInParameter.ROOM_FINISH_CEILING),\n                P(r, BuiltInParameter.ROOM_FINISH_BASE), ('%.2f' % tg) if tg else '', a, d, stt, str(idv(r.Id))]\n\n    if not os.path.exists(XL):\n        rows = sorted([row_of(r, 5.0) for r in rooms], key=lambda x: (x[0], natural(x[1])))\n        write_book(XL, rows, 5, [l.Name for l in levels], doc.Title)\n        out.append('CAD2BIM ROOMS  -  EXCEL CREATED')\n        out.append('File   : ' + XL)\n        out.append('%d room(s) written.  Edit / add rows, save, Browse... to this file and Run.' % len(rows))\n        return\n\n    tol, rows = read_book(XL)\n    by_id = dict((str(idv(r.Id)), r) for r in rooms)\n    by_key = dict(((room_level(r).lower(), P(r, BuiltInParameter.ROOM_NUMBER).lower()), r) for r in rooms)\n    level_by = dict((l.Name.lower(), l) for l in levels)\n    phases = list(doc.Phases)\n    phase = phases[phases.Size - 1] if hasattr(phases, 'Size') else (phases[-1] if phases else None)\n    acts, notes, seen = [], [], set()\n    has_target = any(r.LookupParameter('Target Area') is not None for r in rooms[:1]) if rooms else True\n    for d in rows:\n        r = by_id.get(d['rid']) if d['rid'] else None\n        if r is None:\n            r = by_key.get((d['level'].lower(), d['number'].lower()))\n        key = (d['level'].lower(), d['number'].lower())\n        if key in seen:\n            notes.append('row %d: room %s on %s is twice in the Excel - skipped' % (d['row'], d['number'], d['level']))\n            continue\n        seen.add(key)\n        is_new = r is None\n        if r is None:\n            if APPLY:\n                r = doc.Create.NewRoom(phase)\n                rooms.append(r)\n            acts.append('NEW (unplaced) %-8s %s' % (d['number'], d['name']))\n            if r is None:\n                continue\n        for bip, val, lab in ((BuiltInParameter.ROOM_NUMBER, d['number'], 'number'),\n                              (BuiltInParameter.ROOM_NAME, d['name'], 'name'),\n                              (BuiltInParameter.ROOM_DEPARTMENT, d['dept'], 'department'),\n                              (BuiltInParameter.ROOM_FINISH_FLOOR, d['floor'], 'floor finish'),\n                              (BuiltInParameter.ROOM_FINISH_WALL, d['wall'], 'wall finish'),\n                              (BuiltInParameter.ROOM_FINISH_CEILING, d['ceiling'], 'ceiling finish'),\n                              (BuiltInParameter.ROOM_FINISH_BASE, d['base'], 'base finish')):\n            if val == '' and lab not in ('number', 'name'):\n                continue\n            p = r.get_Parameter(bip)\n            if p is not None and not p.IsReadOnly and (p.AsString() or '') != val:\n                if APPLY:\n                    p.Set(val)\n                if not is_new:\n                    acts.append('%-14s %-8s %s -> %s' % ('UPDATED', d['number'], lab, val))\n        t = num(d['target'])\n        if t is not None:\n            p = r.LookupParameter('Target Area')\n            if p is None:\n                if has_target:\n                    notes.append('no \"Target Area\" room parameter - run CAD2BIM_Project_Setup (ADD shared parameters) first')\n                    has_target = False\n            elif not p.IsReadOnly and abs((p.AsDouble() * SQM if p.HasValue else 0) - t) > 0.005:\n                if APPLY:\n                    p.Set(t / SQM)\n                if not is_new:\n                    acts.append('%-14s %-8s target area -> %.2f m2' % ('UPDATED', d['number'], t))\n        d['room'] = r\n        if d['level'] and d['level'].lower() not in level_by:\n            notes.append('row %d: level \"%s\" not in Revit' % (d['row'], d['level']))\n\n    out.append('CAD2BIM ROOMS  -  %s' % ('APPLIED' if APPLY else 'CHECK ONLY (APPLY is off - Revit not changed)'))\n    out.append('File   : ' + XL)\n    if acts:\n        out.append('Changes:')\n        out.extend('  ' + a for a in acts)\n    else:\n        out.append('Revit already matches the Excel - nothing to change.')\n\n    # write back actual areas / status / ids\n    if APPLY:\n        doc.Regenerate()\n    summary = {}\n    new_rows = []\n    for d in rows:\n        r = d.get('room')\n        if r is None:\n            new_rows.append([d[f] for f in FIELDS])\n            continue\n        tg = num(d['target'])\n        stt, a, df = status_of(r, tg, tol)\n        summary[stt] = summary.get(stt, 0) + 1\n        lv = room_level(r) if r.Location is not None else d['level']\n        new_rows.append([lv, d['number'], d['name'], d['dept'], d['floor'], d['wall'], d['ceiling'], d['base'],\n                         d['target'], a, df, stt, str(idv(r.Id))])\n    listed = set(str(idv(d['room'].Id)) for d in rows if d.get('room') is not None)\n    extra = [r for r in rooms if str(idv(r.Id)) not in listed]\n    for r in extra:\n        new_rows.append(row_of(r, tol))\n    if extra:\n        notes.append('%d Revit room(s) were not in the Excel - added to the list' % len(extra))\n    out.append('Areas  : ' + ', '.join('%s %d' % (k, v) for k, v in sorted(summary.items())))\n    try:\n        write_book(XL, new_rows, tol, [l.Name for l in levels], doc.Title)\n        out.append('Excel updated: ACTUAL AREA, DIFF %, STATUS and REVIT ID written.')\n    except Exception:\n        notes.append('the Excel is open - close it and Run again to get the areas / status written back')\n    if notes:\n        out.append('')\n        out.append('Notes:')\n        out.extend('  ' + n for n in notes)\n\n\n# ======================================================================== Dynamo entry point\ntry:\n    IN\n    _IN_DYNAMO = True\nexcept NameError:\n    _IN_DYNAMO = False\n\nif _IN_DYNAMO:\n    import clr\n    clr.AddReference('RevitAPI')\n    clr.AddReference('RevitServices')\n    from RevitServices.Persistence import DocumentManager\n    from RevitServices.Transactions import TransactionManager\n\n    def file_path(x):\n        if x is None:\n            return ''\n        for a in ('FullName', 'FullPath'):\n            v = getattr(x, a, None)\n            if v:\n                return str(v)\n        s = str(x)\n        return '' if s.strip().lower() in ('', 'no file selected.', 'none', 'null') else s.strip().strip('\"')\n\n    def good_xl(p):\n        if not p:\n            return ''\n        base = os.path.basename(p).lower()\n        if base.startswith('no file selected') or not base.endswith(('.xlsx', '.xlsm')):\n            return ''\n        return p\n\n    out = []\n    doc = DocumentManager.Instance.CurrentDBDocument\n    _sub = None\n    try:\n        XL = good_xl(file_path(IN[0]))\n        APPLY = bool(IN[1])\n        log('--- rooms started  xl \"%s\" apply %s' % (XL, APPLY))\n        if not XL:\n            folder = os.path.dirname(doc.PathName) if doc.PathName else os.path.join(os.environ.get('USERPROFILE', ''), 'Documents')\n            XL = os.path.join(folder, '%s_ROOMS.xlsx' % doc.Title)\n        if APPLY and os.path.exists(XL):\n            from Autodesk.Revit.DB import SubTransaction\n            TransactionManager.Instance.EnsureInTransaction(doc)\n            _sub = SubTransaction(doc)\n            _sub.Start()\n        run(doc, XL, APPLY, out)\n        if _sub is not None:\n            _sub.Commit()\n            TransactionManager.Instance.TransactionTaskDone()\n    except Exception as ex:\n        try:\n            if _sub is not None:\n                _sub.RollBack()\n                out.append('Nothing was changed in Revit (the whole run was undone).')\n            TransactionManager.Instance.TransactionTaskDone()\n        except Exception:\n            pass\n        out.insert(0, 'FAILED: ' + str(ex))\n        log(traceback.format_exc())\n    log('\\n'.join(out))\n    OUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "309c2923834249aab68e7b7e75d2b8f5",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "78c62500e9aa4ee4bb15dab1bfa226d1",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fc4df9c24d694ba6b1cb47802f1399b5",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9f80e8edde5e4c94b3f0db12addfbac2",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "7765f2d35d294e36b7d46cbc1c446edd",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6ba3f9cbe59244ec8c8a512ad42e0ed9",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1b39a9f3af0f49c89439903791ab7065",
+      "End": "928b2441b30344ee9a351304a8b897a5",
+      "Id": "b26748871e764ac79857a0f62ff00882",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+      "End": "78c62500e9aa4ee4bb15dab1bfa226d1",
+      "Id": "fa7ffe247f764cc8a64b78fb3538bc1c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f805a5952b2846c5a4872752b6961cd7",
+      "End": "fc4df9c24d694ba6b1cb47802f1399b5",
+      "Id": "52ea49fd1e314aa59a741764889e14a4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9f80e8edde5e4c94b3f0db12addfbac2",
+      "End": "7765f2d35d294e36b7d46cbc1c446edd",
+      "Id": "ecac96db04fd4d25ac9154aeee1c819d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e2835dc20f1e422e863fde75e70e9c40",
+        "Name": "ROOMS Excel file (Browse...)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "86337e6929b34db8a0abe470f28ed0e9",
+        "Name": "File From Path (watches the Excel)",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 260.0,
+        "Y": 120.0
+      },
+      {
+        "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+        "Name": "APPLY to Revit  (off = only report)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 330.0
+      },
+      {
+        "Id": "309c2923834249aab68e7b7e75d2b8f5",
+        "Name": "CAD2BIM  Rooms  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "aa10ef9bd1cd49f5862624aa6157f268",
+        "Title": "1  EXCEL FILE  (Browse... -> your <project>_ROOMS.xlsx)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "e2835dc20f1e422e863fde75e70e9c40",
+          "86337e6929b34db8a0abe470f28ed0e9"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 270.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "d0365866d7d54b37855ee9bddd42bf58",
+        "Title": "2  OPTIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3c535e8d6607453bbb34dd05968bb1cd"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 235.0,
+        "Width": 440.0,
+        "Height": 275.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 330.0,
+        "InitialHeight": 180.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "6c445c885acd4590b0d2962f11f67896",
+        "Title": "3  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "309c2923834249aab68e7b7e75d2b8f5",
+          "f858a1cd0a8f4aaf9052d486f19bcc36"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "76a2d5ff4068470cbe6689fa4253249f",
+        "Title": "HOW TO USE  -  1st run: leave the file empty -> <project>_ROOMS.xlsx is made next to the .rvt from the Revit rooms\nThen Browse... to that Excel.  One row per room: LEVEL, NUMBER, NAME, DEPARTMENT, finishes, TARGET AREA m2.  Save + close, Run.\nExisting rooms are updated, new rows become unplaced rooms (Architecture > Room > pick it from the list).  Run again: actual area, DIFF % and STATUS written back.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

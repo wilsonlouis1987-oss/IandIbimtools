@@ -1,0 +1,534 @@
+{
+  "Uuid": "bdcd4e73-370e-4ae8-96de-d5bbd3288202",
+  "IsCustomNode": false,
+  "Description": "One view template per Discipline > Sub-Discipline and view kind (plan, RCP, section, elevation, 3D). Controls only Discipline, Sub-Discipline, Detail Level and model visibility; services views hide the other services. Can apply the templates to the views. Goes with A10.",
+  "Name": "A11_SETUP_View_Templates_Per_Discipline_Sub_Discipline",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "15a7a00525bf4d85be558403ff726422",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9a922282ef6148428619122dd875a303",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Sub-Discipline"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "274f79e32aec417ab8a9521c246f7467",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0189d4cbf06b480ab52b75103f1fefe8",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "ALL"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "f27c7cd2923a43aebaef8c6b5c1a9dd7",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "80ededbcb01a4181accd6ab6f5b87865",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "SD_{DISC}_{SUB}_{KIND}"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "672f456abd2a408cb6d51bc78094fb57",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6fbffeaa9e9642cba080e80ff06189ed",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "KEEP"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "9dbb0ba2592f4b27b633665c88969a3c",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "efe8a82686414af4845cbbdfc0676cc8",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "2951aa3a1fe64c15b93a728587238726",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "18cc3516d49442499a4f10ef3603c253",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b172609950d546e7b13cf80662346052",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d77f781ab7ae4df7835a04165b733e4e",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  A11 VIEW TEMPLATES PER DISCIPLINE + SUB-DISCIPLINE   (Revit 2026)   v1   - NOT TESTED IN REVIT YET\n#  Goes with A10: for every Discipline > Sub-Discipline that has views (plans, ceiling plans, sections,\n#  elevations, 3D) it makes one view template per view kind, e.g.\n#       SD_Electrical_Lighting_Plan     SD_Mechanical_HVAC_RCP     SD_Architectural_Architectural_Section\n#  The template only CONTROLS: Discipline, Sub-Discipline, Detail Level and Visibility / Graphics (model).\n#  Everything else (scale, view range, crop ...) stays free in each view.\n#  For services sub-disciplines the other services are hidden (Lighting views hide ducts and pipes ...).\n#  Optional: apply the template to every view of the group (views that have another template are skipped).\n#  Run again any time - templates are updated, never doubled.  PREVIEW (RUN = False) changes nothing.\n# =====================================================================\n# ---------------------------------------------------------------------\n#  shared helpers (same in every SD Tools script of this batch)\n#  work in Dynamo CPython3 (pythonnet 2.5) and pyRevit IronPython 2.7\n# ---------------------------------------------------------------------\nimport os\nimport math\nimport traceback\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *                           # noqa\nfrom System.Collections.Generic import List\n\nMM = 1.0 / 304.8                                          # mm -> feet (Revit internal)\nNOTES = []\n_NP = []\n\n\ndef log(msg):\n    try:\n        folder = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit')\n        if not os.path.isdir(folder):\n            os.makedirs(folder)\n        with open(os.path.join(folder, TOOL['code'] + '_log.txt'), 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ndef ename(e):\n    \"\"\"element name - Dynamo CPython3 cannot read .Name on many classes\"\"\"\n    try:\n        n = e.Name\n        if n:\n            return n\n    except Exception:\n        pass\n    try:\n        if not _NP:\n            _NP.append(clr.GetClrType(Element).GetProperty('Name'))\n        return str(_NP[0].GetValue(e, None) or '')\n    except Exception:\n        return ''\n\n\ndef tname(t):\n    \"\"\"type name (wall type, family symbol ...)\"\"\"\n    try:\n        p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n        if p is not None and p.AsString():\n            return p.AsString()\n    except Exception:\n        pass\n    return ename(t)\n\n\ndef cls(o):\n    \"\"\"class name - isinstance() is not reliable in Dynamo CPython3\"\"\"\n    try:\n        return o.GetType().Name\n    except Exception:\n        return ''\n\n\ndef key(s):\n    return ' '.join(str(s or '').upper().replace('_', ' ').split())\n\n\ndef words(txt):\n    \"\"\"'a, b' -> ['A', 'B']\"\"\"\n    return [key(w) for w in str(txt or '').replace(';', ',').split(',') if w.strip()]\n\n\ndef is_all(txt):\n    return key(txt) in ('', 'ALL', 'ANY', '*')\n\n\ndef eid_int(i):\n    try:\n        return int(i.Value)\n    except Exception:\n        return int(i.IntegerValue)\n\n\ndef id_list(items):\n    out = List[ElementId]()\n    for i in items:\n        out.Add(i)\n    return out\n\n\ndef get_comment(e):\n    try:\n        p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n        return (p.AsString() or '') if p is not None else ''\n    except Exception:\n        return ''\n\n\ndef set_comment(e, txt):\n    try:\n        p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n        if p is not None and not p.IsReadOnly:\n            p.Set(txt)\n    except Exception:\n        pass\n\n\ndef tagged_ids(doc, prefix, category=None):\n    \"\"\"ids of model elements whose Comments start with prefix (made by an earlier run)\"\"\"\n    col = FilteredElementCollector(doc).WhereElementIsNotElementType()\n    if category is not None:\n        col = col.OfCategory(category)\n    out = []\n    for e in col:\n        if get_comment(e).startswith(prefix):\n            out.append(e.Id)\n    return out\n\n\ndef delete_ids(doc, ids):\n    \"\"\"delete after collecting - never delete inside a collector loop\"\"\"\n    n = 0\n    for i in list(ids):\n        try:\n            doc.Delete(i)\n            n += 1\n        except Exception:\n            pass\n    return n\n\n\ndef levels_sorted(doc):\n    return sorted(list(FilteredElementCollector(doc).OfClass(Level)), key=lambda l: l.Elevation)\n\n\ndef pick_levels(doc, txt):\n    lv = levels_sorted(doc)\n    if is_all(txt):\n        return lv\n    want = words(txt)\n    got = [l for l in lv if key(l.Name) in want]\n    if not got:\n        raise Exception('No level named \"%s\". Levels here: %s' % (txt, ', '.join(l.Name for l in lv)))\n    return got\n\n\ndef plan_view(doc, uidoc=None):\n    \"\"\"the open plan view; when the Project Browser is the active view, the first floor plan\"\"\"\n    v = None\n    try:\n        v = doc.ActiveView\n    except Exception:\n        v = None\n    if v is not None and cls(v) == 'ViewPlan' and not v.IsTemplate:\n        return v\n    if uidoc is not None:\n        try:\n            for uv in uidoc.GetOpenUIViews():\n                w = doc.GetElement(uv.ViewId)\n                if w is not None and cls(w) == 'ViewPlan' and not w.IsTemplate:\n                    return w\n        except Exception:\n            pass\n    for w in FilteredElementCollector(doc).OfClass(ViewPlan):\n        if not w.IsTemplate:\n            NOTES.append('No plan view open - used \"%s\".' % w.Name)\n            return w\n    raise Exception('Open a floor plan first.')\n\n\ndef first_type(doc, klass, name_words=''):\n    \"\"\"first element type of a class whose name contains one of the words (or just the first one)\"\"\"\n    ws = words(name_words)\n    first = None\n    for t in FilteredElementCollector(doc).OfClass(klass):\n        if first is None:\n            first = t\n        if ws and any(w in key(tname(t)) for w in ws):\n            return t\n    return first\n\n\ndef symbols(doc, category, name_words=''):\n    \"\"\"family symbols of a category; name_words filters on 'family : type'\"\"\"\n    ws = words(name_words)\n    out = []\n    for s in FilteredElementCollector(doc).OfClass(FamilySymbol).OfCategory(category):\n        nm = key('%s : %s' % (s.FamilyName, tname(s)))\n        if not ws or any(w in nm for w in ws):\n            out.append(s)\n    return out\n\n\ndef activate(doc, sym):\n    try:\n        if not sym.IsActive:\n            sym.Activate()\n            doc.Regenerate()\n    except Exception:\n        pass\n\n\n# ---------------------------------------------------------------- CAD (linked or imported DWG)\ndef cad_instances(doc, view=None):\n    col = FilteredElementCollector(doc, view.Id) if view is not None else FilteredElementCollector(doc)\n    return list(col.OfClass(ImportInstance))\n\n\ndef cad_layer(doc, gobj):\n    try:\n        gs = doc.GetElement(gobj.GraphicsStyleId)\n        return gs.GraphicsStyleCategory.Name if gs is not None else ''\n    except Exception:\n        return ''\n\n\ndef _layer_ok(layer, layers):\n    return (not layers) or any(w in key(layer) for w in layers)\n\n\ndef _cad_walk(doc, geo, tf, layers, curves, blocks, depth):\n    for g in geo:\n        tn = cls(g)\n        if tn == 'GeometryInstance':\n            t2 = tf.Multiply(g.Transform)\n            sub = g.GetSymbolGeometry()\n            if depth >= 1 and blocks is not None:           # a block placed in the drawing\n                cs = []\n                _cad_walk(doc, sub, t2, layers, cs, None, depth + 1)\n                if cs:\n                    inv = t2.Inverse\n                    xs, ys = [], []\n                    for c, lay in cs:\n                        try:\n                            for p in c.Tessellate():\n                                q = inv.OfPoint(p)\n                                xs.append(q.X)\n                                ys.append(q.Y)\n                        except Exception:\n                            pass\n                    if xs:\n                        mid = t2.OfPoint(XYZ((min(xs) + max(xs)) / 2.0, (min(ys) + max(ys)) / 2.0, 0))\n                        blocks.append({'layer': cs[0][1], 'point': mid, 'width': max(xs) - min(xs),\n                                       'depth': max(ys) - min(ys), 'origin': t2.Origin,\n                                       'angle': math.atan2(t2.BasisX.Y, t2.BasisX.X), 'curves': cs})\n            else:\n                _cad_walk(doc, sub, t2, layers, curves, blocks, depth + 1)\n        elif tn == 'PolyLine':\n            lay = cad_layer(doc, g)\n            if not _layer_ok(lay, layers):\n                continue\n            pts = [tf.OfPoint(p) for p in g.GetCoordinates()]\n            for a, b in zip(pts[:-1], pts[1:]):\n                if a.DistanceTo(b) > 0.005:\n                    curves.append((Line.CreateBound(a, b), lay))\n        elif tn in ('Line', 'Arc', 'Ellipse', 'NurbSpline', 'HermiteSpline'):\n            lay = cad_layer(doc, g)\n            if not _layer_ok(lay, layers):\n                continue\n            try:\n                curves.append((g.CreateTransformed(tf), lay))\n            except Exception:\n                pass\n\n\ndef cad_geometry(doc, view=None, layer_words=''):\n    \"\"\"all CAD links / imports (in the view) -> (curves, blocks, layer names)\n    curves = [(Curve in model coordinates, layer name)]   loose lines, arcs, polyline segments\n    blocks = [{'layer', 'point' (centre XYZ), 'origin' (insert XYZ), 'width', 'depth' (feet, block axes),\n               'angle' (radians), 'curves'}]             one per block reference (block names are NOT readable)\n    layer_words: comma list, a layer is used when its name contains one of the words; blank = all layers\"\"\"\n    layers = words(layer_words)\n    curves, blocks = [], []\n    for inst in cad_instances(doc, view):\n        try:\n            geo = inst.get_Geometry(Options())\n            if geo is not None:\n                _cad_walk(doc, geo, Transform.Identity, layers, curves, blocks, 0)\n        except Exception as ex:\n            log('cad %s' % ex)\n    names = sorted(set([l for c, l in curves] + [b['layer'] for b in blocks]))\n    return curves, blocks, names\n\n\ndef flat(p, z=0.0):\n    return XYZ(p.X, p.Y, z)\n\n\nTOOL = {\n    'code': 'A11',\n    'file': 'A11_SETUP_View_Templates_Per_Discipline_Sub_Discipline',\n    'folder': 'A11 View Templates per Discipline Sub-Discipline',\n    'title': 'View Templates per Discipline',\n    'what': 'One view template per Discipline > Sub-Discipline and view kind (plan, RCP, section, elevation, 3D). '\n            'Controls only Discipline, Sub-Discipline, Detail Level and model visibility; services views hide the '\n            'other services. Can apply the templates to the views. Goes with A10.',\n    'inputs': [\n        ('str', 'Sub-Discipline', '0  Sub-discipline parameter name', 1),\n        ('str', 'ALL', '1  Sub-disciplines: ALL or comma list', 1),\n        ('str', 'SD_{DISC}_{SUB}_{KIND}', '2  Template name format', 2),\n        ('str', 'KEEP', '3  Detail level: KEEP / COARSE / MEDIUM / FINE', 2),\n        ('bool', True, '4  Hide the other services in services views', 2),\n        ('bool', True, '5  Apply the templates to the views', 3),\n        ('bool', False, '6  RUN (False = preview)', 3),\n    ],\n    'groups': {1: ('1  WHICH VIEWS', '#FFFFB458'), 2: ('2  TEMPLATE', '#FFA4E1FF'), 3: ('3  RUN', '#FFFFAA45')},\n    'how': 'Run A10 first so views have a Discipline and Sub-Discipline.  1 = ALL or e.g. LIGHTING, HVAC.  '\n           '2 = name of the templates ({DISC} {SUB} {KIND} are replaced).  3 = detail level written in the template.  '\n           '4 = in Lighting / Power / HVAC / Plumbing ... templates the other services categories are switched off.  '\n           '5 = give every view of the group its template (views with another template are left alone).  '\n           '6 RUN False = preview, True = make.  Ctrl+Z undoes.',\n}\n\nDISC_NAME = {1: 'Architectural', 2: 'Structural', 4: 'Mechanical', 8: 'Electrical', 16: 'Plumbing', 4095: 'Coordination'}\nKINDS = (('FloorPlan', 'Plan'), ('EngineeringPlan', 'Plan'), ('AreaPlan', 'Plan'), ('CeilingPlan', 'RCP'),\n         ('Section', 'Section'), ('Elevation', 'Elevation'), ('ThreeD', '3D'))\n\n# services categories each sub-discipline keeps; the other services categories are hidden in its template\nSERVICES = {\n    'LIGHTING': ('OST_LightingFixtures', 'OST_LightingDevices'),\n    'POWER': ('OST_ElectricalFixtures', 'OST_ElectricalEquipment', 'OST_CableTray', 'OST_CableTrayFitting',\n              'OST_Conduit', 'OST_ConduitFitting'),\n    'ELECTRICAL': ('OST_LightingFixtures', 'OST_LightingDevices', 'OST_ElectricalFixtures', 'OST_ElectricalEquipment',\n                   'OST_CableTray', 'OST_CableTrayFitting', 'OST_Conduit', 'OST_ConduitFitting'),\n    'FIRE ALARM': ('OST_FireAlarmDevices',),\n    'ELV': ('OST_CommunicationDevices', 'OST_DataDevices', 'OST_SecurityDevices', 'OST_TelephoneDevices',\n            'OST_NurseCallDevices', 'OST_FireAlarmDevices'),\n    'HVAC': ('OST_DuctCurves', 'OST_DuctFitting', 'OST_DuctAccessory', 'OST_DuctTerminal', 'OST_FlexDuctCurves',\n             'OST_MechanicalEquipment'),\n    'MECHANICAL': ('OST_DuctCurves', 'OST_DuctFitting', 'OST_DuctAccessory', 'OST_DuctTerminal',\n                   'OST_FlexDuctCurves', 'OST_MechanicalEquipment'),\n    'VENTILATION': ('OST_DuctCurves', 'OST_DuctFitting', 'OST_DuctAccessory', 'OST_DuctTerminal',\n                    'OST_FlexDuctCurves', 'OST_MechanicalEquipment'),\n    'PLUMBING': ('OST_PipeCurves', 'OST_PipeFitting', 'OST_PipeAccessory', 'OST_FlexPipeCurves',\n                 'OST_PlumbingFixtures', 'OST_PlumbingEquipment'),\n    'DRAINAGE': ('OST_PipeCurves', 'OST_PipeFitting', 'OST_PipeAccessory', 'OST_FlexPipeCurves',\n                 'OST_PlumbingFixtures'),\n    'FIRE FIGHTING': ('OST_PipeCurves', 'OST_PipeFitting', 'OST_PipeAccessory', 'OST_Sprinklers',\n                      'OST_MechanicalEquipment'),\n}\n\n\ndef bic(name):\n    try:\n        return getattr(BuiltInCategory, name)\n    except Exception:\n        return None\n\n\ndef all_services():\n    out = []\n    for names in SERVICES.values():\n        for n in names:\n            if n not in out:\n                out.append(n)\n    return out\n\n\ndef view_kind(v, table):\n    try:\n        return table.get(v.ViewType)\n    except Exception:\n        return None\n\n\ndef run(doc, uidoc, pname='Sub-Discipline', which='ALL', fmt='SD_{DISC}_{SUB}_{KIND}', detail='KEEP',\n        hide_other=True, apply_views=True, make=False):\n    table = {}\n    for n, k in KINDS:\n        try:\n            table[getattr(ViewType, n)] = k\n        except Exception:\n            pass\n    want = words(which)\n    groups, templates = {}, {}\n    for v in FilteredElementCollector(doc).OfClass(View):\n        if v.IsTemplate:\n            templates[ename(v)] = v\n            continue\n        kind = view_kind(v, table)\n        p = v.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE)\n        s = v.LookupParameter(pname)\n        if kind is None or p is None or s is None:\n            continue\n        sub = s.AsString() or ''\n        if not sub or (want and not is_all(which) and key(sub) not in want):\n            continue\n        groups.setdefault((DISC_NAME.get(p.AsInteger(), 'Other'), sub, kind), []).append(v)\n    if not groups:\n        raise Exception('No view has a \"%s\" value - run A10 first (or check the parameter name in input 0).' % pname)\n\n    dl = None\n    if key(detail) in ('COARSE', 'MEDIUM', 'FINE'):\n        dl = getattr(ViewDetailLevel, key(detail).title())\n    rows, skipped, made, updated, applied = [], [], 0, 0, 0\n    t = Transaction(doc, 'A11 View templates per discipline')\n    t.Start()\n    try:\n        for (disc, sub, kind) in sorted(groups):\n            views = groups[(disc, sub, kind)]\n            name = (fmt or 'SD_{DISC}_{SUB}_{KIND}').replace('{DISC}', disc).replace('{SUB}', sub).replace('{KIND}', kind)\n            tpl = templates.get(name)\n            if tpl is None:\n                src = None\n                for v in views:\n                    try:\n                        if v.IsViewValidForTemplateCreation():\n                            src = v\n                            break\n                    except Exception:\n                        pass\n                if src is None:\n                    skipped.append('%s: no view can make a template' % name)\n                    continue\n                tpl = src.CreateViewTemplate()\n                tpl.Name = name\n                templates[name] = tpl\n                made += 1\n                state = 'NEW'\n            else:\n                updated += 1\n                state = 'updated'\n            # --- what the template controls\n            keep = [eid_int(ElementId(BuiltInParameter.VIEW_DISCIPLINE)), eid_int(ElementId(BuiltInParameter.VIEW_DETAIL_LEVEL)),\n                    eid_int(ElementId(BuiltInParameter.VIS_GRAPHICS_MODEL))]\n            sp = tpl.LookupParameter(pname)\n            if sp is not None:\n                keep.append(eid_int(sp.Id))\n            try:\n                free = [i for i in tpl.GetTemplateParameterIds() if eid_int(i) not in keep]\n                tpl.SetNonControlledTemplateParameterIds(id_list(free))\n            except Exception as ex:\n                log('controlled %s: %s' % (name, ex))\n            dp = tpl.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE)\n            src_d = views[0].get_Parameter(BuiltInParameter.VIEW_DISCIPLINE).AsInteger()\n            if dp is not None and not dp.IsReadOnly:\n                dp.Set(src_d)\n            if sp is not None and not sp.IsReadOnly:\n                sp.Set(sub)\n            if dl is not None:\n                try:\n                    tpl.DetailLevel = dl\n                except Exception:\n                    pass\n            hidden = 0\n            if hide_other and key(sub) in SERVICES:\n                mine = SERVICES[key(sub)]\n                for n in all_services():\n                    b = bic(n)\n                    if b is None:\n                        continue\n                    try:\n                        cat = Category.GetCategory(doc, b)\n                        if cat is None or not tpl.CanCategoryBeHidden(cat.Id):\n                            continue\n                        off = n not in mine\n                        if tpl.GetCategoryHidden(cat.Id) != off:\n                            tpl.SetCategoryHidden(cat.Id, off)\n                        hidden += 1 if off else 0\n                    except Exception:\n                        pass\n            n_app = 0\n            if apply_views:\n                for v in views:\n                    try:\n                        cur = v.ViewTemplateId\n                        if cur.Equals(tpl.Id):\n                            continue\n                        if not cur.Equals(ElementId.InvalidElementId):\n                            skipped.append('%s: has another template' % v.Name)\n                            continue\n                        v.ViewTemplateId = tpl.Id\n                        n_app += 1\n                    except Exception as ex:\n                        skipped.append('%s: %s' % (v.Name, str(ex).splitlines()[0][:60]))\n            applied += n_app\n            rows.append('%s  %s   (%d view%s, applied to %d%s)' % (\n                state, name, len(views), '' if len(views) == 1 else 's', n_app,\n                ', %d other services categories off' % hidden if hidden else ''))\n    except Exception:\n        if t.HasStarted() and not t.HasEnded():\n            t.RollBack()\n        raise\n    if make:\n        t.Commit()\n        out = ['DONE in \"%s\": %d template(s) made, %d updated, applied to %d view(s)' % (doc.Title, made, updated, applied)]\n    else:\n        t.RollBack()\n        out = ['PREVIEW (RUN = False): nothing changed - %d template(s) would be made, %d updated, applied to %d view(s)'\n               % (made, updated, applied)]\n    out += rows\n    if skipped:\n        out.append('SKIPPED:')\n        out += ['  ' + s for s in skipped[:12]]\n        if len(skipped) > 12:\n            out.append('  ... +%d more' % (len(skipped) - 12))\n    out.append('Templates control only Discipline, %s, Detail Level and model visibility.  Ctrl+Z undoes.' % pname)\n    return out\n\n\n# =====================================================================\n#  host glue - Dynamo (IN / OUT) or pyRevit (doc, uidoc, TOOL_INPUTS)\n#  inputs are listed in TOOL['inputs'] at the top of this script; the last one is RUN (False = preview)\n# =====================================================================\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _d = DocumentManager.Instance.CurrentDBDocument\n        if _d is not None:\n            doc = _d\n            TM = TransactionManager\n        try:\n            uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n        except Exception:\n            uidoc = None\n    except Exception:\n        pass\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('TOOL_INPUTS', []))\n\n\ndef _val(i):\n    kind, default = TOOL['inputs'][i][0], TOOL['inputs'][i][1]\n    v = RAW[i] if i < len(RAW) else default\n    if v is None:\n        v = default\n    if kind == 'bool':\n        if isinstance(v, str):\n            return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n        return bool(v)\n    v = str(v)\n    if kind == 'file' and v.strip().lower().startswith('no file'):\n        return ''\n    return v if v.strip() else str(default)\n\n\nout = []\ntry:\n    if doc is None:\n        raise Exception('No Revit project open.')\n    if TM is not None:\n        TM.Instance.ForceCloseTransaction()\n    out = list(run(doc, uidoc, *[_val(i) for i in range(len(TOOL['inputs']))]))\nexcept Exception as ex:\n    out = ['FAILED: ' + str(ex)]\n    log(traceback.format_exc())\nlog('\\n'.join(str(l) for l in out))\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog(TOOL['code'] + ' ' + TOOL['title'])\n        td.MainInstruction = 'Failed' if any(str(l).startswith('FAILED') for l in out) else (\n            'Preview - nothing changed' if out and str(out[0]).startswith('PREVIEW') else 'Done')\n        td.MainContent = '\\n'.join(str(l) for l in out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "ce752aa84e554b80b5ebda9f6e08a2b1",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "2c9cf33fd1194989a74c1bbfeb17d313",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f57c9bae327a434492c0562ff7b8f193",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "99d549438fc14a6c8ee32b5e7422ee29",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1fb377872eaf42c19ed0444d9042505e",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0cbe97d8b0ed42c48136926ebfc1ec93",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "41139850d63f4ca48cd098a06821f134",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "05a55c98277f4b0d82f29568e8d24f1a",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d67925a588e64b31a83cc6ad911a34ea",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "a6cf4ec751004dedba0d3fbe11b10ffc",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "502708507bc74a7abc6aa3e148d10670",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "09f7b71b6c21454691ce49117d5a9895",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "9a922282ef6148428619122dd875a303",
+      "End": "2c9cf33fd1194989a74c1bbfeb17d313",
+      "Id": "b1f7c2e79e134b64b9b64359989c1460",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0189d4cbf06b480ab52b75103f1fefe8",
+      "End": "f57c9bae327a434492c0562ff7b8f193",
+      "Id": "e3f9b579175049618c11b88d7f8c40b7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "80ededbcb01a4181accd6ab6f5b87865",
+      "End": "99d549438fc14a6c8ee32b5e7422ee29",
+      "Id": "f242ca02e5ad402b828d235b041b5b0b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6fbffeaa9e9642cba080e80ff06189ed",
+      "End": "1fb377872eaf42c19ed0444d9042505e",
+      "Id": "6152bd60610d4821b645e25f15483a87",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "efe8a82686414af4845cbbdfc0676cc8",
+      "End": "0cbe97d8b0ed42c48136926ebfc1ec93",
+      "Id": "281f948eece14f29a76d128c550364b5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "18cc3516d49442499a4f10ef3603c253",
+      "End": "41139850d63f4ca48cd098a06821f134",
+      "Id": "7f9cfca667cd425c9a4896a74477e511",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d77f781ab7ae4df7835a04165b733e4e",
+      "End": "05a55c98277f4b0d82f29568e8d24f1a",
+      "Id": "d06d3cfe406c4c37b6b316a23d39748f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d67925a588e64b31a83cc6ad911a34ea",
+      "End": "502708507bc74a7abc6aa3e148d10670",
+      "Id": "86e663e9e216406dbc91ffcbb1efd9dd",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "15a7a00525bf4d85be558403ff726422",
+        "Name": "0  Sub-discipline parameter name",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "274f79e32aec417ab8a9521c246f7467",
+        "Name": "1  Sub-disciplines: ALL or comma list",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "f27c7cd2923a43aebaef8c6b5c1a9dd7",
+        "Name": "2  Template name format",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 580,
+        "Y": 0
+      },
+      {
+        "Id": "672f456abd2a408cb6d51bc78094fb57",
+        "Name": "3  Detail level: KEEP / COARSE / MEDIUM / FINE",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 580,
+        "Y": 150
+      },
+      {
+        "Id": "9dbb0ba2592f4b27b633665c88969a3c",
+        "Name": "4  Hide the other services in services views",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 580,
+        "Y": 300
+      },
+      {
+        "Id": "2951aa3a1fe64c15b93a728587238726",
+        "Name": "5  Apply the templates to the views",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1160,
+        "Y": 0
+      },
+      {
+        "Id": "b172609950d546e7b13cf80662346052",
+        "Name": "6  RUN (False = preview)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1160,
+        "Y": 150
+      },
+      {
+        "Id": "ce752aa84e554b80b5ebda9f6e08a2b1",
+        "Name": "A11 ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1860.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "a6cf4ec751004dedba0d3fbe11b10ffc",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2210.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "a833aa4be5e74511adfe1f4aa2415250",
+        "Title": "1  WHICH VIEWS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "15a7a00525bf4d85be558403ff726422",
+          "274f79e32aec417ab8a9521c246f7467"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 540.0,
+        "Height": 435,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 340,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "5f951a02c8ae4411b85386f8423103e6",
+        "Title": "2  TEMPLATE",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "f27c7cd2923a43aebaef8c6b5c1a9dd7",
+          "672f456abd2a408cb6d51bc78094fb57",
+          "9dbb0ba2592f4b27b633665c88969a3c"
+        ],
+        "HasNestedGroups": false,
+        "Left": 560.0,
+        "Top": -95.0,
+        "Width": 540.0,
+        "Height": 585,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 490,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "60608c09287b45bb982ccf94f52d2f0d",
+        "Title": "3  RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "2951aa3a1fe64c15b93a728587238726",
+          "b172609950d546e7b13cf80662346052"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1140.0,
+        "Top": -95.0,
+        "Width": 540.0,
+        "Height": 435,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 340,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFAA45"
+      },
+      {
+        "Id": "c6703cfe66944f298b1be721dc53aeac",
+        "Title": "HOW TO USE:  Run A10 first so views have a Discipline and Sub-Discipline.  1 = ALL or e.g. LIGHTING, HVAC.  2 = name of the templates ({DISC} {SUB} {KIND} are replaced).  3 = detail level written in the template.  4 = in Lighting / Power / HVAC / Plumbing ... templates the other services categories are switched off.  5 = give every view of the group its template (views with another template are left alone).  6 RUN False = preview, True = make.  Ctrl+Z undoes.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -440.0,
+        "Width": 1860.0,
+        "Height": 280.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -440.0,
+        "InitialHeight": 190.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

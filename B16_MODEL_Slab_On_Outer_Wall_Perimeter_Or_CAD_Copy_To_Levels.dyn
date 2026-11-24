@@ -1,0 +1,672 @@
+{
+  "Uuid": "45353cc7-b2b0-476d-8e9b-8200a8d945d9",
+  "IsCustomNode": false,
+  "Description": "SLAB: floor on the outer face perimeter of the walls of the open plan (or a closed CAD outline), your thickness, copied to the levels above",
+  "Name": "B16_MODEL_Slab_On_Outer_Wall_Perimeter_Or_CAD_Copy_To_Levels",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "35b28d68cf2b472788ac81d9c037eede",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "70f078529aea4d80ac3f6de497bc3ce2",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "WALLS"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "04cb2ae8ed434488b4dad1613261374b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1d0bdfefaf344645a269973fd5144453",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "420ea27bbfe243f9ae8ef06ba80de5a8",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f399d9b88a62415ca583b9c49a584551",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "150"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "63b4db9f3f114cf5a588b391003e6feb",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ba1396fe746540d29fcbc20b33147a28",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Concrete"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "ca1017c3394d4e34b19f5198ede3b6fa",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ebe91aeca47c452ebba1df60c31231e3",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "4878a365324942238e9585c479d9c2ac",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7f2bdb2df6324fd2b8a6acb1fca4334e",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "c1b6358f24424afcbb9ebbfc71349171",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2564e4938b994b7192f7c3fb12344941",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "cd84266ed31f46a4869c287a413b9f91",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fbf3096f80a44a4d9b5bb2707d20cb71",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "653b79f496704a939ad4f4b777071241",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "066d8d48ded14861beae4511723c6bfb",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "0d8009e1af1940698d738b4823a45901",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "52d8a4b9303649fc9131f2ac97d84501",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  B16 SLAB ON THE OUTER PERIMETER OF THE WALLS   (Revit 2026)   v1\n#  Open plan -> outline from WALLS (outer face perimeter of the walls of its level, Revit joins the footprints)\n#                       or CAD (biggest closed polyline / lines in a linked CAD, closed loops inside = holes) -> floor slab\n#    thickness you set (type A_SLB_<mat>_<mm>), top offset, edge offset (+ = beyond the outer face)\n#    copy to levels above: '' = none, ALL = every level above, or names \"L2, L3\"\n#  Run again = the B16 slabs on those levels are replaced.  Runs in pyRevit (IronPython 2.7) and Dynamo CPython3.\n# =====================================================================\nimport math, os, re\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *                           # noqa\nclr.AddReference('System')\nfrom System.Collections.Generic import List\n\nMMF = 1.0 / 304.8\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'B16_slab_log.txt')\nTAG = 'B16 SLAB|'\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ndef tname_of(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef ename(e):\n    for bip in (BuiltInParameter.SYMBOL_NAME_PARAM, BuiltInParameter.ALL_MODEL_TYPE_NAME):\n        try:\n            p = e.get_Parameter(bip)\n            if p is not None and p.AsString():\n                return p.AsString()\n        except Exception:\n            pass\n    try:\n        return Element.Name.GetValue(e)\n    except Exception:\n        return ''\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef plan_view(doc, uidoc):\n    try:\n        v = uidoc.ActiveView if uidoc is not None else doc.ActiveView\n    except Exception:\n        v = doc.ActiveView\n    if v is not None and tname_of(v) == 'ViewPlan' and not v.IsTemplate and v.GenLevel is not None:\n        return v\n    try:\n        for uv in uidoc.GetOpenUIViews():\n            ov = doc.GetElement(uv.ViewId)\n            if ov is not None and tname_of(ov) == 'ViewPlan' and not ov.IsTemplate and ov.GenLevel is not None:\n                return ov\n    except Exception:\n        pass\n    return None\n\n\ndef levels_of(doc):\n    return sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation)\n\n\ndef copy_levels(doc, base, text):\n    t = str(text or '').strip()\n    if not t or t.upper() in ('NONE', 'NO', 'FALSE'):\n        return []\n    above = [l for l in levels_of(doc) if l.Elevation > base.Elevation + 1e-6]\n    if t.upper() in ('ALL', 'ALL ABOVE', 'YES', 'TRUE'):\n        return above\n    out = []\n    for n in re.split(r'[,;|]+', t):\n        n = n.strip()\n        if not n:\n            continue\n        hit = [l for l in levels_of(doc) if l.Name.strip().upper() == n.upper()] or \\\n              [l for l in levels_of(doc) if n.upper() in l.Name.upper()]\n        if not hit:\n            raise Exception('No level \"{0}\". Levels: {1}'.format(n, ', '.join(l.Name for l in levels_of(doc))))\n        if hit[0].Id != base.Id and hit[0] not in out:\n            out.append(hit[0])\n    return out\n\n\n# ------------------------------------------------------------------ outer perimeter of the walls\ndef walls_on(doc, view, level):\n    ws = [w for w in FilteredElementCollector(doc, view.Id).OfClass(Wall) if w.LevelId == level.Id]\n    if not ws:\n        ws = [w for w in FilteredElementCollector(doc).OfClass(Wall) if w.LevelId == level.Id]\n    return [w for w in ws if w.Location is not None and hasattr(w.Location, 'Curve') and w.WallType.Kind != WallKind.Curtain] + \\\n           [w for w in ws if w.Location is not None and hasattr(w.Location, 'Curve') and w.WallType.Kind == WallKind.Curtain]\n\n\ndef _centre_curve(w):\n    \"\"\"the wall's centre line (Location Line may be a face)\"\"\"\n    c = w.Location.Curve\n    t = w.Width\n    key = 0\n    try:\n        key = w.get_Parameter(BuiltInParameter.WALL_KEY_REF_PARAM).AsInteger()\n    except Exception:\n        pass\n    shift = {2: -t / 2.0, 4: -t / 2.0, 3: t / 2.0, 5: t / 2.0}.get(key, 0.0)   # face of exterior / interior\n    if abs(shift) < 1e-9:\n        return c\n    o = w.Orientation                                     # points to the exterior side\n    if w.Flipped:\n        o = o.Negate()\n    try:\n        return c.CreateTransformed(Transform.CreateTranslation(o.Multiply(shift)))\n    except Exception:\n        return c\n\n\ndef wall_prism(w, z, h, extend):\n    \"\"\"plan footprint of the wall as a thin prism (ends stretched to close corners)\"\"\"\n    c = _centre_curve(w)\n    t = max(w.Width, 10 * MMF)\n    p0, p1 = c.GetEndPoint(0), c.GetEndPoint(1)\n    flat = Transform.CreateTranslation(XYZ(0, 0, z - p0.Z))\n    if tname_of(c) == 'Line':\n        d = p1.Subtract(p0).Normalize()                   # no XYZ + / - operators: Dynamo CPython3 has none\n        a = XYZ(p0.X, p0.Y, z).Subtract(d.Multiply(extend))\n        b = XYZ(p1.X, p1.Y, z).Add(d.Multiply(extend))\n        n = XYZ(-d.Y, d.X, 0).Multiply(t / 2.0)\n        pts = [a.Add(n), b.Add(n), b.Subtract(n), a.Subtract(n)]\n        cl = CurveLoop()\n        for i in range(4):\n            cl.Append(Line.CreateBound(pts[i], pts[(i + 1) % 4]))\n    else:\n        cc = c.CreateTransformed(flat)\n        o1 = cc.CreateOffset(t / 2.0, XYZ.BasisZ)\n        o2 = cc.CreateOffset(-t / 2.0, XYZ.BasisZ)\n        cl = CurveLoop()\n        cl.Append(o1)\n        cl.Append(Line.CreateBound(o1.GetEndPoint(1), o2.GetEndPoint(1)))\n        cl.Append(o2.CreateReversed())\n        cl.Append(Line.CreateBound(o2.GetEndPoint(0), o1.GetEndPoint(0)))\n    loops = List[CurveLoop]()\n    loops.Add(cl)\n    return GeometryCreationUtilities.CreateExtrusionGeometry(loops, XYZ.BasisZ, h)\n\n\ndef _loop_area(loop):\n    pts = []\n    for c in loop:\n        pts.extend(list(c.Tessellate())[:-1])\n    a = 0.0\n    for i in range(len(pts)):\n        p, q = pts[i], pts[(i + 1) % len(pts)]\n        a += p.X * q.Y - q.X * p.Y\n    return a / 2.0\n\n\ndef _merge_collinear(curves, z):\n    \"\"\"flatten to z and join straight pieces in one line\"\"\"\n    flat = []\n    for c in curves:\n        p0, p1 = c.GetEndPoint(0), c.GetEndPoint(1)\n        if tname_of(c) == 'Line':\n            flat.append(Line.CreateBound(XYZ(p0.X, p0.Y, z), XYZ(p1.X, p1.Y, z)))\n        else:\n            flat.append(c.CreateTransformed(Transform.CreateTranslation(XYZ(0, 0, z - p0.Z))))\n    out = []\n    for c in flat:\n        if out and tname_of(c) == 'Line' and tname_of(out[-1]) == 'Line':\n            a, b = out[-1], c\n            da, db = a.Direction, b.Direction\n            if abs(da.X * db.Y - da.Y * db.X) < 1e-6 and da.DotProduct(db) > 0:\n                out[-1] = Line.CreateBound(a.GetEndPoint(0), b.GetEndPoint(1))\n                continue\n        out.append(c)\n    if len(out) > 2 and tname_of(out[0]) == 'Line' and tname_of(out[-1]) == 'Line':\n        a, b = out[-1], out[0]\n        da, db = a.Direction, b.Direction\n        if abs(da.X * db.Y - da.Y * db.X) < 1e-6 and da.DotProduct(db) > 0:\n            out[0] = Line.CreateBound(a.GetEndPoint(0), b.GetEndPoint(1))\n            out.pop()\n    cl = CurveLoop()\n    for c in out:\n        cl.Append(c)\n    return cl\n\n\ndef outer_loop(walls, z, gap_mm=100.0):\n    \"\"\"union of the wall footprints -> its outer boundary at height z (CurveLoop)\"\"\"\n    h = 1.0\n    union = None\n    skipped = 0\n    why = ''\n    for w in walls:\n        try:\n            s = wall_prism(w, z - 0.5, h, max(w.Width / 2.0, gap_mm * MMF))\n        except Exception as ex:\n            skipped += 1\n            if not why:\n                why = 'wall id {0}: {1}'.format(idv(w.Id), str(ex).split(chr(10))[0])\n                log('wall footprint failed - ' + why)\n            continue\n        if union is None:\n            union = s\n        else:\n            try:\n                union = BooleanOperationsUtils.ExecuteBooleanOperation(union, s, BooleanOperationsType.Union)\n            except Exception:\n                skipped += 1\n    if union is None:\n        raise Exception('none of the {0} wall(s) on this level could be used for the outline{1}'.format(\n            len(walls), ' - ' + why if why else ''))\n    best = None\n    for f in union.Faces:\n        try:\n            if tname_of(f) != 'PlanarFace' or f.FaceNormal.Z < 0.99:\n                continue\n        except Exception:\n            continue\n        for el in f.EdgeLoops:\n            curves = [e.AsCurve() for e in el]\n            cl = CurveLoop()\n            try:\n                for c in curves:\n                    cl.Append(c)\n            except Exception:\n                cl = CurveLoop.Create(List[Curve](curves))\n            a = abs(_loop_area(cl))\n            if best is None or a > best[0]:\n                best = (a, curves)\n    if best is None:\n        raise Exception('could not find the outer outline of the walls')\n    loop = _merge_collinear(best[1], z)\n    if _loop_area(loop) < 0:\n        loop.Flip()\n    return loop, best[0] * 0.092903, skipped\n\n\n# ------------------------------------------------------------------ CAD outline (closed polylines / lines end to end)\ndef _cad_walk(doc, geo, tf, out, layer):\n    for g in geo:\n        n = tname_of(g)\n        if n == 'GeometryInstance':\n            _cad_walk(doc, g.GetSymbolGeometry(), tf.Multiply(g.Transform), out, layer)\n            continue\n        if layer:\n            try:\n                gs = doc.GetElement(g.GraphicsStyleId)\n                nm = gs.GraphicsStyleCategory.Name if gs is not None else ''\n                if layer.upper() not in nm.upper():\n                    continue\n            except Exception:\n                continue\n        try:\n            if n in ('Line', 'Arc'):\n                c = g.CreateTransformed(tf)\n                if c.IsBound:\n                    out.append(c)\n                elif n == 'Arc':                          # full circle = a closed loop by itself (two half arcs)\n                    import math as _m\n                    CLOSED.append([Arc.Create(c.Center, c.Radius, 0.0, _m.pi, c.XDirection, c.YDirection),\n                                   Arc.Create(c.Center, c.Radius, _m.pi, 2 * _m.pi, c.XDirection, c.YDirection)])\n            elif n == 'PolyLine':\n                pts = [tf.OfPoint(p) for p in g.GetCoordinates()]\n                segs = [Line.CreateBound(a, b) for a, b in zip(pts, pts[1:]) if a.DistanceTo(b) > 1e-4]\n                if len(pts) > 3 and pts[0].DistanceTo(pts[-1]) < 0.01 and len(segs) >= 3:\n                    CLOSED.append(segs)                   # a closed polyline is a loop by itself\n                else:\n                    out.extend(segs)\n        except Exception:\n            pass\n\n\nCLOSED = []\n\n\ndef cad_curves(doc, view, layer=''):\n    del CLOSED[:]\n    out = []\n    opt = Options()\n    opt.View = view\n    for ii in FilteredElementCollector(doc, view.Id).OfClass(ImportInstance):\n        try:\n            _cad_walk(doc, ii.get_Geometry(opt), Transform.Identity, out, layer)\n        except Exception as ex:\n            log('cad: ' + str(ex))\n    return out\n\n\ndef _flat(c, z):\n    p0 = c.GetEndPoint(0)\n    if tname_of(c) == 'Line':\n        p1 = c.GetEndPoint(1)\n        return Line.CreateBound(XYZ(p0.X, p0.Y, z), XYZ(p1.X, p1.Y, z))\n    return c.CreateTransformed(Transform.CreateTranslation(XYZ(0, 0, z - p0.Z)))\n\n\ndef cad_loops(curves, z, tol_mm=5.0):\n    \"\"\"closed chains of CAD curves -> [CurveLoop] biggest first\"\"\"\n    tol = tol_mm * MMF\n\n    def key(p):\n        return (int(round(p.X / tol)), int(round(p.Y / tol)))\n    curves = [_flat(c, z) for c in curves if c.IsBound and c.Length > tol]\n    adj = {}\n    for i, c in enumerate(curves):\n        for e in (0, 1):\n            adj.setdefault(key(c.GetEndPoint(e)), []).append((i, e))\n    used = set()\n    loops = []\n    for i0 in range(len(curves)):\n        if i0 in used:\n            continue\n        chain = [curves[i0]]\n        used.add(i0)\n        start = key(curves[i0].GetEndPoint(0))\n        cur = key(curves[i0].GetEndPoint(1))\n        ok = True\n        while cur != start:\n            nxt = [(i, e) for i, e in adj.get(cur, []) if i not in used]\n            if len(nxt) != 1 or len(adj.get(cur, [])) != 2:\n                ok = False                                # open end or a branch: not a clean loop\n                break\n            i, e = nxt[0]\n            used.add(i)\n            c = curves[i] if e == 0 else curves[i].CreateReversed()\n            last = chain[-1].GetEndPoint(1)\n            if tname_of(c) == 'Line':                     # weld the small gap at the joint\n                c = Line.CreateBound(last, c.GetEndPoint(1))\n            chain.append(c)\n            cur = key(c.GetEndPoint(1))\n        if not ok or len(chain) < 3:\n            continue\n        try:\n            first = chain[0].GetEndPoint(0)\n            if tname_of(chain[-1]) == 'Line':\n                chain[-1] = Line.CreateBound(chain[-1].GetEndPoint(0), first)\n            cl = CurveLoop()\n            for c in chain:\n                cl.Append(c)\n            if not cl.IsOpen():\n                loops.append(cl)\n        except Exception as ex:\n            log('cad loop: ' + str(ex))\n    loops.sort(key=lambda l: -abs(_loop_area(l)))\n    return loops\n\n\ndef _inside(pt, loop):\n    pts = []\n    for c in loop:\n        pts.extend(list(c.Tessellate())[:-1])\n    n, inside = len(pts), False\n    for i in range(n):\n        a, b = pts[i], pts[(i + 1) % n]\n        if (a.Y > pt.Y) != (b.Y > pt.Y) and pt.X < (b.X - a.X) * (pt.Y - a.Y) / ((b.Y - a.Y) or 1e-12) + a.X:\n            inside = not inside\n    return inside\n\n\ndef cad_outline(doc, view, z, layer=''):\n    \"\"\"biggest closed CAD loop = slab edge; closed loops inside it = holes\"\"\"\n    loops = cad_loops(cad_curves(doc, view, layer), z)\n    for segs in CLOSED:                                   # closed polylines / circles straight in\n        try:\n            cl = CurveLoop()\n            if all(tname_of(sg) == 'Line' for sg in segs):\n                pts = [sg.GetEndPoint(0) for sg in segs]\n                for i in range(len(pts)):\n                    a, b = pts[i], pts[(i + 1) % len(pts)]\n                    cl.Append(Line.CreateBound(XYZ(a.X, a.Y, z), XYZ(b.X, b.Y, z)))\n            else:\n                for sg in segs:\n                    cl.Append(_flat(sg, z))\n            loops.append(cl)\n        except Exception as ex:\n            log('polyline loop: ' + str(ex))\n    loops.sort(key=lambda l: -abs(_loop_area(l)))\n    if not loops:\n        raise Exception('no closed outline in the CAD{0} - draw the slab edge as a closed polyline'.format(\n            ' (layer contains \"{0}\")'.format(layer) if layer else ''))\n    outer = loops[0]\n    if _loop_area(outer) < 0:\n        outer.Flip()\n    holes = []\n    for l in loops[1:]:\n        p = list(l)[0].GetEndPoint(0)\n        if _inside(p, outer) and abs(_loop_area(l)) * 0.092903 >= 0.05:\n            if _loop_area(l) > 0:\n                l.Flip()\n            holes.append(l)\n    return outer, holes\n\n\n# ------------------------------------------------------------------ slab type + slab\ndef material_id(doc, name):\n    mats = list(FilteredElementCollector(doc).OfClass(Material))\n    for m in mats:\n        if m.Name.upper() == name.upper():\n            return m.Id\n    for m in mats:\n        if name.upper() in m.Name.upper():\n            return m.Id\n    return Material.Create(doc, name)\n\n\ndef mat_code(m):\n    u = m.upper()\n    for k, c in (('CONCRETE', 'RCC'), ('RCC', 'RCC'), ('TIMBER', 'TMB'), ('WOOD', 'TMB'), ('STEEL', 'STL')):\n        if k in u:\n            return c\n    return re.sub(r'[^A-Z]', '', u)[:3] or 'GEN'\n\n\ndef slab_type(doc, thk_mm, material, name=''):\n    name = name or 'A_SLB_{0}_{1}'.format(mat_code(material), int(round(thk_mm)))\n    ft = next((t for t in FilteredElementCollector(doc).OfClass(FloorType) if ename(t) == name), None)\n    if ft is None:\n        base = doc.GetElement(doc.GetDefaultElementTypeId(ElementTypeGroup.FloorType))\n        if base is None or base.GetCompoundStructure() is None:\n            base = next(t for t in FilteredElementCollector(doc).OfClass(FloorType) if t.GetCompoundStructure() is not None)\n        ft = base.Duplicate(name)\n    cs = ft.GetCompoundStructure()\n    lay = List[CompoundStructureLayer]()\n    lay.Add(CompoundStructureLayer(thk_mm * MMF, MaterialFunctionAssignment.Structure, material_id(doc, material)))\n    cs.SetLayers(lay)\n    for side in (ShellLayerType.Exterior, ShellLayerType.Interior):\n        try:\n            cs.SetNumberOfShellLayers(side, 0)\n        except Exception:\n            pass\n    try:\n        cs.StructuralMaterialIndex = 0\n    except Exception:\n        pass\n    ft.SetCompoundStructure(cs)\n    return ft\n\n\ntry:\n    class _Cap(IFailuresPreprocessor):\n        __namespace__ = 'B16_SLAB'\n\n        def PreprocessFailures(self, fa):\n            for f in fa.GetFailureMessages():\n                try:\n                    if f.GetSeverity() == FailureSeverity.Warning:\n                        fa.DeleteWarning(f)\n                except Exception:\n                    pass\n            return FailureProcessingResult.Continue\nexcept Exception:\n    _Cap = None\n\n\ndef in_tx(doc, name, fn):\n    t = Transaction(doc, name)\n    if _Cap is not None:\n        try:\n            o = t.GetFailureHandlingOptions()\n            o.SetFailuresPreprocessor(_Cap())\n            t.SetFailureHandlingOptions(o)\n        except Exception:\n            pass\n    t.Start()\n    try:\n        r = fn()\n    except Exception:\n        if t.HasStarted() and not t.HasEnded():\n            t.RollBack()\n        raise\n    t.Commit()\n    return r\n\n\ndef tagged_floors(doc, tag):\n    res = []\n    for e in FilteredElementCollector(doc).OfClass(Floor):\n        try:\n            c = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n            if c is not None and (c.AsString() or '') == tag:\n                res.append(e.Id)\n        except Exception:\n            pass\n    return res\n\n\ndef run(doc, uidoc, thk=150.0, type_name='', material='Concrete', edge_off=0.0, top_off=0.0, copy_to='',\n        structural=False, make=True, source='WALLS', layer=''):\n    view = plan_view(doc, uidoc)\n    if view is None:\n        raise Exception('Open the floor plan of the level with the walls first.')\n    level = view.GenLevel\n    holes = []\n    if str(source or 'WALLS').strip().upper().startswith('C'):\n        loop, holes = cad_outline(doc, view, level.Elevation, layer)\n        area, skipped = abs(_loop_area(loop)) * 0.092903, 0\n        what = 'CAD outline{0}'.format(' (layer \"{0}\")'.format(layer) if layer else '')\n    else:\n        walls = walls_on(doc, view, level)\n        if not walls:\n            raise Exception('No walls on level \"{0}\" - or use Outline from = CAD'.format(level.Name))\n        loop, area, skipped = outer_loop(walls, level.Elevation)\n        what = 'outer outline of {0} wall(s)'.format(len(walls))\n    if abs(edge_off) > 1e-6:\n        try:\n            l2 = CurveLoop.CreateViaOffset(loop, edge_off * MMF, XYZ.BasisZ)\n            if (abs(_loop_area(l2)) > abs(_loop_area(loop))) != (edge_off > 0):\n                l2 = CurveLoop.CreateViaOffset(loop, -edge_off * MMF, XYZ.BasisZ)\n            loop = l2\n            area = abs(_loop_area(loop)) * 0.092903\n        except Exception as ex:\n            log('offset: ' + str(ex))\n    targets = [level] + copy_levels(doc, level, copy_to)\n    out = ['{0} on \"{1}\": {2} edges, {3:.1f} m2{4}'.format(what[0].upper() + what[1:], level.Name, loop.NumberOfCurves(), area,\n                                                          ', {0} hole(s)'.format(len(holes)) if holes else '')]\n    if skipped:\n        out.append('CHECK {0} wall(s) could not be joined into the outline'.format(skipped))\n    if not make:\n        out.insert(0, 'ONLY CHECK (Make it = False): slab would go on ' + ', '.join(l.Name for l in targets))\n        return out\n    st = {'made': [], 'fail': []}\n\n    def work():\n        ft = slab_type(doc, thk, material, type_name)\n        st['type'] = ename(ft)\n        for lv in targets:\n            tag = TAG + lv.Name\n            for i in tagged_floors(doc, tag):\n                try:\n                    doc.Delete(i)\n                except Exception:\n                    pass\n            try:\n                dz = lv.Elevation - level.Elevation\n                mv = Transform.CreateTranslation(XYZ(0, 0, dz))\n                loops = List[CurveLoop]()\n                for l in [loop] + holes:\n                    loops.Add(l if abs(dz) < 1e-9 else CurveLoop.CreateViaTransform(l, mv))\n                f = Floor.Create(doc, loops, ft.Id, lv.Id, bool(structural), None, 0.0)\n                f.get_Parameter(BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM).Set(top_off * MMF)\n                f.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS).Set(tag)\n                st['made'].append(lv.Name)\n            except Exception as ex:\n                st['fail'].append('{0}: {1}'.format(lv.Name, (str(ex).splitlines() or ['?'])[0][:100]))\n\n    in_tx(doc, 'B16 Slab on outer wall perimeter', work)\n    out.append('Slab \"{0}\" ({1:.0f} mm, top {2:+.0f} mm, edge {3:+.0f} mm from the outer wall face) on: {4}'.format(\n        st.get('type', ''), float(thk), float(top_off), float(edge_off), ', '.join(st['made']) or 'none'))\n    for f_ in st['fail']:\n        out.append('CHECK ' + f_)\n    out.append('Run again = the B16 slab on each of these levels is replaced (Comments = \"{0}<level>\")'.format(TAG))\n    log('\\n'.join(out))\n    return out\n\n\n# =====================================================================\n#  DYNAMO / DYNAMO PLAYER PART  -  inputs:\n#    0  Outline from       WALLS = outer face perimeter of the walls of the open plan's level,  CAD = closed polyline in a linked CAD\n#    1  CAD layer contains '' = all layers (CAD only)\n#    2  Slab thickness mm  150\n#    3  Material           Concrete   (type A_SLB_RCC_150)\n#    4  Slab type name     '' = automatic\n#    5  Edge offset mm     0  (+ = beyond the outer wall face, - = inside)\n#    6  Top offset mm      0  (slab top from the level)\n#    7  Copy to levels     '' = only this level, ALL = every level above, or names \"L2, L3\"\n#    8  Structural         False\n#    9  Make it            True  (False = only check the outline)\n#  Run again = the B16 slab on each of those levels is replaced.  Ctrl+Z in Revit undoes.\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _d = DocumentManager.Instance.CurrentDBDocument\n        if _d is not None:\n            doc = _d\n            try:\n                uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n            except Exception:\n                pass\n            TM = TransactionManager\n    except Exception:\n        pass\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('SLAB_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and not v.strip()):\n        return default\n    return v\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).lower().replace('mm', '').strip())\n    except Exception:\n        return float(default)\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\nout = []\ntry:\n    if doc is None:\n        raise Exception('No Revit document.')\n    if TM is not None and _flag(9, True):\n        TM.Instance.ForceCloseTransaction()\n    out = run(doc, uidoc, _num(2, 150), str(_inp(4, '')).strip(), str(_inp(3, 'Concrete')).strip() or 'Concrete', _num(5, 0),\n              _num(6, 0), str(_inp(7, '')).strip(), _flag(8, False), _flag(9, True), str(_inp(0, 'WALLS')), str(_inp(1, '')).strip())\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('B16 Slab')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else 'Slab made'\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "f388e32aa1ce4be1948bd785b6e5a99a",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "7856bcc39c0247608b1861c892d44c0b",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d9f2ad279bab4936869ab48ff0084b99",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2b62a30f418642dd800060e739b02cf3",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6a03c8bba3a04d6e8d67f368b3f4b93f",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0586c1946d234981a3f862d601993be4",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "09ea7052a6fc46d6b2c67fb2e5fe9932",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a5bf03bcb3b642e981a0b7f8d255a0c7",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "904a475b34f94ce2bf0d82b456d5a1ba",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9a1ee8033d614f1ca7e02275ae8bd170",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d35a279bb3694758b4e2b707af612bb1",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b86a0f7f621c4e18b2fea56cb0d10f81",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "1d522cbb696440d6ae9aab0e0df0f315",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "ebd2761a1b6d45f99dc16a50a5780ac0",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e052832cdab742f6a92e225fc6cb09e5",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "70f078529aea4d80ac3f6de497bc3ce2",
+      "End": "7856bcc39c0247608b1861c892d44c0b",
+      "Id": "d5190b8bcb07495294b82a42fd2fb243",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1d0bdfefaf344645a269973fd5144453",
+      "End": "d9f2ad279bab4936869ab48ff0084b99",
+      "Id": "00140243c0094bc6b938f9840d8aa1ef",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f399d9b88a62415ca583b9c49a584551",
+      "End": "2b62a30f418642dd800060e739b02cf3",
+      "Id": "556b218957474002a2533322765025ef",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ba1396fe746540d29fcbc20b33147a28",
+      "End": "6a03c8bba3a04d6e8d67f368b3f4b93f",
+      "Id": "ccecbbb7971a46d899aa0af1a7cafd73",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ebe91aeca47c452ebba1df60c31231e3",
+      "End": "0586c1946d234981a3f862d601993be4",
+      "Id": "c28c416a290f4c719dc5a74f58a509f9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7f2bdb2df6324fd2b8a6acb1fca4334e",
+      "End": "09ea7052a6fc46d6b2c67fb2e5fe9932",
+      "Id": "1a0db2ace1d14e1f84297c2a6f9b1081",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2564e4938b994b7192f7c3fb12344941",
+      "End": "a5bf03bcb3b642e981a0b7f8d255a0c7",
+      "Id": "cc53fc1718df4e61aa49319c8bcbf882",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fbf3096f80a44a4d9b5bb2707d20cb71",
+      "End": "904a475b34f94ce2bf0d82b456d5a1ba",
+      "Id": "ccccddb241bd4fc782ac2bb94df42fe8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "066d8d48ded14861beae4511723c6bfb",
+      "End": "9a1ee8033d614f1ca7e02275ae8bd170",
+      "Id": "ba3689b8ce964a13b66744e8eb920a35",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "52d8a4b9303649fc9131f2ac97d84501",
+      "End": "d35a279bb3694758b4e2b707af612bb1",
+      "Id": "9e77480fac5b4242b4cb26c68005a4bd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b86a0f7f621c4e18b2fea56cb0d10f81",
+      "End": "ebd2761a1b6d45f99dc16a50a5780ac0",
+      "Id": "d77572a4578a43f9a0209ce2b8278dc8",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "35b28d68cf2b472788ac81d9c037eede",
+        "Name": "0  Outline from: WALLS / CAD",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "04cb2ae8ed434488b4dad1613261374b",
+        "Name": "1  CAD layer contains (CAD only)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "420ea27bbfe243f9ae8ef06ba80de5a8",
+        "Name": "2  Slab thickness mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "63b4db9f3f114cf5a588b391003e6feb",
+        "Name": "3  Material",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "ca1017c3394d4e34b19f5198ede3b6fa",
+        "Name": "4  Slab type name (blank = auto)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 300
+      },
+      {
+        "Id": "4878a365324942238e9585c479d9c2ac",
+        "Name": "5  Edge offset mm (+ = outside)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 450
+      },
+      {
+        "Id": "c1b6358f24424afcbb9ebbfc71349171",
+        "Name": "6  Top offset mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 600
+      },
+      {
+        "Id": "cd84266ed31f46a4869c287a413b9f91",
+        "Name": "7  Copy to levels: blank / ALL / L2, L3",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "653b79f496704a939ad4f4b777071241",
+        "Name": "8  Structural",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "0d8009e1af1940698d738b4823a45901",
+        "Name": "9  Make it (False = only check)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 300
+      },
+      {
+        "Id": "f388e32aa1ce4be1948bd785b6e5a99a",
+        "Name": "B16 SLAB ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1700.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "1d522cbb696440d6ae9aab0e0df0f315",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2050.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "4bd9d5d089974427af69b22319e9dbce",
+        "Title": "1  OUTLINE",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "35b28d68cf2b472788ac81d9c037eede",
+          "04cb2ae8ed434488b4dad1613261374b"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 435,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 340,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "d313ff67a48e4952a635c735b0d8ec47",
+        "Title": "2  SLAB",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "420ea27bbfe243f9ae8ef06ba80de5a8",
+          "63b4db9f3f114cf5a588b391003e6feb",
+          "ca1017c3394d4e34b19f5198ede3b6fa",
+          "4878a365324942238e9585c479d9c2ac",
+          "c1b6358f24424afcbb9ebbfc71349171"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 885,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 790,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "3846fd0346de4d67996e2e340af55230",
+        "Title": "3  COPY + RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "cd84266ed31f46a4869c287a413b9f91",
+          "653b79f496704a939ad4f4b777071241",
+          "0d8009e1af1940698d738b4823a45901"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 585,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 490,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "1109f1de05af44f4b01bc4417e38ee54",
+        "Title": "HOW TO USE:  open the floor plan of the level.  0 = WALLS: slab on the outer face perimeter of the walls of that level;  CAD: the biggest closed polyline in the linked CAD (1 = layer name part), closed loops inside it = holes.  2 = thickness (type A_SLB_RCC_150).  7 = copy to levels above: ALL or names L2, L3.  Run again = the slab on those levels is replaced.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 1600.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

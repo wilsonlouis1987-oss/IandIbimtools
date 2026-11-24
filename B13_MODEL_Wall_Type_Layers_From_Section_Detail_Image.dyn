@@ -1,0 +1,673 @@
+{
+  "Uuid": "a68ee429-4f55-4fdd-b2cd-eb6459abf434",
+  "IsCustomNode": false,
+  "Description": "DETAIL TO WALL: wall type with layers (brick, insulation, air, block, plaster ...) read from a JPG/PNG of a wall section detail; your total thickness / layer mm; walls with your height on selected lines",
+  "Name": "B13_MODEL_Wall_Type_Layers_From_Section_Detail_Image",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "aae464a644e049cb8c232b7ef8794b66",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "347fed29fe1d46a1bd3a729ba753a7e4",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "",
+      "InputValue": "No file selected."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "8a1f8055e8434394a93efa48501da08b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cc5bdfc7e0084f3a9517abd2c27ebae9",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "300"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "f6a2627d3abe4e7eac99c2f773f3e8ed",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f8bc993477d64a1ebf40ee5f1b8f36dc",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "0272a22b323d46b2b33a20f55b0c65eb",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "637567a46d9d42029d55ed32683023a4",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "7db2a60ba8484381bf4c55a86454c2e8",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2041a5ad7e024aad979aef4dc6b64d56",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "18fc299291ea40cf853fff918b26332c",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4319fe8a907d4c74a7cc88f5a7a30c8a",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "09bb421b5a3f418e9516790322e3a46d",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "dd78dbf4c13a426ab562d3a534a5d94b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "25c2c39112b6434f9a0d69398d1c6e37",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "738f069ba0fb430d9adc0db9caf85f3b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "3000"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "72322691a8514f12b6ece8702e9e59af",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1491e1f013b14a7dac77afbc7db809d7",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "419e2de6afa3446fb9f5f1a5ce51bfe3",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a0b466a83423484bb9c77bb5cd6a7585",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  DETAIL2BIM - B13 WALL TYPE + WALLS FROM A WALL SECTION DETAIL IMAGE (JPG / PNG)   (Revit 2026)   v1\n#  Picture of a wall section (brick | insulation | air gap | block | plaster ...)  ->\n#    1. finds the layer lines (long vertical lines through the wall) and each layer's share of the thickness\n#    2. guesses each layer's material from its hatch: brick courses, block courses, cross-hatch insulation,\n#       empty = air gap / plaster, solid or dotted = concrete\n#    3. you set the TOTAL thickness (layers keep the picture's proportions) or type every layer in mm\n#    4. makes a Revit wall type with those layers (materials with cut patterns), then draws walls with your height\n#  The wall must stand upright in the picture (layers left -> right). Crop dimensions / notes away if they get in.\n#  Runs in pyRevit (IronPython 2.7) and Dynamo CPython3.\n# =====================================================================\nimport math, os, re\n\ntry:\n    import clr\n    clr.AddReference('RevitAPI')\n    clr.AddReference('System.Drawing')\n    from Autodesk.Revit.DB import *                       # noqa\n    import System\n    import System.Drawing as SD\n    import System.Drawing.Imaging as SDI\n    import System.Drawing.Drawing2D as SD2\n    from System.Collections.Generic import List\n    REVIT = True\nexcept Exception:                                         # plain Python: unit tests of the detection\n    REVIT = False\n\nMMF = 1.0 / 304.8\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'DETAIL2BIM_log.txt')\nINK_THR = 200                                             # lighter than this = paper (JPEG fuzz, line halos)\n\n# material keyword -> (code, Revit layer function name, cut-pattern keywords, colour for the preview)\nKINDS = [\n    ('BRICK', 'BRK', 'Finish1', ['brick', 'masonry'], (200, 90, 60)),\n    ('BLOCK', 'BLK', 'Structure', ['concrete block', 'block', 'cmu', 'masonry'], (150, 150, 160)),\n    ('INSUL', 'INS', 'Insulation', ['insulation', 'diagonal crosshatch', 'crosshatch', 'cross hatch'], (240, 200, 40)),\n    ('AIR', 'AIR', 'Insulation', [], (120, 190, 255)),\n    ('CAVITY', 'AIR', 'Insulation', [], (120, 190, 255)),\n    ('PLASTER', 'PLS', 'Finish2', ['plaster', 'sand', 'stipple'], (230, 230, 200)),\n    ('RENDER', 'PLS', 'Finish1', ['plaster', 'sand', 'stipple'], (230, 230, 200)),\n    ('GYPSUM', 'GYP', 'Finish2', ['gypsum', 'plaster'], (230, 230, 200)),\n    ('BOARD', 'BRD', 'Substrate', ['wood', 'plywood', 'gypsum'], (210, 180, 120)),\n    ('CONCRETE', 'RC', 'Structure', ['concrete'], (170, 170, 170)),\n    ('RCC', 'RC', 'Structure', ['concrete'], (170, 170, 170)),\n    ('STONE', 'STN', 'Finish1', ['stone', 'masonry'], (180, 160, 130)),\n    ('CLADDING', 'CLD', 'Finish1', [], (180, 160, 130)),\n    ('TILE', 'TIL', 'Finish1', ['tile'], (180, 220, 220)),\n    ('MEMBRANE', 'MEM', 'Membrane', [], (60, 60, 60)),\n    ('MORTAR', 'MOR', 'Finish1', ['sand', 'stipple', 'plaster'], (215, 205, 180)),\n    ('SHEATHING', 'SHT', 'Substrate', ['wood', 'plywood'], (210, 180, 120)),\n    ('TIMBER', 'TMB', 'Structure', ['wood', 'timber'], (200, 160, 100)),\n    ('STUD', 'STD', 'Structure', [], (200, 160, 100)),\n]\n\n\ndef kind_of(name):\n    u = str(name).upper()\n    for k in KINDS:\n        if k[0] in u:\n            return k\n    return (u, re.sub(r'[^A-Z]', '', u)[:3] or 'GEN', 'Structure', [], (200, 120, 200))\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\n# ------------------------------------------------------------------ image -> grey strings (.NET)\ndef _gray_bitmap(path, max_px):\n    src = SD.Bitmap(path)\n    try:\n        W0, H0 = src.Width, src.Height\n        f = min(1.0, float(max_px) / max(W0, H0))\n        W, H = max(1, int(round(W0 * f))), max(1, int(round(H0 * f)))\n        bmp = SD.Bitmap(W, H, SDI.PixelFormat.Format24bppRgb)\n        g = SD.Graphics.FromImage(bmp)\n        try:\n            g.Clear(SD.Color.White)                       # transparent PNG -> white paper\n            g.InterpolationMode = SD2.InterpolationMode.HighQualityBicubic\n            g.PixelOffsetMode = SD2.PixelOffsetMode.HighQuality\n            cm = SDI.ColorMatrix()                        # colour -> grey (luminance)\n            cm.Matrix00 = cm.Matrix01 = cm.Matrix02 = 0.299\n            cm.Matrix10 = cm.Matrix11 = cm.Matrix12 = 0.587\n            cm.Matrix20 = cm.Matrix21 = cm.Matrix22 = 0.114\n            ia = SDI.ImageAttributes()\n            ia.SetColorMatrix(cm)\n            g.DrawImage(src, SD.Rectangle(0, 0, W, H), 0, 0, W0, H0, SD.GraphicsUnit.Pixel, ia)\n        finally:\n            g.Dispose()\n        return bmp, W0, H0, f\n    finally:\n        src.Dispose()\n\n\ndef _rows_of(bmp):\n    from System.Runtime.InteropServices import Marshal\n    W, H = bmp.Width, bmp.Height\n    data = bmp.LockBits(SD.Rectangle(0, 0, W, H), SDI.ImageLockMode.ReadOnly, SDI.PixelFormat.Format24bppRgb)\n    try:\n        stride = abs(data.Stride)\n        n = stride * H\n        arr = System.Array.CreateInstance(System.Byte, n)\n        Marshal.Copy(data.Scan0, arr, 0, n)\n    finally:\n        bmp.UnlockBits(data)\n    s = System.Text.Encoding.GetEncoding(28591).GetString(arr)   # 1 char per byte, native speed\n    return [s[y * stride: y * stride + 3 * W: 3] for y in range(H)]\n\n\ndef load_gray(path, max_px=1600):\n    \"\"\"-> grey rows, grey columns (strings, one char per pixel, chr(0)=black .. chr(255)=white), original size, factor\"\"\"\n    bmp, W0, H0, f = _gray_bitmap(path, max_px)\n    try:\n        rows = _rows_of(bmp)\n        bmp.RotateFlip(SD.RotateFlipType.Rotate90FlipX)   # = transpose: row x of this = column x of the picture\n        cols = _rows_of(bmp)\n    finally:\n        bmp.Dispose()\n    return rows, cols, (W0, H0), f\n\n\n# ------------------------------------------------------------------ detection (pure Python on strings)\ndef otsu(gray_rows):\n    big = ''.join(gray_rows)\n    step = max(1, len(big) // 300000)\n    smp = big[::step]\n    hist = [smp.count(chr(i)) for i in range(256)]\n    total = float(sum(hist)) or 1.0\n    sum_all = sum(i * h for i, h in enumerate(hist))\n    wb, sb, best, thr = 0.0, 0.0, -1.0, 128\n    for i in range(256):\n        wb += hist[i]\n        if wb == 0:\n            continue\n        wf = total - wb\n        if wf == 0:\n            break\n        sb += i * hist[i]\n        mb, mf = sb / wb, (sum_all - sb) / wf\n        between = wb * wf * (mb - mf) ** 2\n        if between > best:\n            best, thr = between, i + 1\n    return thr\n\n\ndef to_mask(gray, thr):\n    \"\"\"grey strings -> '1' = ink (darker than thr), '0' = paper.\"\"\"\n    if not gray:\n        return []\n    W = len(gray[0])\n    big = ''.join(gray)\n    big = re.sub(u'[\\\\x00-\\\\x%02x]+' % (max(1, min(255, int(thr))) - 1), lambda m: '\\x01' * len(m.group(0)), big)\n    big = re.sub(u'[^\\\\x01]+', lambda m: '0' * len(m.group(0)), big)\n    big = big.replace('\\x01', '1')\n    return [big[i:i + W] for i in range(0, len(big), W)]\n\n\ndef _groups(xs, gap=1):\n    out = []\n    for x in sorted(xs):\n        if out and x - out[-1][1] <= gap:\n            out[-1][1] = x\n        else:\n            out.append([x, x])\n    return out\n\n\ndef _longest(s):\n    best = (0, 0, 0)\n    for m in re.finditer('1+', s):\n        if m.end() - m.start() > best[0]:\n            best = (m.end() - m.start(), m.start(), m.end())\n    return best\n\n\ndef _hlines(lrows, x0, x1, y0, y1):\n    \"\"\"horizontal lines across the layer interior x0..x1 (rows inked >= 70 %).\"\"\"\n    w = x1 - x0\n    if w < 2:\n        return []\n    ys = [y for y in range(y0, y1) if lrows[y][x0:x1].count('1') >= 0.7 * w]\n    return _groups(ys, 1)\n\n\ndef _diag(irows, x0, x1, y0, y1):\n    \"\"\"-> (share of inked pixels that continue diagonally on the next row, share of those going one way).\n       cross-hatch / zigzag insulation: diagonal, both ways.  45 deg brick hatch: diagonal, one way.\"\"\"\n    step = max(1, (y1 - y0) // 150)\n    st = dl = dr = 0\n    for y in range(y0, y1 - 1, step):\n        a, b = irows[y], irows[y + 1]\n        for x in range(max(x0, 1), min(x1, len(a) - 1)):\n            if a[x] == '1':\n                if b[x] == '1':\n                    st += 1\n                else:\n                    l, r = b[x - 1] == '1', b[x + 1] == '1'\n                    if l and not r:\n                        dl += 1\n                    elif r and not l:\n                        dr += 1\n    dg = dl + dr\n    return (dg / float(dg + st) if dg + st else 0.0), (max(dl, dr) / float(dg) if dg else 0.0)\n\n\ndef _blobs(irows, x0, x1, y0, y1):\n    \"\"\"size of the hatch marks, as a share of the layer width: dots / triangles (concrete) ~0.05,\n       long hatch strokes (brick, insulation) ~0.5 - 1.\"\"\"\n    if x1 - x0 < 3:\n        return 1.0, 0.0\n    h = min(y1 - y0, max(60, 2 * (x1 - x0)))\n    ys = (y0 + y1 - h) // 2\n    win = [irows[y][x0:x1] for y in range(ys, ys + h)]\n    w = x1 - x0\n    seen = set()\n    tot = acc = dots = 0\n    small = max(3, int(0.2 * (x1 - x0)))\n    for yy in range(h):\n        row = win[yy]\n        for xx in range(w):\n            if row[xx] != '1' or (yy, xx) in seen:\n                continue\n            seen.add((yy, xx))\n            stack = [(yy, xx)]\n            n, ax, bx, ay, by = 0, xx, xx, yy, yy\n            while stack:\n                cy, cx = stack.pop()\n                n += 1\n                ax, bx, ay, by = min(ax, cx), max(bx, cx), min(ay, cy), max(by, cy)\n                for ny in (cy - 1, cy, cy + 1):\n                    if 0 <= ny < h:\n                        r = win[ny]\n                        for nx in (cx - 1, cx, cx + 1):\n                            if 0 <= nx < w and r[nx] == '1' and (ny, nx) not in seen:\n                                seen.add((ny, nx))\n                                stack.append((ny, nx))\n            ext = max(bx - ax + 1, by - ay + 1)\n            tot += n\n            acc += n * ext\n            if ext <= small:\n                dots += 1\n    return ((acc / float(tot)) / w if tot else 1.0), dots * 1000.0 / (w * h)\n\n\ndef detect_layers(grows, gcols, thr_line=0):\n    \"\"\"grey rows + grey columns of the picture -> dict with 'layers' left -> right.\"\"\"\n    H, W = len(grows), len(gcols)\n    if not thr_line:\n        thr_line = max(110, min(200, otsu(grows)))\n    lcols = to_mask(gcols, thr_line)\n    lrows = to_mask(grows, thr_line)\n    irows = to_mask(grows, INK_THR)\n    longest = [_longest(c) for c in lcols]\n    # 1. the wall body = where the long vertical lines are\n    groups = []\n    for frac in (0.35, 0.25, 0.15, 0.08):\n        cand = [x for x in range(W) if longest[x][0] >= frac * H]\n        groups = _groups(cand, 1)\n        if len(groups) >= 2:\n            break\n    if len(groups) < 2:\n        raise Exception('No layer lines found: the picture needs at least 2 long vertical lines (the wall faces). '\n                        'Stand the wall upright and crop the picture to the wall.')\n    cand = [x for g in groups for x in range(g[0], g[1] + 1)]\n    ys0 = sorted(longest[x][1] for x in cand)\n    ys1 = sorted(longest[x][2] for x in cand)\n    y_top, y_bot = ys0[len(ys0) // 2], ys1[len(ys1) // 2]\n    if y_bot - y_top < 8:\n        raise Exception('The wall in the picture is too short to read.')\n    # 2. layer lines = columns inked over >= 70 % of the body\n    bh = y_bot - y_top\n    lines = [x for x in range(W) if lcols[x][y_top:y_bot].count('1') >= 0.7 * bh]\n    groups = _groups(lines, 1)\n    widths = sorted(g[1] - g[0] + 1 for g in groups)\n    line_w = widths[len(widths) // 2]\n    bounds = []                                           # (x_left_edge_of_interior, x_right_edge, centre) per line\n    solid = []\n    for g in groups:\n        w = g[1] - g[0] + 1\n        if w > max(4, 2 * line_w):                        # a wide inked band = a solid-filled layer\n            bounds.append((g[0], g[0], g[0] - 0.5))\n            bounds.append((g[1], g[1], g[1] + 0.5))\n            solid.append((g[0], g[1]))\n        else:\n            bounds.append((g[0], g[1], (g[0] + g[1]) / 2.0))\n    m = max(1, int(0.04 * bh))\n    ya, yb = y_top + m, y_bot - m\n    layers = []\n    for (l0, l1, lc), (r0, r1, rc) in zip(bounds[:-1], bounds[1:]):\n        x0, x1 = l1 + 1, r0                               # interior, without the lines\n        if x1 - x0 >= 3:                                  # and without the grey halo next to them\n            x0, x1 = x0 + 1, x1 - 1\n        is_solid = any(s[0] <= x0 and x1 - 1 <= s[1] for s in solid) and x1 > x0\n        area = max(1, (x1 - x0) * (yb - ya))\n        ink = sum(irows[y][x0:x1].count('1') for y in range(ya, yb)) if x1 > x0 else 0\n        hl = _hlines(lrows, x0, x1, ya, yb)\n        layers.append({'px': rc - lc, 'x0': lc, 'x1': rc, 'ix0': x0, 'ix1': x1, 'dens': ink / float(area),\n                       'nh': len(hl), 'solid': is_solid, 'diag': 0.0, 'oneway': 0.0, 'name': ''})\n    # 3. drop empty strips outside the wall (gap to a far line, e.g. a dimension line)\n    def empty(L):\n        return not L['solid'] and L['dens'] < 0.02 and L['nh'] < 2\n    while len(layers) > 1:\n        rest = sum(L['px'] for L in layers)\n        if empty(layers[0]) and layers[0]['px'] > 0.2 * rest:\n            layers.pop(0)\n        elif empty(layers[-1]) and layers[-1]['px'] > 0.2 * rest:\n            layers.pop()\n        else:\n            break\n    total = sum(L['px'] for L in layers) or 1.0\n    # 4. materials from the hatch\n    for L in layers:\n        rel = L['px'] / total\n        iw = L['ix1'] - L['ix0']\n        L['blob'], L['dots'] = (_blobs(irows, L['ix0'], L['ix1'], ya, yb) if L['dens'] >= 0.025 and iw >= 3 else (1.0, 0.0))\n        if (L['solid'] or L['dens'] >= 0.6) and rel < 0.04:\n            L['name'] = 'Membrane'                        # thin black band (DPC, waterproofing)\n        elif L['solid'] or L['dens'] >= 0.6:\n            L['name'] = 'Concrete'\n        elif L['nh'] >= 2 and rel >= 0.12:                # courses / joints across the layer = masonry\n            spacing = bh / float(L['nh'])\n            if spacing < 1.0 * L['px']:\n                L['name'] = 'Brick'\n            elif L['dots'] >= 5:\n                L['name'] = 'Stone'                       # joints + mortar dots = stone veneer / cladding\n            else:\n                L['name'] = 'Block'\n        elif rel < 0.12:                                  # thin layers\n            if L['dots'] >= 5:\n                L['name'] = 'Board'                       # dotted: sheathing / board\n            elif L['dens'] < 0.3 or iw < 3:\n                L['name'] = 'Air'                         # empty strip = cavity / WRB\n            else:\n                L['name'] = 'Mortar'                      # lines inside: lath + scratch coat, render\n        elif L['dens'] >= 0.025:\n            L['diag'], L['oneway'] = _diag(irows, L['ix0'], L['ix1'], ya, yb)\n            if L['blob'] < 0.2:\n                L['name'] = 'Concrete'                    # dots / triangles / stipple\n            elif L['oneway'] >= 0.8:\n                L['name'] = 'Brick'                       # single 45 deg hatch (CAD / Revit brick)\n            else:\n                L['name'] = 'Insulation'                  # cross-hatch, zigzag, batt\n        else:\n            L['name'] = 'Air'\n    # empty / thin layers on a face (nothing structural between them and the face) = plaster\n    for seq in (layers, layers[::-1]):\n        for L in seq:\n            if L['px'] / total < 0.10 and not L['solid'] and L['name'] in ('Air', 'Concrete', 'Insulation', 'Mortar'):\n                L['name'] = 'Plaster'\n            else:\n                break\n    # exterior side: the side without plaster\n    left_pl = layers[0]['name'] == 'Plaster'\n    right_pl = layers[-1]['name'] == 'Plaster'\n    ext = 'RIGHT' if (left_pl and not right_pl) else 'LEFT'\n    return {'layers': layers, 'body': (y_top, y_bot), 'size': (W, H), 'thr': thr_line, 'exterior': ext, 'total_px': total}\n\n\n# ------------------------------------------------------------------ thickness + the editable layer list\ndef scale_layers(layers, total_mm, step=5.0):\n    \"\"\"picture proportions -> mm (multiples of step, >= step) adding up exactly to total_mm.\"\"\"\n    mem = [kind_of(L['name'])[2] == 'Membrane' for L in layers]   # membranes have no thickness in Revit\n    tot = sum(L['px'] for L, m in zip(layers, mem) if not m) or 1.0\n    raw = [0.0 if m else L['px'] / tot * total_mm for L, m in zip(layers, mem)]\n    mm = [0.0 if m else max(step, round(r / step) * step) for r, m in zip(raw, mem)]\n    diff = total_mm - sum(mm)\n    order = sorted([i for i in range(len(mm)) if not mem[i]], key=lambda i: -raw[i]) or [0]\n    i = 0\n    while abs(diff) >= step / 2.0 and i < 1000:\n        j = order[i % len(order)]\n        d = step if diff > 0 else -step\n        if not mem[j] and mm[j] + d >= step:\n            mm[j] += d\n            diff -= d\n        i += 1\n    return mm\n\n\ndef layers_text(names, mms):\n    return ' | '.join('{0} {1:g}'.format(n, float(t)) for n, t in zip(names, mms))\n\n\ndef parse_layers(text):\n    \"\"\"'Brick 110 | Insulation 50 | Air 25 | Block 100 | Plaster 15'  ->  [(name, mm), ...]  (exterior first)\"\"\"\n    out = []\n    for part in re.split(r'[|;\\n]+', str(text)):\n        part = part.strip()\n        if not part:\n            continue\n        m = re.match(r'^(.*?)[\\s=:]*(\\d+(?:[.,]\\d+)?)\\s*(?:mm)?$', part)\n        if not m or not m.group(1).strip():\n            raise Exception('Layer \"{0}\" needs a name and a thickness in mm, e.g. \"Brick 110\"'.format(part))\n        t = float(m.group(2).replace(',', '.'))\n        if t <= 0 and 'MEMBRANE' not in m.group(1).upper():\n            raise Exception('Layer \"{0}\" has no thickness'.format(part))\n        out.append((m.group(1).strip(), t))\n    if not out:\n        raise Exception('No layers given')\n    return out\n\n\ndef type_name(layers, prefix='A_WAL_'):\n    tot = sum(t for n, t in layers)\n    return '{0}{1:g}_{2}'.format(prefix, tot, '-'.join('{0}{1:g}'.format(kind_of(n)[1], t) for n, t in layers))\n\n\n# ------------------------------------------------------------------ step 1: read the picture (+ preview)\ndef detect(path, max_px=1600):\n    path = str(path).strip().strip('\"')\n    if not os.path.isfile(path):\n        raise Exception('Image not found: ' + path)\n    grows, gcols, size0, f = load_gray(path, max_px)\n    res = detect_layers(grows, gcols)\n    res['path'], res['size0'], res['factor'] = path, size0, f\n    try:\n        res['preview'] = preview(path, res)\n    except Exception as ex:\n        res['preview'] = ''\n        log('preview failed: {0}'.format(ex))\n    return res\n\n\ndef preview(path, res):\n    \"\"\"the picture, bigger, with each layer tinted and numbered.\"\"\"\n    src = SD.Bitmap(path)\n    try:\n        W0, H0 = src.Width, src.Height\n        z = max(1.0, min(4.0, 600.0 / max(W0, H0)))\n        f = res['factor']\n        W, H = int(W0 * z), int(H0 * z)\n        bmp = SD.Bitmap(W, H, SDI.PixelFormat.Format24bppRgb)\n        g = SD.Graphics.FromImage(bmp)\n        try:\n            g.Clear(SD.Color.White)\n            g.InterpolationMode = SD2.InterpolationMode.NearestNeighbor\n            g.DrawImage(src, 0, 0, W, H)\n            y0, y1 = res['body'][0] / f * z, res['body'][1] / f * z\n            font = SD.Font('Arial', float(max(9, min(16, int(H / 40.0)))), SD.FontStyle.Bold)\n            for i, L in enumerate(res['layers']):\n                c = kind_of(L['name'])[4]\n                br = SD.SolidBrush(SD.Color.FromArgb(90, c[0], c[1], c[2]))\n                x0, x1 = (L['x0'] + 0.5) / f * z, (L['x1'] + 0.5) / f * z\n                g.FillRectangle(br, float(x0), float(y0), float(max(1.0, x1 - x0)), float(y1 - y0))\n                br.Dispose()\n                g.DrawString(str(i + 1), font, SD.Brushes.Red, float(x0 + 1), float(y0 + 2 + (i % 2) * font.Height))\n            pen = SD.Pen(SD.Color.Red, 1.0)\n            for L in res['layers']:\n                for x in (L['x0'], L['x1']):\n                    xx = (x + 0.5) / f * z\n                    g.DrawLine(pen, float(xx), float(y0), float(xx), float(y1))\n            pen.Dispose()\n            font.Dispose()\n        finally:\n            g.Dispose()\n    finally:\n        src.Dispose()\n    tmp = os.environ.get('TEMP') or os.environ.get('TMP') or os.path.dirname(path)\n    out = os.path.join(tmp, 'DETAIL2BIM_preview_{0}.png'.format(\n        re.sub(r'[^\\w\\-]+', '_', os.path.splitext(os.path.basename(path))[0])[:40]))\n    bmp.Save(out, SDI.ImageFormat.Png)\n    bmp.Dispose()\n    return out\n\n\n# ------------------------------------------------------------------ Revit helpers\ndef ename(e):\n    for bip in (BuiltInParameter.SYMBOL_NAME_PARAM, BuiltInParameter.ALL_MODEL_TYPE_NAME):\n        try:\n            p = e.get_Parameter(bip)\n            if p is not None and p.AsString():\n                return p.AsString()\n        except Exception:\n            pass\n    try:\n        return Element.Name.GetValue(e)\n    except Exception:\n        return ''\n\n\ndef tname_of(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef pick_level(doc, view, name=''):\n    levels = sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation)\n    if not levels:\n        raise Exception('No levels in this project.')\n    if name:\n        for l in levels:\n            if l.Name.strip().upper() == str(name).strip().upper():\n                return l\n    try:\n        if view is not None and tname_of(view) == 'ViewPlan' and view.GenLevel is not None:\n            return view.GenLevel\n    except Exception:\n        pass\n    return levels[0]\n\n\ndef _pattern(doc, words):\n    pats = [p for p in FilteredElementCollector(doc).OfClass(FillPatternElement)\n            if p.GetFillPattern().Target == FillPatternTarget.Drafting]\n    for w in words:\n        for p in pats:\n            if p.Name.lower() == w:\n                return p.Id\n        for p in pats:\n            if w in p.Name.lower():\n                return p.Id\n    return None\n\n\ndef material(doc, name, made):\n    \"\"\"existing material with this name (left as it is) or a new one with a matching cut pattern + colour.\"\"\"\n    mats = list(FilteredElementCollector(doc).OfClass(Material))\n    for m in mats:\n        if m.Name.strip().upper() == name.strip().upper():\n            return m.Id\n    mid = Material.Create(doc, name)\n    m = doc.GetElement(mid)\n    k = kind_of(name)\n    try:\n        m.Color = Color(k[4][0], k[4][1], k[4][2])\n    except Exception:\n        pass\n    pid = _pattern(doc, k[3]) if k[3] else None\n    if pid is not None:\n        for prop in ('CutForegroundPatternId', 'CutPatternId'):\n            try:\n                setattr(m, prop, pid)\n                break\n            except Exception:\n                pass\n        try:\n            m.CutForegroundPatternColor = Color(0, 0, 0)\n        except Exception:\n            pass\n    made.append(name)\n    return mid\n\n\ndef make_wall_type(doc, name, layers, made_mats):\n    \"\"\"layers = [(material name, mm)] exterior -> interior.\n       Core = first .. last structural layer (concrete, block ...; brick when there is none).\n       Revit rule: going out from the core, functions only get weaker (Structure > Substrate > Thermal/Air >\n       Finish 1 > Finish 2), so a shell layer that would break it takes its inner neighbour's function.\"\"\"\n    funcs = [kind_of(n)[2] for n, t in layers]\n    struct = [i for i, f in enumerate(funcs) if f == 'Structure']\n    if not struct:                                         # no concrete / block: the thickest real layer is the core\n        pool = [i for i, (n, t) in enumerate(layers) if funcs[i] != 'Membrane' and 'PLASTER' not in n.upper()] \\\n            or [i for i in range(len(layers)) if funcs[i] != 'Membrane'] or [0]\n        struct = [max(pool, key=lambda i: layers[i][1])]   # brick-only wall: brick; stud wall: the insulated stud zone\n        if funcs[struct[0]] in ('Finish1', 'Finish2', 'Substrate'):\n            funcs[struct[0]] = 'Structure'\n    c0, c1 = min(struct), max(struct)\n    core = max(struct, key=lambda i: layers[i][1])         # structural material of the type\n    rank = {'Structure': 1, 'Substrate': 2, 'Insulation': 3, 'Finish1': 4, 'Finish2': 5}\n    for side in (range(c0 - 1, -1, -1), range(c1 + 1, len(layers))):\n        lo = 1\n        for i in side:\n            if funcs[i] == 'Membrane':\n                continue\n            r = max(rank.get(funcs[i], 2), lo, 2)          # nothing outside the core is 'Structure'\n            funcs[i] = [k for k, v in rank.items() if v == r][0]\n            lo = r\n    lay = List[CompoundStructureLayer]()\n    for i, (n, t) in enumerate(layers):\n        f = funcs[i]\n        fn = getattr(MaterialFunctionAssignment, f)\n        lay.Add(CompoundStructureLayer(0.0 if f == 'Membrane' else t * MMF, fn, material(doc, n, made_mats)))\n    wt = next((t for t in FilteredElementCollector(doc).OfClass(WallType) if ename(t) == name), None)\n    existed = wt is not None\n    if wt is None:\n        base = [t for t in FilteredElementCollector(doc).OfClass(WallType)\n                if t.Kind == WallKind.Basic and t.GetCompoundStructure() is not None]\n        if not base:\n            raise Exception('no basic wall type in this project to copy')\n        wt = base[0].Duplicate(name)\n    cs = wt.GetCompoundStructure()\n    cs.SetLayers(lay)\n    try:\n        cs.SetNumberOfShellLayers(ShellLayerType.Exterior, c0)\n        cs.SetNumberOfShellLayers(ShellLayerType.Interior, len(layers) - c1 - 1)\n    except Exception:\n        pass\n    try:\n        cs.StructuralMaterialIndex = core\n    except Exception:\n        pass\n    wt.SetCompoundStructure(cs)\n    try:\n        wt.get_Parameter(BuiltInParameter.ALL_MODEL_DESCRIPTION).Set('From detail image: ' + layers_text(*zip(*layers)))\n    except Exception:\n        pass\n    return wt, existed\n\n\ndef place_image_drafting(doc, path, title, width_mm=None):\n    \"\"\"the detail picture in its own drafting view (replaced on a re-run).\"\"\"\n    vname = ('B13 ' + title)[:120]\n    for v in FilteredElementCollector(doc).OfClass(ViewDrafting):\n        if not v.IsTemplate and v.Name == vname:\n            doc.Delete(v.Id)\n            break\n    vft = next(t for t in FilteredElementCollector(doc).OfClass(ViewFamilyType) if t.ViewFamily == ViewFamily.Drafting)\n    v = ViewDrafting.Create(doc, vft.Id)\n    v.Name = vname\n    try:\n        v.Scale = 10\n    except Exception:\n        pass\n    it = None\n    for t in FilteredElementCollector(doc).OfClass(ImageType):\n        try:\n            if os.path.normcase(os.path.abspath(t.Path)) == os.path.normcase(os.path.abspath(path)):\n                it = t\n                break\n        except Exception:\n            pass\n    if it is None:\n        it = ImageType.Create(doc, ImageTypeOptions(path, False, ImageTypeSource.Import))\n    inst = ImageInstance.Create(doc, v, it.Id, ImagePlacementOptions(XYZ(0, 0, 0), BoxPlacement.Center))\n    if width_mm:\n        try:\n            inst.LockProportions = True\n            inst.Width = width_mm * MMF\n        except Exception:\n            pass\n    return v\n\n\ntry:\n    class _Cap(IFailuresPreprocessor):\n        __namespace__ = 'DETAIL2BIM_B13'\n\n        def PreprocessFailures(self, fa):\n            for f in fa.GetFailureMessages():\n                try:\n                    if f.GetSeverity() == FailureSeverity.Warning:\n                        fa.DeleteWarning(f)\n                except Exception:\n                    pass\n            return FailureProcessingResult.Continue\nexcept Exception:\n    _Cap = None\n\n\ndef in_tx(doc, name, fn):\n    t = Transaction(doc, name)\n    if _Cap is not None:\n        try:\n            o = t.GetFailureHandlingOptions()\n            o.SetFailuresPreprocessor(_Cap())\n            t.SetFailureHandlingOptions(o)\n        except Exception:\n            pass\n    t.Start()\n    try:\n        r = fn()\n    except Exception:\n        if t.HasStarted() and not t.HasEnded():\n            t.RollBack()\n        raise\n    t.Commit()\n    return r\n\n\n# ------------------------------------------------------------------ step 2: wall type (+ picture), step 3: walls\ndef build_type(doc, layers, name='', image_path='', image_width_mm=None):\n    \"\"\"-> (wall type, report lines)\"\"\"\n    name = name or type_name(layers)\n    state = {}\n    made = []\n\n    def work():\n        wt, existed = make_wall_type(doc, name, layers, made)\n        state['wt'], state['existed'] = wt, existed\n        if image_path:\n            try:\n                state['view'] = place_image_drafting(doc, image_path, name, image_width_mm).Name\n            except Exception as ex:\n                state['view_err'] = str(ex).splitlines()[0] if str(ex) else repr(ex)\n\n    in_tx(doc, 'B13 Wall type from detail', work)\n    wt = state['wt']\n    width = wt.GetCompoundStructure().GetWidth() / MMF\n    out = ['{0} wall type \"{1}\" - {2:.0f} mm: {3} (exterior first)'.format(\n        'Updated' if state['existed'] else 'New', name, width, layers_text(*zip(*layers)))]\n    if made:\n        out.append('New materials (cut pattern set): ' + ', '.join(made))\n    if state.get('view'):\n        out.append('Detail picture placed in drafting view \"{0}\"'.format(state['view']))\n    if state.get('view_err'):\n        out.append('CHECK picture not imported: ' + state['view_err'])\n    log('\\n'.join(out))\n    return wt, out\n\n\ndef build_walls(doc, wt, polylines, level, height_mm, flip=False):\n    \"\"\"polylines = chains of picked points [[XYZ, ...], ...] or Revit curves.  Walls sit on their centre line;\n       Revit puts the exterior on the left of the drawing direction (draw clockwise = exterior outside).\"\"\"\n    made, skip = [], []\n\n    def work():\n        z = level.Elevation\n        for item in polylines:\n            curves = []\n            if hasattr(item, 'GetEndPoint'):\n                curves = [item]\n            else:\n                pts = [XYZ(p.X, p.Y, z) for p in item]\n                for a, b in zip(pts[:-1], pts[1:]):\n                    if a.DistanceTo(b) > 50 * MMF:\n                        curves.append(Line.CreateBound(a, b))\n            for c in curves:\n                try:\n                    p0, p1 = c.GetEndPoint(0), c.GetEndPoint(1)\n                    if abs(p0.Z - z) > 1e-6 or abs(p1.Z - z) > 1e-6:\n                        c = Line.CreateBound(XYZ(p0.X, p0.Y, z), XYZ(p1.X, p1.Y, z)) if tname_of(c) == 'Line' else c\n                    w = Wall.Create(doc, c, wt.Id, level.Id, height_mm * MMF, 0.0, flip, False)\n                    made.append(w.Id)\n                except Exception as ex:\n                    skip.append(str(ex).splitlines()[0][:80] if str(ex) else repr(ex))\n\n    in_tx(doc, 'B13 Walls from detail', work)\n    out = ['{0} wall(s) drawn with \"{1}\" on level \"{2}\", height {3:.0f} mm.'.format(len(made), ename(wt), level.Name, float(height_mm))]\n    if skip:\n        out.append('CHECK {0} wall(s) Revit refused: {1}'.format(len(skip), '; '.join(skip[:4])))\n    log('\\n'.join(out))\n    return made, out\n\n\n# ------------------------------------------------------------------ always a result\nSAMPLE_TAG = 'B13 sample wall'\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef safe_layers(path, total_mm, exterior='AUTO'):\n    \"\"\"picture -> (layers [(name, mm)], report lines).  Never fails: a picture it cannot read\n       gives one layer of the full thickness, so a wall is still made.\"\"\"\n    msgs = []\n    try:\n        res = detect(path)\n        L = list(res['layers'])\n        side = res['exterior'] if exterior[:1].upper() not in ('L', 'R') else ('RIGHT' if exterior[:1].upper() == 'R' else 'LEFT')\n        if side == 'RIGHT':\n            L.reverse()\n        mm = scale_layers(L, total_mm)\n        tot = sum(x['px'] for x in L) or 1.0\n        msgs.append('Picture: {0} layer(s) found, {1} side = exterior: {2}'.format(\n            len(L), side.lower(), ' | '.join('{0} {1:.0f}%'.format(x['name'], 100.0 * x['px'] / tot) for x in L)))\n        if res.get('preview'):\n            msgs.append('Layers marked on the picture: ' + res['preview'])\n        return [(x['name'], t) for x, t in zip(L, mm)], msgs, res\n    except Exception as ex:\n        msgs.append('CHECK picture not read ({0}) - made a one-layer wall of {1:.0f} mm instead. '\n                    'Type the layers to get them all.'.format(str(ex).splitlines()[0][:120] if str(ex) else repr(ex), float(total_mm)))\n        log(msgs[-1])\n        return [('Wall', float(total_mm))], msgs, None\n\n\ndef _centre(view):\n    try:\n        if view is not None and view.CropBoxActive:\n            bb = view.CropBox\n            return bb.Transform.OfPoint(bb.Min.Add(bb.Max).Multiply(0.5))\n    except Exception:\n        pass\n    return XYZ(0, 0, 0)\n\n\ndef sample_wall(doc, wt, level, height_mm, view=None, length_mm=4000.0):\n    \"\"\"one wall in the middle of the plan so the result is always in the model.\n       Run again = the same wall gets the new type + height (no pile of walls).\"\"\"\n    old = []\n    for w in FilteredElementCollector(doc).OfClass(Wall):\n        try:\n            c = w.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n            if c is not None and (c.AsString() or '') == SAMPLE_TAG and idv(w.LevelId) == idv(level.Id):\n                old.append(w)\n        except Exception:\n            pass\n    state = {}\n\n    def work():\n        if old:\n            w = old[0]\n            w.get_Parameter(BuiltInParameter.ELEM_TYPE_PARAM).Set(wt.Id)     # ChangeTypeId fails in Dynamo CPython3\n            w.get_Parameter(BuiltInParameter.WALL_USER_HEIGHT_PARAM).Set(height_mm * MMF)\n            state['how'] = 'updated'\n        else:\n            c = _centre(view)\n            z = level.Elevation\n            half = length_mm * MMF / 2.0\n            ln = Line.CreateBound(XYZ(c.X - half, c.Y, z), XYZ(c.X + half, c.Y, z))\n            w = Wall.Create(doc, ln, wt.Id, level.Id, height_mm * MMF, 0.0, False, False)\n            w.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS).Set(SAMPLE_TAG)\n            state['how'] = 'placed'\n        state['id'] = w.Id\n\n    in_tx(doc, 'B13 Sample wall', work)\n    out = ['One wall {0} with \"{1}\" on level \"{2}\", height {3:.0f} mm{4} (Comments = \"{5}\").'.format(\n        state['how'], ename(wt), level.Name, float(height_mm),\n        ', {0:.0f} mm long in the middle of the plan'.format(float(length_mm)) if state['how'] == 'placed' else '', SAMPLE_TAG)]\n    log('\\n'.join(out))\n    return state['id'], out\n\n\n# =====================================================================\n#  DYNAMO / DYNAMO PLAYER PART  -  inputs:\n#    0  Detail picture        File Path: JPG / PNG of the wall SECTION (wall standing upright, layers left -> right)\n#    1  Total thickness mm    300  (layers keep the picture's proportions)\n#    2  Layer list            '' = read from the picture.  Or type it yourself, EXTERIOR FIRST:\n#                             Brick 110 | Insulation 50 | Air 25 | Block 100 | Plaster 15   (then input 1 is not used)\n#    3  Exterior side         AUTO / LEFT / RIGHT = which side of the picture is outside\n#    4  Wall type name        '' = automatic  (A_WAL_<total>_<layers>)\n#    5  Picture in a drafting view   True\n#    6  Walls                AUTO = on the lines selected in Revit, else ONE wall in the middle of the plan (always a wall)\n#                             ONE WALL / SELECTED (selected lines only) / NONE (only the type) / a line style name\n#    7  Wall height mm        3000\n#    8  Level                 '' = level of the open plan view\n#    9  Make it               True  (False = only read the picture and list the layers)\n#  Run again with the same name = the wall type is updated (walls using it follow).  Ctrl+Z in Revit undoes.\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _d = DocumentManager.Instance.CurrentDBDocument\n        if _d is not None:                                # None = Dynamo libraries loaded but Dynamo not running\n            doc = _d\n            try:\n                uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n            except Exception:\n                pass\n            TM = TransactionManager\n    except Exception:\n        pass\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('DETAIL_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and (not v.strip() or v.strip().lower() == 'no file selected.')):\n        return default\n    return v\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).lower().replace('mm', '').strip())\n    except Exception:\n        return float(default)\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\ndef _active_plan():\n    v = None\n    try:\n        v = uidoc.ActiveView if uidoc is not None else doc.ActiveView\n    except Exception:\n        v = doc.ActiveView\n    if v is not None and tname_of(v) == 'ViewPlan' and not v.IsTemplate:\n        return v\n    try:\n        for uv in uidoc.GetOpenUIViews():\n            ov = doc.GetElement(uv.ViewId)\n            if ov is not None and tname_of(ov) == 'ViewPlan':\n                return ov\n    except Exception:\n        pass\n    return None\n\n\ndef _wall_curves(on, view):\n    els = []\n    if on.upper().startswith('SEL'):\n        try:\n            els = [doc.GetElement(i) for i in uidoc.Selection.GetElementIds()]\n        except Exception:\n            els = []\n        where = 'the lines selected in Revit'\n    else:\n        if view is None:\n            return [], 'no plan view open'\n        for e in FilteredElementCollector(doc, view.Id).OfClass(CurveElement):\n            try:\n                if e.LineStyle is not None and e.LineStyle.Name.strip().upper() == on.strip().upper():\n                    els.append(e)\n            except Exception:\n                pass\n        where = 'lines of style \"{0}\" in \"{1}\"'.format(on, view.Name)\n    curves = []\n    for e in els:\n        try:\n            c = e.GeometryCurve\n            if c is not None and c.IsBound:\n                curves.append(c)\n        except Exception:\n            pass\n    return curves, where\n\n\nout = []\ntry:\n    IMG = str(_inp(0, '')).strip().strip('\"')\n    TOTAL = _num(1, 300)\n    LAY_TXT = str(_inp(2, '')).strip()\n    EXT = str(_inp(3, 'AUTO')).strip().upper()[:1] or 'A'\n    TNAME = str(_inp(4, '')).strip()\n    PUT_IMG = _flag(5, True)\n    ON = str(_inp(6, 'AUTO')).strip() or 'AUTO'\n    HEIGHT = _num(7, 3000)\n    LEVEL_NAME = str(_inp(8, '')).strip()\n    MAKE = _flag(9, True)\n    if doc is None:\n        raise Exception('No Revit document.')\n    if not IMG and not LAY_TXT:\n        raise Exception('Pick the detail picture (input 0) or type the layers (input 2).')\n    if IMG and not os.path.isfile(IMG):\n        out.append('CHECK picture not found: ' + IMG)\n        IMG = ''\n    if not LAY_TXT:                                       # never fails: unreadable picture = one-layer wall\n        lay, msgs, res = safe_layers(IMG, TOTAL, {'L': 'LEFT', 'R': 'RIGHT'}.get(EXT, 'AUTO')) if IMG else \\\n            ([('Wall', TOTAL)], ['CHECK no picture - one-layer wall of {0:.0f} mm'.format(TOTAL)], None)\n        out.extend(msgs)\n        LAY_TXT = layers_text(*zip(*lay))\n    elif IMG:\n        out.append('Layers as you typed them (input 2); total thickness (input 1) not used.')\n    layers = parse_layers(LAY_TXT)\n    name = TNAME or type_name(layers)\n    if not MAKE:\n        out.insert(0, 'ONLY READ (input 9 Make it = False): wall type \"{0}\" would be: {1}'.format(name, layers_text(*zip(*layers))))\n        out.append('Copy / change this into input 2 if a layer is wrong:  ' + layers_text(*zip(*layers)))\n    else:\n        if TM is not None:\n            TM.Instance.ForceCloseTransaction()\n        wt, lines = build_type(doc, layers, name, IMG if (PUT_IMG and IMG) else '')\n        out.extend(lines)\n        on_u = re.sub(r'\\s+', ' ', ON.upper())\n        if on_u != 'NONE':\n            view = _active_plan()\n            level = pick_level(doc, view, LEVEL_NAME)\n            curves, where = ([], '') if on_u.startswith('ONE') else _wall_curves('SELECTED' if on_u == 'AUTO' else ON, view)\n            if curves:\n                made, l2 = build_walls(doc, wt, curves, level, HEIGHT)\n                out.extend(l2)\n            elif on_u in ('AUTO',) or on_u.startswith('ONE'):\n                wid, l2 = sample_wall(doc, wt, level, HEIGHT, view)   # always a wall in the model\n                out.extend(l2)\n            else:\n                out.append('CHECK no walls drawn: no lines found ({0}). Select lines or give a line style in input 6.'.format(where))\n        out.insert(0, 'OK: wall type \"{0}\"'.format(name))\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('DETAIL2BIM - B13 Wall from section detail')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else (\n            'Only read the picture' if not _flag(9, True) else 'Wall type made')\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "f538405c9051436b99af97169cd44d1f",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "71d310808ba146b99586602d3c493258",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "36db542b6ecd47d59b738e27d92e7de7",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e38aed6da4774794b1e8d35ffff24753",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a346e0767faf4bfb993a6c00756d8941",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "adfe64f3c6784f30beec89b6bb48dbf9",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "38bb892949244260a5d57c18dd197ef1",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6daa57fb27b44611a906582ba44c3e4c",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "41935a0dda5d40e5af44fae47f9732f0",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0479836ac9664f1d965d66a54c778f9c",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f7cb6d4dfb6440b080c0aa3bba13c037",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "08e71c4279954d2cb6c3e1ca34a127c0",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "17afbb29e9bc4d45a05375f32e3f5885",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "271345e028d646cc8846340cf1bf8dc5",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "442bfa5c83004a58a55f701fd5bf09da",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "347fed29fe1d46a1bd3a729ba753a7e4",
+      "End": "71d310808ba146b99586602d3c493258",
+      "Id": "9a232bceee184bda9b7b8b07ef79a9b9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "cc5bdfc7e0084f3a9517abd2c27ebae9",
+      "End": "36db542b6ecd47d59b738e27d92e7de7",
+      "Id": "4d4a9435ac0f462893884ed5569c327e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f8bc993477d64a1ebf40ee5f1b8f36dc",
+      "End": "e38aed6da4774794b1e8d35ffff24753",
+      "Id": "998efe7bb5bb4bef86cf129dbf703e2c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "637567a46d9d42029d55ed32683023a4",
+      "End": "a346e0767faf4bfb993a6c00756d8941",
+      "Id": "f15cdbb8e9dd4c70a52a177a7f07ffc0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2041a5ad7e024aad979aef4dc6b64d56",
+      "End": "adfe64f3c6784f30beec89b6bb48dbf9",
+      "Id": "58881117ef8c444f86d34497753297ac",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4319fe8a907d4c74a7cc88f5a7a30c8a",
+      "End": "38bb892949244260a5d57c18dd197ef1",
+      "Id": "4fae49d9602d436794f21acf80731fa1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dd78dbf4c13a426ab562d3a534a5d94b",
+      "End": "6daa57fb27b44611a906582ba44c3e4c",
+      "Id": "f2ec45fabafe45edaa30dd84816ce505",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "738f069ba0fb430d9adc0db9caf85f3b",
+      "End": "41935a0dda5d40e5af44fae47f9732f0",
+      "Id": "53154e77194e4b81b82a431038ab2cbc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1491e1f013b14a7dac77afbc7db809d7",
+      "End": "0479836ac9664f1d965d66a54c778f9c",
+      "Id": "c46474d78f2044f8834b74997453e15a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a0b466a83423484bb9c77bb5cd6a7585",
+      "End": "f7cb6d4dfb6440b080c0aa3bba13c037",
+      "Id": "0707551e22eb48738a7360b8f676f7fb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "08e71c4279954d2cb6c3e1ca34a127c0",
+      "End": "271345e028d646cc8846340cf1bf8dc5",
+      "Id": "b14a658f45414cadb281b7fdc47973fe",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "aae464a644e049cb8c232b7ef8794b66",
+        "Name": "0  Detail picture  (JPG / PNG of the wall SECTION)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "8a1f8055e8434394a93efa48501da08b",
+        "Name": "1  Total thickness mm  (layers keep the picture's proportions)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "f6a2627d3abe4e7eac99c2f773f3e8ed",
+        "Name": "2  Layer list, EXTERIOR first  (blank = read the picture)  e.g. Brick 110 | Insulation 50 | Air 25 | Block 100 | Plaster 15",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 300
+      },
+      {
+        "Id": "0272a22b323d46b2b33a20f55b0c65eb",
+        "Name": "3  Exterior side of the picture:  AUTO / LEFT / RIGHT",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 450
+      },
+      {
+        "Id": "7db2a60ba8484381bf4c55a86454c2e8",
+        "Name": "4  Wall type name  (blank = automatic A_WAL_<total>_<layers>)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "18fc299291ea40cf853fff918b26332c",
+        "Name": "5  Put the picture in a drafting view",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "09bb421b5a3f418e9516790322e3a46d",
+        "Name": "6  Walls:  AUTO (selected lines, else one wall in the middle of the plan) / ONE WALL / SELECTED / NONE / a line style name",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "25c2c39112b6434f9a0d69398d1c6e37",
+        "Name": "7  Wall height mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "72322691a8514f12b6ece8702e9e59af",
+        "Name": "8  Level  (blank = level of the open plan)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 300
+      },
+      {
+        "Id": "419e2de6afa3446fb9f5f1a5ce51bfe3",
+        "Name": "9  Make it  (False = only read the picture, list the layers)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 450
+      },
+      {
+        "Id": "f538405c9051436b99af97169cd44d1f",
+        "Name": "DETAIL2BIM  B13 WALL FROM SECTION DETAIL  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1700.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "17afbb29e9bc4d45a05375f32e3f5885",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2050.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "5d7370565526454392f2457c031c4687",
+        "Title": "1  PICTURE + LAYERS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "aae464a644e049cb8c232b7ef8794b66",
+          "8a1f8055e8434394a93efa48501da08b",
+          "f6a2627d3abe4e7eac99c2f773f3e8ed",
+          "0272a22b323d46b2b33a20f55b0c65eb"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 735,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 640,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "60e1503d742f43559a39a5164672253c",
+        "Title": "2  WALL TYPE",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "7db2a60ba8484381bf4c55a86454c2e8",
+          "18fc299291ea40cf853fff918b26332c"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 435,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 340,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "c3bce68209dc4c92a03757d16c0f3cad",
+        "Title": "3  WALLS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "09bb421b5a3f418e9516790322e3a46d",
+          "25c2c39112b6434f9a0d69398d1c6e37",
+          "72322691a8514f12b6ece8702e9e59af",
+          "419e2de6afa3446fb9f5f1a5ce51bfe3"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 735,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 640,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "378eee1d524a4ab7a83bd853bfa1a080",
+        "Title": "HOW TO USE:  pick a picture of a wall SECTION detail (wall upright: brick | insulation | air | block | plaster ...).  Run once with 9 = False to see the layers it reads (Watch / pop-up).  Fix names or mm by typing input 2 (exterior first), set total thickness + height, 9 = True > Run.  It makes the wall type (materials with hatch patterns) and puts walls in the model: on your selected lines, or one wall in the middle of the open plan (run again = that wall is updated).",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 1600.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

@@ -1,0 +1,856 @@
+{
+  "Uuid": "ce50f798-3981-4e3b-a9f8-13106698afa0",
+  "IsCustomNode": false,
+  "Description": "New blank project start: ISO 19650 worksets for all disciplines, view templates, plans per level, sections, elevations, 3D, site plan, ISO 19650 sheets with views placed and a drawing register",
+  "Name": "A00_SETUP_New_Project_ISO19650_Worksets_Templates_Views_Sheets",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "4dc9417b816d48a9bdf900777bbdcaba",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "300ca35da1f64346b9c6887d261662fc",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "0e67e2f6db654901b6e996acfe947154",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7fdebc0dc840403794b5204424e548dd",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "SD"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "102e0b20a3a24343b0794191602b6d37",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ca87ef259f86477096c46a5b44ec166e",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "ZZ"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "be8ce04da22f4fa6916112fd8c01e327",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ef515850a114483481ac45ba4d3d515f",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "A,S,I,M,E,P"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "ecb56658324e4d939849fe0c46e77153",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "348d4a17a2774413a6a16752f492bedf",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "f30636d27aab4282880242d4ac11596e",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5b869ec3204e4fffa43ab5918cda411c",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "ee6f0f975806464c95003003eb278d28",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "90d33f2d1883454c9ffa756bfd6497dd",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "e244531e73004478bfa355dbc0cb4295",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1632b6b2a79c401f8b95d10e69b9ca8a",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "b6741bf828364d04a738a3675579dc49",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5ba21416b1c94dd5be4c9a028b3c092e",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "f5d36047f68345f8bdb8ff231d4caef3",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5d11f086591b4d8780a2a055476edbb7",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "S0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "afef3433b5824dd6a832351c05432e5f",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3b69a4f4f9b540b29e0a7ab4f5cec5e1",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "P01"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "a6870fd5673c47b894d82b17fd267cf1",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "765f536f0bef416a8bf27555f5928a23",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "100"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "70a08738e7b144eeb0b0a5214b7707ce",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2fc51f9ee96b4e62818c47113b28d5a7",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "20, 130, 20, 20"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "5c93e7c544c74db987cf09e1e4de83fa",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "80968430fbe24ffd81f191a3c217eab9",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Title w Line"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - A00 NEW PROJECT START  (ISO 19650, all disciplines)  v3\n#  run once on a new / blank project after the levels exist (A02).  Safe to run again: only missing items are made.\n#  1 WORKSETS       Role-Zone-Content  A-ZZ-Walls External ... S-ZZ-Columns ... M/E/P ... Z-ZZ-Shared Levels and Grids\n#  2 VIEW TEMPLATES per discipline and view kind (plan, RCP, section, elevation, 3D)  X-ZZ-VT-...\n#  3 VIEWS          per building-storey level and discipline   A-00 GA PLAN - GROUND FLOOR, S-B1 FOUNDATION PLAN ...\n#                   building sections A-A / B-B, N S E W elevations, 3D views, site plan, drawing register\n#  4 SHEETS         Project-Originator-Volume-Level-Type-Role-Number   2524-SD-ZZ-00-DR-A-1001\n#                   0001 cover  0002 register  0101 site  1001 GA  1101 RCP  1201 framing  1301 foundation\n#                   1401 furniture  1501 floor finish  1601 HVAC  1701 lighting  1801 power  1901 plumbing  1951 fire\n#                   2001 sections  3001-3002 elevations      one view per sheet, centred in the title block\n#  works in Dynamo CPython3 and IronPython 2.7 (no f-strings, no nonlocal)\nimport os\nimport re\nimport math\nimport traceback\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\nlog('--- A00 new project start v3')\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nclr.AddReference('System')\nfrom System.Collections.Generic import List\n\ntry:\n    IN                                                    # noqa - defined by Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\n\nif DYNAMO:\n    clr.AddReference('RevitServices')\n    from RevitServices.Persistence import DocumentManager\n    from RevitServices.Transactions import TransactionManager\n    doc = DocumentManager.Instance.CurrentDBDocument\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('A00_INPUTS', []))           # test harness (pyRevit / connector) passes doc + A00_INPUTS\n\nBIC = BuiltInCategory\nMM = 1.0 / 304.8\nout = []\n\n\ndef inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    return default if v is None else v\n\n\ndef txt(i, default):\n    v = str(inp(i, default)).strip()\n    return v if v else default\n\n\ndef flag(i, default):\n    v = inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef ename(e):\n    \"\"\"name of an element / type that works in CPython3 too\"\"\"\n    for bip in (BuiltInParameter.SYMBOL_NAME_PARAM, BuiltInParameter.ALL_MODEL_TYPE_NAME):\n        try:\n            p = e.get_Parameter(bip)\n            if p is not None and p.AsString():\n                return p.AsString()\n        except Exception:\n            pass\n    try:\n        return e.Name\n    except Exception:\n        try:\n            return Element.Name.__get__(e)\n        except Exception:\n            return ''\n\n\ndef fname(t):\n    for bip in (BuiltInParameter.SYMBOL_FAMILY_NAME_PARAM, BuiltInParameter.ALL_MODEL_FAMILY_NAME):\n        try:\n            p = t.get_Parameter(bip)\n            if p is not None and p.AsString():\n                return p.AsString()\n        except Exception:\n            pass\n    try:\n        return t.FamilyName\n    except Exception:\n        return ''\n\n\ndef setp(e, bip, val):\n    try:\n        p = e.get_Parameter(bip)\n        if p is not None and not p.IsReadOnly:\n            p.Set(val)\n            return True\n    except Exception:\n        pass\n    return False\n\n\ndef set_named(e, names, val):\n    for n in names:\n        p = e.LookupParameter(n)\n        if p is not None and not p.IsReadOnly and p.StorageType == StorageType.String:\n            p.Set(val)\n            return True\n    return False\n\n\n# ======================================================================== inputs\npi = doc.ProjectInformation\nPROJ = txt(0, (pi.Number or '').strip() if pi is not None else '')\nif not PROJ or PROJ.upper() in ('PROJECT NUMBER', '0001'):\n    PROJ = 'XXXX'\nORIG = txt(1, 'SD').upper()\nVOL = txt(2, 'ZZ').upper()\nDISC = [d.strip().upper() for d in txt(3, 'A,S,I,M,E,P').replace(';', ',').split(',') if d.strip()]\nDO_WS = flag(4, True)\nDO_TPL = flag(5, True)\nDO_VIEWS = flag(6, True)\nDO_SHEETS = flag(7, True)\nTB_PATH = txt(8, '')\nSTATUS = txt(9, 'S0').upper()\nREV = txt(10, 'P01').upper()\ntry:\n    SCALE = int(float(txt(11, '100').replace('1:', '')))\nexcept Exception:\n    SCALE = 100\ntry:\n    MARGINS = [float(x) for x in txt(12, '20, 130, 20, 20').replace(';', ',').split(',')][:4]\nexcept Exception:                                         # 'auto' or a typo -> the A1 default\n    MARGINS = [20.0, 130.0, 20.0, 20.0]\nwhile len(MARGINS) < 4:\n    MARGINS.append(20.0)\nVP_TYPE = txt(13, 'Title w Line')\nif 'A' not in DISC:\n    DISC.insert(0, 'A')                                   # architecture is the base of the set\nlog('inputs {0} {1} {2} {3} ws {4} tpl {5} views {6} sheets {7} tb \"{8}\" {9} {10} 1:{11}'.format(\n    PROJ, ORIG, VOL, DISC, DO_WS, DO_TPL, DO_VIEWS, DO_SHEETS, TB_PATH, STATUS, REV, SCALE))\n\n# ======================================================================== 1  WORKSETS\nWORKSETS = {\n    'Z': ['Z-ZZ-Shared Levels and Grids', 'Z-ZZ-General', 'Z-ZZ-Links Revit', 'Z-ZZ-Links CAD',\n          'Z-ZZ-Scope Boxes and Reference Planes'],\n    'A': ['A-ZZ-Walls External', 'A-ZZ-Walls Internal', 'A-ZZ-Curtain Walls and Facade', 'A-ZZ-Doors', 'A-ZZ-Windows',\n          'A-ZZ-Floor Finishes', 'A-ZZ-Roof Finishes', 'A-ZZ-Stairs and Railings', 'A-ZZ-Rooms', 'A-ZZ-Generic',\n          'A-ZZ-Site'],\n    'S': ['S-ZZ-Foundations', 'S-ZZ-Columns', 'S-ZZ-Beams Plinth', 'S-ZZ-Beams Floor', 'S-ZZ-Slabs', 'S-ZZ-Walls',\n          'S-ZZ-Roof', 'S-ZZ-Stairs'],\n    'I': ['I-ZZ-Ceilings', 'I-ZZ-Furniture', 'I-ZZ-Casework', 'I-ZZ-Equipment', 'I-ZZ-Wall Finishes'],\n    'M': ['M-ZZ-Ducts', 'M-ZZ-Equipment', 'M-ZZ-Piping HVAC'],\n    'E': ['E-ZZ-Containment', 'E-ZZ-Lighting', 'E-ZZ-Power', 'E-ZZ-ELV and Security', 'E-ZZ-Fire Alarm'],\n    'P': ['P-ZZ-Pipes', 'P-ZZ-Sanitary', 'P-ZZ-Drainage', 'P-ZZ-Water Supply', 'P-ZZ-Fire'],\n    'C': ['C-ZZ-External Works', 'C-ZZ-Roads and Drainage'],\n    'L': ['L-ZZ-Landscape', 'L-ZZ-Hardscape'],\n}\n\n\ndef enable_worksharing():\n    \"\"\"must run outside a transaction\"\"\"\n    if doc.IsWorkshared:\n        return 'already on'\n    try:\n        if DYNAMO:\n            TransactionManager.Instance.ForceCloseTransaction()\n        doc.EnableWorksharing('Z-ZZ-Shared Levels and Grids', 'Z-ZZ-General')\n        return 'switched on'\n    except Exception as ex:\n        log('enable worksharing: ' + str(ex))\n        return 'could not switch on (' + str(ex) + ') - Collaborate > Worksets, then run again'\n\n\ndef make_worksets():\n    if not doc.IsWorkshared:\n        return 0, []\n    existing = dict((w.Name, w) for w in FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset))\n    for old, new in (('Shared Levels and Grids', 'Z-ZZ-Shared Levels and Grids'), ('Workset1', 'Z-ZZ-General')):\n        if old in existing and new not in existing:\n            try:\n                WorksetTable.RenameWorkset(doc, existing[old].Id, new)\n            except Exception:\n                pass\n    existing = set(w.Name for w in FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset))\n    made = []\n    for role in ['Z'] + DISC:\n        for name in WORKSETS.get(role, []):\n            if name not in existing and WorksetTable.IsWorksetNameUnique(doc, name):\n                Workset.Create(doc, name)\n                existing.add(name)\n                made.append(name)\n    # levels + grids on the shared workset\n    ws = [w for w in FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset) if w.Name == 'Z-ZZ-Shared Levels and Grids']\n    if ws:\n        wid = ws[0].Id.IntegerValue\n        for cls in (Level, Grid, ReferencePlane):\n            for e in FilteredElementCollector(doc).OfClass(cls):\n                p = e.get_Parameter(BuiltInParameter.ELEM_PARTITION_PARAM)\n                if p is not None and not p.IsReadOnly and p.AsInteger() != wid:\n                    try:\n                        p.Set(wid)\n                    except Exception:\n                        pass\n    return len(existing), made\n\n\n# ======================================================================== 2  VIEW TEMPLATES\ndef rgb(c):\n    return Color(c[0], c[1], c[2])\n\n\n_PAT = {}\n\n\ndef pattern(kind):\n    if kind in _PAT:\n        return _PAT[kind]\n    fps = list(FilteredElementCollector(doc).OfClass(FillPatternElement))\n    res = None\n    if kind == 'solid':\n        res = next((p for p in fps if p.GetFillPattern().IsSolidFill), None)\n    else:\n        keys = {'concrete': ('CONCRETE',), 'masonry': ('MASONRY', 'BRICK', 'BLOCK'), 'diagonal': ('DIAGONAL UP', 'DIAGONAL')}[kind]\n        for k in keys:\n            res = next((p for p in fps if k in p.Name.upper() and p.GetFillPattern().Target == FillPatternTarget.Drafting), None)\n            if res is not None:\n                break\n        if res is None:\n            name = {'concrete': 'CAD2BIM Concrete 45 1.5mm', 'masonry': 'CAD2BIM Masonry Cross 2mm',\n                    'diagonal': 'CAD2BIM Diagonal 45 2mm'}[kind]\n            res = next((p for p in fps if p.Name == name), None)\n            if res is None:\n                if kind == 'masonry':\n                    fp = FillPattern(name, FillPatternTarget.Drafting, FillPatternHostOrientation.ToView,\n                                     math.radians(45), 2.0 * MM, 2.0 * MM)\n                else:\n                    fp = FillPattern(name, FillPatternTarget.Drafting, FillPatternHostOrientation.ToView,\n                                     math.radians(45), (1.5 if kind == 'concrete' else 2.0) * MM)\n                res = FillPatternElement.Create(doc, fp)\n    _PAT[kind] = res\n    return res\n\n\ndef ogs(fill=None, hatch=None, hatch_col=(70, 70, 70), line=None, half=False, surface=None, transp=0):\n    o = OverrideGraphicSettings()\n    if fill is not None:\n        o.SetCutBackgroundPatternId(pattern('solid').Id)\n        o.SetCutBackgroundPatternColor(rgb(fill))\n    if hatch is not None:\n        o.SetCutForegroundPatternId(pattern(hatch).Id)\n        o.SetCutForegroundPatternColor(rgb(hatch_col))\n    if surface is not None:\n        o.SetSurfaceBackgroundPatternId(pattern('solid').Id)\n        o.SetSurfaceBackgroundPatternColor(rgb(surface))\n    if line is not None:\n        o.SetProjectionLineColor(rgb(line))\n        o.SetCutLineColor(rgb(line))\n    if half:\n        o.SetHalftone(True)\n    if transp:\n        o.SetSurfaceTransparency(int(transp))\n    return o\n\n\nGREY = dict(line=(150, 150, 150), half=True)\nLIGHT = dict(line=(185, 185, 185), half=True)\nCOL = dict(fill=(217, 83, 79), hatch='concrete')\nBEAM = dict(fill=(66, 139, 202), hatch='concrete', surface=(205, 225, 245))\nFTG = dict(fill=(240, 173, 78), hatch='concrete', surface=(250, 225, 185))\nSLAB = dict(fill=(120, 170, 120), hatch='concrete', surface=(215, 235, 215), transp=40)\nWALL_A = dict(fill=(245, 222, 179), hatch='masonry', hatch_col=(120, 100, 80))\nARCH_CATS = [BIC.OST_Walls, BIC.OST_Doors, BIC.OST_Windows, BIC.OST_Furniture, BIC.OST_Casework, BIC.OST_Stairs,\n             BIC.OST_StairsRailing, BIC.OST_Ceilings, BIC.OST_PlumbingFixtures, BIC.OST_GenericModel, BIC.OST_Roofs]\nSTR_CATS = [BIC.OST_StructuralColumns, BIC.OST_StructuralFraming, BIC.OST_StructuralFoundation]\nMEP = {'M': [(BIC.OST_DuctCurves, (52, 152, 219)), (BIC.OST_DuctFitting, (52, 152, 219)), (BIC.OST_FlexDuctCurves, (52, 152, 219)),\n             (BIC.OST_DuctTerminal, (41, 128, 185)), (BIC.OST_MechanicalEquipment, (31, 97, 141))],\n       'P': [(BIC.OST_PipeCurves, (39, 174, 96)), (BIC.OST_PipeFitting, (39, 174, 96)), (BIC.OST_FlexPipeCurves, (39, 174, 96)),\n             (BIC.OST_PlumbingFixtures, (22, 160, 133)), (BIC.OST_Sprinklers, (192, 57, 43))],\n       'E': [(BIC.OST_CableTray, (230, 126, 34)), (BIC.OST_CableTrayFitting, (230, 126, 34)), (BIC.OST_Conduit, (243, 156, 18)),\n             (BIC.OST_LightingFixtures, (241, 196, 15)), (BIC.OST_ElectricalEquipment, (231, 76, 60)),\n             (BIC.OST_ElectricalFixtures, (211, 84, 0))]}\nHIDE = {'S': [BIC.OST_Furniture, BIC.OST_Casework, BIC.OST_PlumbingFixtures, BIC.OST_SpecialityEquipment, BIC.OST_Ceilings],\n        'M': [BIC.OST_Furniture, BIC.OST_Casework], 'E': [BIC.OST_Furniture, BIC.OST_Casework],\n        'P': [BIC.OST_Furniture, BIC.OST_Casework], 'SITE': [BIC.OST_Furniture, BIC.OST_Casework, BIC.OST_Ceilings],\n        'A_RCP': [BIC.OST_Furniture, BIC.OST_Casework]}\n\n# key: (template name, view kind, discipline 1 A / 2 S / 4 M / 8 E / 16 P / 4095 coordination, detail 1-3, style)\nTEMPLATES = [\n    ('A_PLAN', 'A-ZZ-VT-Architectural Plan', 'FloorPlan', 1, 2, 'A'),\n    ('A_RCP', 'A-ZZ-VT-Architectural RCP', 'CeilingPlan', 1, 2, 'A_RCP'),\n    ('A_SITE', 'A-ZZ-VT-Site Plan', 'FloorPlan', 1, 1, 'SITE'),\n    ('A_SEC', 'A-ZZ-VT-Architectural Section', 'Section', 1, 2, 'A'),\n    ('A_ELE', 'A-ZZ-VT-Architectural Elevation', 'Elevation', 1, 2, 'A_ELE'),\n    ('A_3D', 'A-ZZ-VT-Architectural 3D', '3D', 1, 2, 'NONE'),\n    ('Z_3D', 'Z-ZZ-VT-Coordination 3D', '3D', 4095, 2, 'Z3D'),\n    ('S_PLAN', 'S-ZZ-VT-Structural Plan', 'StructuralPlan', 2, 2, 'S'),\n    ('S_FDN', 'S-ZZ-VT-Foundation Plan', 'StructuralPlan', 2, 2, 'S'),\n    ('S_SEC', 'S-ZZ-VT-Structural Section', 'Section', 2, 2, 'S'),\n    ('I_PLAN', 'I-ZZ-VT-Interior Plan', 'FloorPlan', 1, 3, 'I'),\n    ('I_FIN', 'I-ZZ-VT-Interior Finish Plan', 'FloorPlan', 1, 3, 'I_FIN'),\n    ('M_PLAN', 'M-ZZ-VT-Mechanical Plan', 'FloorPlan', 4, 2, 'M'),\n    ('E_LTG', 'E-ZZ-VT-Electrical Lighting Plan', 'CeilingPlan', 8, 2, 'E'),\n    ('E_PLAN', 'E-ZZ-VT-Electrical Plan', 'FloorPlan', 8, 2, 'E'),\n    ('P_PLAN', 'P-ZZ-VT-Plumbing Plan', 'FloorPlan', 16, 2, 'P'),\n]\nTPL_ROLE = {'A': 'A', 'Z': 'A', 'S': 'S', 'I': 'I', 'M': 'M', 'E': 'E', 'P': 'P'}\n\n\ndef set_cat(v, bic, o):\n    try:\n        v.SetCategoryOverrides(Category.GetCategory(doc, bic).Id, o)\n    except Exception:\n        pass\n\n\ndef hide_cat(v, bic):\n    try:\n        cid = Category.GetCategory(doc, bic).Id\n        if v.CanCategoryBeHidden(cid):\n            v.SetCategoryHidden(cid, True)\n    except Exception:\n        pass\n\n\ndef style(v, st):\n    for b in (BIC.OST_Grids, BIC.OST_Levels):\n        set_cat(v, b, ogs(**LIGHT))\n    role = st.split('_')[0]\n    if st in ('A', 'A_RCP', 'A_ELE', 'SITE'):\n        if st != 'A_ELE':\n            set_cat(v, BIC.OST_Walls, ogs(**WALL_A))\n        set_cat(v, BIC.OST_StructuralColumns, ogs(**COL))\n        set_cat(v, BIC.OST_StructuralFraming, ogs(**GREY))\n        set_cat(v, BIC.OST_StructuralFoundation, ogs(**GREY))\n        if st == 'A_RCP':\n            set_cat(v, BIC.OST_Ceilings, ogs(line=(90, 90, 90), surface=(240, 240, 250)))\n    elif role == 'S':\n        for b in ARCH_CATS:\n            set_cat(v, b, ogs(**GREY))\n        set_cat(v, BIC.OST_StructuralColumns, ogs(**COL))\n        set_cat(v, BIC.OST_StructuralFraming, ogs(**BEAM))\n        set_cat(v, BIC.OST_StructuralFoundation, ogs(**FTG))\n        set_cat(v, BIC.OST_Floors, ogs(**SLAB))\n    elif role == 'I':\n        set_cat(v, BIC.OST_Walls, ogs(fill=(225, 225, 225), line=(90, 90, 90)))\n        for b in STR_CATS:\n            set_cat(v, b, ogs(fill=(200, 200, 200), **GREY))\n        if st == 'I_FIN':\n            set_cat(v, BIC.OST_Furniture, ogs(**GREY))\n            set_cat(v, BIC.OST_Casework, ogs(**GREY))\n            set_cat(v, BIC.OST_Floors, ogs(surface=(245, 225, 190), line=(150, 120, 80)))\n        else:\n            set_cat(v, BIC.OST_Furniture, ogs(line=(0, 128, 128), surface=(210, 236, 236)))\n            set_cat(v, BIC.OST_Casework, ogs(line=(142, 68, 173), surface=(232, 218, 239)))\n            set_cat(v, BIC.OST_Floors, ogs(surface=(245, 240, 225), line=(150, 140, 120)))\n    elif role in ('M', 'E', 'P'):\n        for b in ARCH_CATS + STR_CATS + [BIC.OST_Floors]:\n            if b == BIC.OST_PlumbingFixtures and role == 'P':\n                continue\n            set_cat(v, b, ogs(**GREY))\n        for r_, items in MEP.items():\n            for b, c in items:\n                if r_ == role:\n                    set_cat(v, b, ogs(line=c, surface=tuple(min(255, int(x * 0.35 + 255 * 0.65)) for x in c)))\n                else:\n                    set_cat(v, b, ogs(**GREY))\n    elif st == 'Z3D':                                     # coordination: every discipline its own colour\n        set_cat(v, BIC.OST_Walls, ogs(surface=(235, 220, 190)))\n        set_cat(v, BIC.OST_StructuralColumns, ogs(surface=(217, 83, 79)))\n        set_cat(v, BIC.OST_StructuralFraming, ogs(surface=(66, 139, 202)))\n        set_cat(v, BIC.OST_StructuralFoundation, ogs(surface=(240, 173, 78)))\n        set_cat(v, BIC.OST_Floors, ogs(surface=(180, 210, 180)))\n        for r_, items in MEP.items():\n            for b, c in items:\n                set_cat(v, b, ogs(surface=c, line=c))\n    for b in HIDE.get(st, HIDE.get(role, [])):\n        hide_cat(v, b)\n\n\ndef vft_of(kind):\n    fam = {'FloorPlan': ViewFamily.FloorPlan, 'CeilingPlan': ViewFamily.CeilingPlan,\n           'StructuralPlan': ViewFamily.StructuralPlan, 'Section': ViewFamily.Section,\n           'Elevation': ViewFamily.Elevation, '3D': ViewFamily.ThreeDimensional,\n           'Sheet': ViewFamily.Sheet, 'Schedule': ViewFamily.Schedule}[kind]\n    for t in FilteredElementCollector(doc).OfClass(ViewFamilyType):\n        if t.ViewFamily == fam:\n            return t\n    if kind == 'StructuralPlan':\n        return vft_of('FloorPlan')\n    return None\n\n\ndef all_levels():\n    return sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation)\n\n\ndef tmp_section():\n    t = Transform.Identity\n    t.BasisX, t.BasisY, t.BasisZ = XYZ.BasisX, XYZ.BasisZ, XYZ.BasisY.Negate()\n    bb = BoundingBoxXYZ()\n    bb.Transform = t\n    bb.Min, bb.Max = XYZ(-10, -10, -5), XYZ(10, 10, 0)\n    return ViewSection.CreateSection(doc, vft_of('Section').Id, bb)\n\n\ndef tmp_view(kind):\n    \"\"\"(temporary view to make a template from, ids to delete afterwards)\"\"\"\n    lvl = all_levels()[0]\n    if kind in ('FloorPlan', 'CeilingPlan', 'StructuralPlan'):\n        v = ViewPlan.Create(doc, vft_of(kind).Id, lvl.Id)\n        return v, [v.Id]\n    if kind == 'Section':\n        v = tmp_section()\n        return v, [v.Id]\n    if kind == '3D':\n        v = View3D.CreateIsometric(doc, vft_of('3D').Id)\n        return v, [v.Id]\n    if kind == 'Elevation':\n        plan = ViewPlan.Create(doc, vft_of('FloorPlan').Id, lvl.Id)\n        m = ElevationMarker.CreateElevationMarker(doc, vft_of('Elevation').Id, XYZ(0, 0, 0), 100)\n        v = m.CreateElevation(doc, plan.Id, 0)\n        return v, [v.Id, m.Id, plan.Id]\n    return None, []\n\n\ndef free_scale(tpl):\n    try:\n        nc = List[ElementId]()\n        for bip in ('VIEW_SCALE_PULLDOWN_METRIC', 'VIEW_SCALE_PULLDOWN_IMPERIAL', 'VIEW_SCALE'):\n            if hasattr(BuiltInParameter, bip):\n                nc.Add(ElementId(getattr(BuiltInParameter, bip)))\n        tpl.SetNonControlledTemplateParameterIds(nc)\n    except Exception as ex:\n        log('scale not freed: ' + str(ex))\n\n\ndef make_templates():\n    want = set(['A', 'Z'] + DISC)\n    names = dict((v.Name, v) for v in FilteredElementCollector(doc).OfClass(View) if v.IsTemplate)\n    res, made = {}, []\n    trash = []\n    for key, name, kind, disc, detail, st in TEMPLATES:\n        if key.split('_')[0] not in want:\n            continue\n        tpl = names.get(name)\n        if tpl is None:\n            try:\n                tmp, ids = tmp_view(kind)\n                tpl = tmp.CreateViewTemplate()\n                tpl.Name = name\n                trash.extend(ids)\n                made.append(name)\n            except Exception as ex:\n                log('template {0}: {1}'.format(name, ex))\n                continue\n        setp(tpl, BuiltInParameter.VIEW_DISCIPLINE, disc)\n        setp(tpl, BuiltInParameter.VIEW_DETAIL_LEVEL, detail)\n        if st != 'NONE':\n            style(tpl, st)\n        free_scale(tpl)\n        res[key] = tpl\n    for i in trash:\n        try:\n            if doc.GetElement(i) is not None:\n                doc.Delete(i)\n        except Exception:\n            pass\n    return res, made\n\n\n# ======================================================================== 3  VIEWS\nORD = ['GROUND', 'FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH', 'SIXTH', 'SEVENTH', 'EIGHTH', 'NINTH', 'TENTH']\n\n\ndef storey_levels():\n    lv = []\n    for l in all_levels():\n        p = l.get_Parameter(BuiltInParameter.LEVEL_IS_BUILDING_STORY)\n        if p is None or p.AsInteger() == 1:\n            lv.append(l)\n    return lv or all_levels()\n\n\ndef level_codes(levels):\n    \"\"\"ISO 19650 level field: B2 B1 00 01 02 .. RF  (from the names, else from the height order)\"\"\"\n    up = [l.Name.upper() for l in levels]\n    g = None\n    for i, n in enumerate(up):\n        if 'GROUND' in n or re.search(r'\\bGF\\b', n):\n            g = i\n            break\n    if g is None:\n        g = min(range(len(levels)), key=lambda i: abs(levels[i].Elevation))\n    codes = []\n    for i, n in enumerate(up):\n        if i < g:\n            codes.append('B{0}'.format(g - i))\n        elif i == g:\n            codes.append('00')\n        else:\n            codes.append('{0:02d}'.format(i - g))\n    if levels and ('ROOF' in up[-1] or 'TERRACE' in up[-1]) and len(levels) - 1 > g:\n        codes[-1] = 'RF'\n    return codes\n\n\ndef level_title(l):\n    n = re.sub(r'^\\s*\\d+\\s*[-_ ]\\s*', '', l.Name.strip()).upper()\n    return n or l.Name.upper()\n\n\n# (discipline, template key, view kind, view title, sheet title, number series, levels: all / lowest / notroof)\nPLAN_SET = [\n    ('A', 'A_PLAN', 'FloorPlan', 'GA PLAN', 'GENERAL ARRANGEMENT PLAN', 1001, 'all'),\n    ('A', 'A_RCP', 'CeilingPlan', 'RCP', 'REFLECTED CEILING PLAN', 1101, 'notroof'),\n    ('S', 'S_PLAN', 'StructuralPlan', 'FRAMING PLAN', 'STRUCTURAL FRAMING PLAN', 1201, 'all'),\n    ('S', 'S_FDN', 'StructuralPlan', 'FOUNDATION PLAN', 'FOUNDATION LAYOUT PLAN', 1301, 'lowest'),\n    ('I', 'I_PLAN', 'FloorPlan', 'FURNITURE LAYOUT PLAN', 'FURNITURE LAYOUT PLAN', 1401, 'notroof'),\n    ('I', 'I_FIN', 'FloorPlan', 'FLOOR FINISH PLAN', 'FLOOR FINISH PLAN', 1501, 'notroof'),\n    ('M', 'M_PLAN', 'FloorPlan', 'HVAC PLAN', 'HVAC LAYOUT PLAN', 1601, 'all'),\n    ('E', 'E_LTG', 'CeilingPlan', 'LIGHTING PLAN', 'LIGHTING LAYOUT PLAN', 1701, 'notroof'),\n    ('E', 'E_PLAN', 'FloorPlan', 'POWER PLAN', 'POWER LAYOUT PLAN', 1801, 'all'),\n    ('P', 'P_PLAN', 'FloorPlan', 'PLUMBING PLAN', 'PLUMBING AND DRAINAGE PLAN', 1901, 'all'),\n    ('P', 'P_PLAN', 'FloorPlan', 'FIRE FIGHTING PLAN', 'FIRE FIGHTING LAYOUT PLAN', 1951, 'all'),\n]\nKIND_VT = {'FloorPlan': ViewType.FloorPlan, 'CeilingPlan': ViewType.CeilingPlan, 'StructuralPlan': ViewType.EngineeringPlan,\n           'Section': ViewType.Section, 'Elevation': ViewType.Elevation, '3D': ViewType.ThreeD}\n\n\ndef views_by_name():\n    d = {}\n    for v in FilteredElementCollector(doc).OfClass(View):\n        if not v.IsTemplate:\n            d[(str(v.ViewType), v.Name)] = v\n    return d\n\n\ndef apply_tpl(v, tpls, key):\n    t = tpls.get(key)\n    if t is None:\n        return\n    try:\n        v.ViewTemplateId = t.Id\n    except Exception as ex:\n        log('template {0} on {1}: {2}'.format(key, v.Name, ex))\n\n\ndef set_scale(v, s):\n    try:\n        v.Scale = int(s)\n    except Exception:\n        pass\n\n\ndef crop_plan(v, box, margin_mm):\n    \"\"\"fixed crop round the building: empty views keep their viewport and every plan sits in the same place\"\"\"\n    if v.CropBoxActive:\n        return                                           # already cropped (by you) - leave it\n    try:\n        cb = v.CropBox\n        m = margin_mm * MM\n        cb.Min = XYZ(box[0] - m, box[1] - m, cb.Min.Z)\n        cb.Max = XYZ(box[2] + m, box[3] + m, cb.Max.Z)\n        v.CropBox = cb\n        v.CropBoxActive = True\n        v.CropBoxVisible = False\n    except Exception as ex:\n        log('crop {0}: {1}'.format(v.Name, ex))\n\n\ndef model_box():\n    \"\"\"building extents (model, then grids, else a 40 x 25 m default)\"\"\"\n    xs, ys = [], []\n    for bic in (BIC.OST_Walls, BIC.OST_Floors, BIC.OST_StructuralColumns, BIC.OST_Columns, BIC.OST_Roofs,\n                BIC.OST_StructuralFoundation):\n        for e in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType():\n            bb = e.get_BoundingBox(None)\n            if bb is not None:\n                xs += [bb.Min.X, bb.Max.X]\n                ys += [bb.Min.Y, bb.Max.Y]\n    if not xs:\n        for g in FilteredElementCollector(doc).OfClass(Grid):\n            c = g.Curve\n            for p in (c.GetEndPoint(0), c.GetEndPoint(1)):\n                xs.append(p.X)\n                ys.append(p.Y)\n    if not xs:\n        return -20000 * MM, -12500 * MM, 20000 * MM, 12500 * MM, False\n    return min(xs), min(ys), max(xs), max(ys), True\n\n\ndef height_range():\n    lv = all_levels()\n    return lv[0].Elevation - 2000 * MM, lv[-1].Elevation + 4000 * MM\n\n\ndef make_section(name, along_x, tplkey, tpls, box):\n    x0, y0, x1, y1 = box\n    cx, cy = (x0 + x1) / 2.0, (y0 + y1) / 2.0\n    z0, z1 = height_range()\n    pad = 3000 * MM\n    t = Transform.Identity\n    t.Origin = XYZ(cx, cy, 0)\n    # tested in Revit 2026: the section cuts at Min.Z and looks along +BasisZ\n    if along_x:                                            # A-A: cut along X through the middle, looking north\n        t.BasisX, t.BasisY, t.BasisZ = XYZ.BasisX.Negate(), XYZ.BasisZ, XYZ.BasisY\n        half_w, depth = (x1 - x0) / 2.0 + pad, (y1 - y0) / 2.0 + pad\n    else:                                                  # B-B: cut along Y through the middle, looking west\n        t.BasisX, t.BasisY, t.BasisZ = XYZ.BasisY.Negate(), XYZ.BasisZ, XYZ.BasisX.Negate()\n        half_w, depth = (y1 - y0) / 2.0 + pad, (x1 - x0) / 2.0 + pad\n    bb = BoundingBoxXYZ()\n    bb.Transform = t\n    bb.Min = XYZ(-half_w, z0, 0)\n    bb.Max = XYZ(half_w, z1, depth)\n    v = ViewSection.CreateSection(doc, vft_of('Section').Id, bb)\n    v.Name = name\n    apply_tpl(v, tpls, tplkey)\n    set_scale(v, SCALE)\n    return v\n\n\nCREATED_ELEV = []\nDIRS = [('NORTH', XYZ(0, 1, 0)), ('SOUTH', XYZ(0, -1, 0)), ('EAST', XYZ(1, 0, 0)), ('WEST', XYZ(-1, 0, 0))]\n\n\ndef facing(v):\n    d = v.ViewDirection\n    for n, vec in DIRS:\n        if d.DotProduct(vec) > 0.9:\n            return n\n    return None\n\n\ndef elevation_marker_view(n, p, plan):\n    \"\"\"new marker at p with one elevation looking towards the building from side n, or None\"\"\"\n    m = ElevationMarker.CreateElevationMarker(doc, vft_of('Elevation').Id, p, SCALE)\n    made_here = []\n    try:\n        slots = int(m.MaximumViewCount)\n    except Exception:\n        slots = 4\n    for i in range(slots):\n        try:\n            if m.IsAvailableIndex(i):\n                made_here.append(m.CreateElevation(doc, plan.Id, i))\n        except Exception as ex:\n            log('elevation slot {0}: {1}'.format(i, ex))\n    keep = next((v for v in made_here if facing(v) == n), None)\n    if keep is None and made_here:                        # single-view markers: turn the marker the right way\n        keep = made_here[0]\n        want = dict(DIRS)[n]\n        d = keep.ViewDirection\n        ang = math.atan2(d.X * want.Y - d.Y * want.X, d.X * want.X + d.Y * want.Y)\n        try:\n            ElementTransformUtils.RotateElement(doc, m.Id, Line.CreateBound(p, p + XYZ.BasisZ), ang)\n            doc.Regenerate()\n        except Exception as ex:\n            log('rotate marker {0}: {1}'.format(n, ex))\n        if facing(keep) != n:\n            keep = None\n    for v in made_here:                                   # delete the extra views (keep one so the marker stays)\n        if keep is not None and idv(v.Id) == idv(keep.Id):\n            continue\n        if keep is None and idv(v.Id) == idv(made_here[-1].Id):\n            continue\n        try:\n            doc.Delete(v.Id)\n        except Exception:\n            pass\n    if keep is None:\n        log('elevation {0}: the marker of this template cannot look {0}'.format(n))\n        try:\n            if doc.GetElement(m.Id) is not None:\n                doc.Delete(m.Id)\n        except Exception:\n            pass\n    return keep\n\n\ndef marker_view_ids(m):\n    ids = []\n    try:\n        slots = int(m.MaximumViewCount)\n    except Exception:\n        slots = 4\n    for i in range(slots):\n        try:\n            vid = m.GetViewId(i)\n            if vid is not None and idv(vid) > 0:\n                ids.append(idv(vid))\n        except Exception:\n            pass\n    return ids\n\n\ndef marker_of(view):\n    for m_ in FilteredElementCollector(doc).OfClass(ElevationMarker):\n        if idv(view.Id) in marker_view_ids(m_):\n            return m_\n    return None\n\n\ndef drop_view(old):\n    \"\"\"delete an unplaced elevation and its marker when that is left empty\"\"\"\n    mk = marker_of(old)\n    doc.Delete(old.Id)\n    if mk is not None and doc.GetElement(mk.Id) is not None and not marker_view_ids(mk):\n        doc.Delete(mk.Id)\n\n\nDEFAULT_ELEV = re.compile(r'^(NORTH|SOUTH|EAST|WEST)\\s*\\d*(\\s*-\\s*(ARCHITECTURAL|ARCH))?$')\n\n\ndef make_elevations(tpls, plan, box, have):\n    \"\"\"one marker per side, 8 m outside the building.  The template's own North / South / East / West\n    (also \"North - Architectural\") are replaced when they are not on a sheet and the new one worked;\n    otherwise they are kept with the ISO name\"\"\"\n    res, notes = {}, []\n    for n, _ in DIRS:\n        v = have.get((str(ViewType.Elevation), 'A-ZZ ELEVATION - ' + n))\n        if v is not None:\n            res[n] = v\n    placed = on_sheet_ids()\n    defaults = {}\n    for (vt, nm), v in list(have.items()):\n        if vt == str(ViewType.Elevation) and DEFAULT_ELEV.match(nm.strip().upper()):\n            f = facing(v)\n            if f:\n                defaults.setdefault(f, []).append(v)\n\n    def rename(v, n):\n        try:\n            del have[(str(ViewType.Elevation), v.Name)]\n        except Exception:\n            pass\n        v.Name = 'A-ZZ ELEVATION - ' + n\n        res[n] = v\n\n    for n, vs in defaults.items():                        # defaults already on a sheet: keep, ISO name only\n        for v in vs:\n            if n not in res and idv(v.Id) in placed:\n                rename(v, n)\n    x0, y0, x1, y1 = box\n    cx, cy, off = (x0 + x1) / 2.0, (y0 + y1) / 2.0, 8000 * MM\n    pos = {'NORTH': XYZ(cx, y1 + off, 0), 'SOUTH': XYZ(cx, y0 - off, 0), 'EAST': XYZ(x1 + off, cy, 0), 'WEST': XYZ(x0 - off, cy, 0)}\n    for n, _ in DIRS:\n        if n in res or plan is None:\n            continue\n        v = None\n        try:\n            v = elevation_marker_view(n, pos[n], plan)\n        except Exception as ex:\n            log('new elevation {0}: {1}'.format(n, ex))\n        if v is not None:\n            v.Name = 'A-ZZ ELEVATION - ' + n\n            res[n] = v\n            CREATED_ELEV.append(v.Name)\n            for old in defaults.get(n, []):               # the template's own one is no longer needed\n                if idv(old.Id) in placed:\n                    continue\n                try:\n                    del have[(str(ViewType.Elevation), old.Name)]\n                except Exception:\n                    pass\n                nm_old = old.Name\n                try:\n                    drop_view(old)\n                    notes.append(nm_old)\n                except Exception as ex:\n                    log('replace default elevation {0}: {1}'.format(nm_old, ex))\n        elif defaults.get(n):                             # new one failed: keep the template's own, ISO name\n            rename(defaults[n][0], n)\n    for n, vs in defaults.items():                        # re-run: ISO one exists, template's own unplaced twin goes\n        for old in vs:\n            try:\n                if n in res and idv(old.Id) != idv(res[n].Id) and idv(old.Id) not in placed and doc.GetElement(old.Id) is not None:\n                    nm_old = old.Name\n                    drop_view(old)\n                    notes.append(nm_old)\n            except Exception as ex:\n                log('replace default elevation: {0}'.format(ex))\n    z0, z1 = height_range()\n    corners = [XYZ(x, y, z) for x in (x0, x1) for y in (y0, y1) for z in (z0, z1)]\n    for n, v in res.items():\n        apply_tpl(v, tpls, 'A_ELE')\n        set_scale(v, SCALE)\n        try:                                              # crop = building width + 5 m each side, full height\n            cb = v.CropBox\n            inv = cb.Transform.Inverse\n            loc = [inv.OfPoint(c) for c in corners]\n            mx = 5000 * MM\n            behind = max(q.Z for q in loc)                # < 0: whole building is behind the elevation line\n            if not v.CropBoxActive or ('A-ZZ ELEVATION - ' + n) in CREATED_ELEV:\n                cb.Min = XYZ(min(q.X for q in loc) - mx, min(q.Y for q in loc), cb.Min.Z)\n                cb.Max = XYZ(max(q.X for q in loc) + mx, max(q.Y for q in loc), cb.Max.Z)\n                v.CropBox = cb\n                v.CropBoxActive = True\n                v.CropBoxVisible = False\n            log('elevation {0}: building front face {1:.0f} mm {2} the elevation line'.format(\n                n, abs(behind) / MM, 'behind' if behind < 0 else 'IN FRONT OF'))\n        except Exception as ex:\n            log('crop elevation {0}: {1}'.format(n, ex))\n    if notes:\n        log('default elevations replaced: ' + ', '.join(notes))\n    return res\n\n\ndef make_views(tpls):\n    have = views_by_name()\n    levels = storey_levels()\n    codes = level_codes(levels)\n    x0, y0, x1, y1, real = model_box()\n    box = (x0, y0, x1, y1)\n    made, items = [], []                                  # items: (role, number, level code, sheet title, [views], scale)\n\n    def get_view(kind, name, tplkey, level=None, reuse_names=()):\n        v = have.get((str(KIND_VT[kind]), name))\n        if v is None and level is not None:               # rename Revit's own \"Level 1\" plan instead of making a twin\n            for rn in reuse_names:\n                c = have.get((str(KIND_VT[kind]), rn))\n                if c is not None and idv(c.ViewTemplateId) < 0 and idv(c.GenLevel.Id) == idv(level.Id):\n                    try:\n                        c.Name = name\n                        v = c\n                        del have[(str(KIND_VT[kind]), rn)]\n                        made.append(name + '  (renamed from ' + rn + ')')\n                    except Exception:\n                        v = None\n                    break\n        if v is None:\n            if kind == '3D':\n                v = View3D.CreateIsometric(doc, vft_of('3D').Id)\n            else:\n                v = ViewPlan.Create(doc, vft_of(kind).Id, level.Id)\n            v.Name = name\n            made.append(name)\n        have[(str(KIND_VT[kind]), name)] = v\n        apply_tpl(v, tpls, tplkey)\n        return v\n\n    for role, key, kind, vt, st, series, which in PLAN_SET:\n        if role not in DISC:\n            continue\n        for i, (l, code) in enumerate(zip(levels, codes)):\n            if which == 'lowest' and i != 0:\n                continue\n            if which == 'notroof' and code == 'RF':\n                continue\n            title = level_title(l)\n            vtitle = 'ROOF PLAN' if (code == 'RF' and key == 'A_PLAN') else vt\n            stitle = 'ROOF PLAN' if (code == 'RF' and key == 'A_PLAN') else st\n            name = '{0}-{1} {2} - {3}'.format(role, code, vtitle, title)\n            v = get_view(kind, name, key, l, (l.Name,) if role == 'A' or (role == 'S' and key == 'S_PLAN') else ())\n            set_scale(v, SCALE)\n            crop_plan(v, box, 5000)\n            items.append((role, series + i, code, '{0} - {1}'.format(stitle, title), [v], SCALE))\n\n    ground = levels[codes.index('00')] if '00' in codes else levels[0]\n    plan = have.get((str(ViewType.FloorPlan), 'A-00 GA PLAN - ' + level_title(ground)))\n    site = get_view('FloorPlan', 'A-ZZ SITE PLAN', 'A_SITE', ground, ('Site', 'SITE', 'Site Plan'))\n    set_scale(site, SCALE * 2)\n    crop_plan(site, box, 20000)\n    items.append(('A', 101, 'ZZ', 'SITE PLAN', [site], SCALE * 2))\n\n    for role, key in (('A', 'A_SEC'), ('S', 'S_SEC')):\n        if role not in DISC:\n            continue\n        secs = []\n        for tag, along in (('A-A', True), ('B-B', False)):\n            name = '{0}-ZZ SECTION {1}'.format(role, tag)\n            v = have.get((str(ViewType.Section), name))\n            if v is None:\n                v = make_section(name, along, key, tpls, box)\n                have[(str(ViewType.Section), name)] = v\n                made.append(name)\n            secs.append(v)\n        items.append((role, 2001, 'ZZ', 'BUILDING SECTIONS A-A AND B-B' if role == 'A' else 'STRUCTURAL SECTIONS A-A AND B-B',\n                      secs, SCALE))\n\n    try:\n        elev = make_elevations(tpls, plan or site, box, have)\n    except Exception as ex:                               # never lose all the views because of the elevations\n        log('elevations: ' + traceback.format_exc())\n        elev = {}\n        made.append('(elevations skipped: {0})'.format(ex))\n    made.extend(CREATED_ELEV)\n    if 'NORTH' in elev or 'SOUTH' in elev:\n        items.append(('A', 3001, 'ZZ', 'NORTH AND SOUTH ELEVATIONS', [elev[k] for k in ('NORTH', 'SOUTH') if k in elev], SCALE))\n    if 'EAST' in elev or 'WEST' in elev:\n        items.append(('A', 3002, 'ZZ', 'EAST AND WEST ELEVATIONS', [elev[k] for k in ('EAST', 'WEST') if k in elev], SCALE))\n\n    v3a = get_view('3D', 'A-ZZ 3D ARCHITECTURE', 'A_3D')\n    get_view('3D', 'Z-ZZ 3D COORDINATION', 'Z_3D')\n    items.insert(0, ('A', 1, 'ZZ', 'COVER SHEET', [v3a], 0))\n    return made, items, codes, levels, real\n\n\n# ======================================================================== 4  SHEETS\ndef title_block():\n    tbs = list(FilteredElementCollector(doc).OfCategory(BIC.OST_TitleBlocks).WhereElementIsElementType())\n    want = os.path.splitext(os.path.basename(TB_PATH))[0].upper() if TB_PATH else ''\n    if want:\n        hit = [t for t in tbs if want in fname(t).upper() or want in ename(t).upper()]\n        if hit:\n            return hit[0], 'in project'\n        if os.path.isfile(TB_PATH):\n            try:\n                doc.LoadFamily(TB_PATH)\n                tbs = list(FilteredElementCollector(doc).OfCategory(BIC.OST_TitleBlocks).WhereElementIsElementType())\n                hit = [t for t in tbs if want in fname(t).upper() or want in ename(t).upper()]\n                if hit:\n                    return hit[0], 'loaded from ' + TB_PATH\n            except Exception as ex:\n                log('load title block: ' + str(ex))\n    if tbs:\n        return tbs[0], 'first loaded (not found: ' + TB_PATH + ')' if want else 'first loaded'\n    return None, 'none loaded - sheets without title block'\n\n\ndef vp_type():\n    for t in FilteredElementCollector(doc).OfClass(ElementType):\n        try:\n            if fname(t) == 'Viewport' and ename(t) == VP_TYPE:\n                return t.Id\n        except Exception:\n            pass\n    return None\n\n\ndef draw_area(sheet):\n    tbs = list(FilteredElementCollector(doc, sheet.Id).OfCategory(BIC.OST_TitleBlocks).WhereElementIsNotElementType())\n    if tbs:\n        bb = tbs[0].get_BoundingBox(sheet)\n        x0, y0, x1, y1 = bb.Min.X, bb.Min.Y, bb.Max.X, bb.Max.Y\n    else:\n        x0, y0, x1, y1 = 0, 0, 841 * MM, 594 * MM\n    l, r, t, b = [m * MM for m in MARGINS]\n    return x0 + l, y0 + b, x1 - r, y1 - t\n\n\ndef on_sheet_ids():\n    s = set()\n    for sh in FilteredElementCollector(doc).OfClass(ViewSheet):\n        for vid in sh.GetAllPlacedViews():\n            s.add(idv(vid))\n    return s\n\n\ndef sheet_number(role, code, number):\n    return '-'.join([PROJ, ORIG, VOL, code, 'DR', role, '{0:04d}'.format(number)]).upper()\n\n\ndef make_sheets(items):\n    tb, tbinfo = title_block()\n    tbid = tb.Id if tb is not None else ElementId.InvalidElementId\n    if tb is not None and not tb.IsActive:\n        tb.Activate()\n    vpt = vp_type()\n    existing = dict((s.SheetNumber, s) for s in FilteredElementCollector(doc).OfClass(ViewSheet))\n    placed = on_sheet_ids()\n    made, vps, skipped = [], 0, []\n    reg_sheet = None\n    for role, number, code, title, views, scale in sorted(items, key=lambda r: (r[0] != 'A', r[0], r[1])):\n        num = sheet_number(role, code, number)\n        sh = existing.get(num)\n        if sh is None:\n            sh = ViewSheet.Create(doc, tbid)\n            sh.SheetNumber = num\n            sh.Name = title.upper()\n            existing[num] = sh\n            made.append(num + '  ' + title.upper())\n            set_named(sh, ['Status', 'Suitability', 'Suitability Code', 'Status Code', 'Document Status'], STATUS)\n            set_named(sh, ['Revision', 'Document Revision', 'Rev'], REV)\n            doc.Regenerate()\n        free = [v for v in views if idv(v.Id) not in placed]\n        if not free:\n            continue\n        x0, y0, x1, y1 = draw_area(sh)\n        n = len(free)\n        for i, v in enumerate(free):\n            cx, cy = (x0 + x1) / 2.0, y1 - (i + 0.5) * (y1 - y0) / n\n            try:\n                if Viewport.CanAddViewToSheet(doc, sh.Id, v.Id):\n                    vp = Viewport.Create(doc, sh.Id, v.Id, XYZ(cx, cy, 0))\n                    if vpt is not None:\n                        setp(vp, BuiltInParameter.ELEM_TYPE_PARAM, vpt)\n                    placed.add(idv(v.Id))\n                    vps += 1\n                else:\n                    skipped.append(v.Name)\n            except Exception as ex:\n                skipped.append('{0} ({1})'.format(v.Name, ex))\n    # 0002 drawing register = sheet list schedule\n    num = sheet_number('A', 'ZZ', 2)\n    sh = existing.get(num)\n    if sh is None:\n        sh = ViewSheet.Create(doc, tbid)\n        sh.SheetNumber = num\n        sh.Name = 'DRAWING REGISTER'\n        set_named(sh, ['Status', 'Suitability', 'Suitability Code', 'Status Code', 'Document Status'], STATUS)\n        set_named(sh, ['Revision', 'Document Revision', 'Rev'], REV)\n        made.append(num + '  DRAWING REGISTER')\n        doc.Regenerate()\n    sched = next((s for s in FilteredElementCollector(doc).OfClass(ViewSchedule) if s.Name == 'Z-ZZ DRAWING REGISTER'), None)\n    if sched is None:\n        sched = ViewSchedule.CreateSheetList(doc)\n        sched.Name = 'Z-ZZ DRAWING REGISTER'\n        d = sched.Definition\n        want = [BuiltInParameter.SHEET_NUMBER, BuiltInParameter.SHEET_NAME, BuiltInParameter.SHEET_CURRENT_REVISION,\n                BuiltInParameter.SHEET_CURRENT_REVISION_DATE]\n        fields = dict((idv(f.ParameterId), f) for f in d.GetSchedulableFields())\n        first = None\n        for bip in want:\n            f = fields.get(idv(ElementId(bip)))\n            if f is not None:\n                sf = d.AddField(f)\n                if first is None:\n                    first = sf\n        for n in ['Status', 'Suitability']:\n            for f in d.GetSchedulableFields():\n                if f.GetName(doc) == n:\n                    d.AddField(f)\n                    break\n        if first is not None:\n            d.AddSortGroupField(ScheduleSortGroupField(first.FieldId))\n    if not any(idv(i) == idv(sched.Id) for i in [x.ScheduleId for x in FilteredElementCollector(doc, sh.Id).OfClass(ScheduleSheetInstance)]):\n        x0, y0, x1, y1 = draw_area(sh)\n        ScheduleSheetInstance.Create(doc, sh.Id, sched.Id, XYZ(x0 + 10 * MM, y1 - 10 * MM, 0))\n    return made, vps, skipped, tbinfo\n\n\n# ======================================================================== run\ndef step(title, fn):\n    st = SubTransaction(doc)\n    st.Start()\n    try:\n        r = fn()\n        st.Commit()\n        return r\n    except Exception as ex:\n        st.RollBack()\n        out.append('{0}: FAILED - {1}'.format(title, ex))\n        log(title + '\\n' + traceback.format_exc())\n        return None\n\n\ntx = None\ntry:\n    out.append('CAD2BIM A00 NEW PROJECT START (ISO 19650)  -  ' + doc.Title)\n    out.append('Code: {0}-{1}-{2}-<level>-DR-<role>-<number>   status {3}  rev {4}   disciplines {5}'.format(\n        PROJ, ORIG, VOL, STATUS, REV, ','.join(DISC)))\n    ws_state = None\n    if DO_WS:\n        ws_state = enable_worksharing()                   # outside any transaction\n    if DYNAMO:\n        TransactionManager.Instance.EnsureInTransaction(doc)\n    else:\n        tx = Transaction(doc, 'CAD2BIM A00 new project start')\n        tx.Start()\n    if DO_WS:\n        r = step('Worksets', make_worksets)\n        if r is not None:\n            total, made = r\n            if doc.IsWorkshared:\n                out.append('Worksets   : worksharing {0}; {1} made, {2} in total (Role-ZZ-Content)'.format(ws_state, len(made), total))\n            else:\n                out.append('Worksets   : ' + ws_state)\n    tpls = {}\n    if DO_TPL or DO_VIEWS:\n        r = step('View templates', make_templates)\n        if r is not None:\n            tpls, made = r\n            out.append('Templates  : {0} made, {1} in use  ({2})'.format(len(made), len(tpls), ', '.join(sorted(t.Name for t in tpls.values()))))\n    items = []\n    if DO_VIEWS:\n        r = step('Views', lambda: make_views(tpls))\n        if r is not None:\n            made, items, codes, levels, real = r\n            out.append('Levels     : ' + ', '.join('{0} = {1}'.format(c, l.Name) for c, l in zip(codes, levels)))\n            out.append('Views      : {0} made / renamed{1}'.format(\n                len(made), '' if real else '  (no model yet: sections + elevations sized 40 x 25 m round the origin - drag them later)'))\n            out.extend('    ' + m for m in made[:40])\n            if len(made) > 40:\n                out.append('    ... {0} more'.format(len(made) - 40))\n    if DO_SHEETS and items:\n        r = step('Sheets', lambda: make_sheets(items))\n        if r is not None:\n            made, vps, skipped, tbinfo = r\n            out.append('Sheets     : {0} made, {1} views placed   title block: {2}'.format(len(made), vps, tbinfo))\n            out.extend('    ' + m for m in made[:60])\n            if len(made) > 60:\n                out.append('    ... {0} more'.format(len(made) - 60))\n            if skipped:\n                out.append('    not placed: ' + ', '.join(skipped[:10]))\n    if DYNAMO:\n        TransactionManager.Instance.TransactionTaskDone()\n    else:\n        tx.Commit()\n    out.append('Next: Save (a new workshared project: File > Save As = central), then A01 / D01 keep working with these names.')\nexcept Exception as ex:\n    try:\n        if DYNAMO:\n            TransactionManager.Instance.ForceCloseTransaction()\n        elif tx is not None and tx.HasStarted():\n            tx.RollBack()\n    except Exception:\n        pass\n    out.insert(0, 'FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\n\nif DYNAMO:\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('CAD2BIM - A00 New Project Start')\n        td.MainInstruction = out[0] if out[0].startswith('FAILED') else 'New project set up (ISO 19650)'\n        td.MainContent = '\\n'.join(l for l in out[1:] if not l.startswith('    '))[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "03cd0f631bff40d2b0552a033e434a41",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "267c6d02b2aa4e27836998a16d158d86",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6479b09f7bf248da82c379f1bb7beca2",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4e6bda553b064602a7b34c08ca18fda2",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "38420c26a287433ea76e0a7cc69fcc3f",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "92d18fd7731d4920a2678558588a30a9",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fbc246bb2be3450994d5a4fb0d31f1b6",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "59e1d77da3c54b61a75b7263d8150749",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "61760b802f2043498704015f7cd899bb",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "22b49f11d1b24c9b86cca71f056f7bcf",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9c469405f1aa468db56546969ae1511c",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ecfcd11ba87f4145aeaed6b296c645cb",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8f6217c0516d494cb2e2e1269b0bc316",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3cbb1ade428a4dadb3c66b22abc2b238",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ef9c40479b8c4209b4f09c5e274a5c6b",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cadd1b80ebc34a44bb64ce0ac3ca49f2",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 700.0,
+      "WatchHeight": 560.0,
+      "Id": "2aaf62d76d8a4930abbd97d26c70357b",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "f0e2f05fed634751821faa747b4aa80f",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "36137ec454ad4e27a9653afbc0aee7b6",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "300ca35da1f64346b9c6887d261662fc",
+      "End": "267c6d02b2aa4e27836998a16d158d86",
+      "Id": "a47c21b56528426f99e062e6c94179cc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7fdebc0dc840403794b5204424e548dd",
+      "End": "6479b09f7bf248da82c379f1bb7beca2",
+      "Id": "38931f704e9c4bf4ba9fe32e210ee5e7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ca87ef259f86477096c46a5b44ec166e",
+      "End": "4e6bda553b064602a7b34c08ca18fda2",
+      "Id": "d794bf67a1e444d496a6e29027c773cc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ef515850a114483481ac45ba4d3d515f",
+      "End": "38420c26a287433ea76e0a7cc69fcc3f",
+      "Id": "0b82a63781034b7da30ddf4517e4bca7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "348d4a17a2774413a6a16752f492bedf",
+      "End": "92d18fd7731d4920a2678558588a30a9",
+      "Id": "d43d1957cb5d4693a7aa209f0eec334d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5b869ec3204e4fffa43ab5918cda411c",
+      "End": "fbc246bb2be3450994d5a4fb0d31f1b6",
+      "Id": "83812bd68a3d4e329415eec103154fb8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "90d33f2d1883454c9ffa756bfd6497dd",
+      "End": "59e1d77da3c54b61a75b7263d8150749",
+      "Id": "32d796c5311f40a68cc243d74c9af096",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1632b6b2a79c401f8b95d10e69b9ca8a",
+      "End": "61760b802f2043498704015f7cd899bb",
+      "Id": "f573ef65eb7b416d8af3a3930a97e52c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5ba21416b1c94dd5be4c9a028b3c092e",
+      "End": "22b49f11d1b24c9b86cca71f056f7bcf",
+      "Id": "c6ea2d7a0621460f8cd85e8419910cbb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5d11f086591b4d8780a2a055476edbb7",
+      "End": "9c469405f1aa468db56546969ae1511c",
+      "Id": "360872d34b284b97a9a6470bb73ffc47",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3b69a4f4f9b540b29e0a7ab4f5cec5e1",
+      "End": "ecfcd11ba87f4145aeaed6b296c645cb",
+      "Id": "64fd454daa3d49eea5fb9082e05569d8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "765f536f0bef416a8bf27555f5928a23",
+      "End": "8f6217c0516d494cb2e2e1269b0bc316",
+      "Id": "c8af7137c415401c9a8ae592fdfb3a95",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2fc51f9ee96b4e62818c47113b28d5a7",
+      "End": "3cbb1ade428a4dadb3c66b22abc2b238",
+      "Id": "ac50a83a13a44a278d392d93d8e314b5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "80968430fbe24ffd81f191a3c217eab9",
+      "End": "ef9c40479b8c4209b4f09c5e274a5c6b",
+      "Id": "64eab1aa033c432bbd36f4d2ba0db839",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "cadd1b80ebc34a44bb64ce0ac3ca49f2",
+      "End": "f0e2f05fed634751821faa747b4aa80f",
+      "Id": "fa4c78e9f56048c8804ca6a5e4ebc2ee",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "4dc9417b816d48a9bdf900777bbdcaba",
+        "Name": "0  Project code  (blank = Project Information > Project Number)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "0e67e2f6db654901b6e996acfe947154",
+        "Name": "1  Originator  (company code)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 135
+      },
+      {
+        "Id": "102e0b20a3a24343b0794191602b6d37",
+        "Name": "2  Volume / zone  (ZZ = all)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 270
+      },
+      {
+        "Id": "be8ce04da22f4fa6916112fd8c01e327",
+        "Name": "3  Disciplines  A S I M E P C L",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 405
+      },
+      {
+        "Id": "ecb56658324e4d939849fe0c46e77153",
+        "Name": "4  Worksets  (switches worksharing on if needed)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 0
+      },
+      {
+        "Id": "f30636d27aab4282880242d4ac11596e",
+        "Name": "5  View templates",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 135
+      },
+      {
+        "Id": "ee6f0f975806464c95003003eb278d28",
+        "Name": "6  Views  (plans per level, sections, elevations, 3D, site)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 270
+      },
+      {
+        "Id": "e244531e73004478bfa355dbc0cb4295",
+        "Name": "7  Sheets  (ISO 19650 numbers, views placed)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 405
+      },
+      {
+        "Id": "b6741bf828364d04a738a3675579dc49",
+        "Name": "8  Title block .rfa  (loaded if not in the project)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 0
+      },
+      {
+        "Id": "f5d36047f68345f8bdb8ff231d4caef3",
+        "Name": "9  Status  (S0 WIP, S1, S2, S3, S4, A1..)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 135
+      },
+      {
+        "Id": "afef3433b5824dd6a832351c05432e5f",
+        "Name": "10  Revision  (P01..)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 270
+      },
+      {
+        "Id": "a6870fd5673c47b894d82b17fd267cf1",
+        "Name": "11  Scale  (100 = 1:100, site plan = double)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 405
+      },
+      {
+        "Id": "70a08738e7b144eeb0b0a5214b7707ce",
+        "Name": "12  Sheet margins mm  left, right, top, bottom",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 540
+      },
+      {
+        "Id": "5c93e7c544c74db987cf09e1e4de83fa",
+        "Name": "13  Viewport type",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 675
+      },
+      {
+        "Id": "03cd0f631bff40d2b0552a033e434a41",
+        "Name": "CAD2BIM  A00 NEW PROJECT START  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1600.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "2aaf62d76d8a4930abbd97d26c70357b",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1950.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "ff43dc5941934d5f882b1e8da5672c64",
+        "Title": "1  PROJECT CODE  (ISO 19650 sheet number fields)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "4dc9417b816d48a9bdf900777bbdcaba",
+          "0e67e2f6db654901b6e996acfe947154",
+          "102e0b20a3a24343b0794191602b6d37",
+          "be8ce04da22f4fa6916112fd8c01e327"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 480.0,
+        "Height": 695,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 600,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "2f62c11987ea4943822d77c42a1677e3",
+        "Title": "2  WHAT TO CREATE",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "ecb56658324e4d939849fe0c46e77153",
+          "f30636d27aab4282880242d4ac11596e",
+          "ee6f0f975806464c95003003eb278d28",
+          "e244531e73004478bfa355dbc0cb4295"
+        ],
+        "HasNestedGroups": false,
+        "Left": 500.0,
+        "Top": -95.0,
+        "Width": 480.0,
+        "Height": 695,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 600,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "c47f0d45a8464f7eadb4f05d023f8217",
+        "Title": "3  SHEET SETTINGS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "b6741bf828364d04a738a3675579dc49",
+          "f5d36047f68345f8bdb8ff231d4caef3",
+          "afef3433b5824dd6a832351c05432e5f",
+          "a6870fd5673c47b894d82b17fd267cf1",
+          "70a08738e7b144eeb0b0a5214b7707ce",
+          "5c93e7c544c74db987cf09e1e4de83fa"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1020.0,
+        "Top": -95.0,
+        "Width": 480.0,
+        "Height": 965,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 870,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "326f7fc98ff3439291bbe435fc37a8c9",
+        "Title": "HOW TO USE:  new project from your template > A02 levels > set the inputs > Run.  Makes only what is missing, so it is safe to run again.  Then File > Save As (central).",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -220.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

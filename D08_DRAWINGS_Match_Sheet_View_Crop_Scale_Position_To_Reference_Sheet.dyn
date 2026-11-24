@@ -1,0 +1,316 @@
+{
+  "Uuid": "af3d7fe6-550f-4a8f-afa8-bcc8b1e6103b",
+  "IsCustomNode": false,
+  "Description": "Place views on sheets with the same crop, scale, viewport type and sheet position as the plan on a reference sheet. Shows a result message box.",
+  "Name": "Match_Sheets_To_Reference_Sheet",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": false,
+      "Id": "28ec10997f8b4ecdb247c8c7de4ff179",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ff0c8ec6c5634fcc99715d1a0fe26862",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "False = make the changes. True = list only"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "A106",
+      "Id": "897855ada21b42c0adf56e5ed0e400fe",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1a926a01241f4b4a8f0738f25e0cda96",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Copy crop, scale, viewport type and position from the plan on this sheet"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "A113=12 NINTH FLOOR; A114=13 TENTH FLOOR; A115=15 TWELFTH FLOOR",
+      "Id": "cfa8803160cd463694cf2ecac5786324",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4fee097c18e148a189324f45cf19a837",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Sheet number = view name (start of the name is enough)"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "200",
+      "Id": "d1e400d44b5344fb8a7e90fb940be886",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6c748fddebd3452ead3d09662b1f15b9",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "View scale"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# -*- coding: utf-8 -*-\n\"\"\"\nD08 MATCH SHEETS TO A REFERENCE SHEET (Svarda Design)\nPuts each listed view on its sheet with the SAME crop, scale, viewport type,\ntitle position and sheet position as the plan on the reference sheet.\nInputs:\n IN[0] Preview only (True = list only, no changes)\n IN[1] Reference sheet number, e.g. A106\n IN[2] Sheet = view pairs, ; separated, e.g. A113=12 NINTH FLOOR; A114=13 TENTH FLOOR\n IN[3] Scale, e.g. 200 (blank = same as the reference view)\n\"\"\"\nimport clr\nclr.AddReference('RevitAPI')\nclr.AddReference('RevitAPIUI')\nclr.AddReference('RevitServices')\nfrom Autodesk.Revit.DB import *\nfrom Autodesk.Revit.UI import TaskDialog\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\n\ndoc = DocumentManager.Instance.CurrentDBDocument\npreview = bool(IN[0])\nref_no = (IN[1] or '').strip()\npairs_txt = IN[2] or ''\nscale_txt = str(IN[3] or '').strip()\n\nlog = []\ndef say(s):\n    log.append(s)\n\ndef pstr(e, bip):\n    p = e.get_Parameter(bip)\n    return (p.AsString() or '') if p else ''\n\ndef vname(v):\n    return pstr(v, BuiltInParameter.VIEW_NAME)\n\nsheets = {}\nfor s in FilteredElementCollector(doc).OfClass(ViewSheet):\n    sheets[pstr(s, BuiltInParameter.SHEET_NUMBER).strip().upper()] = s\n\nviews = [v for v in FilteredElementCollector(doc).OfClass(View)\n         if not v.IsTemplate and v.GetType().Name != 'ViewSheet']\n\ndef find_view(name, vtype):\n    n = name.strip().upper()\n    cands = [v for v in views if v.ViewType == vtype] or views\n    for test in (lambda x: x == n, lambda x: x.startswith(n), lambda x: n in x):\n        hits = [v for v in cands if test(vname(v).strip().upper())]\n        if hits:\n            return hits[0], len(hits)\n    return None, 0\n\nall_vps = list(FilteredElementCollector(doc).OfClass(Viewport))\n\ndef run():\n    ref_sheet = sheets.get(ref_no.upper())\n    if ref_sheet is None:\n        say('STOP: reference sheet \"%s\" not found.' % ref_no)\n        return\n    ref_vp = None\n    for i in ref_sheet.GetAllViewports():\n        vp = doc.GetElement(i)\n        v = doc.GetElement(vp.ViewId)\n        if v.GetType().Name == 'ViewPlan':\n            ref_vp = vp\n            break\n    if ref_vp is None:\n        say('STOP: no plan view on reference sheet %s.' % ref_no)\n        return\n    ref_view = doc.GetElement(ref_vp.ViewId)\n    ref_center = ref_vp.GetBoxCenter()\n    ref_type = ref_vp.GetTypeId()\n    try:\n        ref_label = ref_vp.LabelOffset\n    except Exception:\n        ref_label = None\n    ref_crop = ref_view.CropBox\n    ref_csm = ref_view.GetCropRegionShapeManager()\n    ref_shape = None\n    try:\n        if ref_csm.ShapeSet:\n            ref_shape = ref_csm.GetCropShape()\n    except Exception:\n        ref_shape = None\n    ann_p = ref_view.get_Parameter(BuiltInParameter.VIEWER_ANNOTATION_CROP_ACTIVE)\n    ann_on = ann_p.AsInteger() if ann_p else None\n    offs = {}\n    for k in ('LeftAnnotationCropOffset', 'RightAnnotationCropOffset',\n              'TopAnnotationCropOffset', 'BottomAnnotationCropOffset'):\n        try:\n            offs[k] = getattr(ref_csm, k)\n        except Exception:\n            pass\n    scale = int(scale_txt) if scale_txt.isdigit() else ref_view.Scale\n    say('Reference: %s  view \"%s\"  scale 1:%d' % (ref_no, vname(ref_view), ref_view.Scale))\n    say('Target scale 1:%d' % scale)\n    say('')\n\n    pairs = []\n    for chunk in pairs_txt.replace('\\n', ';').split(';'):\n        if '=' in chunk:\n            a, b = chunk.split('=', 1)\n            if a.strip() and b.strip():\n                pairs.append((a.strip(), b.strip()))\n    if not pairs:\n        say('STOP: no \"SHEET=VIEW\" pairs given.')\n        return\n\n    for sno, vn in pairs:\n        sheet = sheets.get(sno.upper())\n        v, nhits = find_view(vn, ref_view.ViewType)\n        if sheet is None:\n            say('%s: sheet not found - skipped' % sno)\n            continue\n        if v is None:\n            say('%s: view \"%s\" not found - skipped' % (sno, vn))\n            continue\n        tag = '%s <- \"%s\"' % (sno, vname(v))\n        if nhits > 1:\n            tag += '  (%d names matched, used first)' % nhits\n        if preview:\n            say('PREVIEW ' + tag)\n            continue\n        try:\n            st = SubTransaction(doc)\n            st.Start()\n            # scale\n            try:\n                if v.Scale != scale:\n                    v.Scale = scale\n            except Exception as ex:\n                say('  %s: scale not changed (view template controls it?)' % sno)\n            # crop\n            v.CropBoxActive = True\n            v.CropBox = ref_crop\n            if ref_shape is not None:\n                try:\n                    csm = v.GetCropRegionShapeManager()\n                    if csm.CanHaveShape:\n                        csm.SetCropShape(ref_shape[0])\n                except Exception:\n                    pass\n            v.CropBoxVisible = ref_view.CropBoxVisible\n            if ann_on is not None:\n                p = v.get_Parameter(BuiltInParameter.VIEWER_ANNOTATION_CROP_ACTIVE)\n                if p and not p.IsReadOnly:\n                    p.Set(ann_on)\n            csm = v.GetCropRegionShapeManager()\n            for k, val in offs.items():\n                try:\n                    setattr(csm, k, val)\n                except Exception:\n                    pass\n            # viewport\n            vp = None\n            for x in all_vps:\n                try:\n                    if x.IsValidObject and x.ViewId == v.Id:\n                        vp = x\n                        break\n                except Exception:\n                    pass\n            if vp is not None and vp.SheetId != sheet.Id:\n                old = doc.GetElement(vp.SheetId)\n                say('  removed from old sheet %s' % pstr(old, BuiltInParameter.SHEET_NUMBER))\n                doc.Delete(vp.Id)\n                vp = None\n            doc.Regenerate()\n            if vp is None:\n                if not Viewport.CanAddViewToSheet(doc, sheet.Id, v.Id):\n                    say(tag + ' : FAILED, Revit will not place this view')\n                    st.RollBack()\n                    continue\n                vp = Viewport.Create(doc, sheet.Id, v.Id, ref_center)\n            tp = vp.get_Parameter(BuiltInParameter.ELEM_TYPE_PARAM)\n            if tp and not tp.IsReadOnly and ref_type != vp.GetTypeId():\n                tp.Set(ref_type)\n            doc.Regenerate()\n            vp.SetBoxCenter(ref_center)\n            if ref_label is not None:\n                try:\n                    vp.LabelOffset = ref_label\n                except Exception:\n                    pass\n            st.Commit()\n            say('OK ' + tag)\n        except Exception as ex:\n            try:\n                st.RollBack()\n            except Exception:\n                pass\n            say(tag + ' : FAILED ' + str(ex))\n\nTransactionManager.Instance.EnsureInTransaction(doc)\ntry:\n    run()\nfinally:\n    TransactionManager.Instance.TransactionTaskDone()\n\ntry:\n    TaskDialog.Show('Match sheets to %s' % ref_no, '\\n'.join(log))\nexcept Exception:\n    pass\nOUT = log\n",
+      "Engine": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "fd44e257e46d4f3cb9a6d682858a47ad",
+      "Inputs": [
+        {
+          "Id": "7259ac7cf87d4a99a8793278695808dc",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d199d6aed7d2429e98fa1ca45659c2f5",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6011e2f3ff3842ff8201875226375813",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2b029d5e9a4649c6ae225de7607825b9",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e9e95b1b2c9a4ac883b010cb250cf047",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "3500b0920b184f0f812ef6c2935a142f",
+      "Inputs": [
+        {
+          "Id": "5b0e6d2d88f34410ae926c25a5eab1bd",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4edc0805e99047ada727d364846e5d06",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ff0c8ec6c5634fcc99715d1a0fe26862",
+      "End": "7259ac7cf87d4a99a8793278695808dc",
+      "Id": "680aa5763e6d4cc3b1d304d356bc5745",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1a926a01241f4b4a8f0738f25e0cda96",
+      "End": "d199d6aed7d2429e98fa1ca45659c2f5",
+      "Id": "48ac4e983d814e868b87ad4782902910",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4fee097c18e148a189324f45cf19a837",
+      "End": "6011e2f3ff3842ff8201875226375813",
+      "Id": "ffcccd2ed34945bf82d4bc03a6599f54",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6c748fddebd3452ead3d09662b1f15b9",
+      "End": "2b029d5e9a4649c6ae225de7607825b9",
+      "Id": "61d127a07b054603b64c2c109eb0e7ca",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e9e95b1b2c9a4ac883b010cb250cf047",
+      "End": "5b0e6d2d88f34410ae926c25a5eab1bd",
+      "Id": "dc359d391cbf442d81e8763d7d321ae8",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.0",
+      "Data": {}
+    }
+  ],
+  "Author": "Svarda Design",
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "28ec10997f8b4ecdb247c8c7de4ff179",
+        "Name": "1 Preview only (True = just list, no changes)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "897855ada21b42c0adf56e5ed0e400fe",
+        "Name": "2 Reference sheet number",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 120.0
+      },
+      {
+        "Id": "cfa8803160cd463694cf2ecac5786324",
+        "Name": "3 Sheet = view (; separated)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 240.0
+      },
+      {
+        "Id": "d1e400d44b5344fb8a7e90fb940be886",
+        "Name": "4 Scale 1: (blank = same as reference)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 360.0
+      },
+      {
+        "Id": "fd44e257e46d4f3cb9a6d682858a47ad",
+        "Name": "ENGINE Match sheets to reference",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520.0,
+        "Y": 120.0
+      },
+      {
+        "Id": "3500b0920b184f0f812ef6c2935a142f",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 900.0,
+        "Y": 120.0
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

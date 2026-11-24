@@ -1,0 +1,1098 @@
+{
+  "Uuid": "438886d5-c4da-435f-af5a-c93ec4e8cfeb",
+  "IsCustomNode": false,
+  "Description": "RCC slab on the column grid outline, walls between selected columns, copy selected elements to levels",
+  "Name": "CAD2BIM_Slabs_Walls_Copy",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "a1003d612cf44a7699010ffc049db9ec",
+      "Name": "Slab levels  ( blank = column top level | L2, L3 | L2..L10 | ALL )",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "L3",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "4ea4428f8e374924b3dda4b75e6ef759",
+      "Name": "Slab thickness (mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "150",
+      "MaximumValue": 600.0,
+      "MinimumValue": 75.0,
+      "StepValue": 5.0,
+      "NumberType": "Double",
+      "Description": "Produces numeric values"
+    },
+    {
+      "Id": "efefee35c23044b1b0d66c55337e13b6",
+      "Name": "Slab top offset from level (mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "0",
+      "MaximumValue": 1500.0,
+      "MinimumValue": -1500.0,
+      "StepValue": 25.0,
+      "NumberType": "Double",
+      "Description": "Produces numeric values"
+    },
+    {
+      "Id": "d430b78d1140471089d2e10b3697f8b1",
+      "Name": "Overhang beyond column face (mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "0",
+      "MaximumValue": 2000.0,
+      "MinimumValue": -1000.0,
+      "StepValue": 25.0,
+      "NumberType": "Double",
+      "Description": "Produces numeric values"
+    },
+    {
+      "Id": "a0e3b4febd834d1c9099c4cdbb6b1bc6",
+      "Name": "PLACE / UPDATE SLABS",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "false",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "7eee41b4aa854cae95da5f6473975336",
+      "Name": "Wall thickness (mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "230",
+      "MaximumValue": 600.0,
+      "MinimumValue": 75.0,
+      "StepValue": 5.0,
+      "NumberType": "Double",
+      "Description": "Produces numeric values"
+    },
+    {
+      "Id": "2ebbecfb21ce498cb0f1608910b92979",
+      "Name": "Wall height (mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "3000",
+      "MaximumValue": 12000.0,
+      "MinimumValue": 300.0,
+      "StepValue": 50.0,
+      "NumberType": "Double",
+      "Description": "Produces numeric values"
+    },
+    {
+      "Id": "4a8bb3b9afff40188f8aac9b4cf58b29",
+      "Name": "Wall base offset (mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "0",
+      "MaximumValue": 3000.0,
+      "MinimumValue": -3000.0,
+      "StepValue": 50.0,
+      "NumberType": "Double",
+      "Description": "Produces numeric values"
+    },
+    {
+      "Id": "0aeea5f48bdb4f5a808266a17d5ea0c2",
+      "Name": "Wall top level  ( blank = use height )",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "d148b13f9e774f1f908a65d2b2f668f6",
+      "Name": "Stop walls at column faces",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "false",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "62689fd3e16d45aca3302bda33573ccd",
+      "Name": "PLACE / UPDATE WALLS",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "false",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "0d30036f16c640a3b3976477425d9715",
+      "Name": "Copy to levels  ( L2, L3 | L2..L10 | ALL )",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "L2",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "4cdc55e4837e48daa46cbb7d07a8a583",
+      "Name": "COPY SELECTED",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "fbe64bee1ead400e95895a90ea9e3daa",
+      "Name": "REMOVE slabs + walls made by this tool",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "false",
+      "Description": "Enables selection between True and False"
+    }
+  ],
+  "Outputs": [
+    {
+      "Id": "55e642d298b04a7aa8dd5ef560f37b24",
+      "Name": "REPORT",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "a1003d612cf44a7699010ffc049db9ec",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bfd08c1a1f224413b4b93542cbed5f10",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "L3"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 600.0,
+      "MinimumValue": 75.0,
+      "StepValue": 5.0,
+      "Id": "4ea4428f8e374924b3dda4b75e6ef759",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "eacd4512f4784a97bfbb761c6b29b8c6",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 150.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 1500.0,
+      "MinimumValue": -1500.0,
+      "StepValue": 25.0,
+      "Id": "efefee35c23044b1b0d66c55337e13b6",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "42ccfd8933aa4ebf8f042e31e7dd3686",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 2000.0,
+      "MinimumValue": -1000.0,
+      "StepValue": 25.0,
+      "Id": "d430b78d1140471089d2e10b3697f8b1",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b86259acfa774a448143666f0a588f87",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "a0e3b4febd834d1c9099c4cdbb6b1bc6",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cc1c21fe5f7e40e48255846433b81281",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 600.0,
+      "MinimumValue": 75.0,
+      "StepValue": 5.0,
+      "Id": "7eee41b4aa854cae95da5f6473975336",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f5a20acbb85e49dab0d2c18fd47dac30",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 230.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 12000.0,
+      "MinimumValue": 300.0,
+      "StepValue": 50.0,
+      "Id": "2ebbecfb21ce498cb0f1608910b92979",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4da4371d0bd741bbb523a839bc45b6c7",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 3000.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 3000.0,
+      "MinimumValue": -3000.0,
+      "StepValue": 50.0,
+      "Id": "4a8bb3b9afff40188f8aac9b4cf58b29",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a0b03f827d1d454fa586c21ed9d27e4a",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "0aeea5f48bdb4f5a808266a17d5ea0c2",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ec35b4270b0b4bdb9ba2c3436d9be75c",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "d148b13f9e774f1f908a65d2b2f668f6",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f9381add38864557888b0ad4070f7167",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "62689fd3e16d45aca3302bda33573ccd",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d8cdd745cc1541dba6767ef7ad02e179",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "0d30036f16c640a3b3976477425d9715",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9e1dd8c1662547fdaf78057df90c76b9",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "L2"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4cdc55e4837e48daa46cbb7d07a8a583",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bfffb6bb85e84dec879838b7f43fcdbc",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "fbe64bee1ead400e95895a90ea9e3daa",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "dda47cad3d9546b1814171a8b3254a4c",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - SLABS + WALLS + COPY TO LEVELS (professional)\n#  1 SLAB  : RCC slab on the outline of the column grid (outer column faces + overhang), any levels\n#  2 WALLS : walls between the columns you SELECT (2 columns = 1 wall, a row of columns = a wall per bay)\n#  3 COPY  : copy the elements you SELECT to other levels - re-hosted on the new level, never duplicated\nimport os\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\nlog('--- slabs + walls + copy v1 started')\nimport clr, math, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nclr.AddReference('RevitServices')\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nclr.AddReference('System')\nfrom System.Collections.Generic import List\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\nMMF = 1.0 / 304.8\nCOL_PARAMS = [('b', 'h'), ('Width', 'Depth'), ('Width', 'Length')]\nout = []\n\n\ndef num(v, d=0.0):\n    try:\n        return float(v)\n    except Exception:\n        return d\n\n\ndef f(v):\n    return '{0:.0f}'.format(v)\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\n_CAT = {}\ndef catid(bic):\n    if bic not in _CAT:\n        _CAT[bic] = idv(Category.GetCategory(doc, bic).Id)\n    return _CAT[bic]\n\n\ndef cat_is(e, bic):\n    return e is not None and e.Category is not None and idv(e.Category.Id) == catid(bic)\n\n\ndef tname(t):\n    p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n    return p.AsString() if p else ''\n\n\ndef setp(e, bip, val):\n    p = e.get_Parameter(bip)\n    if p is not None and not p.IsReadOnly:\n        p.Set(val)\n        return True\n    return False\n\n\ndef getd(e, bip):\n    p = e.get_Parameter(bip)\n    return p.AsDouble() if p is not None else None\n\n\ndef getlvl(e, bip):\n    p = e.get_Parameter(bip)\n    if p is None:\n        return None\n    x = doc.GetElement(p.AsElementId())\n    return x if isinstance(x, Level) else None\n\n\ndef tagged(e):\n    p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n    return (p.AsString() or '') if p is not None else ''\n\n\ndef mark(e, txt):\n    setp(e, BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS, txt)\n\n\ndef workset_for(keys):\n    if not doc.IsWorkshared:\n        return None\n    for ws in FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset):\n        if any(k in ws.Name.upper() for k in keys):\n            return ws.Id.IntegerValue\n    return None\n\n\ndef put_ws(e, wid):\n    if wid is not None:\n        try:\n            setp(e, BuiltInParameter.ELEM_PARTITION_PARAM, wid)\n        except Exception:\n            pass\n\n\ndef material(keys):\n    mats = list(FilteredElementCollector(doc).OfClass(Material))\n    for k in keys:\n        hit = [m for m in mats if k in m.Name.upper()]\n        if hit:\n            hit.sort(key=lambda m: len(m.Name))\n            return hit[0].Id\n    return ElementId.InvalidElementId\n\n\nLEVELS = sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.ProjectElevation)\nLIDX = dict((idv(l.Id), i) for i, l in enumerate(LEVELS))\n\n\ndef parse_levels(text, base=None):\n    \"\"\"'L2, L3' / 'L2..L5' / 'ALL' (= every level above base)\"\"\"\n    res = []\n    names = dict((l.Name.strip().upper(), l) for l in LEVELS)\n    for tok in [t.strip() for t in str(text or '').replace(';', ',').split(',') if t.strip()]:\n        T = tok.upper()\n        if T in ('ALL', '*', 'ALL ABOVE'):\n            b = LIDX[idv(base.Id)] if base is not None else -1\n            res += LEVELS[b + 1:]\n        elif '..' in T:\n            a, b = [names.get(x.strip()) for x in T.split('..', 1)]\n            if a is None or b is None:\n                raise Exception('Unknown level in \"{0}\". Levels: {1}'.format(tok, ', '.join(l.Name for l in LEVELS)))\n            i, j = sorted([LIDX[idv(a.Id)], LIDX[idv(b.Id)]])\n            res += LEVELS[i:j + 1]\n        else:\n            if T not in names:\n                raise Exception('Unknown level \"{0}\". Levels: {1}'.format(tok, ', '.join(l.Name for l in LEVELS)))\n            res.append(names[T])\n    seen, uniq = set(), []\n    for l in res:\n        if idv(l.Id) not in seen:\n            seen.add(idv(l.Id))\n            uniq.append(l)\n    return uniq\n\n\ndef col_size(c):\n    sym = c.Symbol\n    for a, b in COL_PARAMS:\n        if sym.LookupParameter(a) is not None and sym.LookupParameter(b) is not None:\n            return sym.LookupParameter(a).AsDouble() / MMF, sym.LookupParameter(b).AsDouble() / MMF\n    bb = c.get_BoundingBox(None)\n    return (bb.Max.X - bb.Min.X) / MMF, (bb.Max.Y - bb.Min.Y) / MMF\n\n\ndef angle_of(e):\n    bx = e.GetTransform().BasisX\n    return math.degrees(math.atan2(bx.Y, bx.X))\n\n\n\n# ---------------------------------------------------------------- outline geometry (mm, grid frame)\ndef cluster(vals, tol):\n    vals = sorted(vals); out = []\n    for v in vals:\n        if out and v - out[-1][-1] <= tol: out[-1].append(v)\n        else: out.append([v])\n    return [sum(c) / len(c) for c in out]\n\ndef idx_of(v, cs, tol):\n    for i, c in enumerate(cs):\n        if abs(v - c) <= tol: return i\n    return None\n\ndef grid_outline(pts, tol=300.0):\n    \"\"\"pts: [(u,v)] mm in grid frame -> list of loops [(u,v)...] (outer CCW, holes CW) of filled grid cells\"\"\"\n    us, vs = cluster([p[0] for p in pts], tol), cluster([p[1] for p in pts], tol)\n    have = set()\n    for u, v in pts:\n        i, j = idx_of(u, us, tol), idx_of(v, vs, tol)\n        if i is not None and j is not None: have.add((i, j))\n    edges = {}\n    for i in range(len(us) - 1):\n        for j in range(len(vs) - 1):\n            if all(k in have for k in ((i, j), (i + 1, j), (i, j + 1), (i + 1, j + 1))):\n                for a, b in (((i, j), (i + 1, j)), ((i + 1, j), (i + 1, j + 1)), ((i + 1, j + 1), (i, j + 1)), ((i, j + 1), (i, j))):\n                    if (b, a) in edges: del edges[(b, a)]\n                    else: edges[(a, b)] = 1\n    nxt = {}\n    for a, b in edges: nxt.setdefault(a, []).append(b)\n    loops = []\n    while nxt:\n        start = next(iter(nxt)); loop = [start]; cur = start\n        while True:\n            b = nxt[cur].pop()\n            if not nxt[cur]: del nxt[cur]\n            if b == start: break\n            loop.append(b); cur = b\n            if cur not in nxt: break\n        # drop collinear\n        clean = []\n        n = len(loop)\n        for k in range(n):\n            p0, p1, p2 = loop[k - 1], loop[k], loop[(k + 1) % n]\n            if (p1[0] - p0[0]) * (p2[1] - p1[1]) - (p1[1] - p0[1]) * (p2[0] - p1[0]) != 0: clean.append(p1)\n        loops.append([(us[i], vs[j]) for i, j in clean])\n    return loops\n\ndef area(loop):\n    return sum(loop[k - 1][0] * loop[k][1] - loop[k][0] * loop[k - 1][1] for k in range(len(loop))) / 2.0\n\ndef offset(loop, d):\n    \"\"\"move every edge d away from the solid (works for CCW outer and CW holes)\"\"\"\n    n = len(loop); out = []\n    for k in range(n):\n        p0, p1, p2 = loop[k - 1], loop[k], loop[(k + 1) % n]\n        def nrm(a, b):\n            dx, dy = b[0] - a[0], b[1] - a[1]; L = math.hypot(dx, dy); return (dy / L, -dx / L)\n        n1, n2 = nrm(p0, p1), nrm(p1, p2)\n        dot = n1[0] * n2[0] + n1[1] * n2[1]\n        s = d / (1.0 + dot)\n        out.append((p1[0] + s * (n1[0] + n2[0]), p1[1] + s * (n1[1] + n2[1])))\n    return out\n\ndef hull(pts):\n    pts = sorted(set(pts))\n    if len(pts) < 3: return pts\n    def cr(o, a, b): return (a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0])\n    lo, up = [], []\n    for p in pts:\n        while len(lo) >= 2 and cr(lo[-2], lo[-1], p) <= 0: lo.pop()\n        lo.append(p)\n    for p in reversed(pts):\n        while len(up) >= 2 and cr(up[-2], up[-1], p) <= 0: up.pop()\n        up.append(p)\n    return lo[:-1] + up[:-1]\n\n\ndef floor_type(T):\n    name = 'SLAB {0} RCC'.format(f(T))\n    base = None\n    for ft in FilteredElementCollector(doc).OfClass(FloorType):\n        if tname(ft) == name:\n            return ft\n        if base is None and not ft.IsFoundationSlab and ft.GetCompoundStructure() is not None:\n            base = ft\n    if base is None:\n        raise Exception('No floor type in the project to start from')\n    ft = base.Duplicate(name)\n    ft.SetCompoundStructure(CompoundStructure.CreateSingleLayerCompoundStructure(\n        MaterialFunctionAssignment.Structure, T * MMF, material(['CONCRETE, CAST', 'CONCRETE'])))\n    return ft\n\n\ndef wall_type(T):\n    name = 'AR_BLOCK WALL {0}'.format(f(T))\n    base = None\n    for wt in FilteredElementCollector(doc).OfClass(WallType):\n        if tname(wt) == name:\n            return wt\n        if base is None and wt.Kind == WallKind.Basic and wt.GetCompoundStructure() is not None:\n            base = wt\n    if base is None:\n        raise Exception('No basic wall type in the project to start from')\n    wt = base.Duplicate(name)\n    wt.SetCompoundStructure(CompoundStructure.CreateSingleLayerCompoundStructure(\n        MaterialFunctionAssignment.Structure, T * MMF, material(['BLOCK', 'MASONRY', 'BRICK', 'CONCRETE'])))\n    return wt\n\n\ntry:\n    SLAB_LV = str(IN[0] or '').strip(); S_T = num(IN[1], 150); S_OFF = num(IN[2]); S_OVER = num(IN[3])\n    DO_SLAB = bool(IN[4])\n    W_T = num(IN[5], 230); W_H = num(IN[6], 3000); W_OFF = num(IN[7]); W_TOP = str(IN[8] or '').strip()\n    W_FACE = bool(IN[9]); DO_WALL = bool(IN[10])\n    COPY_LV = str(IN[11] or '').strip(); DO_COPY = bool(IN[12])\n    DO_REMOVE = bool(IN[13])\n    log('inputs: slab \"{0}\" t{1} off{2} over{3} ({4}) | wall t{5} h{6} off{7} top \"{8}\" face {9} ({10}) | '\n        'copy \"{11}\" ({12}) | remove {13}'.format(SLAB_LV, S_T, S_OFF, S_OVER, DO_SLAB, W_T, W_H, W_OFF, W_TOP,\n                                                  W_FACE, DO_WALL, COPY_LV, DO_COPY, DO_REMOVE))\n    if not (DO_SLAB or DO_WALL or DO_COPY or DO_REMOVE):\n        raise Exception('Nothing switched on - turn on PLACE SLABS, PLACE WALLS or COPY, then Run')\n\n    sel = [doc.GetElement(i) for i in uidoc.Selection.GetElementIds()]\n    sel = [e for e in sel if e is not None and e.Category is not None]\n\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    out.append('CAD2BIM SLABS + WALLS + COPY  -  DONE')\n\n    # ------------------------------------------------------------ REMOVE\n    if DO_REMOVE:\n        dead = [e for bic in (BuiltInCategory.OST_Floors, BuiltInCategory.OST_Walls)\n                for e in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType()\n                if tagged(e) in ('CAD2BIM-SLAB', 'CAD2BIM-WALL')]\n        for e in dead:\n            doc.Delete(e.Id)\n        out.append('REMOVED : {0} slabs / walls made by this tool. Set REMOVE back to False.'.format(len(dead)))\n        DO_SLAB = DO_WALL = DO_COPY = False\n\n    # ------------------------------------------------------------ columns + grid frame\n    cols = []\n    for c in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralColumns).WhereElementIsNotElementType():\n        if not isinstance(c, FamilyInstance) or not hasattr(c.Location, 'Point'):\n            continue\n        bl, tl = getlvl(c, BuiltInParameter.FAMILY_BASE_LEVEL_PARAM), getlvl(c, BuiltInParameter.FAMILY_TOP_LEVEL_PARAM)\n        if bl is None or tl is None:\n            continue\n        p = c.Location.Point\n        cb, ch = col_size(c)\n        cols.append({'e': c, 'id': idv(c.Id), 'x': p.X / MMF, 'y': p.Y / MMF, 'ang': angle_of(c),\n                     'cb': cb, 'ch': ch, 'bl': bl, 'tl': tl})\n    votes = {}\n    for c in cols:\n        a = round((c['ang'] % 90.0) * 2) / 2.0\n        a = 0.0 if a >= 89.75 else a\n        votes[a] = votes.get(a, 0) + 1\n    th = math.radians(max(votes, key=votes.get)) if votes else 0.0\n    ct, st = math.cos(th), math.sin(th)\n    U = lambda x, y: x * ct + y * st\n    V = lambda x, y: -x * st + y * ct\n    X = lambda u, v: u * ct - v * st\n    Y = lambda u, v: u * st + v * ct\n\n    # ------------------------------------------------------------ 1 SLABS\n    if DO_SLAB:\n        if not cols:\n            raise Exception('No structural columns - the slab follows the column grid')\n        lvls = parse_levels(SLAB_LV) if SLAB_LV else \\\n            sorted(dict((idv(c['tl'].Id), c['tl']) for c in cols).values(), key=lambda l: l.ProjectElevation)\n        pts = list(set((round(U(c['x'], c['y']) / 10.0) * 10.0, round(V(c['x'], c['y']) / 10.0) * 10.0) for c in cols))\n        loops = [L for L in grid_outline(pts) if area(L) > 0]\n        how = 'column grid outline'\n        if not loops:\n            loops = [hull(pts)]\n            how = 'convex outline of the columns'\n        edge = max(max(c['cb'], c['ch']) for c in cols) / 2.0 + S_OVER\n        loops = [offset(L, edge) for L in loops]\n        ft = floor_type(S_T)\n        wid = workset_for(['SLAB', 'FLOOR'])\n        made = []\n        for lv in lvls:\n            for e in list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Floors).WhereElementIsNotElementType()):\n                if tagged(e) == 'CAD2BIM-SLAB' and idv(e.LevelId) == idv(lv.Id):\n                    doc.Delete(e.Id)                       # update = replace\n            for L in loops:\n                cl = CurveLoop()\n                z = lv.ProjectElevation\n                for k in range(len(L)):\n                    a, b = L[k], L[(k + 1) % len(L)]\n                    cl.Append(Line.CreateBound(XYZ(X(*a) * MMF, Y(*a) * MMF, z), XYZ(X(*b) * MMF, Y(*b) * MMF, z)))\n                lst = List[CurveLoop]()\n                lst.Add(cl)\n                fl = Floor.Create(doc, lst, ft.Id, lv.Id, True, None, 0.0)\n                setp(fl, BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM, S_OFF * MMF)\n                mark(fl, 'CAD2BIM-SLAB')\n                put_ws(fl, wid)\n                made.append(fl)\n        doc.Regenerate()\n        ar = sum((getd(e, BuiltInParameter.HOST_AREA_COMPUTED) or 0) for e in made) * 0.09290304\n        vo = sum((getd(e, BuiltInParameter.HOST_VOLUME_COMPUTED) or 0) for e in made) * 0.3048 ** 3\n        out.append('SLABS   : {0} x {1} on {2}  |  {3:.1f} m2, concrete {4:.2f} m3'.format(\n            len(made), tname(ft), ', '.join(l.Name for l in lvls), ar, vo))\n        out.append('    edge = {0}, {1:.0f} mm beyond column centres ({2:+.0f} mm overhang), top {3:+.0f} mm'.format(\n            how, edge, S_OVER, S_OFF))\n\n    # ------------------------------------------------------------ 2 WALLS between selected columns\n    if DO_WALL:\n        ids = set(idv(e.Id) for e in sel if cat_is(e, BuiltInCategory.OST_StructuralColumns))\n        sc = [c for c in cols if c['id'] in ids]\n        if len(sc) < 2:\n            out.append('WALLS   : select 2 or more columns in Revit first')\n        else:\n            if len(sc) == 2:\n                prs = [(sc[0], sc[1])]\n            else:\n                prs, seen = [], set()\n                uv = [(U(c['x'], c['y']), V(c['x'], c['y']), c) for c in sc]\n                for axis in (0, 1):\n                    for a in uv:\n                        best, bd = None, None\n                        for b in uv:\n                            along, across = b[axis] - a[axis], abs(b[1 - axis] - a[1 - axis])\n                            if along > 300 and across <= 300 and (bd is None or along < bd):\n                                best, bd = b, along\n                        if best is not None:\n                            k = tuple(sorted([a[2]['id'], best[2]['id']]))\n                            if k not in seen:\n                                seen.add(k)\n                                prs.append((a[2], best[2]))\n            wt = wall_type(W_T)\n            top_lv = parse_levels(W_TOP)[0] if W_TOP else None\n            wid = workset_for(['WALL'])\n            walls = [w for w in FilteredElementCollector(doc).OfClass(Wall)]\n            made = upd = 0\n            length = 0.0\n\n            def half(c, ang):                       # half the column size along the wall\n                t = ang - math.radians(c['ang'])\n                return 0.5 * (abs(c['cb'] * math.cos(t)) + abs(c['ch'] * math.sin(t)))\n            for a, b in prs:\n                dx, dy = b['x'] - a['x'], b['y'] - a['y']\n                L = math.hypot(dx, dy)\n                ang = math.atan2(dy, dx)\n                ux, uy = dx / L, dy / L\n                ta, tb = (half(a, ang), half(b, ang)) if W_FACE else (0.0, 0.0)\n                if L - ta - tb < 100:\n                    continue\n                lv = a['bl']\n                z = lv.ProjectElevation\n                p = XYZ((a['x'] + ux * ta) * MMF, (a['y'] + uy * ta) * MMF, z)\n                q = XYZ((b['x'] - ux * tb) * MMF, (b['y'] - uy * tb) * MMF, z)\n                w = None\n                for e in walls:\n                    lc = e.Location\n                    if not hasattr(lc, 'Curve'):\n                        continue\n                    s0, s1 = lc.Curve.GetEndPoint(0), lc.Curve.GetEndPoint(1)\n                    if idv(e.LevelId) == idv(lv.Id) and (\n                            (s0.DistanceTo(p) < 0.33 and s1.DistanceTo(q) < 0.33) or\n                            (s0.DistanceTo(q) < 0.33 and s1.DistanceTo(p) < 0.33)):\n                        w = e\n                        break\n                if w is None:\n                    w = Wall.Create(doc, Line.CreateBound(p, q), wt.Id, lv.Id, W_H * MMF, W_OFF * MMF, False, False)\n                    mark(w, 'CAD2BIM-WALL')\n                    put_ws(w, wid)\n                    walls.append(w)\n                    made += 1\n                else:\n                    if idv(w.GetTypeId()) != idv(wt.Id):\n                        w.ChangeTypeId(wt.Id)\n                    setp(w, BuiltInParameter.WALL_BASE_OFFSET, W_OFF * MMF)\n                    upd += 1\n                if top_lv is not None:\n                    setp(w, BuiltInParameter.WALL_HEIGHT_TYPE, top_lv.Id)\n                    setp(w, BuiltInParameter.WALL_TOP_OFFSET, 0.0)\n                else:\n                    setp(w, BuiltInParameter.WALL_HEIGHT_TYPE, ElementId.InvalidElementId)\n                    setp(w, BuiltInParameter.WALL_USER_HEIGHT_PARAM, W_H * MMF)\n                length += p.DistanceTo(q) / MMF\n            out.append('WALLS   : {0} new, {1} updated  |  {2}, {3}, base {4:+.0f} mm  |  {5:.1f} m'.format(\n                made, upd, tname(wt), ('up to ' + top_lv.Name) if top_lv else 'height {0:.0f} mm'.format(W_H),\n                W_OFF, length / 1000.0))\n            out.append('    between {0} selected columns, {1}'.format(\n                len(sc), 'face to face' if W_FACE else 'centre to centre'))\n\n    # ------------------------------------------------------------ 3 COPY selected elements to levels\n    if DO_COPY:\n        model = [e for e in sel if e.Category.CategoryType == CategoryType.Model and not isinstance(e, ElementType)]\n        if not model:\n            out.append('COPY    : select the elements to copy in Revit first')\n        else:\n            LV_PARAMS = [(BuiltInParameter.WALL_BASE_CONSTRAINT, BuiltInParameter.WALL_BASE_OFFSET),\n                         (BuiltInParameter.WALL_HEIGHT_TYPE, BuiltInParameter.WALL_TOP_OFFSET),\n                         (BuiltInParameter.FAMILY_BASE_LEVEL_PARAM, BuiltInParameter.FAMILY_BASE_LEVEL_OFFSET_PARAM),\n                         (BuiltInParameter.FAMILY_TOP_LEVEL_PARAM, BuiltInParameter.FAMILY_TOP_LEVEL_OFFSET_PARAM),\n                         (BuiltInParameter.LEVEL_PARAM, BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM),\n                         (BuiltInParameter.INSTANCE_REFERENCE_LEVEL_PARAM, None),\n                         (BuiltInParameter.FAMILY_LEVEL_PARAM, BuiltInParameter.INSTANCE_ELEVATION_PARAM),\n                         (BuiltInParameter.FAMILY_LEVEL_PARAM, BuiltInParameter.INSTANCE_FREE_HOST_OFFSET_PARAM)]\n\n            def base_level(e):\n                if isinstance(doc.GetElement(e.LevelId), Level):\n                    return doc.GetElement(e.LevelId)\n                for bip, _ in LV_PARAMS:\n                    l = getlvl(e, bip)\n                    if l is not None:\n                        return l\n                return None\n            srcs = [base_level(e) for e in model]\n            srcs = [l for l in srcs if l is not None]\n            if not srcs:\n                raise Exception('COPY: the selected elements are not on a level')\n            src = min(srcs, key=lambda l: l.ProjectElevation)\n            targets = [l for l in parse_levels(COPY_LV, src) if idv(l.Id) != idv(src.Id)]\n            if not targets:\n                raise Exception('COPY: type the target levels, e.g.  L2, L3   or  L2..L10   or  ALL')\n            cats = List[ElementId]()\n            for cid in set(idv(e.Category.Id) for e in model):\n                cats.Add(ElementId(cid))\n            def key(e):\n                bb = e.get_BoundingBox(None)\n                if bb is None:\n                    return None\n                return (idv(e.Category.Id), idv(e.GetTypeId()),\n                        round(bb.Min.X / MMF / 20), round(bb.Min.Y / MMF / 20), round(bb.Min.Z / MMF / 20),\n                        round(bb.Max.X / MMF / 20), round(bb.Max.Y / MMF / 20), round(bb.Max.Z / MMF / 20))\n            existing = set()\n            for e in FilteredElementCollector(doc).WherePasses(ElementMulticategoryFilter(cats)).WhereElementIsNotElementType():\n                k = key(e)\n                if k is not None:\n                    existing.add(k)\n            ids = List[ElementId]()\n            for e in model:\n                ids.Add(e.Id)\n            done, skipped, per = 0, 0, []\n            for tl in targets:\n                k = LIDX[idv(tl.Id)] - LIDX[idv(src.Id)]\n                dz = tl.ProjectElevation - src.ProjectElevation\n                new = [doc.GetElement(i) for i in ElementTransformUtils.CopyElements(doc, ids, XYZ(0, 0, dz))]\n                doc.Regenerate()\n                z0 = {}\n                for e in new:\n                    bb = e.get_BoundingBox(None)\n                    z0[idv(e.Id)] = bb.Min.Z if bb is not None else None\n                # re-host every copy on the matching level (level + same offset as the original)\n                for e in new:\n                    if isinstance(e, FamilyInstance) and e.Host is not None and not isinstance(e.Host, Level):\n                        continue                              # doors / windows follow their wall\n                    used = set()\n                    for lb, ob in LV_PARAMS:\n                        if lb in used:\n                            continue\n                        old = getlvl(e, lb)\n                        p = e.get_Parameter(lb)\n                        if old is None or p is None or p.IsReadOnly:\n                            continue\n                        j = LIDX[idv(old.Id)] + k\n                        if j < 0 or j >= len(LEVELS):\n                            continue\n                        nl = LEVELS[j]\n                        delta = nl.ProjectElevation - old.ProjectElevation\n                        cur = getd(e, ob) if ob is not None else None\n                        try:\n                            p.Set(nl.Id)\n                            used.add(lb)\n                            if cur is not None:\n                                setp(e, ob, cur - delta)\n                        except Exception:\n                            pass\n                doc.Regenerate()\n                # anything that moved while re-hosting is put back (e.g. beams)\n                for e in new:\n                    bb = e.get_BoundingBox(None)\n                    if bb is None or z0.get(idv(e.Id)) is None:\n                        continue\n                    d = z0[idv(e.Id)] - bb.Min.Z\n                    if abs(d) > 1.0 * MMF:\n                        if cat_is(e, BuiltInCategory.OST_StructuralFraming):\n                            for bp in (BuiltInParameter.STRUCTURAL_BEAM_END0_ELEVATION,\n                                       BuiltInParameter.STRUCTURAL_BEAM_END1_ELEVATION):\n                                v = getd(e, bp)\n                                if v is not None:\n                                    setp(e, bp, v + d)\n                        else:\n                            ElementTransformUtils.MoveElement(doc, e.Id, XYZ(0, 0, d))\n                doc.Regenerate()\n                # never duplicate: a copy identical to something already there is deleted\n                n = 0\n                for e in new:\n                    if not e.IsValidObject:\n                        continue\n                    kk = key(e)\n                    if kk is not None and kk in existing:\n                        doc.Delete(e.Id)\n                        skipped += 1\n                    else:\n                        if kk is not None:\n                            existing.add(kk)\n                        n += 1\n                done += n\n                per.append('{0} ({1})'.format(tl.Name, n))\n            out.append('COPY    : {0} selected element(s) from {1} -> {2} copies on {3}'.format(\n                len(model), src.Name, done, ', '.join(per)))\n            out.append('    re-hosted on each level with the same offsets' +\n                       ('; {0} already there - skipped'.format(skipped) if skipped else ''))\n\n    TransactionManager.Instance.TransactionTaskDone()\n    out.append('Save / Sync with Central to keep the changes.')\nexcept Exception as ex:\n    try:\n        TransactionManager.Instance.ForceCloseTransaction()\n    except Exception:\n        pass\n    out.insert(0, 'FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nOUT = out\n",
+      "Engine": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "0d1304e62b9b44dda946163712a69602",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "a75d2776aaa346ccb5ce630811777416",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7b476ef6d28d412385834c654e86ee42",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f60aede1111a42e3b7125c09f3c2f632",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cd60f308834f4433a6b1e38c9f0a7a43",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "19ea12b8238246b8b95173ad2ab48886",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d93247c18cbe4212821843fa288c3e3a",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d351222f277f422f8e481b608c7f9fb5",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b15a7fdd385c4518976f49d9222c3c03",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0e1e53efd45543ff83ed4a700b5873bb",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d750df9e6a384beb9090d0262809a1de",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fe21ece960114628a050b652519aa2bc",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1130ead7245c4e0b91eff5694c6c50d4",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d9195ddc4cf348799d0c82a7b6406854",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8d4a1abf69be4e8dafdb011ab740617c",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fd02fe68e99d41128307fd1664affaa0",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "55e642d298b04a7aa8dd5ef560f37b24",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "ce6db33b800141519b9ac109216e2395",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4ef9e6aa47f340c8aa6eea57a649b8cf",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "bfd08c1a1f224413b4b93542cbed5f10",
+      "End": "a75d2776aaa346ccb5ce630811777416",
+      "Id": "749fc5207dcb4b8191a29891e6b4d145",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "eacd4512f4784a97bfbb761c6b29b8c6",
+      "End": "7b476ef6d28d412385834c654e86ee42",
+      "Id": "02d303f92bac43eabbca922092d3d089",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "42ccfd8933aa4ebf8f042e31e7dd3686",
+      "End": "f60aede1111a42e3b7125c09f3c2f632",
+      "Id": "2235ac96b362419c9011ce8480d4cbd5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b86259acfa774a448143666f0a588f87",
+      "End": "cd60f308834f4433a6b1e38c9f0a7a43",
+      "Id": "37788f7197284e6e9588509e1968238e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "cc1c21fe5f7e40e48255846433b81281",
+      "End": "19ea12b8238246b8b95173ad2ab48886",
+      "Id": "d6fe828f6cae491ea4e693f0dd4c6ec4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f5a20acbb85e49dab0d2c18fd47dac30",
+      "End": "d93247c18cbe4212821843fa288c3e3a",
+      "Id": "de4cfa9ba3774c858eaa274ceda1b367",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4da4371d0bd741bbb523a839bc45b6c7",
+      "End": "d351222f277f422f8e481b608c7f9fb5",
+      "Id": "f4f6503a09714c33bf103528a163d01d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a0b03f827d1d454fa586c21ed9d27e4a",
+      "End": "b15a7fdd385c4518976f49d9222c3c03",
+      "Id": "901dd4223c1149069c3529339634a797",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ec35b4270b0b4bdb9ba2c3436d9be75c",
+      "End": "0e1e53efd45543ff83ed4a700b5873bb",
+      "Id": "8d854c87a9d4423f915b5fd0ded2aa67",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f9381add38864557888b0ad4070f7167",
+      "End": "d750df9e6a384beb9090d0262809a1de",
+      "Id": "f0f764118440492fbd33a6b3f6374cf0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d8cdd745cc1541dba6767ef7ad02e179",
+      "End": "fe21ece960114628a050b652519aa2bc",
+      "Id": "fe0e68fb6dfb4a20a1b38742330bf9f7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9e1dd8c1662547fdaf78057df90c76b9",
+      "End": "1130ead7245c4e0b91eff5694c6c50d4",
+      "Id": "28fc4c0f741a4f27a652259118dc6fa3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bfffb6bb85e84dec879838b7f43fcdbc",
+      "End": "d9195ddc4cf348799d0c82a7b6406854",
+      "Id": "002c95fbb31047e1b79326f1fe0e53b5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dda47cad3d9546b1814171a8b3254a4c",
+      "End": "8d4a1abf69be4e8dafdb011ab740617c",
+      "Id": "1ada91196eba4401a8f753962cd639e1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fd02fe68e99d41128307fd1664affaa0",
+      "End": "ce6db33b800141519b9ac109216e2395",
+      "Id": "e52efd0f26c94dc8bbdfa4f8f02e3bb5",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": null,
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.2.11575",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "a1003d612cf44a7699010ffc049db9ec",
+        "Name": "Slab levels  ( blank = column top level | L2, L3 | L2..L10 | ALL )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "4ea4428f8e374924b3dda4b75e6ef759",
+        "Name": "Slab thickness (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "efefee35c23044b1b0d66c55337e13b6",
+        "Name": "Slab top offset from level (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 270.0
+      },
+      {
+        "Id": "d430b78d1140471089d2e10b3697f8b1",
+        "Name": "Overhang beyond column face (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 405.0
+      },
+      {
+        "Id": "a0e3b4febd834d1c9099c4cdbb6b1bc6",
+        "Name": "PLACE / UPDATE SLABS",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 540.0
+      },
+      {
+        "Id": "7eee41b4aa854cae95da5f6473975336",
+        "Name": "Wall thickness (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "2ebbecfb21ce498cb0f1608910b92979",
+        "Name": "Wall height (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "4a8bb3b9afff40188f8aac9b4cf58b29",
+        "Name": "Wall base offset (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 270.0
+      },
+      {
+        "Id": "0aeea5f48bdb4f5a808266a17d5ea0c2",
+        "Name": "Wall top level  ( blank = use height )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 405.0
+      },
+      {
+        "Id": "d148b13f9e774f1f908a65d2b2f668f6",
+        "Name": "Stop walls at column faces",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 540.0
+      },
+      {
+        "Id": "62689fd3e16d45aca3302bda33573ccd",
+        "Name": "PLACE / UPDATE WALLS",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 675.0
+      },
+      {
+        "Id": "0d30036f16c640a3b3976477425d9715",
+        "Name": "Copy to levels  ( L2, L3 | L2..L10 | ALL )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 960.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "4cdc55e4837e48daa46cbb7d07a8a583",
+        "Name": "COPY SELECTED",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 960.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "fbe64bee1ead400e95895a90ea9e3daa",
+        "Name": "REMOVE slabs + walls made by this tool",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 960.0,
+        "Y": 420.0
+      },
+      {
+        "Id": "0d1304e62b9b44dda946163712a69602",
+        "Name": "CAD2BIM  Slabs + Walls + Copy  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "55e642d298b04a7aa8dd5ef560f37b24",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 650.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "ce9e2fd2cd2c4774890114db362dda8e",
+        "Title": "1  SLAB  (follows the column grid outline)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "a1003d612cf44a7699010ffc049db9ec",
+          "4ea4428f8e374924b3dda4b75e6ef759",
+          "efefee35c23044b1b0d66c55337e13b6",
+          "d430b78d1140471089d2e10b3697f8b1",
+          "a0e3b4febd834d1c9099c4cdbb6b1bc6"
+        ],
+        "HasNestedGroups": false,
+        "Left": -10.0,
+        "Top": -59.0,
+        "Width": 551.0,
+        "Height": 731.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 685.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "e53f2b7b84d14069b18188939b1f6b09",
+        "Title": "2  WALLS  (between the columns you select)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "7eee41b4aa854cae95da5f6473975336",
+          "2ebbecfb21ce498cb0f1608910b92979",
+          "4a8bb3b9afff40188f8aac9b4cf58b29",
+          "0aeea5f48bdb4f5a808266a17d5ea0c2",
+          "d148b13f9e774f1f908a65d2b2f668f6",
+          "62689fd3e16d45aca3302bda33573ccd"
+        ],
+        "HasNestedGroups": false,
+        "Left": 470.0,
+        "Top": -88.0,
+        "Width": 368.0,
+        "Height": 895.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 820.0,
+        "TextblockHeight": 78.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "aa2d80d7a00a40688c82e390434a031b",
+        "Title": "3  COPY SELECTED ELEMENTS TO LEVELS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "0d30036f16c640a3b3976477425d9715",
+          "4cdc55e4837e48daa46cbb7d07a8a583"
+        ],
+        "HasNestedGroups": false,
+        "Left": 950.0,
+        "Top": -88.0,
+        "Width": 375.0,
+        "Height": 355.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 280.0,
+        "TextblockHeight": 78.0,
+        "Background": "#FF9FDF8F"
+      },
+      {
+        "Id": "5731946efc47475ab44b8d2c36360ddd",
+        "Title": "4  RESET",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "fbe64bee1ead400e95895a90ea9e3daa"
+        ],
+        "HasNestedGroups": false,
+        "Left": 950.0,
+        "Top": 361.0,
+        "Width": 392.0,
+        "Height": 191.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 420.0,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FFFFD9D9"
+      },
+      {
+        "Id": "03ce9ec51c094730a3d34858cff095ec",
+        "Title": "5  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "0d1304e62b9b44dda946163712a69602",
+          "55e642d298b04a7aa8dd5ef560f37b24"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1490.0,
+        "Top": 91.0,
+        "Width": 717.0,
+        "Height": 1011.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 645.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "0123c161963848b3888ea5e36e3086c6",
+        "Title": "HOW TO USE  -  switch ON only what you want, then Run\n1 SLAB: nothing to select. Levels blank = top of the columns, or type L2, L3 / L2..L10 / ALL. Re-run = slab updated (replaced).\n2 WALLS: select 2 columns (one wall) or a row / group of columns (a wall in every bay), set thickness + height, Run.\n3 COPY: select any elements (walls, columns, beams, slabs, footings...), type target levels, Run. Already copied = skipped.\n4 REMOVE deletes only slabs / walls made by this tool.   Log: %APPDATA%\\pyRevit\\CAD2BIM_dynamo_log.txt",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -293.30726302969606,
+    "Y": 170.66639109328804,
+    "Zoom": 0.4784720311943189
+  }
+}

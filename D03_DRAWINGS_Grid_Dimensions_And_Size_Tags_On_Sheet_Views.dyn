@@ -1,0 +1,1004 @@
+{
+  "Uuid": "b50bb095-4eaa-495a-820e-071b16ab28b4",
+  "IsCustomNode": false,
+  "Description": "Grid-to-grid + overall dimensions, level dimensions and size tags on every sheet view, scaled per view",
+  "Name": "CAD2BIM_Sheet_Annotation",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "f59186fedad647b98c5dd2b62fd0da29",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a603894aec4546bb8fd57aef6272f432",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "6d94b6faaafd4ca89f4377f71a758085",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "294314f4ab304ef6a3add1e1a06cc711",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "86badfc915b7449f935f2f77b03af52e",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "63e656c04fdb4670b1505d5b767a620a",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "1b9efed6dcde4fe9b1975e997ae9a8c6",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bf45e1ddcc9048ee9228cd75bbd8b90b",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 40.0,
+      "MinimumValue": 4.0,
+      "StepValue": 1.0,
+      "Id": "37f3623d82894d19b25b016c0b7ec39d",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "dd71f7687dc74670aef795b5bf8a0e94",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 12.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 20.0,
+      "MinimumValue": 4.0,
+      "StepValue": 1.0,
+      "Id": "776f8b07b1ad4a869f9667913b334aaa",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "65b931a1e33a4ec98e48a709e7c00983",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 8.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "f64a89b02000460e9ee5859fb40708eb",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fc7a3ce3d901461e9fd4dfc6469bce41",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "8d86df44fddf4a68b7a86dd3e05be583",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c2a10da5a6944c1aa13d0f18acc8f482",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "COLUMN"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "003cb448b0a443e6853ecb26f734934d",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "529a7f57650d407eaca2cb279238798a",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "FOOTING, FOUNDATION, FDN"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "9558e34f91c0409394e240ff6cba5436",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "74f804748a3447039514332c52ecb4f1",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "BEAM, FRAMING, PLINTH, LINTEL"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "c19faa88440d432e821b01e4349fe8e6",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0da4b77dd80e49ab98dec6efa5f7e966",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "WALL, BLOCK, MASONRY, BRICK, PARTITION"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "a585d7c5119a404f8c02ee3433c5982d",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5ebcc46ac4e54d878bc2b330a41c4edd",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "SLAB, DECK"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 15.0,
+      "MinimumValue": 1.0,
+      "StepValue": 0.5,
+      "Id": "909fcfbcdfe647c388dfe2c73d1ed783",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "184551754c364ed3853c079ebc24b0d3",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 3.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "ed4fa79f97f948559be4e8cea567bcad",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0b5ee630d26a4bd69c31f5cb89a0381f",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "ef94b32a6fd64158ae24a111754669ad",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8488097f684c4efc9675e3d95dc69fa1",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "6a97ddee0f574e4885db405979bde5aa",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "00547912aabb481cbab77e5b9f9cc532",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - SHEET ANNOTATION (professional)\n#  every plan / section / elevation placed on a sheet gets:\n#   * grid-to-grid chain dimension + overall dimension (outside the building, spaced by the view scale)\n#   * level-to-level + overall dimension in sections / elevations\n#   * tags: columns, footings, beams, walls, slabs (+ spot level on slab) - placed at scale-aware offsets\n#   * consistent type codes (Type Mark) so every tag reads the size:  C-300x600, F-900x900x500, PB-300x600 ...\nimport os\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\nlog('--- sheet annotation v2 started')\nimport clr, math, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nclr.AddReference('RevitServices')\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\nMMF = 1.0 / 304.8\nCOL_PARAMS = [('b', 'h'), ('Width', 'Depth'), ('Width', 'Length')]\nout = []\n\n\ndef num(v, d=0.0):\n    try:\n        return float(v)\n    except Exception:\n        return d\n\n\ndef f(v):\n    return '{0:.0f}'.format(v)\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\n_CAT = {}\ndef catid(bic):\n    if bic not in _CAT:\n        _CAT[bic] = idv(Category.GetCategory(doc, bic).Id)\n    return _CAT[bic]\n\n\ndef cat_is(e, bic):\n    return e is not None and e.Category is not None and idv(e.Category.Id) == catid(bic)\n\n\ndef tname(t):\n    p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n    return p.AsString() if p else ''\n\n\ndef setp(e, bip, val):\n    p = e.get_Parameter(bip)\n    if p is not None and not p.IsReadOnly:\n        p.Set(val)\n        return True\n    return False\n\n\ndef getd(e, bip):\n    p = e.get_Parameter(bip)\n    return p.AsDouble() if p is not None else None\n\n\ndef getlvl(e, bip):\n    p = e.get_Parameter(bip)\n    if p is None:\n        return None\n    x = doc.GetElement(p.AsElementId())\n    return x if isinstance(x, Level) else None\n\n\ndef tagged(e):\n    p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n    return (p.AsString() or '') if p is not None else ''\n\n\ndef mark(e, txt):\n    setp(e, BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS, txt)\n\n\ndef workset_for(keys):\n    if not doc.IsWorkshared:\n        return None\n    for ws in FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset):\n        if any(k in ws.Name.upper() for k in keys):\n            return ws.Id.IntegerValue\n    return None\n\n\ndef put_ws(e, wid):\n    if wid is not None:\n        try:\n            setp(e, BuiltInParameter.ELEM_PARTITION_PARAM, wid)\n        except Exception:\n            pass\n\n\ndef material(keys):\n    mats = list(FilteredElementCollector(doc).OfClass(Material))\n    for k in keys:\n        hit = [m for m in mats if k in m.Name.upper()]\n        if hit:\n            hit.sort(key=lambda m: len(m.Name))\n            return hit[0].Id\n    return ElementId.InvalidElementId\n\n\nLEVELS = sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.ProjectElevation)\nLIDX = dict((idv(l.Id), i) for i, l in enumerate(LEVELS))\n\n\ndef parse_levels(text, base=None):\n    \"\"\"'L2, L3' / 'L2..L5' / 'ALL' (= every level above base)\"\"\"\n    res = []\n    names = dict((l.Name.strip().upper(), l) for l in LEVELS)\n    for tok in [t.strip() for t in str(text or '').replace(';', ',').split(',') if t.strip()]:\n        T = tok.upper()\n        if T in ('ALL', '*', 'ALL ABOVE'):\n            b = LIDX[idv(base.Id)] if base is not None else -1\n            res += LEVELS[b + 1:]\n        elif '..' in T:\n            a, b = [names.get(x.strip()) for x in T.split('..', 1)]\n            if a is None or b is None:\n                raise Exception('Unknown level in \"{0}\". Levels: {1}'.format(tok, ', '.join(l.Name for l in LEVELS)))\n            i, j = sorted([LIDX[idv(a.Id)], LIDX[idv(b.Id)]])\n            res += LEVELS[i:j + 1]\n        else:\n            if T not in names:\n                raise Exception('Unknown level \"{0}\". Levels: {1}'.format(tok, ', '.join(l.Name for l in LEVELS)))\n            res.append(names[T])\n    seen, uniq = set(), []\n    for l in res:\n        if idv(l.Id) not in seen:\n            seen.add(idv(l.Id))\n            uniq.append(l)\n    return uniq\n\n\ndef col_size(c):\n    sym = c.Symbol\n    for a, b in COL_PARAMS:\n        if sym.LookupParameter(a) is not None and sym.LookupParameter(b) is not None:\n            return sym.LookupParameter(a).AsDouble() / MMF, sym.LookupParameter(b).AsDouble() / MMF\n    bb = c.get_BoundingBox(None)\n    return (bb.Max.X - bb.Min.X) / MMF, (bb.Max.Y - bb.Min.Y) / MMF\n\n\ndef angle_of(e):\n    bx = e.GetTransform().BasisX\n    return math.degrees(math.atan2(bx.Y, bx.X))\n\n\n\nDIM_NAME = 'CAD2BIM ISO 2.5 Sheet'\nTAG_CATS = {\n    'col':  (BuiltInCategory.OST_StructuralColumns, BuiltInCategory.OST_StructuralColumnTags),\n    'ftg':  (BuiltInCategory.OST_StructuralFoundation, BuiltInCategory.OST_StructuralFoundationTags),\n    'beam': (BuiltInCategory.OST_StructuralFraming, BuiltInCategory.OST_StructuralFramingTags),\n    'wall': (BuiltInCategory.OST_Walls, BuiltInCategory.OST_WallTags),\n    'slab': (BuiltInCategory.OST_Floors, BuiltInCategory.OST_FloorTags),\n}\n\n\ndef paper(mm, view):\n    \"\"\"paper millimetres -> model feet at this view's scale\"\"\"\n    return mm * max(1, view.Scale) * MMF\n\n\ndef iso_dim_type(name, text_mm=2.5):\n    lin = [t for t in FilteredElementCollector(doc).OfClass(DimensionType) if t.StyleType == DimensionStyleType.Linear]\n    for t in lin:\n        if tname(t) == name:\n            dt = t\n            break\n    else:\n        if not lin:\n            return None\n        dt = lin[0].Duplicate(name)\n    def sp(pname, val):\n        p = dt.LookupParameter(pname)\n        if p is not None and not p.IsReadOnly:\n            try:\n                p.Set(val)\n            except Exception:\n                pass\n    sp('Text Size', text_mm * MMF)\n    sp('Text Font', 'Arial')\n    sp('Width Factor', 1.0)\n    sp('Text Offset', 1.0 * MMF)\n    sp('Witness Line Gap to Element', 2.0 * MMF)\n    sp('Witness Line Extension', 2.0 * MMF)\n    sp('Dimension Line Extension', 2.0 * MMF)\n    try:\n        ticks = [a for a in FilteredElementCollector(doc).OfClass(ElementType)\n                 if a.Category is None and 'DIAGONAL' in tname(a).upper()]\n        ticks.sort(key=lambda a: ('3MM' not in tname(a).upper().replace(' ', ''), len(tname(a))))\n        if ticks:\n            sp('Tick Mark', ticks[0].Id)\n    except Exception:\n        pass\n    try:\n        fo = FormatOptions(UnitTypeId.Millimeters)\n        fo.UseDefault = False\n        fo.Accuracy = 1.0\n        dt.SetUnitsFormatOptions(fo)\n    except Exception as ex:\n        log('dim units: ' + str(ex))\n    return dt\n\n\ndef dim_type():\n    return iso_dim_type(DIM_NAME)\n\n\ndef tag_type(bic):\n    best = None\n    for t in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsElementType():\n        if best is None or tname(t) in ('Standard',):\n            best = t\n    return best\n\n\ndef type_marks():\n    \"\"\"Type Mark = short size code, only where it is still empty\"\"\"\n    n = 0\n    def code(e):\n        t = doc.GetElement(e.GetTypeId())\n        if t is None:\n            return None, None\n        nm = tname(t)\n        if cat_is(e, BuiltInCategory.OST_StructuralColumns):\n            b, h = col_size(e)\n            return t, 'C-{0}x{1}'.format(f(b), f(h))\n        if cat_is(e, BuiltInCategory.OST_StructuralFoundation):\n            vals = [t.LookupParameter(p) for p in ('Length', 'Width', 'Foundation Thickness')]\n            if all(v is not None for v in vals):\n                return t, 'F-' + 'x'.join(f(v.AsDouble() / MMF) for v in vals)\n            return t, 'F-' + nm\n        if cat_is(e, BuiltInCategory.OST_StructuralFraming):\n            parts = nm.split(' ')\n            return t, '-'.join(parts) if len(parts) == 2 and 'x' in parts[1] else nm\n        if cat_is(e, BuiltInCategory.OST_Floors) and isinstance(t, HostObjAttributes):\n            cs = t.GetCompoundStructure()\n            return t, 'S-{0}'.format(f(cs.GetWidth() / MMF)) if cs else 'S'\n        if cat_is(e, BuiltInCategory.OST_Walls) and isinstance(t, HostObjAttributes):\n            cs = t.GetCompoundStructure()\n            return t, 'W-{0}'.format(f(cs.GetWidth() / MMF)) if cs else 'W'\n        return None, None\n    seen = set()\n    for key in TAG_CATS:\n        for e in FilteredElementCollector(doc).OfCategory(TAG_CATS[key][0]).WhereElementIsNotElementType():\n            tid = idv(e.GetTypeId())\n            if tid in seen:\n                continue\n            seen.add(tid)\n            t, c = code(e)\n            if t is None or c is None:\n                continue\n            p = t.get_Parameter(BuiltInParameter.ALL_MODEL_TYPE_MARK)\n            if p is not None and not p.IsReadOnly and not (p.AsString() or '').strip():\n                p.Set(c)\n                n += 1\n    return n\n\n\ndef grid_groups(view):\n    \"\"\"parallel grids visible in the view -> [(dir, normal, [(s, grid)...])]\"\"\"\n    groups = {}\n    for g in FilteredElementCollector(doc, view.Id).OfClass(Grid):\n        cv = g.Curve\n        if not isinstance(cv, Line):\n            continue\n        d = cv.Direction\n        a = round(math.degrees(math.atan2(d.Y, d.X)) % 180.0) % 180\n        groups.setdefault(a, []).append(g)\n    res = []\n    for a, gs in groups.items():\n        d = XYZ(math.cos(math.radians(a)), math.sin(math.radians(a)), 0)\n        n = XYZ(-d.Y, d.X, 0)\n        lst = sorted([(g.Curve.GetEndPoint(0).DotProduct(n), g) for g in gs], key=lambda t: t[0])\n        res.append((d, n, lst))\n    return res\n\n\ndef extents(view, d):\n    \"\"\"min / max of the building along direction d (from columns, walls, slabs, footings in the view)\"\"\"\n    vals = []\n    for bic in (BuiltInCategory.OST_StructuralColumns, BuiltInCategory.OST_Walls, BuiltInCategory.OST_Floors,\n                BuiltInCategory.OST_StructuralFoundation, BuiltInCategory.OST_StructuralFraming):\n        for e in FilteredElementCollector(doc, view.Id).OfCategory(bic).WhereElementIsNotElementType():\n            bb = e.get_BoundingBox(None)\n            if bb is None:\n                continue\n            for x in (bb.Min.X, bb.Max.X):\n                for y in (bb.Min.Y, bb.Max.Y):\n                    vals.append(XYZ(x, y, 0).DotProduct(d))\n    return (min(vals), max(vals)) if vals else None\n\n\ndef plan_dims(view, both, off_mm, gap_mm, dt):\n    n_made = 0\n    z = view.GenLevel.ProjectElevation if view.GenLevel is not None else 0.0\n    for d, n, lst in grid_groups(view):\n        if len(lst) < 2:\n            continue\n        ext = extents(view, d)\n        if ext is None:\n            ends = [g.Curve.GetEndPoint(k).DotProduct(d) for _, g in lst for k in (0, 1)]\n            ext = (min(ends), max(ends))\n        sides = [(ext[0], -1.0)] + ([(ext[1], 1.0)] if both else [])\n        s0, s1 = lst[0][0], lst[-1][0]\n        for edge, sgn in sides:\n            for k, extra in ((0, 0.0), (1, gap_mm)):\n                t = edge + sgn * paper(off_mm + extra, view)\n                p = d.Multiply(t).Add(n.Multiply(s0 - 1.0))\n                q = d.Multiply(t).Add(n.Multiply(s1 + 1.0))\n                line = Line.CreateBound(XYZ(p.X, p.Y, z), XYZ(q.X, q.Y, z))\n                ra = ReferenceArray()\n                for _, g in (lst if k == 0 else [lst[0], lst[-1]]):\n                    ra.Append(Reference(g))\n                try:\n                    if dt is not None:\n                        doc.Create.NewDimension(view, line, ra, dt)\n                    else:\n                        doc.Create.NewDimension(view, line, ra)\n                    n_made += 1\n                except Exception as ex:\n                    log('dim failed in {0}: {1}'.format(view.Name, ex))\n    return n_made\n\n\ndef section_dims(view, off_mm, gap_mm, dt, do_levels):\n    \"\"\"grid dims along the bottom + level dims on the left of a section / elevation\"\"\"\n    n_made = 0\n    R, O = view.RightDirection, view.Origin\n    up = XYZ.BasisZ\n    lv = [l for l in FilteredElementCollector(doc, view.Id).OfClass(Level)]\n    zmin = min([l.ProjectElevation for l in lv]) if lv else O.Z\n    # grids seen end-on (perpendicular to the view's right direction)\n    gs = []\n    for g in FilteredElementCollector(doc, view.Id).OfClass(Grid):\n        cv = g.Curve\n        if isinstance(cv, Line) and abs(cv.Direction.DotProduct(R)) < 0.02:\n            gs.append((cv.GetEndPoint(0).Subtract(O).DotProduct(R), g))\n    gs.sort(key=lambda t: t[0])\n    if len(gs) >= 2:\n        for k, extra in ((0, 0.0), (1, gap_mm)):\n            zz = zmin - paper(off_mm + extra, view)\n            p = O.Add(R.Multiply(gs[0][0] - 1.0)).Add(up.Multiply(zz - O.Z))\n            q = O.Add(R.Multiply(gs[-1][0] + 1.0)).Add(up.Multiply(zz - O.Z))\n            ra = ReferenceArray()\n            for _, g in (gs if k == 0 else [gs[0], gs[-1]]):\n                ra.Append(Reference(g))\n            try:\n                doc.Create.NewDimension(view, Line.CreateBound(p, q), ra, dt) if dt else \\\n                    doc.Create.NewDimension(view, Line.CreateBound(p, q), ra)\n                n_made += 1\n            except Exception as ex:\n                log('section grid dim failed in {0}: {1}'.format(view.Name, ex))\n    if do_levels and len(lv) >= 2:\n        lv.sort(key=lambda l: l.ProjectElevation)\n        sx = gs[0][0] if gs else 0.0\n        for k, extra in ((0, 0.0), (1, gap_mm)):\n            x = sx - paper(off_mm + extra, view)\n            p = O.Add(R.Multiply(x)).Add(up.Multiply(lv[0].ProjectElevation - 1.0 - O.Z))\n            q = O.Add(R.Multiply(x)).Add(up.Multiply(lv[-1].ProjectElevation + 1.0 - O.Z))\n            ra = ReferenceArray()\n            for l in (lv if k == 0 else [lv[0], lv[-1]]):\n                ra.Append(Reference(l))\n            try:\n                doc.Create.NewDimension(view, Line.CreateBound(p, q), ra, dt) if dt else \\\n                    doc.Create.NewDimension(view, Line.CreateBound(p, q), ra)\n                n_made += 1\n            except Exception as ex:\n                log('level dim failed in {0}: {1}'.format(view.Name, ex))\n    return n_made\n\n\n# ---------------------------------------------------------------- what to tag on which sheet\nROLE_STR = ('S', 'ST', 'STR', 'STRUCT', 'STRUCTURAL')\nROLE_ARC = ('A', 'AR', 'ARC', 'ARCH', 'ARCHITECTURAL')\nROLE_ID = ('I', 'ID', 'INT', 'INTERIOR')\n\n\ndef words(txt):\n    t = (txt or '').upper()\n    for ch in '-_.,/()[]':\n        t = t.replace(ch, ' ')\n    return t.split()\n\n\ndef sheet_rule(sheet, view, kw):\n    \"\"\"returns (set of tag kinds, reason) from the sheet name (+ view name), else the discipline\"\"\"\n    txt = ' '.join([(sheet.Name if sheet else ''), view.Name]).upper()\n    hit = set()\n    for kind, keys in kw.items():\n        if any(k and k in txt for k in keys):\n            hit.add(kind)\n    if hit:\n        return hit, 'name'\n    role = None\n    toks = words(sheet.SheetNumber if sheet else '')\n    if any(t in ROLE_STR for t in toks):\n        role = 'STR'\n    elif any(t in ROLE_ID for t in toks):\n        role = 'ID'\n    elif any(t in ROLE_ARC for t in toks):\n        role = 'ARC'\n    if role is None:\n        try:\n            d = view.Discipline\n            role = 'STR' if d == ViewDiscipline.Structural else ('ARC' if d == ViewDiscipline.Architectural else None)\n        except Exception:\n            pass\n    if role == 'STR':\n        return set(['col', 'beam']), 'structural'\n    if role in ('ARC', 'ID'):\n        return set(['wall']), role.lower()\n    return set(), 'no rule'\n\n\ndef on_level(e, key, lv):\n    \"\"\"only the elements that belong to this plan's level\"\"\"\n    if lv is None:\n        return True\n    L = idv(lv.Id)\n    if key == 'col':\n        l = getlvl(e, BuiltInParameter.FAMILY_BASE_LEVEL_PARAM)\n    elif key == 'ftg':\n        l = getlvl(e, BuiltInParameter.FAMILY_LEVEL_PARAM) or doc.GetElement(e.LevelId)\n    elif key == 'beam':\n        l = getlvl(e, BuiltInParameter.INSTANCE_REFERENCE_LEVEL_PARAM)\n    elif key == 'wall':\n        l = getlvl(e, BuiltInParameter.WALL_BASE_CONSTRAINT)\n    else:\n        l = doc.GetElement(e.LevelId)\n    return l is not None and idv(l.Id) == L\n\n\ndef bays(view):\n    \"\"\"centres of all grid bays (view u,v)\"\"\"\n    gg = grid_groups(view)\n    if len(gg) < 2:\n        return []\n    (_, n1, l1), (_, n2, l2) = gg[0], gg[1]\n    res = []\n    for i in range(len(l1) - 1):\n        for j in range(len(l2) - 1):\n            s1 = (l1[i][0] + l1[i + 1][0]) / 2.0\n            s2 = (l2[j][0] + l2[j + 1][0]) / 2.0\n            # point with p.n1 = s1 and p.n2 = s2\n            det = n1.X * n2.Y - n1.Y * n2.X\n            if abs(det) < 1e-9:\n                continue\n            x = (s1 * n2.Y - n1.Y * s2) / det\n            y = (n1.X * s2 - s1 * n2.X) / det\n            res.append(XYZ(x, y, 0))\n    return res\n\n\n# ---------------------------------------------------------------- clash-free tag placement\ndef tag_view(view, which, off_mm, tagged_ids, keep_tags=()):\n    R, Up = view.RightDirection, view.UpDirection\n    lv = view.GenLevel if isinstance(view, ViewPlan) else None\n    z = lv.ProjectElevation if lv is not None else 0.0\n    o = paper(off_mm, view)\n    pad = paper(1.0, view)\n    UV = lambda p: (p.DotProduct(R), p.DotProduct(Up))\n    P = lambda u, v: R.Multiply(u).Add(Up.Multiply(v)).Add(XYZ(0, 0, z))\n\n    def box_uv(bb):\n        us, vs = [], []\n        for x in (bb.Min.X, bb.Max.X):\n            for y in (bb.Min.Y, bb.Max.Y):\n                for zz in (bb.Min.Z, bb.Max.Z):\n                    u, v = UV(XYZ(x, y, zz))\n                    us.append(u); vs.append(v)\n        return [min(us), min(vs), max(us), max(vs)]\n\n    made = dict((k, 0) for k in which)\n    items, obstacles = [], []\n    for key in ['col', 'ftg', 'beam', 'wall', 'slab']:\n        if key not in which:\n            continue\n        ecat, tcat = TAG_CATS[key]\n        tt = tag_type(tcat)\n        if tt is None:\n            continue\n        for e in FilteredElementCollector(doc, view.Id).OfCategory(ecat).WhereElementIsNotElementType():\n            if idv(e.Id) in tagged_ids or not on_level(e, key, lv):\n                continue\n            bb = e.get_BoundingBox(None)\n            if bb is None:\n                continue\n            ebox = box_uv(bb)\n            if key in ('col', 'ftg'):\n                obstacles.append(ebox)\n            c = P((ebox[0] + ebox[2]) / 2.0, (ebox[1] + ebox[3]) / 2.0)\n            orient = TagOrientation.Horizontal\n            info = {'key': key, 'e': e, 'ebox': ebox}\n            if key in ('beam', 'wall'):\n                lc = e.Location\n                if not hasattr(lc, 'Curve'):\n                    continue\n                cv = lc.Curve\n                a, b = UV(cv.GetEndPoint(0)), UV(cv.GetEndPoint(1))\n                L = math.hypot(b[0] - a[0], b[1] - a[1])\n                if L < 1e-6:\n                    continue\n                du, dv = (b[0] - a[0]) / L, (b[1] - a[1]) / L\n                nu, nv = -dv, du\n                if nv < 0 or (abs(nv) < 1e-3 and nu < 0):\n                    nu, nv = -nu, -nv\n                info.update(a=a, d=(du, dv), n=(nu, nv), L=L, half=(e.Width / 2.0 if key == 'wall' else 0.0))\n                if abs(dv) > abs(du):\n                    orient = TagOrientation.Vertical\n                c = P(a[0] + du * L / 2, a[1] + dv * L / 2)\n            elif key == 'slab':\n                cs = [UV(p) for p in bays(view)]\n                cu, cv_ = (ebox[0] + ebox[2]) / 2.0, (ebox[1] + ebox[3]) / 2.0\n                cs = [p for p in cs if ebox[0] <= p[0] <= ebox[2] and ebox[1] <= p[1] <= ebox[3]] or [(cu, cv_)]\n                cs.sort(key=lambda p: (p[0] - cu) ** 2 + (p[1] - cv_) ** 2)\n                info['bays'] = cs\n                c = P(cs[0][0], cs[0][1])\n            try:\n                tg = IndependentTag.Create(doc, tt.Id, view.Id, Reference(e), False, orient, c)\n            except Exception as ex:\n                log('tag failed {0} in {1}: {2}'.format(key, view.Name, ex))\n                continue\n            info['tag'] = tg\n            items.append(info)\n            tagged_ids.add(idv(e.Id))\n            made[key] += 1\n    if not items:\n        return made\n    doc.Regenerate()\n    placed = []\n    for kt in keep_tags:                                    # tags already in the view stay where they are\n        try:\n            kb = kt.get_BoundingBox(view)\n            if kb is not None:\n                placed.append(box_uv(kb))\n        except Exception:\n            pass\n\n    def hits(bx, own):\n        for p in placed:\n            if bx[0] < p[2] + pad and bx[2] > p[0] - pad and bx[1] < p[3] + pad and bx[3] > p[1] - pad:\n                return True\n        for ob in obstacles:\n            if ob is own:\n                continue\n            if bx[0] < ob[2] and bx[2] > ob[0] and bx[1] < ob[3] and bx[3] > ob[1]:\n                return True\n        return False\n\n    def overlap(bx):\n        s = 0.0\n        for p in placed:\n            w = min(bx[2], p[2]) - max(bx[0], p[0])\n            h = min(bx[3], p[3]) - max(bx[1], p[1])\n            if w > 0 and h > 0:\n                s += w * h\n        return s\n\n    for it in items:\n        tg = it['tag']\n        tb = tg.get_BoundingBox(view)\n        if tb is None:\n            continue\n        tbox = box_uv(tb)\n        w, h = tbox[2] - tbox[0], tbox[3] - tbox[1]\n        hu, hv = UV(tg.TagHeadPosition)\n        cu0, cv0 = (tbox[0] + tbox[2]) / 2.0, (tbox[1] + tbox[3]) / 2.0\n        k = it['key']\n        cands = []                                          # wanted CENTRES of the tag box\n        if k in ('col', 'ftg'):\n            eb = it['ebox']\n            ecu, ecv = (eb[0] + eb[2]) / 2.0, (eb[1] + eb[3]) / 2.0\n            ex, ey = (eb[2] - eb[0]) / 2.0, (eb[3] - eb[1]) / 2.0\n            quads = [(1, 1), (-1, 1), (1, -1), (-1, -1)] if k == 'col' else [(1, -1), (-1, -1), (1, 1), (-1, 1)]\n            for step in (0, 1, 2, 3):\n                for sx, sy in quads:\n                    cands.append((ecu + sx * (ex + o + w / 2 + step * o), ecv + sy * (ey + o + h / 2 + step * o)))\n            for step in (0, 1, 2):                          # straight above / below / sides\n                cands += [(ecu, ecv + ey + o + h / 2 + step * o), (ecu, ecv - ey - o - h / 2 - step * o),\n                          (ecu + ex + o + w / 2 + step * o, ecv), (ecu - ex - o - w / 2 - step * o, ecv)]\n        elif k in ('beam', 'wall'):\n            (au, av), (du, dv), (nu, nv), L = it['a'], it['d'], it['n'], it['L']\n            perp = abs(nu) * w + abs(nv) * h                # tag size across the member\n            for t in (0.5, 0.4, 0.6, 0.3, 0.7, 0.2, 0.8):\n                for sg in (1, -1):\n                    dist = it['half'] + o + perp / 2.0\n                    cands.append((au + du * L * t + sg * nu * dist, av + dv * L * t + sg * nv * dist))\n        else:\n            cands = list(it['bays'])\n        best, bestv = None, None\n        for (cu, cv) in cands:\n            bx = [cu - w / 2, cv - h / 2, cu + w / 2, cv + h / 2]\n            if not hits(bx, it.get('ebox')):\n                best = (cu, cv)\n                break\n            v = overlap(bx)\n            if bestv is None or v < bestv:\n                bestv, best = v, (cu, cv)\n        if best is None:\n            best = (cu0, cv0)\n        nu_, nv_ = hu + best[0] - cu0, hv + best[1] - cv0\n        try:\n            tg.TagHeadPosition = P(nu_, nv_)\n        except Exception as ex:\n            log('move tag failed: ' + str(ex))\n        placed.append([best[0] - w / 2, best[1] - h / 2, best[0] + w / 2, best[1] + h / 2])\n        if k == 'slab':                                      # spot level just under the slab tag\n            try:\n                e = it['e']\n                tops = HostObjectUtils.GetTopFaces(e)\n                if tops.Count:\n                    rf = tops[0]\n                    face = e.GetGeometryObjectFromReference(rf)\n                    sp = P(best[0], best[1] - h / 2 - o - paper(2.0, view))\n                    pr = face.Project(XYZ(sp.X, sp.Y, e.get_BoundingBox(None).Max.Z))\n                    if pr is not None:\n                        q = pr.XYZPoint\n                        doc.Create.NewSpotElevation(view, rf, q, q, q, q, False)\n                        placed.append([best[0] - w / 2, best[1] - h * 1.5 - o - paper(2.0, view), best[0] + w / 2, best[1] - h / 2])\n            except Exception as ex:\n                log('spot level failed in {0}: {1}'.format(view.Name, ex))\n    return made\n\n\ndef short_family_names():\n    \"\"\"long stock family names make 2-line tags clash: Concrete-Rectangular-Column -> RCC COLUMN\"\"\"\n    ren = {'Concrete-Rectangular-Column': 'RCC COLUMN', 'M_Concrete-Rectangular-Column': 'RCC COLUMN',\n           'Footing-Rectangular': 'RCC FOOTING', 'M_Footing-Rectangular': 'RCC FOOTING'}\n    n = 0\n    existing = set(fm.Name for fm in FilteredElementCollector(doc).OfClass(Family))\n    for fm in FilteredElementCollector(doc).OfClass(Family):\n        new = ren.get(fm.Name)\n        if new and new not in existing:\n            try:\n                fm.Name = new\n                existing.add(new)\n                n += 1\n            except Exception:\n                pass\n    return n\n\n\ntry:\n    SHEETS = str(IN[0] or '').strip(); ALLV = bool(IN[1])\n    DO_GRID = bool(IN[2]); BOTH = bool(IN[3]); OFF = num(IN[4], 12); GAP = num(IN[5], 8)\n    DO_LVL = bool(IN[6])\n    KW = {}\n    for kind, i in (('col', 7), ('ftg', 8), ('beam', 9), ('wall', 10), ('slab', 11)):\n        KW[kind] = [k.strip().upper() for k in str(IN[i] or '').split(',') if k.strip()]\n    T_OFF = num(IN[12], 3); DO_MARK = bool(IN[13]); CLEAR = bool(IN[14]); SHORT = bool(IN[15])\n    log('inputs: sheets \"{0}\" grid {1} both {2} off {3} gap {4} levels {5} kw {6} toff {7} marks {8} clear {9} short {10} allviews {11}'.format(\n        SHEETS, DO_GRID, BOTH, OFF, GAP, DO_LVL, KW, T_OFF, DO_MARK, CLEAR, SHORT, ALLV))\n\n    wanted = [s.strip().upper() for s in SHEETS.replace(';', ',').split(',') if s.strip()]\n    views, sheet_of = [], {}\n    for sh in FilteredElementCollector(doc).OfClass(ViewSheet):\n        num_ = (sh.SheetNumber or '').upper()\n        if wanted and not any(num_ == w or num_.startswith(w) for w in wanted):\n            continue\n        for vid in sh.GetAllPlacedViews():\n            v = doc.GetElement(vid)\n            if v is not None and idv(v.Id) not in sheet_of:\n                sheet_of[idv(v.Id)] = sh\n                views.append(v)\n    if ALLV:\n        for v in FilteredElementCollector(doc).OfClass(View):\n            if not v.IsTemplate and idv(v.Id) not in sheet_of and \\\n                    v.ViewType in (ViewType.FloorPlan, ViewType.EngineeringPlan, ViewType.Section, ViewType.Elevation):\n                sheet_of[idv(v.Id)] = None\n                views.append(v)\n    views = [v for v in views if v.ViewType in (ViewType.FloorPlan, ViewType.EngineeringPlan,\n                                                 ViewType.Section, ViewType.Elevation)]\n    if not views:\n        raise Exception('No plan / section / elevation views on the chosen sheets'\n                        + (' ({0})'.format(SHEETS) if SHEETS else '') + ' - place views on sheets first')\n\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    renamed = short_family_names() if SHORT else 0\n    marks = type_marks() if DO_MARK else 0\n    dt = dim_type()\n    names = {'col': 'columns', 'ftg': 'footings', 'beam': 'beams', 'wall': 'walls', 'slab': 'slabs'}\n    rows, tot_d, tot_t = [], 0, dict((k, 0) for k in names)\n    all_tag_cats = set(catid(TAG_CATS[k][1]) for k in TAG_CATS)\n    for v in views:\n        sh = sheet_of.get(idv(v.Id))\n        which, why = sheet_rule(sh, v, KW)\n        if not isinstance(v, ViewPlan):\n            which = set(k for k in which if k in ('col', 'beam'))\n        if dt is not None:\n            for dm in list(FilteredElementCollector(doc, v.Id).OfClass(Dimension)):\n                try:\n                    if idv(dm.GetTypeId()) == idv(dt.Id):\n                        doc.Delete(dm.Id)\n                except Exception:\n                    pass\n        tagged_ids, keep = set(), []\n        for t in list(FilteredElementCollector(doc, v.Id).OfClass(IndependentTag)):\n            if CLEAR and t.Category is not None and idv(t.Category.Id) in all_tag_cats:\n                doc.Delete(t.Id)                     # re-arrange: tags of the wrong kind go too\n                continue\n            tagged_ids.update(idv(i) for i in t.GetTaggedLocalElementIds())\n            keep.append(t)                           # door / room / manual tags: kept and avoided\n        nd = 0\n        if isinstance(v, ViewPlan) and DO_GRID:\n            nd = plan_dims(v, BOTH, OFF, GAP, dt)\n        elif isinstance(v, ViewSection) and (DO_GRID or DO_LVL):\n            nd = section_dims(v, OFF, GAP, dt, DO_LVL)\n        nt = tag_view(v, which, T_OFF, tagged_ids, keep) if which else {}\n        tot_d += nd\n        for k in nt:\n            tot_t[k] += nt[k]\n        rows.append('  {0:<12} {1:<30} 1:{2:<4} {3:<22} dims {4:<3} tags {5}'.format(\n            (sh.SheetNumber if sh else '-')[:12], v.Name[:30], v.Scale,\n            ('+'.join(sorted(which)) or 'dims only') + ' (' + why + ')', nd, sum(nt.values()) if nt else 0))\n    TransactionManager.Instance.TransactionTaskDone()\n\n    out.append('CAD2BIM SHEET ANNOTATION  -  DONE')\n    out.append('{0} views on {1} sheet(s); tags chosen per sheet name, only elements of the view level'.format(\n        len(rows), len(set(idv(s.Id) for s in sheet_of.values() if s is not None))))\n    out.append('Dimensions : {0} (grid-to-grid + overall{1})'.format(tot_d, ', levels in sections' if DO_LVL else ''))\n    out.append('Tags       : ' + ', '.join('{0} {1}'.format(tot_t[k], names[k]) for k in names if tot_t[k]))\n    if DO_MARK:\n        out.append('Type codes : {0} types given a Type Mark (C- / F- / PB- / B- / S- / W-)'.format(marks))\n    if renamed:\n        out.append('Families   : {0} renamed short (RCC COLUMN / RCC FOOTING) so tags stay compact'.format(renamed))\n    out.append('SHEET        VIEW                           SCALE  TAGS (rule)            RESULT')\n    out.extend(rows)\n    out.append('Tags are placed clash-free (each tag measured, moved to the first free spot around its element).')\nexcept Exception as ex:\n    try:\n        TransactionManager.Instance.ForceCloseTransaction()\n    except Exception:\n        pass\n    out.insert(0, 'FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "302ade738aef43f1bb3fa9ad6e3f2217",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "3b5d211ff6264139b96b493de0a41b16",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a029c929ba9b4fa5b389475d73430775",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8526769cf0c2429680b4a72089abcb46",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8c0cbb79f04b4d58a0828c88238bda9f",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c93995699d1846e0a0605b88228b05da",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "424aeff9449141ce9507b93f6738e350",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "13fd487e8ebb48668ef519b9aabb17d5",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "47bd44e4cacc4f8b9cc39a0620edda8d",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "744176518ed94b499f5c5d573fdb5331",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8d8bfbf35d2e481685ab7fcfda793245",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7f7c0b5749ee4780aae8dd2a298d36bf",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "20138ee6b3a541da9e4a83118e09cb80",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "34bbf56eaaaf40f7add7d8dadcb05381",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9e84f391811c4dc3af8cd0608572c9c5",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "83ba9dfebeef4d21a5d91d6c82d29edd",
+          "Name": "IN[14]",
+          "Description": "Input #14",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "167e3d78cd254f43b902460d968a59b4",
+          "Name": "IN[15]",
+          "Description": "Input #15",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e12b6404fd3640a5b272237293be2ffd",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "1adbfae21882409f99d4b39fe1d4f22a",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "2d05ba536f2f4ae3bf4b7becc8cac4a0",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c94701d2a86647bab9be0b1f8f61c145",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "a603894aec4546bb8fd57aef6272f432",
+      "End": "3b5d211ff6264139b96b493de0a41b16",
+      "Id": "fc68810c230e43f78c83b6d048b6fa2d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "294314f4ab304ef6a3add1e1a06cc711",
+      "End": "a029c929ba9b4fa5b389475d73430775",
+      "Id": "488a2e01535b49f19593a190193506db",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "63e656c04fdb4670b1505d5b767a620a",
+      "End": "8526769cf0c2429680b4a72089abcb46",
+      "Id": "84a4ec48794e4d9aac41a72ba88e54c0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bf45e1ddcc9048ee9228cd75bbd8b90b",
+      "End": "8c0cbb79f04b4d58a0828c88238bda9f",
+      "Id": "c2663e37289043508436b3b65d602fd7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dd71f7687dc74670aef795b5bf8a0e94",
+      "End": "c93995699d1846e0a0605b88228b05da",
+      "Id": "837f310630e445f180db2cd7603169ab",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "65b931a1e33a4ec98e48a709e7c00983",
+      "End": "424aeff9449141ce9507b93f6738e350",
+      "Id": "794878628bf844ee8438acf5b29d681b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fc7a3ce3d901461e9fd4dfc6469bce41",
+      "End": "13fd487e8ebb48668ef519b9aabb17d5",
+      "Id": "1e94f444db944811bb98074817862d32",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c2a10da5a6944c1aa13d0f18acc8f482",
+      "End": "47bd44e4cacc4f8b9cc39a0620edda8d",
+      "Id": "f745f8450dfe4065a3f9704a3dd4a1d8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "529a7f57650d407eaca2cb279238798a",
+      "End": "744176518ed94b499f5c5d573fdb5331",
+      "Id": "a8afab7104b84d8b8d6d8b7dfea6286a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "74f804748a3447039514332c52ecb4f1",
+      "End": "8d8bfbf35d2e481685ab7fcfda793245",
+      "Id": "0fd3f0cd7dcc42db95d7396283474920",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0da4b77dd80e49ab98dec6efa5f7e966",
+      "End": "7f7c0b5749ee4780aae8dd2a298d36bf",
+      "Id": "0d31e1838f7a412fb0deffc1bc172941",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5ebcc46ac4e54d878bc2b330a41c4edd",
+      "End": "20138ee6b3a541da9e4a83118e09cb80",
+      "Id": "fde7e533b722464aba818b4882781271",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "184551754c364ed3853c079ebc24b0d3",
+      "End": "34bbf56eaaaf40f7add7d8dadcb05381",
+      "Id": "e44e46ff589e4a66962457c550164663",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0b5ee630d26a4bd69c31f5cb89a0381f",
+      "End": "9e84f391811c4dc3af8cd0608572c9c5",
+      "Id": "dc60b1a3561246f58b4f9b5bbc9328af",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8488097f684c4efc9675e3d95dc69fa1",
+      "End": "83ba9dfebeef4d21a5d91d6c82d29edd",
+      "Id": "9d1acb64c8284b5f9dc47c38e7b242f2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "00547912aabb481cbab77e5b9f9cc532",
+      "End": "167e3d78cd254f43b902460d968a59b4",
+      "Id": "662cdff6364b4f8db343516a39cacd6a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e12b6404fd3640a5b272237293be2ffd",
+      "End": "2d05ba536f2f4ae3bf4b7becc8cac4a0",
+      "Id": "7dc66e28ed094402b642e362e20b53a6",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "f59186fedad647b98c5dd2b62fd0da29",
+        "Name": "Sheet numbers  ( blank = ALL sheets | A101, S101 | prefix: AR_DR )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "6d94b6faaafd4ca89f4377f71a758085",
+        "Name": "Also views NOT on sheets",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "86badfc915b7449f935f2f77b03af52e",
+        "Name": "Grid-to-grid + overall dimensions",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 420.0
+      },
+      {
+        "Id": "1b9efed6dcde4fe9b1975e997ae9a8c6",
+        "Name": "Dimensions on all 4 sides (off = bottom + left)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 555.0
+      },
+      {
+        "Id": "37f3623d82894d19b25b016c0b7ec39d",
+        "Name": "Distance from building (paper mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 690.0
+      },
+      {
+        "Id": "776f8b07b1ad4a869f9667913b334aaa",
+        "Name": "Gap chain -> overall (paper mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 825.0
+      },
+      {
+        "Id": "f64a89b02000460e9ee5859fb40708eb",
+        "Name": "Level dimensions in sections / elevations",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 960.0
+      },
+      {
+        "Id": "8d86df44fddf4a68b7a86dd3e05be583",
+        "Name": "COLUMN tags when name has",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "003cb448b0a443e6853ecb26f734934d",
+        "Name": "FOOTING tags when name has",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "9558e34f91c0409394e240ff6cba5436",
+        "Name": "BEAM tags when name has",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 270.0
+      },
+      {
+        "Id": "c19faa88440d432e821b01e4349fe8e6",
+        "Name": "WALL tags when name has",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 405.0
+      },
+      {
+        "Id": "a585d7c5119a404f8c02ee3433c5982d",
+        "Name": "SLAB tags + spot level when name has",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 540.0
+      },
+      {
+        "Id": "909fcfbcdfe647c388dfe2c73d1ed783",
+        "Name": "Tag offset from element (paper mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 675.0
+      },
+      {
+        "Id": "ed4fa79f97f948559be4e8cea567bcad",
+        "Name": "Write size codes to Type Mark (C- F- PB- B- S- W-)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 960.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "ef94b32a6fd64158ae24a111754669ad",
+        "Name": "Re-arrange: delete old tags in these views first",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 960.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "6a97ddee0f574e4885db405979bde5aa",
+        "Name": "Short family names for compact tags (RCC COLUMN / RCC FOOTING)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 960.0,
+        "Y": 270.0
+      },
+      {
+        "Id": "302ade738aef43f1bb3fa9ad6e3f2217",
+        "Name": "CAD2BIM  Slabs + Walls + Copy  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "1adbfae21882409f99d4b39fe1d4f22a",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 650.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "50c9d44dd7424530ace694c07d5c9ef0",
+        "Title": "1  WHICH SHEETS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "f59186fedad647b98c5dd2b62fd0da29",
+          "6d94b6faaafd4ca89f4377f71a758085"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 405.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 310.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC8C8C8"
+      },
+      {
+        "Id": "7eafe43490e3481fbfd21b6c27071237",
+        "Title": "2  DIMENSIONS  (scale aware)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "86badfc915b7449f935f2f77b03af52e",
+          "1b9efed6dcde4fe9b1975e997ae9a8c6",
+          "37f3623d82894d19b25b016c0b7ec39d",
+          "776f8b07b1ad4a869f9667913b334aaa",
+          "f64a89b02000460e9ee5859fb40708eb"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 325.0,
+        "Width": 440.0,
+        "Height": 810.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 420.0,
+        "InitialHeight": 715.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "f200c0886c8846dfadeda6af0623d614",
+        "Title": "3  TAGS PER SHEET NAME  (keywords in sheet / view name)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "8d86df44fddf4a68b7a86dd3e05be583",
+          "003cb448b0a443e6853ecb26f734934d",
+          "9558e34f91c0409394e240ff6cba5436",
+          "c19faa88440d432e821b01e4349fe8e6",
+          "a585d7c5119a404f8c02ee3433c5982d",
+          "909fcfbcdfe647c388dfe2c73d1ed783"
+        ],
+        "HasNestedGroups": false,
+        "Left": 460.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 945.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "b8dfa3f9118246d0902e9e35874d37af",
+        "Title": "4  CODES + CLEAN-UP",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "ed4fa79f97f948559be4e8cea567bcad",
+          "ef94b32a6fd64158ae24a111754669ad",
+          "6a97ddee0f574e4885db405979bde5aa"
+        ],
+        "HasNestedGroups": false,
+        "Left": 940.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 540.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 445.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFD9C2F2"
+      },
+      {
+        "Id": "3b69190c12e842bcb86d29e1a48095fb",
+        "Title": "5  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "302ade738aef43f1bb3fa9ad6e3f2217",
+          "1adbfae21882409f99d4b39fe1d4f22a"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 1050.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 950.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "2db9cc02d44445f0b4ef51b65b0a93a6",
+        "Title": "HOW TO USE  -  place plans / sections on sheets, name the sheets, Run\nTags follow the SHEET NAME: 'COLUMN LAYOUT' -> column tags only, 'BEAM LAYOUT' -> beam tags, 'SLAB' -> slab tags + level, 'FOOTING' -> footings, 'WALL / BLOCK' -> walls.\nNo keyword: structural sheet (S / STR in number) -> columns + beams, architectural / ID sheet (A / AR / ID) -> walls.  Every plan gets grid + overall dimensions.\nEach plan tags ONLY its own level. Tags are measured and moved to a free spot - no clashes. Spacing follows each view scale.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

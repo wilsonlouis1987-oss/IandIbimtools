@@ -1,0 +1,445 @@
+{
+  "Uuid": "998f3dcb-f2f2-43dd-9e8b-35db1fd91dda",
+  "IsCustomNode": false,
+  "Description": "Sheets + views from an Excel drawing list (ISO 19650 numbers) - edit the Excel, Revit follows",
+  "Name": "CAD2BIM_Sheets_From_Excel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "e2835dc20f1e422e863fde75e70e9c40",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1b39a9f3af0f49c89439903791ab7065",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "",
+      "InputValue": "No file selected."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "928b2441b30344ee9a351304a8b897a5",
+          "Name": "path",
+          "Description": "Path to the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+          "Name": "file",
+          "Description": "File object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a file object from the given path",
+      "Id": "86337e6929b34db8a0abe470f28ed0e9"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f805a5952b2846c5a4872752b6961cd7",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b925d23d7193473fad0e6b987eb78666",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "541e337a1ae84661ad4e944f087fb612",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "098c0f6232c940f39689de2f975e87ad",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5ec052b7587a474cb4cf23dbe97bf542",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - SHEETS + VIEWS FROM EXCEL (ISO 19650)\n#  one Excel = the drawing list: sheet number, sheet name, view, view type, level, scale\n#  edit the Excel and save -> Revit sheets / views are added, renamed, renumbered (Automatic run mode watches the file)\n#  first run with no Excel: the Excel is created next to the .rvt from the Revit sheets.  Plain .xlsx, no Excel needed.\nimport os\nimport re\nimport datetime\nimport zipfile\nimport traceback\nimport xml.etree.ElementTree as ET\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\nMM = 1.0 / 304.8\nMETRIC_SCALES = [1, 2, 5, 10, 20, 25, 50, 75, 100, 125, 150, 200, 250, 300, 400, 500, 750, 1000, 1250, 2000, 2500]\nIMPERIAL_SCALES = [4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 384, 480, 600, 960, 1200]   # 3\"=1'-0\" ... 1\"=100'\nSTANDARD_SCALES = sorted(set(METRIC_SCALES + IMPERIAL_SCALES))\nVIEW_TYPES = ['FloorPlan', 'CeilingPlan', 'StructuralPlan', '3D', 'Drafting', 'Section', 'Elevation', 'Legend', 'Schedule']\nCREATABLE = {'FloorPlan': 'FloorPlan', 'CeilingPlan': 'CeilingPlan', 'StructuralPlan': 'StructuralPlan',\n             '3D': 'ThreeDimensional', 'Drafting': 'Drafting'}\nALIASES = {'plan': 'FloorPlan', 'floorplan': 'FloorPlan', 'floor': 'FloorPlan', 'ga': 'FloorPlan',\n           'rcp': 'CeilingPlan', 'ceiling': 'CeilingPlan', 'ceilingplan': 'CeilingPlan',\n           'structural': 'StructuralPlan', 'structuralplan': 'StructuralPlan', '3d': '3D', 'threed': '3D',\n           'drafting': 'Drafting', 'detail': 'Drafting', 'section': 'Section', 'elevation': 'Elevation',\n           'legend': 'Legend', 'schedule': 'Schedule'}\nVIEWTYPE_TO_KIND = {'FloorPlan': 'FloorPlan', 'CeilingPlan': 'CeilingPlan', 'EngineeringPlan': 'StructuralPlan',\n                    'ThreeD': '3D', 'DraftingView': 'Drafting', 'Section': 'Section', 'Elevation': 'Elevation',\n                    'Legend': 'Legend', 'Schedule': 'Schedule'}\nMULTI = ('Legend', 'Schedule')                      # these may sit on several sheets\nHINT = ('view \"%s\" is already used on sheet %s - a view fits on one sheet only; '\n        'give this row its own VIEW NAME, e.g. \"%s (2)\"')\nSTATUS_PARAMS = ['Status', 'Suitability', 'Suitability Code', 'Status Code', 'Document Status']\nREVISION_PARAMS = ['Revision', 'Document Revision', 'Rev']\nISO_RE = re.compile(r'^([A-Z0-9]{2,6})-([A-Z0-9]{2,6})-([A-Z0-9]{2})-([A-Z0-9]{2})-([A-Z0-9]{2})-([A-Z])-(\\d{3,6})$')\n\n# SETTINGS tab: (key, default, note) - rows 3.. ; the SHEETS formulas point at these rows, keep the order\nSETTINGS = [('Project code', '2524', 'ISO 19650 field 1'),\n            ('Originator', 'SD', 'ISO 19650 field 2 - your company code'),\n            ('Volume', 'ZZ', 'ISO 19650 field 3 - ZZ = all volumes'),\n            ('Type', 'DR', 'ISO 19650 field 5 - DR = drawing'),\n            ('Role', 'A', 'ISO 19650 field 6 - A = architect'),\n            ('Status', 'S2', 'S0 work in progress, S1 coordination, S2 information, S3 review, S4 approval, A1.. accepted'),\n            ('Revision', 'P01', 'P01.. preliminary, C01.. contractual'),\n            ('Title block', '', 'part of the title block name, e.g. SD_A1  (blank = first one loaded)'),\n            ('Viewport type', 'Title w Line', 'blank = Revit default'),\n            ('Margins mm (left, right, top, bottom)', '20, 130, 20, 20', 'free drawing area inside the title block'),\n            ('Sheet names in CAPITALS', 'YES', 'YES / NO')]\nSET_FIRST_ROW = 3\nCOLS = [('LEVEL CODE\\n(00, 01, B1, RF, ZZ)', 14), ('NUMBER\\n(1001)', 11), ('SHEET NUMBER\\n(auto - ISO 19650)', 30),\n        ('SHEET NAME', 44), ('VIEW NAME', 30), ('VIEW TYPE', 14), ('LEVEL\\n(Revit level)', 16),\n        ('SCALE\\n(100 = 1:100)', 12), ('STATUS\\n(blank = SETTINGS)', 12), ('REVISION\\n(blank = SETTINGS)', 12),\n        ('REVIT ID\\n(do not edit)', 14)]\nHDR_ROW = 2                                          # 0-based: title, blank, header\n\n# ======================================================================== tiny .xlsx reader / writer\nNS = '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'\nRNS = '{http://schemas.openxmlformats.org/officeDocument/2006/relationships}'\n\n\ndef _esc(s):\n    s = re.sub(u'[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f]', '', u'%s' % s)\n    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('\"', '&quot;')\n\n\ndef _ref(ci, ri):\n    s, ci = '', ci + 1\n    while ci:\n        ci, rem = divmod(ci - 1, 26)\n        s = chr(65 + rem) + s\n    return '%s%d' % (s, ri + 1)\n\n\ndef _colidx(ref):\n    n = 0\n    for ch in ''.join(c for c in ref if c.isalpha()):\n        n = n * 26 + (ord(ch.upper()) - 64)\n    return n - 1\n\n\ndef xlsx_read(path, sheet_name):\n    z = zipfile.ZipFile(path)\n    try:\n        shared = []\n        if 'xl/sharedStrings.xml' in z.namelist():\n            for si in ET.fromstring(z.read('xl/sharedStrings.xml')).iter(NS + 'si'):\n                shared.append(''.join(t.text or '' for t in si.iter(NS + 't')))\n        wb = ET.fromstring(z.read('xl/workbook.xml'))\n        rmap = dict((r.get('Id'), r.get('Target')) for r in ET.fromstring(z.read('xl/_rels/workbook.xml.rels')))\n        target = None\n        for sh in wb.iter(NS + 'sheet'):\n            if sh.get('name', '').strip().upper() == sheet_name.upper():\n                target = rmap.get(sh.get(RNS + 'id'))\n        if target is None:\n            return None\n        target = target.lstrip('/')\n        if not target.startswith('xl/'):\n            target = 'xl/' + target\n        root = ET.fromstring(z.read(target))\n    finally:\n        z.close()\n    rows = []\n    for r in root.iter(NS + 'row'):\n        vals = {}\n        for c in r.iter(NS + 'c'):\n            t, v = c.get('t'), c.find(NS + 'v')\n            if t == 's' and v is not None:\n                val = shared[int(v.text)]\n            elif t == 'inlineStr':\n                val = ''.join(x.text or '' for x in c.iter(NS + 't'))\n            elif v is not None and v.text not in (None, ''):\n                val = v.text\n                if t not in ('str', 'e', 'b'):\n                    try:\n                        fl = float(val)\n                        val = str(int(fl)) if fl == int(fl) else str(fl)\n                    except ValueError:\n                        pass\n            else:\n                val = ''\n            vals[_colidx(c.get('r'))] = (val or '').strip()\n        rno = int(r.get('r')) if r.get('r') else len(rows) + 1\n        while len(rows) < rno - 1:\n            rows.append([])\n        rows.append([vals.get(i, '') for i in range(max(vals) + 1)] if vals else [])\n    return rows\n\n\nSTYLES = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<styleSheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">'\n          '<fonts count=\"5\"><font><sz val=\"11\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"10\"/><color rgb=\"FFFFFFFF\"/><name val=\"Arial\"/></font>'\n          '<font><sz val=\"11\"/><color rgb=\"FF0000FF\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"14\"/><name val=\"Arial\"/></font>'\n          '<font><i/><sz val=\"10\"/><color rgb=\"FF595959\"/><name val=\"Arial\"/></font></fonts>'\n          '<fills count=\"4\"><fill><patternFill patternType=\"none\"/></fill><fill><patternFill patternType=\"gray125\"/></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FF1F3864\"/><bgColor indexed=\"64\"/></patternFill></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FFF2F2F2\"/><bgColor indexed=\"64\"/></patternFill></fill></fills>'\n          '<borders count=\"2\"><border><left/><right/><top/><bottom/><diagonal/></border>'\n          '<border><left style=\"thin\"><color rgb=\"FFBFBFBF\"/></left><right style=\"thin\"><color rgb=\"FFBFBFBF\"/></right>'\n          '<top style=\"thin\"><color rgb=\"FFBFBFBF\"/></top><bottom style=\"thin\"><color rgb=\"FFBFBFBF\"/></bottom><diagonal/></border></borders>'\n          '<cellStyleXfs count=\"1\"><xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\"/></cellStyleXfs>'\n          '<cellXfs count=\"7\">'\n          '<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\"/>'                                         # 0 normal\n          '<xf numFmtId=\"49\" fontId=\"1\" fillId=\"2\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\" applyAlignment=\"1\">'\n          '<alignment wrapText=\"1\" vertical=\"center\" horizontal=\"center\"/></xf>'                                  # 1 header\n          '<xf numFmtId=\"49\" fontId=\"2\" fillId=\"0\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyBorder=\"1\"/>'  # 2 blue input (text)\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 3 grey calculated\n          '<xf numFmtId=\"0\" fontId=\"3\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyFont=\"1\"/>'                           # 4 title\n          '<xf numFmtId=\"49\" fontId=\"4\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\"/>'     # 5 note\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 6 grey key\n          '</cellXfs><cellStyles count=\"1\"><cellStyle name=\"Normal\" xfId=\"0\" builtinId=\"0\"/></cellStyles></styleSheet>')\n\n\ndef _sheet_xml(rows, widths, freeze=None, validations=None, col_styles=None, heights=None):\n    \"\"\"rows: list of lists; a cell = value, or (value, style), or ('=formula', cached, style)\"\"\"\n    cs = col_styles or {}\n    out = ['<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n           '<worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">']\n    if freeze:\n        out.append('<sheetViews><sheetView workbookViewId=\"0\"><pane ySplit=\"%d\" topLeftCell=\"A%d\" activePane=\"bottomLeft\" '\n                   'state=\"frozen\"/></sheetView></sheetViews>' % (freeze, freeze + 1))\n    out.append('<cols>' + ''.join('<col min=\"%d\" max=\"%d\" width=\"%s\" customWidth=\"1\"%s/>'\n                                  % (i + 1, i + 1, w, (' style=\"%d\"' % cs[i]) if i in cs else '')\n                                  for i, w in enumerate(widths)) + '</cols><sheetData>')\n    for ri, row in enumerate(rows):\n        cells = []\n        for ci, cell in enumerate(row):\n            ref, style, f = _ref(ci, ri), cs.get(ci, 0), None\n            if isinstance(cell, tuple):\n                if len(cell) == 3:\n                    f, val, style = cell\n                else:\n                    val, style = cell\n            else:\n                val = cell\n            sa = ' s=\"%d\"' % style if style else ''\n            if f:\n                cells.append('<c r=\"%s\"%s t=\"str\"><f>%s</f><v>%s</v></c>' % (ref, sa, _esc(f.lstrip('=')), _esc(val)))\n            elif val is None or val == '':\n                if style:\n                    cells.append('<c r=\"%s\"%s/>' % (ref, sa))\n            else:\n                cells.append('<c r=\"%s\"%s t=\"inlineStr\"><is><t xml:space=\"preserve\">%s</t></is></c>' % (ref, sa, _esc(val)))\n        ht = (' ht=\"%s\" customHeight=\"1\"' % heights[ri]) if heights and ri in heights else ''\n        out.append('<row r=\"%d\"%s>%s</row>' % (ri + 1, ht, ''.join(cells)))\n    out.append('</sheetData>')\n    if validations:\n        out.append('<dataValidations count=\"%d\">' % len(validations))\n        for sqref, formula in validations:\n            out.append('<dataValidation type=\"list\" allowBlank=\"1\" showErrorMessage=\"0\" sqref=\"%s\"><formula1>%s</formula1>'\n                       '</dataValidation>' % (sqref, _esc(formula)))\n        out.append('</dataValidations>')\n    out.append('</worksheet>')\n    return ''.join(out)\n\n\ndef xlsx_write(path, sheets):\n    \"\"\"sheets: list of (name, sheet_xml)\"\"\"\n    n = len(sheets)\n    ct = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">'\n          '<Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>'\n          '<Default Extension=\"xml\" ContentType=\"application/xml\"/>'\n          '<Override PartName=\"/xl/workbook.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml\"/>'\n          '<Override PartName=\"/xl/styles.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml\"/>'\n          + ''.join('<Override PartName=\"/xl/worksheets/sheet%d.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml\"/>' % (i + 1)\n                    for i in range(n)) + '</Types>')\n    rels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n            '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n            '<Relationship Id=\"rId1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\" Target=\"xl/workbook.xml\"/>'\n            '</Relationships>')\n    wb = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<workbook xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" '\n          'xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">'\n          '<bookViews><workbookView activeTab=\"0\"/></bookViews><sheets>'\n          + ''.join('<sheet name=\"%s\" sheetId=\"%d\" r:id=\"rId%d\"/>' % (_esc(s[0]), i + 1, i + 1) for i, s in enumerate(sheets))\n          + '</sheets><calcPr calcId=\"191029\" fullCalcOnLoad=\"1\"/></workbook>')\n    wrels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n             '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n             + ''.join('<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet\" '\n                       'Target=\"worksheets/sheet%d.xml\"/>' % (i + 1, i + 1) for i in range(n))\n             + '<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles\" '\n               'Target=\"styles.xml\"/></Relationships>' % (n + 1))\n    tmp = path + '.tmp'\n    z = zipfile.ZipFile(tmp, 'w', zipfile.ZIP_DEFLATED)\n    try:\n        z.writestr('[Content_Types].xml', ct)\n        z.writestr('_rels/.rels', rels)\n        z.writestr('xl/workbook.xml', wb)\n        z.writestr('xl/_rels/workbook.xml.rels', wrels)\n        z.writestr('xl/styles.xml', STYLES)\n        for i, (name, xml) in enumerate(sheets):\n            z.writestr('xl/worksheets/sheet%d.xml' % (i + 1), xml.encode('utf-8'))\n    finally:\n        z.close()\n    try:\n        if os.path.exists(path):\n            os.remove(path)\n        os.rename(tmp, path)\n    except Exception:\n        os.remove(tmp)\n        raise\n\n\n# ======================================================================== the workbook\ndef full_number(st, code, number):\n    \"\"\"ISO 19650 sheet number from SETTINGS + LEVEL CODE + NUMBER.  A NUMBER with a dash / letters is used as it is.\"\"\"\n    number = str(number or '').strip()\n    if not number:\n        return ''\n    if not number.isdigit():\n        return number\n    if len(number) < 4:\n        number = number.zfill(4)\n    parts = [st['Project code'], st['Originator'], st['Volume'], (code or 'ZZ'), st['Type'], st['Role'], number]\n    return '-'.join(p.strip().upper() for p in parts)\n\n\ndef write_book(path, st, rows, levels, title):\n    \"\"\"rows: list of [code, number, sheet_name, view_name, view_type, level, scale, status, revision, revit_id]\"\"\"\n    ref = dict((k, 'SETTINGS!$B$%d' % (SET_FIRST_ROW + i)) for i, (k, d, n) in enumerate(SETTINGS))\n    sh = [[('CAD2BIM  SHEETS + VIEWS  -  ' + (title or 'PROJECT'), 4)], [], [(c[0], 1) for c in COLS]]\n    last = max(len(rows) + 60, 200)\n    for i in range(last):\n        r = HDR_ROW + 1 + i\n        d = rows[i] if i < len(rows) else [''] * 10\n        d = (list(d) + [''] * 10)[:10]\n        x = r + 1\n        f = ('=IF($B{x}=\"\",\"\",IF(ISNUMBER(--$B{x}),{pc}&\"-\"&{po}&\"-\"&{vo}&\"-\"&IF($A{x}=\"\",\"ZZ\",$A{x})&\"-\"&{ty}&\"-\"&{ro}&\"-\"&'\n             'TEXT($B{x},\"0000\"),$B{x}))').format(x=x, pc=ref['Project code'], po=ref['Originator'], vo=ref['Volume'],\n                                                  ty=ref['Type'], ro=ref['Role'])\n        sh.append([(d[0], 2), (d[1], 2), (f, full_number(st, d[0], d[1]), 3), (d[2], 2), (d[3], 2), (d[4], 2),\n                   (d[5], 2), (d[6], 2), (d[7], 2), (d[8], 2), (d[9], 3)])\n    end = HDR_ROW + 1 + last\n    val = [('F%d:F%d' % (HDR_ROW + 2, end), '\"%s\"' % ','.join(VIEW_TYPES)),\n           ('A%d:A%d' % (HDR_ROW + 2, end), '\"ZZ,XX,B2,B1,00,M1,01,02,03,04,05,06,07,08,09,10,RF\"')]\n    if levels:\n        val.append(('G%d:G%d' % (HDR_ROW + 2, end), 'LISTS!$A$2:$A$%d' % (len(levels) + 1)))\n    se = [[('SETTINGS  -  used by every row of the SHEETS tab', 4)], [('SETTING', 1), ('VALUE', 1), ('NOTE', 1)]]\n    for k, d, n in SETTINGS:\n        se.append([(k, 6), (st.get(k, d), 2), (n, 5)])\n    lists = [[('Revit levels', 1)]] + [[(l, 0)] for l in levels]\n    help_rows = [[('HOW TO USE', 4)], [],\n                 ['1.  SETTINGS tab: project code, originator ... title block (blue cells). Done once per project.'],\n                 ['2.  SHEETS tab: one row = one view on one sheet.  Type LEVEL CODE + NUMBER -> the ISO 19650 SHEET NUMBER is made for you.'],\n                 ['    SHEET NAME = the drawing title.   VIEW NAME = the view to put on the sheet (blank = sheet only).'],\n                 ['    A view that does not exist is created: VIEW TYPE FloorPlan / CeilingPlan / StructuralPlan (needs LEVEL), 3D, Drafting.'],\n                 ['    Section, Elevation, Legend, Schedule must already exist - type their exact name.'],\n                 ['    Same NUMBER on two rows = two views on the same sheet.   SCALE 100 = 1:100 (blank = fit to the sheet).'],\n                 ['3.  Save the Excel (Ctrl+S).  Dynamo graph CAD2BIM_Sheets_From_Excel (Automatic mode) updates Revit by itself.'],\n                 ['4.  Change a SHEET NAME or NUMBER here and save -> the Revit sheet is renamed / renumbered (keep its REVIT ID).'],\n                 ['    Delete a row -> the Revit sheet is kept (never deleted by the script).'],\n                 ['5.  A LEVEL that does not exist yet: make it first with CAD2BIM_Levels_From_Excel.'],\n                 [], ['Blue = you type.   Grey = calculated / written by the script.   Never duplicates sheets or views.']]\n    xlsx_write(path, [\n        ('SHEETS', _sheet_xml(sh, [c[1] for c in COLS], freeze=HDR_ROW + 1, validations=val, heights={HDR_ROW: 32})),\n        ('SETTINGS', _sheet_xml(se, [38, 26, 90], freeze=2)),\n        ('LISTS', _sheet_xml(lists, [30])),\n        ('HOW TO USE', _sheet_xml(help_rows, [130]))])\n\n\ndef read_book(path):\n    st = dict((k, d) for k, d, n in SETTINGS)\n    srows = xlsx_read(path, 'SETTINGS') or []\n    for r in srows:\n        if len(r) >= 2 and r[0]:\n            for k, d, n in SETTINGS:\n                if r[0].strip().lower() == k.lower():\n                    st[k] = r[1].strip()\n    rows = xlsx_read(path, 'SHEETS')\n    if rows is None:\n        raise Exception('the Excel has no SHEETS tab - leave the file box empty once to create a new Excel')\n    hi = next((i for i, r in enumerate(rows) if r and r[0].strip().upper().startswith('LEVEL CODE')), None)\n    if hi is None:\n        raise Exception('SHEETS tab has no header row starting with \"LEVEL CODE\"')\n    out = []\n    for n, r in enumerate(rows[hi + 1:], start=hi + 2):\n        r = (list(r) + [''] * 11)[:11]\n        if not (r[1] or r[3] or r[4]):\n            continue\n        out.append(dict(row=n, code=r[0].upper(), number=r[1], name=r[3], vname=r[4], vtype=r[5], level=r[6],\n                        scale=r[7], status=r[8].upper(), rev=r[9].upper(), rid=r[10]))\n    return st, out\n\n\n# ======================================================================== Revit part (Dynamo)\ndef run(doc, XL, SYNC, AUTOSCALE, EXPORT, out):\n    from Autodesk.Revit.DB import (FilteredElementCollector, View, ViewType, ViewSheet, ViewSchedule, ViewPlan, View3D,\n                                   ViewDrafting, ViewFamilyType, ViewFamily, Level, Viewport, ScheduleSheetInstance,\n                                   BuiltInCategory, BuiltInParameter, XYZ, ElementTransformUtils, Element, ElementType,\n                                   StorageType, SubTransaction, DisplayUnit)\n    try:\n        AUTO_SCALES = IMPERIAL_SCALES if doc.DisplayUnitSystem == DisplayUnit.IMPERIAL else METRIC_SCALES\n    except Exception:\n        AUTO_SCALES = METRIC_SCALES\n\n    def nm(e):\n        for get in (lambda: Element.Name.GetValue(e), lambda: Element.Name.__get__(e), lambda: e.Name):\n            try:\n                n = get()\n                if n:\n                    return n\n            except Exception:\n                pass\n        for bip in (BuiltInParameter.SYMBOL_NAME_PARAM, BuiltInParameter.ALL_MODEL_TYPE_NAME):\n            try:\n                p = e.get_Parameter(bip)\n                if p is not None and p.AsString():\n                    return p.AsString()\n            except Exception:\n                pass\n        return ''\n\n    def idv(eid):\n        try:\n            return eid.Value\n        except Exception:\n            return eid.IntegerValue\n\n    def natural(s):\n        return [int(t) if t.isdigit() else t.lower() for t in re.split(r'(\\d+)', s or '')]\n\n    def viewport_type_id(name):\n        if not name:\n            return None\n        for t in FilteredElementCollector(doc).OfClass(ElementType):\n            try:\n                if t.FamilyName == 'Viewport' and nm(t).lower() == name.lower():\n                    return t.Id\n            except Exception:\n                pass\n        return None\n\n    def set_type(el, tid):\n        try:\n            el.ChangeTypeId(tid)\n        except Exception:\n            el.get_Parameter(BuiltInParameter.ELEM_TYPE_PARAM).Set(tid)\n\n    def set_text(el, names, value):\n        hit = False\n        for n in names:\n            q = el.LookupParameter(n)\n            if q is not None and not q.IsReadOnly and q.StorageType == StorageType.String:\n                q.Set(value)\n                hit = True\n        return hit\n\n    kind_of = {}\n    for vt, k in VIEWTYPE_TO_KIND.items():\n        try:\n            kind_of[getattr(ViewType, vt)] = k\n        except AttributeError:\n            pass\n    views = [v for v in FilteredElementCollector(doc).OfClass(View) if not v.IsTemplate and v.ViewType in kind_of\n             and not (isinstance(v, ViewSchedule) and (v.IsTitleblockRevisionSchedule or v.IsInternalKeynoteSchedule))]\n    by_name = {}\n    for v in views:\n        by_name.setdefault(v.Name, []).append(v)\n    levels = sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation)\n    level_by_name = dict((l.Name.lower(), l) for l in levels)\n    sheets = sorted(FilteredElementCollector(doc).OfClass(ViewSheet), key=lambda s: natural(s.SheetNumber))\n    on_sheet = {}\n\n    def views_on(s):\n        ids = [idv(i) for i in s.GetAllPlacedViews()]\n        ids += [idv(si.ScheduleId) for si in FilteredElementCollector(doc, s.Id).OfClass(ScheduleSheetInstance)\n                if not si.IsTitleblockRevisionSchedule]\n        return ids\n    for s in sheets:\n        for i in views_on(s):\n            on_sheet.setdefault(i, []).append(s)\n\n    # ---------------- EXPORT / first run: Excel from the Revit sheets\n    def export(st):\n        rows = []\n        for s in sheets:\n            m = ISO_RE.match(s.SheetNumber)\n            code, number = (m.group(4), m.group(7)) if m else ('', s.SheetNumber)\n            stt = next((s.LookupParameter(p).AsString() for p in STATUS_PARAMS if s.LookupParameter(p) is not None\n                        and s.LookupParameter(p).StorageType == StorageType.String), '') or ''\n            rv = next((s.LookupParameter(p).AsString() for p in REVISION_PARAMS if s.LookupParameter(p) is not None\n                       and s.LookupParameter(p).StorageType == StorageType.String), '') or ''\n            vs = [doc.GetElement(i) for i in s.GetAllPlacedViews()]\n            vs += [doc.GetElement(si.ScheduleId) for si in FilteredElementCollector(doc, s.Id).OfClass(ScheduleSheetInstance)\n                   if not si.IsTitleblockRevisionSchedule]\n            uniq = dict((idv(v.Id), v) for v in vs if v is not None)\n            if not uniq:\n                rows.append([code, number, s.Name, '', '', '', '', stt, rv, str(idv(s.Id))])\n            for v in sorted(uniq.values(), key=lambda x: natural(x.Name)):\n                lvl = v.GenLevel.Name if isinstance(v, ViewPlan) and v.GenLevel is not None else ''\n                sc = '' if isinstance(v, ViewSchedule) else str(v.Scale)\n                rows.append([code, number, s.Name, v.Name, kind_of.get(v.ViewType, ''), lvl, sc, stt, rv, str(idv(s.Id))])\n        if not any(ISO_RE.match(s.SheetNumber) for s in sheets):\n            # no ISO sheets yet: suggest a GA plan + RCP per level - NUMBER left empty, so nothing is created\n            # until you type a number (1001, 1002 ... / 1101, 1102 ...)\n            ground = min(range(len(levels)), key=lambda i: abs(levels[i].Elevation)) if levels else 0\n            for prefix, kind in (('GENERAL ARRANGEMENT PLAN', 'FloorPlan'), ('REFLECTED CEILING PLAN', 'CeilingPlan')):\n                for i, l in enumerate(levels):\n                    code = ('B%d' % (ground - i)) if i < ground else ('%02d' % (i - ground))\n                    rows.append([code, '', '%s - %s' % (prefix, l.Name.upper()),\n                                 '%s %s - %s' % (code, 'GA' if kind == 'FloorPlan' else 'RCP', l.Name), kind, l.Name,\n                                 '100', '', '', ''])\n        write_book(XL, st, rows, [l.Name for l in levels], doc.Title)\n        return rows\n\n    if EXPORT or not os.path.exists(XL):\n        st = dict((k, d) for k, d, n in SETTINGS)\n        if os.path.exists(XL):\n            try:\n                st, _ = read_book(XL)\n            except Exception:\n                pass\n        tbs = list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_TitleBlocks).WhereElementIsElementType())\n        if not st.get('Title block') and tbs:\n            st['Title block'] = nm(tbs[0])\n        rows = export(st)\n        out.append('CAD2BIM SHEETS  -  EXCEL %s' % ('EXPORTED' if EXPORT else 'CREATED'))\n        out.append('File   : ' + XL)\n        out.append('%d row(s) written.  Edit SETTINGS + SHEETS in Excel, save, and the graph updates Revit.' % len(rows))\n        if EXPORT:\n            out.append('Switch \"EXPORT\" back OFF, then edit the Excel.')\n        else:\n            out.append('Next: Browse... to this file in box 1.')\n        return\n\n    # ---------------- read the Excel\n    st, rows = read_book(XL)\n    caps = st.get('Sheet names in CAPITALS', 'YES').strip().upper() in ('YES', 'Y', 'TRUE', '1')\n    problems, groups, order, waiting = [], {}, [], 0\n    for r in rows:\n        r['no'] = full_number(st, r['code'], r['number'])\n        if not r['no']:\n            waiting += 1                              # no NUMBER yet = not to be created yet\n            continue\n        vt = r['vtype'].strip()\n        r['kind'] = ALIASES.get(vt.lower().replace(' ', ''), vt) if vt else ''\n        sc = r['scale'].replace('1:', '').strip()\n        if sc:\n            try:\n                n_sc = int(float(sc))\n                if n_sc not in STANDARD_SCALES:\n                    std = min(STANDARD_SCALES, key=lambda s: abs(s - n_sc))\n                    problems.append('row %d: scale %s is not standard - 1:%d used' % (r['row'], sc, std))\n                    n_sc = std\n                sc = str(n_sc)\n            except ValueError:\n                problems.append('row %d: scale \"%s\" is not a number - ignored' % (r['row'], sc))\n                sc = ''\n        r['scale'] = sc\n        if r['no'] not in groups:\n            groups[r['no']] = []\n            order.append(r['no'])\n        groups[r['no']].append(r)\n\n    def find_view(name, kind):\n        c = by_name.get(name, [])\n        if kind in VIEW_TYPES:\n            c = [v for v in c if kind_of.get(v.ViewType) == kind]\n        if len(c) > 1:\n            return None, '%d views are called \"%s\" - fill VIEW TYPE' % (len(c), name)\n        return (c[0] if c else None), None\n\n    # ---------------- match each Excel sheet to a Revit sheet: REVIT ID -> number -> the sheet its view is on\n    by_id = dict((str(idv(s.Id)), s) for s in sheets)\n    by_no = dict((s.SheetNumber, s) for s in sheets)\n    used, match = set(), {}\n    for no in order:\n        rid = next((r['rid'] for r in groups[no] if r['rid']), '')\n        s = by_id.get(rid) if rid else None\n        if s is not None and idv(s.Id) not in used:\n            match[no] = s\n            used.add(idv(s.Id))\n    for no in order:\n        if no not in match and no in by_no and idv(by_no[no].Id) not in used:\n            match[no] = by_no[no]\n            used.add(idv(by_no[no].Id))\n    for no in order:\n        if no in match:\n            continue\n        for r in groups[no]:\n            v, _ = find_view(r['vname'], r['kind']) if r['vname'] else (None, None)\n            hosts = [s for s in on_sheet.get(idv(v.Id), [])] if v is not None else []\n            if len(hosts) == 1 and idv(hosts[0].Id) not in used and hosts[0].SheetNumber not in groups:\n                match[no] = hosts[0]\n                used.add(idv(hosts[0].Id))\n                break\n\n    # ---------------- plan\n    plan, n_new, claimed = [], 0, {}\n    for no in order:\n        g = groups[no]\n        s = match.get(no)\n        typed = next((r['name'] for r in g if r['name']), '') or (g[0]['vname'] or 'UNTITLED')\n        name = typed.upper() if caps else typed\n        acts = []\n        if s is None:\n            acts.append('NEW SHEET')\n            n_new += 1\n        else:\n            if s.SheetNumber != no:\n                if no in by_no and by_no[no] is not s:\n                    problems.append('%s: number already used by another sheet - not renumbered' % no)\n                else:\n                    acts.append('RENUMBER %s -> %s' % (s.SheetNumber, no))\n            if s.Name.strip().lower() != typed.strip().lower():      # only a real name change, never just capitals\n                acts.append('RENAME \"%s\" -> \"%s\"' % (s.Name, name))\n            else:\n                name = s.Name\n        items = []\n        for r in g:\n            if not r['vname']:\n                continue\n            v, err = find_view(r['vname'], r['kind'])\n            if err:\n                items.append((r, 'ERROR', err, None))\n                continue\n            if v is None:\n                here = [x for x in by_name.get(r['vname'], []) if s is not None and s in on_sheet.get(idv(x.Id), [])]\n                if here:\n                    items.append((r, 'OK', 'already on this sheet', here[0]))\n                    continue\n                k = r['kind'] or ('CeilingPlan' if re.search('ceiling|rcp', name + ' ' + r['vname'], re.I) else\n                                  ('FloorPlan' if r['level'] else ''))\n                r['kind'] = k\n                if k not in CREATABLE:\n                    items.append((r, 'ERROR', 'view not found (check the name) - %s views must already exist' % (k or 'this'), None))\n                elif k in ('FloorPlan', 'CeilingPlan', 'StructuralPlan') and r['level'].lower() not in level_by_name:\n                    items.append((r, 'ERROR', 'LEVEL \"%s\" not in Revit - make it first (CAD2BIM_Levels_From_Excel)' % r['level'], None))\n                else:\n                    nkey = ('new', r['vname'].strip().lower(), k)\n                    if nkey in claimed and claimed[nkey] != no:      # the same new view asked for on two sheets\n                        items.append((r, 'ERROR', HINT % (r['vname'], claimed[nkey], r['vname']), None))\n                    else:\n                        claimed.setdefault(nkey, no)\n                        items.append((r, 'CREATE', 'new %s%s' % (k, (' on ' + r['level']) if r['level'] else ''), None))\n                continue\n            kind = kind_of.get(v.ViewType)\n            key = idv(v.Id)\n            if key in claimed and claimed[key] != no and kind not in MULTI:\n                items.append((r, 'ERROR', HINT % (r['vname'], claimed[key], r['vname']), v))\n                continue\n            claimed.setdefault(key, no)\n            hosts = on_sheet.get(key, [])\n            if s is not None and s in hosts:\n                items.append((r, 'OK', 'already on this sheet', v))\n            elif hosts and kind not in MULTI:\n                items.append((r, 'ERROR', HINT % (r['vname'], hosts[0].SheetNumber, r['vname']), v))\n            else:\n                items.append((r, 'PLACE', 'existing %s' % kind, v))\n        st_ = next((r['status'] for r in g if r['status']), '') or st['Status'].upper()\n        rv_ = next((r['rev'] for r in g if r['rev']), '') or st['Revision'].upper()\n        plan.append(dict(no=no, name=name, sheet=s, acts=acts, items=items, status=st_, rev=rv_))\n\n    changes = [p for p in plan if p['acts'] or any(a in ('CREATE', 'PLACE') for _, a, _, _ in p['items'])]\n    errors = [(p['no'], r['row'], t) for p in plan for r, a, t, _ in p['items'] if a == 'ERROR']\n\n    # ---------------- apply\n    done = []\n    if SYNC and changes:\n        tbs = list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_TitleBlocks).WhereElementIsElementType())\n        tb_text = st.get('Title block', '').strip().lower()\n        tb = next((t for t in tbs if tb_text and tb_text in (t.FamilyName + ' : ' + nm(t)).lower()), None) or (tbs[0] if tbs else None)\n        if tb is None and n_new:\n            raise Exception('no title block loaded in this project - load one, then save the Excel again')\n        try:\n            ml, mr, mt, mb = [float(x) for x in st.get('Margins mm (left, right, top, bottom)', '').split(',')]\n        except Exception:\n            ml, mr, mt, mb = 20.0, 130.0, 20.0, 20.0\n        vp_tid = viewport_type_id(st.get('Viewport type', ''))\n        vfts = {}\n        for t in FilteredElementCollector(doc).OfClass(ViewFamilyType):\n            for k, fam in CREATABLE.items():\n                if k not in vfts and t.ViewFamily == getattr(ViewFamily, fam):\n                    vfts[k] = t\n        taken_names = set((idv(v.Id), v.Name) for v in views)\n        for p in changes:\n            s = p['sheet']\n            sub = SubTransaction(doc)\n            sub.Start()\n            mark = len(done)\n            try:\n                if s is None:\n                    s = ViewSheet.Create(doc, tb.Id)\n                    s.SheetNumber = p['no']\n                    s.Name = p['name']\n                    set_text(s, STATUS_PARAMS, p['status'])\n                    set_text(s, REVISION_PARAMS, p['rev'])\n                    q = s.get_Parameter(BuiltInParameter.SHEET_ISSUE_DATE)\n                    if q is not None and not q.IsReadOnly:\n                        q.Set(datetime.date.today().strftime('%d/%m/%y'))\n                    done.append('ADDED     %s  %s' % (p['no'], p['name']))\n                else:\n                    for a in p['acts']:\n                        if a.startswith('RENUMBER'):\n                            s.SheetNumber = p['no']\n                        if a.startswith('RENAME'):\n                            s.Name = p['name']\n                        done.append('%s  (%s)' % (a, p['no']))\n                    if p['acts']:\n                        set_text(s, STATUS_PARAMS, p['status'])\n                        set_text(s, REVISION_PARAMS, p['rev'])\n                place = []\n                for r, a, t, v in p['items']:\n                    if a == 'CREATE':\n                        k = r['kind']\n                        if k not in vfts:\n                            done.append('  no %s view type in this project - %s skipped' % (k, r['vname']))\n                            continue\n                        if k == '3D':\n                            v = View3D.CreateIsometric(doc, vfts[k].Id)\n                        elif k == 'Drafting':\n                            v = ViewDrafting.Create(doc, vfts[k].Id)\n                        else:\n                            v = ViewPlan.Create(doc, vfts[k].Id, level_by_name[r['level'].lower()].Id)\n                        v.Name = r['vname']\n                        if len(p['items']) == 1:\n                            q = v.get_Parameter(BuiltInParameter.VIEW_DESCRIPTION)\n                            if q is not None and not q.IsReadOnly:\n                                q.Set(p['name'])\n                        done.append('  view created  %s (%s)' % (r['vname'], k))\n                    if a in ('CREATE', 'PLACE'):\n                        if r['scale'] and not isinstance(v, ViewSchedule):\n                            try:\n                                v.Scale = int(r['scale'])\n                            except Exception:\n                                done.append('  %s: scale locked by its view template' % r['vname'])\n                        place.append((r, v))\n                if place:\n                    doc.Regenerate()\n                    tbi = list(FilteredElementCollector(doc, s.Id).OfCategory(BuiltInCategory.OST_TitleBlocks))\n                    bb = tbi[0].get_BoundingBox(s) if tbi else None\n                    x0, y0, x1, y1 = ((bb.Min.X + ml * MM, bb.Min.Y + mb * MM, bb.Max.X - mr * MM, bb.Max.Y - mt * MM)\n                                      if bb is not None else (0.0, 0.0, 841 * MM, 594 * MM))\n                    cw = (x1 - x0) / len(place)\n                    for i, (r, v) in enumerate(place):\n                        lo, hi = XYZ(x0 + i * cw, y0, 0), XYZ(x0 + (i + 1) * cw, y1, 0)\n                        c = XYZ((lo.X + hi.X) / 2.0, (lo.Y + hi.Y) / 2.0, 0)\n                        if isinstance(v, ViewSchedule):\n                            si = ScheduleSheetInstance.Create(doc, s.Id, v.Id, c)\n                            doc.Regenerate()\n                            b = si.get_BoundingBox(s)\n                            ElementTransformUtils.MoveElement(doc, si.Id, c.Subtract(XYZ((b.Min.X + b.Max.X) / 2.0, (b.Min.Y + b.Max.Y) / 2.0, 0)))\n                            done.append('  placed  %s' % r['vname'])\n                            continue\n                        vp = Viewport.Create(doc, s.Id, v.Id, c) if Viewport.CanAddViewToSheet(doc, s.Id, v.Id) else None\n                        if vp is None:\n                            done.append('  %s: Revit will not place it (empty view? draw in it, save the Excel again)' % r['vname'])\n                            continue\n                        if vp_tid is not None:\n                            set_type(vp, vp_tid)\n                        doc.Regenerate()\n\n                        def fits(o):\n                            return (o.MaximumPoint.X - o.MinimumPoint.X) <= (hi.X - lo.X) and \\\n                                   (o.MaximumPoint.Y - o.MinimumPoint.Y) <= (hi.Y - lo.Y)\n                        if AUTOSCALE and not r['scale'] and v.ViewType != ViewType.Legend and \\\n                                not (hasattr(v, 'IsPerspective') and v.IsPerspective):\n                            for scl in AUTO_SCALES:\n                                try:\n                                    v.Scale = scl\n                                except Exception:\n                                    break\n                                doc.Regenerate()\n                                vp.SetBoxCenter(c)\n                                if fits(vp.GetBoxOutline()):\n                                    break\n                        vp.SetBoxCenter(c)\n                        done.append('  placed  %s  1:%d' % (r['vname'], v.Scale))\n                sub.Commit()\n            except Exception as ex:\n                try:\n                    sub.RollBack()\n                except Exception:\n                    pass\n                del done[mark:]\n                done.append('FAILED    %s  -> %s  (this sheet was not changed)' % (p['no'], ex))\n                log(traceback.format_exc())\n\n    # ---------------- report\n    out.append('CAD2BIM SHEETS FROM EXCEL  -  %s' % ('UPDATED' if SYNC else 'CHECK ONLY (UPDATE switch is off - Revit not changed)'))\n    out.append('File   : ' + XL)\n    out.append('Excel  : %d sheet(s)    Revit : %d sheet(s)' % (len(order), FilteredElementCollector(doc).OfClass(ViewSheet).GetElementCount()))\n    if waiting:\n        out.append('         %d row(s) have no NUMBER yet - type a NUMBER to create them' % waiting)\n    if SYNC:\n        if done:\n            out.append('Changes:')\n            out.extend('  ' + d for d in done)\n        else:\n            out.append('Revit already matches the Excel - nothing to change.')\n    else:\n        for p in changes:\n            out.append('  would %s  %s  %s' % ('ADD' if p['sheet'] is None else 'UPDATE', p['no'], p['name']))\n            for r, a, t, v in p['items']:\n                if a in ('CREATE', 'PLACE'):\n                    out.append('        %s  %s  (%s)' % (a, r['vname'], t))\n        if not changes:\n            out.append('Revit already matches the Excel.')\n    if errors or problems:\n        out.append('')\n        out.append('CHECK THESE ROWS IN EXCEL:')\n        out.extend('  row %d (%s): %s' % (row, no, t) for no, row, t in errors)\n        out.extend('  ' + p for p in problems)\n    kept = [s.SheetNumber for s in sheets if idv(s.Id) not in used and s.SheetNumber not in groups]\n    if kept:\n        out.append('')\n        out.append('Revit sheets not in the Excel (kept): %d   - run EXPORT once to list them in Excel' % len(kept))\n\n\n# ======================================================================== Dynamo entry point\ntry:\n    IN\n    _IN_DYNAMO = True\nexcept NameError:\n    _IN_DYNAMO = False\n\nif _IN_DYNAMO:\n    import clr\n    clr.AddReference('RevitAPI')\n    clr.AddReference('RevitServices')\n    from RevitServices.Persistence import DocumentManager\n    from RevitServices.Transactions import TransactionManager\n\n    def file_path(x):\n        if x is None:\n            return ''\n        for a in ('FullName', 'FullPath'):\n            v = getattr(x, a, None)\n            if v:\n                return str(v)\n        s = str(x)\n        return '' if s.strip().lower() in ('', 'no file selected.', 'none', 'null') else s.strip().strip('\"')\n\n    def good_xl(p):\n        if not p:\n            return ''\n        base = os.path.basename(p).lower()\n        if base.startswith('no file selected') or not base.endswith(('.xlsx', '.xlsm')):\n            return ''\n        return p\n\n    out = []\n    doc = DocumentManager.Instance.CurrentDBDocument\n    try:\n        XL = good_xl(file_path(IN[0]))\n        SYNC, AUTOSCALE, EXPORT = bool(IN[1]), bool(IN[2]), bool(IN[3])\n        log('--- sheets started  xl \"%s\" sync %s autoscale %s export %s' % (XL, SYNC, AUTOSCALE, EXPORT))\n        if not XL:                                    # no file chosen -> <project>_SHEETS.xlsx next to the model\n            folder = os.path.dirname(doc.PathName) if doc.PathName else os.path.join(os.environ.get('USERPROFILE', ''), 'Documents')\n            XL = os.path.join(folder, '%s_SHEETS.xlsx' % doc.Title)\n        if SYNC:\n            TransactionManager.Instance.EnsureInTransaction(doc)\n        run(doc, XL, SYNC, AUTOSCALE, EXPORT, out)\n        if SYNC:\n            TransactionManager.Instance.TransactionTaskDone()\n    except Exception as ex:\n        try:\n            TransactionManager.Instance.ForceCloseTransaction()\n        except Exception:\n            pass\n        msg = str(ex)\n        if 'being used by another process' in msg or 'Permission denied' in msg:\n            msg = 'the Excel file is open - close it, or switch EXPORT off (only EXPORT writes to the Excel)'\n        out.insert(0, 'FAILED: ' + msg)\n        log(traceback.format_exc())\n    log('\\n'.join(out))\n    OUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "309c2923834249aab68e7b7e75d2b8f5",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "78c62500e9aa4ee4bb15dab1bfa226d1",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "766f114cdc35409ca18253b30cac99b5",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e9007c0324954d7a8fc9043db6563018",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "991b01955c9b4922a90cb99c780351e7",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9f80e8edde5e4c94b3f0db12addfbac2",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "7765f2d35d294e36b7d46cbc1c446edd",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6ba3f9cbe59244ec8c8a512ad42e0ed9",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1b39a9f3af0f49c89439903791ab7065",
+      "End": "928b2441b30344ee9a351304a8b897a5",
+      "Id": "bc7d9a05e42e4c1ea1186c07ac15f869",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+      "End": "78c62500e9aa4ee4bb15dab1bfa226d1",
+      "Id": "250fa5168f8c43de93cb956e50cc71c9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f805a5952b2846c5a4872752b6961cd7",
+      "End": "766f114cdc35409ca18253b30cac99b5",
+      "Id": "00240a2fea3047c1bdf015cc9cfb5d0f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "541e337a1ae84661ad4e944f087fb612",
+      "End": "e9007c0324954d7a8fc9043db6563018",
+      "Id": "294f8355faea4b80ae454df2f3a95036",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5ec052b7587a474cb4cf23dbe97bf542",
+      "End": "991b01955c9b4922a90cb99c780351e7",
+      "Id": "1e2fcb53d3a74e88b91edabc970259f2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9f80e8edde5e4c94b3f0db12addfbac2",
+      "End": "7765f2d35d294e36b7d46cbc1c446edd",
+      "Id": "ad144997ffac41fe80fac459d89c3444",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e2835dc20f1e422e863fde75e70e9c40",
+        "Name": "SHEETS Excel file (Browse...)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "86337e6929b34db8a0abe470f28ed0e9",
+        "Name": "File From Path (watches the Excel)",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 260.0,
+        "Y": 120.0
+      },
+      {
+        "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+        "Name": "UPDATE Revit from the Excel  (off = only report)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 330.0
+      },
+      {
+        "Id": "b925d23d7193473fad0e6b987eb78666",
+        "Name": "AUTO SCALE views without a SCALE to fit the sheet",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 465.0
+      },
+      {
+        "Id": "098c0f6232c940f39689de2f975e87ad",
+        "Name": "EXPORT Revit sheets to the Excel  (overwrites it - switch off after)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 600.0
+      },
+      {
+        "Id": "309c2923834249aab68e7b7e75d2b8f5",
+        "Name": "CAD2BIM  Sheets  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "8ec9842328a94858bc227b1620bc7819",
+        "Title": "1  EXCEL FILE  (Browse... -> your <project>_SHEETS.xlsx)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "e2835dc20f1e422e863fde75e70e9c40",
+          "86337e6929b34db8a0abe470f28ed0e9"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 270.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "05223648a4ae4e1e9967e0ba151766e4",
+        "Title": "2  OPTIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3c535e8d6607453bbb34dd05968bb1cd",
+          "b925d23d7193473fad0e6b987eb78666",
+          "098c0f6232c940f39689de2f975e87ad"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 235.0,
+        "Width": 440.0,
+        "Height": 540.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 330.0,
+        "InitialHeight": 445.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "4c350755a0914182a26244e623755e57",
+        "Title": "3  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "309c2923834249aab68e7b7e75d2b8f5",
+          "f858a1cd0a8f4aaf9052d486f19bcc36"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "e12dc207da424599ace9c263dedc9ba8",
+        "Title": "HOW TO USE  -  1st run: leave the file empty -> <project>_SHEETS.xlsx is made next to the .rvt from your Revit sheets\nThen Browse... to that Excel.  Fill SETTINGS once (project code, originator, title block).  In SHEETS type LEVEL CODE + NUMBER,\nSHEET NAME, VIEW NAME, VIEW TYPE, LEVEL, SCALE.  SAVE the Excel -> Revit updates by itself (Automatic mode).\nNew row = new sheet (+ new view).  Changed name / number = renamed / renumbered sheet.  Never doubles sheets or views.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

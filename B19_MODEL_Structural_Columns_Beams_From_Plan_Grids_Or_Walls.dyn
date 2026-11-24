@@ -1,0 +1,798 @@
+{
+  "Uuid": "f59b94bc-5a96-4778-8ff9-e3ca82155335",
+  "IsCustomNode": false,
+  "Description": "COLUMNS + BEAMS: studies the open plan (grids or walls) -> structural columns at crossings / wall junctions / spans and beams connecting them, sizes + spacing + storeys controlled, span / depth check",
+  "Name": "B19_MODEL_Structural_Columns_Beams_From_Plan_Grids_Or_Walls",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "bca296a8c24e4be5977a45063f0f802b",
+      "Name": "0  Columns from: AUTO / GRIDS / WALLS",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "WALLS\r\n",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "ac2d8da4d61b4d0eba3900a562ea79c4",
+      "Name": "1  Min wall thickness mm",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "200",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "1d8a5a252a88449c9c97f58829b56acb",
+      "Name": "2  Max column spacing mm",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "4500",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "2d2267de04a64525bc1ea1fa134aa3d7",
+      "Name": "3  Column size mm (b x h)",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "230x450",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "479a9d6164bd4fe6baec24d20e74f107",
+      "Name": "4  Beam size mm (width x depth)",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "230x450",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "844f1b6f05f742418b3db34f948f71fe",
+      "Name": "5  Top level (blank = next level)",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "23276e1f37964282ab3143d119cc293f",
+      "Name": "6  Storeys: CURRENT / ALL",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "CURRENT",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "4dfbc7dd8d8a4231ab50bd210769d034",
+      "Name": "7  Beams",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "992a00cee25b45c29a075b35878519d8",
+      "Name": "8  Avoid doors / windows",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "5ba9545b46a54ebca3313c9bd1bf61a9",
+      "Name": "9  RUN (False = preview)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    }
+  ],
+  "Outputs": [
+    {
+      "Id": "2bcb8f8b6f5441afb3011d32f66b1172",
+      "Name": "RESULT",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "bca296a8c24e4be5977a45063f0f802b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "929da0ce23a0494a90dee685576c19c9",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "WALLS\r\n"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "ac2d8da4d61b4d0eba3900a562ea79c4",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "42dd524e3bf94f4593394567bcc00054",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "200"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "1d8a5a252a88449c9c97f58829b56acb",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c4e792291c2a42038fa34bcd5463e0ca",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "4500"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "2d2267de04a64525bc1ea1fa134aa3d7",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "43304a7fc9034ec9b13f325869a3bc43",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "230x450"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "479a9d6164bd4fe6baec24d20e74f107",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b2623b47560343309e76ff9d6fd83538",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "230x450"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "844f1b6f05f742418b3db34f948f71fe",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ca650755656c48e189f62cdb5f78a44d",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "23276e1f37964282ab3143d119cc293f",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a759722b15294bb3a64ab9fe98556faf",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "CURRENT"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4dfbc7dd8d8a4231ab50bd210769d034",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4ec8e7c13e164849b7745e72510d4ad4",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "992a00cee25b45c29a075b35878519d8",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e417f93bef22472d9a53110f530418cc",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "5ba9545b46a54ebca3313c9bd1bf61a9",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8f09f3f6ca5d495ca04b41a747afb2ec",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  B19 COLUMNS + BEAMS FROM THE PLAN   (Revit 2026)   v1\n#  Studies the open floor plan and places a structural frame:\n#    GRIDS  a column at every grid crossing, beams along every grid line between its columns\n#    WALLS  columns at wall corners / T / X junctions / wall ends + extra ones so no span is longer than the max,\n#           kept out of door and window openings; beams along each wall between its columns\n#    AUTO   GRIDS when 2+ crossing grids are in the plan, else WALLS\n#  Columns: this level -> next level (or the top level you give), turned to the wall.  Beams: at the top level,\n#  centred on the column line, so Revit joins them to the columns.  LEVELS = ALL repeats every storey above.\n#  Checks: span report, beam depth >= span / 12 warning.  Rerun = its own columns + beams replaced.  One undo.\n#  PREVIEW (make = False) studies + counts, builds nothing.  Runs in pyRevit (IronPython 2.7) and Dynamo CPython3.\n# =====================================================================\nimport math, os\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *                           # noqa\nfrom Autodesk.Revit.DB.Structure import StructuralType   # noqa\n\nMMF = 1.0 / 304.8\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'B19_columns_log.txt')\nTAG_C, TAG_B = 'B19 COL', 'B19 BEAM'\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ndef tname(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef type_name(t):\n    try:\n        p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n        if p is not None and p.AsString():\n            return p.AsString()\n    except Exception:\n        pass\n    try:\n        return Element.Name.__get__(t)\n    except Exception:\n        return ''\n\n\ndef plan_view(doc, uidoc):\n    try:\n        v = uidoc.ActiveView if uidoc is not None else doc.ActiveView\n    except Exception:\n        v = doc.ActiveView\n    if v is not None and tname(v) == 'ViewPlan' and not v.IsTemplate and v.GenLevel is not None:\n        return v\n    try:\n        for uv in uidoc.GetOpenUIViews():\n            ov = doc.GetElement(uv.ViewId)\n            if ov is not None and tname(ov) == 'ViewPlan' and not ov.IsTemplate and ov.GenLevel is not None:\n                return ov\n    except Exception:\n        pass\n    return None\n\n\ndef levels_of(doc):\n    return sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation)\n\n\ndef find_level(doc, name):\n    if not name:\n        return None\n    lv = levels_of(doc)\n    for l in lv:\n        if l.Name.strip().upper() == str(name).strip().upper():\n            return l\n    for l in lv:\n        if str(name).strip().upper() in l.Name.upper():\n            return l\n    raise Exception('No level \"{0}\". Levels: {1}'.format(name, ', '.join(l.Name for l in lv)))\n\n\ndef size_of(txt, default):\n    \"\"\"'230x450' / '230 X 450' / '300' -> (b, h) mm\"\"\"\n    t = str(txt or '').strip().lower().replace('mm', '').replace('*', 'x').replace(' ', '')\n    if not t:\n        return default\n    p = [x for x in t.split('x') if x]\n    try:\n        if len(p) == 1:\n            return (float(p[0]), float(p[0]))\n        return (float(p[0]), float(p[1]))\n    except Exception:\n        raise Exception('Size \"{0}\" - type it like 230x450 (mm)'.format(txt))\n\n\n# ------------------------------------------------------------------ 2D helpers (mm)\ndef _d(a, b):\n    return math.hypot(a[0] - b[0], a[1] - b[1])\n\n\ndef _cluster(pts, tol):\n    out = []\n    for p in pts:\n        for i, q in enumerate(out):\n            if _d(p, q) <= tol:\n                out[i] = ((q[0] + p[0]) / 2.0, (q[1] + p[1]) / 2.0)\n                break\n        else:\n            out.append(p)\n    return out\n\n\ndef _seg_x(a, b, c, d):\n    \"\"\"intersection point of segments ab, cd (mm) or None\"\"\"\n    r = (b[0] - a[0], b[1] - a[1])\n    s = (d[0] - c[0], d[1] - c[1])\n    den = r[0] * s[1] - r[1] * s[0]\n    if abs(den) < 1e-9:\n        return None\n    t = ((c[0] - a[0]) * s[1] - (c[1] - a[1]) * s[0]) / den\n    u = ((c[0] - a[0]) * r[1] - (c[1] - a[1]) * r[0]) / den\n    if -1e-6 <= t <= 1 + 1e-6 and -1e-6 <= u <= 1 + 1e-6:\n        return (a[0] + t * r[0], a[1] + t * r[1])\n    return None\n\n\n# ------------------------------------------------------------------ study: grids\ndef grid_lines(doc, view):\n    out = []\n    for g in FilteredElementCollector(doc, view.Id).OfClass(Grid):\n        try:\n            c = g.Curve\n            if tname(c) == 'Line':\n                p, q = c.GetEndPoint(0), c.GetEndPoint(1)\n                out.append((g.Name, (p.X / MMF, p.Y / MMF), (q.X / MMF, q.Y / MMF)))\n        except Exception:\n            pass\n    return out\n\n\ndef grid_crossings(grids):\n    pts = []\n    for i in range(len(grids)):\n        for j in range(i + 1, len(grids)):\n            x = _seg_x(grids[i][1], grids[i][2], grids[j][1], grids[j][2])\n            if x is not None:\n                pts.append(x)\n    return _cluster(pts, 50.0)\n\n\ndef _on_grid(a, b, pts):\n    L = _d(a, b)\n    d = ((b[0] - a[0]) / L, (b[1] - a[1]) / L)\n    return d, sorted([((p[0] - a[0]) * d[0] + (p[1] - a[1]) * d[1], p) for p in pts\n                      if abs((p[0] - a[0]) * d[1] - (p[1] - a[1]) * d[0]) < 50.0], key=lambda x: x[0])\n\n\ndef grid_max_gap(grids):\n    \"\"\"longest distance between neighbouring crossings on any grid (mm)\"\"\"\n    pts, gap = grid_crossings(grids), 0.0\n    for name, a, b in grids:\n        d, mine = _on_grid(a, b, pts)\n        for k in range(len(mine) - 1):\n            gap = max(gap, mine[k + 1][0] - mine[k][0])\n    return gap\n\n\ndef study_grids(grids, max_span=0.0):\n    \"\"\"columns at grid crossings + extra ones along a grid line where the span is longer than max_span;\n    beams between neighbouring columns on each grid\"\"\"\n    pts = grid_crossings(grids)\n    cross = len(pts)\n    extra, lines = [], []\n    for name, a, b in grids:\n        d, mine = _on_grid(a, b, pts)\n        seq = []\n        for k in range(len(mine)):\n            if k and max_span > 0:\n                t0, t1 = mine[k - 1][0], mine[k][0]\n                n = int(math.ceil((t1 - t0) / max_span - 1e-6))\n                for m in range(1, n):\n                    t = t0 + (t1 - t0) * m / n\n                    q = (a[0] + d[0] * t, a[1] + d[1] * t)\n                    extra.append(q)\n                    seq.append(q)\n            seq.append(mine[k][1])\n        lines.append(seq)\n    allp = pts + extra\n    cols = [(p, 0.0) for p in allp]\n    beams = []\n    for seq in lines:\n        for k in range(len(seq) - 1):\n            beams.append((seq[k], seq[k + 1]))\n    return cols, beams, 'grids {0} -> {1} crossings{2}'.format(\n        len(grids), cross, ' + {0} along long grid spans'.format(len(extra)) if extra else '')\n\n\n# ------------------------------------------------------------------ study: walls\ndef wall_thk(w):\n    try:\n        return w.Width / MMF\n    except Exception:\n        try:\n            return w.WallType.Width / MMF\n        except Exception:\n            return 0.0\n\n\ndef opening_width(fi):\n    for bip in (BuiltInParameter.DOOR_WIDTH, BuiltInParameter.WINDOW_WIDTH, BuiltInParameter.FAMILY_WIDTH_PARAM):\n        for src in (fi, fi.Symbol):\n            try:\n                p = src.get_Parameter(bip)\n                if p is not None and p.AsDouble() > 0:\n                    return p.AsDouble() / MMF\n            except Exception:\n                pass\n    for nm in ('Width', 'Rough Width'):\n        for src in (fi, fi.Symbol):\n            try:\n                p = src.LookupParameter(nm)\n                if p is not None and p.AsDouble() > 0:\n                    return p.AsDouble() / MMF\n            except Exception:\n                pass\n    return 900.0\n\n\ndef plan_walls(doc, view, min_thk):\n    lvl = view.GenLevel\n    out, thin = [], 0\n    for w in FilteredElementCollector(doc, view.Id).OfClass(Wall):\n        try:\n            if str(w.WallType.Kind) not in ('Basic', '0') and w.WallType.Kind != WallKind.Basic:\n                continue\n            p = w.get_Parameter(BuiltInParameter.WALL_BASE_CONSTRAINT)\n            if p is not None and idv(p.AsElementId()) != idv(lvl.Id):\n                continue\n            c = w.Location.Curve\n            if tname(c) != 'Line':\n                continue\n            t = wall_thk(w)\n            if t + 0.5 < min_thk:\n                thin += 1\n                continue\n            a, b = c.GetEndPoint(0), c.GetEndPoint(1)\n            out.append({'w': w, 'a': (a.X / MMF, a.Y / MMF), 'b': (b.X / MMF, b.Y / MMF), 't': t})\n        except Exception as ex:\n            log('wall: ' + str(ex))\n    return out, thin\n\n\ndef wall_openings(doc, wl):\n    \"\"\"(param along the wall mm, width mm) of doors / windows hosted in the wall\"\"\"\n    out = []\n    a, b = wl['a'], wl['b']\n    L = _d(a, b)\n    d = ((b[0] - a[0]) / L, (b[1] - a[1]) / L)\n    try:\n        ids = wl['w'].FindInserts(True, False, False, False)\n    except Exception:\n        ids = []\n    for i in ids:\n        fi = doc.GetElement(i)\n        try:\n            lp = fi.Location.Point\n            t0 = (lp.X / MMF - a[0]) * d[0] + (lp.Y / MMF - a[1]) * d[1]\n            out.append((t0, opening_width(fi)))\n        except Exception:\n            pass\n    return out\n\n\ndef study_walls(doc, walls, max_span, col_size, avoid):\n    \"\"\"columns at wall nodes + span splits, kept out of openings; beams along walls\"\"\"\n    tol = max(300.0, max([w['t'] for w in walls] or [0]) * 1.2)\n    raw = []\n    for w in walls:\n        raw += [w['a'], w['b']]\n    for i in range(len(walls)):\n        for j in range(i + 1, len(walls)):\n            x = _seg_x(walls[i]['a'], walls[i]['b'], walls[j]['a'], walls[j]['b'])\n            if x is not None:\n                raw.append(x)\n    nodes = _cluster(raw, tol)\n    cols, beams, half = {}, [], max(col_size) / 2.0 + 100.0     # + 100 mm clear of door / window frames\n    moved = 0\n    for w in walls:\n        a, b = w['a'], w['b']\n        L = _d(a, b)\n        if L < 1.0:\n            continue\n        d = ((b[0] - a[0]) / L, (b[1] - a[1]) / L)\n        ang = math.atan2(d[1], d[0])\n        ts = sorted(set(round(max(0.0, min(L, (p[0] - a[0]) * d[0] + (p[1] - a[1]) * d[1])), 1) for p in nodes\n                        if abs((p[0] - a[0]) * d[1] - (p[1] - a[1]) * d[0]) <= tol and\n                        -tol <= (p[0] - a[0]) * d[0] + (p[1] - a[1]) * d[1] <= L + tol))\n        if not ts or ts[0] > tol:\n            ts.insert(0, 0.0)\n        if ts[-1] < L - tol:\n            ts.append(L)\n        full = [ts[0]]\n        for k in range(1, len(ts)):                        # split long spans evenly\n            gap = ts[k] - ts[k - 1]\n            n = int(math.ceil(gap / max_span - 1e-6)) if max_span > 0 else 1\n            for m in range(1, n):\n                full.append(ts[k - 1] + gap * m / n)\n            full.append(ts[k])\n        if avoid:                                          # keep columns out of door / window openings\n            ops = wall_openings(doc, w)\n            fixed = []\n            for t in full:\n                for t0, wd in ops:\n                    if abs(t - t0) < wd / 2.0 + half:\n                        lo, hi = t0 - wd / 2.0 - half, t0 + wd / 2.0 + half\n                        t = lo if (abs(t - lo) <= abs(t - hi) and lo >= 0) or hi > L else hi\n                        moved += 1\n                fixed.append(max(0.0, min(L, t)))\n            full = sorted(set(round(t, 1) for t in fixed))\n        pts = [(a[0] + d[0] * t, a[1] + d[1] * t) for t in full]\n        snapped = []\n        for p in pts:\n            key = None\n            for q in cols:\n                if _d(p, q) <= tol * 0.6:\n                    key = q\n                    break\n            if key is None:\n                cols[p] = ang\n                key = p\n            snapped.append(key)\n        for k in range(len(snapped) - 1):\n            if _d(snapped[k], snapped[k + 1]) > 300.0:\n                beams.append((snapped[k], snapped[k + 1]))\n    info = 'walls {0} -> {1} nodes, {2} columns{3}'.format(len(walls), len(nodes), len(cols),\n                                                           ', {0} moved out of openings'.format(moved) if moved else '')\n    return [(p, a) for p, a in cols.items()], beams, info\n\n\ndef _seg_dist(p, a, b):\n    L2 = (b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2\n    if L2 < 1e-9:\n        return _d(p, a)\n    t = max(0.0, min(1.0, ((p[0] - a[0]) * (b[0] - a[0]) + (p[1] - a[1]) * (b[1] - a[1])) / L2))\n    return _d(p, (a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1])))\n\n\ndef inside_building(doc, level, p, walls):\n    \"\"\"on / near a wall, or inside a room of this level\"\"\"\n    for w in walls:\n        if _seg_dist(p, w['a'], w['b']) <= max(600.0, w['t']):\n            return True\n    try:\n        r = doc.GetRoomAtPoint(XYZ(p[0] * MMF, p[1] * MMF, level.Elevation + 1.0))\n        return r is not None\n    except Exception:\n        return False\n\n\ndef existing_columns(doc, level):\n    \"\"\"plan points (mm) of columns already on this level that are not B19's own\"\"\"\n    out = []\n    for bic in (BuiltInCategory.OST_StructuralColumns, BuiltInCategory.OST_Columns):\n        for e in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType():\n            try:\n                if _comment(e).startswith(TAG_C):\n                    continue\n                if idv(e.LevelId) != idv(level.Id):\n                    p = e.get_Parameter(BuiltInParameter.FAMILY_BASE_LEVEL_PARAM)\n                    if p is None or idv(p.AsElementId()) != idv(level.Id):\n                        continue\n                lp = e.Location.Point\n                out.append((lp.X / MMF, lp.Y / MMF))\n            except Exception:\n                pass\n    return out\n\n\n# ------------------------------------------------------------------ families + types\ndef _symbols(doc, bic):\n    return [s for s in FilteredElementCollector(doc).OfCategory(bic).OfClass(FamilySymbol)]\n\n\ndef pick_symbol(doc, bic, what):\n    syms = _symbols(doc, bic)\n    if not syms:\n        raise Exception('No {0} family in this project - load one: Insert > Load Autodesk Family > Structural {1} > '\n                        'Concrete > (M_)Concrete-Rectangular {2}'.format(what, 'Columns' if what == 'column' else 'Framing',\n                                                                         'Column' if what == 'column' else 'Beam'))\n\n    def score(s):\n        fn = (s.Family.Name or '').upper()\n        return (('CONCRETE' in fn) * 2 + ('RECT' in fn) * 2 + ('B19' in type_name(s).upper()), fn)\n    return sorted(syms, key=score, reverse=True)[0]\n\n\nDIM_NAMES = {'column': (('b', 'h'), ('Width', 'Depth'), ('Width', 'Length')),\n             'beam': (('b', 'h'), ('Width', 'Depth'), ('Width', 'Height'))}\n\n\ndef sized_type(doc, base, what, size):\n    \"\"\"a type 'B19 <what> BxH' of the base family with b x h set (or the base when the family has no size params)\"\"\"\n    b, h = size\n    name = 'B19 {0} {1:.0f}x{2:.0f}'.format('C' if what == 'column' else 'B', float(b), float(h))\n    for s in base.Family.GetFamilySymbolIds():\n        e = doc.GetElement(s)\n        if type_name(e) == name:\n            return e, name\n    pair = None\n    for pb, ph in DIM_NAMES[what]:\n        if base.LookupParameter(pb) is not None and base.LookupParameter(ph) is not None:\n            pair = (pb, ph)\n            break\n    if pair is None:\n        return base, type_name(base) + ' (family has no b x h - size as loaded)'\n    t = base.Duplicate(name)\n    for pn, v in zip(pair, (b, h)):\n        p = t.LookupParameter(pn)\n        if p is not None and not p.IsReadOnly:\n            p.Set(v * MMF)\n    return t, name\n\n\n# ------------------------------------------------------------------ Revit\ntry:\n    import uuid as _uuid\n\n    class _Quiet(IFailuresPreprocessor):\n        __namespace__ = 'B19_' + _uuid.uuid4().hex[:10]\n\n        def PreprocessFailures(self, fa):\n            try:\n                for m in fa.GetFailureMessages():\n                    if m.GetSeverity() == FailureSeverity.Warning:\n                        fa.DeleteWarning(m)\n            except Exception:\n                pass\n            return FailureProcessingResult.Continue\nexcept Exception:\n    _Quiet = None\n\n\ndef in_tx(doc, name, fn):\n    t = Transaction(doc, name)\n    if _Quiet is not None:\n        try:\n            o = t.GetFailureHandlingOptions()\n            o.SetFailuresPreprocessor(_Quiet())\n            t.SetFailureHandlingOptions(o)\n        except Exception:\n            pass\n    t.Start()\n    try:\n        r = fn()\n    except Exception:\n        if t.HasStarted() and not t.HasEnded():\n            t.RollBack()\n        raise\n    t.Commit()\n    return r\n\n\ndef _comment(e):\n    try:\n        p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n        return (p.AsString() or '') if p is not None else ''\n    except Exception:\n        return ''\n\n\ndef _setc(e, txt):\n    try:\n        e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS).Set(txt)\n    except Exception:\n        pass\n\n\ndef old_frame(doc, level_names):\n    \"\"\"own columns / beams of these storeys (by Comments)\"\"\"\n    out = []\n    for bic in (BuiltInCategory.OST_StructuralColumns, BuiltInCategory.OST_StructuralFraming):\n        for e in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType():\n            c = _comment(e)\n            if (c.startswith(TAG_C) or c.startswith(TAG_B)) and c.split('|')[-1] in level_names:\n                out.append(e.Id)\n    return out\n\n\ndef place_column(doc, sym, p, ang, base, top, tag):\n    fi = doc.Create.NewFamilyInstance(XYZ(p[0] * MMF, p[1] * MMF, base.Elevation), sym, base, StructuralType.Column)\n    for bip, val in ((BuiltInParameter.FAMILY_BASE_LEVEL_PARAM, base.Id), (BuiltInParameter.FAMILY_TOP_LEVEL_PARAM, top.Id)):\n        try:\n            fi.get_Parameter(bip).Set(val)\n        except Exception:\n            pass\n    for bip in (BuiltInParameter.FAMILY_BASE_LEVEL_OFFSET_PARAM, BuiltInParameter.FAMILY_TOP_LEVEL_OFFSET_PARAM):\n        try:\n            fi.get_Parameter(bip).Set(0.0)\n        except Exception:\n            pass\n    rot = ang - math.pi / 2.0                              # family depth (h, local Y) along the wall\n    if abs(math.sin(rot)) > 1e-6:\n        ax = Line.CreateBound(XYZ(p[0] * MMF, p[1] * MMF, base.Elevation), XYZ(p[0] * MMF, p[1] * MMF, base.Elevation + 1))\n        ElementTransformUtils.RotateElement(doc, fi.Id, ax, rot)\n    _setc(fi, tag)\n    return fi\n\n\ndef place_beam(doc, sym, a, b, top, tag):\n    z = top.Elevation\n    ln = Line.CreateBound(XYZ(a[0] * MMF, a[1] * MMF, z), XYZ(b[0] * MMF, b[1] * MMF, z))\n    fi = doc.Create.NewFamilyInstance(ln, sym, top, StructuralType.Beam)\n    _setc(fi, tag)\n    return fi\n\n\ndef run(doc, uidoc, source='AUTO', min_thk=200.0, max_span=4500.0, col_size='230x450', beam_size='230x450',\n        top_name='', levels='CURRENT', beams_on=True, avoid=True, make=True):\n    view = plan_view(doc, uidoc)\n    if view is None:\n        raise Exception('Open a floor plan first.')\n    base0 = view.GenLevel\n    csz, bsz = size_of(col_size, (230.0, 450.0)), size_of(beam_size, (230.0, 450.0))\n    max_span = float(max_span or 4500.0)\n    min_thk = float(min_thk or 0.0)\n    src = str(source or 'AUTO').strip().upper()[:1]\n    grids = grid_lines(doc, view)\n    crossing = sum(1 for i in range(len(grids)) for j in range(i + 1, len(grids))\n                   if _seg_x(grids[i][1], grids[i][2], grids[j][1], grids[j][2]) is not None)\n    use = 'GRIDS' if src == 'G' or (src == 'A' and crossing >= 1 and len(grids) >= 2) else 'WALLS'\n    sparse = ''\n    if src == 'A' and use == 'GRIDS' and grid_max_gap(grids) > 2 * max_span and plan_walls(doc, view, min_thk)[0]:\n        use = 'WALLS'                                       # grids too far apart: the walls give a real frame\n        sparse = 'grids are {0:.0f} mm apart (> 2 x max spacing) - used the walls'.format(grid_max_gap(grids))\n    out = []\n    if use == 'GRIDS':\n        if crossing < 1:\n            raise Exception('No crossing grids in \"{0}\" - draw grids or use WALLS'.format(view.Name))\n        cols, bms, info = study_grids(grids, max_span)\n        thin = 0\n    else:\n        walls, thin = plan_walls(doc, view, min_thk)\n        if not walls:\n            raise Exception('No walls >= {0:.0f} mm on level \"{1}\" in this plan ({2} thinner skipped) - lower the minimum '\n                            'wall thickness, or draw grids'.format(min_thk, base0.Name, thin))\n        cols, bms, info = study_walls(doc, walls, max_span, csz, avoid)\n    allw, _t = plan_walls(doc, view, 0.0)\n    dropped = 0\n    if use == 'GRIDS' and (allw or True):\n        keep = [(p, a) for p, a in cols if inside_building(doc, base0, p, allw)]\n        dropped = len(cols) - len(keep)\n        kp = [p for p, a in keep]\n        cols = keep\n        bms = [(a, b) for a, b in bms if a in kp and b in kp and\n               inside_building(doc, base0, ((a[0] + b[0]) / 2.0, (a[1] + b[1]) / 2.0), allw)]\n    have = existing_columns(doc, base0)\n    skip = [p for p, a in cols if any(_d(p, q) <= 300.0 for q in have)]\n    cols = [(p, a) for p, a in cols if p not in skip]\n    if not beams_on:\n        bms = []\n    # storeys\n    lv = levels_of(doc)\n    top0 = find_level(doc, top_name)\n    above = [l for l in lv if l.Elevation > base0.Elevation + 1e-6]\n    if top0 is None:\n        if not above:\n            raise Exception('No level above \"{0}\" - add one or give the top level'.format(base0.Name))\n        top0 = above[0]\n    storeys = [(base0, top0)]\n    if str(levels or '').strip().upper().startswith('A'):\n        chain = [base0] + [l for l in above]\n        storeys = [(chain[i], chain[i + 1]) for i in range(len(chain) - 1)]\n    spans = [_d(a, b) for a, b in bms]\n    out.append('Studied \"{0}\": {1} ({2})'.format(view.Name, info, 'source ' + use))\n    if sparse:\n        out.append('  ' + sparse)\n    if thin:\n        out.append('  {0} wall(s) thinner than {1:.0f} mm skipped (partitions)'.format(thin, min_thk))\n    if dropped:\n        out.append('  {0} grid crossing(s) outside the building - no column'.format(dropped))\n    if skip:\n        out.append('  {0} place(s) already have a column - kept, no new one'.format(len(skip)))\n    if spans:\n        need = int(math.ceil(max(spans) / 12.0 / 25.0) * 25)\n        out.append('  spans: {0} beams, longest {1:.0f} mm, shortest {2:.0f} mm'.format(len(spans), max(spans), min(spans)))\n        if bsz[1] + 0.5 < max(spans) / 12.0:\n            out.append('CHECK beam depth {0:.0f} mm < span / 12 for the longest span - use about {1} mm, or more columns '\n                       '(smaller max spacing)'.format(bsz[1], need))\n    if not make:\n        out.insert(0, 'PREVIEW (RUN = False): studied only - nothing built')\n        out.append('Would build: {0} columns {1:.0f}x{2:.0f} + {3} beams {4:.0f}x{5:.0f} on {6} storey(s): {7}'.format(\n            len(cols), csz[0], csz[1], len(bms), bsz[0], bsz[1], len(storeys),\n            ', '.join('{0}->{1}'.format(b.Name, t.Name) for b, t in storeys)))\n        log('\\n'.join(out))\n        return out\n    st = {'c': 0, 'b': 0, 'del': 0, 'fail': [], 'ctype': '', 'btype': ''}\n    tg = TransactionGroup(doc, 'B19 Columns + beams')\n    tg.Start()\n    try:\n        def prep():\n            old = old_frame(doc, set(t.Name for b, t in storeys) | set(b.Name for b, t in storeys))\n            for i in old:\n                try:\n                    doc.Delete(i)\n                    st['del'] += 1\n                except Exception:\n                    pass\n            cs, st['ctype'] = sized_type(doc, pick_symbol(doc, BuiltInCategory.OST_StructuralColumns, 'column'), 'column', csz)\n            bs, st['btype'] = (None, '')\n            if bms:\n                bs, st['btype'] = sized_type(doc, pick_symbol(doc, BuiltInCategory.OST_StructuralFraming, 'beam'), 'beam', bsz)\n            for s in (cs, bs):\n                if s is not None and not s.IsActive:\n                    s.Activate()\n            doc.Regenerate()\n            return cs, bs\n        csym, bsym = in_tx(doc, 'B19 types', prep)\n\n        def build():\n            for base, top in storeys:\n                for p, ang in cols:\n                    try:\n                        place_column(doc, csym, p, ang, base, top, '{0}|{1}'.format(TAG_C, base.Name))\n                        st['c'] += 1\n                    except Exception as ex:\n                        st['fail'].append('column: ' + str(ex).splitlines()[0][:90])\n                for a, b in bms:\n                    try:\n                        place_beam(doc, bsym, a, b, top, '{0}|{1}'.format(TAG_B, top.Name))\n                        st['b'] += 1\n                    except Exception as ex:\n                        st['fail'].append('beam: ' + str(ex).splitlines()[0][:90])\n        in_tx(doc, 'B19 place', build)\n    except Exception:\n        tg.RollBack()\n        raise\n    tg.Assimilate()\n    out.append('Built: {0} columns ({1}) + {2} beams ({3}) on {4} storey(s): {5}; {6} old B19 element(s) replaced'.format(\n        st['c'], st['ctype'], st['b'], st['btype'] or 'none', len(storeys),\n        ', '.join('{0}->{1}'.format(b.Name, t.Name) for b, t in storeys), st['del']))\n    for f_ in st['fail'][:6]:\n        out.append('FAILED ' + f_)\n    out.append('Run again = replaced (no doubles).  Ctrl+Z undoes the whole run.')\n    log('\\n'.join(out))\n    return out\n\n\n# =====================================================================\n#  DYNAMO / DYNAMO PLAYER PART  -  inputs:\n#    0  Columns from          AUTO (grids if any, else walls) / GRIDS / WALLS\n#    1  Min wall thickness mm 200   (thinner walls = partitions, no columns)\n#    2  Max column spacing mm 4500  (along a wall)\n#    3  Column size mm        230x450  (b x h, h along the wall)\n#    4  Beam size mm          230x450  (width x depth)\n#    5  Top level             '' = next level above the open plan\n#    6  Storeys               CURRENT = this storey,  ALL = every storey above too\n#    7  Beams                 True\n#    8  Avoid doors/windows   True\n#    9  RUN                   False = PREVIEW (studies the plan + counts),  True = build\n#  Run again = the B19 columns + beams of those storeys are replaced.  Ctrl+Z in Revit undoes the whole run.\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _dyn_doc = DocumentManager.Instance.CurrentDBDocument      # not _d: that is the distance helper\n        if _dyn_doc is not None:\n            doc = _dyn_doc\n            try:\n                uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n            except Exception:\n                pass\n            TM = TransactionManager\n    except Exception:\n        pass\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('FRAME_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and not v.strip()):\n        return default\n    return v\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).lower().replace('mm', '').strip())\n    except Exception:\n        return float(default)\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\nout = []\ntry:\n    if doc is None:\n        raise Exception('No Revit document.')\n    if TM is not None:\n        TM.Instance.ForceCloseTransaction()\n    out = run(doc, uidoc, str(_inp(0, 'AUTO')), _num(1, 200), _num(2, 4500), str(_inp(3, '230x450')),\n              str(_inp(4, '230x450')), str(_inp(5, '')).strip(), str(_inp(6, 'CURRENT')), _flag(7, True), _flag(8, True),\n              _flag(9, False))\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('B19 Columns + beams')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else (\n            'Preview - nothing built' if out and out[0].startswith('PREVIEW') else 'Columns + beams')\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "3d35ca05f45c46c8903d7609713ce890",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "f469f91ba5454baab55f2ed4bcc10bda",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8d534a5bcba146ebbc52dc9713497f89",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "94274eb5332449d885639f6be24219d6",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "068b55b7ff074ff1b59cb2a73c771133",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "46c297d50b0540f3bcf9b1327ab043c2",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6eb33743c7884e26877ade85f0c0eaea",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dfe48cb351f0445a847f74b9f725ad73",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9bf7d740bc9b4e33ba68013ac8df757b",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0cdfa35c252b4e13a2a3390a30841447",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b0b99370478847388f0e790c47d8ad55",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d1bd49da6f004f4ca0988f591b6132e6",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "2bcb8f8b6f5441afb3011d32f66b1172",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "f983980043d746f2a1071a41c9df59e3",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3b564315908b4cfaa9986031e61869cd",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "929da0ce23a0494a90dee685576c19c9",
+      "End": "f469f91ba5454baab55f2ed4bcc10bda",
+      "Id": "b36eb3d6ac64428fa875864b21291cfb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "42dd524e3bf94f4593394567bcc00054",
+      "End": "8d534a5bcba146ebbc52dc9713497f89",
+      "Id": "c30e5277a3904bf0a7a7c33c7f7cda4b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c4e792291c2a42038fa34bcd5463e0ca",
+      "End": "94274eb5332449d885639f6be24219d6",
+      "Id": "778ce62654854cfb9a930aa14808081f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "43304a7fc9034ec9b13f325869a3bc43",
+      "End": "068b55b7ff074ff1b59cb2a73c771133",
+      "Id": "8e586ab82e42472bb8d0e33752f4b0e0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b2623b47560343309e76ff9d6fd83538",
+      "End": "46c297d50b0540f3bcf9b1327ab043c2",
+      "Id": "0a8166b2eaec4f4dbe619d261c039a80",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ca650755656c48e189f62cdb5f78a44d",
+      "End": "6eb33743c7884e26877ade85f0c0eaea",
+      "Id": "07ec3992136848a1a19fbabc9e731972",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a759722b15294bb3a64ab9fe98556faf",
+      "End": "dfe48cb351f0445a847f74b9f725ad73",
+      "Id": "e6fcdc658d9447d989e367010d14f15b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4ec8e7c13e164849b7745e72510d4ad4",
+      "End": "9bf7d740bc9b4e33ba68013ac8df757b",
+      "Id": "69e2e245f6ef488a84b6a2a6b22ae01a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e417f93bef22472d9a53110f530418cc",
+      "End": "0cdfa35c252b4e13a2a3390a30841447",
+      "Id": "723c8c2386774e06bbfd87d950270860",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8f09f3f6ca5d495ca04b41a747afb2ec",
+      "End": "b0b99370478847388f0e790c47d8ad55",
+      "Id": "32ea51c8fce944b7877eee0d17a45e41",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d1bd49da6f004f4ca0988f591b6132e6",
+      "End": "f983980043d746f2a1071a41c9df59e3",
+      "Id": "983ceec17a4c4030bffe22d242b56474",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": null,
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.2.11575",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "bca296a8c24e4be5977a45063f0f802b",
+        "Name": "0  Columns from: AUTO / GRIDS / WALLS",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "ac2d8da4d61b4d0eba3900a562ea79c4",
+        "Name": "1  Min wall thickness mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "1d8a5a252a88449c9c97f58829b56acb",
+        "Name": "2  Max column spacing mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 300.0
+      },
+      {
+        "Id": "2d2267de04a64525bc1ea1fa134aa3d7",
+        "Name": "3  Column size mm (b x h)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "479a9d6164bd4fe6baec24d20e74f107",
+        "Name": "4  Beam size mm (width x depth)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "844f1b6f05f742418b3db34f948f71fe",
+        "Name": "5  Top level (blank = next level)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560.0,
+        "Y": 300.0
+      },
+      {
+        "Id": "23276e1f37964282ab3143d119cc293f",
+        "Name": "6  Storeys: CURRENT / ALL",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560.0,
+        "Y": 450.0
+      },
+      {
+        "Id": "4dfbc7dd8d8a4231ab50bd210769d034",
+        "Name": "7  Beams",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "992a00cee25b45c29a075b35878519d8",
+        "Name": "8  Avoid doors / windows",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "5ba9545b46a54ebca3313c9bd1bf61a9",
+        "Name": "9  RUN (False = preview)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120.0,
+        "Y": 300.0
+      },
+      {
+        "Id": "3d35ca05f45c46c8903d7609713ce890",
+        "Name": "B19 COLUMNS + BEAMS ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1700.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "2bcb8f8b6f5441afb3011d32f66b1172",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2050.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "c738c233b8154f23a0c7dac9e4067178",
+        "Title": "1  STUDY THE PLAN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "bca296a8c24e4be5977a45063f0f802b",
+          "ac2d8da4d61b4d0eba3900a562ea79c4",
+          "1d8a5a252a88449c9c97f58829b56acb"
+        ],
+        "HasNestedGroups": false,
+        "Left": -10.0,
+        "Top": -59.0,
+        "Width": 393.0,
+        "Height": 491.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 445.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "1e8fc757ae274942b24a4fcc87a10010",
+        "Title": "2  SIZES + LEVELS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "2d2267de04a64525bc1ea1fa134aa3d7",
+          "479a9d6164bd4fe6baec24d20e74f107",
+          "844f1b6f05f742418b3db34f948f71fe",
+          "23276e1f37964282ab3143d119cc293f"
+        ],
+        "HasNestedGroups": false,
+        "Left": 550.0,
+        "Top": -59.0,
+        "Width": 338.0,
+        "Height": 641.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 595.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "5d7e143fde3342f6997385e30fdd6760",
+        "Title": "3  OPTIONS + RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "4dfbc7dd8d8a4231ab50bd210769d034",
+          "992a00cee25b45c29a075b35878519d8",
+          "5ba9545b46a54ebca3313c9bd1bf61a9"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1110.0,
+        "Top": -59.0,
+        "Width": 281.0,
+        "Height": 491.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 445.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "022d411ba27d415aa34f2db4676bce23",
+        "Title": "HOW TO USE:  open the floor plan.  GRIDS = a column at every grid crossing, beams along the grid lines.  WALLS = columns at wall corners, T / X junctions and ends, plus extra columns so no span is longer than 2, kept out of doors / windows (8); walls thinner than 1 are partitions (no columns).  AUTO = grids if the plan has crossing grids, else walls.  Columns from this level to the next (5) or every storey above (6 = ALL); beams at the level above join the columns.  Report: spans + beam depth check (depth >= span / 12).  RUN False = study + counts only.  Run again = replaced (no doubles).",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 30.0,
+    "Y": 387.15050225147206,
+    "Zoom": 0.5365431243505369
+  }
+}

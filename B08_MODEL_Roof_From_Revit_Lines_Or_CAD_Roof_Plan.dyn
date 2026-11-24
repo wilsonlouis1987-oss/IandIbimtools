@@ -1,0 +1,810 @@
+{
+  "Uuid": "3c20cd27-22f7-47e7-ab8d-ab73c29cbe3f",
+  "IsCustomNode": false,
+  "Description": "Roof from lines drawn in Revit or from a CAD roof plan (links the CAD for you): hips, valleys, ridge height or slope, RCC roof slab type, any level",
+  "Name": "B08_MODEL_Roof_From_Revit_Lines_Or_CAD_Roof_Plan",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "4380c3a4ee4a4b24968e9f76f48f5d12",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7bdeb57b9cc446169dbbfcf103f5933e",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "965eb8873ac44e41979bfb9efe46b481",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "92685ec7f4284539beb8126b98f59d88",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "1c5df9ba68e74151ac220844d27b745e",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e0c5a1a29c0f418daa4e4d8bce104183",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "46519b5ef564467da8297f8213445135",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3a16e0be45bd43d3a3e011ef5c533799",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "d1f8803173bb42c69d42baff8738791c",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b7d8dabac66f49eb872c0493a2f38baf",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "dd1ee1f8d81b4f3bab48dd2a7f43efef",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "42f30bf520204a98bbdd4dca38df68b1",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "163bc834fe48425b9a5f5b0d6f1c8c31",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ef3a8a8e76994d6788586e6f5baef1e1",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "9e823160309a4461b97bddf6609f7e79",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "480c7a8b5d9a4c54a9ce1e0f0d06f250",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "25"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "29f4dfe16194413ba2e3a986122cdcae",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8af2e14a7fa045a08d4ffdc3c4d7bcc1",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "9e8e87d130864d7b89fc33fa429db581",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a01b11a89dd24648ac5610f68a832397",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "150"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "dd944ee910af4684aada1dd4e1ecf082",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9f8e5300902c4761a774ea7c03e2ba87",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "2f696eaef8b440a9ae92031b65dd5dee",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b6fa3feb10b043309c1a837cceaa1c73",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "fade93c3198f467a842229d85fe444aa",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "84aab1d23aa74c229ad5ead2a55cd25a",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# =====================================================================\n#  CAD2BIM - B08 ROOF FROM REVIT LINES OR CAD   (Revit 2026)   v2\n#  Roof outline from ONE of:\n#    a) a CAD file path (input 0)    -> the script links it (mm, origin) if it is not linked yet\n#    b) a linked CAD                 -> selected in Revit, or part of its name in input 1\n#    c) lines you draw in Revit      -> model / detail lines: select them, or set input 2 to the\n#                                       line style (e.g. ROOF) to use those lines in the active view\n#  Inputs (Dynamo Player / SD Tools button):\n#    0  Roof from          LINES = lines you drew in the active view, CAD = a CAD, AUTO = lines if any, else CAD\n#    1  CAD file to link   .dwg / .dxf path ('' = no new link)                          (CAD)\n#    2  CAD name contains  '' = the CAD selected in Revit (or the only CAD linked)      (CAD)\n#    3  Line style         '' = all lines in the active view, or e.g. ROOF; selected lines are used first  (LINES)\n#    4  Layer contains     '' = the layer with the biggest closed roof outline          (CAD)\n#    5  Level              '' = the level of the plan view you run from (else the top level) - the eaves sit on it\n#    6  Ridge height mm    0 = not used (default) - the roof gets the SLOPE you give; >0 = slope worked out from it\n#    7  Slope deg          the roof slope on every eave edge (default 25; 0 = flat). Change it in Revit any time\n#    8  Roof type          '' = make 'S-RCC ROOF SLAB <thk>', or an existing roof type name\n#    9  Thickness mm       for a new RCC roof type\n#    10 Base offset mm\n#    11 Mono high side     lean-to: N, S, E or W = the high side ('' = read the drawing)\n#    12 Dry run            True = only report, nothing built\n#  Run again = replaces the roofs it made before from the same source.  Dynamo CPython3 + IronPython.\n# =====================================================================\nimport clr, math, os, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nfrom collections import deque\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nif DYNAMO:\n    clr.AddReference('RevitServices')\n    from RevitServices.Persistence import DocumentManager\n    from RevitServices.Transactions import TransactionManager\n    doc = DocumentManager.Instance.CurrentDBDocument\n    try:\n        uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n    except Exception:\n        uidoc = None\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('ROOF_INPUTS', []))\n    uidoc = globals().get('uidoc', None)\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    return default if v is None or (isinstance(v, str) and not v.strip()) else v\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).replace('mm', '').strip())\n    except Exception:\n        return float(default)\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\nSOURCE = str(_inp(0, 'AUTO')).strip().upper()[:1] or 'A'      # L / C / A\nCAD_FILE = str(_inp(1, '')).strip().strip('\"')\nCAD_NAME_CONTAINS = str(_inp(2, '')).strip()\nLINES_STYLE = str(_inp(3, '')).strip()\nLAYER_CONTAINS = str(_inp(4, '')).strip()\nLEVEL_NAME = str(_inp(5, '')).strip()\nRIDGE_HEIGHT_MM = _num(6, 0)                              # 0 = not used: the slope input decides\nSLOPE_DEG = _num(7, 25)\nROOF_TYPE_NAME = str(_inp(8, '')).strip()\nTHICKNESS_MM = _num(9, 150)\nBASE_OFFSET_MM = _num(10, 0)\nMONO_HIGH_SIDE = str(_inp(11, '')).strip()\nDRY_RUN = _flag(12, False)\n\n\ndef tname_of(o):\n    \"\"\".NET type name - isinstance() is unreliable in Dynamo CPython3\"\"\"\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\nCURVE_TYPES = ('Arc', 'Ellipse', 'NurbSpline', 'HermiteSpline', 'CylindricalHelix')\n_TX = {}\n\n\nREVIT_MSGS = []\nCAP_MODE = {'rollback': False}\ntry:\n    class _Cap(IFailuresPreprocessor):                    # collects Revit's warnings / errors\n        __namespace__ = 'CAD2BIM_B08'                     # needed for Dynamo CPython3 (pythonnet)\n        def PreprocessFailures(self, fa):\n            error = False\n            for f in fa.GetFailureMessages():\n                REVIT_MSGS.append('{0}: {1}'.format(f.GetSeverity(), f.GetDescriptionText()))\n                try:\n                    if f.GetSeverity() == FailureSeverity.Warning:\n                        fa.DeleteWarning(f)               # harmless warnings (e.g. slightly off axis) never block the roof\n                    else:\n                        error = True\n                except Exception:\n                    pass\n            if error and CAP_MODE['rollback']:\n                return FailureProcessingResult.ProceedWithRollBack   # undo only the slope step, keep the flat roof\n            return FailureProcessingResult.Continue\nexcept Exception:\n    _Cap = None\n\n\ndef tx_start():\n    if DYNAMO:\n        TransactionManager.Instance.EnsureInTransaction(doc)\n    elif 't' not in _TX:\n        _TX['t'] = Transaction(doc, 'CAD2BIM roof')\n        if _Cap is not None:\n            try:\n                o = _TX['t'].GetFailureHandlingOptions()\n                o.SetFailuresPreprocessor(_Cap())\n                _TX['t'].SetFailureHandlingOptions(o)\n            except Exception:\n                pass\n        _TX['t'].Start()\n\n\ndef tx_done():\n    if DYNAMO:\n        TransactionManager.Instance.TransactionTaskDone()\n    elif 't' in _TX:\n        _TX.pop('t').Commit()\n\n\ndef tx_abort():\n    if DYNAMO:\n        TransactionManager.Instance.ForceCloseTransaction()\n    elif 't' in _TX:\n        t = _TX.pop('t')\n        if t.HasStarted():\n            t.RollBack()\n\n\n# -*- coding: utf-8 -*-\nimport math\n\n# --------------------------------------------------------------------------\n# small vector helpers\n# --------------------------------------------------------------------------\ndef _sub(a, b):\n    return (a[0] - b[0], a[1] - b[1])\n\n\ndef _add(a, b):\n    return (a[0] + b[0], a[1] + b[1])\n\n\ndef _mul(a, s):\n    return (a[0] * s, a[1] * s)\n\n\ndef _dot(a, b):\n    return a[0] * b[0] + a[1] * b[1]\n\n\ndef _len(a):\n    return math.hypot(a[0], a[1])\n\n\ndef _dist(a, b):\n    return math.hypot(a[0] - b[0], a[1] - b[1])\n\n\ndef _rot(p, ang):\n    c, s = math.cos(ang), math.sin(ang)\n    return (p[0] * c - p[1] * s, p[0] * s + p[1] * c)\n\n\ndef seg_length(s):\n    return _dist(s[0], s[1])\n\n\ndef explode_polyline(points, closed=False):\n    \"\"\"List of points -> list of segments.\"\"\"\n    segs = []\n    for i in range(len(points) - 1):\n        if _dist(points[i], points[i + 1]) > 1e-6:\n            segs.append((points[i], points[i + 1]))\n    if closed and len(points) > 2 and _dist(points[-1], points[0]) > 1e-6:\n        segs.append((points[-1], points[0]))\n    return segs\n\n\n# --------------------------------------------------------------------------\n# infinite-line frame for a segment\n# --------------------------------------------------------------------------\nclass LineFrame(object):\n    \"\"\"theta in [-tol, pi - tol), u = direction, n = left normal,\n    c = signed offset of the infinite line, t0 < t1 = extent along u.\"\"\"\n    __slots__ = ('theta', 'u', 'n', 'c', 't0', 't1')\n\n    def __init__(self, theta, c, t0, t1):\n        self.theta = theta\n        self.u = (math.cos(theta), math.sin(theta))\n        self.n = (-math.sin(theta), math.cos(theta))\n        self.c = c\n        self.t0, self.t1 = (t0, t1) if t0 <= t1 else (t1, t0)\n\n    def point(self, t):\n        return _add(_mul(self.u, t), _mul(self.n, self.c))\n\n    def length(self):\n        return self.t1 - self.t0\n\n    def mid(self):\n        return self.point(0.5 * (self.t0 + self.t1))\n\n    def endpoints(self):\n        return self.point(self.t0), self.point(self.t1)\n\n\ndef _canon_theta(dx, dy, ang_tol_rad):\n    th = math.atan2(dy, dx) % math.pi\n    if th >= math.pi - ang_tol_rad:\n        th -= math.pi\n    return th\n\n\ndef frame_of(seg, ang_tol_rad):\n    p, q = seg\n    th = _canon_theta(q[0] - p[0], q[1] - p[1], ang_tol_rad)\n    u = (math.cos(th), math.sin(th))\n    n = (-math.sin(th), math.cos(th))\n    c = 0.5 * (_dot(p, n) + _dot(q, n))\n    return LineFrame(th, c, _dot(p, u), _dot(q, u))\n\n\ndef _project_into(frame, seg):\n    \"\"\"Express another (parallel) segment in `frame` coordinates.\"\"\"\n    p, q = seg\n    c = 0.5 * (_dot(p, frame.n) + _dot(q, frame.n))\n    t0, t1 = _dot(p, frame.u), _dot(q, frame.u)\n    return c, min(t0, t1), max(t0, t1)\n\n\ndef _ang_diff(a, b):\n    d = abs(a - b) % math.pi\n    return min(d, math.pi - d)\n\n\ndef merge_intervals(intervals, gap=0.0):\n    out = []\n    for a, b in sorted(intervals):\n        if out and a <= out[-1][1] + gap:\n            if b > out[-1][1]:\n                out[-1][1] = b\n        else:\n            out.append([a, b])\n    return [(a, b) for a, b in out]\n\n\ndef subtract_intervals(base, cuts):\n    \"\"\"base=(a,b) minus list of (a,b) -> list of remaining (a,b).\"\"\"\n    pieces = [base]\n    for ca, cb in cuts:\n        nxt = []\n        for a, b in pieces:\n            if cb <= a or ca >= b:\n                nxt.append((a, b))\n                continue\n            if ca > a:\n                nxt.append((a, ca))\n            if cb < b:\n                nxt.append((cb, b))\n        pieces = nxt\n    return pieces\n\n\ndef group_collinear(frames, ang_tol_rad, off_tol, key=None):\n    \"\"\"Group LineFrames lying on the same infinite line.\n    key(frame) -> extra value that must also match (e.g. wall thickness).\"\"\"\n    groups = []   # each: {'ref': frame, 'items': [(c, t0, t1, frame)], 'key': k}\n    for f in sorted(frames, key=lambda fr: -fr.length()):\n        k = key(f) if key else None\n        placed = False\n        for g in groups:\n            ref = g['ref']\n            if _ang_diff(ref.theta, f.theta) > ang_tol_rad:\n                continue\n            if key and abs(g['key'] - k) > off_tol:\n                continue\n            p, q = f.endpoints()\n            c, t0, t1 = _project_into(ref, (p, q))\n            if abs(c - ref.c) <= off_tol:\n                g['items'].append((c, t0, t1, f))\n                placed = True\n                break\n        if not placed:\n            groups.append({'ref': f, 'items': [(f.c, f.t0, f.t1, f)], 'key': k})\n    return groups\n\n\n# --------------------------------------------------------------------------\n# GRIDS\n# --------------------------------------------------------------------------\ndef _letters(skip=('I', 'O')):\n    alpha = [ch for ch in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if ch not in skip]\n    for a in alpha:\n        yield a\n    for a in alpha:\n        for b in alpha:\n            yield a + b\n\n\ndef detect_grids(segs, min_len=2000.0, ang_tol_deg=1.0, off_tol=20.0,\n                 min_piece=100.0, numbers_on='vertical', skip_letters=('I', 'O')):\n    \"\"\"Long straight lines on the grid layer -> named grid lines.\n    Broken/duplicate pieces on the same line are merged into one grid.\"\"\"\n    tol = math.radians(ang_tol_deg)\n    frames = [frame_of(s, tol) for s in segs if seg_length(s) >= min_piece]\n    groups = group_collinear(frames, tol, off_tol)\n    lines = []\n    for g in groups:\n        ref = g['ref']\n        t0 = min(i[1] for i in g['items'])\n        t1 = max(i[2] for i in g['items'])\n        if t1 - t0 < min_len:\n            continue\n        c = sum(i[0] for i in g['items']) / len(g['items'])\n        lines.append(LineFrame(ref.theta, c, t0, t1))\n\n    # classify relative to the building's main grid direction (works for rotated plans)\n    base = _dominant_angle([f.endpoints() for f in lines]) if lines else 0.0\n    verticals, horizontals, angled = [], [], []\n    for f in lines:\n        deg = math.degrees(f.theta - base) % 180.0\n        if abs(deg - 90.0) <= 5.0:\n            verticals.append(f)\n        elif deg <= 5.0 or deg >= 175.0:\n            horizontals.append(f)\n        else:\n            angled.append(f)\n    local = lambda f: _rot(f.mid(), -base)\n    verticals.sort(key=lambda f: local(f)[0])\n    horizontals.sort(key=lambda f: local(f)[1])\n    angled.sort(key=lambda f: (local(f)[0], local(f)[1]))\n\n    num_set, let_set = (verticals, horizontals) if numbers_on == 'vertical' else (horizontals, verticals)\n    out = []\n    for i, f in enumerate(num_set):\n        out.append({'name': str(i + 1), 'p1': _ordered(f)[0], 'p2': _ordered(f)[1]})\n    letters = _letters(skip_letters)\n    for f in let_set:\n        out.append({'name': next(letters), 'p1': _ordered(f)[0], 'p2': _ordered(f)[1]})\n    for i, f in enumerate(angled):\n        out.append({'name': 'X' + str(i + 1), 'p1': _ordered(f)[0], 'p2': _ordered(f)[1]})\n    return out\n\n\ndef _ordered(f):\n    \"\"\"Start point bottom (for verticals) / left (for horizontals) so the\n    grid bubbles end up on a consistent side.\"\"\"\n    a, b = f.endpoints()\n    if abs(a[0] - b[0]) < abs(a[1] - b[1]):\n        return (a, b) if a[1] <= b[1] else (b, a)\n    return (a, b) if a[0] <= b[0] else (b, a)\n\n\n# --------------------------------------------------------------------------\n# COLUMNS (closed rectangles, polylines or 4 lines, with or without X / hatch)\n# --------------------------------------------------------------------------\nclass _UF(object):\n    def __init__(self, n):\n        self.p = list(range(n))\n\n    def find(self, a):\n        while self.p[a] != a:\n            self.p[a] = self.p[self.p[a]]\n            a = self.p[a]\n        return a\n\n    def union(self, a, b):\n        ra, rb = self.find(a), self.find(b)\n        if ra != rb:\n            self.p[ra] = rb\n\n\ndef _snap_nodes(points, snap):\n    \"\"\"Return node index per point; points within `snap` share a node.\"\"\"\n    cell = max(snap, 1e-3)\n    grid = {}\n    nodes = []\n    ids = []\n    for p in points:\n        cx, cy = int(math.floor(p[0] / cell)), int(math.floor(p[1] / cell))\n        found = None\n        for dx in (-1, 0, 1):\n            for dy in (-1, 0, 1):\n                for nid in grid.get((cx + dx, cy + dy), ()):\n                    if _dist(nodes[nid], p) <= snap:\n                        found = nid\n                        break\n                if found is not None:\n                    break\n            if found is not None:\n                break\n        if found is None:\n            found = len(nodes)\n            nodes.append(p)\n            grid.setdefault((cx, cy), []).append(found)\n        ids.append(found)\n    return ids\n\n\ndef _dominant_angle(segs):\n    \"\"\"Angle (radians, in [-45deg, 45deg)) carrying the most line length mod 90deg.\"\"\"\n    bins = {}\n    for s in segs:\n        L = seg_length(s)\n        if L < 1e-6:\n            continue\n        a = math.degrees(math.atan2(s[1][1] - s[0][1], s[1][0] - s[0][0])) % 90.0\n        b = int(round(a * 2.0)) % 180       # 0.5 degree bins\n        bins[b] = bins.get(b, 0.0) + L\n    if not bins:\n        return 0.0\n    best = max(bins.items(), key=lambda kv: kv[1])[0]\n    deg = best / 2.0\n    if deg >= 45.0:\n        deg -= 90.0\n    return math.radians(deg)\n\n\ndef _round_to(v, step):\n    return step * round(v / step) if step else v\n\n\ndef detect_columns(segs, snap=5.0, min_size=150.0, max_size=2000.0,\n                   round_to=5.0, corner_tol=15.0, dedup_dist=50.0):\n    \"\"\"Connected line groups whose bounding rectangle has a vertex at each\n    corner -> rectangular columns. Diagonals / hatch lines are tolerated.\"\"\"\n    pts = []\n    for s in segs:\n        pts.append(s[0])\n        pts.append(s[1])\n    if not pts:\n        return [], {'components': 0, 'rejected': 0, 'duplicates': 0}\n    node = _snap_nodes(pts, snap)\n    uf = _UF(max(node) + 1)\n    for i in range(len(segs)):\n        uf.union(node[2 * i], node[2 * i + 1])\n    comps = {}\n    for i, s in enumerate(segs):\n        comps.setdefault(uf.find(node[2 * i]), []).append(s)\n\n    found, rejected = [], 0\n    for csegs in comps.values():\n        if len(csegs) < 2:\n            rejected += 1\n            continue\n        ang = _dominant_angle(csegs)\n        loc = []\n        for s in csegs:\n            loc.append(_rot(s[0], -ang))\n            loc.append(_rot(s[1], -ang))\n        xs = [p[0] for p in loc]\n        ys = [p[1] for p in loc]\n        x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)\n        w, d = x1 - x0, y1 - y0\n        if not (min_size <= w <= max_size and min_size <= d <= max_size):\n            rejected += 1\n            continue\n        corners = [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]\n        if not all(min(_dist(c, p) for p in loc) <= corner_tol for c in corners):\n            rejected += 1\n            continue\n        centre = _rot(((x0 + x1) / 2.0, (y0 + y1) / 2.0), ang)\n        found.append({'center': centre,\n                      'w': _round_to(w, round_to),\n                      'd': _round_to(d, round_to),\n                      'angle': ang,\n                      'raw_w': w, 'raw_d': d})\n\n    # concentric outlines (e.g. column + plaster line): keep the smaller one\n    found.sort(key=lambda c: c['w'] * c['d'])\n    kept, dups = [], 0\n    for c in found:\n        if any(_dist(c['center'], k['center']) <= dedup_dist for k in kept):\n            dups += 1\n            continue\n        kept.append(c)\n    kept.sort(key=lambda c: (round(c['center'][1], -1), c['center'][0]))\n    return kept, {'components': len(comps), 'rejected': rejected, 'duplicates': dups}\n\n\ndef point_in_column(p, col, grow=10.0):\n    loc = _rot(_sub(p, col['center']), -col['angle'])\n    return abs(loc[0]) <= col['raw_w'] / 2.0 + grow and abs(loc[1]) <= col['raw_d'] / 2.0 + grow\n\n\n# --------------------------------------------------------------------------\n# WALLS (pairs of parallel lines -> centre lines)\n# --------------------------------------------------------------------------\ndef _clean_lines(segs, tol, min_len=5.0):\n    \"\"\"Merge duplicate / overlapping collinear lines (common in CAD).\"\"\"\n    frames = [frame_of(s, tol) for s in segs if seg_length(s) >= min_len]\n    out = []\n    for g in group_collinear(frames, tol, 1.0):\n        ref = g['ref']\n        c = sum(i[0] for i in g['items']) / len(g['items'])\n        for a, b in merge_intervals([(i[1], i[2]) for i in g['items']], gap=1.0):\n            out.append(LineFrame(ref.theta, c, a, b))\n    return out\n\n\ndef detect_wall_pieces(segs, min_t=75.0, max_t=400.0, ang_tol_deg=1.0,\n                       min_overlap=100.0, thk_round=5.0):\n    \"\"\"Return raw wall centre-line pieces (LineFrame, thickness).\"\"\"\n    tol = math.radians(ang_tol_deg)\n    lines = _clean_lines(segs, tol)\n    pieces = []\n    paired = [False] * len(lines)\n    for i, a in enumerate(lines):\n        cands = {1: [], -1: []}\n        for j, b in enumerate(lines):\n            if i == j or _ang_diff(a.theta, b.theta) > tol:\n                continue\n            p, q = b.endpoints()\n            c, t0, t1 = _project_into(a, (p, q))\n            off = c - a.c\n            dist = abs(off)\n            if dist < min_t - 0.5 or dist > max_t + 0.5:\n                continue\n            lo, hi = max(a.t0, t0), min(a.t1, t1)\n            if hi - lo < min_overlap:\n                continue\n            cands[1 if off > 0 else -1].append((dist, lo, hi, off, j))\n        for side in (1, -1):\n            covered = []\n            for dist, lo, hi, off, j in sorted(cands[side]):\n                for ra, rb in subtract_intervals((lo, hi), covered):\n                    if rb - ra >= min_overlap:\n                        thk = _round_to(dist, thk_round)\n                        pieces.append((LineFrame(a.theta, a.c + off / 2.0, ra, rb), thk))\n                        paired[i] = paired[j] = True\n                covered.append((lo, hi))\n    unpaired = [lines[k] for k in range(len(lines)) if not paired[k]]\n    return pieces, unpaired\n\n\ndef _door_points(door_segs, door_arcs):\n    pts = []\n    for s in door_segs:\n        pts.extend([s[0], s[1], _mul(_add(s[0], s[1]), 0.5)])\n    for a in door_arcs:\n        pts.extend([a['c'], a['pm']])\n    return pts\n\n\ndef build_walls(pieces, columns=(), door_segs=(), door_arcs=(), window_segs=(),\n                ang_tol_deg=1.0, merge_tol=10.0, small_gap=None,\n                door_min=600.0, door_max=2400.0, window_max=4000.0):\n    \"\"\"Merge collinear pieces, bridge gaps (junctions, doors, windows),\n    and return (walls, doors, stats).\n\n    wall  = {'frame': LineFrame, 'thk': mm}\n    door  = {'wall': index, 'point': (x,y), 'width': mm, 'side': (nx,ny) or None,\n             'hinge': (x,y) or None, 'u': (ux,uy)}\n    \"\"\"\n    tol = math.radians(ang_tol_deg)\n    frames = []\n    thk_of = {}\n    for f, thk in pieces:\n        frames.append(f)\n        thk_of[id(f)] = thk\n    groups = group_collinear(frames, tol, merge_tol, key=lambda f: thk_of[id(f)])\n    door_pts = _door_points(door_segs, door_arcs)\n    win_pts = _door_points(window_segs, ())\n    used_door_pts = set()\n\n    walls, doors_tmp = [], []\n    stats = {'bridged_junction': 0, 'bridged_door': 0, 'bridged_window': 0,\n             'open_gaps': 0, 'gaps_at_columns': 0}\n    for g in groups:\n        ref = g['ref']\n        thk = g['key']\n        sg = small_gap if small_gap is not None else 450.0\n        c = sum(i[0] for i in g['items']) / len(g['items'])\n        line = LineFrame(ref.theta, c, 0, 0)\n        ivs = merge_intervals([(i[1], i[2]) for i in g['items']], gap=1.0)\n        cur = [ivs[0][0], ivs[0][1]]\n        segments = []\n        for a, b in ivs[1:]:\n            gap = a - cur[1]\n            gc = line.point((a + cur[1]) / 2.0)\n            bridge = False\n            door = None\n            if any(point_in_column(gc, col) for col in columns):\n                stats['gaps_at_columns'] += 1\n            elif gap <= sg:\n                bridge = True\n                stats['bridged_junction'] += 1\n            else:\n                ev = _evidence(line, cur[1], a, thk, door_pts) if door_min <= gap <= door_max else []\n                if ev:\n                    bridge = True\n                    stats['bridged_door'] += 1\n                    for k in ev:\n                        used_door_pts.add(k)\n                    door = _make_door(line, cur[1], a, thk, door_arcs)\n                elif gap <= window_max and _evidence(line, cur[1], a, thk, win_pts, lateral_extra=50.0):\n                    bridge = True\n                    stats['bridged_window'] += 1\n                else:\n                    stats['open_gaps'] += 1\n            if bridge:\n                if door:\n                    doors_tmp.append(door)\n                cur[1] = b\n            else:\n                segments.append(tuple(cur))\n                cur = [a, b]\n        segments.append(tuple(cur))\n        for a, b in segments:\n            walls.append({'frame': LineFrame(ref.theta, c, a, b), 'thk': thk})\n    # map doors to final wall indices (a wall may be a bridged run)\n    doors = []\n    for door in doors_tmp:\n        for wi, w in enumerate(walls):\n            f = w['frame']\n            if _ang_diff(f.theta, math.atan2(door['u'][1], door['u'][0]) % math.pi) > tol:\n                continue\n            t = _dot(door['point'], f.u)\n            if abs(_dot(door['point'], f.n) - f.c) < 1.0 and f.t0 - 1 <= t <= f.t1 + 1:\n                door['wall'] = wi\n                doors.append(door)\n                break\n\n    unmatched = [p for k, p in enumerate(door_pts) if k not in used_door_pts]\n    stats['door_points_unmatched'] = len(unmatched)\n    return walls, doors, stats\n\n\ndef _evidence(line, ta, tb, thk, pts, lateral_extra=None):\n    gap = tb - ta\n    lat = (lateral_extra if lateral_extra is not None else max(gap, 1000.0)) + thk / 2.0\n    hits = []\n    for k, p in enumerate(pts):\n        t = _dot(p, line.u)\n        if ta - 100.0 <= t <= tb + 100.0 and abs(_dot(p, line.n) - line.c) <= lat:\n            hits.append(k)\n    return hits\n\n\ndef _make_door(line, ta, tb, thk, arcs):\n    centre = line.point((ta + tb) / 2.0)\n    side, hinge = None, None\n    best = None\n    for a in arcs:\n        t = _dot(a['c'], line.u)\n        lat = _dot(a['c'], line.n) - line.c\n        if ta - 150.0 <= t <= tb + 150.0 and abs(lat) <= thk / 2.0 + 150.0:\n            score = min(abs(t - ta), abs(t - tb))\n            if best is None or score < best[0]:\n                best = (score, a)\n    if best:\n        a = best[1]\n        hinge = a['c']\n        s = _dot(a['pm'], line.n) - line.c\n        if abs(s) > 1.0:\n            side = line.n if s > 0 else _mul(line.n, -1.0)\n    return {'point': centre, 'width': tb - ta, 'side': side, 'hinge': hinge,\n            'u': line.u, 'n': line.n}\n\n\ndef _intersect(f, g):\n    det = f.u[0] * g.u[1] - f.u[1] * g.u[0]\n    if abs(det) < 1e-9:\n        return None\n    p, q = f.point(0), g.point(0)\n    d = _sub(q, p)\n    s = (d[0] * g.u[1] - d[1] * g.u[0]) / det\n    return _add(p, _mul(f.u, s))\n\n\ndef snap_wall_ends(walls, factor=1.0, min_angle_deg=10.0):\n    \"\"\"Extend / trim wall ends to meet the centre line of the wall they touch\n    (L-corners and T-junctions) so Revit can join them cleanly.\"\"\"\n    min_ang = math.radians(min_angle_deg)\n    orig = [(w['frame'].theta, w['frame'].c, w['frame'].t0, w['frame'].t1) for w in walls]\n    snapped = 0\n    for i, w in enumerate(walls):\n        f = w['frame']\n        for end in (0, 1):\n            e = f.point(orig[i][2] if end == 0 else orig[i][3])\n            best = None\n            for j, v in enumerate(walls):\n                if i == j:\n                    continue\n                g = LineFrame(orig[j][0], orig[j][1], orig[j][2], orig[j][3])\n                if _ang_diff(f.theta, g.theta) < min_ang:\n                    continue\n                P = _intersect(f, g)\n                if P is None:\n                    continue\n                lim = max(w['thk'], v['thk']) * factor + 10.0\n                dist = _dist(P, e)\n                if dist > lim:\n                    continue\n                tg = _dot(P, g.u)\n                if not (g.t0 - lim <= tg <= g.t1 + lim):\n                    continue\n                if best is None or dist < best[0]:\n                    best = (dist, P)\n            if best:\n                t = _dot(best[1], f.u)\n                if end == 0:\n                    f.t0 = t\n                else:\n                    f.t1 = t\n                snapped += 1\n        if f.t0 > f.t1:\n            f.t0, f.t1 = f.t1, f.t0\n    return snapped\n\n\n# --------------------------------------------------------------------------\n# PLINTH BEAMS (column to column along grid lines / alignments)\n# --------------------------------------------------------------------------\ndef detect_plinth_beams(columns, grids=(), walls=(), align_tol=150.0,\n                        max_span=9000.0, require_wall=False):\n    pairs = set()\n    lines = []\n    for gr in grids:\n        lines.append(frame_of((gr['p1'], gr['p2']), math.radians(1.0)))\n    if not lines:\n        # no grids: use rows / columns of aligned centres\n        for axis in (0, 1):\n            vals = sorted(set(round(c['center'][axis] / align_tol) for c in columns))\n            for v in vals:\n                p = (v * align_tol, 0.0) if axis == 0 else (0.0, v * align_tol)\n                q = (p[0], p[1] + 1.0) if axis == 0 else (p[0] + 1.0, p[1])\n                f = frame_of((p, q), math.radians(1.0))\n                f.t0, f.t1 = -1e12, 1e12\n                lines.append(f)\n    for f in lines:\n        on = []\n        for k, c in enumerate(columns):\n            if abs(_dot(c['center'], f.n) - f.c) <= align_tol:\n                t = _dot(c['center'], f.u)\n                if f.t0 - 1000.0 <= t <= f.t1 + 1000.0:\n                    on.append((t, k))\n        on.sort()\n        for (ta, ka), (tb, kb) in zip(on, on[1:]):\n            if 0 < tb - ta <= max_span:\n                if require_wall and not _wall_between(columns[ka], columns[kb], walls, align_tol):\n                    continue\n                pairs.add((min(ka, kb), max(ka, kb)))\n    connected = set()\n    for a, b in pairs:\n        connected.add(a)\n        connected.add(b)\n    lonely = [k for k in range(len(columns)) if k not in connected]\n    return sorted(pairs), lonely\n\n\ndef _wall_between(ca, cb, walls, tol):\n    m = _mul(_add(ca['center'], cb['center']), 0.5)\n    for w in walls:\n        f = w['frame']\n        t = _dot(m, f.u)\n        if abs(_dot(m, f.n) - f.c) <= w['thk'] / 2.0 + tol and f.t0 <= t <= f.t1:\n            return True\n    return False\n\n\n# --------------------------------------------------------------------------\n# one-call pipeline\n# --------------------------------------------------------------------------\ndef recognise(layers, cfg):\n    \"\"\"layers = {'grid': {'segs':[], 'arcs':[]}, 'column':..., 'wall':..., 'door':..., 'window':...}\n    cfg = the 'recognition' section of the config. Returns a result dict.\"\"\"\n    r = cfg\n    grids = detect_grids(layers['grid']['segs'], min_len=r['grid_min_length_mm'],\n                         numbers_on=r.get('grid_numbers_on', 'vertical'),\n                         skip_letters=tuple(r.get('grid_skip_letters', ['I', 'O'])))\n    columns, col_stats = detect_columns(layers['column']['segs'],\n                                        min_size=r['column_min_mm'], max_size=r['column_max_mm'],\n                                        round_to=r['column_round_mm'])\n    pieces, unpaired = detect_wall_pieces(layers['wall']['segs'], min_t=r['wall_min_thk_mm'],\n                                          max_t=r['wall_max_thk_mm'], min_overlap=r['wall_min_overlap_mm'])\n    walls, doors, wall_stats = build_walls(pieces, columns, layers['door']['segs'], layers['door']['arcs'],\n                                           layers['window']['segs'],\n                                           small_gap=r['wall_junction_gap_mm'],\n                                           door_min=r['door_min_width_mm'], door_max=r['door_max_width_mm'])\n    snapped = snap_wall_ends(walls)\n    beams, lonely = detect_plinth_beams(columns, grids, walls, align_tol=r['beam_align_tol_mm'],\n                                        max_span=r['beam_max_span_mm'],\n                                        require_wall=r.get('beam_only_under_walls', False))\n    # drop tiny slivers and re-index doors onto the surviving walls\n    keep, remap = [], {}\n    for k, w in enumerate(walls):\n        if w['frame'].length() >= r.get('wall_min_length_mm', 100.0):\n            remap[k] = len(keep)\n            keep.append(w)\n    walls = keep\n    doors = [d for d in doors if d.get('wall') in remap]\n    for d in doors:\n        d['wall'] = remap[d['wall']]\n    stats = dict(wall_stats)\n    stats.update(col_stats)\n    stats['unpaired_wall_lines'] = len(unpaired)\n    stats['wall_ends_snapped'] = snapped\n    stats['columns_without_beam'] = len(lonely)\n    return {'grids': grids, 'columns': columns, 'walls': walls, 'doors': doors,\n            'beams': beams, 'lonely_columns': lonely, 'stats': stats}\n\n\n# --------------------------------------------------------------------------\n# GRID helpers: column marks (B-2) and outer grid outline (slab fallback)\n# --------------------------------------------------------------------------\ndef _grid_frames(grids):\n    return [(g['name'], frame_of((g['p1'], g['p2']), math.radians(1.0))) for g in grids]\n\n\ndef column_marks(columns, grids, tol=300.0):\n    \"\"\"Mark each column by the grid intersection it sits on, e.g. 'B-2'.\n    Columns off-grid get 'C<n>'.\"\"\"\n    frames = _grid_frames(grids)\n    marks, used, n = [], {}, 0\n    for c in columns:\n        near = []\n        for name, f in frames:\n            d = abs(_dot(c['center'], f.n) - f.c)\n            if d <= tol:\n                near.append((d, name, f))\n        letter = [x for x in near if not x[1].isdigit()]\n        number = [x for x in near if x[1].isdigit()]\n        if letter and number:\n            m = '{0}-{1}'.format(min(letter)[1], min(number)[1])\n        else:\n            n += 1\n            m = 'C{0}'.format(n)\n        used[m] = used.get(m, 0) + 1\n        if used[m] > 1:\n            m = '{0}({1})'.format(m, used[m])\n        marks.append(m)\n    return marks\n\n\ndef grid_outline(grids, offset=0.0):\n    \"\"\"Rectangle on the outermost grids (in the grids' own rotation),\n    grown by `offset` mm. Returns 4 points or None.\"\"\"\n    if not grids:\n        return None\n    segs = [(g['p1'], g['p2']) for g in grids]\n    base = _dominant_angle(segs)\n    xs, ys = [], []\n    for g in grids:\n        a, b = _rot(g['p1'], -base), _rot(g['p2'], -base)\n        if abs(a[0] - b[0]) < abs(a[1] - b[1]):      # vertical in local frame\n            xs.append((a[0] + b[0]) / 2.0)\n        else:\n            ys.append((a[1] + b[1]) / 2.0)\n    if len(xs) < 2 or len(ys) < 2:\n        return None\n    x0, x1, y0, y1 = min(xs) - offset, max(xs) + offset, min(ys) - offset, max(ys) + offset\n    return [_rot(p, base) for p in ((x0, y0), (x1, y0), (x1, y1), (x0, y1))]\n\n\ndef polygon_area(pts):\n    a = 0.0\n    for i in range(len(pts)):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % len(pts)]\n        a += x1 * y2 - x2 * y1\n    return abs(a) / 2.0\n\n\n# --------------------------------------------------------------------------\n# ROOF: eaves outline loops + which edges define slope (from ridge/hip lines)\n# --------------------------------------------------------------------------\ndef chain_loops(segs, snap=10.0):\n    \"\"\"Join outline segments into closed loops of points (no repeated end).\"\"\"\n    pts = []\n    for s in segs:\n        pts.append(s[0])\n        pts.append(s[1])\n    if not pts:\n        return []\n    node = _snap_nodes(pts, snap)\n    coords = {}\n    for i, n in enumerate(node):\n        coords.setdefault(n, pts[i])\n    adj = {}\n    edges = []\n    for i in range(len(segs)):\n        a, b = node[2 * i], node[2 * i + 1]\n        if a == b:\n            continue\n        k = len(edges)\n        edges.append((a, b))\n        adj.setdefault(a, []).append(k)\n        adj.setdefault(b, []).append(k)\n    used = [False] * len(edges)\n    loops = []\n    for k0 in range(len(edges)):\n        if used[k0]:\n            continue\n        start, cur = edges[k0]\n        used[k0] = True\n        path = [start, cur]\n        closed = False\n        while True:\n            nxt = None\n            for k in adj.get(cur, []):\n                if not used[k]:\n                    nxt = k\n                    break\n            if nxt is None:\n                break\n            used[nxt] = True\n            a, b = edges[nxt]\n            cur = b if a == cur else a\n            if cur == start:\n                closed = True\n                break\n            path.append(cur)\n        if closed and len(path) >= 3:\n            loops.append([coords[n] for n in path])\n    return loops\n\n\ndef simplify_loop(pts, ang_tol_deg=0.5, min_edge=5.0):\n    out = list(pts)\n    changed = True\n    while changed and len(out) > 3:\n        changed = False\n        for i in range(len(out)):\n            a, b, c = out[i - 1], out[i], out[(i + 1) % len(out)]\n            if _dist(a, b) < min_edge:\n                del out[i]\n                changed = True\n                break\n            u, v = _sub(b, a), _sub(c, b)\n            cr = abs(u[0] * v[1] - u[1] * v[0])\n            if cr <= math.sin(math.radians(ang_tol_deg)) * _len(u) * _len(v) and _dot(u, v) > 0:\n                del out[i]\n                changed = True\n                break\n    return out\n\n\ndef _edge_defines_slope(e0, e1, ridges, tol):\n    L = _dist(e0, e1)\n    if L < 1e-6:\n        return False\n    u = _mul(_sub(e1, e0), 1.0 / L)\n    for r0, r1 in ridges:\n        rl = _dist(r0, r1)\n        if rl < 1e-6:\n            continue\n        ru = _mul(_sub(r1, r0), 1.0 / rl)\n        par = abs(u[0] * ru[1] - u[1] * ru[0]) < math.sin(math.radians(2.0))\n        if par:\n            # ridge lying on this edge = the high edge of a mono-pitch roof -> no slope\n            d = abs((r0[0] - e0[0]) * u[1] - (r0[1] - e0[1]) * u[0])\n            t0, t1 = sorted((_dot(_sub(r0, e0), u), _dot(_sub(r1, e0), u)))\n            if d <= tol and min(t1, L) - max(t0, 0.0) > 0.5 * min(rl, L):\n                return False\n            continue\n        if abs(_dot(u, ru)) > math.cos(math.radians(30.0)):\n            continue\n        for p in (r0, r1):\n            t = _dot(_sub(p, e0), u)\n            d = abs((p[0] - e0[0]) * u[1] - (p[1] - e0[1]) * u[0])\n            if d <= tol and tol < t < L - tol:\n                return False           # ridge ends in the middle of this edge -> gable end\n    return True\n\n\ndef _unit_of(e):\n    L = _dist(e[0], e[1])\n    return _mul(_sub(e[1], e[0]), 1.0 / L) if L > 1e-9 else (1.0, 0.0)\n\n\ndef _is_high_edge(e, ridges, tol):\n    e0, e1 = e\n    L = _dist(e0, e1)\n    u = _unit_of(e)\n    for r0, r1 in ridges:\n        rl = _dist(r0, r1)\n        if rl < 1e-6 or abs(u[0] * (r1[1] - r0[1]) / rl - u[1] * (r1[0] - r0[0]) / rl) >= math.sin(math.radians(2.0)):\n            continue\n        d = abs((r0[0] - e0[0]) * u[1] - (r0[1] - e0[1]) * u[0])\n        t0, t1 = sorted((_dot(_sub(r0, e0), u), _dot(_sub(r1, e0), u)))\n        if d <= tol and min(t1, L) - max(t0, 0.0) > 0.5 * min(rl, L):\n            return True\n    return False\n\n\ndef roof_footprints(outline_segs, ridge_segs, snap=10.0, tol=75.0, min_area_m2=1.0):\n    \"\"\"[{'points': [...], 'slopes': [bool per edge i->i+1]}] - edges with\n    slopes=False are gables / high edges, exactly as drawn in CAD.\"\"\"\n    out = []\n    for loop in chain_loops(outline_segs, snap):\n        pts = simplify_loop(loop)\n        if len(pts) < 3 or polygon_area(pts) < min_area_m2 * 1e6:\n            continue\n        n = len(pts)\n        edges = [(pts[i], pts[(i + 1) % n]) for i in range(n)]\n        slopes = [_edge_defines_slope(a, b, ridge_segs, tol) for a, b in edges]\n        high = [i for i in range(n) if _is_high_edge(edges[i], ridge_segs, tol)]\n        if high:\n            # mono-pitch: only the edges parallel to the high edge (the low eaves) slope\n            hu = [_unit_of(edges[i]) for i in high]\n            slopes = [(i not in high) and any(abs(_dot(_unit_of(edges[i]), h)) > math.cos(math.radians(2.0))\n                                              for h in hu) for i in range(n)]\n        out.append({'points': pts, 'slopes': slopes})\n    out.sort(key=lambda f: -polygon_area(f['points']))\n    return out\n\n\n# --------------------------------------------------------------------------\n# ROOF: outline and ridge/hip/valley lines on the SAME layer\n# --------------------------------------------------------------------------\ndef _split_at_t_junctions(segs, snap):\n    \"\"\"Split segments where another segment's endpoint lies on their interior.\"\"\"\n    ends = []\n    for s in segs:\n        ends.append(s[0])\n        ends.append(s[1])\n    out = []\n    for a, b in segs:\n        L = _dist(a, b)\n        if L < 1e-6:\n            continue\n        u = _mul(_sub(b, a), 1.0 / L)\n        cuts = []\n        for p in ends:\n            t = _dot(_sub(p, a), u)\n            if snap < t < L - snap and abs((p[0] - a[0]) * u[1] - (p[1] - a[1]) * u[0]) <= snap:\n                cuts.append(t)\n        prev = 0.0\n        for t in sorted(set(round(c, 3) for c in cuts)) + [L]:\n            if t - prev > snap:\n                out.append((_add(a, _mul(u, prev)), _add(a, _mul(u, t))))\n                prev = t\n    return out\n\n\ndef _signed_area(pts):\n    a = 0.0\n    for i in range(len(pts)):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % len(pts)]\n        a += x1 * y2 - x2 * y1\n    return a / 2.0\n\n\ndef point_in_polygon(p, poly):\n    x, y = p\n    inside = False\n    n = len(poly)\n    for i in range(n):\n        x1, y1 = poly[i]\n        x2, y2 = poly[(i + 1) % n]\n        if (y1 > y) != (y2 > y):\n            xi = x1 + (y - y1) * (x2 - x1) / (y2 - y1)\n            if xi > x:\n                inside = not inside\n    return inside\n\n\ndef split_outline_and_ridges(segs, snap=10.0, min_area_m2=1.0):\n    \"\"\"One drawing with eaves + ridges + hips + valleys -> (outline_segs, ridge_segs).\n    The outline is the outer face of each connected line group (planar face\n    tracing); everything else is treated as ridge / hip / valley lines.\n    Outlines nested inside another outline (fascia, gutter lines) are dropped.\"\"\"\n    segs = _split_at_t_junctions(segs, snap)\n    pts = []\n    for s in segs:\n        pts.append(s[0])\n        pts.append(s[1])\n    if not pts:\n        return [], []\n    node = _snap_nodes(pts, snap)\n    coords = {}\n    for i, n in enumerate(node):\n        coords.setdefault(n, pts[i])\n    nbrs = {}\n    for i in range(len(segs)):\n        a, b = node[2 * i], node[2 * i + 1]\n        if a != b:\n            nbrs.setdefault(a, set()).add(b)\n            nbrs.setdefault(b, set()).add(a)\n    order = {}\n    for v, ns in nbrs.items():\n        cv = coords[v]\n        order[v] = sorted(ns, key=lambda w: math.atan2(coords[w][1] - cv[1], coords[w][0] - cv[0]))\n    used = set()\n    faces = []\n    for u in nbrs:\n        for v in nbrs[u]:\n            if (u, v) in used:\n                continue\n            face, a, b = [], u, v\n            for _ in range(10000):\n                used.add((a, b))\n                face.append(a)\n                lst = order[b]\n                k = lst.index(a)\n                c = lst[(k - 1) % len(lst)]          # next edge clockwise from (b -> a)\n                a, b = b, c\n                if (a, b) == (u, v):\n                    break\n            faces.append(face)\n    # outer face of each component = the face with the largest |area| among faces of that component\n    uf = _UF(max(nbrs) + 1)\n    for u in nbrs:\n        for v in nbrs[u]:\n            uf.union(u, v)\n    best = {}\n    for f in faces:\n        poly = [coords[n] for n in f]\n        ar = abs(_signed_area(poly))\n        r = uf.find(f[0])\n        if r not in best or ar > best[r][0]:\n            best[r] = (ar, f)\n    loops = [(ar, f) for ar, f in best.values() if ar >= min_area_m2 * 1e6]\n    loops.sort(key=lambda x: -x[0])\n    kept = []\n    for ar, f in loops:\n        poly = [coords[n] for n in f]\n        if any(point_in_polygon(poly[0], [coords[n] for n in k]) for k in kept):\n            continue                                  # nested outline (fascia / gutter)\n        kept.append(f)\n    outline_edges = set()\n    outline = []\n    for f in kept:\n        for i in range(len(f)):\n            a, b = f[i], f[(i + 1) % len(f)]\n            if a != b and (a, b) not in outline_edges and (b, a) not in outline_edges:\n                outline_edges.add((a, b))\n                outline.append((coords[a], coords[b]))\n    ridges = []\n    for i in range(len(segs)):\n        a, b = node[2 * i], node[2 * i + 1]\n        if a != b and (a, b) not in outline_edges and (b, a) not in outline_edges:\n            ridges.append(segs[i])\n    return outline, ridges\n\n\n# --------------------------------------------------------------------------\n# ROOF: robust eaves outline for messy drawings (double lines, small gaps,\n# gutters, hatching). Rasterise -> flood fill outside -> trace -> snap the\n# traced edges back onto the real CAD lines so the result follows the CAD.\n# --------------------------------------------------------------------------\ndef _douglas_peucker(pts, tol):\n    if len(pts) < 3:\n        return pts\n    a, b = pts[0], pts[-1]\n    L = _dist(a, b)\n    best, idx = -1.0, 0\n    for i in range(1, len(pts) - 1):\n        p = pts[i]\n        if L < 1e-9:\n            d = _dist(p, a)\n        else:\n            d = abs((b[0] - a[0]) * (a[1] - p[1]) - (a[0] - p[0]) * (b[1] - a[1])) / L\n        if d > best:\n            best, idx = d, i\n    if best <= tol:\n        return [a, b]\n    left = _douglas_peucker(pts[:idx + 1], tol)\n    right = _douglas_peucker(pts[idx:], tol)\n    return left[:-1] + right\n\n\ndef _line_intersection(p1, u1, p2, u2):\n    det = u1[0] * u2[1] - u1[1] * u2[0]\n    if abs(det) < 1e-9:\n        return None\n    d = _sub(p2, p1)\n    s = (d[0] * u2[1] - d[1] * u2[0]) / det\n    return _add(p1, _mul(u1, s))\n\n\ndef raster_outlines(segs, res=None, close_mm=150.0, opening_mm=350.0, min_area_m2=4.0):\n    \"\"\"Outer eaves polygons of a line drawing, snapped to the CAD lines.\"\"\"\n    from collections import deque\n    segs = [s for s in segs if seg_length(s) > 1.0]\n    if not segs:\n        return []\n    xs = [p[0] for s in segs for p in s]\n    ys = [p[1] for s in segs for p in s]\n    W, H = max(xs) - min(xs), max(ys) - min(ys)\n    if res is None:\n        res = max(20.0, min(100.0, max(W, H) / 500.0))\n    k = max(1, int(math.ceil(close_mm / 2.0 / res)))          # dilation closes gaps up to close_mm\n    pad = k + 3\n    x0, y0 = min(xs) - pad * res, min(ys) - pad * res\n    nx, ny = int(W / res) + 2 * pad + 2, int(H / res) + 2 * pad + 2\n    grid = bytearray(nx * ny)                                  # 1 = line\n    for (ax, ay), (bx, by) in segs:\n        L = math.hypot(bx - ax, by - ay)\n        n = max(1, int(L / (res * 0.5)))\n        for i in range(n + 1):\n            t = float(i) / n\n            cx = int((ax + (bx - ax) * t - x0) / res)\n            cy = int((ay + (by - ay) * t - y0) / res)\n            for dx in range(-k, k + 1):\n                for dy in range(-k, k + 1):\n                    xx, yy = cx + dx, cy + dy\n                    if 0 <= xx < nx and 0 <= yy < ny:\n                        grid[yy * nx + xx] = 1\n    outside = bytearray(nx * ny)\n    q = deque([0])\n    outside[0] = 1\n    while q:\n        c = q.popleft()\n        cx, cy = c % nx, c // nx\n        for xx, yy in ((cx + 1, cy), (cx - 1, cy), (cx, cy + 1), (cx, cy - 1)):\n            if 0 <= xx < nx and 0 <= yy < ny:\n                j = yy * nx + xx\n                if not outside[j] and not grid[j]:\n                    outside[j] = 1\n                    q.append(j)\n    inside = bytearray(1 if not outside[i] else 0 for i in range(nx * ny))\n    # opening (erode then dilate) removes gutters, downpipes and other thin attachments\n    r = k + int(math.ceil(opening_mm / res))\n\n    def run1d(src, horizontal, erode):\n        out = bytearray(nx * ny)\n        outer, inner = (ny, nx) if horizontal else (nx, ny)\n        for a in range(outer):\n            idx = [(a * nx + b) if horizontal else (b * nx + a) for b in range(inner)]\n            pre = [0] * (inner + 1)\n            for b in range(inner):\n                pre[b + 1] = pre[b] + src[idx[b]]\n            for b in range(inner):\n                lo, hi = b - r, b + r + 1\n                if erode:\n                    if lo >= 0 and hi <= inner and pre[hi] - pre[lo] == 2 * r + 1:\n                        out[idx[b]] = 1\n                else:\n                    if pre[min(hi, inner)] - pre[max(lo, 0)] > 0:\n                        out[idx[b]] = 1\n        return out\n    inside = run1d(run1d(inside, True, True), False, True)\n    inside = run1d(run1d(inside, True, False), False, False)\n    # boundary edges between inside and outside cells, as directed unit edges (inside on the left)\n    # rebuild as multimap to be safe at pinch points\n    nxt = {}\n    for yy in range(ny):\n        for xx in range(nx):\n            if not inside[yy * nx + xx]:\n                continue\n            if yy == 0 or not inside[(yy - 1) * nx + xx]:\n                nxt.setdefault((xx, yy), []).append((xx + 1, yy))\n            if xx == nx - 1 or not inside[yy * nx + xx + 1]:\n                nxt.setdefault((xx + 1, yy), []).append((xx + 1, yy + 1))\n            if yy == ny - 1 or not inside[(yy + 1) * nx + xx]:\n                nxt.setdefault((xx + 1, yy + 1), []).append((xx, yy + 1))\n            if xx == 0 or not inside[yy * nx + xx - 1]:\n                nxt.setdefault((xx, yy + 1), []).append((xx, yy))\n    loops = []\n    while nxt:\n        start = next(iter(nxt))\n        loop, cur = [start], start\n        for _ in range(4 * nx * ny):\n            lst = nxt.get(cur)\n            if not lst:\n                break\n            n2 = lst.pop()\n            if not lst:\n                del nxt[cur]\n            cur = n2\n            if cur == start:\n                break\n            loop.append(cur)\n        if len(loop) >= 4:\n            loops.append([(x0 + px * res, y0 + py * res) for px, py in loop])\n    polys = []\n    for lp in loops:\n        if _signed_area(lp) <= 0 or abs(_signed_area(lp)) < min_area_m2 * 1e6:\n            continue                                   # holes / slivers\n        # simplify the staircase: split at the extreme point so DP works on an open chain\n        i0 = min(range(len(lp)), key=lambda i: (lp[i][0], lp[i][1]))\n        ring = lp[i0:] + lp[:i0] + [lp[i0]]\n        simp = _douglas_peucker(ring, 1.5 * res)[:-1]\n        polys.append(_snap_polygon(simplify_loop(simp, 3.0, res), segs, (k + 4) * res, res * 0.5))\n    return [p for p in polys if len(p) >= 3]\n\n\ndef _snap_polygon(poly, segs, tol, outside_allow=0.0):\n    \"\"\"Move every polygon edge onto the outermost CAD line that runs along it.\"\"\"\n    n = len(poly)\n    ccw = _signed_area(poly) > 0\n    lines = []\n    for i in range(n):\n        a, b = poly[i], poly[(i + 1) % n]\n        L = _dist(a, b)\n        u = _mul(_sub(b, a), 1.0 / L) if L > 1e-9 else (1.0, 0.0)\n        out_n = (u[1], -u[0]) if ccw else (-u[1], u[0])      # outward normal\n        best = None\n        for s in segs:\n            sl = seg_length(s)\n            if sl < 0.2 * L:\n                continue\n            su = _mul(_sub(s[1], s[0]), 1.0 / sl)\n            if abs(u[0] * su[1] - u[1] * su[0]) > math.sin(math.radians(3.0)):\n                continue\n            off = _dot(_sub(s[0], a), out_n)\n            if off < -tol or off > outside_allow:      # traced edge sits just outside the eaves line\n                continue\n            t0, t1 = sorted((_dot(_sub(s[0], a), u), _dot(_sub(s[1], a), u)))\n            if min(t1, L) - max(t0, 0.0) < 0.3 * min(sl, L):\n                continue\n            if best is None or off > best[0]:\n                best = (off, s[0])\n        lines.append((best[1] if best else a, u))\n    out = []\n    for i in range(n):\n        p1, u1 = lines[i - 1]\n        p2, u2 = lines[i]\n        x = _line_intersection(p1, u1, p2, u2)\n        out.append(x if x is not None else poly[i])\n    return simplify_loop(out, 0.5, 5.0)\n\n\ndef _vertices_from_lines(lines):\n    out = []\n    n = len(lines)\n    for j in range(n):\n        p1, u1 = lines[j - 1]\n        p2, u2 = lines[j]\n        x = _line_intersection(p1, u1, p2, u2)\n        out.append(x if x is not None else p2)\n    return out\n\n\ndef remove_small_steps(poly, max_mm=300.0):\n    \"\"\"Drop gutter / downpipe bumps and small steps (<= max_mm) from an eaves outline,\n    keeping the main eaves line.\"\"\"\n    cos2 = math.cos(math.radians(2.0))\n    for mode in ('bump', 'step'):\n        changed = True\n        while changed and len(poly) > 4:\n            changed = False\n            n = len(poly)\n            E = [(poly[i], poly[(i + 1) % n]) for i in range(n)]\n            L = [_dist(a, b) for a, b in E]\n            U = [_unit_of(e) for e in E]\n            for i in range(n):\n                if L[i] > max_mm:\n                    continue\n                ip, i1, i2, i3 = (i - 1) % n, (i + 1) % n, (i + 2) % n, (i + 3) % n\n                if mode == 'bump':\n                    if L[i2] <= max_mm and _dot(U[i], U[i2]) < -cos2 and _dot(U[ip], U[i3]) > cos2:\n                        a = E[ip][0]\n                        off = abs((E[i3][0][0] - a[0]) * U[ip][1] - (E[i3][0][1] - a[1]) * U[ip][0])\n                        if off < 20.0 and n - 3 >= 3:\n                            lines = [(E[j][0], U[j]) for j in range(n) if j not in (i, i1, i2, i3)]\n                            # i-1 and i+3 are one line now: keep i-1 only\n                            poly = _vertices_from_lines(lines)\n                            changed = True\n                            break\n                else:\n                    if _dot(U[ip], U[i1]) > cos2:\n                        keep = ip if L[ip] >= L[i1] else i1\n                        lines = []\n                        for j in range(n):\n                            if j in (i, i1):\n                                continue\n                            lines.append((E[keep][0], U[keep]) if j == ip else (E[j][0], U[j]))\n                        poly = _vertices_from_lines(lines)\n                        changed = True\n                        break\n    return simplify_loop(poly, 0.5, 5.0)\n\n\ndef roof_footprints_auto(segs, tol=75.0, step_mm=300.0):\n    \"\"\"Clean drawings: exact planar outline. Messy drawings: raster fallback.\"\"\"\n    outline, ridges = split_outline_and_ridges(segs)\n    fps = roof_footprints(outline, ridges, tol=tol)\n    if fps:\n        return fps, 'exact'\n    out = []\n    for poly in raster_outlines(segs):\n        poly = remove_small_steps(poly, step_mm)\n        on_edge = []\n        n = len(poly)\n        for s in segs:\n            hit = False\n            for i in range(n):\n                a, b = poly[i], poly[(i + 1) % n]\n                L = _dist(a, b)\n                if L < 1e-6:\n                    continue\n                u = _mul(_sub(b, a), 1.0 / L)\n                d0 = abs((s[0][0] - a[0]) * u[1] - (s[0][1] - a[1]) * u[0])\n                d1 = abs((s[1][0] - a[0]) * u[1] - (s[1][1] - a[1]) * u[0])\n                if d0 < 300 and d1 < 300:\n                    hit = True\n                    break\n            if not hit:\n                on_edge.append(s)\n        slopes = [_edge_defines_slope(poly[i], poly[(i + 1) % n], on_edge, tol) for i in range(n)]\n        out.append({'points': poly, 'slopes': slopes})\n    out.sort(key=lambda f: -polygon_area(f['points']))\n    return out, 'traced'\n\ndef ridge_half_span(poly):\n    \"\"\"Ridge height of a one-slope hip roof = tan(slope) x the half-size of the largest\n    square (aligned with the building axes) that fits inside the eaves outline.\"\"\"\n    ang = _dominant_angle([(poly[i], poly[(i + 1) % len(poly)]) for i in range(len(poly))])\n    P = [_rot(q, -ang) for q in poly]\n    n = len(P)\n    edges = [(P[i], P[(i + 1) % n]) for i in range(n)]\n\n    def cheb(p, a, b):\n        ux, uy = b[0] - a[0], b[1] - a[1]\n        rx, ry = p[0] - a[0], p[1] - a[1]\n        ts = [0.0, 1.0]\n        for sgn in (1.0, -1.0):\n            den = ux - sgn * uy\n            if abs(den) > 1e-12:\n                t = (rx - sgn * ry) / den\n                if 0.0 < t < 1.0:\n                    ts.append(t)\n        return min(max(abs(rx - t * ux), abs(ry - t * uy)) for t in ts)\n\n    def depth(p):\n        return min(cheb(p, a, b) for a, b in edges)\n    xs = [q[0] for q in P]\n    ys = [q[1] for q in P]\n    x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)\n    best, bp = 0.0, None\n    step = max(x1 - x0, y1 - y0) / 120.0\n    y = y0 + step / 2\n    while y < y1:\n        x = x0 + step / 2\n        while x < x1:\n            if point_in_polygon((x, y), P):\n                dd = depth((x, y))\n                if dd > best:\n                    best, bp = dd, (x, y)\n            x += step\n        y += step\n    if bp is not None:\n        s = step / 10.0\n        for i in range(-10, 11):\n            for j in range(-10, 11):\n                q = (bp[0] + i * s, bp[1] + j * s)\n                if point_in_polygon(q, P):\n                    best = max(best, depth(q))\n    return best\n\n\n\nSKIP_LAYER_WORDS = ('HATCH', 'TEXT', 'DIM', 'ANNO', 'TITLE', 'GRID', 'DEFPOINTS', 'VIEWPORT')\nMMF = 1.0 / 304.8\nout = []\nMADE = []\n\n\ndef to_mm(v):\n    return v / MMF\n\n\ndef pt(p):\n    return (to_mm(p.X), to_mm(p.Y))\n\n\ndef layer_name(g, inherited):\n    name = None\n    try:\n        gs = doc.GetElement(g.GraphicsStyleId)\n        if gs is not None and gs.GraphicsStyleCategory is not None:\n            name = gs.GraphicsStyleCategory.Name\n    except Exception:\n        name = None\n    if not name or name == '0':\n        return inherited or name or '0'\n    return name\n\n\ndef read_layers(cad):\n    \"\"\"{layer: [segments]} in mm; arcs and splines are split into short straight pieces.\"\"\"\n    opt = Options()\n    opt.ComputeReferences = False\n    if cad.ViewSpecific:\n        opt.View = doc.GetElement(cad.OwnerViewId)\n    data = {}\n\n    def add(ln, ps):\n        for i in range(len(ps) - 1):\n            if ps[i] != ps[i + 1]:\n                data.setdefault(ln, []).append((ps[i], ps[i + 1]))\n\n    def walk(geom, inherited):\n        for g in geom:\n            ln = layer_name(g, inherited)\n            tn = tname_of(g)\n            if tn == 'GeometryInstance':\n                walk(g.GetInstanceGeometry(), ln)\n            elif tn == 'Line':\n                if g.IsBound:\n                    add(ln, [pt(g.GetEndPoint(0)), pt(g.GetEndPoint(1))])\n            elif tn == 'PolyLine':\n                add(ln, [pt(p) for p in g.GetCoordinates()])\n            elif tn in CURVE_TYPES:\n                try:\n                    add(ln, [pt(p) for p in g.Tessellate()])\n                except Exception:\n                    pass\n    top = cad.get_Geometry(opt)\n    for g in top:\n        if tname_of(g) == 'GeometryInstance':\n            walk(g.GetInstanceGeometry(), None)\n    return data\n\n\ndef type_name(t):\n    p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n    return p.AsString() if p else ''\n\n\nDRAW_VIEWS = ('ViewPlan', 'ViewDrafting', 'ViewSection')\n\n\ndef active_view():\n    \"\"\"the plan the user works in - also when the Project Browser has the focus\"\"\"\n    v = globals().get('ACTIVE_VIEW')                     # set by the SD Tools button / tests\n    if v is None:\n        v = doc.ActiveView\n    if v is not None and tname_of(v) in DRAW_VIEWS and not v.IsTemplate:\n        return v\n    try:                                                  # an open plan window\n        for uv in uidoc.GetOpenUIViews():\n            ov = doc.GetElement(uv.ViewId)\n            if ov is not None and tname_of(ov) == 'ViewPlan':\n                return ov\n    except Exception:\n        pass\n    for p in FilteredElementCollector(doc).OfClass(ViewPlan):   # the plan that holds lines\n        try:\n            if not p.IsTemplate and FilteredElementCollector(doc, p.Id).OfClass(CurveElement).GetElementCount():\n                return p\n        except Exception:\n            pass\n    return v\n\n\ndef plan_view_for(level):\n    av = active_view()\n    if av is not None and tname_of(av) == 'ViewPlan' and not av.IsTemplate:\n        return av\n    for v in FilteredElementCollector(doc).OfClass(ViewPlan):\n        try:\n            if not v.IsTemplate and v.GenLevel is not None and v.GenLevel.Id == level.Id:\n                return v\n        except Exception:\n            pass\n    return None\n\n\ndef link_cad(path, level):\n    \"\"\"link the CAD file (mm, origin to origin) unless a CAD with that name is already linked\"\"\"\n    base = os.path.basename(path).lower()\n    for c in FilteredElementCollector(doc).OfClass(ImportInstance):\n        if c.Category is not None and c.Category.Name.lower() == base:\n            return c, 'already linked'\n    if not os.path.isfile(path):\n        raise Exception('CAD file not found: ' + path)\n    if DRY_RUN:\n        return None, 'would link ' + path\n    view = plan_view_for(level)\n    if view is None:\n        raise Exception('No floor plan to link the CAD into - open a plan view')\n    o = DWGImportOptions()\n    o.Unit = ImportUnit.Millimeter\n    o.Placement = ImportPlacement.Origin\n    o.ThisViewOnly = False\n    tx_start()\n    try:\n        r = doc.Link(path, o, view)                       # IronPython: (ok, id)\n    except Exception:\n        r = doc.Link(path, o, view, ElementId.InvalidElementId)   # pythonnet: out parameter\n    eid = r[-1] if isinstance(r, tuple) else r\n    doc.Regenerate()\n    c = doc.GetElement(eid)\n    if c is None:\n        raise Exception('Revit could not link ' + path)\n    return c, 'linked now'\n\n\ndef pick_cad(level):\n    if CAD_FILE:\n        return link_cad(CAD_FILE, level)\n    cads = list(FilteredElementCollector(doc).OfClass(ImportInstance))\n    if CAD_NAME_CONTAINS:\n        m = [c for c in cads if c.Category is not None and CAD_NAME_CONTAINS.lower() in c.Category.Name.lower()]\n        if m:\n            return m[0], 'by name'\n        raise Exception('No linked CAD whose name contains \"{0}\". Linked: {1}'.format(\n            CAD_NAME_CONTAINS, ', '.join(c.Category.Name for c in cads if c.Category is not None) or 'none'))\n    try:\n        for eid in uidoc.Selection.GetElementIds():\n            e = doc.GetElement(eid)\n            if e is not None and tname_of(e) == 'ImportInstance':\n                return e, 'selected'\n    except Exception:\n        pass\n    if len(cads) == 1:\n        return cads[0], 'the only CAD linked'\n    if not cads:\n        raise Exception('No roof lines used ({0}) and no CAD linked. Draw the roof outline with lines in the '\n                        'plan view you run from (or select them), or link a CAD / give a CAD file (input 1).'.format(LINE_HOW[0] if LINE_HOW else 'none'))\n    raise Exception('Select the roof CAD in Revit first (or input 2 = part of its name). Linked CADs: ' +\n                    ', '.join(c.Category.Name for c in cads if c.Category is not None))\n\n\nLINE_HOW = []\nMAX_VIEW_LINES = 200                                      # AUTO / LINES without selection: more lines = not a roof sketch\nLINE_TYPES = ('ModelLine', 'DetailLine', 'ModelArc', 'DetailArc', 'ModelCurve', 'DetailCurve',\n              'ModelNurbSpline', 'DetailNurbSpline', 'ModelEllipse', 'DetailEllipse', 'ModelHermiteSpline')\n\n\ndef curve_segs(cv):\n    if tname_of(cv) == 'Line':\n        return [(pt(cv.GetEndPoint(0)), pt(cv.GetEndPoint(1)))]\n    ps = [pt(p) for p in cv.Tessellate()]\n    return [(ps[i], ps[i + 1]) for i in range(len(ps) - 1) if ps[i] != ps[i + 1]]\n\n\ndef style_of(e):\n    try:\n        return e.LineStyle.Name\n    except Exception:\n        return ''\n\n\ndef read_revit_lines():\n    \"\"\"roof outline drawn with Revit lines: selected lines first, else lines of input-2 style in the active view\"\"\"\n    picked = []\n    try:\n        for eid in uidoc.Selection.GetElementIds():\n            e = doc.GetElement(eid)\n            if e is not None and tname_of(e) in LINE_TYPES:\n                picked.append(e)\n    except Exception:\n        pass\n    how = 'selected lines'\n    if not picked and SOURCE != 'C':                     # LINES and AUTO: the lines in the view\n        av = active_view()\n        pool = list(FilteredElementCollector(doc, av.Id).OfClass(CurveElement)) if av is not None else []\n        want = LINES_STYLE.upper()\n        picked = [e for e in pool if tname_of(e) in LINE_TYPES and (not want or want == 'ALL' or want in style_of(e).upper())]\n        how = '{0} lines in view \"{1}\"'.format(('\"' + LINES_STYLE + '\"') if LINES_STYLE else 'all', av.Name if av is not None else '?')\n    if how != 'selected lines' and not LINES_STYLE and len(picked) > MAX_VIEW_LINES:\n        # a busy drawing view (CAD traced, annotation ...) - never turn all of it into a roof\n        if SOURCE == 'L':\n            raise Exception('This view has {0} lines - too many to be one roof outline. Select only the roof lines '\n                            '(or give their line style, e.g. ROOF) and run again.'.format(len(picked)))\n        return [], how + ' - {0} lines, too many: ignored (select the roof lines)'.format(len(picked)), 0\n    segs = []\n    for e in picked:\n        try:\n            segs.extend(curve_segs(e.GeometryCurve))\n        except Exception:\n            pass\n    return segs, how, len(picked)\n\n\ndef pick_layers(layers):\n    if LAYER_CONTAINS.strip():\n        use = [n for n in layers if LAYER_CONTAINS.lower() in n.lower()]\n        if not use:\n            raise Exception('No layer containing \"{0}\". Layers: {1}'.format(LAYER_CONTAINS, ', '.join(sorted(layers))))\n        return use\n    # automatic: the layer whose drawing gives the biggest closed roof outline (prefer names with ROOF)\n    best, best_score = None, 0.0\n    for n, segs in layers.items():\n        if len(segs) < 3 or any(w in n.upper() for w in SKIP_LAYER_WORDS):\n            continue\n        try:\n            fps, _ = roof_footprints_auto(segs)\n        except Exception:\n            continue\n        if not fps:\n            continue\n        score = sum(polygon_area(f['points']) for f in fps) * (3.0 if 'ROOF' in n.upper() else 1.0)\n        if score > best_score:\n            best, best_score = n, score\n    if best is None:\n        raise Exception('No layer with a closed roof outline. Layers: ' + ', '.join(sorted(layers)))\n    return [best]\n\n\ntry:\n    log('--- B08 roof v2 (DRY_RUN={0}) file \"{1}\" cad \"{2}\" lines \"{3}\" level \"{4}\" ridge {5} slope {6}'.format(\n        DRY_RUN, CAD_FILE, CAD_NAME_CONTAINS, LINES_STYLE, LEVEL_NAME, RIDGE_HEIGHT_MM, SLOPE_DEG))\n    all_lv = sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation)\n    if LEVEL_NAME:\n        lv = [l for l in all_lv if l.Name.lower() == LEVEL_NAME.lower()] or \\\n             [l for l in all_lv if LEVEL_NAME.lower() in l.Name.lower()]\n        if not lv:\n            raise Exception('No level named \"{0}\". Levels: {1}'.format(LEVEL_NAME, ', '.join(l.Name for l in all_lv)))\n        level = lv[0]\n    else:                                                 # blank = the level of the plan you work in, else the top level\n        level = None\n        try:\n            gl = active_view().GenLevel\n            level = doc.GetElement(gl.Id) if gl is not None else None\n        except Exception:\n            level = None\n        if level is None:\n            level = all_lv[-1]\n    line_segs, line_how, n_lines = ([], '', 0) if SOURCE == 'C' else read_revit_lines()\n    LINE_HOW.append(line_how)\n    if SOURCE == 'L' and not line_segs:\n        raise Exception('Roof from LINES: no lines found ({0}). Draw the roof outline with model / detail lines '\n                        'in this plan view (select them, or set the line style), or set Roof from = CAD.'.format(line_how))\n    if line_segs:\n        cad_name = 'REVIT LINES'\n        use = [line_how]\n        segs = line_segs\n        src = '{0} Revit line(s) ({1})'.format(n_lines, line_how)\n    else:\n        cad, cad_how = pick_cad(level)\n        if cad is None:                                   # dry run of a link\n            raise Exception('Dry run: ' + cad_how + ' - set Dry run = False to link it and build the roof')\n        cad_name = cad.Category.Name\n        layers = read_layers(cad)\n        use = pick_layers(layers)\n        segs = []\n        for n in use:\n            segs.extend(layers[n])\n        src = 'CAD \"{0}\" ({1}), layer(s) {2}'.format(cad_name, cad_how, ', '.join(use))\n    fps, how = roof_footprints_auto(segs)\n    if not fps:\n        raise Exception('No closed roof outline found in ' + src + ' - the outline lines must meet / close')\n    mono = {'N': (0.0, 1.0), 'S': (0.0, -1.0), 'E': (1.0, 0.0), 'W': (-1.0, 0.0)}.get(MONO_HIGH_SIDE.strip().upper()[:1])\n    if mono:\n        for f in fps:\n            P = f['points']\n            ccw = _signed_area(P) > 0\n            sl = []\n            for i in range(len(P)):\n                a, b = P[i], P[(i + 1) % len(P)]\n                L = math.hypot(b[0] - a[0], b[1] - a[1]) or 1.0\n                u = ((b[0] - a[0]) / L, (b[1] - a[1]) / L)\n                nrm = (u[1], -u[0]) if ccw else (-u[1], u[0])          # outward normal\n                sl.append(nrm[0] * mono[0] + nrm[1] * mono[1] < -0.7)  # only the low eaves slope\n            f['slopes'] = sl\n    if RIDGE_HEIGHT_MM and RIDGE_HEIGHT_MM > 0:\n        if mono:\n            ext = max(max(p[0] * mono[0] + p[1] * mono[1] for p in f['points']) -\n                      min(p[0] * mono[0] + p[1] * mono[1] for p in f['points']) for f in fps)\n            tan = RIDGE_HEIGHT_MM / ext\n        else:\n            half = max(ridge_half_span(f['points']) for f in fps)\n            tan = RIDGE_HEIGHT_MM / half\n    else:\n        tan = math.tan(math.radians(SLOPE_DEG or 0))\n    flat = tan <= 1e-6\n    if RIDGE_HEIGHT_MM and RIDGE_HEIGHT_MM > 0 and math.degrees(math.atan(tan)) > 60:\n        out.append('CHECK: {0:.0f} deg is very steep - is the drawing at real size (mm)? '\n                   'Use a smaller ridge height, or ridge 0 + a slope.'.format(math.degrees(math.atan(tan))))\n    deg = math.degrees(math.atan(tan))\n    summary = '{0}: {1} roof(s), outline {2}, {3}'.format(\n        src, len(fps), how, 'FLAT' if flat else '{0:.2f} deg'.format(deg))\n    for k, f in enumerate(fps):\n        if flat:\n            out.append('Roof {0}: {1} edges, flat, {2:.1f} m2'.format(k + 1, len(f['points']), polygon_area(f['points']) / 1e6))\n        else:\n            out.append('Roof {0}: {1} edges, {2} sloping at {3:.1f} deg, {4} gable/high, {5:.1f} m2'.format(\n                k + 1, len(f['points']), sum(f['slopes']), deg, len(f['slopes']) - sum(f['slopes']),\n                polygon_area(f['points']) / 1e6))\n    if DRY_RUN:\n        tx_done()                                         # a CAD linked just now stays (nothing else changed)\n        out.insert(0, 'DRY RUN (nothing built): ' + summary)\n    else:\n        tag = 'CAD2BIM-ROOF|' + cad_name\n        # own transactions in Dynamo too: step 1 (flat roof on the outline) must survive step 2 (slopes)\n        if DYNAMO:\n            TransactionManager.Instance.ForceCloseTransaction()\n        else:\n            tx_done()                                     # a CAD linked just now stays\n\n        def run_tx(name, fn, rollback_on_error):\n            CAP_MODE['rollback'] = rollback_on_error\n            t = Transaction(doc, name)\n            if _Cap is not None:\n                try:\n                    o = t.GetFailureHandlingOptions()\n                    o.SetFailuresPreprocessor(_Cap())\n                    if rollback_on_error:\n                        o.SetClearAfterRollback(True)\n                    t.SetFailureHandlingOptions(o)\n                except Exception:\n                    pass\n            t.Start()\n            try:\n                fn()\n            except Exception:\n                if t.HasStarted() and not t.HasEnded():\n                    t.RollBack()\n                raise\n            return str(t.Commit())\n\n        state = {}\n\n        def step1():                                      # remove the old roof, make the type, flat roofs on the outline\n            for r in list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Roofs).WhereElementIsNotElementType()):\n                c = r.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n                if c is not None and (c.AsString() or '') == tag:\n                    doc.Delete(r.Id)\n            rtype = None\n            want = ROOF_TYPE_NAME.strip() or 'S-RCC ROOF SLAB {0:.0f}'.format(THICKNESS_MM)\n            for rt in FilteredElementCollector(doc).OfClass(RoofType):\n                if type_name(rt).lower() == want.lower():\n                    rtype = rt\n            if rtype is None:\n                base = [rt for rt in FilteredElementCollector(doc).OfClass(RoofType) if rt.GetCompoundStructure() is not None][0]\n                rtype = base.Duplicate(want)\n                mat = None\n                for m in FilteredElementCollector(doc).OfClass(Material):\n                    if m.Name == 'Concrete - Cast-in-Place Concrete':\n                        mat = m.Id\n                if mat is None:\n                    mat = Material.Create(doc, 'Concrete - Cast-in-Place Concrete')\n                rtype.SetCompoundStructure(CompoundStructure.CreateSingleLayerCompoundStructure(\n                    MaterialFunctionAssignment.Structure, THICKNESS_MM * MMF, mat))\n            state['rtype'] = rtype\n            z = level.Elevation\n            ws = None\n            if doc.IsWorkshared:\n                for w in FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset):\n                    if w.Name == 'S-ZZ-Roof':\n                        ws = w\n                if ws is None and WorksetTable.IsWorksetNameUnique(doc, 'S-ZZ-Roof'):\n                    ws = Workset.Create(doc, 'S-ZZ-Roof')\n            state['roofs'] = []\n            for fp in fps:\n                P = fp['points']\n                n = len(P)\n                ca = CurveArray()\n                mids = []\n                for i in range(n):\n                    a, b = P[i], P[(i + 1) % n]\n                    ca.Append(Line.CreateBound(XYZ(a[0] * MMF, a[1] * MMF, z), XYZ(b[0] * MMF, b[1] * MMF, z)))\n                    mids.append(((a[0] + b[0]) / 2.0, (a[1] + b[1]) / 2.0))\n                try:                                      # Dynamo CPython3 (pythonnet): out parameter as a value\n                    res = doc.Create.NewFootPrintRoof(ca, level, rtype, ModelCurveArray())\n                except Exception:                         # IronPython (pyRevit button): out parameter by reference\n                    res = doc.Create.NewFootPrintRoof(ca, level, rtype, clr.Reference[ModelCurveArray](ModelCurveArray()))\n                roof = res[0] if isinstance(res, tuple) else res\n                doc.Regenerate()\n                for arr in roof.GetProfiles():\n                    for mc in arr:\n                        roof.set_DefinesSlope(mc, False)  # flat first - always buildable\n                roof.get_Parameter(BuiltInParameter.ROOF_LEVEL_OFFSET_PARAM).Set(BASE_OFFSET_MM * MMF)\n                roof.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS).Set(tag)\n                if ws is not None:\n                    try:\n                        roof.get_Parameter(BuiltInParameter.ELEM_PARTITION_PARAM).Set(ws.Id.IntegerValue)\n                    except Exception:\n                        pass\n                state['roofs'].append((roof.Id, fp, mids))\n\n        REVIT_MSGS[:] = []\n        st1 = run_tx('CAD2BIM roof - outline', step1, False)\n        kept = [x for x in state.get('roofs', []) if doc.GetElement(x[0]) is not None]\n        if not kept:\n            raise Exception('Revit could not make a roof on this outline ({0}): {1}'.format(\n                st1, '; '.join(REVIT_MSGS) or 'check that the outline lines meet and do not cross'))\n        flat_ones = 0\n        if not flat:\n            for rid, fp, mids in kept:\n                def step2(rid=rid, fp=fp, mids=mids):\n                    roof = doc.GetElement(rid)\n                    n = len(mids)\n                    for arr in roof.GetProfiles():\n                        for mc in arr:\n                            cv = mc.GeometryCurve\n                            m = ((to_mm(cv.GetEndPoint(0).X) + to_mm(cv.GetEndPoint(1).X)) / 2.0,\n                                 (to_mm(cv.GetEndPoint(0).Y) + to_mm(cv.GetEndPoint(1).Y)) / 2.0)\n                            k = min(range(n), key=lambda i: (mids[i][0] - m[0]) ** 2 + (mids[i][1] - m[1]) ** 2)\n                            if fp['slopes'][k]:\n                                roof.set_DefinesSlope(mc, True)\n                                roof.set_SlopeAngle(mc, tan)\n                    doc.Regenerate()\n                REVIT_MSGS[:] = []\n                try:\n                    st2 = run_tx('CAD2BIM roof - slope', step2, True)\n                except Exception as ex:\n                    st2 = 'error ' + str(ex)\n                r = doc.GetElement(rid)\n                sloped = False\n                try:\n                    sloped = any(r.get_DefinesSlope(mc) for arr in r.GetProfiles() for mc in arr)\n                except Exception:\n                    pass\n                if not sloped:\n                    flat_ones += 1\n                    log('slope rolled back ({0}): {1}'.format(st2, '; '.join(REVIT_MSGS)))\n        rtype = state['rtype']\n        out.insert(0, 'OK: ' + summary + ', type ' + type_name(rtype) + ', level ' + level.Name)\n        if flat_ones:\n            out.insert(1, 'NOTE: {0} roof(s) built FLAT on the outline - Revit could not slope them at {1:.0f} deg. '\n                          'Set the slopes in Revit (select roof > Edit Footprint).'.format(flat_ones, deg))\nexcept Exception as ex:\n    try:\n        tx_abort()\n    except Exception:\n        pass\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nif DYNAMO:\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('CAD2BIM - B08 Roof')\n        td.MainInstruction = 'Roof failed' if any(l.startswith('FAILED') for l in out) else \\\n            ('Dry run - nothing built' if DRY_RUN else 'Roof built')\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "0673fcd05146479dbfaf7a26a7f01989",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "4a56fa178f10498f912d1bc7880f6fb2",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f140c9807d57403a82a392bffd36b6f3",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "22622ddb1c96442ca3e41eab0caf0c03",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "69d2de22a38148f980da6a7ed163d367",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c33fc76a7ef145a79b5731b84f3251f6",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a536533fc8a84986aa1a60f1e2bc526f",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f5db306f1743426e90e99e2e224c53d8",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bfda688d8da445cbbe313c8ce86a1bf8",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3be70a708fb54ff3b0f4c59713342126",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1935f01f0d19411291d76911683c68a5",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f6356ec46ac7407eb64fcc3fa0c095e2",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9450df9a47ac4f9e8dbab39c8dbd8ea6",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3afc8c8ac6c042ab87f6fcd8d6fa2e20",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f6f42ea1ffec47eb9e3963712e5f2b39",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 700.0,
+      "WatchHeight": 560.0,
+      "Id": "dcd0904f0e0d428bbed8608057af9958",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "484f89ba385643c1b033abec1d4e88cd",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0cb87d4e50174bf08959e65eefa6328a",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "7bdeb57b9cc446169dbbfcf103f5933e",
+      "End": "4a56fa178f10498f912d1bc7880f6fb2",
+      "Id": "25c0c4b0c8cf4d0d98da4265ac23b2fb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "92685ec7f4284539beb8126b98f59d88",
+      "End": "f140c9807d57403a82a392bffd36b6f3",
+      "Id": "ff161f9ea47543ec8564c928b735458e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e0c5a1a29c0f418daa4e4d8bce104183",
+      "End": "22622ddb1c96442ca3e41eab0caf0c03",
+      "Id": "8e09855502214b97a8350a0869d86b2d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3a16e0be45bd43d3a3e011ef5c533799",
+      "End": "69d2de22a38148f980da6a7ed163d367",
+      "Id": "3302ca5b2464421eb2a6a76c40abcc12",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b7d8dabac66f49eb872c0493a2f38baf",
+      "End": "c33fc76a7ef145a79b5731b84f3251f6",
+      "Id": "58972354c3c245b49effbd856be62693",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "42f30bf520204a98bbdd4dca38df68b1",
+      "End": "a536533fc8a84986aa1a60f1e2bc526f",
+      "Id": "ee253a0b19ad41ceab51cb18069f438d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ef3a8a8e76994d6788586e6f5baef1e1",
+      "End": "f5db306f1743426e90e99e2e224c53d8",
+      "Id": "bcb4da0b25f840eb9d5170e7a563b24e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "480c7a8b5d9a4c54a9ce1e0f0d06f250",
+      "End": "bfda688d8da445cbbe313c8ce86a1bf8",
+      "Id": "12441fadde5344e4a702733a00a7c7be",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8af2e14a7fa045a08d4ffdc3c4d7bcc1",
+      "End": "3be70a708fb54ff3b0f4c59713342126",
+      "Id": "40d0366817774bbfbaf23ce235b275fc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a01b11a89dd24648ac5610f68a832397",
+      "End": "1935f01f0d19411291d76911683c68a5",
+      "Id": "5d18e8cb992949afaea6639b42d2abbd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9f8e5300902c4761a774ea7c03e2ba87",
+      "End": "f6356ec46ac7407eb64fcc3fa0c095e2",
+      "Id": "c01e03114a564b42b6423178906000bf",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b6fa3feb10b043309c1a837cceaa1c73",
+      "End": "9450df9a47ac4f9e8dbab39c8dbd8ea6",
+      "Id": "d3674bb7e10846dd9eab95ecd3c1b7d4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "84aab1d23aa74c229ad5ead2a55cd25a",
+      "End": "3afc8c8ac6c042ab87f6fcd8d6fa2e20",
+      "Id": "4a241f8809bd435cae940ad8566cff96",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f6f42ea1ffec47eb9e3963712e5f2b39",
+      "End": "484f89ba385643c1b033abec1d4e88cd",
+      "Id": "3add6a56920b4a2ab5b2d1322a970ae7",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "4380c3a4ee4a4b24968e9f76f48f5d12",
+        "Name": "0  ROOF FROM:  LINES (drawn in the plan view) / CAD / AUTO",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "965eb8873ac44e41979bfb9efe46b481",
+        "Name": "1  CAD file to link  .dwg / .dxf  (blank = use a linked / selected CAD)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 135
+      },
+      {
+        "Id": "1c5df9ba68e74151ac220844d27b745e",
+        "Name": "2  CAD name contains  (blank = selected CAD or the only one)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 270
+      },
+      {
+        "Id": "46519b5ef564467da8297f8213445135",
+        "Name": "3  Line style  (blank = all lines in the view; selected lines are used first)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 405
+      },
+      {
+        "Id": "d1f8803173bb42c69d42baff8738791c",
+        "Name": "4  CAD layer contains  (blank = found automatically)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 540
+      },
+      {
+        "Id": "dd1ee1f8d81b4f3bab48dd2a7f43efef",
+        "Name": "5  Level the eaves sit on  (blank = level of the plan you run from)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 0
+      },
+      {
+        "Id": "163bc834fe48425b9a5f5b0d6f1c8c31",
+        "Name": "6  Ridge height mm  (0 = not used - the SLOPE below decides)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 135
+      },
+      {
+        "Id": "9e823160309a4461b97bddf6609f7e79",
+        "Name": "7  SLOPE deg  for every eave edge  (0 = flat; change in Revit any time)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 270
+      },
+      {
+        "Id": "29f4dfe16194413ba2e3a986122cdcae",
+        "Name": "8  Roof type  (blank = S-RCC ROOF SLAB <thk>)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 405
+      },
+      {
+        "Id": "9e8e87d130864d7b89fc33fa429db581",
+        "Name": "9  Thickness mm  (new RCC type)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 540
+      },
+      {
+        "Id": "dd944ee910af4684aada1dd4e1ecf082",
+        "Name": "10  Base offset mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 675
+      },
+      {
+        "Id": "2f696eaef8b440a9ae92031b65dd5dee",
+        "Name": "11  Mono-pitch high side  N / S / E / W  (blank = read the drawing)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 0
+      },
+      {
+        "Id": "fade93c3198f467a842229d85fe444aa",
+        "Name": "12  Dry run  (True = report only, nothing built)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 135
+      },
+      {
+        "Id": "0673fcd05146479dbfaf7a26a7f01989",
+        "Name": "CAD2BIM  B08 ROOF  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1600.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "dcd0904f0e0d428bbed8608057af9958",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1950.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "350bc8bda33941618bae04d806dc1ccd",
+        "Title": "1  ROOF FROM  (your lines or a CAD)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "4380c3a4ee4a4b24968e9f76f48f5d12",
+          "965eb8873ac44e41979bfb9efe46b481",
+          "1c5df9ba68e74151ac220844d27b745e",
+          "46519b5ef564467da8297f8213445135",
+          "d1f8803173bb42c69d42baff8738791c"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 480.0,
+        "Height": 830,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 735,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "30cb30b7560d40b2abe1f35ad981a570",
+        "Title": "2  ROOF  (level, height / slope, type)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "dd1ee1f8d81b4f3bab48dd2a7f43efef",
+          "163bc834fe48425b9a5f5b0d6f1c8c31",
+          "9e823160309a4461b97bddf6609f7e79",
+          "29f4dfe16194413ba2e3a986122cdcae",
+          "9e8e87d130864d7b89fc33fa429db581",
+          "dd944ee910af4684aada1dd4e1ecf082"
+        ],
+        "HasNestedGroups": false,
+        "Left": 500.0,
+        "Top": -95.0,
+        "Width": 480.0,
+        "Height": 965,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 870,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "88435928459a4d5db9ded06e781ecd16",
+        "Title": "3  OPTIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "2f696eaef8b440a9ae92031b65dd5dee",
+          "fade93c3198f467a842229d85fe444aa"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1020.0,
+        "Top": -95.0,
+        "Width": 480.0,
+        "Height": 425,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 330,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "6a3e56b665f7407d9d3fdd20c4d79179",
+        "Title": "HOW TO USE:  draw the roof outline (+ hips / ridges) with lines in a plan, OR link / give a CAD roof plan.  Set ROOF FROM, level and SLOPE > Run.  The outline follows your lines / CAD.  Run again = replaces the roof it made.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -220.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

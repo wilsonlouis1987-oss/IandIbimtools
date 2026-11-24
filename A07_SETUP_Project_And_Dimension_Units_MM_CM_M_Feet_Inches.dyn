@@ -1,0 +1,601 @@
+{
+  "Uuid": "cda469a9-bbfe-4371-8ff6-524fb02c4b4c",
+  "IsCustomNode": false,
+  "Description": "UNITS: one click mm / cm / m / feet-inches / decimal feet for the project units and every dimension type (display only, sizes unchanged)",
+  "Name": "A07_SETUP_Project_And_Dimension_Units_MM_CM_M_Feet_Inches",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "c9d19741cb9347469e216c1d7d076f23",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a162e73fa0d74a3eab0e88a1ed07edde",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "MM"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "f8f211cc9ed949f0ba6580fe50413af7",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "51eebaaa7def4229be97a70329ab1309",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "031dfb14ce03401eb33f742d5b4b4407",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4b7cd0d528ce4a3fa4c569986433dcb0",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "02c3a62e0bd14e4aa24db0ec6d100ebe",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c9b1da6da06c4434a909e895dfae9d0b",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "64823bbe813d4b2a98624d8c2bb1c930",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9da308e77f0a454796729b1beaf8b076",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "ALL"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "54126b324a29440aaefe4471356f6932",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "92b77fc978cd46bc80f85d9eff5c9bf9",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4353af70cfee4ba0897085e64fc54c94",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4a6cc8dff41b4a98b835cf1f3f53c917",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "347fc8ece47d4db797ed1fc3e3a9c293",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "56c51942bd4a470ca802c42e6f43c120",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  A07 PROJECT + DIMENSION UNITS - one click mm / cm / m / feet-inches / decimal feet   (Revit 2026)   v2\n#  Sets the project's display units (Manage > Project Units) for\n#    Length (+ the other length-type specs you tick: slab / wall thickness use Length),\n#    Area and Volume  -> metric (m2, m3) or imperial (ft2, ft3), with sensible rounding.\n#  Dimension types (linear, radial, diameter, arc, spot elevation / coordinate) get the same unit, so the\n#  dimensions in every view change too (angular + slope stay).  Optional: name filter, rounding, unit symbol.\n#  Nothing in the model moves or changes size - only how numbers are shown (dims, schedules, tags, properties).\n#  PREVIEW (make = False) reports old -> new and changes nothing.  One undo (Ctrl+Z).\n#  Runs in pyRevit (IronPython 2.7) and Dynamo CPython3.\n# =====================================================================\nimport os\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *                           # noqa\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'A07_units_log.txt')\n\n# choice -> (label, length unit, length accuracy, area unit, area accuracy, volume unit, volume accuracy)\n#   accuracy is in the unit itself (Revit rule); feet-inches accuracy is in feet (1/8\" = 1/96 ft)\nCHOICES = {\n    'MM': ('millimetres', 'Millimeters', 1.0, 'SquareMeters', 0.01, 'CubicMeters', 0.01),\n    'CM': ('centimetres', 'Centimeters', 0.1, 'SquareMeters', 0.01, 'CubicMeters', 0.01),\n    'M': ('metres', 'Meters', 0.001, 'SquareMeters', 0.01, 'CubicMeters', 0.01),\n    'FT-IN': ('feet-inches', 'FeetFractionalInches', 1.0 / 96.0, 'SquareFeet', 0.01, 'CubicFeet', 0.01),\n    'FT': ('decimal feet', 'Feet', 0.01, 'SquareFeet', 0.01, 'CubicFeet', 0.01),\n}\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ndef norm_choice(choice):\n    c = str(choice or 'MM').strip().upper().replace(' ', '').replace('_', '-')\n    if c in CHOICES:\n        return c\n    if c.startswith('MM') or c.startswith('MILLI'):\n        return 'MM'\n    if c.startswith('CM') or c.startswith('CENTI'):\n        return 'CM'\n    if c in ('METRE', 'METER', 'METRES', 'METERS'):\n        return 'M'\n    if c.startswith('FEETINCH') or c.startswith('FT-IN') or c.startswith('FTIN') or \"'-\" in c or 'INCH' in c:\n        return 'FT-IN'\n    if c.startswith('DEC') or c in ('FEET', 'FOOT', \"'\"):\n        return 'FT' if c.startswith('DEC') else 'FT-IN'\n    raise Exception('Units \"{0}\" not known - use MM, CM, M, FT-IN (feet-inches) or FT (decimal feet)'.format(choice))\n\n\ndef unit_name(fo):\n    \"\"\"readable name of a FormatOptions' unit\"\"\"\n    try:\n        if fo.UseDefault:\n            return 'default'\n    except Exception:\n        pass\n    try:\n        tid = fo.GetUnitTypeId()\n        try:\n            return LabelUtils.GetLabelForUnit(tid)\n        except Exception:\n            return tid.TypeId.split(':')[-1].split('-')[0]\n    except Exception:\n        return '?'\n\n\ndef current_units(doc):\n    u = doc.GetUnits()\n    out = {}\n    for key, spec in (('Length', SpecTypeId.Length), ('Area', SpecTypeId.Area), ('Volume', SpecTypeId.Volume)):\n        try:\n            out[key] = unit_name(u.GetFormatOptions(spec))\n        except Exception:\n            out[key] = '?'\n    return out\n\n\ndef _fo(unit_attr, acc, symbol=False):\n    tid = getattr(UnitTypeId, unit_attr)\n    fo = FormatOptions(tid)\n    try:\n        fo.UseDefault = False\n    except Exception:\n        pass\n    try:\n        if fo.IsValidAccuracy(acc):\n            fo.Accuracy = acc\n    except Exception as ex:\n        log('accuracy {0} {1}: {2}'.format(unit_attr, acc, ex))\n    try:                                                  # 350 cm, 11.5 cm - not 350.0\n        if fo.CanSuppressTrailingZeros():\n            fo.SuppressTrailingZeros = True\n    except Exception:\n        pass\n    if symbol:\n        try:\n            syms = [x for x in fo.GetValidSymbols() if x is not None and x.TypeId]\n            if syms:\n                fo.SetSymbolTypeId(syms[0])\n        except Exception as ex:\n            log('symbol {0}: {1}'.format(unit_attr, ex))\n    return fo\n\n\ndef dim_accuracy(c, rounding, default):\n    \"\"\"rounding typed by the user: metric / decimal feet = number of decimals (0, 1, 2);\n    feet-inches = 1/x inch (8 = 1/8\", 16 = 1/16\", 1 = whole inches).  blank = default\"\"\"\n    r = str(rounding if rounding is not None else '').strip().replace('\"', '')\n    if not r:\n        return default\n    if '/' in r:\n        r = r.split('/')[-1]\n    try:\n        n = float(r)\n    except Exception:\n        raise Exception('Rounding \"{0}\" - use decimals (0, 1, 2) or for feet-inches 1/x inch (8, 16)'.format(rounding))\n    if c == 'FT-IN':\n        return 1.0 / (12.0 * max(1.0, n))\n    return 10.0 ** (-int(n))\n\n\nSKIP_STYLES = ('Angular', 'SpotSlope')\n\n\ndef dim_types(doc, name_filter=''):\n    \"\"\"length-type dimension types (linear, aligned, radial, diameter, arc length, spot elevation / coordinate)\"\"\"\n    words = [w.strip().upper() for w in str(name_filter or '').split(',') if w.strip() and w.strip().upper() != 'ALL']\n    skip_vals = []\n    for nm in SKIP_STYLES:\n        try:\n            skip_vals.append(getattr(DimensionStyleType, nm))\n        except Exception:\n            pass\n    out, skipped = [], []\n    for dt in FilteredElementCollector(doc).OfClass(DimensionType):\n        try:\n            nm = dt.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM).AsString() or ''\n        except Exception:\n            nm = ''\n        if not nm:                                        # system \"family\" rows have no name\n            continue\n        try:\n            st = dt.StyleType\n            if any(st == v for v in skip_vals):\n                continue\n        except Exception:\n            pass\n        if words and not any(w in nm.upper() for w in words):\n            continue\n        try:\n            fo = dt.GetUnitsFormatOptions()\n            if not fo.UseDefault and not UnitUtils.IsValidUnit(SpecTypeId.Length, fo.GetUnitTypeId()):\n                skipped.append(nm)\n                continue\n        except Exception:\n            skipped.append(nm)\n            continue\n        out.append((dt, nm))\n    return out, skipped\n\n\ndef dim_unit_name(dt):\n    try:\n        fo = dt.GetUnitsFormatOptions()\n        return 'project' if fo.UseDefault else unit_name(fo)\n    except Exception:\n        return '?'\n\n\ndef run(doc, choice='MM', area_volume=True, make=True, project=True, dims=True, dim_filter='', rounding='',\n        dim_symbol=False):\n    if doc is None:\n        raise Exception('No Revit document open.')\n    c = norm_choice(choice)\n    label, lu, la, au, aa, vu, va = CHOICES[c]\n    before = current_units(doc)\n    out, specs, drows, dskip = [], [], [], []\n    if project:\n        specs = [('Length', SpecTypeId.Length, lu, la)]\n        if area_volume:\n            specs += [('Area', SpecTypeId.Area, au, aa), ('Volume', SpecTypeId.Volume, vu, va)]\n    dacc = dim_accuracy(c, rounding, la)\n    t = Transaction(doc, 'A07 Units -> ' + label)\n    t.Start()\n    try:\n        if specs:\n            units = doc.GetUnits()\n            for key, spec, ua, acc in specs:\n                units.SetFormatOptions(spec, _fo(ua, acc))\n            doc.SetUnits(units)\n        if dims:\n            types, dskip = dim_types(doc, dim_filter)\n            for dt, nm in types:\n                old = dim_unit_name(dt)\n                try:\n                    dt.SetUnitsFormatOptions(_fo(lu, dacc, dim_symbol))\n                    drows.append((nm, old, dim_unit_name(dt)))\n                except Exception as ex:\n                    dskip.append('{0} ({1})'.format(nm, str(ex).splitlines()[0][:60]))\n        after = current_units(doc)\n    except Exception:\n        if t.HasStarted() and not t.HasEnded():\n            t.RollBack()\n        raise\n    if make:\n        t.Commit()\n        out.append('Units set to {0} in \"{1}\"'.format(label.upper(), doc.Title))\n    else:\n        t.RollBack()\n        out.append('PREVIEW (RUN = False): nothing changed - \"{0}\" would get {1}'.format(doc.Title, label.upper()))\n    if specs:\n        out.append('PROJECT UNITS:')\n        for key, spec, ua, acc in specs:\n            out.append('  {0}: {1}  ->  {2}'.format(key, before.get(key, '?'), after.get(key, '?')))\n        if not area_volume:\n            out.append('  Area / Volume left as they were ({0} / {1})'.format(before.get('Area'), before.get('Volume')))\n    else:\n        out.append('PROJECT UNITS: not changed (still {0})'.format(before.get('Length')))\n    if dims:\n        out.append('DIMENSION TYPES: {0} set to {1}{2}{3}'.format(\n            len(drows), label, ' with unit symbol' if dim_symbol else '',\n            '' if not str(rounding or '').strip() else ', rounding ' + str(rounding)))\n        for nm, old, new in drows[:12]:\n            out.append('  {0}: {1} -> {2}'.format(nm, old, new))\n        if len(drows) > 12:\n            out.append('  ... and {0} more'.format(len(drows) - 12))\n        if dskip:\n            out.append('  left alone: ' + ', '.join(dskip[:8]))\n        if not drows and not dskip:\n            out.append('  no dimension type matched \"{0}\"'.format(dim_filter))\n        out.append('  (angular and slope dimensions are never changed)')\n    out.append('Only the display changes - the model keeps its real sizes.  Ctrl+Z undoes it.')\n    log('\\n'.join(out))\n    return out\n\n\n# =====================================================================\n#  DYNAMO / DYNAMO PLAYER PART  -  inputs:\n#    0  Units                MM / CM / M / FT-IN (feet-inches) / FT (decimal feet)\n#    1  Change project units True  (Manage > Project Units: length)\n#    2  Change dimensions    True  (every linear / radial / diameter / arc / spot dimension type)\n#    3  Area + volume too    True  (m2 + m3, or ft2 + ft3)\n#    4  Dimension types      ALL, or words the type name contains (comma list)\n#    5  Dim rounding         blank = normal,  0 / 1 / 2 decimals,  feet-inches: 8 = 1/8 inch, 16 = 1/16\n#    6  Unit symbol on dims  False (True = 350 cm, 3500 mm ...)\n#    7  RUN                  False = PREVIEW (shows old -> new, changes nothing),  True = change\n#  Only the display changes - the model keeps its real sizes.  Ctrl+Z in Revit undoes.\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _d = DocumentManager.Instance.CurrentDBDocument\n        if _d is not None:\n            doc = _d\n            TM = TransactionManager\n    except Exception:\n        pass\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('UNIT_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and not v.strip()):\n        return default\n    return v\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\nout = []\ntry:\n    if TM is not None:\n        TM.Instance.ForceCloseTransaction()\n    out = run(doc, str(_inp(0, 'MM')), _flag(3, True), _flag(7, False), _flag(1, True), _flag(2, True),\n              str(_inp(4, 'ALL')), str(_inp(5, '')), _flag(6, False))\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('A07 Units')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else (\n            'Preview - nothing changed' if out and out[0].startswith('PREVIEW') else 'Units changed')\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "2927b02072ee498797d902e4ad897c77",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "e77188313fa943f1929466c9995ec8c5",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7374bc3d1bd94493bac2ec14606a3d56",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "552a9a51e5a6412fb6ee940e05742e64",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "130bbe3eaa844f1db9b734f0475f1de0",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0e0638f2a64a4880a101ffc8066d32f4",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "af17d75af90e440eba44cae8c89e4590",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "233cc1a39471496bba3cc7bcb4643852",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5fd6074bad2a457bba872f3ea2b50b20",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "59d2ae905df14295922b45a079d568b3",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "7049eca161e84044a5c2517ddb1904fe",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "c224e92636804cfa896ba5cd57eb7c46",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d88d9f24690b434ab9d0c7c84bcde3e6",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "a162e73fa0d74a3eab0e88a1ed07edde",
+      "End": "e77188313fa943f1929466c9995ec8c5",
+      "Id": "51bab0038b6b46329c6ac51e928b702e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "51eebaaa7def4229be97a70329ab1309",
+      "End": "7374bc3d1bd94493bac2ec14606a3d56",
+      "Id": "1bb34a69bef0413797e73a19c8c4567b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4b7cd0d528ce4a3fa4c569986433dcb0",
+      "End": "552a9a51e5a6412fb6ee940e05742e64",
+      "Id": "fa622a698e7d4ba5a452d3633ad84de1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c9b1da6da06c4434a909e895dfae9d0b",
+      "End": "130bbe3eaa844f1db9b734f0475f1de0",
+      "Id": "b257c1cc4ba24c36a9c4b535a8208f19",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9da308e77f0a454796729b1beaf8b076",
+      "End": "0e0638f2a64a4880a101ffc8066d32f4",
+      "Id": "dbb6d1eb4a004a81854b247e9ec52abb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "92b77fc978cd46bc80f85d9eff5c9bf9",
+      "End": "af17d75af90e440eba44cae8c89e4590",
+      "Id": "d9ae5517c7ca4fd4809d3655b1497a62",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4a6cc8dff41b4a98b835cf1f3f53c917",
+      "End": "233cc1a39471496bba3cc7bcb4643852",
+      "Id": "5f5593192b3f4e5c95f77589fa6387a6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "56c51942bd4a470ca802c42e6f43c120",
+      "End": "5fd6074bad2a457bba872f3ea2b50b20",
+      "Id": "56ad80b671ba4bb39c4d6b1714a3a7a3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "59d2ae905df14295922b45a079d568b3",
+      "End": "c224e92636804cfa896ba5cd57eb7c46",
+      "Id": "67cd4d35c3f948b0ba2c2559eb50c82d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "c9d19741cb9347469e216c1d7d076f23",
+        "Name": "0  Units: MM / CM / M / FT-IN / FT",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "f8f211cc9ed949f0ba6580fe50413af7",
+        "Name": "1  Change project units",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "031dfb14ce03401eb33f742d5b4b4407",
+        "Name": "2  Change dimensions",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "02c3a62e0bd14e4aa24db0ec6d100ebe",
+        "Name": "3  Area + volume too",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 300
+      },
+      {
+        "Id": "64823bbe813d4b2a98624d8c2bb1c930",
+        "Name": "4  Dimension types: ALL or name contains",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "54126b324a29440aaefe4471356f6932",
+        "Name": "5  Dim rounding (blank / 0,1,2 / ft-in 8,16)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "4353af70cfee4ba0897085e64fc54c94",
+        "Name": "6  Unit symbol on dimensions",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 300
+      },
+      {
+        "Id": "347fc8ece47d4db797ed1fc3e3a9c293",
+        "Name": "7  RUN (False = preview)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1680,
+        "Y": 0
+      },
+      {
+        "Id": "2927b02072ee498797d902e4ad897c77",
+        "Name": "A07 PROJECT UNITS ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2300.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "7049eca161e84044a5c2517ddb1904fe",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2650.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "395c9147b1e84fdfad2e4f6fa7324f38",
+        "Title": "1  UNITS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "c9d19741cb9347469e216c1d7d076f23"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 285,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 190,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "51fd1ff3d55c4f67ba10998c97526318",
+        "Title": "2  WHAT TO CHANGE",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "f8f211cc9ed949f0ba6580fe50413af7",
+          "031dfb14ce03401eb33f742d5b4b4407",
+          "02c3a62e0bd14e4aa24db0ec6d100ebe"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 585,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 490,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "b5ac650786134d1590f73d535e6fbe43",
+        "Title": "3  DIMENSIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "64823bbe813d4b2a98624d8c2bb1c930",
+          "54126b324a29440aaefe4471356f6932",
+          "4353af70cfee4ba0897085e64fc54c94"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 585,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 490,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "f0713203437645368525c621a802bc7b",
+        "Title": "4  RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "347fc8ece47d4db797ed1fc3e3a9c293"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1660.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 285,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 190,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFAA45"
+      },
+      {
+        "Id": "66cc5bc491c34ef6a0a4b47c2bff0f52",
+        "Title": "HOW TO USE:  0 = the units you want:  MM,  CM,  M,  FT-IN (feet-inches),  FT (decimal feet).  1 = project units (Manage > Project Units),  2 = every dimension type (linear, radial, diameter, arc, spot elevation) so the dimensions in all views change,  3 = area m2/ft2 + volume m3/ft3.  4 = only dimension types whose name contains these words (comma list, ALL = all).  5 = rounding: blank = normal, 0 / 1 / 2 decimals, feet-inches 8 = 1/8 inch.  6 = show mm / cm / m after the number.  7 RUN False = preview, True = change.  Only the display changes.  Ctrl+Z undoes.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 2200.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

@@ -1,0 +1,1096 @@
+{
+  "Uuid": "52598eee-1bae-4c22-92e2-20d30fcaed8e",
+  "IsCustomNode": false,
+  "Description": "Revit grids from the CAD grid lines and bubbles, named 1,2,3 / A,B,C like the drawing",
+  "Name": "CAD2BIM_Grids_From_CAD",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "152816777c6f4504a05ab42d20862066",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1e863027ab864d9e9431288683bcaddf",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "c90ca86d4c1e479bb937c024e9078075",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "68aec1af3ae34012b1c1aefcbc5be704",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "5d99ddde9b22476897320667b8cbdf8c",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0f4ede5b2d1248619671da836aeda01b",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 50.0,
+      "MinimumValue": 0.0,
+      "StepValue": 1.0,
+      "Id": "183ebce2cf5244ebabff71928fa30e98",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b7a4a400c9704567a64c79b757101466",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 1.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "0d945692d4514e2b8a8035902c68897d",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4d93545702a340a488eb024e0d46e920",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "A"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "3262c02a570d4683bd785fdce1a4bcb5",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "204a44f358d04584804021f90b0bc256",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "16482dfa4cee43f08d45b2281a4e97a8",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "df7b6b58d8c04214ae5665002a638c08",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "e65aa1279c4f411fb9eeb636b9a789f2",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b7a8e83a45bd4666b3054525cf98a281",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "c28ca5c510c94ec19cb6ff8aef942077",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c3179ac3262343ed81cc8a9d141c28c5",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "01a95bcde4af4b06a56ebee54aa509a4",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "274e13d98cb544d28c0aee749ab585b1",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "87e8d2bd7d9a4c80b295d0e1bc6adea3",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e99e9d62f0494a22bdb18ec42c122075",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "fd06a64947194ab1812a09eb823bd9e6",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3a0284c51e0c4f63ad6bc4fe1cea0d1a",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "bf52af76367a43b88ab98427ece1324f",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6cf23163ccbf4f119c5fd7116c1d60a5",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "0f47b9c662d246a3a8cadeb2d0457dab",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2c1a9a23bd13404db6bc2a3703dce36c",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 40.0,
+      "MinimumValue": 4.0,
+      "StepValue": 1.0,
+      "Id": "2f697ccac91547a19ca6bb64b222be9e",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3a1592ac32b64d19aeebdb193aa88fe9",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 10.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 20.0,
+      "MinimumValue": 4.0,
+      "StepValue": 1.0,
+      "Id": "669d0b92fcbd44d98dab0e67d14e32e4",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a6a88064b0d944ebb938b87dfad2d900",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 8.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "7a925a696e1343ca9131490a49ebe5ce",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8d6861bb7773495ea4321a85c9dec04d",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "81f60687a946437aa856d85629a386e5",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5c6bd6ea94ba491f9f005c0a4f9ab584",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - GRIDS FROM CAD (professional)\n#  grid lines = long lines on a GRID / AXIS layer, or (no layer) long lines with a circle (bubble) at the end;\n#  named like the drawing: numbers 1,2,3.. on one direction, letters A,B,C.. (no I / O) on the other,\n#  bubbles on the same ends as the CAD, dash-dot (phantom) line. Re-run = grids updated, never doubled.\nimport os\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\nlog('--- grids from CAD v1 started')\nimport clr, math, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nfrom Autodesk.Revit.DB.Architecture import *        # Stairs, StairsRun, StairsLanding, Railing ...\nclr.AddReference('RevitServices')\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\nMMF = 1.0 / 304.8\nCOL_PARAMS = [('b', 'h'), ('Width', 'Depth'), ('Width', 'Length')]\nout = []\n\n\ndef num(v, d=0.0):\n    try:\n        return float(v)\n    except Exception:\n        return d\n\n\ndef f(v):\n    return '{0:.0f}'.format(v)\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\n_CAT = {}\ndef catid(bic):\n    if bic not in _CAT:\n        _CAT[bic] = idv(Category.GetCategory(doc, bic).Id)\n    return _CAT[bic]\n\n\ndef cat_is(e, bic):\n    return e is not None and e.Category is not None and idv(e.Category.Id) == catid(bic)\n\n\ndef tname(t):\n    p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n    return p.AsString() if p else ''\n\n\ndef setp(e, bip, val):\n    p = e.get_Parameter(bip)\n    if p is not None and not p.IsReadOnly:\n        p.Set(val)\n        return True\n    return False\n\n\ndef getd(e, bip):\n    p = e.get_Parameter(bip)\n    return p.AsDouble() if p is not None else None\n\n\ndef getlvl(e, bip):\n    p = e.get_Parameter(bip)\n    if p is None:\n        return None\n    x = doc.GetElement(p.AsElementId())\n    return x if isinstance(x, Level) else None\n\n\ndef tagged(e):\n    p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n    return (p.AsString() or '') if p is not None else ''\n\n\ndef mark(e, txt):\n    setp(e, BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS, txt)\n\n\ndef workset_for(keys):\n    if not doc.IsWorkshared:\n        return None\n    for ws in FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset):\n        if any(k in ws.Name.upper() for k in keys):\n            return ws.Id.IntegerValue\n    return None\n\n\ndef put_ws(e, wid):\n    if wid is not None:\n        try:\n            setp(e, BuiltInParameter.ELEM_PARTITION_PARAM, wid)\n        except Exception:\n            pass\n\n\ndef material(keys):\n    mats = list(FilteredElementCollector(doc).OfClass(Material))\n    for k in keys:\n        hit = [m for m in mats if k in m.Name.upper()]\n        if hit:\n            hit.sort(key=lambda m: len(m.Name))\n            return hit[0].Id\n    return ElementId.InvalidElementId\n\n\nLEVELS = sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.ProjectElevation)\nLIDX = dict((idv(l.Id), i) for i, l in enumerate(LEVELS))\n\n\ndef parse_levels(text, base=None):\n    \"\"\"'L2, L3' / 'L2..L5' / 'ALL' (= every level above base)\"\"\"\n    res = []\n    names = dict((l.Name.strip().upper(), l) for l in LEVELS)\n    for tok in [t.strip() for t in str(text or '').replace(';', ',').split(',') if t.strip()]:\n        T = tok.upper()\n        if T in ('ALL', '*', 'ALL ABOVE'):\n            b = LIDX[idv(base.Id)] if base is not None else -1\n            res += LEVELS[b + 1:]\n        elif '..' in T:\n            a, b = [names.get(x.strip()) for x in T.split('..', 1)]\n            if a is None or b is None:\n                raise Exception('Unknown level in \"{0}\". Levels: {1}'.format(tok, ', '.join(l.Name for l in LEVELS)))\n            i, j = sorted([LIDX[idv(a.Id)], LIDX[idv(b.Id)]])\n            res += LEVELS[i:j + 1]\n        else:\n            if T not in names:\n                raise Exception('Unknown level \"{0}\". Levels: {1}'.format(tok, ', '.join(l.Name for l in LEVELS)))\n            res.append(names[T])\n    seen, uniq = set(), []\n    for l in res:\n        if idv(l.Id) not in seen:\n            seen.add(idv(l.Id))\n            uniq.append(l)\n    return uniq\n\n\ndef col_size(c):\n    sym = c.Symbol\n    for a, b in COL_PARAMS:\n        if sym.LookupParameter(a) is not None and sym.LookupParameter(b) is not None:\n            return sym.LookupParameter(a).AsDouble() / MMF, sym.LookupParameter(b).AsDouble() / MMF\n    bb = c.get_BoundingBox(None)\n    return (bb.Max.X - bb.Min.X) / MMF, (bb.Max.Y - bb.Min.Y) / MMF\n\n\ndef angle_of(e):\n    bx = e.GetTransform().BasisX\n    return math.degrees(math.atan2(bx.Y, bx.X))\n\n\n\n\n# ---------------------------------------------------------------- CAD reading\ndef layer_name(g, inherited):\n    name = None\n    try:\n        gs = doc.GetElement(g.GraphicsStyleId)\n        if gs is not None and gs.GraphicsStyleCategory is not None:\n            name = gs.GraphicsStyleCategory.Name\n    except Exception:\n        name = None\n    if not name or name == '0':\n        return inherited or name or '0'\n    return name\n\n\nCIRCLES = {}\n\n\ndef read_layers(cad):\n    \"\"\"{layer: [segments]} in mm; arcs and splines are split into short straight pieces.\"\"\"\n    opt = Options()\n    opt.ComputeReferences = False\n    if cad.ViewSpecific:\n        opt.View = doc.GetElement(cad.OwnerViewId)\n    data = {}\n\n    def add(ln, ps):\n        for i in range(len(ps) - 1):\n            if ps[i] != ps[i + 1]:\n                data.setdefault(ln, []).append((ps[i], ps[i + 1]))\n\n    def walk(geom, inherited):\n        for g in geom:\n            ln = layer_name(g, inherited)\n            if isinstance(g, GeometryInstance):\n                walk(g.GetInstanceGeometry(), ln)\n            elif isinstance(g, Arc) and (not g.IsBound or abs(g.Length - 2 * math.pi * g.Radius) < 1e-3):\n                c = g.Center\n                CIRCLES.setdefault(ln, []).append((to_mm(c.X), to_mm(c.Y), to_mm(g.Radius)))\n            elif isinstance(g, Line):\n                if g.IsBound:\n                    add(ln, [pt(g.GetEndPoint(0)), pt(g.GetEndPoint(1))])\n            elif isinstance(g, PolyLine):\n                add(ln, [pt(p) for p in g.GetCoordinates()])\n            elif isinstance(g, Curve):\n                try:\n                    add(ln, [pt(p) for p in g.Tessellate()])\n                except Exception:\n                    pass\n    top = cad.get_Geometry(opt)\n    for g in top:\n        if isinstance(g, GeometryInstance):\n            walk(g.GetInstanceGeometry(), None)\n    return data\n\n\n\n# ---------------------------------------------------------------- grid recognition (pure python, mm)\nGRID_WORDS = ('GRID', 'AXIS', 'AXES', 'A-AX', '_AX', 'AX-', 'GRD', 'COLUMN LINE', 'C-LINE', 'CENTER', 'CENTRE')\n\n\ndef _ang(s):\n    (x0, y0), (x1, y1) = s\n    return math.degrees(math.atan2(y1 - y0, x1 - x0)) % 180.0\n\n\ndef merge_lines(segs, ang_tol=0.5, off_tol=30.0, gap=2500.0):\n    \"\"\"collinear pieces (dashed / phantom lines) -> one line: [(p, q)]\"\"\"\n    groups = []\n    for s in segs:\n        a = _ang(s)\n        t = math.radians(a)\n        d = (math.cos(t), math.sin(t)); n = (-d[1], d[0])\n        off = s[0][0] * n[0] + s[0][1] * n[1]\n        t0 = s[0][0] * d[0] + s[0][1] * d[1]; t1 = s[1][0] * d[0] + s[1][1] * d[1]\n        for g in groups:\n            da = abs(g['a'] - a) % 180.0\n            if min(da, 180.0 - da) <= ang_tol and abs(off - g['off']) <= off_tol:\n                g['iv'].append((min(t0, t1), max(t0, t1)))\n                break\n        else:\n            groups.append({'a': a, 'd': d, 'n': n, 'off': off, 'iv': [(min(t0, t1), max(t0, t1))]})\n    out = []\n    for g in groups:\n        iv = sorted(g['iv'])\n        runs = [list(iv[0])]\n        for a, b in iv[1:]:\n            if a <= runs[-1][1] + gap:\n                runs[-1][1] = max(runs[-1][1], b)\n            else:\n                runs.append([a, b])\n        a, b = max(runs, key=lambda r: r[1] - r[0])\n        d, n, off = g['d'], g['n'], g['off']\n        out.append(((d[0] * a + n[0] * off, d[1] * a + n[1] * off), (d[0] * b + n[0] * off, d[1] * b + n[1] * off)))\n    return out\n\n\ndef bubble_at(line, circles):\n    \"\"\"circles at the ends of a line: [(end index, circle)] - centre on the line's extension, touching the end\"\"\"\n    (x0, y0), (x1, y1) = line\n    L = math.hypot(x1 - x0, y1 - y0)\n    d = ((x1 - x0) / L, (y1 - y0) / L)\n    res = []\n    for cx, cy, r in circles:\n        t = (cx - x0) * d[0] + (cy - y0) * d[1]\n        perp = abs(-(cx - x0) * d[1] + (cy - y0) * d[0])\n        if perp > 0.25 * r:\n            continue\n        if -2.0 * r <= t <= 0.5 * r:\n            res.append((0, (cx, cy, r)))\n        elif L - 0.5 * r <= t <= L + 2.0 * r:\n            res.append((1, (cx, cy, r)))\n    return res\n\n\ndef _letters(start='A', skip=('I', 'O')):\n    alpha = [c for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if c not in skip]\n    seq = alpha + [a + b for a in alpha for b in alpha]\n    i = seq.index(start.upper()) if start.upper() in seq else 0\n    return seq[i:]\n\n\ndef find_grids(lines, circles, need_bubble, min_len):\n    \"\"\"-> list of dicts {p, q, bubbles:[end idx]} for every grid line\"\"\"\n    out = []\n    for ln in merge_lines(lines):\n        (x0, y0), (x1, y1) = ln\n        L = math.hypot(x1 - x0, y1 - y0)\n        if L < min_len:\n            continue\n        b = bubble_at(ln, circles)\n        if need_bubble and not b:\n            continue\n        p, q = ln\n        # extend to the bubble edge so the Revit bubble sits where the CAD bubble is\n        ends = sorted(set(e for e, _ in b))\n        out.append({'p': p, 'q': q, 'bubbles': ends, 'r': (b[0][1][2] if b else 0.0),\n                    'bc': [(e, c[0], c[1], c[2]) for e, c in b]})\n    return out\n\n\ndef name_grids(grids, numbers_on='vertical', num_start=1, let_start='A', rev_num=False, rev_let=False,\n               custom_num='', custom_let=''):\n    \"\"\"numbers left -> right on one direction, letters bottom -> top on the other (rotated plans ok)\"\"\"\n    if not grids:\n        return []\n    # dominant direction\n    votes = {}\n    for g in grids:\n        a = round(_ang((g['p'], g['q']))) % 90\n        votes[a] = votes.get(a, 0) + 1\n    base = math.radians(max(votes, key=votes.get))\n    c, s = math.cos(base), math.sin(base)\n    loc = lambda p: (p[0] * c + p[1] * s, -p[0] * s + p[1] * c)\n    vert, hor, other = [], [], []\n    for g in grids:\n        a = (_ang((g['p'], g['q'])) - math.degrees(base)) % 180.0\n        mid = ((g['p'][0] + g['q'][0]) / 2.0, (g['p'][1] + g['q'][1]) / 2.0)\n        if abs(a - 90.0) <= 5.0:\n            vert.append((loc(mid)[0], g))\n        elif a <= 5.0 or a >= 175.0:\n            hor.append((loc(mid)[1], g))\n        else:\n            other.append((loc(mid)[0], g))\n    vert.sort(key=lambda t: t[0]); hor.sort(key=lambda t: t[0]); other.sort(key=lambda t: t[0])\n    nums, lets = (vert, hor) if numbers_on == 'vertical' else (hor, vert)\n    if rev_num:\n        nums = nums[::-1]\n    if rev_let:\n        lets = lets[::-1]\n    cn = [x.strip() for x in str(custom_num or '').split(',') if x.strip()]\n    cl = [x.strip() for x in str(custom_let or '').split(',') if x.strip()]\n    letters = _letters(let_start)\n    named = []\n    for i, (_, g) in enumerate(nums):\n        named.append((g.get('label') or (cn[i] if i < len(cn) else str(int(num_start) + i)), g))\n    for i, (_, g) in enumerate(lets):\n        named.append((g.get('label') or (cl[i] if i < len(cl) else letters[i % len(letters)]), g))\n    for i, (_, g) in enumerate(other):\n        named.append((g.get('label') or ('X' + str(i + 1)), g))\n    return named\n\n\ndef fit_cad_to_model(dxf_circles, rev_circles, angle):\n    \"\"\"transform DXF drawing coords -> Revit model mm by matching the bubble circles (scale from radii)\"\"\"\n    if not dxf_circles or not rev_circles:\n        return None\n    rd = sorted(c[2] for c in dxf_circles)[len(dxf_circles) // 2]\n    rr = sorted(c[2] for c in rev_circles)[len(rev_circles) // 2]\n    if rd <= 0:\n        return None\n    k = rr / rd\n    ca, sa = math.cos(angle), math.sin(angle)\n    rot = lambda x, y: ((x * ca - y * sa) * k, (x * sa + y * ca) * k)\n    votes = {}\n    dc = [c for c in dxf_circles if abs(c[2] * k - rr) < 0.15 * rr][:400]\n    rc = [c for c in rev_circles if abs(c[2] - rr) < 0.15 * rr][:400]\n    for a in dc:\n        ax, ay = rot(a[0], a[1])\n        for b in rc:\n            key = (round((b[0] - ax) / 20.0), round((b[1] - ay) / 20.0))\n            votes[key] = votes.get(key, 0) + 1\n    if not votes:\n        return None\n    (tx, ty), n = max(votes.items(), key=lambda t: t[1])\n    if n < max(2, 0.3 * min(len(dc), len(rc))):\n        return None\n    tx, ty = tx * 20.0, ty * 20.0\n    def f(x, y):\n        X, Y = rot(x, y)\n        return X + tx, Y + ty\n    f.k = k\n    return f\n\n\ndef label_grids(grids, texts, xf):\n    \"\"\"text inside a bubble circle -> that grid's name\"\"\"\n    if xf is None:\n        return 0\n    pts = [(xf(x, y), t) for x, y, t in texts if 0 < len(t) <= 6]\n    n = 0\n    for g in grids:\n        for e, cx, cy, r in g.get('bc', []):\n            inside = [((px - cx) ** 2 + (py - cy) ** 2, t) for (px, py), t in pts if (px - cx) ** 2 + (py - cy) ** 2 <= (1.1 * r) ** 2]\n            if inside:\n                g['label'] = min(inside)[1].strip()\n                n += 1\n                break\n    return n\nimport re\n# ---------------------------------------------------------------- DXF text / circle reader (labels of the grid bubbles)\ndef _pairs(path):\n    with open(path, 'r', errors='ignore') as fh:\n        while True:\n            c = fh.readline()\n            if not c:\n                return\n            v = fh.readline()\n            try:\n                yield int(c.strip()), v.rstrip('\\r\\n')\n            except ValueError:\n                continue\n\n\ndef _clean_mtext(t):\n    t = re.sub(r'\\\\[A-Za-z][^;\\\\]*;', '', t)          # \\fArial|b0;  \\H2.5;  \\C1; ...\n    t = re.sub(r'\\\\[PpNn~]', ' ', t)\n    t = t.replace('{', '').replace('}', '')\n    return t.strip()\n\n\ndef read_dxf(path):\n    \"\"\"-> (texts [(x, y, text)], circles [(x, y, r)]) in drawing units, block inserts expanded (1 level + nested)\"\"\"\n    blocks, ents = {}, []\n    section, cur_block, cur = None, None, None\n    seq = []\n\n    def flush():\n        if cur is None:\n            return\n        (blocks[cur_block] if section == 'BLOCKS' and cur_block is not None else ents).append(cur)\n\n    it = _pairs(path)\n    prev = None\n    for code, val in it:\n        if code == 0:\n            flush()\n            cur = None\n            if val == 'SECTION':\n                c2, v2 = next(it)\n                section = v2.strip()\n                continue\n            if val == 'ENDSEC':\n                section = None\n                continue\n            if section == 'BLOCKS' and val == 'BLOCK':\n                cur = {'t': 'BLOCK'}\n                continue\n            if section == 'BLOCKS' and val == 'ENDBLK':\n                cur_block = None\n                continue\n            if section in ('ENTITIES', 'BLOCKS') and val in ('TEXT', 'MTEXT', 'ATTRIB', 'ATTDEF', 'CIRCLE', 'INSERT'):\n                cur = {'t': val, 'x': 0.0, 'y': 0.0, 'txt': '', 'sx': 1.0, 'sy': 1.0, 'rot': 0.0, 'r': 0.0, 'b': ''}\n            continue\n        if cur is None:\n            continue\n        if cur['t'] == 'BLOCK':\n            if code == 2:\n                cur_block = val.strip()\n                blocks.setdefault(cur_block, [])\n                cur = None\n            continue\n        if code == 10:\n            cur['x'] = float(val)\n        elif code == 20:\n            cur['y'] = float(val)\n        elif code == 11 and cur['t'] in ('TEXT', 'ATTRIB', 'ATTDEF'):\n            cur['ax'] = float(val)                      # alignment point (centred text)\n        elif code == 21 and cur['t'] in ('TEXT', 'ATTRIB', 'ATTDEF'):\n            cur['ay'] = float(val)\n        elif code == 1:\n            cur['txt'] += val\n        elif code == 3 and cur['t'] == 'MTEXT':\n            cur['txt'] = val + cur['txt']\n        elif code == 40 and cur['t'] == 'CIRCLE':\n            cur['r'] = float(val)\n        elif code == 40 and cur['t'] in ('TEXT', 'ATTRIB', 'ATTDEF', 'MTEXT'):\n            cur['h'] = float(val)\n        elif code == 2 and cur['t'] == 'INSERT':\n            cur['b'] = val.strip()\n        elif code == 41 and cur['t'] == 'INSERT':\n            cur['sx'] = float(val)\n        elif code == 42 and cur['t'] == 'INSERT':\n            cur['sy'] = float(val)\n        elif code == 50 and cur['t'] == 'INSERT':\n            cur['rot'] = float(val)\n    flush()\n\n    texts, circles = [], []\n\n    def pos(e):\n        if 'ax' in e and 'ay' in e and (abs(e['ax']) + abs(e['ay'])) > 0:\n            return e['ax'], e['ay']\n        return e['x'], e['y']\n\n    def emit(ents_, xf, depth):\n        for e in ents_:\n            t = e['t']\n            if t in ('TEXT', 'MTEXT', 'ATTRIB'):\n                s = _clean_mtext(e['txt']) if t == 'MTEXT' else e['txt'].strip()\n                if s:\n                    x, y = xf(*pos(e))\n                    texts.append((x, y, s))\n            elif t == 'CIRCLE':\n                x, y = xf(e['x'], e['y'])\n                circles.append((x, y, e['r'] * xf.scale))\n            elif t == 'INSERT' and depth < 4 and e['b'] in blocks:\n                c, s_ = math.cos(math.radians(e['rot'])), math.sin(math.radians(e['rot']))\n                ix, iy, sx, sy = e['x'], e['y'], e['sx'], e['sy']\n                def xf2(px, py, xf=xf, c=c, s_=s_, ix=ix, iy=iy, sx=sx, sy=sy):\n                    qx, qy = px * sx, py * sy\n                    return xf(ix + qx * c - qy * s_, iy + qx * s_ + qy * c)\n                xf2.scale = xf.scale * abs(sx)\n                emit(blocks[e['b']], xf2, depth + 1)\n\n    ident = lambda x, y: (x, y)\n    ident.scale = 1.0\n    emit(ents, ident, 0)\n    return texts, circles\ndef to_mm(v):\n    return v / MMF\n\n\ndef pt(p):\n    return (to_mm(p.X), to_mm(p.Y))\n\n\ndef pick_cad(name_part):\n    cads = [c for c in FilteredElementCollector(doc).OfClass(ImportInstance)]\n    if name_part:\n        m = [c for c in cads if c.Category is not None and name_part.lower() in c.Category.Name.lower()]\n        if m:\n            return m[0]\n        raise Exception('No linked CAD whose name contains \"{0}\". CADs: {1}'.format(\n            name_part, ', '.join(c.Category.Name for c in cads if c.Category is not None)))\n    for eid in uidoc.Selection.GetElementIds():\n        e = doc.GetElement(eid)\n        if isinstance(e, ImportInstance):\n            return e\n    if len(cads) == 1:\n        return cads[0]\n    raise Exception('Select the CAD with the stair in Revit (or type part of its name). CADs: ' +\n                    ', '.join(c.Category.Name for c in cads if c.Category is not None))\n\n\n\n# ---------------------------------------------------------------- CAD text via AutoCAD core console (DWG -> DXF)\nimport glob as _glob\nimport subprocess as _sp\n\n\ndef cad_path(cad):\n    try:\n        t = doc.GetElement(cad.GetTypeId())\n        ref = ExternalFileUtils.GetExternalFileReference(doc, t.Id)\n        return ModelPathUtils.ConvertModelPathToUserVisiblePath(ref.GetAbsolutePath())\n    except Exception:\n        return None\n\n\ndef accore():\n    c = sorted(_glob.glob(r'C:\\\\Program Files\\\\Autodesk\\\\AutoCAD 20*\\\\accoreconsole.exe'))\n    return c[-1] if c else None\n\n\ndef dwg_to_dxf(dwg):\n    \"\"\"export a DXF copy of the linked DWG with AutoCAD's console (cached by date)\"\"\"\n    tmp = os.path.join(os.environ.get('TEMP', os.environ.get('APPDATA', '')), 'CAD2BIM_dxf')\n    if not os.path.isdir(tmp):\n        os.makedirs(tmp)\n    base = os.path.splitext(os.path.basename(dwg))[0]\n    dxf = os.path.join(tmp, '{0}_{1}.dxf'.format(base[:60], int(os.path.getmtime(dwg))))\n    if os.path.exists(dxf) and os.path.getsize(dxf) > 1000:\n        return dxf, 'cached'\n    exe = accore()\n    if exe is None:\n        raise Exception('AutoCAD (accoreconsole.exe) not found - save the CAD as DXF and type its path')\n    scr = os.path.join(tmp, 'cad2bim_dxfout.scr')\n    with open(scr, 'w') as fh:\n        fh.write('FILEDIA\\n0\\n_.DXFOUT\\n\"{0}\"\\n16\\n_.QUIT\\n_N\\n'.format(dxf))\n    _sp.run([exe, '/i', dwg, '/s', scr, '/l', 'en-US'], timeout=600, creationflags=0x08000000,\n            stdout=_sp.DEVNULL, stderr=_sp.DEVNULL)\n    if not os.path.exists(dxf):\n        raise Exception('AutoCAD did not write the DXF copy')\n    return dxf, 'AutoCAD'\n\n\n# ---------------------------------------------------------------- ISO-style dimensions (ISO 129 / ISO 3098: 2.5 mm text)\ndef iso_dim_type(name, text_mm=2.5):\n    lin = [t for t in FilteredElementCollector(doc).OfClass(DimensionType) if t.StyleType == DimensionStyleType.Linear]\n    for t in lin:\n        if tname(t) == name:\n            dt = t\n            break\n    else:\n        if not lin:\n            return None\n        dt = lin[0].Duplicate(name)\n    def sp(pname, val):\n        p = dt.LookupParameter(pname)\n        if p is not None and not p.IsReadOnly:\n            try:\n                p.Set(val)\n            except Exception:\n                pass\n    sp('Text Size', text_mm * MMF)\n    sp('Text Font', 'Arial')\n    sp('Width Factor', 1.0)\n    sp('Text Offset', 1.0 * MMF)\n    sp('Witness Line Gap to Element', 2.0 * MMF)\n    sp('Witness Line Extension', 2.0 * MMF)\n    sp('Dimension Line Extension', 2.0 * MMF)\n    try:\n        ticks = [a for a in FilteredElementCollector(doc).OfClass(ElementType)\n                 if a.Category is None and 'DIAGONAL' in tname(a).upper()]\n        ticks.sort(key=lambda a: ('3MM' not in tname(a).upper().replace(' ', ''), len(tname(a))))\n        if ticks:\n            sp('Tick Mark', ticks[0].Id)\n    except Exception:\n        pass\n    try:\n        fo = FormatOptions(UnitTypeId.Millimeters)\n        fo.UseDefault = False\n        fo.Accuracy = 1.0\n        dt.SetUnitsFormatOptions(fo)\n    except Exception as ex:\n        log('dim units: ' + str(ex))\n    return dt\n\n\ndef grid_dims(view, dt, off_mm, gap_mm):\n    \"\"\"chain (grid to grid) + overall dimension for each grid direction, between the grids and the bubbles\"\"\"\n    z = view.GenLevel.ProjectElevation if view.GenLevel is not None else 0.0\n    sc = max(1, view.Scale) * MMF\n    groups = {}\n    for g in FilteredElementCollector(doc, view.Id).OfClass(Grid):\n        cv = g.Curve\n        if isinstance(cv, Line):\n            d = cv.Direction\n            a = round(math.degrees(math.atan2(d.Y, d.X)) % 180.0) % 180\n            groups.setdefault(a, []).append(g)\n    made = 0\n    keys = list(groups)\n    for a in keys:\n        gs = groups[a]\n        if len(gs) < 2:\n            continue\n        d = XYZ(math.cos(math.radians(a)), math.sin(math.radians(a)), 0)\n        n = XYZ(-d.Y, d.X, 0)\n        lst = sorted([(g.Curve.GetEndPoint(0).DotProduct(n), g) for g in gs], key=lambda t: t[0])\n        perp = [g for k in keys if k != a for g in groups[k]]\n        if perp:\n            ts = [g.Curve.GetEndPoint(0).DotProduct(d) for g in perp]\n            edge = min(ts)\n        else:\n            edge = min(min(g.Curve.GetEndPoint(0).DotProduct(d), g.Curve.GetEndPoint(1).DotProduct(d)) for _, g in lst) + 2000 * MMF\n        for k, extra in ((0, 0.0), (1, gap_mm)):\n            t = edge - (off_mm + extra) * sc\n            p = d.Multiply(t).Add(n.Multiply(lst[0][0] - 1.0))\n            q = d.Multiply(t).Add(n.Multiply(lst[-1][0] + 1.0))\n            ra = ReferenceArray()\n            for _, g in (lst if k == 0 else [lst[0], lst[-1]]):\n                ra.Append(Reference(g))\n            try:\n                doc.Create.NewDimension(view, Line.CreateBound(XYZ(p.X, p.Y, z), XYZ(q.X, q.Y, z)), ra, dt)\n                made += 1\n            except Exception as ex:\n                log('grid dim {0}: {1}'.format(view.Name, ex))\n    return made\n\nSKIP = ('HATCH', 'TEXT', 'DIM', 'ANNO', 'TITLE', 'DEFPOINTS', 'VIEWPORT', 'LEGEND', 'NPLT', 'BOUNDARY', 'PLOT')\n\n\ndef collinear(g, p, q):\n    \"\"\"existing Revit grid on the same line as p-q (mm)?\"\"\"\n    cv = g.Curve\n    if not isinstance(cv, Line):\n        return False\n    a, b = cv.GetEndPoint(0), cv.GetEndPoint(1)\n    d1 = (b.X - a.X, b.Y - a.Y); L1 = math.hypot(*d1)\n    d2 = (q[0] - p[0], q[1] - p[1]); L2 = math.hypot(*d2)\n    if L1 < 1e-9 or L2 < 1e-9:\n        return False\n    cross = abs(d1[0] * d2[1] - d1[1] * d2[0]) / (L1 * L2)\n    if cross > 0.01:\n        return False\n    px, py = p[0] * MMF - a.X, p[1] * MMF - a.Y\n    return abs(px * d1[1] - py * d1[0]) / L1 < 50.0 * MMF\n\n\ndef grid_type(both, phantom):\n    gts = list(FilteredElementCollector(doc).OfClass(GridType))\n    if not gts:\n        return None\n    name = 'CAD2BIM Grid'\n    gt = [t for t in gts if tname(t) == name]\n    gt = gt[0] if gt else gts[0].Duplicate(name)\n    for bip, val in ((BuiltInParameter.GRID_BUBBLE_END_1, 1), (BuiltInParameter.GRID_BUBBLE_END_2, 1 if both else 0)):\n        try:\n            setp(gt, bip, val)\n        except Exception:\n            pass\n    if phantom:\n        pats = list(FilteredElementCollector(doc).OfClass(LinePatternElement))\n        pat = None\n        for k in ('PHANTOM', 'CENTER', 'CENTRE', 'DASH DOT', 'DASH-DOT'):\n            pat = next((p for p in pats if k in p.Name.upper()), None)\n            if pat is not None:\n                break\n        if pat is not None:\n            for bip in ('GRID_CENTER_SEGMENT_PATTERN', 'GRID_END_SEGMENT_PATTERN'):\n                try:\n                    setp(gt, getattr(BuiltInParameter, bip), pat.Id)\n                except Exception:\n                    pass\n            try:\n                setp(gt, BuiltInParameter.GRID_CENTER_SEGMENT_STYLE, 0)      # continuous line, dash-dot pattern\n            except Exception:\n                pass\n    return gt\n\n\ntry:\n    CAD_NAME = str(IN[0] or '').strip()\n    LAYER_TXT = str(IN[1] or '').strip()\n    AUTO = LAYER_TXT.upper() in ('', 'AUTO', '*', 'ALL')\n    NUM_VERT = bool(IN[2]); NUM_START = int(num(IN[3], 1)); LET_START = (str(IN[4] or 'A').strip() or 'A')\n    REV_N = bool(IN[5]); REV_L = bool(IN[6]); CUST_N = str(IN[7] or ''); CUST_L = str(IN[8] or '')\n    FROM_TXT = bool(IN[9]); DXF_IN = str(IN[10] or '').strip().strip('\"')\n    LIKE_CAD = bool(IN[11]); PHANTOM = bool(IN[12]); DIMS = bool(IN[13]); D_OFF = num(IN[14], 10); D_GAP = num(IN[15], 8)\n    CLEAN = bool(IN[16]); DO = bool(IN[17])\n    log('inputs: cad \"{0}\" layers \"{1}\" numbers_vertical {2} start {3}/{4} rev {5}/{6} custom \"{7}\" / \"{8}\" '\n        'bubbles {9} phantom {10} clean {11} run {12}'.format(CAD_NAME, LAYER_TXT, NUM_VERT, NUM_START, LET_START,\n                                                              REV_N, REV_L, CUST_N, CUST_L, LIKE_CAD, PHANTOM, CLEAN, DO))\n    if not DO:\n        raise Exception('Switch on PLACE / UPDATE GRIDS, then Run')\n    cad = pick_cad(CAD_NAME)\n    cad_name = cad.Category.Name if cad.Category is not None else 'CAD'\n    layers = read_layers(cad)\n    circles = [c for v in CIRCLES.values() for c in v if 100.0 <= c[2] <= 3000.0]\n    if AUTO:\n        use = [n for n in layers if any(k in n.upper() for k in GRID_WORDS) and not n.upper().endswith('N')]\n        use = use or [n for n in layers if any(k in n.upper() for k in GRID_WORDS)]\n        how, need_b = 'grid layers', False\n        if not use:\n            use = [n for n in layers if not any(k in n.upper() for k in SKIP)]\n            how, need_b = 'all layers (long line + bubble)', True\n    else:\n        keys = [k.strip().upper() for k in LAYER_TXT.split(',') if k.strip()]\n        use = [n for n in layers if any(k in n.upper() for k in keys)]\n        how, need_b = 'chosen layers', False\n        if not use:\n            raise Exception('No layer matching {0}. Layers: {1}'.format(LAYER_TXT, ', '.join(sorted(layers))))\n    lines = [s for n in use for s in layers[n]]\n    xs = [p[0] for s in lines for p in s] or [0]; ys = [p[1] for s in lines for p in s] or [0]\n    min_len = max(3000.0, 0.25 * min(max(xs) - min(xs), max(ys) - min(ys)))\n    grids = find_grids(lines, circles, need_b, min_len)\n    if not grids and not need_b:                 # grid layer had nothing usable -> try bubbles everywhere\n        lines = [s for n in layers if not any(k in n.upper() for k in SKIP) for s in layers[n]]\n        grids = find_grids(lines, circles, True, 3000.0)\n        how = 'all layers (long line + bubble)'\n    if not grids:\n        raise Exception('No grid lines found ({0}). Layers: {1}'.format(how, ', '.join(sorted(layers))))\n    txt_note = 'names by order (CAD text not used)'\n    if FROM_TXT:\n        try:\n            if DXF_IN:\n                dxf, how_t = DXF_IN, 'DXF file'\n            else:\n                dwg = cad_path(cad)\n                if not dwg or not os.path.exists(dwg):\n                    raise Exception('linked CAD file not found on disk')\n                dxf, how_t = dwg_to_dxf(dwg)\n            texts, dcirc = read_dxf(dxf)\n            T = cad.GetTotalTransform()\n            xf = fit_cad_to_model(dcirc, circles, math.atan2(T.BasisX.Y, T.BasisX.X))\n            n_lab = label_grids(grids, texts, xf)\n            txt_note = 'names read from CAD text ({0}): {1} of {2} grids'.format(how_t, n_lab, len(grids))\n            if xf is None:\n                txt_note = 'CAD text read, but bubbles could not be matched - names by order'\n        except Exception as ex:\n            log(traceback.format_exc())\n            txt_note = 'CAD text not read ({0}) - names by order'.format(str(ex).split(chr(10))[0])\n    named = name_grids(grids, 'vertical' if NUM_VERT else 'horizontal', NUM_START, LET_START, REV_N, REV_L, CUST_N, CUST_L)\n    both = sum(1 for _, g in named if len(g['bubbles']) == 2) * 2 >= len(named)\n\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    gt = grid_type(both if LIKE_CAD else True, PHANTOM)\n    existing = list(FilteredElementCollector(doc).OfClass(Grid))\n    used, made, reused, renamed_old, removed = set(), 0, 0, [], 0\n    result = []\n    for name, g in named:\n        p, q = g['p'], g['q']\n        if LIKE_CAD and len(g['bubbles']) == 1 and g['bubbles'][0] == 1:\n            p, q = q, p                              # single bubble -> make it End 1\n        hit = next((e for e in existing if idv(e.Id) not in used and collinear(e, p, q)), None)\n        if hit is None:\n            hit = Grid.Create(doc, Line.CreateBound(XYZ(p[0] * MMF, p[1] * MMF, 0), XYZ(q[0] * MMF, q[1] * MMF, 0)))\n            made += 1\n        else:\n            reused += 1\n        used.add(idv(hit.Id))\n        if gt is not None and idv(hit.GetTypeId()) != idv(gt.Id):\n            try:\n                hit.ChangeTypeId(gt.Id)\n            except Exception:\n                setp(hit, BuiltInParameter.ELEM_TYPE_PARAM, gt.Id)\n        result.append((hit, name))\n    # free the names: other grids that carry one of our names\n    want = set(n for _, n in result)\n    for e in existing:\n        if idv(e.Id) in used:\n            continue\n        if CLEAN:\n            try:\n                doc.Delete(e.Id)\n                removed += 1\n                continue\n            except Exception:\n                pass\n        if e.Name in want:\n            k = 1\n            while True:\n                nn = '{0}-OLD{1}'.format(e.Name, '' if k == 1 else k)\n                if not any(x.Name == nn for x in existing):\n                    break\n                k += 1\n            renamed_old.append('{0} -> {1}'.format(e.Name, nn))\n            e.Name = nn\n    for i, (e, _) in enumerate(result):              # two steps so swapped names never clash\n        e.Name = 'tmp_cad2bim_{0}'.format(i)\n    for e, n in result:\n        e.Name = n\n    n_dims, n_views = 0, 0\n    if DIMS:\n        doc.Regenerate()\n        dt = iso_dim_type('CAD2BIM ISO 2.5 Grid')\n        if dt is not None:\n            for v in FilteredElementCollector(doc).OfClass(ViewPlan):\n                if v.IsTemplate or v.ViewType not in (ViewType.FloorPlan, ViewType.EngineeringPlan):\n                    continue\n                for dm in list(FilteredElementCollector(doc, v.Id).OfClass(Dimension)):\n                    try:\n                        if idv(dm.GetTypeId()) == idv(dt.Id):\n                            doc.Delete(dm.Id)          # re-run: replace, never stack\n                    except Exception:\n                        pass\n                m = grid_dims(v, dt, D_OFF, D_GAP)\n                if m:\n                    n_dims += m\n                    n_views += 1\n    TransactionManager.Instance.TransactionTaskDone()\n\n    nums = [n for n, _ in named if n[:1].isdigit()]        # named = [(name, grid)] - the name is the FIRST item\n    lets = [n for n, _ in named if not n[:1].isdigit()]\n    out.append('CAD2BIM GRIDS FROM CAD  -  DONE')\n    out.append('CAD {0}'.format(cad_name))\n    out.append('Found {0} grid lines on {1} ({2}); bubbles: {3}'.format(\n        len(named), how, ', '.join(use[:4]) + ('...' if len(use) > 4 else ''), 'both ends' if both else 'one end'))\n    out.append('Grids: {0} new, {1} updated (same line already in Revit){2}'.format(\n        made, reused, ', {0} other grids removed'.format(removed) if removed else ''))\n    out.append('Names   : ' + txt_note)\n    out.append('Numbers : ' + ', '.join(nums))\n    out.append('Letters : ' + ', '.join(lets))\n    if renamed_old:\n        out.append('Renamed old Revit grids that used these names: ' + '; '.join(renamed_old[:10]))\n    if DIMS:\n        out.append('Dimensions: {0} (grid-to-grid + overall) in {1} plan views - type CAD2BIM ISO 2.5 Grid: 2.5 mm Arial, '\n                   'oblique ticks, mm'.format(n_dims, n_views))\nexcept Exception as ex:\n    try:\n        TransactionManager.Instance.ForceCloseTransaction()\n    except Exception:\n        pass\n    out.insert(0, 'FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "734fd0d4ed9c44f489352de0d6990af1",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "6bac9af6a98b4593a317a7a5eef9e11d",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5acf2c5c591640e99e674bbbe629ca6e",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fd37c72611984132bf152c40167dd0dd",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "23b5425238a243a89f4f40b2cc62f495",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0ae4ddc2341f4c35b7c071010a4fdb8a",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c0a843070fb44a55bab45f998e625934",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ded82574e8984bee9c277015cfe54aac",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9314b38e2f55473598a74cc89f9e228f",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "accbfd698b0a463c8177faeaac154f25",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6b5e1aa8f4354f45ad5f2e50b07dbd08",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c5ca7179d9e14523bd6558ea082f5c6e",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0d5bc0a67251414fad536f9c36a72b8d",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e1b02c9b21dc46579d7dacbff7acb5a0",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f3666d473ad742c3a636c867103d51de",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1a11e88cc7294156926893c409134ad0",
+          "Name": "IN[14]",
+          "Description": "Input #14",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "476e617954804965be80cfc2ee96988b",
+          "Name": "IN[15]",
+          "Description": "Input #15",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2d9b2a3e38b64c75988cba04fec2b2e1",
+          "Name": "IN[16]",
+          "Description": "Input #16",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0c6055712f2744df8a2eb55518d69aa4",
+          "Name": "IN[17]",
+          "Description": "Input #17",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "177f66e64c2140a4bb2c5911b5da7ff1",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "cf7bc89a6be94315b8135316cfe0c4f9",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "3aa9b349e0f9424c872c3f89e6281323",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "760ce1a2828d4e4c832cebba01a2a3bf",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1e863027ab864d9e9431288683bcaddf",
+      "End": "6bac9af6a98b4593a317a7a5eef9e11d",
+      "Id": "5c7f77a875a341a9997adf0fd322e0be",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "68aec1af3ae34012b1c1aefcbc5be704",
+      "End": "5acf2c5c591640e99e674bbbe629ca6e",
+      "Id": "5d7ddcdf58c3437faafeff921137e593",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0f4ede5b2d1248619671da836aeda01b",
+      "End": "fd37c72611984132bf152c40167dd0dd",
+      "Id": "df22dd9340f14eb99ac152e648832937",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b7a4a400c9704567a64c79b757101466",
+      "End": "23b5425238a243a89f4f40b2cc62f495",
+      "Id": "86ebfab8c14f4d77bd90bcc0805f27e3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4d93545702a340a488eb024e0d46e920",
+      "End": "0ae4ddc2341f4c35b7c071010a4fdb8a",
+      "Id": "53ccece689b341f78fb54460b711756c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "204a44f358d04584804021f90b0bc256",
+      "End": "c0a843070fb44a55bab45f998e625934",
+      "Id": "6ddef0ddba064436a26ea77d7c7c9dc3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "df7b6b58d8c04214ae5665002a638c08",
+      "End": "ded82574e8984bee9c277015cfe54aac",
+      "Id": "b5019e10ca5e48e5a5a498cbce112171",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b7a8e83a45bd4666b3054525cf98a281",
+      "End": "9314b38e2f55473598a74cc89f9e228f",
+      "Id": "44d47b659df04747853e33bc02f4dec6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c3179ac3262343ed81cc8a9d141c28c5",
+      "End": "accbfd698b0a463c8177faeaac154f25",
+      "Id": "bb40d0c9e0254495bdc82ded10c1d1c9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "274e13d98cb544d28c0aee749ab585b1",
+      "End": "6b5e1aa8f4354f45ad5f2e50b07dbd08",
+      "Id": "7ac370dc0de5423196a13ad21f3324cb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e99e9d62f0494a22bdb18ec42c122075",
+      "End": "c5ca7179d9e14523bd6558ea082f5c6e",
+      "Id": "2c431b46253c492c84d16ed578344816",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3a0284c51e0c4f63ad6bc4fe1cea0d1a",
+      "End": "0d5bc0a67251414fad536f9c36a72b8d",
+      "Id": "35866350eb0e414bb4845e73cd77b19c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6cf23163ccbf4f119c5fd7116c1d60a5",
+      "End": "e1b02c9b21dc46579d7dacbff7acb5a0",
+      "Id": "470108f78a8641569f897563913ee6e9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2c1a9a23bd13404db6bc2a3703dce36c",
+      "End": "f3666d473ad742c3a636c867103d51de",
+      "Id": "8826c9ee7a5441c78361a36bed8f91c0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3a1592ac32b64d19aeebdb193aa88fe9",
+      "End": "1a11e88cc7294156926893c409134ad0",
+      "Id": "89a27365ec7b4c15aae44d41ac801662",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a6a88064b0d944ebb938b87dfad2d900",
+      "End": "476e617954804965be80cfc2ee96988b",
+      "Id": "09681e4ccfa946218a6277b0297e4146",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8d6861bb7773495ea4321a85c9dec04d",
+      "End": "2d9b2a3e38b64c75988cba04fec2b2e1",
+      "Id": "64af6e2171a2423480c43aa9987408f3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5c6bd6ea94ba491f9f005c0a4f9ab584",
+      "End": "0c6055712f2744df8a2eb55518d69aa4",
+      "Id": "5f51509511ad409583c49b299500a737",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "177f66e64c2140a4bb2c5911b5da7ff1",
+      "End": "3aa9b349e0f9424c872c3f89e6281323",
+      "Id": "83d5c96565f04339bba98ed77789ccb1",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "152816777c6f4504a05ab42d20862066",
+        "Name": "CAD name contains  ( blank = CAD selected in Revit )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "c90ca86d4c1e479bb937c024e9078075",
+        "Name": "Grid layers  ( AUTO = GRID / AXIS layers, else long lines with bubbles | or type names )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "5d99ddde9b22476897320667b8cbdf8c",
+        "Name": "Numbers on VERTICAL grids (off = numbers on horizontal)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 420.0
+      },
+      {
+        "Id": "183ebce2cf5244ebabff71928fa30e98",
+        "Name": "First number",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 555.0
+      },
+      {
+        "Id": "0d945692d4514e2b8a8035902c68897d",
+        "Name": "First letter",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 690.0
+      },
+      {
+        "Id": "3262c02a570d4683bd785fdce1a4bcb5",
+        "Name": "Reverse numbers (right -> left)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 825.0
+      },
+      {
+        "Id": "16482dfa4cee43f08d45b2281a4e97a8",
+        "Name": "Reverse letters (top -> bottom)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 960.0
+      },
+      {
+        "Id": "e65aa1279c4f411fb9eeb636b9a789f2",
+        "Name": "Custom names for numbered grids  ( optional: 1,2,2A,3 ... )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1095.0
+      },
+      {
+        "Id": "c28ca5c510c94ec19cb6ff8aef942077",
+        "Name": "Custom names for lettered grids  ( optional: A,B,B1,C ... )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1230.0
+      },
+      {
+        "Id": "01a95bcde4af4b06a56ebee54aa509a4",
+        "Name": "SAME NAMES AS THE CAD (reads the bubble text with AutoCAD on this PC)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1365.0
+      },
+      {
+        "Id": "87e8d2bd7d9a4c80b295d0e1bc6adea3",
+        "Name": "DXF file  ( optional - only if AutoCAD is not installed )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1500.0
+      },
+      {
+        "Id": "fd06a64947194ab1812a09eb823bd9e6",
+        "Name": "Bubbles on the same ends as the CAD",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "bf52af76367a43b88ab98427ece1324f",
+        "Name": "Dash-dot (phantom) grid line",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "0f47b9c662d246a3a8cadeb2d0457dab",
+        "Name": "Grid dimensions in all plans (ISO: 2.5 mm Arial, oblique ticks, mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 270.0
+      },
+      {
+        "Id": "2f697ccac91547a19ca6bb64b222be9e",
+        "Name": "Dimension distance from outer grid (paper mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 405.0
+      },
+      {
+        "Id": "669d0b92fcbd44d98dab0e67d14e32e4",
+        "Name": "Gap chain -> overall (paper mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 540.0
+      },
+      {
+        "Id": "7a925a696e1343ca9131490a49ebe5ce",
+        "Name": "Remove Revit grids that are not in the CAD",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 960.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "81f60687a946437aa856d85629a386e5",
+        "Name": "PLACE / UPDATE GRIDS",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 960.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "734fd0d4ed9c44f489352de0d6990af1",
+        "Name": "CAD2BIM  MEP Openings  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "cf7bc89a6be94315b8135316cfe0c4f9",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "a1935a106d2546b6b3f63541c0b242d5",
+        "Title": "1  CAD + LAYERS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "152816777c6f4504a05ab42d20862066",
+          "c90ca86d4c1e479bb937c024e9078075"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 405.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 310.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC8C8C8"
+      },
+      {
+        "Id": "35c2aa98e71644c8b56f54aad7dd2928",
+        "Title": "2  NAMES",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "5d99ddde9b22476897320667b8cbdf8c",
+          "183ebce2cf5244ebabff71928fa30e98",
+          "0d945692d4514e2b8a8035902c68897d",
+          "3262c02a570d4683bd785fdce1a4bcb5",
+          "16482dfa4cee43f08d45b2281a4e97a8",
+          "e65aa1279c4f411fb9eeb636b9a789f2",
+          "c28ca5c510c94ec19cb6ff8aef942077",
+          "01a95bcde4af4b06a56ebee54aa509a4",
+          "87e8d2bd7d9a4c80b295d0e1bc6adea3"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 325.0,
+        "Width": 440.0,
+        "Height": 1350.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 420.0,
+        "InitialHeight": 1255.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "e465838c8ef84dbbbc5eeb2161f968ce",
+        "Title": "3  STYLE + DIMENSIONS (ISO)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "fd06a64947194ab1812a09eb823bd9e6",
+          "bf52af76367a43b88ab98427ece1324f",
+          "0f47b9c662d246a3a8cadeb2d0457dab",
+          "2f697ccac91547a19ca6bb64b222be9e",
+          "669d0b92fcbd44d98dab0e67d14e32e4"
+        ],
+        "HasNestedGroups": false,
+        "Left": 460.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 810.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 715.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "658a1c9b84214d8f827da222d7addd6c",
+        "Title": "4  BUILD",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "7a925a696e1343ca9131490a49ebe5ce",
+          "81f60687a946437aa856d85629a386e5"
+        ],
+        "HasNestedGroups": false,
+        "Left": 940.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 405.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 310.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF9FDF8F"
+      },
+      {
+        "Id": "3bbbb2bac7c74097ab8caa9d5f9c2f86",
+        "Title": "5  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "734fd0d4ed9c44f489352de0d6990af1",
+          "cf7bc89a6be94315b8135316cfe0c4f9"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "302a22377bb441958120a69aca33ca16",
+        "Title": "HOW TO USE  -  link the CAD, select it in Revit, Run\nGrid lines from GRID / AXIS layers - or (no layer) long lines with a circle (bubble) at the end.\nNames = the text in the CAD bubbles (AutoCAD on this PC exports a DXF copy in the background, first run ~1 min).  No text found -> 1,2,3 / A,B,C order.\nGrid-to-grid + overall dimensions in every plan, ISO style (ISO 129 / ISO 3098: 2.5 mm Arial, oblique ticks, mm). Re-run = updated, never doubled.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

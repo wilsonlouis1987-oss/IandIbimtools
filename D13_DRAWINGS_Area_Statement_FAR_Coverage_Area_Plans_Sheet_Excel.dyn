@@ -1,0 +1,785 @@
+{
+  "Uuid": "9f75fa31-c225-4de8-ab62-95115a27ac04",
+  "IsCustomNode": false,
+  "Description": "AREA STATEMENT + FAR: built-up per floor from the slabs (covered area only), FAR deductions from room names (BDA 2019 list), coverage at ground level; area schemes SD BUILT-UP / SD FAR / SD COVERAGE with area plans, a statement sheet and Excel. Sq ft first, sqm in brackets. Buildings by slab Mark. Run again = replaced.",
+  "Name": "D13_DRAWINGS_Area_Statement_FAR_Coverage_Area_Plans_Sheet_Excel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "09df4964ce6c4ed7ac03b858655a5377",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "441bf1c3960743ac8051e85a3ec80077",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "1e24f8c6dfab44b988afdc779a117633",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d1742ef0266c4dad89d3e18853958992",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "3.0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "3138f34c3b0040d5b0af1be71da91ef1",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9954800ae19543e3ba36c1e02fa8f0fe",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "45"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "5257a894084945149f7a2e6e6f25b0cd",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c7422d4fa9b442b683032e7159cc7ee5",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "BDA 2019 list"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "cc7ecf9a45bd4ed8bb2ea4a48a7be78a",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "50e57ff0e9ef4db7af56f0d44d6357eb",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "LOBBY, CORRIDOR, WAITING, PASSAGE"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "a56798acc756485ca55650b307062625",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "099a485f300746deb37ff55e81cb2881",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "100"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "307f84f1d0944fc396c50e854325c0a9",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c391b1015a974b709f9e7eef9dfd99ba",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "f2c5e06b415e4ec7bc8eb2d08368dde5",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e522a39e422545e89b68c992ecf454af",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "cb3abd8bed0d409da3593e9e0a04d818",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f176a151bd71456886dae244b6b3150d",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "bca25173d7ad45c9b72a0d129f4616d6",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8db25c25fe3c4c1f8cdb4efd89f6c07f",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "b7ebcb62dade49bc968f00e372f99a1f",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2c99d498b755482882b2ab05c2ca24ab",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "FAR-01"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "be03e0cb92b54eda83f52240f6428cf1",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5e1ecff6896c41458154a4b0a91dce25",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  D13 AREA STATEMENT + FAR   (Revit 2026)   v1\n#  Built-up area per floor from the SLABS (a floor counts where a slab / roof covers it - open terraces do not),\n#  lift / stair / small shaft holes counted in built-up, big voids (atria, ramp wells) left out.\n#  FAR deductions = rooms whose names hold a word of the BDA 2019 exclusion list (editable) + small slab holes\n#  without a room (shafts / ducts).  Separate buildings (slab Mark / Comments: 1A, 1B, CUDDLES ..) never added together\n#  except in the FAR total of the plot.  Areas in sq ft first, sqm in brackets.\n#  Makes: area schemes SD BUILT-UP / SD FAR / SD COVERAGE with area plans per level, boundary lines and areas,\n#         an area statement drafting view on a FAR sheet, and an Excel workbook.  Run again = all D13 content replaced.\n#  pyRevit (IronPython 2.7) and Dynamo CPython3.\n# =====================================================================\nimport os, re, math, datetime, sys\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *                           # noqa\nclr.AddReference('System')\nfrom System.Collections.Generic import List\n\nD13_TITLE = 'D13 Area Statement'\nD13_LOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'D13_area_log.txt')\nMMF = 1.0 / 304.8\nSQM = 0.09290304            # 1 sq ft in sqm (Revit areas are in sq ft)\nSCHEMES = ('SD BUILT-UP', 'SD FAR', 'SD COVERAGE')\nTAG = 'D13'\nBDA_WORDS = ('PARKING, CAR PARK, DRIVEWAY, RAMP, STAIR, STAIRCASE, LIFT, ELEVATOR, MACHINE ROOM, ESCALATOR, SHAFT, DUCT, '\n             'SUBSTATION, SUB STATION, TRANSFORMER, PANEL, ELECTRICAL, LT ROOM, HT ROOM, DG, GENERATOR, PUMP, AC PLANT, '\n             'CHILLER, HVAC PLANT, SOLID WASTE, GARBAGE, FIRE CONTROL, FCC, SECURITY, CCTV, REFUGE, PUBLIC TOILET, '\n             'SOCIETY ROOM, STP, OHT, WATER TANK, WATCHMAN, SWIMMING POOL')\nCATEGORY = [   # (words, statement group) - first match wins\n    (('PARKING', 'CAR PARK', 'DRIVEWAY', 'RAMP'), 'PARKING + RAMPS'),\n    (('STAIR', 'STAIRCASE'), 'STAIRS'),\n    (('LIFT', 'ELEVATOR', 'MACHINE ROOM', 'ESCALATOR'), 'LIFTS + ESCALATORS'),\n    (('SHAFT', 'DUCT', 'GARBAGE'), 'SHAFTS + DUCTS'),\n    (('REFUGE',), 'REFUGE'),\n]\nD13_DEFAULTS = {\n    'plot_area': '',             # '20436.62 sqm' / '219980 sqft' / '5 acre' - a plain number = sqm (blank = no FAR / coverage %)\n    'far_allowed': 3.0,          # permissible FAR\n    'coverage_allowed': 45.0,    # permissible ground coverage %\n    'deduct_words': BDA_WORDS,   # room name words deducted from FAR (whole words)\n    'keep_words': 'LOBBY, CORRIDOR, WAITING, PASSAGE',   # a room name with one of these is never deducted\n    'hole_fill_sqm': 100.0,      # slab openings up to this size without a room = stair / lift / duct openings:\n                                 # built-up yes, DEDUCTED from FAR; bigger empty openings = atria / voids (neither)\n    'coverage_level': '',        # '' = ground level (name GROUND / GF / G.F. / LEVEL 0, else the level nearest 0.00)\n    'area_plans': True,\n    'sheet': True,\n    'excel': True,\n    'sheet_number': 'FAR-01',\n    'sheet_name': 'AREA STATEMENT + FAR',\n}\n\n\n# ----------------------------------------------------------------- small helpers\ndef log13(msg):\n    try:\n        d = os.path.dirname(D13_LOG)\n        if not os.path.isdir(d):\n            os.makedirs(d)\n        with open(D13_LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef cat_val(bic):\n    try:\n        return int(bic)\n    except Exception:\n        return idv(ElementId(bic))\n\n\ndef tname(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef ename(e):\n    try:\n        p = e.get_Parameter(BuiltInParameter.ROOM_NAME)\n        if p is not None and p.AsString():\n            return p.AsString()\n    except Exception:\n        pass\n    try:\n        return Element.Name.GetValue(e)\n    except Exception:\n        try:\n            return e.Name\n        except Exception:\n            return ''\n\n\ndef pstr(e, bip):\n    try:\n        p = e.get_Parameter(bip)\n        if p is not None:\n            return p.AsString() or ''\n    except Exception:\n        pass\n    return ''\n\n\ndef pset(e, bip, val):\n    try:\n        p = e.get_Parameter(bip)\n        if p is not None and not p.IsReadOnly:\n            p.Set(val)\n            return True\n    except Exception:\n        pass\n    return False\n\n\ndef sqft_sqm(a_sqft):\n    a_sqft = float(a_sqft)\n    return '{0:,.0f} sq ft ({1:,.2f} sqm)'.format(a_sqft, a_sqft * SQM)\n\n\ndef d13_settings(s):\n    r = dict(D13_DEFAULTS)\n    if s:\n        r.update(s)\n    return r\n\n\ndef parse_area(txt):\n    \"\"\"'20436.62 sqm' / '2,19,980 sq ft' / '5 acre' / '2 ha' / plain number (sqm) -> sq ft, or None.\"\"\"\n    t = str(txt or '').strip().lower().replace(',', '')\n    if not t:\n        return None\n    m = re.match(r'^([0-9.]+)\\s*(.*)$', t)\n    if not m:\n        return None\n    v = float(m.group(1))\n    u = m.group(2).replace(' ', '').replace('.', '')\n    if u in ('', 'sqm', 'm2', 'sqmt', 'sqmtr', 'squaremetre', 'squaremeter'):\n        return v / SQM\n    if u in ('sqft', 'ft2', 'sft', 'squarefeet', 'squarefoot'):\n        return v\n    if u in ('acre', 'acres', 'ac'):\n        return v * 43560.0\n    if u in ('ha', 'hectare', 'hectares'):\n        return v * 10000.0 / SQM\n    return v / SQM\n\n\ndef words(txt):\n    return [w.strip().upper() for w in re.split(r'[,;\\n]+', str(txt or '')) if w.strip()]\n\n\ndef deduct_word(name, s):\n    \"\"\"the deduction word found in a room name (whole word), or None.\"\"\"\n    n = ' ' + re.sub(r'[^A-Z0-9]+', ' ', (name or '').upper()) + ' '\n    for w in words(s['keep_words']):\n        if ' ' + w + ' ' in n:\n            return None\n    for w in words(s['deduct_words']):\n        if ' ' + w + ' ' in n or ' ' + w + 'S ' in n:\n            return w\n    return None\n\n\ndef category_of(word):\n    for ws, cat in CATEGORY:\n        if word in ws:\n            return cat\n    return 'SERVICES + OTHER EXEMPT'\n\n\n# ----------------------------------------------------------------- 2D geometry on z = 0\ndef flat_loop(cl, z=0.0):\n    \"\"\"CurveLoop moved to height z.\"\"\"\n    res = CurveLoop()\n    for c in cl:\n        dz = z - c.GetEndPoint(0).Z\n        res.Append(c.CreateTransformed(Transform.CreateTranslation(XYZ(0, 0, dz))))\n    return res\n\n\ndef loop_pts(cl):\n    pts = []\n    for c in cl:\n        tp = list(c.Tessellate())\n        pts.extend(tp[:-1] if len(tp) > 1 else tp)\n    return pts\n\n\ndef loop_area(cl):\n    pts = loop_pts(cl)\n    a = 0.0\n    for i in range(len(pts)):\n        p, q = pts[i], pts[(i + 1) % len(pts)]\n        a += p.X * q.Y - q.X * p.Y\n    return abs(a) / 2.0\n\n\ndef pt_in_loop(cl, x, y):\n    pts = loop_pts(cl)\n    inside = False\n    n = len(pts)\n    j = n - 1\n    for i in range(n):\n        xi, yi, xj, yj = pts[i].X, pts[i].Y, pts[j].X, pts[j].Y\n        if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / ((yj - yi) or 1e-12) + xi:\n            inside = not inside\n        j = i\n    return inside\n\n\ndef solid_of(loops):\n    \"\"\"prism 1 ft high on z = 0 from [outer, holes..] (orientation fixed).\"\"\"\n    ll = List[CurveLoop]()\n    for i, cl in enumerate(loops):\n        f = flat_loop(cl, 0.0)\n        ccw = f.IsCounterclockwise(XYZ.BasisZ)\n        if (i == 0 and not ccw) or (i > 0 and ccw):\n            f.Flip()\n        ll.Add(f)\n    return GeometryCreationUtilities.CreateExtrusionGeometry(ll, XYZ.BasisZ, 1.0)\n\n\ndef boolean(a, b, op):\n    if a is None:\n        return b if op == BooleanOperationsType.Union else None\n    if b is None:\n        return a if op != BooleanOperationsType.Intersect else None\n    try:\n        return BooleanOperationsUtils.ExecuteBooleanOperation(a, b, op)\n    except Exception as ex:\n        log13('boolean {0}: {1}'.format(op, ex))\n        return None\n\n\ndef bottom_faces(sol):\n    \"\"\"[(area sq ft, [CurveLoop..])] for each bottom face of a prism (one per separate piece).\"\"\"\n    res = []\n    if sol is None:\n        return res\n    for f in sol.Faces:\n        try:\n            if tname(f) == 'PlanarFace' and f.FaceNormal.Z < -0.99:\n                res.append((f.Area, list(f.GetEdgesAsCurveLoops()), f))\n        except Exception:\n            pass\n    return res\n\n\ndef footprint_of(e):\n    \"\"\"outline of any element seen from above (ExtrusionAnalyzer on its solids) -> prism on z = 0, or None.\"\"\"\n    res = None\n    try:\n        opt = Options()\n        geo = e.get_Geometry(opt)\n    except Exception:\n        return None\n    sols = []\n    for g in geo:\n        if tname(g) == 'Solid' and g.Volume > 1e-6:\n            sols.append(g)\n        elif tname(g) == 'GeometryInstance':\n            for gg in g.GetInstanceGeometry():\n                if tname(gg) == 'Solid' and gg.Volume > 1e-6:\n                    sols.append(gg)\n    for sol in sols:\n        try:\n            ea = ExtrusionAnalyzer.Create(sol, Plane.CreateByNormalAndOrigin(XYZ.BasisZ, XYZ.Zero), XYZ.BasisZ)\n            base = ea.GetExtrusionBase()\n            loops = list(base.GetEdgesAsCurveLoops())\n            loops.sort(key=lambda c: -loop_area(c))\n            res = boolean(res, solid_of(loops[:1]), BooleanOperationsType.Union)\n        except Exception as ex:\n            log13('footprint {0}: {1}'.format(idv(e.Id), ex))\n    return res\n\n\n# ----------------------------------------------------------------- model reading\ndef floors_on(doc, levels):\n    \"\"\"{level id: [floor..]} for every floor slab (not foundations).  A slab belongs to the level at or just below its\n    top face - a roof slab hosted on Level 1 with a +3 m offset counts on the level above, not on Level 1.\"\"\"\n    res = {}\n    for f in FilteredElementCollector(doc).OfClass(Floor).WhereElementIsNotElementType():\n        try:\n            if f.Category is None or idv(f.Category.Id) != cat_val(BuiltInCategory.OST_Floors):\n                continue\n            top = f.get_BoundingBox(None).Max.Z\n        except Exception:\n            continue\n        below = [l for l in levels if l.Elevation <= top + 0.3]\n        lv = max(below, key=lambda l: l.Elevation) if below else (min(levels, key=lambda l: l.Elevation) if levels else None)\n        if lv is not None:\n            res.setdefault(idv(lv.Id), []).append(f)\n    return res\n\n\ndef block_of(f):\n    \"\"\"building name: the slab's Mark, else its Comments (tool tags like 'B16 SLAB|L1' are ignored), else BUILDING.\"\"\"\n    v = pstr(f, BuiltInParameter.ALL_MODEL_MARK).strip()\n    if v:\n        return v.upper()\n    v = pstr(f, BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS).strip()\n    if v and '|' not in v and not v.upper().startswith(TAG) and len(v) <= 20:\n        return v.upper()\n    return 'BUILDING'\n\n\ndef slab_loops(doc, f):\n    \"\"\"[(outer CurveLoop, [hole CurveLoop..])] of the slab's top face(s).\"\"\"\n    res = []\n    try:\n        refs = list(HostObjectUtils.GetTopFaces(f))\n    except Exception:\n        refs = []\n    for r in refs:\n        try:\n            face = f.GetGeometryObjectFromReference(r)\n            loops = list(face.GetEdgesAsCurveLoops())\n        except Exception:\n            continue\n        if not loops:\n            continue\n        loops.sort(key=lambda c: -loop_area(c))\n        res.append((loops[0], loops[1:]))\n    return res\n\n\ndef rooms_on(doc):\n    res = {}\n    for r in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Rooms).WhereElementIsNotElementType():\n        try:\n            if r.Area > 1e-6 and r.Location is not None:\n                res.setdefault(idv(r.LevelId), []).append(r)\n        except Exception:\n            continue\n    return res\n\n\ndef room_loops(r):\n    res = []\n    try:\n        for loop in r.GetBoundarySegments(SpatialElementBoundaryOptions()):\n            cl = CurveLoop()\n            for sg in loop:\n                cl.Append(sg.GetCurve())\n            res.append(cl)\n    except Exception as ex:\n        log13('room loops {0}: {1}'.format(idv(r.Id), ex))\n    res.sort(key=lambda c: -loop_area(c))\n    return res\n\n\ndef ground_level(doc, levels, s):\n    want = str(s.get('coverage_level') or '').strip().upper()\n    if want:\n        for l in levels:\n            if l.Name.upper() == want:\n                return l\n    for l in levels:\n        n = re.sub(r'[^A-Z0-9 ]', ' ', l.Name.upper())\n        if re.search(r'\\b(GROUND|GF|LEVEL 0|L0|G F|00)\\b', n):\n            return l\n    return min(levels, key=lambda l: abs(l.Elevation)) if levels else None\n\n\n# ----------------------------------------------------------------- the area numbers\ndef compute(doc, s, out):\n    \"\"\"-> data dict: levels, per (level, block) built-up loops / areas, deductions, coverage.\"\"\"\n    levels = sorted(FilteredElementCollector(doc).OfClass(Level).ToElements(), key=lambda l: l.Elevation)\n    fl = floors_on(doc, levels)\n    rooms = rooms_on(doc)\n    shafts = [e for e in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_ShaftOpening).WhereElementIsNotElementType()]\n    use = [l for l in levels if fl.get(idv(l.Id))]\n    if not use:\n        out.append('FAILED no floor slabs in the model - D13 measures the built-up area from the slabs')\n        return None\n    # what covers each level: slabs of higher levels + roofs (all buildings)\n    cov_items = []      # (height, block or None = any building, element)\n    for l in use:\n        for f in fl[idv(l.Id)]:\n            try:\n                ez = f.get_BoundingBox(None).Min.Z\n            except Exception:\n                ez = l.Elevation\n            cov_items.append((max(ez, l.Elevation - 1.0), block_of(f), f))\n    for rf in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Roofs).WhereElementIsNotElementType():\n        try:\n            bb = rf.get_BoundingBox(None)\n            cov_items.append((bb.Min.Z, None, rf))\n        except Exception:\n            pass\n    foot_cache = {}\n\n    def foot(e):\n        k = idv(e.Id)\n        if k not in foot_cache:\n            if tname(e) == 'Floor':\n                sol = None\n                for outer, _holes in slab_loops(doc, e):\n                    sol = boolean(sol, solid_of([outer]), BooleanOperationsType.Union)\n                foot_cache[k] = sol\n            else:\n                foot_cache[k] = footprint_of(e)\n        return foot_cache[k]\n\n    data = {'levels': [], 'rows': [], 'cover': [], 'checks': []}\n    ground = ground_level(doc, use, s)\n    fill = float(s.get('hole_fill_sqm') or 0) / SQM\n    for l in use:\n        z = l.Elevation\n        lrooms = rooms.get(idv(l.Id), [])\n        blocks = {}\n        for f in fl[idv(l.Id)]:\n            blocks.setdefault(block_of(f), []).append(f)\n        for blk in sorted(blocks):\n            cover = None\n            for ez, eb, e in cov_items:\n                if ez > z + 1.5 and (eb is None or eb == blk):   # this building's slabs / any roof, 450 mm+ above\n                    cover = boolean(cover, foot(e), BooleanOperationsType.Union)\n            region = None\n            holes_core, holes_void, holes_duct = [], [], []\n            for f in blocks[blk]:\n                for outer, holes in slab_loops(doc, f):\n                    keep = []\n                    for h in holes:\n                        ha = loop_area(h)\n                        room_in = None\n                        for r in lrooms:\n                            p = r.Location.Point\n                            if pt_in_loop(h, p.X, p.Y):\n                                room_in = r\n                                break\n                        shaft_in = any(pt_in_loop(h, (sb.Min.X + sb.Max.X) / 2.0, (sb.Min.Y + sb.Max.Y) / 2.0)\n                                       for sb in [x.get_BoundingBox(None) for x in shafts] if sb is not None)\n                        if room_in is not None and deduct_word(ename(room_in), s):\n                            holes_core.append(h)                 # lift / stair well: built-up yes (room deducts it)\n                        elif room_in is None and (ha <= fill or shaft_in):\n                            holes_duct.append(h)                 # opening / shaft: built-up yes, deducted from FAR\n                        elif room_in is not None:\n                            holes_core.append(h)                 # some other room in the hole: counted\n                        else:\n                            holes_void.append(h)                 # atrium / ramp well / void: neither\n                            keep.append(h)\n                    try:\n                        region = boolean(region, solid_of([outer] + keep), BooleanOperationsType.Union)\n                    except Exception as ex:\n                        log13('slab {0}: {1}'.format(idv(f.Id), ex))\n            if region is None:\n                continue\n            if cover is not None:\n                built = boolean(region, cover, BooleanOperationsType.Intersect)\n                if built is None:\n                    built = region\n                    data['checks'].append('CHECK {0} {1}: covered-area test failed - whole slab counted'.format(l.Name, blk))\n            else:\n                # nothing above: open terrace -> only the enclosed rooms on it (stair / lift headrooms) count\n                rsol = None\n                for r in lrooms:\n                    rl = room_loops(r)\n                    if rl:\n                        try:\n                            rsol = boolean(rsol, solid_of(rl[:1]), BooleanOperationsType.Union)\n                        except Exception:\n                            pass\n                built = boolean(region, rsol, BooleanOperationsType.Intersect) if rsol is not None else None\n                if lrooms:\n                    data['checks'].append('CHECK {0} {1}: no slab / roof above - counted as terrace: only its rooms are built-up '\n                                          '(if this is a real top floor, model its roof slab)'.format(l.Name, blk))\n            pieces = bottom_faces(built)\n            if not pieces:\n                continue\n            area = sum(p[0] for p in pieces)\n            # deductions on this level / block: rooms by name + duct holes\n            ded = []\n            seen = []\n            for r in lrooms:\n                w = deduct_word(ename(r), s)\n                p = r.Location.Point\n                inside = any(face.IsInside(face.Project(XYZ(p.X, p.Y, 0)).UVPoint) for _a, _l, face in pieces\n                             if face.Project(XYZ(p.X, p.Y, 0)) is not None)\n                seen.append('{0}{1}'.format(ename(r) or '(no name)', ' = DEDUCT ' + w if (w and inside) else\n                                            (' (outside the slab)' if not inside else '')))\n                if not w or not inside:\n                    continue\n                ded.append({'kind': 'room', 'room': r, 'word': w, 'cat': category_of(w), 'area': r.Area,\n                            'name': '{0} {1}'.format(pstr(r, BuiltInParameter.ROOM_NUMBER), ename(r)).strip(),\n                            'loops': room_loops(r), 'pt': p})\n            for h in holes_duct:\n                pts = loop_pts(h)\n                cx = sum(q.X for q in pts) / len(pts)\n                cy = sum(q.Y for q in pts) / len(pts)\n                # a stair / lift / shaft room in this opening on another floor names it (STAIR WELL, LIFT WELL ..)\n                word, cat, nm = 'OPENING', 'SLAB OPENINGS', 'SLAB OPENING'\n                for rl in rooms.values():\n                    for r in rl:\n                        w = deduct_word(ename(r), s)\n                        if w and category_of(w) in ('STAIRS', 'LIFTS + ESCALATORS', 'SHAFTS + DUCTS') and                                 pt_in_loop(h, r.Location.Point.X, r.Location.Point.Y):\n                            word, cat, nm = w, category_of(w), ename(r) + ' WELL'\n                            break\n                    if word != 'OPENING':\n                        break\n                ded.append({'kind': 'hole', 'room': None, 'word': word, 'cat': cat, 'area': loop_area(h),\n                            'name': nm, 'loops': [h], 'pt': XYZ(cx, cy, 0)})\n            data['checks'].append('ROOMS {0} {1}: {2}'.format(l.Name, blk, ', '.join(seen) if seen else\n                                  'no rooms on this level - nothing to deduct (place rooms named STAIR, LIFT, PARKING ..)'))\n            data['rows'].append({'level': l, 'block': blk, 'built': area, 'pieces': pieces,\n                                 'ded': ded, 'ded_area': sum(d['area'] for d in ded),\n                                 'voids': len(holes_void), 'cores': len(holes_core), 'ducts': len(holes_duct)})\n        if ground is not None and idv(l.Id) == idv(ground.Id):\n            for blk in sorted(blocks):\n                cov = None\n                for f in blocks[blk]:\n                    for outer, _holes in slab_loops(doc, f):\n                        cov = boolean(cov, solid_of([outer]), BooleanOperationsType.Union)\n                pcs = bottom_faces(cov)\n                if pcs:\n                    data['cover'].append({'level': l, 'block': blk, 'area': sum(p[0] for p in pcs), 'pieces': pcs})\n    data['ground'] = ground\n    return data\n\n\n# ----------------------------------------------------------------- Revit: schemes, area plans, boundary lines, areas\ndef _preprocess(self, fa):\n    for f in list(fa.GetFailureMessages()):\n        if f.GetSeverity() == FailureSeverity.Warning:\n            fa.DeleteWarning(f)\n    return FailureProcessingResult.Continue\n\n\ndef quiet_warnings(t):\n    \"\"\"let the transaction swallow warnings (overlapping area lines etc.).\"\"\"\n    try:\n        import uuid\n        Q = type('Q', (IFailuresPreprocessor,), {\n            '__namespace__': 'SDTools.D13.r' + uuid.uuid4().hex[:8],     # new name each run (Dynamo keeps old types)\n            'PreprocessFailures': _preprocess})\n        o = t.GetFailureHandlingOptions()\n        o.SetFailuresPreprocessor(Q())\n        t.SetFailureHandlingOptions(o)\n    except Exception as ex:\n        log13('quiet warnings: {0}'.format(ex))\n\n\ndef get_scheme(doc, name, out):\n    for sc in FilteredElementCollector(doc).OfClass(AreaScheme):\n        if sc.Name.upper() == name:\n            return sc\n    sc = None\n    try:\n        sc = AreaScheme.Create(doc)                              # Revit 2025+\n    except Exception:\n        src = list(FilteredElementCollector(doc).OfClass(AreaScheme))\n        if src:\n            ids = ElementTransformUtils.CopyElement(doc, src[0].Id, XYZ.Zero)\n            sc = doc.GetElement(list(ids)[0])\n    if sc is None:\n        out.append('FAILED could not make the area scheme ' + name)\n        return None\n    try:\n        sc.Name = name\n    except Exception:\n        pset(sc, BuiltInParameter.AREA_SCHEME_NAME, name)\n    return sc\n\n\ndef area_plan(doc, scheme, level):\n    name = '{0} - {1}'.format(scheme.Name, level.Name)\n    for v in FilteredElementCollector(doc).OfClass(ViewPlan):\n        try:\n            if not v.IsTemplate and v.ViewType == ViewType.AreaPlan and idv(v.AreaScheme.Id) == idv(scheme.Id) \\\n                    and idv(v.GenLevel.Id) == idv(level.Id):\n                return v\n        except Exception:\n            continue\n    v = ViewPlan.CreateAreaPlan(doc, scheme.Id, level.Id)\n    try:\n        v.Name = name\n    except Exception:\n        pass\n    return v\n\n\ndef clear_plan(doc, v):\n    \"\"\"delete the areas and area boundary lines of a D13 area plan.\"\"\"\n    ids = []\n    for e in FilteredElementCollector(doc, v.Id).OfCategory(BuiltInCategory.OST_Areas).WhereElementIsNotElementType():\n        ids.append(e.Id)\n    for e in FilteredElementCollector(doc, v.Id).OfCategory(BuiltInCategory.OST_AreaSchemeLines).WhereElementIsNotElementType():\n        ids.append(e.Id)\n    for e in FilteredElementCollector(doc, v.Id).OfCategory(BuiltInCategory.OST_AreaTags).WhereElementIsNotElementType():\n        ids.append(e.Id)\n    if ids:\n        doc.Delete(List[ElementId](ids))\n    return len(ids)\n\n\ndef _seg_key(c):\n    a, b = c.GetEndPoint(0), c.GetEndPoint(1)\n    return (round(a.X, 3), round(a.Y, 3), round(b.X, 3), round(b.Y, 3))\n\n\ndef draw_loops(doc, v, sp, loops, z, done):\n    \"\"\"area boundary lines for the loops at height z; straight pieces already drawn (collinear overlap) are trimmed.\"\"\"\n    n = 0\n    for cl in loops:\n        for c in flat_loop(cl, z):\n            pieces = [c]\n            if tname(c) == 'Line':\n                pieces = trim_line(c, done)\n            for pc in pieces:\n                if pc.Length < 5 * MMF:\n                    continue\n                try:\n                    doc.Create.NewAreaBoundaryLine(sp, pc, v)\n                    n += 1\n                    if tname(pc) == 'Line':\n                        done.append(pc)\n                except Exception as ex:\n                    log13('area line: {0}'.format(ex))\n    return n\n\n\ndef trim_line(c, done):\n    \"\"\"parts of line c not already covered by a collinear drawn line.\"\"\"\n    a, b = c.GetEndPoint(0), c.GetEndPoint(1)\n    d = b.Subtract(a)\n    L = d.GetLength()\n    if L < 1e-9:\n        return []\n    u = d.Divide(L)\n    cut = []\n    for e in done:\n        p, q = e.GetEndPoint(0), e.GetEndPoint(1)\n        dv = q.Subtract(p)\n        if dv.GetLength() < 1e-9 or abs(abs(dv.Normalize().DotProduct(u)) - 1.0) > 1e-6:\n            continue\n        w = p.Subtract(a)\n        if w.Subtract(u.Multiply(w.DotProduct(u))).GetLength() > 2 * MMF:   # not on the same line\n            continue\n        t0, t1 = sorted((p.Subtract(a).DotProduct(u), q.Subtract(a).DotProduct(u)))\n        t0, t1 = max(t0, 0.0), min(t1, L)\n        if t1 - t0 > 1 * MMF:\n            cut.append((t0, t1))\n    if not cut:\n        return [c]\n    cut.sort()\n    res, t = [], 0.0\n    for t0, t1 in cut:\n        if t0 - t > 5 * MMF:\n            res.append(Line.CreateBound(a.Add(u.Multiply(t)), a.Add(u.Multiply(t0))))\n        t = max(t, t1)\n    if L - t > 5 * MMF:\n        res.append(Line.CreateBound(a.Add(u.Multiply(t)), b))\n    return res\n\n\ndef inner_point(face, avoid=()):\n    \"\"\"a point inside the face (z = 0), away from the avoid loops.\"\"\"\n    bb = face.GetBoundingBox()\n    for n in (6, 12, 24):\n        best = None\n        cu, cv = (bb.Min.U + bb.Max.U) / 2.0, (bb.Min.V + bb.Max.V) / 2.0\n        for i in range(n + 1):\n            for j in range(n + 1):\n                uv = UV(bb.Min.U + (bb.Max.U - bb.Min.U) * (0.02 + 0.96 * i / float(n)),\n                        bb.Min.V + (bb.Max.V - bb.Min.V) * (0.02 + 0.96 * j / float(n)))\n                if not face.IsInside(uv):\n                    continue\n                p = face.Evaluate(uv)\n                if any(pt_in_loop(cl, p.X, p.Y) for cl in avoid):\n                    continue\n                d = (uv.U - cu) ** 2 + (uv.V - cv) ** 2\n                if best is None or d < best[0]:\n                    best = (d, p)\n        if best is not None:\n            return best[1]\n    return None\n\n\ndef new_area(doc, v, p, name, number, comment):\n    try:\n        a = doc.Create.NewArea(v, UV(p.X, p.Y))\n    except Exception as ex:\n        log13('area {0}: {1}'.format(name, ex))\n        return None\n    pset(a, BuiltInParameter.ROOM_NAME, name)\n    pset(a, BuiltInParameter.ROOM_NUMBER, number)\n    pset(a, BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS, comment)\n    return a\n\n\ndef build_area_plans(doc, data, s, out):\n    \"\"\"area plans per scheme and level, boundary lines, areas; reads the Revit areas back into data.\"\"\"\n    sch = dict((n, get_scheme(doc, n, out)) for n in SCHEMES)\n    if not all(sch.values()):\n        return False\n    doc.Regenerate()\n    made = {'plans': 0, 'lines': 0, 'areas': 0, 'cleared': 0}\n    by_level = {}\n    for row in data['rows']:\n        by_level.setdefault(idv(row['level'].Id), []).append(row)\n    plans = {}\n    for lid, rows in by_level.items():\n        lvl = rows[0]['level']\n        for n in ('SD BUILT-UP', 'SD FAR'):\n            v = area_plan(doc, sch[n], lvl)\n            plans[(n, lid)] = v\n            made['cleared'] += clear_plan(doc, v)\n    for c in data['cover']:\n        v = area_plan(doc, sch['SD COVERAGE'], c['level'])\n        plans[('SD COVERAGE', idv(c['level'].Id))] = v\n        made['cleared'] += clear_plan(doc, v)\n    doc.Regenerate()\n    made['plans'] = len(plans)\n    sps = {}\n\n    def sp_for(lvl):\n        k = idv(lvl.Id)\n        if k not in sps:\n            sps[k] = SketchPlane.Create(doc, Plane.CreateByNormalAndOrigin(XYZ.BasisZ, XYZ(0, 0, lvl.Elevation)))\n        return sps[k]\n\n    pending = []   # (view, point, name, number, comment, setter)\n    done_lines = {}\n    for row in data['rows']:\n        lvl, blk, lid = row['level'], row['block'], idv(row['level'].Id)\n        z = lvl.Elevation\n        sp = sp_for(lvl)\n        for n in ('SD BUILT-UP', 'SD FAR'):\n            v = plans[(n, lid)]\n            dl = done_lines.setdefault((n, lid), [])\n            for _a, loops, _f in row['pieces']:\n                made['lines'] += draw_loops(doc, v, sp, loops, z, dl)\n        vf = plans[('SD FAR', lid)]\n        dl = done_lines[('SD FAR', lid)]\n        for d in row['ded']:\n            made['lines'] += draw_loops(doc, vf, sp, d['loops'][:1], z, dl)\n        avoid = [d['loops'][0] for d in row['ded'] if d['loops']]\n        for i, (_a, loops, face) in enumerate(row['pieces']):\n            p = inner_point(face)\n            if p is not None:\n                pending.append((plans[('SD BUILT-UP', lid)], p, '{0} BUILT-UP'.format(blk), '{0}-{1}'.format(blk, i + 1),\n                                '{0}|BUILT|{1}'.format(TAG, blk), row, 'built_rev'))\n            p = inner_point(face, avoid)\n            if p is not None:\n                pending.append((vf, p, '{0} FAR'.format(blk), '{0}-F{1}'.format(blk, i + 1),\n                                '{0}|FAR|{1}'.format(TAG, blk), row, 'far_rev'))\n        for j, d in enumerate(row['ded']):\n            short = (ename(d['room']) + ' ' + pstr(d['room'], BuiltInParameter.ROOM_NUMBER)).strip() if d['room'] is not None else d['name']\n            pending.append((vf, d['pt'], 'DEDUCT - {0}'.format(short)[:60], '{0}-D{1}'.format(blk, j + 1),\n                            '{0}|DED|{1}|{2}'.format(TAG, blk, d['cat']), d, 'rev'))\n    for c in data['cover']:\n        lvl = c['level']\n        v = plans[('SD COVERAGE', idv(lvl.Id))]\n        dl = done_lines.setdefault(('SD COVERAGE', idv(lvl.Id)), [])\n        for i, (_a, loops, face) in enumerate(c['pieces']):\n            made['lines'] += draw_loops(doc, v, sp_for(lvl), loops, lvl.Elevation, dl)\n            p = inner_point(face)\n            if p is not None:\n                pending.append((v, p, '{0} GROUND COVERAGE'.format(c['block']), '{0}-C{1}'.format(c['block'], i + 1),\n                                '{0}|COV|{1}'.format(TAG, c['block']), c, 'rev'))\n    doc.Regenerate()\n    tag_ok = any(True for _t in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_AreaTags).WhereElementIsElementType())\n    made['tags'] = 0\n    for v, p, name, num, com, holder, key in pending:\n        a = new_area(doc, v, p, name, num, com)\n        if a is None:\n            continue\n        made['areas'] += 1\n        holder.setdefault('_areas_' + key, []).append(a)\n        if tag_ok:\n            try:                                             # area tag = name + area shown on the plan\n                doc.Create.NewAreaTag(v, a, UV(p.X, p.Y))\n                made['tags'] += 1\n            except Exception as ex:\n                log13('area tag {0}: {1}'.format(name, ex))\n    if not tag_ok:\n        data['checks'].append('CHECK no area tag family in the project - areas are made but not labelled (Insert > Load Family > Annotations > Area Tag)')\n    doc.Regenerate()\n    # read Revit's own areas back (the statement uses them; computed values only when Revit could not close an area)\n    bad = 0\n    for row in data['rows']:\n        for key, comp in (('built_rev', row['built']), ('far_rev', None)):\n            al = row.get('_areas_' + key, [])\n            val = sum(a.Area for a in al)\n            row[key] = val if val > 1e-6 else None\n        for d in row['ded']:\n            al = d.get('_areas_rev', [])\n            val = sum(a.Area for a in al)\n            # the statement keeps the ROOM's own area (Revit room calculation); the area plan only draws it\n            if al and (val <= 1e-6 or abs(val - d['area']) > max(2.0, 0.02 * d['area'])):\n                bad += 1\n                data['checks'].append('CHECK SD FAR plan {0}: \"{1}\" drawn as {2:,.0f} sq ft, room is {3:,.0f} sq ft - its area lines '\n                                      'merge with a neighbour; the statement uses the room area'.format(\n                                          row['level'].Name, d['name'], val, d['area']))\n        row['ded_area'] = sum(d['area'] for d in row['ded'])\n        if row['built_rev'] is not None and abs(row['built_rev'] - row['built']) > 1.0:\n            data['checks'].append('CHECK {0} {1}: Revit area {2:,.0f} sq ft vs slab {3:,.0f} sq ft - see the SD BUILT-UP plan'.format(\n                row['level'].Name, row['block'], row['built_rev'], row['built']))\n        if row['built_rev'] is not None:\n            row['built'] = row['built_rev']\n    for c in data['cover']:\n        val = sum(a.Area for a in c.get('_areas_rev', []))\n        if val > 1e-6:\n            c['area'] = val\n\n    out.append('Area plans: {0} (schemes {1}), {2} boundary lines, {3} areas, {5} area tags{4}'.format(\n        made['plans'], ' / '.join(SCHEMES), made['lines'], made['areas'],\n        ', old D13 content replaced: {0}'.format(made['cleared']) if made['cleared'] else '', made['tags']))\n    return True\n\n\n# ----------------------------------------------------------------- statement: numbers, drafting view, sheet, Excel\ndef statement(data, s):\n    plot = parse_area(s.get('plot_area'))\n    blocks = sorted(set(r['block'] for r in data['rows']))\n    tab = []\n    tot = {'built': 0.0, 'ded': 0.0, 'far': 0.0}\n    for blk in blocks:\n        rows = [r for r in data['rows'] if r['block'] == blk]\n        rows.sort(key=lambda r: r['level'].Elevation)\n        bt = {'built': 0.0, 'ded': 0.0, 'far': 0.0}\n        lines = []\n        for r in rows:\n            far = float(r['built']) - float(r['ded_area'])\n            lines.append((r['level'].Name, float(r['built']), float(r['ded_area']), far))\n            bt['built'] += float(r['built'])\n            bt['ded'] += float(r['ded_area'])\n            bt['far'] += far\n        cats = {}\n        for r in rows:\n            for d in r['ded']:\n                cats[d['cat']] = cats.get(d['cat'], 0.0) + float(d['area'])\n        tab.append({'block': blk, 'lines': lines, 'tot': bt, 'cats': cats})\n        for k in tot:\n            tot[k] += bt[k]\n    cov = sum(c['area'] for c in data['cover'])\n    summ = {'plot': plot, 'far_allowed': float(s['far_allowed'] or 0), 'cov_allowed': float(s['coverage_allowed'] or 0),\n            'built': tot['built'], 'ded': tot['ded'], 'far_area': tot['far'], 'coverage': cov,\n            'far': (tot['far'] / plot) if plot else None, 'cov_pct': (cov * 100.0 / plot) if plot else None,\n            'ground': data['ground'].Name if data.get('ground') is not None else '-'}\n    return tab, summ\n\n\ndef summary_lines(tab, summ):\n    L = []\n    for t in tab:\n        L.append('{0}: built-up {1}, deductions {2}, FAR area {3}'.format(\n            t['block'], sqft_sqm(t['tot']['built']), sqft_sqm(t['tot']['ded']), sqft_sqm(t['tot']['far'])))\n    if summ['plot']:\n        L.append('PLOT {0} | FAR {1:.3f} (allowed {2:.2f} = {3}) | FAR area {4} | construction built-up {5}'.format(\n            sqft_sqm(summ['plot']), summ['far'], summ['far_allowed'], sqft_sqm(summ['plot'] * summ['far_allowed']),\n            sqft_sqm(summ['far_area']), sqft_sqm(summ['built'])))\n        L.append('GROUND COVERAGE ({0}) {1} = {2:.1f} % (allowed {3:.0f} %){4}'.format(\n            summ['ground'], sqft_sqm(summ['coverage']), summ['cov_pct'], summ['cov_allowed'],\n            '' if summ['cov_pct'] <= summ['cov_allowed'] + 1e-6 else '  - OVER'))\n        if summ['far'] > summ['far_allowed'] + 1e-6:\n            L.append('CHECK FAR {0:.3f} is over the allowed {1:.2f} by {2}'.format(\n                summ['far'], summ['far_allowed'], sqft_sqm(summ['far_area'] - summ['plot'] * summ['far_allowed'])))\n    if not any(t['cats'] for t in tab):\n        L.append('CHECK no deductions: no room is named STAIR, LIFT, PARKING, RAMP, SHAFT, DUCT, DG, PUMP .. - see the ROOMS lines')\n    if not summ['plot']:\n        L.append('FAR area {0} | construction built-up {1} | coverage {2}  (no plot area given - FAR and coverage % not worked out)'.format(\n            sqft_sqm(summ['far_area']), sqft_sqm(summ['built']), sqft_sqm(summ['coverage'])))\n    return L\n\n\ndef drafting_view(doc, name):\n    for v in FilteredElementCollector(doc).OfClass(ViewDrafting):\n        if not v.IsTemplate and v.Name == name:\n            ids = [e.Id for e in FilteredElementCollector(doc, v.Id).WhereElementIsNotElementType()\n                   if e.Category is not None and idv(e.Category.Id) in (cat_val(BuiltInCategory.OST_TextNotes),\n                                                                        cat_val(BuiltInCategory.OST_Lines))]\n            if ids:\n                doc.Delete(List[ElementId](ids))\n            return v\n    vft = [x for x in FilteredElementCollector(doc).OfClass(ViewFamilyType) if x.ViewFamily == ViewFamily.Drafting][0]\n    v = ViewDrafting.Create(doc, vft.Id)\n    v.Name = name\n    v.Scale = 1\n    return v\n\n\ndef write_table(doc, v, tab, summ, s):\n    \"\"\"the statement as a table of text notes + lines in a drafting view (paper mm at scale 1:1).\"\"\"\n    tt = doc.GetDefaultElementTypeId(ElementTypeGroup.TextNoteType)\n    cols = [0, 95, 160, 225, 290]          # mm\n    rowh = 7.0\n    y = [0.0]\n\n    def text(x_mm, txt, bold=False):\n        try:\n            TextNote.Create(doc, v.Id, XYZ(x_mm * MMF, y[0] * MMF, 0), txt, tt)\n        except Exception as ex:\n            log13('table text: {0}'.format(ex))\n\n    def hline(x0=0, x1=355):\n        try:\n            doc.Create.NewDetailCurve(v, Line.CreateBound(XYZ(x0 * MMF, (y[0] + 1.8) * MMF, 0), XYZ(x1 * MMF, (y[0] + 1.8) * MMF, 0)))\n        except Exception:\n            pass\n\n    def row(cells, line=False):\n        for x, c in zip(cols, cells):\n            text(x + 1, c)\n        y[0] -= rowh\n        if line:\n            hline()\n\n    text(0, 'AREA STATEMENT + FAR  (areas in sq ft, sqm in brackets)   -   {0}'.format(datetime.datetime.now().strftime('%d/%m/%Y')))\n    y[0] -= rowh * 1.5\n    if summ['plot']:\n        for a, b in (('PLOT AREA', sqft_sqm(summ['plot'])),\n                     ('PERMISSIBLE FAR {0:.2f}'.format(summ['far_allowed']), sqft_sqm(summ['plot'] * summ['far_allowed'])),\n                     ('PROPOSED FAR AREA', '{0}   =  FAR {1:.3f}'.format(sqft_sqm(summ['far_area']), summ['far'])),\n                     ('CONSTRUCTION BUILT-UP (incl. basements)', sqft_sqm(summ['built'])),\n                     ('GROUND COVERAGE ({0})'.format(summ['ground']), '{0}   =  {1:.1f} %  (permissible {2:.0f} %)'.format(\n                         sqft_sqm(summ['coverage']), summ['cov_pct'], summ['cov_allowed']))):\n            text(1, a)\n            text(cols[2] - 30, b)\n            y[0] -= rowh\n    else:\n        text(1, 'PROPOSED FAR AREA  {0}      CONSTRUCTION BUILT-UP  {1}'.format(sqft_sqm(summ['far_area']), sqft_sqm(summ['built'])))\n        y[0] -= rowh\n    y[0] -= rowh\n    for t in tab:\n        text(0, t['block'] if t['block'] == 'BUILDING' else 'BUILDING  {0}'.format(t['block']))\n        y[0] -= rowh\n        hline()\n        row(['LEVEL', 'BUILT-UP', 'DEDUCTIONS', 'FAR AREA'], line=True)\n        for lv, b, d, f in t['lines']:\n            row([lv, '{0:,.0f} ({1:,.1f})'.format(b, b * SQM), '{0:,.0f} ({1:,.1f})'.format(d, d * SQM),\n                 '{0:,.0f} ({1:,.1f})'.format(f, f * SQM)])\n        hline()\n        row(['TOTAL {0}'.format(t['block']), '{0:,.0f} ({1:,.1f})'.format(t['tot']['built'], t['tot']['built'] * SQM),\n             '{0:,.0f} ({1:,.1f})'.format(t['tot']['ded'], t['tot']['ded'] * SQM),\n             '{0:,.0f} ({1:,.1f})'.format(t['tot']['far'], t['tot']['far'] * SQM)])\n        if t['cats']:\n            text(1, 'Deductions: ' + ',  '.join('{0} {1:,.0f}'.format(k, val) for k, val in sorted(t['cats'].items())))\n        else:\n            text(1, 'Deductions: NONE FOUND - no room on these floors is named STAIR, LIFT, PARKING, RAMP, SHAFT, DUCT, '\n                    'DG, PUMP, SUBSTATION, FIRE CONTROL, REFUGE, STP ..  (name the rooms, then run again)')\n        y[0] -= rowh\n        y[0] -= rowh\n\n\ndef place_on_sheet(doc, s, views, out):\n    sheet = None\n    for sh in FilteredElementCollector(doc).OfClass(ViewSheet):\n        if sh.SheetNumber == s['sheet_number']:\n            sheet = sh\n            break\n    if sheet is None:\n        tbs = list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_TitleBlocks).WhereElementIsElementType())\n        sheet = ViewSheet.Create(doc, tbs[0].Id if tbs else ElementId.InvalidElementId)\n        sheet.SheetNumber = s['sheet_number']\n        sheet.Name = s['sheet_name']\n        doc.Regenerate()\n    placed = set(idv(i) for i in sheet.GetAllPlacedViews())\n    ol = sheet.Outline\n    for v in views:\n        if idv(v.Id) in placed:\n            continue\n        try:\n            if Viewport.CanAddViewToSheet(doc, sheet.Id, v.Id):\n                Viewport.Create(doc, sheet.Id, v.Id, XYZ((ol.Min.U + ol.Max.U) / 2.0, (ol.Min.V + ol.Max.V) / 2.0, 0))\n        except Exception as ex:\n            log13('place {0}: {1}'.format(v.Name, ex))\n    out.append('Sheet {0} - {1}: statement placed'.format(sheet.SheetNumber, sheet.Name))\n    return sheet\n\n\ndef excel_path(doc):\n    p = doc.PathName or ''\n    base = re.sub(r'[\\\\/:*?\"<>|]+', '_', doc.Title)\n    if p and os.path.isdir(os.path.dirname(p)) and not p.lower().startswith(('bim 360', 'autodesk docs')):\n        return os.path.join(os.path.dirname(p), base + '_AREA_STATEMENT.xlsx')\n    d = os.path.join(os.path.expanduser('~'), 'Documents', 'SD_Tools_Area')\n    if not os.path.isdir(d):\n        os.makedirs(d)\n    return os.path.join(d, base + '_AREA_STATEMENT.xlsx')\n\n\ndef write_excel(doc, data, tab, summ, out):\n    path = excel_path(doc)\n    try:\n        import xlsxwriter                                   # pyRevit's bundled copy\n    except Exception:\n        for sp in (os.path.join(os.environ.get('APPDATA', ''), 'pyRevit-Master', 'site-packages'),\n                   os.path.join(os.path.expanduser('~'), 'Downloads', 'pyRevit-Master', 'site-packages')):\n            if os.path.isdir(sp) and sp not in sys.path:\n                sys.path.append(sp)\n        try:\n            import xlsxwriter\n        except Exception:\n            xlsxwriter = None\n    if xlsxwriter is None:\n        path = path[:-5] + '.csv'\n        with open(path, 'w') as f:\n            f.write('BUILDING,LEVEL,BUILT-UP sq ft,BUILT-UP sqm,DEDUCTIONS sq ft,DEDUCTIONS sqm,FAR sq ft,FAR sqm\\n')\n            for t in tab:\n                for lv, b, d, fa in t['lines']:\n                    f.write('{0},{1},{2:.0f},{3:.2f},{4:.0f},{5:.2f},{6:.0f},{7:.2f}\\n'.format(t['block'], lv, b, b * SQM, d, d * SQM, fa, fa * SQM))\n        out.append('Excel (CSV, no xlsxwriter): ' + path)\n        return path\n    try:\n        wb = xlsxwriter.Workbook(path)\n    except Exception as ex:\n        out.append('CHECK Excel not written (is it open in WPS / Excel?): {0}'.format(ex))\n        return None\n    b = wb.add_format({'bold': True})\n    n0 = wb.add_format({'num_format': '#,##0'})\n    n2 = wb.add_format({'num_format': '#,##0.00'})\n    ws = wb.add_worksheet('STATEMENT')\n    ws.set_column(0, 0, 34)\n    ws.set_column(1, 8, 16)\n    r = 0\n    ws.write(r, 0, 'AREA STATEMENT + FAR - {0} - {1}'.format(doc.Title, datetime.datetime.now().strftime('%d/%m/%Y %H:%M')), b)\n    r += 2\n    if summ['plot']:\n        for a, v1, v2 in (('PLOT AREA', summ['plot'], summ['plot'] * SQM),\n                          ('PERMISSIBLE FAR AREA (FAR {0:.2f})'.format(summ['far_allowed']), summ['plot'] * summ['far_allowed'],\n                           summ['plot'] * summ['far_allowed'] * SQM),\n                          ('PROPOSED FAR AREA', summ['far_area'], summ['far_area'] * SQM),\n                          ('CONSTRUCTION BUILT-UP', summ['built'], summ['built'] * SQM),\n                          ('GROUND COVERAGE ({0})'.format(summ['ground']), summ['coverage'], summ['coverage'] * SQM)):\n            ws.write(r, 0, a, b)\n            ws.write(r, 1, v1, n0)\n            ws.write(r, 2, v2, n2)\n            r += 1\n        ws.write(r, 0, 'PROPOSED FAR', b)\n        ws.write(r, 1, summ['far'], wb.add_format({'num_format': '0.000'}))\n        r += 1\n        ws.write(r, 0, 'GROUND COVERAGE %', b)\n        ws.write(r, 1, summ['cov_pct'], wb.add_format({'num_format': '0.0'}))\n        r += 2\n    ws.write_row(r, 0, ['BUILDING / LEVEL', 'BUILT-UP sq ft', 'BUILT-UP sqm', 'DEDUCTIONS sq ft', 'DEDUCTIONS sqm',\n                        'FAR AREA sq ft', 'FAR AREA sqm'], b)\n    r += 1\n    for t in tab:\n        ws.write(r, 0, 'BUILDING ' + t['block'], b)\n        r += 1\n        for lv, bu, de, fa in t['lines']:\n            ws.write(r, 0, lv)\n            for c, val in enumerate((bu, bu * SQM, de, de * SQM, fa, fa * SQM)):\n                ws.write(r, 1 + c, val, n0 if c % 2 == 0 else n2)\n            r += 1\n        ws.write(r, 0, 'TOTAL ' + t['block'], b)\n        tt = t['tot']\n        for c, val in enumerate((tt['built'], tt['built'] * SQM, tt['ded'], tt['ded'] * SQM, tt['far'], tt['far'] * SQM)):\n            ws.write(r, 1 + c, val, n0 if c % 2 == 0 else n2)\n        r += 2\n    wd = wb.add_worksheet('DEDUCTIONS')\n    wd.set_column(0, 3, 22)\n    wd.set_column(4, 4, 40)\n    wd.write_row(0, 0, ['BUILDING', 'LEVEL', 'GROUP', 'WORD FOUND', 'ROOM / ITEM', 'sq ft', 'sqm'], b)\n    rr = 1\n    for row in sorted(data['rows'], key=lambda x: (x['block'], x['level'].Elevation)):\n        for d in row['ded']:\n            wd.write_row(rr, 0, [row['block'], row['level'].Name, d['cat'], d['word'], d['name']])\n            wd.write(rr, 5, d['area'], n0)\n            wd.write(rr, 6, d['area'] * SQM, n2)\n            rr += 1\n    try:\n        wb.close()\n    except Exception as ex:\n        out.append('CHECK Excel not written (is it open in WPS / Excel?): {0}'.format(ex))\n        return None\n    out.append('Excel: ' + path)\n    return path\n\n\n# ----------------------------------------------------------------- main\ndef d13_run(doc, uidoc=None, settings=None, preview=False):\n    s = d13_settings(settings)\n    head = ['{0}  -  {1}  -  {2}'.format(D13_TITLE, doc.Title, datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))]\n    out = []\n    tg = TransactionGroup(doc, D13_TITLE)\n    tg.Start()\n    try:\n        t = Transaction(doc, 'D13 area statement')\n        t.Start()\n        quiet_warnings(t)\n        data = None\n        try:\n            data = compute(doc, s, out)\n            if data is not None:\n                if s['area_plans']:\n                    build_area_plans(doc, data, s, out)\n                tab, summ = statement(data, s)\n                if s['sheet']:\n                    dv = drafting_view(doc, 'SD AREA STATEMENT')\n                    write_table(doc, dv, tab, summ, s)\n                    place_on_sheet(doc, s, [dv], out)\n            st = t.Commit()\n            if st != TransactionStatus.Committed:\n                out.append('FAILED: Revit rolled the run back (a warning was cancelled)')\n                data = None\n        except Exception:\n            if t.HasStarted() and not t.HasEnded():\n                t.RollBack()\n            raise\n        if data is not None:\n            tab, summ = statement(data, s)\n            head += summary_lines(tab, summ)\n            for row in sorted(data['rows'], key=lambda x: (x['block'], x['level'].Elevation)):\n                out.append('  {0:<10} {1:<28} built-up {2:>12,.0f}  deduct {3:>10,.0f}  FAR {4:>12,.0f} sq ft  ({5} deductions, {6} room wells, {7} slab openings, {8} voids)'.format(\n                    row['block'], row['level'].Name[:28], float(row['built']), float(row['ded_area']), float(row['built']) - float(row['ded_area']),\n                    len(row['ded']), row['cores'], row['ducts'], row['voids']))\n            out += data['checks']\n            if s['excel'] and not preview:\n                write_excel(doc, data, tab, summ, out)\n        if preview:\n            tg.RollBack()\n            head.append('PREVIEW ONLY - nothing kept (RUN = True to make it)')\n        else:\n            tg.Assimilate()\n    except Exception:\n        if tg.HasStarted() and not tg.HasEnded():\n            tg.RollBack()\n        raise\n    lines = head + [''] + out\n    log13('\\n=== ' + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '\\n' + '\\n'.join(lines))\n    return lines\n\n\n# =====================================================================\n#  DYNAMO PART - reads the inputs and runs the D13 engine above.\n#  RUN = False -> preview: everything is made, counted and undone again (nothing kept, no Excel).\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        doc = DocumentManager.Instance.CurrentDBDocument\n        try:\n            uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n        except Exception:\n            uidoc = None\n        TM = TransactionManager\n    except Exception:\n        pass\n\n_IN = list(IN) if DYNAMO else list(globals().get('D13_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = _IN[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and not v.strip()):\n        return default\n    return v\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y', 'ON')\n    return bool(v)\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).replace('%', '').strip())\n    except Exception:\n        return default\n\n\nS = {\n    'plot_area': str(_inp(0, '')), 'far_allowed': _num(1, 3.0), 'coverage_allowed': _num(2, 45.0),\n    'deduct_words': BDA_WORDS if str(_inp(3, '')).strip().upper() in ('', 'BDA', 'BDA 2019 LIST', 'BDA 2019') else str(_inp(3, BDA_WORDS)), 'keep_words': str(_inp(4, D13_DEFAULTS['keep_words'])),\n    'hole_fill_sqm': _num(5, 100.0), 'coverage_level': str(_inp(6, '')).strip() if str(_inp(6, '')).strip().upper() != 'AUTO' else '',\n    'area_plans': _flag(7, True), 'sheet': _flag(8, True), 'excel': _flag(9, True),\n    'sheet_number': str(_inp(10, 'FAR-01')).strip(),\n}\nGO = _flag(11, False)\n\nout = []\ntry:\n    if doc is None:\n        raise Exception('No Revit document.')\n    if TM is not None:\n        TM.Instance.ForceCloseTransaction()              # the engine runs its own transactions (one undo)\n    out = d13_run(doc, uidoc, S, preview=not GO)\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    out.append(traceback.format_exc())\n    log13('\\n'.join(out))\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('D13 Area Statement')\n        td.MainInstruction = (out[1] if len(out) > 1 and out[1] else out[0]) if out else 'done'\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "1bb9798a86b1486b949777457574f121",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "9d43dd8685654b63ac8512cdfb0d3e48",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0aecf7d06e7846a1ae6f91ad0caa9d49",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a7c14c51d93c485abf03d42ac644bd06",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7c63383a8501499f9a9a724e76117df2",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "433edba76ef54e9fab6ea4de7e75f224",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ed34fd2fb6a14663bf6db88258ce5908",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9c2fa437fc314624b8cc8f4e43ffe333",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "75b2cd6a0082446b9adc3802eccfb4f3",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "40dfc74ceead4e24a42f3317e7b6aa54",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "93c3956b3d664aa79c8e7555d6fcbca4",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b56629d53dbd409eb3948aa6f74d97cf",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6aa46bb9f1054a269ed5c841908250a9",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "461e8ddb6cae45449927325b3d778f5c",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "3c23e07a79e8416eac6d093ee435059d",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "49b39ecf942342b3bd1f151faaa67b3f",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "caae568af82c40678e7ae8c314c6e0e9",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "441bf1c3960743ac8051e85a3ec80077",
+      "End": "9d43dd8685654b63ac8512cdfb0d3e48",
+      "Id": "9c5b319f82de4a5e9caa090cf94487c4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d1742ef0266c4dad89d3e18853958992",
+      "End": "0aecf7d06e7846a1ae6f91ad0caa9d49",
+      "Id": "b4a150dad87b4e6fbad1d36288bff0ff",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9954800ae19543e3ba36c1e02fa8f0fe",
+      "End": "a7c14c51d93c485abf03d42ac644bd06",
+      "Id": "0c7b44b5853d4cbe915dfc724d1cfefa",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c7422d4fa9b442b683032e7159cc7ee5",
+      "End": "7c63383a8501499f9a9a724e76117df2",
+      "Id": "f72b225f5ad346018f4dae36b1539dbe",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "50e57ff0e9ef4db7af56f0d44d6357eb",
+      "End": "433edba76ef54e9fab6ea4de7e75f224",
+      "Id": "333b6f28e2154c6b92ccc3eb1212524c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "099a485f300746deb37ff55e81cb2881",
+      "End": "ed34fd2fb6a14663bf6db88258ce5908",
+      "Id": "33e36731ef664b1098170a2e46bf39cf",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c391b1015a974b709f9e7eef9dfd99ba",
+      "End": "9c2fa437fc314624b8cc8f4e43ffe333",
+      "Id": "6bdd71df16ea4f8092516f2fea224429",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e522a39e422545e89b68c992ecf454af",
+      "End": "75b2cd6a0082446b9adc3802eccfb4f3",
+      "Id": "15715d7536214a3795058c17df7e52f1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f176a151bd71456886dae244b6b3150d",
+      "End": "40dfc74ceead4e24a42f3317e7b6aa54",
+      "Id": "ed7525fb06b84b37b9ac4e00f1006c27",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8db25c25fe3c4c1f8cdb4efd89f6c07f",
+      "End": "93c3956b3d664aa79c8e7555d6fcbca4",
+      "Id": "12eababf84244637867dc07f44b00381",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2c99d498b755482882b2ab05c2ca24ab",
+      "End": "b56629d53dbd409eb3948aa6f74d97cf",
+      "Id": "3d221cb206e64a47b8af05490b424354",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5e1ecff6896c41458154a4b0a91dce25",
+      "End": "6aa46bb9f1054a269ed5c841908250a9",
+      "Id": "a2c77900e8324383a6af307e1120162b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "461e8ddb6cae45449927325b3d778f5c",
+      "End": "49b39ecf942342b3bd1f151faaa67b3f",
+      "Id": "f2dc73b917a14e928e3e87040fe37acd",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "09df4964ce6c4ed7ac03b858655a5377",
+        "Name": "PLOT AREA  (e.g. 20436.62 sqm / 219980 sqft / 5 acre; blank = no FAR %)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "1e24f8c6dfab44b988afdc779a117633",
+        "Name": "PERMISSIBLE FAR",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "3138f34c3b0040d5b0af1be71da91ef1",
+        "Name": "PERMISSIBLE GROUND COVERAGE %",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 300
+      },
+      {
+        "Id": "5257a894084945149f7a2e6e6f25b0cd",
+        "Name": "FAR DEDUCTION words in room names (comma list)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "cc7ecf9a45bd4ed8bb2ea4a48a7be78a",
+        "Name": "NEVER deduct rooms with these words",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "a56798acc756485ca55650b307062625",
+        "Name": "Slab openings up to (sqm) without a room = DEDUCTED (bigger = voids)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 300
+      },
+      {
+        "Id": "307f84f1d0944fc396c50e854325c0a9",
+        "Name": "GROUND level for coverage (AUTO or level name)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 450
+      },
+      {
+        "Id": "f2c5e06b415e4ec7bc8eb2d08368dde5",
+        "Name": "AREA PLANS + areas (schemes SD BUILT-UP / FAR / COVERAGE)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "cb3abd8bed0d409da3593e9e0a04d818",
+        "Name": "STATEMENT SHEET (drafting view table on the sheet)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "bca25173d7ad45c9b72a0d129f4616d6",
+        "Name": "EXCEL workbook (next to the model)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 300
+      },
+      {
+        "Id": "b7ebcb62dade49bc968f00e372f99a1f",
+        "Name": "Sheet number",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 450
+      },
+      {
+        "Id": "be03e0cb92b54eda83f52240f6428cf1",
+        "Name": "RUN  (False = preview: count, then undo)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1680,
+        "Y": 0
+      },
+      {
+        "Id": "1bb9798a86b1486b949777457574f121",
+        "Name": "D13 AREA STATEMENT ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2260.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "3c23e07a79e8416eac6d093ee435059d",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2660.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "45e00588be5042a89796bdb8121b6cc9",
+        "Title": "1  PLOT + LIMITS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "09df4964ce6c4ed7ac03b858655a5377",
+          "1e24f8c6dfab44b988afdc779a117633",
+          "3138f34c3b0040d5b0af1be71da91ef1"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 585,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 490,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "0ad55d19853148268e35f7133d8d3065",
+        "Title": "2  WHAT COUNTS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "5257a894084945149f7a2e6e6f25b0cd",
+          "cc7ecf9a45bd4ed8bb2ea4a48a7be78a",
+          "a56798acc756485ca55650b307062625",
+          "307f84f1d0944fc396c50e854325c0a9"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 735,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 640,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "b6b624e9e8d346bcb03a0884ed46900a",
+        "Title": "3  OUTPUT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "f2c5e06b415e4ec7bc8eb2d08368dde5",
+          "cb3abd8bed0d409da3593e9e0a04d818",
+          "bca25173d7ad45c9b72a0d129f4616d6",
+          "b7ebcb62dade49bc968f00e372f99a1f"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 735,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 640,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFF8A8A"
+      },
+      {
+        "Id": "fb237a16767b4ee68db6be29b494cb9b",
+        "Title": "4  RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "be03e0cb92b54eda83f52240f6428cf1"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1660.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 285,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 190,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "dfa79645a825442d911c6abb34174757",
+        "Title": "HOW TO USE:  slabs carry the building name in Mark (A, B, 1A, CUDDLES ..; blank = BUILDING).  Rooms named STAIR, LIFT, PARKING, RAMP, SHAFT, DUCT, DG, PUMP, SUBSTATION, FIRE CONTROL, REFUGE, STP .. are deducted from FAR.  Enter the plot area, RUN = False and run = preview (report only), then RUN = True: area plans per level in the SD schemes, the statement on sheet FAR-01 and an Excel next to the model.  Areas in sq ft, sqm in brackets.  Run again = replaced.  Ctrl+Z undoes a run.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 2200.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

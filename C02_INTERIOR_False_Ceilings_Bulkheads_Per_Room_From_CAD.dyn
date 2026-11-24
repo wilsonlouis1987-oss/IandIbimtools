@@ -1,0 +1,1343 @@
+{
+  "Uuid": "e0d7c072-02fb-40d8-a9ec-6f72de4a07e1",
+  "IsCustomNode": false,
+  "Description": "False ceilings per room with bulkheads from Revit lines or CAD layers, cove option",
+  "Name": "CAD2BIM_Ceilings_Bulkheads",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "7355f660ef9447ca9e94edc217977fd8",
+      "Name": "SELECT ROOMS  (click Select, pick rooms, Finish)",
+      "Type": "selection",
+      "Type2": "hostSelection",
+      "Value": "",
+      "Description": "Select multiple elements from the Revit document."
+    },
+    {
+      "Id": "1085e36c61054869a13f6aa1f51e821d",
+      "Name": "Use ALL rooms  (ignore the selection)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "false",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "735c92676015453b82109572e9245796",
+      "Name": "Lines drawn in REVIT  (detail / model lines in plan or ceiling plan)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "25c61db6afd14b4a9a4de7cdf8ae41c9",
+      "Name": "Revit line style contains  ( blank = any line style )",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "cf001dee7d534d1db54ef9b30bc8742e",
+      "Name": "Lines from linked CAD",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "6a39f25770a44a8f99f87cd7ba15e623",
+      "Name": "CAD name contains  ( blank = all CAD links )",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "c6741c3b7b55471b84f92d87df62a3f7",
+      "Name": "CAD layers  ( AUTO = BULK / CEIL / CLG / FC / DROP / COVE / GYP )",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "AUTO",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "7efa13938ce94f2fb292cff8725cfe9f",
+      "Name": "Closed loop = BULKHEAD  (off = loop is the PLAIN ceiling, bulkhead all around)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "7fd0e127f0ce46499332df6a4d065b36",
+      "Name": "Ceiling HEIGHT from floor (mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "2400",
+      "MaximumValue": 6000.0,
+      "MinimumValue": 1800.0,
+      "StepValue": 25.0,
+      "NumberType": "Double",
+      "Description": "Produces numeric values"
+    },
+    {
+      "Id": "b316958534ed486693880dd017e27ebe",
+      "Name": "Ceiling THICKNESS (mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "15",
+      "MaximumValue": 150.0,
+      "MinimumValue": 5.0,
+      "StepValue": 1.0,
+      "NumberType": "Double",
+      "Description": "Produces numeric values"
+    },
+    {
+      "Id": "dc7bf69863f644578ed2cd1bdfdc7f40",
+      "Name": "Bulkhead HEIGHT from floor (mm)  - lower = drop, higher = raised / coffer",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "2700",
+      "MaximumValue": 6000.0,
+      "MinimumValue": 1500.0,
+      "StepValue": 25.0,
+      "NumberType": "Double",
+      "Description": "Produces numeric values"
+    },
+    {
+      "Id": "ae530aa807ff44198ab62da0ba5e1136",
+      "Name": "Bulkhead THICKNESS (mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "15",
+      "MaximumValue": 150.0,
+      "MinimumValue": 5.0,
+      "StepValue": 1.0,
+      "NumberType": "Double",
+      "Description": "Produces numeric values"
+    },
+    {
+      "Id": "695230ea86a442c4b552648835e03ae1",
+      "Name": "Side covering board THICKNESS (mm)  - its height follows automatically",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "15",
+      "MaximumValue": 100.0,
+      "MinimumValue": 5.0,
+      "StepValue": 1.0,
+      "NumberType": "Double",
+      "Description": "Produces numeric values"
+    },
+    {
+      "Id": "5c92d98a17b5429eba273702de040fbd",
+      "Name": "COVE TROUGH for LED  (off = closed drop)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "false",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "671516d8d5384610b64ae380f4324d64",
+      "Name": "Cove LIP height - upstand at the trough edge (mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "100",
+      "MaximumValue": 500.0,
+      "MinimumValue": 25.0,
+      "StepValue": 5.0,
+      "NumberType": "Double",
+      "Description": "Produces numeric values"
+    },
+    {
+      "Id": "042dc853dda34f5083abb22113ebe02b",
+      "Name": "Cove TROUGH width - bulkhead runs past the edge (mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "150",
+      "MaximumValue": 600.0,
+      "MinimumValue": 50.0,
+      "StepValue": 10.0,
+      "NumberType": "Double",
+      "Description": "Produces numeric values"
+    },
+    {
+      "Id": "4c588c33d5db4560874a045a1f4d1a7c",
+      "Name": "Replace OTHER ceilings in these rooms",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "false",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "5bd4352569ea40238347a2a642f3ef64",
+      "Name": "CEILINGS ON  (off = remove script ceilings from these rooms)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    }
+  ],
+  "Outputs": [
+    {
+      "Id": "9fa497f53f3947589bdb6dec310c558b",
+      "Name": "REPORT",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementsSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [],
+      "Id": "7355f660ef9447ca9e94edc217977fd8",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "daab15f9ba8e42688c05dc7065a88c99",
+          "Name": "Elements",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select multiple elements from the Revit document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "1085e36c61054869a13f6aa1f51e821d",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "98f2ff5f6245401f9c5df3a54901c808",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "735c92676015453b82109572e9245796",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "734bc617f8104c25899d737df8349646",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "25c61db6afd14b4a9a4de7cdf8ae41c9",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5de5a5f0445d4553ab7e21c88641ba8b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "cf001dee7d534d1db54ef9b30bc8742e",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "284e63c77ca54e4a9589481e6074a01b",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "6a39f25770a44a8f99f87cd7ba15e623",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "04371ff624a9481e8199bbd2d52ddea7",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "c6741c3b7b55471b84f92d87df62a3f7",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d231fd9e5fea4269a55187df31bc43b7",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "7efa13938ce94f2fb292cff8725cfe9f",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ecba50271fd34e08914dcf6d39659cd8",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 6000.0,
+      "MinimumValue": 1800.0,
+      "StepValue": 25.0,
+      "Id": "7fd0e127f0ce46499332df6a4d065b36",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d84c75403ffd40e5885ee60c2c9b0693",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 2400.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 150.0,
+      "MinimumValue": 5.0,
+      "StepValue": 1.0,
+      "Id": "b316958534ed486693880dd017e27ebe",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9950d7105274405c82527b053d906464",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 15.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 6000.0,
+      "MinimumValue": 1500.0,
+      "StepValue": 25.0,
+      "Id": "dc7bf69863f644578ed2cd1bdfdc7f40",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5376915143a4437da48bd3d45014f6a5",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 2700.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 150.0,
+      "MinimumValue": 5.0,
+      "StepValue": 1.0,
+      "Id": "ae530aa807ff44198ab62da0ba5e1136",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f03e6b551e5043579a90218ab113c97d",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 15.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 5.0,
+      "StepValue": 1.0,
+      "Id": "695230ea86a442c4b552648835e03ae1",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fd20e198d16f4f7396fe3020475a496e",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 15.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "5c92d98a17b5429eba273702de040fbd",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "58f40c50538341c8b2af3c7db0127740",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 500.0,
+      "MinimumValue": 25.0,
+      "StepValue": 5.0,
+      "Id": "671516d8d5384610b64ae380f4324d64",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "25b1b65f2dc14cff9d8ade2fd7972ddd",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 100.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 600.0,
+      "MinimumValue": 50.0,
+      "StepValue": 10.0,
+      "Id": "042dc853dda34f5083abb22113ebe02b",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "998e1cd21dbd4458995424e51d8c243e",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 150.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4c588c33d5db4560874a045a1f4d1a7c",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "aa7ea80ed5b84fbea2c86e04dda45ff4",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "5bd4352569ea40238347a2a642f3ef64",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bab7c59b09284b5887347bf7185d9a53",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - CEILINGS + BULKHEADS (professional)\n#  every Room gets a false ceiling: height / thickness controlled\n#  BULKHEAD areas come from lines: Revit detail / model lines (plan or ceiling plan) and / or linked CAD layers\n#    closed loop  = bulkhead area (or, switch off, the PLAIN ceiling with bulkhead all around = peripheral bulkhead)\n#    line from wall to wall = the smaller side is bulkhead\n#  bulkhead: own height / thickness, vertical side board (covering) of its own thickness,\n#            closed drop or COVE TROUGH (bulkhead runs past the edge with an upstand lip, LED in the trough)\n#  no lines in a room -> plain ceiling.  Re-run = replaced, never doubled.\nimport os\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\nlog('--- ceilings v6 started')\nimport clr, math, re, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nfrom Autodesk.Revit.DB.Architecture import *        # Stairs, StairsRun, StairsLanding, Railing ...\nclr.AddReference('RevitServices')\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nclr.AddReference('System')\nfrom System.Collections.Generic import List\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\nMMF = 1.0 / 304.8\nCOL_PARAMS = [('b', 'h'), ('Width', 'Depth'), ('Width', 'Length')]\nout = []\n\n\ndef num(v, d=0.0):\n    try:\n        return float(v)\n    except Exception:\n        return d\n\n\ndef f(v):\n    return '{0:.0f}'.format(v)\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\n_CAT = {}\ndef catid(bic):\n    if bic not in _CAT:\n        _CAT[bic] = idv(Category.GetCategory(doc, bic).Id)\n    return _CAT[bic]\n\n\ndef cat_is(e, bic):\n    return e is not None and e.Category is not None and idv(e.Category.Id) == catid(bic)\n\n\ndef tname(t):\n    p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n    return p.AsString() if p else ''\n\n\ndef setp(e, bip, val):\n    p = e.get_Parameter(bip)\n    if p is not None and not p.IsReadOnly:\n        p.Set(val)\n        return True\n    return False\n\n\ndef getd(e, bip):\n    p = e.get_Parameter(bip)\n    return p.AsDouble() if p is not None else None\n\n\ndef getlvl(e, bip):\n    p = e.get_Parameter(bip)\n    if p is None:\n        return None\n    x = doc.GetElement(p.AsElementId())\n    return x if isinstance(x, Level) else None\n\n\n\ndef tagged(e):\n    p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n    return (p.AsString() or '') if p is not None else ''\n\n\ndef to_mm(v):\n    return v / MMF\n\n\ndef pt(p):\n    return (to_mm(p.X), to_mm(p.Y))\n\n\ndef layer_name(g, inherited):\n    name = None\n    try:\n        gs = doc.GetElement(g.GraphicsStyleId)\n        if gs is not None and gs.GraphicsStyleCategory is not None:\n            name = gs.GraphicsStyleCategory.Name\n    except Exception:\n        name = None\n    if not name or name == '0':\n        return inherited or name or '0'\n    return name\n\n\nCIRCLES = {}\n\n\ndef read_layers(cad):\n    \"\"\"{layer: [segments]} in mm; arcs and splines are split into short straight pieces.\"\"\"\n    opt = Options()\n    opt.ComputeReferences = False\n    if cad.ViewSpecific:\n        opt.View = doc.GetElement(cad.OwnerViewId)\n    data = {}\n\n    def add(ln, ps):\n        for i in range(len(ps) - 1):\n            if ps[i] != ps[i + 1]:\n                data.setdefault(ln, []).append((ps[i], ps[i + 1]))\n\n    def walk(geom, inherited):\n        for g in geom:\n            ln = layer_name(g, inherited)\n            if isinstance(g, GeometryInstance):\n                walk(g.GetInstanceGeometry(), ln)\n            elif isinstance(g, Arc) and (not g.IsBound or abs(g.Length - 2 * math.pi * g.Radius) < 1e-3):\n                c = g.Center\n                CIRCLES.setdefault(ln, []).append((to_mm(c.X), to_mm(c.Y), to_mm(g.Radius)))\n            elif isinstance(g, Line):\n                if g.IsBound:\n                    add(ln, [pt(g.GetEndPoint(0)), pt(g.GetEndPoint(1))])\n            elif isinstance(g, PolyLine):\n                add(ln, [pt(p) for p in g.GetCoordinates()])\n            elif isinstance(g, Curve):\n                try:\n                    add(ln, [pt(p) for p in g.Tessellate()])\n                except Exception:\n                    pass\n    top = cad.get_Geometry(opt)\n    for g in top:\n        if isinstance(g, GeometryInstance):\n            walk(g.GetInstanceGeometry(), None)\n    return data\n\n\n\n# ================================================================== CEILING ENGINE\nTAG = 'CAD2BIM-CEILING'\nSQM = 0.09290304\nZ = XYZ.BasisZ\n\n\ndef solid_from_loops(loops, z0, h):\n    lst = List[CurveLoop]()\n    for lp in loops:\n        lst.Add(lp)\n    return GeometryCreationUtilities.CreateExtrusionGeometry(lst, Z, h)\n\n\ndef poly_loop(pts, z):\n    \"\"\"closed CurveLoop (counter-clockwise) through 2D mm points\"\"\"\n    a = 0.0\n    for i in range(len(pts)):\n        x0, y0 = pts[i]\n        x1, y1 = pts[(i + 1) % len(pts)]\n        a += x0 * y1 - x1 * y0\n    if a < 0:\n        pts = pts[::-1]\n    lp = CurveLoop()\n    n = len(pts)\n    for i in range(n):\n        p, q = pts[i], pts[(i + 1) % n]\n        lp.Append(Line.CreateBound(XYZ(p[0] * MMF, p[1] * MMF, z), XYZ(q[0] * MMF, q[1] * MMF, z)))\n    return lp\n\n\ndef loop_area(lp):\n    pts = []\n    for c in lp:\n        pts.extend(list(c.Tessellate())[:-1])\n    a = 0.0\n    for i in range(len(pts)):\n        p, q = pts[i], pts[(i + 1) % len(pts)]\n        a += p.X * q.Y - q.X * p.Y\n    return abs(a) / 2.0\n\n\ndef ceiling_loops(face):\n    \"\"\"outer loop counter-clockwise first, holes clockwise\"\"\"\n    lps = list(face.GetEdgesAsCurveLoops())\n    lps.sort(key=loop_area, reverse=True)\n    res = List[CurveLoop]()\n    for i, lp in enumerate(lps):\n        ccw = lp.IsCounterclockwise(Z)\n        if (i == 0 and not ccw) or (i > 0 and ccw):\n            lp.Flip()\n        res.Add(lp)\n    return res\n\n\ndef boolean(a, b, op):\n    if a is None:\n        return b if op == BooleanOperationsType.Union else None\n    if b is None:\n        return a if op != BooleanOperationsType.Intersect else None\n    try:\n        r = BooleanOperationsUtils.ExecuteBooleanOperation(a, b, op)\n        return r if r is not None and r.Volume > 1e-6 else None\n    except Exception as ex:\n        log('boolean {0}: {1}'.format(op, ex))\n        return a if op == BooleanOperationsType.Union else None\n\n\ndef union_all(solids):\n    u = None\n    for s in solids:\n        u = boolean(u, s, BooleanOperationsType.Union)\n    return u\n\n\ndef bottom_faces(sol):\n    if sol is None:\n        return []\n    return [f for f in sol.Faces if isinstance(f, PlanarFace) and f.FaceNormal.Z < -0.99]\n\n\ndef inside(faces, x, y, z):\n    p = XYZ(x, y, z)\n    for f in faces:\n        try:\n            r = f.Project(p)\n            if r is not None and r.Distance < 1e-3:\n                return True\n        except Exception:\n            pass\n    return False\n\n\n# ------------------------------------------------------------------ lines -> chains\ndef simplify(pts, closed):\n    \"\"\"drop points that are on a straight line (CAD polylines often have many)\"\"\"\n    if closed and len(pts) > 1 and pts[0] == pts[-1]:\n        body, tail = pts[:-1], [pts[0]]\n    else:\n        body, tail = pts, []\n    changed = True\n    while changed and len(body) > 3:\n        changed = False\n        n = len(body)\n        keep = []\n        for i in range(n):\n            if not closed and (i == 0 or i == n - 1):\n                keep.append(body[i])\n                continue\n            a, b, c = body[i - 1], body[i], body[(i + 1) % n]\n            ux, uy = b[0] - a[0], b[1] - a[1]\n            vx, vy = c[0] - b[0], c[1] - b[1]\n            lu, lv = math.hypot(ux, uy), math.hypot(vx, vy)\n            if lu < 1.0 or lv < 1.0 or abs(ux * vy - uy * vx) / (lu * lv) < 0.009 and (ux * vx + uy * vy) > 0:\n                changed = True\n                continue\n            keep.append(b)\n        body = keep\n    return body + tail\n\n\ndef chains_from_segments(segs, tol=3.0):\n    \"\"\"segments (mm) -> list of (points, closed). Chains run through nodes with 2 connections.\"\"\"\n    keys = []\n    cell = {}\n\n    def key(p):\n        cx, cy = int(p[0] // 10), int(p[1] // 10)\n        for dx in (-1, 0, 1):\n            for dy in (-1, 0, 1):\n                for k in cell.get((cx + dx, cy + dy), []):\n                    q = keys[k]\n                    if abs(q[0] - p[0]) <= tol and abs(q[1] - p[1]) <= tol:\n                        return k\n        keys.append(p)\n        cell.setdefault((cx, cy), []).append(len(keys) - 1)\n        return len(keys) - 1\n\n    adj = {}\n    edges = []\n    for p, q in segs:\n        a, b = key(p), key(q)\n        if a == b:\n            continue\n        ei = len(edges)\n        edges.append((a, b))\n        adj.setdefault(a, []).append(ei)\n        adj.setdefault(b, []).append(ei)\n    used = set()\n    out = []\n\n    def walk(start, ei):\n        pts = [start]\n        cur = start\n        while True:\n            used.add(ei)\n            a, b = edges[ei]\n            nxt = b if a == cur else a\n            pts.append(nxt)\n            if nxt == start:\n                return pts, True\n            nexts = [e for e in adj[nxt] if e not in used]\n            if len(adj[nxt]) != 2 or not nexts:\n                return pts, False\n            cur, ei = nxt, nexts[0]\n\n    # open chains first (start at ends / junctions), then the remaining closed loops\n    for n in adj:\n        if len(adj[n]) != 2:\n            for ei in adj[n]:\n                if ei not in used:\n                    pts, closed = walk(n, ei)\n                    out.append(([keys[i] for i in pts], closed))\n    for ei in range(len(edges)):\n        if ei not in used:\n            pts, closed = walk(edges[ei][0], ei)\n            out.append(([keys[i] for i in pts], closed))\n    res = []\n    for pts, closed in out:\n        pts = simplify(pts, closed)\n        if closed:\n            pts = pts[:-1]\n            if len(pts) >= 3:\n                res.append((pts, True))\n        elif len(pts) >= 2:\n            res.append((pts, False))\n    return res\n\n\ndef revit_line_segments(style_txt):\n    \"\"\"{level id: [segments mm]} from model / detail lines (plan + ceiling plan views)\"\"\"\n    levels = sorted([l for l in FilteredElementCollector(doc).OfClass(Level)], key=lambda l: l.Elevation)\n    data = {}\n    n_all = 0\n    for ce in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Lines).WhereElementIsNotElementType():\n        n_all += 1\n        if not isinstance(ce, CurveElement):\n            continue\n        try:\n            if style_txt:\n                ls = ce.LineStyle\n                if ls is None or style_txt.upper() not in ls.Name.upper():\n                    continue\n            cv = ce.GeometryCurve\n            lid = None\n            if ce.ViewSpecific:\n                v = doc.GetElement(ce.OwnerViewId)\n                if not isinstance(v, ViewPlan) or v.GenLevel is None:\n                    continue\n                lid = idv(v.GenLevel.Id)\n            else:\n                z = cv.GetEndPoint(0).Z\n                below = [l for l in levels if l.Elevation <= z + 0.05]\n                lid = idv((below[-1] if below else levels[0]).Id)\n            pts = [cv.GetEndPoint(0), cv.GetEndPoint(1)] if isinstance(cv, Line) else list(cv.Tessellate())\n            for i in range(len(pts) - 1):\n                data.setdefault(lid, []).append(((pts[i].X / MMF, pts[i].Y / MMF), (pts[i + 1].X / MMF, pts[i + 1].Y / MMF)))\n        except Exception as ex:\n            log('line {0}: {1}'.format(idv(ce.Id), ex))\n    log('revit lines in model: {0}'.format(n_all))\n    return data\n\n\nCAD_WORDS = ('BULK', 'CEIL', 'CLG', 'FALSE', 'DROP', 'COVE', 'GYP', 'F.C', 'F-C', 'RCP')\n\n\ndef cad_segments(name_txt, layer_txt):\n    cads = [c for c in FilteredElementCollector(doc).OfClass(ImportInstance)]\n    if name_txt:\n        cads = [c for c in cads if c.Category is not None and name_txt.lower() in c.Category.Name.lower()]\n    auto = layer_txt.upper() in ('', 'AUTO', '*')\n    keys = [k.strip().upper() for k in layer_txt.split(',') if k.strip()] if not auto else []\n    levels = sorted([l for l in FilteredElementCollector(doc).OfClass(Level)], key=lambda l: l.Elevation)\n    by_level, used = {}, set()\n    for c in cads:\n        # which floor does this CAD belong to? (view-specific -> its view's level, else the link's level / height)\n        lid = None\n        try:\n            if c.ViewSpecific:\n                v = doc.GetElement(c.OwnerViewId)\n                if isinstance(v, ViewPlan) and v.GenLevel is not None:\n                    lid = idv(v.GenLevel.Id)\n            if lid is None and c.LevelId is not None and idv(c.LevelId) > 0:\n                lid = idv(c.LevelId)\n            if lid is None:\n                z = c.GetTotalTransform().Origin.Z\n                below = [l for l in levels if l.Elevation <= z + 0.05]\n                lid = idv((below[-1] if below else levels[0]).Id) if levels else 'all'\n        except Exception:\n            lid = 'all'\n        segs = by_level.setdefault(lid, [])\n        try:\n            CIRCLES.clear()\n            layers = read_layers(c)\n            for ln, ss in layers.items():\n                u = ln.upper()\n                toks = set(re.split(r'[^A-Z0-9]+', u))\n                hit = any(k in u for k in keys) if not auto else (any(k in u for k in CAD_WORDS) or 'FC' in toks)\n                if hit:\n                    segs.extend(ss)\n                    used.add(ln)\n            for ln, cs in CIRCLES.items():          # round bulkheads / cut-outs\n                u = ln.upper()\n                hit = any(k in u for k in keys) if not auto else any(k in u for k in CAD_WORDS)\n                if hit:\n                    for cx, cy, r in cs:\n                        n = 48\n                        ps = [(cx + r * math.cos(2 * math.pi * i / n), cy + r * math.sin(2 * math.pi * i / n)) for i in range(n)]\n                        segs.extend((ps[i], ps[(i + 1) % n]) for i in range(n))\n                    used.add(ln)\n        except Exception as ex:\n            log('cad {0}: {1}'.format(c.Category.Name if c.Category else '?', ex))\n    return by_level, sorted(used), len(cads)\n\n\n# ------------------------------------------------------------------ types\ndef gyp_material():\n    for m in FilteredElementCollector(doc).OfClass(Material):\n        if m.Name == 'CAD2BIM Gypsum Board':\n            return m.Id\n    mid = Material.Create(doc, 'CAD2BIM Gypsum Board')\n    try:\n        m = doc.GetElement(mid)\n        m.Color = Color(250, 250, 248)\n    except Exception:\n        pass\n    return mid\n\n\ndef ceiling_type(name, t_mm, mat):\n    for ct in FilteredElementCollector(doc).OfClass(CeilingType):\n        if tname(ct) == name:\n            cs = ct.GetCompoundStructure()\n            if cs is None or abs(cs.GetWidth() - t_mm * MMF) > 1e-4 or cs.LayerCount != 1:\n                one_layer(ct, t_mm, mat)                  # repair a type left by an older run\n            return ct\n    base = [ct for ct in FilteredElementCollector(doc).OfClass(CeilingType) if ct.GetCompoundStructure() is not None]\n    if not base:\n        raise Exception('no compound ceiling type in this project to copy (Architecture > Ceiling > Compound Ceiling)')\n    nt = base[0].Duplicate(name)\n    one_layer(nt, t_mm, mat)\n    return nt\n\n\ndef one_layer(ht, t_mm, mat):\n    \"\"\"keep the type's own compound structure (end caps etc.), replace its layers by one t_mm gypsum layer\"\"\"\n    cs = ht.GetCompoundStructure()\n    lay = List[CompoundStructureLayer]()\n    lay.Add(CompoundStructureLayer(t_mm * MMF, MaterialFunctionAssignment.Structure, mat))\n    cs.SetLayers(lay)\n    for side in (ShellLayerType.Exterior, ShellLayerType.Interior):\n        try:\n            cs.SetNumberOfShellLayers(side, 0)\n        except Exception:\n            pass\n    try:\n        cs.StructuralMaterialIndex = 0\n    except Exception:\n        pass\n    ht.SetCompoundStructure(cs)\n\n\ndef board_wall_type(t_mm, mat):\n    name = 'A_CLG_GYP_Bulkhead_Side_{0}'.format(f(t_mm))\n    for wt in FilteredElementCollector(doc).OfClass(WallType):\n        if tname(wt) == name:\n            cs = wt.GetCompoundStructure()\n            if cs is None or abs(cs.GetWidth() - t_mm * MMF) > 1e-4:\n                one_layer(wt, t_mm, mat)\n            return wt\n    base = [wt for wt in FilteredElementCollector(doc).OfClass(WallType) if wt.Kind == WallKind.Basic]\n    nt = base[0].Duplicate(name)\n    one_layer(nt, t_mm, mat)\n    try:\n        setp(nt, BuiltInParameter.FUNCTION_PARAM, 0)\n    except Exception:\n        pass\n    return nt\n\n\ndef mark(e, uid):\n    p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n    if p is not None:\n        p.Set(TAG + '|' + uid)\n\n\ndef offset_toward(cv, dist, faces, z):\n    \"\"\"curve offset by dist to the side that lies inside 'faces' (None if neither)\"\"\"\n    for ref in (Z, Z.Negate()):\n        try:\n            oc = cv.CreateOffset(dist, ref)\n            m = oc.Evaluate(0.5, True)\n            if inside(faces, m.X, m.Y, z):\n                return oc, ref\n        except Exception:\n            pass\n    return None, None\n\n\ndef edge_curves(face):\n    res = []\n    for lp in face.EdgeLoops:\n        for e in lp:\n            res.append(e.AsCurve())\n    return res\n\n\ntry:\n    PICKED = IN[0]\n    ALL_ROOMS = bool(IN[1])\n    USE_RVT, STYLE = bool(IN[2]), str(IN[3] or '').strip()\n    USE_CAD, CAD_TXT, LAYER_TXT = bool(IN[4]), str(IN[5] or '').strip(), str(IN[6] or 'AUTO').strip()\n    LOOP_IS_BULK = bool(IN[7])\n    HC, TC = num(IN[8], 2700), num(IN[9], 15)\n    HB, TB, TS = num(IN[10], 2400), num(IN[11], 15), num(IN[12], 15)\n    COVE, LIP, CW = bool(IN[13]), num(IN[14], 100), num(IN[15], 150)\n    GAP = 0.0\n    REPLACE_OTHER, DO = bool(IN[16]), bool(IN[17])\n    log('inputs all {0} rvt {1} \"{2}\" cad {3} \"{4}\" \"{5}\" loop_is_bulk {6} | ceiling {7}/{8} | bulkhead {9}/{10} side {11} '\n        '| cove {12} lip {13} width {14} | replace {15} run {16}'.format(ALL_ROOMS, USE_RVT, STYLE, USE_CAD, CAD_TXT,\n                                                                      LAYER_TXT, LOOP_IS_BULK, HC, TC, HB, TB, TS,\n                                                                      COVE, LIP, CW, REPLACE_OTHER, DO))\n    RAISED = HB > HC                     # bulkhead ABOVE the main ceiling = raised / coffer ceiling\n    LOW, HIGH = min(HB, HC), max(HB, HC)\n    notes = []\n    if COVE and RAISED:\n        COVE = False\n        notes.append('cove ignored: the bulkhead is HIGHER than the main ceiling (raised / coffer)')\n    if COVE and LIP >= HC - HB:\n        raise Exception('Cove lip ({0}) must be lower than the drop ceiling - bulkhead ({1})'.format(f(LIP), f(HC - HB)))\n\n    # ---------------- rooms\n    rooms, scope = [], ''\n    if not ALL_ROOMS:\n        picked = PICKED if isinstance(PICKED, (list, tuple)) else ([PICKED] if PICKED is not None else [])\n        for x in picked:\n            e = getattr(x, 'InternalElement', None)\n            if e is None:\n                try:\n                    e = doc.GetElement(ElementId(int(x.Id)))\n                except Exception:\n                    e = x\n            rooms.append(e)\n        rooms = [r for r in rooms if isinstance(r, SpatialElement) and r.Area > 0]\n        scope = 'rooms picked in the SELECT ROOMS node'\n        if not rooms:\n            rooms = [doc.GetElement(i) for i in uidoc.Selection.GetElementIds()]\n            rooms = [r for r in rooms if isinstance(r, SpatialElement) and r.Area > 0]\n            scope = 'rooms selected in Revit'\n    if not rooms:\n        rooms = [r for r in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Rooms).WhereElementIsNotElementType()\n                 if r.Area > 0]\n        scope = 'ALL rooms'\n    if not rooms:\n        raise Exception('No placed rooms in the model - place Rooms first (Architecture > Room), then Run')\n\n    # ---------------- bulkhead lines\n    rvt = revit_line_segments(STYLE) if USE_RVT else {}\n    cad, cad_layers, n_cad = (cad_segments(CAD_TXT, LAYER_TXT) if USE_CAD else ({}, [], 0))\n    log('lines: revit {0} by level, cad {1} by level on {2}'.format(dict((k, len(v)) for k, v in rvt.items()),\n                                                                   dict((k, len(v)) for k, v in cad.items()), cad_layers))\n\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    mat = gyp_material()\n    uids = set(r.UniqueId for r in rooms)\n    removed = 0\n    for bic in (BuiltInCategory.OST_Ceilings, BuiltInCategory.OST_Walls):\n        for e in list(FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType()):\n            c = tagged(e)\n            if c.startswith(TAG + '|') and c.split('|', 1)[1] in uids:\n                doc.Delete(e.Id)\n                removed += 1\n    rep, tot = [], {'plain': 0.0, 'bulk': 0.0, 'side': 0.0, 'ceil': 0, 'walls': 0, 'other': 0}\n    if DO:\n        ct_plain = ceiling_type('A_CLG_GYP_Plain_{0}'.format(f(TC)), TC, mat)\n        ct_bulk = ceiling_type('A_CLG_GYP_Bulkhead_{0}'.format(f(TB)), TB, mat)\n        wt_side = board_wall_type(TS, mat)\n        opt = SpatialElementBoundaryOptions()\n        opt.SpatialElementBoundaryLocation = SpatialElementBoundaryLocation.Finish\n        others = list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Ceilings).WhereElementIsNotElementType()) \\\n            if REPLACE_OTHER else []\n        for room in rooms:\n            rname = '{0} {1}'.format(room.Number, room.get_Parameter(BuiltInParameter.ROOM_NAME).AsString() or '')\n            try:\n                # room region\n                loops = []\n                for segl in room.GetBoundarySegments(opt):\n                    lp = CurveLoop()\n                    for sgm in segl:\n                        lp.Append(sgm.GetCurve())\n                    loops.append(lp)\n                if not loops:\n                    continue\n                z0 = None\n                for c0 in loops[0]:\n                    z0 = c0.GetEndPoint(0).Z\n                    break\n                if not loops[0].IsCounterclockwise(Z):\n                    loops[0].Flip()\n                for lp in loops[1:]:\n                    if lp.IsCounterclockwise(Z):\n                        lp.Flip()\n                room_sol = solid_from_loops(loops, z0, 1.0)\n                rfaces = bottom_faces(room_sol)\n                lvid = room.LevelId\n                # lines of this room\n                segs = list(rvt.get(idv(lvid), [])) + list(cad.get(idv(lvid), [])) + list(cad.get('all', []))\n                chains = chains_from_segments(segs) if segs else []\n                mine = []\n                for pts, closed in chains:\n                    n_in = sum(1 for i in range(len(pts) - 1)\n                               if inside(rfaces, (pts[i][0] + pts[i + 1][0]) / 2.0 * MMF, (pts[i][1] + pts[i + 1][1]) / 2.0 * MMF, z0))\n                    if n_in * 2 >= max(1, len(pts) - 1):\n                        mine.append((pts, closed))\n                closed_sol = union_all([solid_from_loops([poly_loop(p, z0 - 0.5)], z0 - 0.5, 2.0) for p, c in mine if c])\n                cutters = []\n                for pts, c in mine:\n                    if c:\n                        continue\n                    pts = list(pts)\n                    for end in (0, -1):                      # extend open lines 300 mm into the walls\n                        a, b = (pts[0], pts[1]) if end == 0 else (pts[-1], pts[-2])\n                        L = math.hypot(a[0] - b[0], a[1] - b[1]) or 1.0\n                        e = (a[0] + (a[0] - b[0]) / L * 300.0, a[1] + (a[1] - b[1]) / L * 300.0)\n                        if end == 0:\n                            pts.insert(0, e)\n                        else:\n                            pts.append(e)\n                    for i in range(len(pts) - 1):\n                        (x0, y0), (x1, y1) = pts[i], pts[i + 1]\n                        L = math.hypot(x1 - x0, y1 - y0)\n                        if L < 1.0:\n                            continue\n                        nx, ny = -(y1 - y0) / L * 1.0, (x1 - x0) / L * 1.0        # 2 mm wide slit\n                        cutters.append(solid_from_loops([poly_loop([(x0 - nx, y0 - ny), (x1 - nx, y1 - ny), (x1 + nx, y1 + ny),\n                                                                    (x0 + nx, y0 + ny)], z0 - 0.5)], z0 - 0.5, 2.0))\n                bulk_open = None\n                n_open = 0\n                if cutters:\n                    cut = boolean(room_sol, union_all(cutters), BooleanOperationsType.Difference)\n                    pieces = list(SolidUtils.SplitVolumes(cut)) if cut is not None else []\n                    pieces = [p for p in pieces if p.Volume > 1e-4]\n                    if len(pieces) > 1:\n                        pieces.sort(key=lambda p: p.Volume)\n                        bulk_open = union_all(pieces[:-1])            # smaller parts = bulkhead\n                        n_open = len(pieces) - 1\n                if closed_sol is not None:\n                    bc = boolean(room_sol, closed_sol, BooleanOperationsType.Intersect if LOOP_IS_BULK\n                                 else BooleanOperationsType.Difference)\n                else:\n                    bc = None\n                bulk = union_all([s for s in (bulk_open, bc) if s is not None])\n                bfaces = bottom_faces(bulk)\n                # side boards on the edges between bulkhead and plain ceiling\n                sides, bands = [], []\n                for bf in bfaces:\n                    for cv in edge_curves(bf):\n                        m = cv.Evaluate(0.5, True)\n                        try:\n                            d = cv.ComputeDerivatives(0.5, True).BasisX.Normalize()\n                        except Exception:\n                            continue\n                        nrm = XYZ(-d.Y, d.X, 0)\n                        o = 30.0 * MMF\n                        if not (inside(rfaces, m.X + nrm.X * o, m.Y + nrm.Y * o, z0) and\n                                inside(rfaces, m.X - nrm.X * o, m.Y - nrm.Y * o, z0)):\n                            continue                                    # on the room boundary (wall)\n                        if cv.Length < 50 * MMF:\n                            continue\n                        wc, ref = offset_toward(cv, TS / 2.0 * MMF, bfaces, z0)\n                        if wc is None:\n                            continue\n                        if RAISED:                   # board sits above the main ceiling, outside the coffer\n                            wc = cv.CreateOffset(TS / 2.0 * MMF, ref.Negate())\n                        sides.append(wc)\n                        if COVE and CW > 0:          # cove trough: strip CW wide on the PLAIN side of the edge\n                            oc = cv.CreateOffset(CW * MMF, ref.Negate())\n                            try:\n                                lp = CurveLoop()\n                                lp.Append(cv)\n                                lp.Append(Line.CreateBound(cv.GetEndPoint(1), oc.GetEndPoint(1)))\n                                lp.Append(oc.CreateReversed())\n                                lp.Append(Line.CreateBound(oc.GetEndPoint(0), cv.GetEndPoint(0)))\n                                if not lp.IsCounterclockwise(Z):\n                                    lp.Flip()\n                                tr = Transform.CreateTranslation(XYZ(0, 0, -0.5))\n                                lp2 = CurveLoop.CreateViaTransform(lp, tr)\n                                bands.append(solid_from_loops([lp2], z0 - 0.5, 2.0))\n                            except Exception as ex:\n                                log('cove band: {0}'.format(ex))\n                # plain (main) ceiling = room minus bulkhead; it also covers the trough\n                plain = boolean(room_sol, bulk, BooleanOperationsType.Difference) if bulk is not None else room_sol\n                # bulkhead ceiling: in cove mode it runs CW past the edge to form the trough bottom\n                bulk_ext = bulk\n                lips = []\n                if COVE and bands and bulk is not None:\n                    band_in = boolean(room_sol, union_all(bands), BooleanOperationsType.Intersect)\n                    bulk_ext = union_all([bulk, band_in]) if band_in is not None else bulk\n                    xfaces = bottom_faces(bulk_ext)\n                    opening = boolean(room_sol, bulk_ext, BooleanOperationsType.Difference)\n                    for of in bottom_faces(opening):            # edges of the opening = trough lips\n                        for cv in edge_curves(of):\n                            if cv.Length < 50 * MMF:\n                                continue\n                            m = cv.Evaluate(0.5, True)\n                            try:\n                                d = cv.ComputeDerivatives(0.5, True).BasisX.Normalize()\n                            except Exception:\n                                continue\n                            nrm = XYZ(-d.Y, d.X, 0)\n                            o = 30.0 * MMF\n                            if not (inside(rfaces, m.X + nrm.X * o, m.Y + nrm.Y * o, z0) and\n                                    inside(rfaces, m.X - nrm.X * o, m.Y - nrm.Y * o, z0)):\n                                continue\n                            lc, _ = offset_toward(cv, TS / 2.0 * MMF, xfaces, z0)\n                            if lc is not None:\n                                lips.append(lc)\n                a_plain = a_bulk = 0.0\n                for pf in bottom_faces(plain):\n                    if pf.Area * SQM < 0.05:\n                        continue\n                    c = Ceiling.Create(doc, ceiling_loops(pf), ct_plain.Id, lvid)\n                    setp(c, BuiltInParameter.CEILING_HEIGHTABOVELEVEL_PARAM, HC * MMF)\n                    mark(c, room.UniqueId)\n                    a_plain += pf.Area * SQM\n                    tot['ceil'] += 1\n                for bf in bottom_faces(bulk_ext):\n                    if bf.Area * SQM < 0.05:\n                        continue\n                    c = Ceiling.Create(doc, ceiling_loops(bf), ct_bulk.Id, lvid)\n                    setp(c, BuiltInParameter.CEILING_HEIGHTABOVELEVEL_PARAM, HB * MMF)\n                    mark(c, room.UniqueId)\n                    a_bulk += bf.Area * SQM\n                    tot['ceil'] += 1\n                side_len = 0.0\n                h_side = HIGH - LOW\n                boards = [(wc, h_side) for wc in sides] if h_side > 1.0 else []\n                boards += [(lc, LIP) for lc in lips] if LIP > 1.0 else []\n                for wc, hh in boards:\n                    try:\n                        w = Wall.Create(doc, wc, wt_side.Id, lvid, hh * MMF, LOW * MMF, False, False)\n                        setp(w, BuiltInParameter.WALL_ATTR_ROOM_BOUNDING, 0)\n                        for k in (0, 1):\n                            try:\n                                WallUtils.DisallowWallJoinAtEnd(w, k)\n                            except Exception:\n                                pass\n                        mark(w, room.UniqueId)\n                        side_len += wc.Length * 0.3048\n                        tot['walls'] += 1\n                    except Exception as ex:\n                        log('side board {0}: {1}'.format(rname, ex))\n                for oc_ in others:                               # optional: other ceilings in this room\n                    try:\n                        if tagged(oc_).startswith(TAG):\n                            continue\n                        bb = oc_.get_BoundingBox(None)\n                        if bb is not None and idv(oc_.LevelId) == idv(lvid) and \\\n                                inside(rfaces, (bb.Min.X + bb.Max.X) / 2.0, (bb.Min.Y + bb.Max.Y) / 2.0, z0):\n                            doc.Delete(oc_.Id)\n                            tot['other'] += 1\n                    except Exception:\n                        pass\n                tot['plain'] += a_plain\n                tot['bulk'] += a_bulk\n                tot['side'] += side_len\n                rep.append('  {0:<24} plain {1:6.2f} m2 | bulkhead {2:6.2f} m2 | side board {3:5.1f} m{4}'.format(\n                    rname[:24], a_plain, a_bulk, side_len,\n                    '' if (mine or a_bulk) else '   (no lines - plain ceiling)'))\n            except Exception as ex:\n                rep.append('  {0:<24} FAILED: {1}'.format(rname[:24], ex))\n                log(traceback.format_exc())\n    TransactionManager.Instance.TransactionTaskDone()\n\n    out.append('CAD2BIM CEILINGS + BULKHEADS  -  {0} ({1})'.format('DONE' if DO else 'REMOVED', scope))\n    if DO:\n        out.append('Plain ceiling : {0} mm from floor, {1} mm thick  (type A_CLG_GYP_Plain_{1})'.format(f(HC), f(TC)))\n        out.append('Bulkhead      : {0} mm from floor, {1} mm thick, side board {2} mm  ({3})'.format(\n            f(HB), f(TB), f(TS), 'COVE trough {0} mm wide, lip {1} mm high, side board {2} mm'.format(f(CW), f(LIP), f(HC - HB)) if COVE\n            else ('RAISED {0} mm above the ceiling (coffer), side board {0} mm'.format(f(HB - HC)) if RAISED\n                  else ('same height - no side board' if HB == HC else 'drop {0} mm, side board {0} mm high'.format(f(HC - HB))))))\n        for n_ in notes:\n            out.append('Note          : ' + n_)\n        src = []\n        if USE_RVT:\n            src.append('Revit lines ({0})'.format(sum(len(v) for v in rvt.values())))\n        if USE_CAD:\n            src.append('CAD {0} links, layers: {1}'.format(n_cad, ', '.join(cad_layers) or 'none found'))\n        out.append('Bulkhead lines: ' + (' + '.join(src) or 'not used'))\n        out.append('Closed loop   = ' + ('BULKHEAD area' if LOOP_IS_BULK else 'PLAIN ceiling (bulkhead around it)') +\n                   ';  line wall-to-wall = smaller side is bulkhead')\n        out.append('Rooms: {0}   ceilings {1}   side boards {2}{3}'.format(\n            len(rooms), tot['ceil'], tot['walls'], '   other ceilings removed {0}'.format(tot['other']) if tot['other'] else ''))\n        out.extend(rep[:60])\n        out.append('TOTAL  plain {0:.2f} m2 | bulkhead {1:.2f} m2 | side board {2:.1f} m'.format(tot['plain'], tot['bulk'], tot['side']))\n    if removed:\n        out.append('Old script ceilings / boards replaced: {0}'.format(removed))\n    out.append('Save / Sync with Central to keep the changes.')\nexcept Exception as ex:\n    try:\n        TransactionManager.Instance.ForceCloseTransaction()\n    except Exception:\n        pass\n    out.insert(0, 'FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nOUT = out\n",
+      "Engine": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "566183da2c554a4fbbcb3036751df755",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "23bb9760976a4d409dc10e49cec86122",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "78025bb7e5e44895a54aab744d99f82a",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f2c9d88cdf654f00aaebd7721170f576",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fefbe776f6144e38af91b08e163657e4",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "eb20b79b3ee04851a8d075351c038925",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b5872e49b599429392f2a1f37ea23a41",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "05c09b39cc6d4a529701bea9bd29c82e",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a15f0443f3fd4207a24ddb841c5175df",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "04dc293497e44409a6bb68e4463d1916",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6e25ec4a4a4648d387e663f1d39716ce",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cae8140829e04b28bd2c8bf1e9afa830",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bde5d13ede76474d859e9c70e0da192e",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8f7a1ea159be4fdf8cce3c5166e9992c",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "17fa675d979d450b8f4f85c4b176c635",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "141786ff569c4dff9653c338f8b43e58",
+          "Name": "IN[14]",
+          "Description": "Input #14",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bf56f6f3db4a4df2bb6630bbb7de2242",
+          "Name": "IN[15]",
+          "Description": "Input #15",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e99f963fd1d24ba49bee6a27caef5191",
+          "Name": "IN[16]",
+          "Description": "Input #16",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ec167ba25c154f6db14e34fc06ea1234",
+          "Name": "IN[17]",
+          "Description": "Input #17",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "df562e398e2440779313aacace06c307",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "9fa497f53f3947589bdb6dec310c558b",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "650b9da273e84c0695d0264bc7ef301d",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9e0aeba637c74915888716672936467d",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "daab15f9ba8e42688c05dc7065a88c99",
+      "End": "23bb9760976a4d409dc10e49cec86122",
+      "Id": "c408174dfb43410999750b8987381511",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "98f2ff5f6245401f9c5df3a54901c808",
+      "End": "78025bb7e5e44895a54aab744d99f82a",
+      "Id": "cc3c9141aed6497b9adff5853d6419cb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "734bc617f8104c25899d737df8349646",
+      "End": "f2c9d88cdf654f00aaebd7721170f576",
+      "Id": "d66c8f99475e4de593f2d63dd9b9e4ab",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5de5a5f0445d4553ab7e21c88641ba8b",
+      "End": "fefbe776f6144e38af91b08e163657e4",
+      "Id": "f6b94cdfd9e74211afa4a9615d2f5d73",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "284e63c77ca54e4a9589481e6074a01b",
+      "End": "eb20b79b3ee04851a8d075351c038925",
+      "Id": "e04d5a696d1a4f0cb2aaa74dd0e7ad7b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "04371ff624a9481e8199bbd2d52ddea7",
+      "End": "b5872e49b599429392f2a1f37ea23a41",
+      "Id": "b9163e72933e485db1791506f56f01b2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d231fd9e5fea4269a55187df31bc43b7",
+      "End": "05c09b39cc6d4a529701bea9bd29c82e",
+      "Id": "2317d243600347f8afe8fd99165e55ae",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ecba50271fd34e08914dcf6d39659cd8",
+      "End": "a15f0443f3fd4207a24ddb841c5175df",
+      "Id": "f2051ee683e34efcaab31da63bffd267",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d84c75403ffd40e5885ee60c2c9b0693",
+      "End": "04dc293497e44409a6bb68e4463d1916",
+      "Id": "53dc61e1d08d464f89af7f31f15555d8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9950d7105274405c82527b053d906464",
+      "End": "6e25ec4a4a4648d387e663f1d39716ce",
+      "Id": "0d533844a9ea4c4796a8702ea22c1f36",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5376915143a4437da48bd3d45014f6a5",
+      "End": "cae8140829e04b28bd2c8bf1e9afa830",
+      "Id": "201faa3839dc488bbef1544b798f6563",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f03e6b551e5043579a90218ab113c97d",
+      "End": "bde5d13ede76474d859e9c70e0da192e",
+      "Id": "16873652f5e8428ca7f3ba4d4d4cdd8b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fd20e198d16f4f7396fe3020475a496e",
+      "End": "8f7a1ea159be4fdf8cce3c5166e9992c",
+      "Id": "02b2c831b6d0479d8abe1560cc8bbe7e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "58f40c50538341c8b2af3c7db0127740",
+      "End": "17fa675d979d450b8f4f85c4b176c635",
+      "Id": "f78c231fa2ee41aaac332f281055dc4d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "25b1b65f2dc14cff9d8ade2fd7972ddd",
+      "End": "141786ff569c4dff9653c338f8b43e58",
+      "Id": "b9dc6c5e2dee4f7193cdef63d1421f36",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "998e1cd21dbd4458995424e51d8c243e",
+      "End": "bf56f6f3db4a4df2bb6630bbb7de2242",
+      "Id": "55e47fea55754af491fafdf2c8ac3d58",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "aa7ea80ed5b84fbea2c86e04dda45ff4",
+      "End": "e99f963fd1d24ba49bee6a27caef5191",
+      "Id": "b1f8488d13cb4f599881b0ace505826e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bab7c59b09284b5887347bf7185d9a53",
+      "End": "ec167ba25c154f6db14e34fc06ea1234",
+      "Id": "c26c30a8646e45e6a6c8e1375de71be3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "df562e398e2440779313aacace06c307",
+      "End": "650b9da273e84c0695d0264bc7ef301d",
+      "Id": "d046009592f344278884a65bc8400b42",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": null,
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.2.11575",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "7355f660ef9447ca9e94edc217977fd8",
+        "Name": "SELECT ROOMS  (click Select, pick rooms, Finish)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "1085e36c61054869a13f6aa1f51e821d",
+        "Name": "Use ALL rooms  (ignore the selection)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "735c92676015453b82109572e9245796",
+        "Name": "Lines drawn in REVIT  (detail / model lines in plan or ceiling plan)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 420.0
+      },
+      {
+        "Id": "25c61db6afd14b4a9a4de7cdf8ae41c9",
+        "Name": "Revit line style contains  ( blank = any line style )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 555.0
+      },
+      {
+        "Id": "cf001dee7d534d1db54ef9b30bc8742e",
+        "Name": "Lines from linked CAD",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 690.0
+      },
+      {
+        "Id": "6a39f25770a44a8f99f87cd7ba15e623",
+        "Name": "CAD name contains  ( blank = all CAD links )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 825.0
+      },
+      {
+        "Id": "c6741c3b7b55471b84f92d87df62a3f7",
+        "Name": "CAD layers  ( AUTO = BULK / CEIL / CLG / FC / DROP / COVE / GYP )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 960.0
+      },
+      {
+        "Id": "7efa13938ce94f2fb292cff8725cfe9f",
+        "Name": "Closed loop = BULKHEAD  (off = loop is the PLAIN ceiling, bulkhead all around)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1095.0
+      },
+      {
+        "Id": "7fd0e127f0ce46499332df6a4d065b36",
+        "Name": "Ceiling HEIGHT from floor (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "b316958534ed486693880dd017e27ebe",
+        "Name": "Ceiling THICKNESS (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "dc7bf69863f644578ed2cd1bdfdc7f40",
+        "Name": "Bulkhead HEIGHT from floor (mm)  - lower = drop, higher = raised / coffer",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 420.0
+      },
+      {
+        "Id": "ae530aa807ff44198ab62da0ba5e1136",
+        "Name": "Bulkhead THICKNESS (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 555.0
+      },
+      {
+        "Id": "695230ea86a442c4b552648835e03ae1",
+        "Name": "Side covering board THICKNESS (mm)  - its height follows automatically",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 690.0
+      },
+      {
+        "Id": "5c92d98a17b5429eba273702de040fbd",
+        "Name": "COVE TROUGH for LED  (off = closed drop)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 825.0
+      },
+      {
+        "Id": "671516d8d5384610b64ae380f4324d64",
+        "Name": "Cove LIP height - upstand at the trough edge (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 960.0
+      },
+      {
+        "Id": "042dc853dda34f5083abb22113ebe02b",
+        "Name": "Cove TROUGH width - bulkhead runs past the edge (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 1095.0
+      },
+      {
+        "Id": "4c588c33d5db4560874a045a1f4d1a7c",
+        "Name": "Replace OTHER ceilings in these rooms",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 960.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "5bd4352569ea40238347a2a642f3ef64",
+        "Name": "CEILINGS ON  (off = remove script ceilings from these rooms)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 960.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "566183da2c554a4fbbcb3036751df755",
+        "Name": "CAD2BIM  Ceilings  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "9fa497f53f3947589bdb6dec310c558b",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "5b37b86d1dcb462ba945e5b6e2151138",
+        "Title": "1  ROOMS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "7355f660ef9447ca9e94edc217977fd8",
+          "1085e36c61054869a13f6aa1f51e821d"
+        ],
+        "HasNestedGroups": false,
+        "Left": -10.0,
+        "Top": -59.0,
+        "Width": 457.0,
+        "Height": 326.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 280.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "ae28ed0dd02840b3a44da9043ba6773d",
+        "Title": "2  BULKHEAD LINES",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "735c92676015453b82109572e9245796",
+          "25c61db6afd14b4a9a4de7cdf8ae41c9",
+          "cf001dee7d534d1db54ef9b30bc8742e",
+          "6a39f25770a44a8f99f87cd7ba15e623",
+          "c6741c3b7b55471b84f92d87df62a3f7",
+          "7efa13938ce94f2fb292cff8725cfe9f"
+        ],
+        "HasNestedGroups": false,
+        "Left": -10.0,
+        "Top": 361.0,
+        "Width": 684.0,
+        "Height": 866.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 420.0,
+        "InitialHeight": 820.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FFC8C8C8"
+      },
+      {
+        "Id": "a04791e2de904450907b4716fbfc6972",
+        "Title": "3  PLAIN CEILING",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "7fd0e127f0ce46499332df6a4d065b36",
+          "b316958534ed486693880dd017e27ebe"
+        ],
+        "HasNestedGroups": false,
+        "Left": 470.0,
+        "Top": -59.0,
+        "Width": 368.0,
+        "Height": 326.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 280.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FF9FDF8F"
+      },
+      {
+        "Id": "772e9ab924df49f6adf9ca956d060a9f",
+        "Title": "4  BULKHEAD",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "dc7bf69863f644578ed2cd1bdfdc7f40",
+          "ae530aa807ff44198ab62da0ba5e1136",
+          "695230ea86a442c4b552648835e03ae1",
+          "5c92d98a17b5429eba273702de040fbd",
+          "671516d8d5384610b64ae380f4324d64",
+          "042dc853dda34f5083abb22113ebe02b"
+        ],
+        "HasNestedGroups": false,
+        "Left": 470.0,
+        "Top": 361.0,
+        "Width": 646.0,
+        "Height": 866.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 420.0,
+        "InitialHeight": 820.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "1c536eb6f2384ab795878ae34887df66",
+        "Title": "5  BUILD",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "4c588c33d5db4560874a045a1f4d1a7c",
+          "5bd4352569ea40238347a2a642f3ef64"
+        ],
+        "HasNestedGroups": false,
+        "Left": 950.0,
+        "Top": -59.0,
+        "Width": 555.0,
+        "Height": 326.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 280.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FFD9C2F2"
+      },
+      {
+        "Id": "798a36165360442b968825372ea34102",
+        "Title": "6  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "566183da2c554a4fbbcb3036751df755",
+          "9fa497f53f3947589bdb6dec310c558b"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1490.0,
+        "Top": 91.0,
+        "Width": 717.0,
+        "Height": 911.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 545.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "65209f9ed5d047e29f2eace472c919f3",
+        "Title": "HOW TO USE  -  in node 1 click SELECT, pick the rooms, FINISH, Run   (or switch on ALL rooms)\nDraw the bulkhead in plan / ceiling plan with detail lines (or use the CAD layer).  CLOSED loop = bulkhead area.  Line from wall to wall = the smaller side is bulkhead.\nPeripheral bulkhead: draw the loop of the PLAIN ceiling and switch 'Closed loop = BULKHEAD' off.   Rooms with no lines get a plain ceiling.\nSide board closes the drop; COVE on = trough: bulkhead runs past the edge with an upstand lip, LED inside.  Run again any time: replaced, never doubled.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 343.7863334013913,
+    "Y": 214.85009319283472,
+    "Zoom": 0.4961864873828126
+  }
+}

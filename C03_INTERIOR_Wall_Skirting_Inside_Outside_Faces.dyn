@@ -1,0 +1,995 @@
+{
+  "Uuid": "0d650315-8017-44c4-be92-2e94e4a09292",
+  "IsCustomNode": false,
+  "Description": "Wall skirting (height / thickness / inside / outside / all or selected walls) + wall finish on / off",
+  "Name": "CAD2BIM_Wall_Skirting",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "bc336a0e09f24c20bcc8343ea1ac7e98",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bfe18ce58bab4d5bb86c1fe6dd2b961c",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "dc5060edb2eb4426bdec363b5e5ab4c3",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a0b3beac82f844999065301587da56ef",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "2b1353574dcf4109a0ec2c66aee588cf",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4de058db1d394e6680fdaeffd0b9cf8a",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 300.0,
+      "MinimumValue": 25.0,
+      "StepValue": 5.0,
+      "Id": "1a6112d736374afc9abb21390e4bf08b",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d788d5f1d9494db3ba605bba1ce79f20",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 100.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 50.0,
+      "MinimumValue": 5.0,
+      "StepValue": 1.0,
+      "Id": "606412976b90419098f4a3a48adfd1d7",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "dea4988e0578422584b0f110505ac6e1",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 15.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "66f171199ee04400af22009f800ec526",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "eadd1ef74ee242aa8fd54a9ef222b663",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "bb3f9ce3ae9a45978efb8413ba3a4805",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1637afdfcd5145fba276ab9374aca4b2",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "68aebd03926c4a249ba7fe2874cb47c6",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "05a6732cd67d4b73ad88a5e435df1d24",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 3.0,
+      "MinimumValue": 1.0,
+      "StepValue": 1.0,
+      "Id": "8a1a74b90b3246f3b8de4c61f72e0ac5",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7a36eba8b4184cf297935c63f63313a0",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 1.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "dd6761f99f2244108fc3748a388968e2",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9b23607d096d45f6ae2d240cbc131e67",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 200.0,
+      "MinimumValue": 0.0,
+      "StepValue": 5.0,
+      "Id": "9e89bdafecba4b01bf11789fae55cdf6",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bad2e52de9744d308d37b385ba7001cf",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "f090b439fbdb4e3dbc40289ecfeada7a",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "664b343fbe6845bb8e90398e90e220aa",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "CAD2BIM Skirting - Granite"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "8e3b2cac1b9b4dc48a1c229d17838330",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "216924d94607498695dff9e02f37b8f5",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "a3f962bde7444b01bb4e3606ef187037",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "825f7637b53e4ada9b2725de9b6fbafe",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 50.0,
+      "MinimumValue": 0.0,
+      "StepValue": 1.0,
+      "Id": "2bdf17611aa04c8bb16b2b58906b236c",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ac8e8059be2b4d029bf9dd4eb4363660",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 12.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 50.0,
+      "MinimumValue": 0.0,
+      "StepValue": 1.0,
+      "Id": "70b38f3c47af4b24b8d8b744a8abff96",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "afa078e164254481a2eb4b75b6f45b1c",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 18.0
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - WALL SKIRTING + WALL FINISH (professional)\n#  * skirting = Revit WALL SWEEP (real skirting: follows the wall, stops at doors, schedulable)\n#      height / thickness / height above floor, INSIDE face, OUTSIDE face, partitions both faces\n#      position: 1 ON the finish face (projecting)  2 FLUSH with the finish face (set into the wall)\n#                3 on the CORE (block) face\n#  * all walls / selected walls / walls in the active view\n#  * wall FINISH: walls WITH plaster finish (inside / outside thickness) or WITHOUT finish\n#  * re-run = update: old CAD2BIM skirting on those walls is replaced, never duplicated\nimport os\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\nlog('--- Wall skirting v2 started')\nimport clr, re, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nclr.AddReference('RevitServices')\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nclr.AddReference('System')\nfrom System.Collections.Generic import List\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\napp = doc.Application\nMMF = 1.0 / 304.8\nTAG = 'CAD2BIM-SKIRTING'\nFAM_DIR = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_families')\nout = []\n\n\ndef num(v, d=0.0):\n    try:\n        return float(v)\n    except Exception:\n        return d\n\n\ndef flag(v, d=False):\n    try:\n        return bool(v)\n    except Exception:\n        return d\n\n\ndef f(v):\n    return '{0:.0f}'.format(v)\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef tname(t):\n    for bip in (BuiltInParameter.SYMBOL_NAME_PARAM, BuiltInParameter.ALL_MODEL_TYPE_NAME):\n        p = t.get_Parameter(bip)\n        if p is not None and p.AsString():\n            return p.AsString()\n    try:\n        return t.Name\n    except Exception:\n        return ''\n\n\ndef tagged(e):\n    p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n    return (p.AsString() or '') if p is not None else ''\n\n\ndef set_any(e, names, val):\n    \"\"\"set the first matching parameter (built-in names first, then UI names)\"\"\"\n    for n in names:\n        p = None\n        bip = getattr(BuiltInParameter, n, None)\n        if bip is not None:\n            try:\n                p = e.get_Parameter(bip)\n            except Exception:\n                p = None\n        if p is None:\n            p = e.LookupParameter(n)\n        if p is not None and not p.IsReadOnly:\n            try:\n                p.Set(val)\n                return True\n            except Exception:\n                pass\n    return False\n\n\ndef material(name, rgb):\n    for m in FilteredElementCollector(doc).OfClass(Material):\n        if m.Name == name:\n            return m.Id\n    mid = Material.Create(doc, name)\n    m = doc.GetElement(mid)\n    try:\n        m.Color = Color(rgb[0], rgb[1], rgb[2])\n        m.UseRenderAppearanceForShading = False\n    except Exception:\n        pass\n    return mid\n\n\ndef is_exterior(w):\n    p = w.WallType.get_Parameter(BuiltInParameter.FUNCTION_PARAM)\n    try:\n        return p is not None and p.AsInteger() in (1, 3)       # Exterior / Retaining\n    except Exception:\n        return False\n\n\ndef shells(w):\n    \"\"\"(exterior shell mm, interior shell mm) = finish layers outside the core\"\"\"\n    cs = w.WallType.GetCompoundStructure()\n    if cs is None:\n        return 0.0, 0.0\n    L = list(cs.GetLayers())\n    a, b = cs.GetFirstCoreLayerIndex(), cs.GetLastCoreLayerIndex()\n    ext = sum(l.Width for l in L[:a]) / MMF if a > 0 else 0.0\n    inn = sum(l.Width for l in L[b + 1:]) / MMF if b < len(L) - 1 else 0.0\n    return ext, inn\n\n\n# ------------------------------------------------------------------ wall finish\nFIN = (MaterialFunctionAssignment.Finish1, MaterialFunctionAssignment.Finish2)\nSUFFIX = re.compile(r'\\s*\\((P\\d+/\\d+|NO FINISH)\\)\\s*$')\n\n\ndef finish_type(wt, ext_wall, with_fin, t_in, t_out):\n    \"\"\"duplicate of wall type wt with its finish layers replaced: '<name> (P12/18)' or '<name> (NO FINISH)'\"\"\"\n    cs = wt.GetCompoundStructure()\n    if cs is None:\n        return None\n    t_o = t_out if ext_wall else t_in\n    base = SUFFIX.sub('', tname(wt))\n    name = base + (' (P{0}/{1})'.format(f(t_in), f(t_o)) if with_fin and (t_in > 0 or t_o > 0) else ' (NO FINISH)')\n    if tname(wt) == name:\n        return wt\n    for t in FilteredElementCollector(doc).OfClass(WallType):\n        if tname(t) == name:\n            return t\n    L = list(cs.GetLayers())\n    a, b = cs.GetFirstCoreLayerIndex(), cs.GetLastCoreLayerIndex()\n    ext = [l for l in L[:a] if l.Function not in FIN]\n    core = L[a:b + 1]\n    inn = [l for l in L[b + 1:] if l.Function not in FIN]\n    if with_fin:\n        if t_o > 0:\n            ext.insert(0, CompoundStructureLayer(t_o * MMF, MaterialFunctionAssignment.Finish1,\n                                                 PLASTER_EXT if ext_wall else PLASTER_INT))\n        if t_in > 0:\n            inn.append(CompoundStructureLayer(t_in * MMF, MaterialFunctionAssignment.Finish2, PLASTER_INT))\n    lay = List[CompoundStructureLayer]()\n    for l in ext + core + inn:\n        lay.Add(l)\n    cs.SetLayers(lay)\n    cs.SetNumberOfShellLayers(ShellLayerType.Exterior, len(ext))\n    cs.SetNumberOfShellLayers(ShellLayerType.Interior, len(inn))\n    nt = wt.Duplicate(name)\n    nt.SetCompoundStructure(cs)\n    log('wall type {0} -> {1}'.format(tname(wt), name))\n    return nt\n\n\n# ------------------------------------------------------------------ skirting profile family\ndef find_template():\n    dirs = [app.FamilyTemplatePath]\n    ver = app.VersionNumber\n    for lang in ('English', 'English-Imperial', 'English_I'):\n        dirs.append(os.path.join(os.environ.get('ProgramData', r'C:\\ProgramData'), 'Autodesk',\n                                 'RVT ' + ver, 'Family Templates', lang))\n    want = ['Metric Profile.rft', 'Profile.rft']\n    found = []\n    for d in dirs:\n        if not d or not os.path.isdir(d):\n            continue\n        for w in want:\n            p = os.path.join(d, w)\n            if os.path.exists(p):\n                return p\n        for fn in os.listdir(d):\n            u = fn.upper()\n            if u.endswith('PROFILE.RFT'):\n                found.append(os.path.join(d, fn))\n    if found:\n        return found[0]\n    raise Exception('no profile family template (Metric Profile.rft) found in ' + ' | '.join(d for d in dirs if d))\n\n\ndef fam_name(h, t, down=False):\n    return 'CAD2BIM_Skirting_{0}x{1}{2}'.format(f(h), f(t), '_D' if down else '')\n\n\ndef build_profile(h, t, down=False):\n    \"\"\"<FAM_DIR>/CAD2BIM_Skirting_HxT.rfa : closed rectangle t wide (x) and h high (y)\"\"\"\n    name = fam_name(h, t, down)\n    path = os.path.join(FAM_DIR, name + '.rfa')\n    if os.path.exists(path):\n        return path\n    if not os.path.isdir(FAM_DIR):\n        os.makedirs(FAM_DIR)\n    tpl = find_template()\n    log('building profile {0} from {1}'.format(name, tpl))\n    fdoc = app.NewFamilyDocument(tpl)\n    tr = None\n    try:\n        view = None\n        for v in FilteredElementCollector(fdoc).OfClass(ViewPlan):\n            if not v.IsTemplate:\n                view = v\n                break\n        if view is None:\n            raise Exception('profile template has no plan view')\n        tr = Transaction(fdoc, 'CAD2BIM skirting profile')\n        tr.Start()\n        W, H = t * MMF, (-h if down else h) * MMF\n        pts = [XYZ(0, 0, 0), XYZ(W, 0, 0), XYZ(W, H, 0), XYZ(0, H, 0)]\n        for i in range(4):\n            fdoc.FamilyCreate.NewDetailCurve(view, Line.CreateBound(pts[i], pts[(i + 1) % 4]))\n        tr.Commit()\n        so = SaveAsOptions()\n        so.OverwriteExistingFile = True\n        fdoc.SaveAs(path, so)\n    finally:\n        try:\n            if tr is not None and tr.HasStarted() and not tr.HasEnded():\n                tr.RollBack()\n        except Exception:\n            pass\n        fdoc.Close(False)\n    log('saved ' + path)\n    return path\n\n\ndef profile_symbol(h, t, down=False):\n    name = fam_name(h, t, down)\n    fam = None\n    for fm in FilteredElementCollector(doc).OfClass(Family):\n        if fm.Name == name:\n            fam = fm\n            break\n    if fam is None:\n        doc.LoadFamily(os.path.join(FAM_DIR, name + '.rfa'))\n        for fm in FilteredElementCollector(doc).OfClass(Family):\n            if fm.Name == name:\n                fam = fm\n                break\n    if fam is None:\n        raise Exception('skirting profile family {0} could not be loaded'.format(name))\n    return doc.GetElement(list(fam.GetFamilySymbolIds())[0])\n\n\ndef sweep_type(h, t, prof, mat):\n    name = 'A_SKT_Skirting_{0}x{1}{2}'.format(f(h), f(t), '_Flush' if MODE == 2 else '')\n    types = list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Cornices).WhereElementIsElementType())\n    st = None\n    for e in types:\n        if tname(e) == name:\n            st = e\n            break\n    if st is None:\n        if not types:\n            raise Exception('no Wall Sweep type in this project to copy (Architecture > Wall > Sweep once, then Run again)')\n        st = types[0].Duplicate(name)\n    set_any(st, ['WALL_SWEEP_PROFILE_PARAM', 'Profile'], prof.Id)\n    set_any(st, ['MATERIAL_ID_PARAM', 'Material'], mat)\n    set_any(st, ['WALL_SWEEP_CUT_BY_INSERTS_PARAM', 'Cut by Inserts', 'Cuts by Inserts'], 1 if STOP_DOORS else 0)\n    set_any(st, ['WALL_SWEEP_CUTS_WALL_PARAM', 'Cuts Wall'], 1 if MODE == 2 else 0)\n    return st\n\n\n# ------------------------------------------------------------------ sweeps\ndef plane_dist(face, p):\n    o, n = face.Origin, face.FaceNormal\n    return (p.X - o.X) * n.X + (p.Y - o.Y) * n.Y + (p.Z - o.Z) * n.Z\n\n\ndef outside_wall(w, p):\n    \"\"\"True if point p is outside the wall body (beyond its finish faces), None if unknown\"\"\"\n    try:\n        fi = [w.GetGeometryObjectFromReference(r) for r in HostObjectUtils.GetSideFaces(w, ShellLayerType.Interior)]\n        fe = [w.GetGeometryObjectFromReference(r) for r in HostObjectUtils.GetSideFaces(w, ShellLayerType.Exterior)]\n        fi = [x for x in fi if isinstance(x, PlanarFace)]\n        fe = [x for x in fe if isinstance(x, PlanarFace)]\n        if fi and fe:\n            di = min(abs(plane_dist(x, p)) for x in fi)\n            de = min(abs(plane_dist(x, p)) for x in fe)\n            return di + de > w.Width + 1e-3\n    except Exception as ex:\n        log('face test: {0}'.format(ex))\n    try:                                   # curved walls: distance from the location line\n        lc = w.Location.Curve\n        q = lc.Project(XYZ(p.X, p.Y, lc.GetEndPoint(0).Z)).XYZPoint\n        return ((p.X - q.X) ** 2 + (p.Y - q.Y) ** 2) ** 0.5 > w.Width / 2.0 + 1e-3\n    except Exception:\n        return None\n\n\ndef make_sweep(w, side, st, prof, flip, woff):\n    info = WallSweepInfo(WallSweepType.Sweep, False)\n    info.WallSide = side\n    info.DistanceMeasuredFrom = DistanceMeasuredFrom.Base\n    info.Distance = BASE_OFF * MMF\n    info.WallOffset = woff * MMF\n    info.IsProfileFlipped = flip\n    try:\n        info.ProfileId = prof.Id\n    except Exception:\n        pass\n    try:\n        info.IsCutByInserts = STOP_DOORS\n        info.CutsWall = (MODE == 2)\n    except Exception:\n        pass\n    sw = WallSweep.Create(w, st.Id, info)\n    p = sw.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n    if p is not None:\n        p.Set(TAG)\n    return sw\n\n\ndef getoff(sw):\n    p = sw.LookupParameter('Offset From Wall')\n    try:\n        return p.AsDouble() / MMF if p is not None else 0.0\n    except Exception:\n        return 0.0\n\n\ndef check(sw, w):\n    \"\"\"('ok'|'inside'|'down', detail) - is the skirting outside the wall face and above the floor?\"\"\"\n    doc.Regenerate()\n    bb = sw.get_BoundingBox(None)\n    wb = w.get_BoundingBox(None)\n    if bb is None or wb is None:\n        return 'ok', 'no bbox'\n    c = XYZ((bb.Min.X + bb.Max.X) / 2.0, (bb.Min.Y + bb.Max.Y) / 2.0, (bb.Min.Z + bb.Max.Z) / 2.0)\n    det = 'z {0:.0f}..{1:.0f} wall base {2:.0f}'.format(bb.Min.Z / MMF, bb.Max.Z / MMF, wb.Min.Z / MMF)\n    if bb.Max.Z < wb.Min.Z + BASE_OFF * MMF + 1e-3:\n        return 'down', det\n    o = outside_wall(w, c)\n    det += ' outside={0}'.format(o)\n    if o is False:\n        return 'inside', det\n    return 'ok', det\n\n\ntry:\n    SEL_ONLY, VIEW_ONLY = flag(IN[0]), flag(IN[1])\n    DO_SK, H, T = flag(IN[2], True), num(IN[3], 100), num(IN[4], 15)\n    INSIDE, OUTSIDE, PART_BOTH = flag(IN[5], True), flag(IN[6]), flag(IN[7], True)\n    MODE = IN[8]\n    MODE = (1 if MODE else 3) if isinstance(MODE, bool) else int(round(num(MODE, 1)))\n    MODE = min(3, max(1, MODE))\n    STOP_DOORS, BASE_OFF = flag(IN[9], True), num(IN[10], 0)\n    MAT_NAME = (str(IN[11]).strip() if IN[11] else '') or 'CAD2BIM Skirting'\n    DO_FIN, WITH_FIN, FIN_IN, FIN_OUT = flag(IN[12]), flag(IN[13], True), num(IN[14], 12), num(IN[15], 18)\n    log('inputs sel {0} view {1} | skirting {2} {3}x{4} in {5} out {6} part {7} onfin {8} doors {9} up {10} mat {11} | '\n        'finish {12} with {13} {14}/{15}'.format(SEL_ONLY, VIEW_ONLY, DO_SK, H, T, INSIDE, OUTSIDE, PART_BOTH,\n                                                MODE, STOP_DOORS, BASE_OFF, MAT_NAME, DO_FIN, WITH_FIN, FIN_IN, FIN_OUT))\n    if H <= 0 or T <= 0:\n        raise Exception('skirting height and thickness must be more than 0')\n\n    # ---------------- walls in scope\n    if SEL_ONLY:\n        cand = [doc.GetElement(i) for i in uidoc.Selection.GetElementIds()]\n        scope_txt = 'SELECTED walls'\n    elif VIEW_ONLY:\n        cand = list(FilteredElementCollector(doc, doc.ActiveView.Id).OfClass(Wall))\n        scope_txt = 'walls in view \"{0}\"'.format(doc.ActiveView.Name)\n    else:\n        cand = list(FilteredElementCollector(doc).OfClass(Wall).WhereElementIsNotElementType())\n        scope_txt = 'ALL walls'\n    walls = [w for w in cand if isinstance(w, Wall) and w.WallType.Kind == WallKind.Basic\n             and w.WallType.GetCompoundStructure() is not None]\n    skipped_kind = len([w for w in cand if isinstance(w, Wall)]) - len(walls)\n    if not walls:\n        raise Exception('no basic walls found (' + scope_txt + ')' +\n                        ('  - select walls first, then Run' if SEL_ONLY else ''))\n    wall_ids = set(idv(w.Id) for w in walls)\n\n    # ---------------- profile family first (family editing needs no open model transaction)\n    fam_note = ''\n    if DO_SK:\n        TransactionManager.Instance.ForceCloseTransaction()\n        build_profile(H, T)\n\n    TransactionManager.Instance.EnsureInTransaction(doc)\n\n    # ---------------- wall finish\n    fin_changed = 0\n    fin_types = {}\n    if DO_FIN:\n        PLASTER_INT = material('CAD2BIM Plaster - Internal', (238, 235, 228))\n        PLASTER_EXT = material('CAD2BIM Plaster - External', (222, 214, 200))\n        for w in walls:\n            try:\n                ext = is_exterior(w)\n                key = (idv(w.WallType.Id), ext)\n                if key not in fin_types:\n                    fin_types[key] = finish_type(w.WallType, ext, WITH_FIN, FIN_IN, FIN_OUT)\n                nt = fin_types[key]\n                if nt is not None and idv(nt.Id) != idv(w.WallType.Id):\n                    w.WallType = nt\n                    fin_changed += 1\n            except Exception as ex:\n                log('finish wall {0}: {1}'.format(idv(w.Id), ex))\n        doc.Regenerate()\n\n    # ---------------- remove old CAD2BIM skirting on these walls\n    removed = 0\n    for sw in list(FilteredElementCollector(doc).OfClass(WallSweep)):\n        if tagged(sw) != TAG:\n            continue\n        try:\n            hosts = [idv(i) for i in sw.GetHostIds()]\n        except Exception:\n            hosts = []\n        if any(hid in wall_ids for hid in hosts):\n            doc.Delete(sw.Id)\n            removed += 1\n\n    made = {'inside': 0, 'outside': 0}\n    off_fail = [0]\n    run_m = 0.0\n    fails = []\n    if DO_SK:\n        mat = material(MAT_NAME, (120, 120, 118))\n        prof = profile_symbol(H, T)\n        st = sweep_type(H, T, prof, mat)\n        flip = {}\n        down = False\n        for w in walls:\n            ext = is_exterior(w)\n            sides = []\n            if INSIDE or (PART_BOTH and not ext):\n                sides.append(('inside', WallSide.Interior))\n            if OUTSIDE or (PART_BOTH and not ext):\n                sides.append(('outside', WallSide.Exterior))\n            e_sh, i_sh = shells(w)\n            for key, side in sides:\n                if MODE == 1:\n                    woff = 0.0                                   # on the finish, projecting T\n                elif MODE == 2:\n                    woff = -T                                    # front face flush with the finish\n                else:\n                    woff = -(i_sh if key == 'inside' else e_sh)  # on the block / core face\n                try:\n                    if key not in flip:\n                        # first skirting on this side: check direction of the profile\n                        sw = make_sweep(w, side, st, prof, False, 0.0)\n                        res, det = check(sw, w)\n                        log('calibrate {0}: {1} ({2})'.format(key, res, det))\n                        if res == 'down' and not down:\n                            doc.Delete(sw.Id)\n                            TransactionManager.Instance.ForceCloseTransaction()\n                            build_profile(H, T, down=True)\n                            TransactionManager.Instance.EnsureInTransaction(doc)\n                            prof = profile_symbol(H, T, down=True)\n                            st = sweep_type(H, T, prof, mat)\n                            down = True\n                            sw = make_sweep(w, side, st, prof, False, 0.0)\n                            res, det = check(sw, w)\n                            log('calibrate {0} (profile down): {1} ({2})'.format(key, res, det))\n                        flip[key] = False\n                        if res == 'inside':\n                            doc.Delete(sw.Id)\n                            sw = make_sweep(w, side, st, prof, True, 0.0)\n                            res, det = check(sw, w)\n                            log('calibrate {0} flipped: {1} ({2})'.format(key, res, det))\n                            flip[key] = True\n                        if woff != 0.0:\n                            doc.Delete(sw.Id)\n                            sw = make_sweep(w, side, st, prof, flip[key], woff)\n                    else:\n                        sw = make_sweep(w, side, st, prof, flip[key], woff)\n                    if woff != 0.0 and abs(abs(getoff(sw)) - abs(woff)) > 0.5:\n                        log('offset not kept on wall {0}: wanted {1} got {2}'.format(idv(w.Id), woff, getoff(sw)))\n                        off_fail[0] += 1\n                    made[key] += 1\n                    lp = sw.LookupParameter('Length')\n                    ln = lp.AsDouble() if lp is not None else 0.0\n                    run_m += (ln if ln > 1e-6 else w.Location.Curve.Length) * 0.3048\n                except Exception as ex:\n                    fails.append('wall {0} {1}: {2}'.format(idv(w.Id), key, ex))\n                    log(fails[-1])\n\n    TransactionManager.Instance.TransactionTaskDone()\n\n    # ---------------- report\n    out.append('CAD2BIM WALL SKIRTING + FINISH  -  {0}'.format(scope_txt))\n    out.append('Walls             : {0}{1}'.format(len(walls), '  ({0} curtain / stacked skipped)'.format(skipped_kind) if skipped_kind else ''))\n    if DO_FIN:\n        out.append('Wall finish       : {0}  -> {1} walls changed, types: {2}'.format(\n            ('WITH plaster  inside {0} mm / outside {1} mm'.format(f(FIN_IN), f(FIN_OUT)) if WITH_FIN else 'WITHOUT finish'),\n            fin_changed, ', '.join(sorted(set(tname(t) for t in fin_types.values() if t is not None)))))\n    else:\n        out.append('Wall finish       : not changed (wall types as they are)')\n    if DO_SK:\n        out.append('Skirting          : {0} high x {1} thick, {2} mm above floor, type A_SKT_Skirting_{0}x{1}'.format(f(H), f(T), f(BASE_OFF)))\n        out.append('  position        : {0}'.format({1: '1 ON the finish face (projects {0} mm)'.format(f(T)),\n                                                 2: '2 FLUSH with the finish face (set {0} mm into the wall, wall cut behind)'.format(f(T)),\n                                                 3: '3 on the CORE / block face'}[MODE]))\n        if off_fail[0]:\n            out.append('  !! Revit did not accept the offset on {0} skirtings - check them in section'.format(off_fail[0]))\n        out.append('  inside faces    : {0}'.format(made['inside']))\n        out.append('  outside faces   : {0}'.format(made['outside']))\n        out.append('  stops at doors  : {0}'.format('yes' if STOP_DOORS else 'no'))\n        out.append('  total length    : {0:.1f} m (before door cut-outs)'.format(run_m))\n        out.append('  material        : ' + MAT_NAME)\n        if removed:\n            out.append('  old skirting replaced on these walls: {0}'.format(removed))\n    else:\n        out.append('Skirting          : REMOVED from these walls ({0})'.format(removed))\n    if fails:\n        out.append('Problems ({0}):'.format(len(fails)))\n        out.extend('  ' + x for x in fails[:15])\n    out.append('Save / Sync with Central to keep the changes.')\nexcept Exception as ex:\n    try:\n        TransactionManager.Instance.ForceCloseTransaction()\n    except Exception:\n        pass\n    out.insert(0, 'FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "ae8f387392cf4ff59f5b3876c7e3a8a5",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "84056c758e4b416ab5e3923f8a6d83e6",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b716c0f7b3b04521a07f38498b4caa22",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f2871d82e08d44c2898f2cf535180280",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5f7b714852a740b7ad1eb707c904d18c",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "143e45945b55461da1e030c007c51460",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fc9db2cc0cfa42c2b8a2950358c2c1c3",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e54321f3fb66412ab3cef91f280226fe",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e861fb179ba7413fa4fd15760b47a4df",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d412ae1d3fcc47b88bf2fefa4118de52",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "61f6aef712244a2bb722d113146da198",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "97c63cb1444b41dc97e27a14d81ad6c3",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "aa4bc45a8f224dbc88e68186d729f613",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "daea1e5a865c49b68491a90913eed3c4",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f271cd5c4f214704a0fc966b874360ee",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7044cb9af6b04d83ae346e805e894363",
+          "Name": "IN[14]",
+          "Description": "Input #14",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7796be8a7b05442abc56f91fd2d7a81a",
+          "Name": "IN[15]",
+          "Description": "Input #15",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1025b85bb9cd468fb04e00343af502a6",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "735f5cc490ec44c9b603c0ca32694bf1",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "49bb49523ec84eb0aae2294786df19c4",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "da14cb8b8db8459897fabb465b25f840",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "bfe18ce58bab4d5bb86c1fe6dd2b961c",
+      "End": "84056c758e4b416ab5e3923f8a6d83e6",
+      "Id": "563d36fafe8b4b838867ecf0521acdcc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a0b3beac82f844999065301587da56ef",
+      "End": "b716c0f7b3b04521a07f38498b4caa22",
+      "Id": "8f9086ac83344cb6bb6f94e100a45cc0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4de058db1d394e6680fdaeffd0b9cf8a",
+      "End": "f2871d82e08d44c2898f2cf535180280",
+      "Id": "c8064da116c94ff3809216cb66536245",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d788d5f1d9494db3ba605bba1ce79f20",
+      "End": "5f7b714852a740b7ad1eb707c904d18c",
+      "Id": "ea4eeb6c485446b99adb17f4c1fd4fa2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dea4988e0578422584b0f110505ac6e1",
+      "End": "143e45945b55461da1e030c007c51460",
+      "Id": "c76192483f584e80bcb8d1c9333c8112",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "eadd1ef74ee242aa8fd54a9ef222b663",
+      "End": "fc9db2cc0cfa42c2b8a2950358c2c1c3",
+      "Id": "730da0a3e32c42e49be8ea7f03fc8c6f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1637afdfcd5145fba276ab9374aca4b2",
+      "End": "e54321f3fb66412ab3cef91f280226fe",
+      "Id": "6703381ba9c14563945d960442a514c4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "05a6732cd67d4b73ad88a5e435df1d24",
+      "End": "e861fb179ba7413fa4fd15760b47a4df",
+      "Id": "6cf7ab3e7b824faf9caa882ff5b25acd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7a36eba8b4184cf297935c63f63313a0",
+      "End": "d412ae1d3fcc47b88bf2fefa4118de52",
+      "Id": "4d6d419d0e124626af968144f29bc5fe",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9b23607d096d45f6ae2d240cbc131e67",
+      "End": "61f6aef712244a2bb722d113146da198",
+      "Id": "163fb53b429a4b209713049c09f93c29",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bad2e52de9744d308d37b385ba7001cf",
+      "End": "97c63cb1444b41dc97e27a14d81ad6c3",
+      "Id": "0975ddc3d3064b97baa278d8941e922f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "664b343fbe6845bb8e90398e90e220aa",
+      "End": "aa4bc45a8f224dbc88e68186d729f613",
+      "Id": "8fa81d97e9f3471a914f18ff6b9bde64",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "216924d94607498695dff9e02f37b8f5",
+      "End": "daea1e5a865c49b68491a90913eed3c4",
+      "Id": "91ee6be5da40422ab2ee789c26599594",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "825f7637b53e4ada9b2725de9b6fbafe",
+      "End": "f271cd5c4f214704a0fc966b874360ee",
+      "Id": "ebac35595f814ae4b417e50a98329818",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ac8e8059be2b4d029bf9dd4eb4363660",
+      "End": "7044cb9af6b04d83ae346e805e894363",
+      "Id": "8671a00fd3c94231a54f7094564272c7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "afa078e164254481a2eb4b75b6f45b1c",
+      "End": "7796be8a7b05442abc56f91fd2d7a81a",
+      "Id": "2d4e74d767854db1a1293a92f4b9824f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1025b85bb9cd468fb04e00343af502a6",
+      "End": "49bb49523ec84eb0aae2294786df19c4",
+      "Id": "be01dfe992f54b11bd4b7cff1f774c1b",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "bc336a0e09f24c20bcc8343ea1ac7e98",
+        "Name": "Only SELECTED walls  (off = ALL walls)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "dc5060edb2eb4426bdec363b5e5ab4c3",
+        "Name": "Only walls in the ACTIVE VIEW",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "2b1353574dcf4109a0ec2c66aee588cf",
+        "Name": "SKIRTING ON  (off = remove skirting from these walls)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 420.0
+      },
+      {
+        "Id": "1a6112d736374afc9abb21390e4bf08b",
+        "Name": "Skirting HEIGHT (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 555.0
+      },
+      {
+        "Id": "606412976b90419098f4a3a48adfd1d7",
+        "Name": "Skirting THICKNESS (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 690.0
+      },
+      {
+        "Id": "66f171199ee04400af22009f800ec526",
+        "Name": "INSIDE face of walls",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 825.0
+      },
+      {
+        "Id": "bb3f9ce3ae9a45978efb8413ba3a4805",
+        "Name": "OUTSIDE face of walls",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 960.0
+      },
+      {
+        "Id": "68aebd03926c4a249ba7fe2874cb47c6",
+        "Name": "Interior partitions: BOTH faces",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1095.0
+      },
+      {
+        "Id": "8a1a74b90b3246f3b8de4c61f72e0ac5",
+        "Name": "POSITION  1 = ON finish (projecting)   2 = FLUSH with finish   3 = on CORE / block",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1230.0
+      },
+      {
+        "Id": "dd6761f99f2244108fc3748a388968e2",
+        "Name": "Stop skirting at DOORS / openings",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1365.0
+      },
+      {
+        "Id": "9e89bdafecba4b01bf11789fae55cdf6",
+        "Name": "Height above floor / wall base (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1500.0
+      },
+      {
+        "Id": "f090b439fbdb4e3dbc40289ecfeada7a",
+        "Name": "Skirting material name",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1635.0
+      },
+      {
+        "Id": "8e3b2cac1b9b4dc48a1c229d17838330",
+        "Name": "CHANGE wall finish  (off = keep wall types as they are)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "a3f962bde7444b01bb4e3606ef187037",
+        "Name": "WITH finish / plaster  (off = WITHOUT finish)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "2bdf17611aa04c8bb16b2b58906b236c",
+        "Name": "INSIDE finish thickness (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 270.0
+      },
+      {
+        "Id": "70b38f3c47af4b24b8d8b744a8abff96",
+        "Name": "OUTSIDE finish thickness (mm)  - exterior walls",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 405.0
+      },
+      {
+        "Id": "ae8f387392cf4ff59f5b3876c7e3a8a5",
+        "Name": "CAD2BIM  Wall Skirting  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "735f5cc490ec44c9b603c0ca32694bf1",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "fb168af6e49244fdb23f1ccbc6c390f6",
+        "Title": "1  WHICH WALLS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "bc336a0e09f24c20bcc8343ea1ac7e98",
+          "dc5060edb2eb4426bdec363b5e5ab4c3"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 405.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 310.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "f81409ef5409496ea6fd30deb6922b18",
+        "Title": "2  SKIRTING",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "2b1353574dcf4109a0ec2c66aee588cf",
+          "1a6112d736374afc9abb21390e4bf08b",
+          "606412976b90419098f4a3a48adfd1d7",
+          "66f171199ee04400af22009f800ec526",
+          "bb3f9ce3ae9a45978efb8413ba3a4805",
+          "68aebd03926c4a249ba7fe2874cb47c6",
+          "8a1a74b90b3246f3b8de4c61f72e0ac5",
+          "dd6761f99f2244108fc3748a388968e2",
+          "9e89bdafecba4b01bf11789fae55cdf6",
+          "f090b439fbdb4e3dbc40289ecfeada7a"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 325.0,
+        "Width": 440.0,
+        "Height": 1485.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 420.0,
+        "InitialHeight": 1390.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "3abe4eb63d3e477397b9d310990c7271",
+        "Title": "3  WALL FINISH",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "8e3b2cac1b9b4dc48a1c229d17838330",
+          "a3f962bde7444b01bb4e3606ef187037",
+          "2bdf17611aa04c8bb16b2b58906b236c",
+          "70b38f3c47af4b24b8d8b744a8abff96"
+        ],
+        "HasNestedGroups": false,
+        "Left": 460.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 675.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 580.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF9FDF8F"
+      },
+      {
+        "Id": "f216f95531fc420c8677774c6ecc26c1",
+        "Title": "4  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "ae8f387392cf4ff59f5b3876c7e3a8a5",
+          "735f5cc490ec44c9b603c0ca32694bf1"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "83fd33b6dbba4682a35976229206a503",
+        "Title": "HOW TO USE  -  pick the walls (all / selected / active view), set skirting + finish, Run\nSkirting = Revit wall sweep: follows every wall, stops at doors, schedulable.  INSIDE / OUTSIDE / partitions both faces.\nPOSITION: 1 ON the plaster (sticks out by its thickness)  2 FLUSH - front face in line with the plaster (wall cut behind)  3 on the block / core face.\nWall finish: WITH plaster (inside / outside thickness) or WITHOUT finish - new wall types '<type> (P12/18)' / '<type> (NO FINISH)'.\nRun again to change size or faces: old skirting on those walls is replaced, never duplicated.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

@@ -1,0 +1,1112 @@
+{
+  "Uuid": "7aab71dc-9797-400c-9709-abc5c45a39a3",
+  "IsCustomNode": false,
+  "Description": "Walls from CAD wall lines: centre line + CAD thickness, material control, corners joined, openings bridged",
+  "Name": "CAD2BIM_Walls_From_CAD",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementsSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [],
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2e2d79c106cc465581f0aacfda0047de",
+          "Name": "Elements",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select multiple elements from the Revit document.",
+      "Id": "404a0daef718492ea11a7baab0c09856"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "66e4bf77a3114799a1d09dc3f7aa342a",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a6174509ffe34989812c9c355620cc94",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4b30a104db004fbdab6e9518ab5b4c4d",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3da7d355b710464c93061846d0486d23",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "fca70ab1a9484ae0af7a4e52588f2f86",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b0e77371f72f4c78826a7213e7a9f5f2",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "18b379d69f144a098d695ba406296130",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a65b510ea6fe46b6a4f2f83511c57659",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "ea52c26b2a2b4eebade365344c88b8cf",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d86a96635bb74678ba5e1cdf2461ef42",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "fff6ccb1337d442590e078d2375c5351",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b4be80f4583b4f339d468dd0a0db60b7",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 200.0,
+      "MinimumValue": 50.0,
+      "StepValue": 5.0,
+      "Id": "eb89e3b2694148f18c16e1f93f024f1e",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "98fdc1b3261c4a7e96c63204a34eca71",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 75.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 1000.0,
+      "MinimumValue": 200.0,
+      "StepValue": 10.0,
+      "Id": "bbffec137f5348c59e67d9fcd672bb53",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "796acf26489f47fd80abe14c5a3378fd",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 450.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "6dec132a802443a48cdc70b103a2b9d0",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bccc47fdcbd94dcbb9e29c3b66ef761b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "100,115,150,200,230,300"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 600.0,
+      "MinimumValue": 0.0,
+      "StepValue": 5.0,
+      "Id": "939e4b5eb44b43438ba0b48642e68c52",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7f36b3aad7144a2bb84aadc59a996fc6",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 600.0,
+      "MinimumValue": 50.0,
+      "StepValue": 5.0,
+      "Id": "d2d2b56bb7594283b92a64357df20d67",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3310cd1ce628437d89ada619a0c814f6",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 230.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 6000.0,
+      "MinimumValue": 0.0,
+      "StepValue": 100.0,
+      "Id": "55ce6715d8f8493d9b55ecd3504c70a2",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9d48151b677d4085bd201171561cb274",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 2500.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "df5dea2c7a1b41248195a447e061936a",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e7373a23c0f941e9925adeb738f7f7d2",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Brick"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 10000.0,
+      "MinimumValue": 0.0,
+      "StepValue": 50.0,
+      "Id": "480801c781554f90b225d5cf66116517",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2104e130995d4a329198e71de6eec42a",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 2000.0,
+      "MinimumValue": 100.0,
+      "StepValue": 50.0,
+      "Id": "e5ffc01d8a85418fa08011dad350144d",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "311c9c168d834bd7bb56e1c76b87791a",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 300.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4336b37a0a154685bc5b81c6ccb6d198",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9f562cf44ada4552b3473363d7bda481",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "f2ebd64b2683477aa0c1587535adf015",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "070a54881dda49229d5fe8ac240e4980",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - WALLS FROM CAD (professional)\n#  two parallel CAD lines 75..450 mm apart = one wall: centre line + thickness from the CAD\n#  door / window gaps bridged (doors + windows go in later), L and T corners joined, per floor (CAD level)\n#  thickness snapped to standard sizes or one override; material per thickness (230=Brick, 200=AAC ...)\n#  also Revit detail / model lines as wall centre lines.  Re-run = walls updated in place (doors kept), never doubled.\nimport os\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\nlog('--- walls v1 started')\nimport clr, math, re, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nfrom Autodesk.Revit.DB.Architecture import *        # Stairs, StairsRun, StairsLanding, Railing ...\nclr.AddReference('RevitServices')\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nclr.AddReference('System')\nfrom System.Collections.Generic import List\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\nMMF = 1.0 / 304.8\nCOL_PARAMS = [('b', 'h'), ('Width', 'Depth'), ('Width', 'Length')]\nout = []\n\n\ndef num(v, d=0.0):\n    try:\n        return float(v)\n    except Exception:\n        return d\n\n\ndef f(v):\n    return '{0:.0f}'.format(v)\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\n_CAT = {}\ndef catid(bic):\n    if bic not in _CAT:\n        _CAT[bic] = idv(Category.GetCategory(doc, bic).Id)\n    return _CAT[bic]\n\n\ndef cat_is(e, bic):\n    return e is not None and e.Category is not None and idv(e.Category.Id) == catid(bic)\n\n\ndef tname(t):\n    p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n    return p.AsString() if p else ''\n\n\ndef setp(e, bip, val):\n    p = e.get_Parameter(bip)\n    if p is not None and not p.IsReadOnly:\n        p.Set(val)\n        return True\n    return False\n\n\ndef getd(e, bip):\n    p = e.get_Parameter(bip)\n    return p.AsDouble() if p is not None else None\n\n\ndef getlvl(e, bip):\n    p = e.get_Parameter(bip)\n    if p is None:\n        return None\n    x = doc.GetElement(p.AsElementId())\n    return x if isinstance(x, Level) else None\n\n\n\ndef tagged(e):\n    p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n    return (p.AsString() or '') if p is not None else ''\n\n\ndef to_mm(v):\n    return v / MMF\n\n\ndef pt(p):\n    return (to_mm(p.X), to_mm(p.Y))\n\n\ndef layer_name(g, inherited):\n    name = None\n    try:\n        gs = doc.GetElement(g.GraphicsStyleId)\n        if gs is not None and gs.GraphicsStyleCategory is not None:\n            name = gs.GraphicsStyleCategory.Name\n    except Exception:\n        name = None\n    if not name or name == '0':\n        return inherited or name or '0'\n    return name\n\n\nCIRCLES = {}\n\n\ndef read_layers(cad):\n    \"\"\"{layer: [segments]} in mm; arcs and splines are split into short straight pieces.\"\"\"\n    opt = Options()\n    opt.ComputeReferences = False\n    if cad.ViewSpecific:\n        opt.View = doc.GetElement(cad.OwnerViewId)\n    data = {}\n\n    def add(ln, ps):\n        for i in range(len(ps) - 1):\n            if ps[i] != ps[i + 1]:\n                data.setdefault(ln, []).append((ps[i], ps[i + 1]))\n\n    def walk(geom, inherited):\n        for g in geom:\n            ln = layer_name(g, inherited)\n            if isinstance(g, GeometryInstance):\n                walk(g.GetInstanceGeometry(), ln)\n            elif isinstance(g, Arc) and (not g.IsBound or abs(g.Length - 2 * math.pi * g.Radius) < 1e-3):\n                c = g.Center\n                CIRCLES.setdefault(ln, []).append((to_mm(c.X), to_mm(c.Y), to_mm(g.Radius)))\n            elif isinstance(g, Line):\n                if g.IsBound:\n                    add(ln, [pt(g.GetEndPoint(0)), pt(g.GetEndPoint(1))])\n            elif isinstance(g, PolyLine):\n                add(ln, [pt(p) for p in g.GetCoordinates()])\n            elif isinstance(g, Curve):\n                try:\n                    add(ln, [pt(p) for p in g.Tessellate()])\n                except Exception:\n                    pass\n    top = cad.get_Geometry(opt)\n    for g in top:\n        if isinstance(g, GeometryInstance):\n            walk(g.GetInstanceGeometry(), None)\n    return data\n\n\n\n# ================================================================== CEILING ENGINE\n\n# ------------------------------------------------------------------ wall recognition (pure python, mm)\ndef _canon(p, q):\n    a = math.degrees(math.atan2(q[1] - p[1], q[0] - p[0])) % 180.0\n    if a > 179.5:\n        a -= 180.0\n    t = math.radians(a)\n    return a, (math.cos(t), math.sin(t))\n\n\ndef merge_runs(segs, gap, off_tol=2.0, ang_tol=0.3):\n    \"\"\"collinear pieces -> straight runs; pieces closer than 'gap' along the line are joined (bridges openings)\"\"\"\n    groups = []\n    for p, q in segs:\n        if math.hypot(q[0] - p[0], q[1] - p[1]) < 1.0:\n            continue\n        a, d = _canon(p, q)\n        n = (-d[1], d[0])\n        off = p[0] * n[0] + p[1] * n[1]\n        t0, t1 = p[0] * d[0] + p[1] * d[1], q[0] * d[0] + q[1] * d[1]\n        for g in groups:\n            da = abs(g['a'] - a)\n            if min(da, 180.0 - da) <= ang_tol and abs(off - g['off']) <= off_tol:\n                g['iv'].append((min(t0, t1), max(t0, t1)))\n                break\n        else:\n            groups.append({'a': a, 'd': d, 'n': n, 'off': off, 'iv': [(min(t0, t1), max(t0, t1))]})\n    runs = []\n    for g in groups:\n        iv = sorted(g['iv'])\n        cur = list(iv[0])\n        for a, b in iv[1:]:\n            if a <= cur[1] + gap:\n                cur[1] = max(cur[1], b)\n            else:\n                runs.append({'a': g['a'], 'd': g['d'], 'n': g['n'], 'off': g['off'], 't0': cur[0], 't1': cur[1]})\n                cur = [a, b]\n        runs.append({'a': g['a'], 'd': g['d'], 'n': g['n'], 'off': g['off'], 't0': cur[0], 't1': cur[1]})\n    return runs\n\n\ndef pair_walls(runs, tmin, tmax, min_len):\n    \"\"\"two parallel runs tmin..tmax apart that overlap = one wall: centre line + thickness\"\"\"\n    cand = []\n    for i in range(len(runs)):\n        A = runs[i]\n        for j in range(i + 1, len(runs)):\n            B = runs[j]\n            da = abs(A['a'] - B['a'])\n            if min(da, 180.0 - da) > 0.5:\n                continue\n            # B's offset measured in A's frame\n            sgn = 1.0 if (A['d'][0] * B['d'][0] + A['d'][1] * B['d'][1]) > 0 else -1.0\n            offB = B['off'] * sgn\n            th = abs(offB - A['off'])\n            if th < tmin or th > tmax:\n                continue\n            b0, b1 = (B['t0'], B['t1']) if sgn > 0 else (-B['t1'], -B['t0'])\n            lo, hi = max(A['t0'], b0), min(A['t1'], b1)\n            if hi - lo < min_len:\n                continue\n            cand.append((th, i, j, lo, hi, (A['off'] + offB) / 2.0))\n    cand.sort(key=lambda c: c[0])                      # thinnest first: a face pairs with its nearest partner\n    used = {}\n    walls = []\n    for th, i, j, lo, hi, mid in cand:\n        def covered(k):\n            return sum(max(0.0, min(hi, b) - max(lo, a)) for a, b in used.get(k, []))\n        if covered(i) > 0.5 * (hi - lo) or covered(j) > 0.5 * (hi - lo):\n            continue\n        used.setdefault(i, []).append((lo, hi))\n        used.setdefault(j, []).append((lo, hi))\n        A = runs[i]\n        d, n = A['d'], A['n']\n        p = (d[0] * lo + n[0] * mid, d[1] * lo + n[1] * mid)\n        q = (d[0] * hi + n[0] * mid, d[1] * hi + n[1] * mid)\n        walls.append({'p': p, 'q': q, 't': th})\n    return walls\n\n\ndef _inter(p1, d1, p2, d2):\n    den = d1[0] * d2[1] - d1[1] * d2[0]\n    if abs(den) < 1e-9:\n        return None\n    s = ((p2[0] - p1[0]) * d2[1] - (p2[1] - p1[1]) * d2[0]) / den\n    return s\n\n\ndef join_ends(walls, reach):\n    \"\"\"extend / trim wall ends to meet the centre line of the wall they run into (L and T corners)\"\"\"\n    for w in walls:\n        L = math.hypot(w['q'][0] - w['p'][0], w['q'][1] - w['p'][1])\n        w['d'] = ((w['q'][0] - w['p'][0]) / L, (w['q'][1] - w['p'][1]) / L)\n    for w in walls:\n        for end in ('p', 'q'):\n            P = w[end]\n            dirv = w['d'] if end == 'q' else (-w['d'][0], -w['d'][1])\n            best = None\n            for o in walls:\n                if o is w:\n                    continue\n                if abs(w['d'][0] * o['d'][1] - w['d'][1] * o['d'][0]) < 0.17:      # nearly parallel\n                    continue\n                s = _inter(P, dirv, o['p'], o['d'])\n                if s is None:\n                    continue\n                lim = max(w['t'], o['t']) / 2.0 + reach\n                if s < -lim or s > lim:\n                    continue\n                X = (P[0] + dirv[0] * s, P[1] + dirv[1] * s)\n                # X must lie on (or just past) the other wall\n                Lo = math.hypot(o['q'][0] - o['p'][0], o['q'][1] - o['p'][1])\n                u = (X[0] - o['p'][0]) * o['d'][0] + (X[1] - o['p'][1]) * o['d'][1]\n                if u < -o['t'] - reach or u > Lo + o['t'] + reach:\n                    continue\n                if best is None or abs(s) < abs(best[0]):\n                    best = (s, X)\n            if best is not None:\n                w[end] = best[1]\n    return [w for w in walls if math.hypot(w['q'][0] - w['p'][0], w['q'][1] - w['p'][1]) > 50.0]\n\n\ndef dedupe(walls, tol=30.0):\n    \"\"\"same centre line twice (e.g. CAD + Revit lines) -> keep one\"\"\"\n    out = []\n    for w in walls:\n        a, d = _canon(w['p'], w['q'])\n        mid = ((w['p'][0] + w['q'][0]) / 2.0, (w['p'][1] + w['q'][1]) / 2.0)\n        dup = False\n        for o in out:\n            ao, do = _canon(o['p'], o['q'])\n            da = abs(a - ao)\n            if min(da, 180.0 - da) > 1.0:\n                continue\n            n = (-do[1], do[0])\n            if abs((mid[0] - o['p'][0]) * n[0] + (mid[1] - o['p'][1]) * n[1]) > tol:\n                continue\n            Lo = math.hypot(o['q'][0] - o['p'][0], o['q'][1] - o['p'][1])\n            u = (mid[0] - o['p'][0]) * do[0] + (mid[1] - o['p'][1]) * do[1]\n            if -tol <= u <= Lo + tol:\n                dup = True\n                break\n        if not dup:\n            out.append(w)\n    return out\n\n\ndef snap_thk(t, std, rnd):\n    if std:\n        best = min(std, key=lambda s: abs(s - t))\n        if abs(best - t) <= max(8.0, 0.06 * best):\n            return best\n    return round(t / rnd) * rnd if rnd > 0 else t\n\n\n# ================================================================== WALL ENGINE\nTAG = 'CAD2BIM-WALL'\nWALL_WORDS = ('WALL', 'WAL', 'BRICK', 'BLOCK', 'BLK', 'MASONRY', 'MAS', 'PARTITION', 'AAC', 'CONC')\nSKIP_WORDS = ('HATCH', 'TEXT', 'DIM', 'ANNO', 'TITLE', 'DEFPOINTS', 'VIEWPORT', 'GRID', 'AXIS', 'DOOR', 'WIN', 'GLAZ',\n              'FURN', 'FUR', 'SANIT', 'PLUMB', 'ELEC', 'LIGHT', 'CEIL', 'CLG', 'FLOOR', 'TILE', 'STAIR', 'COL', 'BEAM',\n              'LANDSCAPE', 'TREE', 'CAR', 'SYMBOL', 'NPLT', 'PLOT', 'BORDER', 'FRAME', 'LEVEL')\nMAT_RGB = {'BRICK': (178, 102, 76), 'BLOCK': (160, 160, 155), 'AAC': (215, 212, 200), 'CONCRETE': (175, 175, 175),\n           'RCC': (175, 175, 175), 'STONE': (190, 180, 160), 'GYPSUM': (245, 245, 240), 'GLASS': (190, 220, 235)}\n\n\ndef one_layer(ht, t_mm, mat):\n    \"\"\"keep the type's own compound structure (end caps etc.), replace its layers by one t_mm layer\"\"\"\n    cs = ht.GetCompoundStructure()\n    lay = List[CompoundStructureLayer]()\n    lay.Add(CompoundStructureLayer(t_mm * MMF, MaterialFunctionAssignment.Structure, mat))\n    cs.SetLayers(lay)\n    for side in (ShellLayerType.Exterior, ShellLayerType.Interior):\n        try:\n            cs.SetNumberOfShellLayers(side, 0)\n        except Exception:\n            pass\n    try:\n        cs.StructuralMaterialIndex = 0\n    except Exception:\n        pass\n    ht.SetCompoundStructure(cs)\n\n\ndef material_id(name):\n    mats = list(FilteredElementCollector(doc).OfClass(Material))\n    for m in mats:\n        if m.Name.upper() == name.upper():\n            return m.Id\n    for m in mats:\n        if name.upper() in m.Name.upper():\n            return m.Id\n    mid = Material.Create(doc, name)\n    m = doc.GetElement(mid)\n    rgb = next((v for k, v in MAT_RGB.items() if k in name.upper()), (200, 190, 175))\n    try:\n        m.Color = Color(rgb[0], rgb[1], rgb[2])\n    except Exception:\n        pass\n    return mid\n\n\ndef mat_code(name):\n    w = re.sub(r'[^A-Z0-9 ]', '', name.upper()).split()\n    return (w[0][:6] if w else 'GEN')\n\n\ndef parse_mats(txt):\n    \"\"\"'Brick'  or  '230=Brick, 115=Brick, 200=AAC Block'  -> (default, {thk: name})\"\"\"\n    txt = (txt or '').strip() or 'Brick'\n    if '=' not in txt:\n        return txt, {}\n    mp, default = {}, None\n    for part in txt.split(','):\n        if '=' in part:\n            k, v = part.split('=', 1)\n            try:\n                mp[int(round(float(k)))] = v.strip()\n                default = default or v.strip()\n            except Exception:\n                default = v.strip() or default\n        elif part.strip():\n            default = part.strip()\n    return default or 'Brick', mp\n\n\n_WT = {}\n\n\ndef wall_type(t_mm, mat_name):\n    key = (int(round(t_mm)), mat_name.upper())\n    if key in _WT:\n        return _WT[key]\n    name = 'A_WAL_{0}_{1}'.format(mat_code(mat_name), key[0])\n    wt = None\n    for t in FilteredElementCollector(doc).OfClass(WallType):\n        if tname(t) == name:\n            wt = t\n            break\n    mid = material_id(mat_name)\n    if wt is None:\n        base = [t for t in FilteredElementCollector(doc).OfClass(WallType)\n                if t.Kind == WallKind.Basic and t.GetCompoundStructure() is not None]\n        if not base:\n            raise Exception('no basic wall type in this project to copy')\n        wt = base[0].Duplicate(name)\n    cs = wt.GetCompoundStructure()\n    if cs is None or abs(cs.GetWidth() / MMF - key[0]) > 0.5 or cs.LayerCount != 1 or \\\n            idv(cs.GetMaterialId(0)) != idv(mid):\n        one_layer(wt, key[0], mid)\n    _WT[key] = wt\n    return wt\n\n\ndef cad_level(c, levels):\n    try:\n        if c.ViewSpecific:\n            v = doc.GetElement(c.OwnerViewId)\n            if isinstance(v, ViewPlan) and v.GenLevel is not None:\n                return idv(v.GenLevel.Id)\n        if c.LevelId is not None and idv(c.LevelId) > 0:\n            return idv(c.LevelId)\n        z = c.GetTotalTransform().Origin.Z\n        below = [l for l in levels if l.Elevation <= z + 0.05]\n        return idv((below[-1] if below else levels[0]).Id)\n    except Exception:\n        return idv(levels[0].Id) if levels else None\n\n\ndef level_above(l, levels):\n    up = [x for x in levels if x.Elevation > l.Elevation + 0.1]\n    return up[0] if up else None\n\n\ntry:\n    PICKED, ALL = IN[0], bool(IN[1])\n    USE_CAD, CAD_TXT, LAYER_TXT = bool(IN[2]), str(IN[3] or '').strip(), str(IN[4] or 'AUTO').strip()\n    USE_RVT, STYLE = bool(IN[5]), str(IN[6] or '').strip()\n    TMIN, TMAX = num(IN[7], 75), num(IN[8], 450)\n    STD = [float(x) for x in re.findall(r'\\d+(?:\\.\\d+)?', str(IN[9] or ''))]\n    T_OVR, T_RVT, BRIDGE = num(IN[10], 0), num(IN[11], 230), num(IN[12], 2500)\n    MAT_DEF, MAT_MAP = parse_mats(str(IN[13] or 'Brick'))\n    H, MINLEN = num(IN[14], 0), num(IN[15], 300)\n    UPDATE, DO = bool(IN[16]), bool(IN[17])\n    log('inputs all {0} cad {1} \"{2}\" \"{3}\" rvt {4} \"{5}\" | thk {6}-{7} std {8} override {9} rvt {10} bridge {11} | '\n        'mat {12} {13} | H {14} min {15} | update {16} run {17}'.format(ALL, USE_CAD, CAD_TXT, LAYER_TXT, USE_RVT, STYLE,\n                                                                       TMIN, TMAX, STD, T_OVR, T_RVT, BRIDGE, MAT_DEF,\n                                                                       MAT_MAP, H, MINLEN, UPDATE, DO))\n    if not DO:\n        raise Exception('Switch on PLACE / UPDATE WALLS, then Run')\n    levels = sorted([l for l in FilteredElementCollector(doc).OfClass(Level)], key=lambda l: l.Elevation)\n    lvl_by_id = dict((idv(l.Id), l) for l in levels)\n\n    # ---------------- selection: picked Revit lines only\n    sel_lines = None\n    if not ALL:\n        picked = PICKED if isinstance(PICKED, (list, tuple)) else ([PICKED] if PICKED is not None else [])\n        els = []\n        for x in picked:\n            e = getattr(x, 'InternalElement', None)\n            if e is None:\n                try:\n                    e = doc.GetElement(ElementId(int(x.Id)))\n                except Exception:\n                    e = x\n            els.append(e)\n        if not els:\n            els = [doc.GetElement(i) for i in uidoc.Selection.GetElementIds()]\n        sel_lines = set(idv(e.Id) for e in els if isinstance(e, CurveElement))\n        if not sel_lines:\n            raise Exception('Nothing picked - click SELECT and pick Revit lines (or switch on ALL walls)')\n\n    # ---------------- CAD: face lines per level -> walls\n    by_level, layers_used, n_cad = {}, {}, 0\n    if USE_CAD and sel_lines is None:\n        cads = [c for c in FilteredElementCollector(doc).OfClass(ImportInstance)]\n        if CAD_TXT:\n            cads = [c for c in cads if c.Category is not None and CAD_TXT.lower() in c.Category.Name.lower()]\n        n_cad = len(cads)\n        auto = LAYER_TXT.upper() in ('', 'AUTO', '*', 'ALL')\n        keys = [k.strip().upper() for k in LAYER_TXT.split(',') if k.strip()] if not auto else []\n        for c in cads:\n            lid = cad_level(c, levels)\n            layers = read_layers(c)\n            if auto:\n                use = [n for n in layers if any(k in n.upper() for k in WALL_WORDS)\n                       and not any(k in n.upper() for k in ('HATCH', 'TEXT', 'DIM'))]\n                if not use:\n                    use = [n for n in layers if not any(k in n.upper() for k in SKIP_WORDS)]\n            else:\n                use = [n for n in layers if any(k in n.upper() for k in keys)]\n            segs = [s for n in use for s in layers[n]]\n            for n in use:\n                layers_used[n] = layers_used.get(n, 0) + len(layers[n])\n            runs = merge_runs(segs, BRIDGE)\n            ws = pair_walls(runs, TMIN, TMAX, MINLEN)\n            for w in ws:\n                w['src'] = 'CAD'\n            by_level.setdefault(lid, []).extend(ws)\n            log('cad {0}: level {1}, {2} lines on {3} layers -> {4} runs -> {5} walls'.format(\n                c.Category.Name if c.Category else '?', lid, len(segs), len(use), len(runs), len(ws)))\n\n    # ---------------- Revit lines = centre lines\n    n_rl = 0\n    if USE_RVT or sel_lines is not None:\n        for ce in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Lines).WhereElementIsNotElementType():\n            if not isinstance(ce, CurveElement):\n                continue\n            if sel_lines is not None and idv(ce.Id) not in sel_lines:\n                continue\n            try:\n                if STYLE and (ce.LineStyle is None or STYLE.upper() not in ce.LineStyle.Name.upper()):\n                    continue\n                cv = ce.GeometryCurve\n                if not isinstance(cv, Line) or cv.Length / MMF < MINLEN:\n                    continue\n                if ce.ViewSpecific:\n                    v = doc.GetElement(ce.OwnerViewId)\n                    if not isinstance(v, ViewPlan) or v.GenLevel is None:\n                        continue\n                    lid = idv(v.GenLevel.Id)\n                else:\n                    z = cv.GetEndPoint(0).Z\n                    below = [l for l in levels if l.Elevation <= z + 0.05]\n                    lid = idv((below[-1] if below else levels[0]).Id)\n                p, q = cv.GetEndPoint(0), cv.GetEndPoint(1)\n                by_level.setdefault(lid, []).append({'p': (p.X / MMF, p.Y / MMF), 'q': (q.X / MMF, q.Y / MMF),\n                                                     't': T_RVT, 'src': 'Revit line'})\n                n_rl += 1\n            except Exception as ex:\n                log('line {0}: {1}'.format(idv(ce.Id), ex))\n\n    # ---------------- corners, duplicates, thickness\n    for lid in list(by_level):\n        ws = dedupe(by_level[lid])\n        ws = join_ends(ws, 150.0)\n        for w in ws:\n            w['T'] = T_OVR if T_OVR > 0 else snap_thk(w['t'], STD, 5.0)\n            w['M'] = MAT_MAP.get(int(round(w['T'])), MAT_DEF)\n        by_level[lid] = ws\n\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    made, updated, kept, failed = 0, 0, 0, []\n    types = {}\n    length = 0.0\n    existing = [w for w in FilteredElementCollector(doc).OfClass(Wall).WhereElementIsNotElementType()\n                if isinstance(w.Location, LocationCurve) and isinstance(w.Location.Curve, Line)]\n\n    def same_line(w, p, q, lid):\n        if idv(w.LevelId) != lid:\n            return False\n        c = w.Location.Curve\n        a, b = c.GetEndPoint(0), c.GetEndPoint(1)\n        A, B = (a.X / MMF, a.Y / MMF), (b.X / MMF, b.Y / MMF)\n        L1 = math.hypot(B[0] - A[0], B[1] - A[1])\n        L2 = math.hypot(q[0] - p[0], q[1] - p[1])\n        if L1 < 1 or L2 < 1:\n            return False\n        d1 = ((B[0] - A[0]) / L1, (B[1] - A[1]) / L1)\n        d2 = ((q[0] - p[0]) / L2, (q[1] - p[1]) / L2)\n        if abs(d1[0] * d2[1] - d1[1] * d2[0]) > 0.02:\n            return False\n        m = ((p[0] + q[0]) / 2.0, (p[1] + q[1]) / 2.0)\n        if abs((m[0] - A[0]) * -d1[1] + (m[1] - A[1]) * d1[0]) > 60.0:\n            return False\n        u = [(x[0] - A[0]) * d1[0] + (x[1] - A[1]) * d1[1] for x in (p, q)]\n        return min(max(u), L1) - max(min(u), 0) > 0.5 * min(L1, L2)\n\n    for lid, ws in by_level.items():\n        lvl = lvl_by_id.get(lid)\n        if lvl is None:\n            continue\n        top = level_above(lvl, levels) if H <= 0 else None\n        z = lvl.Elevation\n        for w in ws:\n            p, q = w['p'], w['q']\n            try:\n                hit = next((e for e in existing if same_line(e, p, q, lid)), None)\n                if hit is not None and not tagged(hit).startswith(TAG):\n                    kept += 1\n                    continue\n                wt = wall_type(w['T'], w['M'])\n                line = Line.CreateBound(XYZ(p[0] * MMF, p[1] * MMF, z), XYZ(q[0] * MMF, q[1] * MMF, z))\n                if hit is not None:\n                    if not UPDATE:\n                        kept += 1\n                        continue\n                    hit.Location.Curve = line                  # keeps doors / windows hosted in it\n                    if idv(hit.GetTypeId()) != idv(wt.Id):\n                        hit.WallType = wt\n                    wall = hit\n                    updated += 1\n                else:\n                    wall = Wall.Create(doc, line, wt.Id, lvl.Id, (H if H > 0 else 3000.0) * MMF, 0.0, False, False)\n                    existing.append(wall)\n                    made += 1\n                setp(wall, BuiltInParameter.WALL_KEY_REF_PARAM, 0)          # location line = wall centre\n                if top is not None:\n                    setp(wall, BuiltInParameter.WALL_HEIGHT_TYPE, top.Id)\n                    setp(wall, BuiltInParameter.WALL_TOP_OFFSET, 0.0)\n                elif H > 0:\n                    setp(wall, BuiltInParameter.WALL_HEIGHT_TYPE, ElementId.InvalidElementId)\n                    setp(wall, BuiltInParameter.WALL_USER_HEIGHT_PARAM, H * MMF)\n                pc = wall.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n                if pc is not None:\n                    pc.Set(TAG + '|' + w['src'])\n                k = tname(wt)\n                types[k] = types.get(k, 0) + 1\n                length += math.hypot(q[0] - p[0], q[1] - p[1]) / 1000.0\n            except Exception as ex:\n                failed.append('wall {0:.0f} mm at ({1:.0f}, {2:.0f}): {3}'.format(w['T'], p[0], p[1], ex))\n                log(traceback.format_exc())\n    TransactionManager.Instance.TransactionTaskDone()\n\n    out.append('CAD2BIM WALLS FROM CAD  -  DONE  ({0})'.format('ALL' if ALL else 'picked Revit lines'))\n    if USE_CAD and sel_lines is None:\n        out.append('CAD           : {0} links, wall layers: {1}'.format(\n            n_cad, ', '.join('{0} ({1})'.format(k, v) for k, v in sorted(layers_used.items())[:8]) or 'none'))\n    if n_rl:\n        out.append('Revit lines   : {0} centre lines ({1:.0f} mm)'.format(n_rl, T_RVT))\n    out.append('Walls         : {0} new, {1} updated, {2} kept (a wall was already there)'.format(made, updated, kept))\n    out.append('Total length  : {0:.1f} m   height: {1}'.format(length, 'up to the level above' if H <= 0 else '{0:.0f} mm'.format(H)))\n    out.append('Thickness     : {0}'.format('ALL {0:.0f} mm (override)'.format(T_OVR) if T_OVR > 0 else\n                                           'from the CAD, snapped to ' + ', '.join('{0:g}'.format(s) for s in STD)))\n    for k in sorted(types):\n        out.append('  {0:<28} x {1}'.format(k, types[k]))\n    out.append('Openings up to {0:.0f} mm are bridged so doors / windows can be placed in the walls.'.format(BRIDGE))\n    if failed:\n        out.append('Problems ({0}):'.format(len(failed)))\n        out.extend('  ' + x for x in failed[:12])\n    out.append('Save / Sync with Central to keep the changes.')\nexcept Exception as ex:\n    try:\n        TransactionManager.Instance.ForceCloseTransaction()\n    except Exception:\n        pass\n    out.insert(0, 'FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "da42f6681bdd4254bb62edb4f5cd8f55",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "db5d8164723742a4a9526526c3ef99b6",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f2235d8ed42548228a21039dd65815de",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "082c7fa3a8e842a2989b920e53dd4aca",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "84ebbc93ae0a416bbf158646ae38895d",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c8ad3d43417645f580b73c5d36025a45",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "89a7b46723fa4816b015df597828b591",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c0a56c41e0554babb35d98ff1618343a",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1476801a405546388a9b56a653fd79ea",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4804dacfe5894d34811495b643849d33",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3c9b283fe0ea4e5dad4f3ffac3127d99",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5bbe323c1fad408db247fd45a7bd61fb",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "afc2e73a866948a2ae3735e9995a9d4b",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9b995e4165ff4eb2aebba04e10573ae6",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "beda2bea10464da6bd9bad60851cf73f",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "78bac1b958604791a4d3ed23ce684295",
+          "Name": "IN[14]",
+          "Description": "Input #14",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6f78a095e2864988a33e869bdc34e16e",
+          "Name": "IN[15]",
+          "Description": "Input #15",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7488cf3580ee4c63b6cfd29a5ecc9d0a",
+          "Name": "IN[16]",
+          "Description": "Input #16",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8814e6b07e254406b979749c890df02f",
+          "Name": "IN[17]",
+          "Description": "Input #17",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a33482fb9ae54accb815eb455b1b383a",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "f795f1b9d73840a58f2c9aaa5046a7f8",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "0cf706f13745447f99fad4dfdafea472",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8915d595f17f4a8db19e5f127f688280",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "2e2d79c106cc465581f0aacfda0047de",
+      "End": "db5d8164723742a4a9526526c3ef99b6",
+      "Id": "7b4e6258ef8747828d43e9adab854813",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a6174509ffe34989812c9c355620cc94",
+      "End": "f2235d8ed42548228a21039dd65815de",
+      "Id": "e937fcc846e5437c9b3c670a486fe2e8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3da7d355b710464c93061846d0486d23",
+      "End": "082c7fa3a8e842a2989b920e53dd4aca",
+      "Id": "357567ace3654e2eb7df40992628c835",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b0e77371f72f4c78826a7213e7a9f5f2",
+      "End": "84ebbc93ae0a416bbf158646ae38895d",
+      "Id": "862b4aedd61743fcac345d0711a84a69",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a65b510ea6fe46b6a4f2f83511c57659",
+      "End": "c8ad3d43417645f580b73c5d36025a45",
+      "Id": "2b28da78797b4608a572270bebb94bea",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d86a96635bb74678ba5e1cdf2461ef42",
+      "End": "89a7b46723fa4816b015df597828b591",
+      "Id": "67d70dbbd1bb45ea88d8b64a077950ad",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b4be80f4583b4f339d468dd0a0db60b7",
+      "End": "c0a56c41e0554babb35d98ff1618343a",
+      "Id": "c52c7e0b6fc24ba2911ab547ac21d074",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "98fdc1b3261c4a7e96c63204a34eca71",
+      "End": "1476801a405546388a9b56a653fd79ea",
+      "Id": "9f3540ef68d04f06a3080aa2ce28a1c6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "796acf26489f47fd80abe14c5a3378fd",
+      "End": "4804dacfe5894d34811495b643849d33",
+      "Id": "34311d6c264a4ce1991d543123c1bdb1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bccc47fdcbd94dcbb9e29c3b66ef761b",
+      "End": "3c9b283fe0ea4e5dad4f3ffac3127d99",
+      "Id": "da76629907744b69ab2e4d9bc156088f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7f36b3aad7144a2bb84aadc59a996fc6",
+      "End": "5bbe323c1fad408db247fd45a7bd61fb",
+      "Id": "adaf187b64d94188aeba1e8f7f1278da",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3310cd1ce628437d89ada619a0c814f6",
+      "End": "afc2e73a866948a2ae3735e9995a9d4b",
+      "Id": "3656c609c6df41ed9026973bc6c28b55",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9d48151b677d4085bd201171561cb274",
+      "End": "9b995e4165ff4eb2aebba04e10573ae6",
+      "Id": "2e76c1d3d81540bdb6cf6e40a23d1b6b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e7373a23c0f941e9925adeb738f7f7d2",
+      "End": "beda2bea10464da6bd9bad60851cf73f",
+      "Id": "484717addec94fd4b6ec1153bdcdd032",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2104e130995d4a329198e71de6eec42a",
+      "End": "78bac1b958604791a4d3ed23ce684295",
+      "Id": "03de87f9cf8349bab45281401453f58f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "311c9c168d834bd7bb56e1c76b87791a",
+      "End": "6f78a095e2864988a33e869bdc34e16e",
+      "Id": "8594492930b440ad9a9aee428714ba3f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9f562cf44ada4552b3473363d7bda481",
+      "End": "7488cf3580ee4c63b6cfd29a5ecc9d0a",
+      "Id": "7183373aa0d349c1a248659961fc0416",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "070a54881dda49229d5fe8ac240e4980",
+      "End": "8814e6b07e254406b979749c890df02f",
+      "Id": "b81b510a982b4a1ebd10aed88198f706",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a33482fb9ae54accb815eb455b1b383a",
+      "End": "0cf706f13745447f99fad4dfdafea472",
+      "Id": "ef30d671526b440da62548770f2694dd",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "404a0daef718492ea11a7baab0c09856",
+        "Name": "SELECT Revit lines  (only these become walls - click Select, pick, Finish)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "66e4bf77a3114799a1d09dc3f7aa342a",
+        "Name": "ALL walls  (off = only the picked Revit lines)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "4b30a104db004fbdab6e9518ab5b4c4d",
+        "Name": "Linked CAD  (two parallel lines = one wall)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 420.0
+      },
+      {
+        "Id": "fca70ab1a9484ae0af7a4e52588f2f86",
+        "Name": "CAD name contains  ( blank = all CAD links )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 555.0
+      },
+      {
+        "Id": "18b379d69f144a098d695ba406296130",
+        "Name": "CAD wall layers  ( AUTO = WALL / BRICK / BLOCK layers, else all except text, doors, furniture ... )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 690.0
+      },
+      {
+        "Id": "ea52c26b2a2b4eebade365344c88b8cf",
+        "Name": "Revit lines = wall CENTRE lines",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 825.0
+      },
+      {
+        "Id": "fff6ccb1337d442590e078d2375c5351",
+        "Name": "Revit line style contains  ( blank = any )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 960.0
+      },
+      {
+        "Id": "eb89e3b2694148f18c16e1f93f024f1e",
+        "Name": "Thinnest wall in the CAD (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "bbffec137f5348c59e67d9fcd672bb53",
+        "Name": "Thickest wall in the CAD (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "6dec132a802443a48cdc70b103a2b9d0",
+        "Name": "Standard thicknesses  ( CAD sizes snap to these )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 270.0
+      },
+      {
+        "Id": "939e4b5eb44b43438ba0b48642e68c52",
+        "Name": "Thickness OVERRIDE for all walls (mm)  ( 0 = from CAD )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 405.0
+      },
+      {
+        "Id": "d2d2b56bb7594283b92a64357df20d67",
+        "Name": "Thickness of walls from Revit lines (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 540.0
+      },
+      {
+        "Id": "55ce6715d8f8493d9b55ecd3504c70a2",
+        "Name": "Bridge door / window gaps up to (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 675.0
+      },
+      {
+        "Id": "df5dea2c7a1b41248195a447e061936a",
+        "Name": "MATERIAL  ( Brick  - or per thickness: 230=Brick, 115=Brick, 200=AAC Block )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 880.0
+      },
+      {
+        "Id": "480801c781554f90b225d5cf66116517",
+        "Name": "Wall HEIGHT (mm)  ( 0 = up to the level above )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 1015.0
+      },
+      {
+        "Id": "e5ffc01d8a85418fa08011dad350144d",
+        "Name": "Shortest wall (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 1150.0
+      },
+      {
+        "Id": "4336b37a0a154685bc5b81c6ccb6d198",
+        "Name": "Update walls made by this script  (keeps their doors)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 1285.0
+      },
+      {
+        "Id": "f2ebd64b2683477aa0c1587535adf015",
+        "Name": "PLACE / UPDATE WALLS",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 1420.0
+      },
+      {
+        "Id": "da42f6681bdd4254bb62edb4f5cd8f55",
+        "Name": "CAD2BIM  Walls  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "f795f1b9d73840a58f2c9aaa5046a7f8",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "38b62df81bc644f9b35665e79d6e256e",
+        "Title": "1  WHICH WALLS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "404a0daef718492ea11a7baab0c09856",
+          "66e4bf77a3114799a1d09dc3f7aa342a"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 405.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 310.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "39e469d74fff43ef8b8218cdda79665f",
+        "Title": "2  READ WALLS FROM",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "4b30a104db004fbdab6e9518ab5b4c4d",
+          "fca70ab1a9484ae0af7a4e52588f2f86",
+          "18b379d69f144a098d695ba406296130",
+          "ea52c26b2a2b4eebade365344c88b8cf",
+          "fff6ccb1337d442590e078d2375c5351"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 325.0,
+        "Width": 440.0,
+        "Height": 810.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 420.0,
+        "InitialHeight": 715.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC8C8C8"
+      },
+      {
+        "Id": "319eb9b7ddaa427d8ee08e4b18a66c0b",
+        "Title": "3  THICKNESS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "eb89e3b2694148f18c16e1f93f024f1e",
+          "bbffec137f5348c59e67d9fcd672bb53",
+          "6dec132a802443a48cdc70b103a2b9d0",
+          "939e4b5eb44b43438ba0b48642e68c52",
+          "d2d2b56bb7594283b92a64357df20d67",
+          "55ce6715d8f8493d9b55ecd3504c70a2"
+        ],
+        "HasNestedGroups": false,
+        "Left": 460.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 945.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "d9ae50e8c82e4becb39e867878f0514e",
+        "Title": "4  MATERIAL + HEIGHT + BUILD",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "df5dea2c7a1b41248195a447e061936a",
+          "480801c781554f90b225d5cf66116517",
+          "e5ffc01d8a85418fa08011dad350144d",
+          "4336b37a0a154685bc5b81c6ccb6d198",
+          "f2ebd64b2683477aa0c1587535adf015"
+        ],
+        "HasNestedGroups": false,
+        "Left": 460.0,
+        "Top": 785.0,
+        "Width": 440.0,
+        "Height": 810.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 880.0,
+        "InitialHeight": 715.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF9FDF8F"
+      },
+      {
+        "Id": "6bdf86e423a343b1b7960f5cffb28a81",
+        "Title": "5  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "da42f6681bdd4254bb62edb4f5cd8f55",
+          "f795f1b9d73840a58f2c9aaa5046a7f8"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "f753e684f7bf407a9dbe574dd6c6d58b",
+        "Title": "HOW TO USE  -  link the CAD on its level (Insert > Link CAD), Run\nEvery pair of parallel CAD lines 75-450 mm apart becomes a wall on its centre line, thickness from the CAD (snapped to standard sizes).\nDoor / window gaps are bridged, L and T corners joined, height up to the level above.  Types A_WAL_BRICK_230 ...  Material: one name or per thickness.\nRun again any time: walls are updated in place (their doors stay), walls you made yourself are never touched.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

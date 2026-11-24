@@ -1,0 +1,361 @@
+{
+  "Uuid": "55e01998-5e42-42a8-93c2-ade902d0307d",
+  "IsCustomNode": false,
+  "Description": "Tile layout annotation to ISO 19650 naming",
+  "Name": "Tile_Layout_ISO19650",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "310a5faf2d8a46f09c5cc9d6b571ee54",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "690e333199134551879c2ff7675a443b",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "2524",
+      "Id": "fc03f4c8a6d9429987beae24e736acb9",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e6a75ffc1dbd443d8fb5d715cb64706d",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Project code"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "SD",
+      "Id": "eeba5303d34146868939bea144fe2729",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0913602833964db38f3a53252a2f79fe",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Originator code"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "S2",
+      "Id": "dad339c8009b410a955cc1da5a405eac",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "aaee47ea61204298b2fd2274fc184527",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Status / suitability code"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "P01",
+      "Id": "5c6b0956b52f4d4f857b1bea4816b7fb",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6ab8b571ca1048ada6e0525bac3f1a0f",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Revision code"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# -*- coding: utf-8 -*-\n\"\"\"\nTile layout annotation to ISO 19650 naming - Dynamo for Revit 2026 (Python Script node, CPython3)\n\nInputs   IN[0] Run (bool)   IN[1] Project code   IN[2] Originator   IN[3] Status (S2...)   IN[4] Revision (P01...)\nOutput   OUT = log of what was done / skipped\n\nWhat it does (the original view is never edited - everything happens on a duplicate):\n  1  finds the tile plan: the plan placed on the active sheet, else TILE_VIEW_NAME\n  2  duplicates it as \"<name> - ISO\" at SCALE, fine detail level\n  3  finds tile elements (Floors / Generic Models / Parts), groups them by type, codes them T01, T02 ...\n  4  highlights every tile type with its own solid colour\n  5  labels the tile code on the largest tiles of each type\n  6  dimensions grid to grid (chain + overall) on both axes\n  7  builds a drafting-view legend: colour, code, tile type, size, material, thickness, area, quantity\n  8  builds a Revit tile schedule (type, area, count, totals)\n  9  numbers the sheet Project-Originator-Volume-Level-Type-Role-Number, sets status/revision,\n     swaps the old viewport for the annotated one, places legend + schedule\nEvery step runs in its own sub-transaction: a failing step rolls back alone and is reported in OUT.\n\"\"\"\nimport clr\nimport re\nclr.AddReference('RevitAPI')\nclr.AddReference('RevitServices')\nfrom Autodesk.Revit.DB import *\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nfrom System.Collections.Generic import List\n\ndoc = DocumentManager.Instance.CurrentDBDocument\n\n\ndef arg(i, default):\n    try:\n        v = IN[i]\n    except Exception:\n        return default\n    return default if v is None or v == \"\" else v\n\n\n# ---------------------------------------------------------------- configuration\nRUN = bool(arg(0, False))\nPROJECT = str(arg(1, \"2524\")).upper()\nORIGINATOR = str(arg(2, \"SD\")).upper()\nSTATUS = str(arg(3, \"S2\")).upper()          # ISO 19650 / BS 1192 suitability code\nREVISION = str(arg(4, \"P01\")).upper()       # P01 = first preliminary revision\n\nVOLUME = \"ZZ\"        # ZZ = all volumes\nDOC_TYPE = \"DR\"      # DR = drawing\nROLE = \"A\"           # A = architect\nSEQUENCE = \"0001\"\nSHEET_TITLE = \"SITE PLAN - TILE LAYOUT\"\n\nTILE_VIEW_NAME = \"Level 1 - Tile Layout\"    # used only when the active sheet has no plan on it\nVIEW_SUFFIX = \" - ISO\"\nLEGEND_NAME = \"ISO TILE LEGEND\"\nSCHEDULE_NAME = \"ISO TILE SCHEDULE\"\nSCALE = 100\nKEYWORDS = [\"tile\", \"vitrified\", \"ceramic\", \"porcelain\", \"granite\", \"marble\", \"kota\",\n            \"terrazzo\", \"paver\", \"paving\", \"cobble\"]\nCODE_PREFIX = \"T\"\nMAX_LABELS_PER_TYPE = 10\nDIM_OFFSET_PAPER_MM = 18     # chain dimension distance from grid ends, in sheet millimetres\nDIM_OVERALL_PAPER_MM = 32    # overall dimension distance\nREPLACE_PREVIOUS = True      # delete this script's own earlier output views before rebuilding\n\nPALETTE = [(230, 25, 75), (60, 180, 75), (255, 225, 25), (0, 130, 200), (245, 130, 48),\n           (145, 30, 180), (70, 240, 240), (240, 50, 230), (210, 245, 60), (250, 190, 212),\n           (0, 128, 128), (170, 110, 40)]\n\nMM = 1.0 / 304.8\nSQFT_TO_M2 = 0.09290304\nSIZE_RE = re.compile(r'(\\d{2,4})\\s*(?:x|X|\u00d7|\\*)\\s*(\\d{2,4})')\n\nlog = []\n\n\ndef say(msg):\n    log.append(str(msg))\n\n\ndef step(name, fn):\n    st = SubTransaction(doc)\n    st.Start()\n    try:\n        result = fn()\n        st.Commit()\n        say(\"OK    \" + name)\n        return result\n    except Exception as ex:\n        try:\n            st.RollBack()\n        except Exception:\n            pass\n        say(\"FAILED \" + name + \" -> \" + str(ex))\n        return None\n\n\n# ---------------------------------------------------------------- helpers\ndef pstr(e, name):\n    if e is None:\n        return None\n    p = e.LookupParameter(name)\n    if p is None or not p.HasValue:\n        return None\n    try:\n        s = p.AsString() if p.StorageType == StorageType.String else p.AsValueString()\n    except Exception:\n        return None\n    return s.strip() if s else None\n\n\ndef valid(eid):\n    return eid is not None and eid.Value > 0\n\n\ndef first_size(*texts):\n    for t in texts:\n        if t:\n            m = SIZE_RE.search(t)\n            if m:\n                return \"%s x %s mm\" % (m.group(1), m.group(2))\n    return None\n\n\ndef is_part(el):\n    return el.Category is not None and el.Category.BuiltInCategory == BuiltInCategory.OST_Parts\n\n\ndef top_material_and_thickness(t):\n    \"\"\"Top finish layer of a compound type (floors); returns (Material or None, thickness mm or None).\"\"\"\n    try:\n        cs = t.GetCompoundStructure()\n    except Exception:\n        cs = None\n    if cs is None:\n        return None, None\n    layers = list(cs.GetLayers())\n    if not layers:\n        return None, None\n    fin = [l for l in layers if l.Function in (MaterialFunctionAssignment.Finish1,\n                                               MaterialFunctionAssignment.Finish2)]\n    layer = fin[0] if fin else layers[0]\n    mat = doc.GetElement(layer.MaterialId) if valid(layer.MaterialId) else None\n    return mat, round(layer.Width / MM)\n\n\ndef describe(el):\n    \"\"\"Return dict(key,label,size,material,thk) for one tile element.\"\"\"\n    if is_part(el):\n        p = el.get_Parameter(BuiltInParameter.DPART_MATERIAL_ID_PARAM)\n        mat = doc.GetElement(p.AsElementId()) if p is not None and valid(p.AsElementId()) else None\n        mname = mat.Name if mat else \"No material\"\n        pat = None\n        if mat is not None and valid(mat.SurfaceForegroundPatternId):\n            pat = doc.GetElement(mat.SurfaceForegroundPatternId).Name\n        size = first_size(mname, pat)\n        if size is None:\n            bb = el.get_BoundingBox(None)\n            if bb is not None:\n                a, b = sorted([round((bb.Max.X - bb.Min.X) / MM / 5) * 5,\n                               round((bb.Max.Y - bb.Min.Y) / MM / 5) * 5])\n                size = \"approx %d x %d mm\" % (a, b)\n        return dict(key=\"part:\" + mname, label=\"Part - \" + mname, size=size or \"-\",\n                    material=mname, thk=\"-\")\n    t = doc.GetElement(el.GetTypeId())\n    try:\n        label = t.FamilyName + \" : \" + t.Name\n    except Exception:\n        label = t.Name\n    mat, thk = top_material_and_thickness(t)\n    if mat is None:\n        mname = pstr(t, \"Material\") or pstr(el, \"Material\")\n        mat = None\n    else:\n        mname = mat.Name\n    pat = None\n    if mat is not None and valid(mat.SurfaceForegroundPatternId):\n        pat = doc.GetElement(mat.SurfaceForegroundPatternId).Name\n    size = None\n    for n in (\"Tile Size\", \"Size\", \"Dimensions\", \"Description\", \"Type Comments\", \"Comments\"):\n        size = first_size(pstr(t, n), pstr(el, n))\n        if size:\n            break\n    size = size or first_size(t.Name, pat, mname)\n    if size is None:\n        ln, wd = pstr(t, \"Length\"), pstr(t, \"Width\")\n        size = \"%s x %s\" % (ln, wd) if ln and wd else \"-\"\n    return dict(key=\"type:%d\" % t.Id.Value, label=label, size=size, material=mname or \"-\",\n                thk=(\"%d\" % thk) if thk else \"-\", mark=pstr(t, \"Type Mark\"))\n\n\ndef area_m2(el):\n    p = el.get_Parameter(BuiltInParameter.HOST_AREA_COMPUTED)\n    if p is None:\n        p = el.get_Parameter(BuiltInParameter.DPART_AREA_COMPUTED)\n    return p.AsDouble() * SQFT_TO_M2 if p is not None else 0.0\n\n\ndef solid_fill_id():\n    for fp in FilteredElementCollector(doc).OfClass(FillPatternElement):\n        pat = fp.GetFillPattern()\n        if pat.IsSolidFill and pat.Target == FillPatternTarget.Drafting:\n            return fp.Id\n    return ElementId.InvalidElementId\n\n\ndef delete_views_named(name, keep_id=None):\n    for v in list(FilteredElementCollector(doc).OfClass(View)):\n        if v.Name == name and (keep_id is None or v.Id.Value != keep_id.Value) and not v.IsTemplate:\n            doc.Delete(v.Id)\n\n\n# ---------------------------------------------------------------- main\ndef main():\n    # ---- sheet and source view\n    av = doc.ActiveView\n    sheet = av if isinstance(av, ViewSheet) else None\n    src, old_vp = None, None\n    if sheet is not None:\n        for vid in sheet.GetAllViewports():\n            vp = doc.GetElement(vid)\n            v = doc.GetElement(vp.ViewId)\n            if isinstance(v, ViewPlan) and not v.IsTemplate:\n                src, old_vp = v, vp\n                break\n    if src is None:\n        for v in FilteredElementCollector(doc).OfClass(ViewPlan):\n            if v.Name == TILE_VIEW_NAME and not v.IsTemplate:\n                src = v\n                break\n    if src is None:\n        say(\"STOP  no tile plan found: put the tile plan on the active sheet or set TILE_VIEW_NAME\")\n        return\n    say(\"Source view: \" + src.Name + (\"  (from active sheet)\" if old_vp else \"\"))\n    lvl = src.GenLevel\n    lvl_digits = re.search(r'(\\d+)', lvl.Name) if lvl else None\n    level_code = (\"%02d\" % int(lvl_digits.group(1))) if lvl_digits else \"00\"\n\n    # ---- 1 duplicate\n    new_name = src.Name.replace(VIEW_SUFFIX, \"\") + VIEW_SUFFIX\n\n    def make_view():\n        if REPLACE_PREVIOUS:\n            delete_views_named(new_name, src.Id)\n            delete_views_named(LEGEND_NAME)\n            delete_views_named(SCHEDULE_NAME)\n        v = doc.GetElement(src.Duplicate(ViewDuplicateOption.WithDetailing))\n        v.Name = new_name\n        try:\n            v.Scale = SCALE\n        except Exception:\n            say(\"WARN  scale is controlled by a view template - left as is\")\n        v.DetailLevel = ViewDetailLevel.Fine\n        return v\n    view = step(\"duplicate view as '\" + new_name + \"'\", make_view)\n    if view is None:\n        return\n    doc.Regenerate()\n\n    # ---- 2 find and group tiles\n    cands = []\n    for bic in (BuiltInCategory.OST_Floors, BuiltInCategory.OST_GenericModel, BuiltInCategory.OST_Parts):\n        els = FilteredElementCollector(doc, view.Id).OfCategory(bic).WhereElementIsNotElementType().ToElements()\n        say(\"Found %d element(s) in %s\" % (len(els), {BuiltInCategory.OST_Floors: 'Floors', BuiltInCategory.OST_GenericModel: 'Generic Models', BuiltInCategory.OST_Parts: 'Parts'}.get(bic, str(bic))))\n        cands.extend(els)\n    infos = [(el, describe(el)) for el in cands]\n    hits = [(el, d) for el, d in infos\n            if any(k in (d[\"label\"] + \" \" + d[\"material\"]).lower() for k in KEYWORDS)]\n    if not hits:\n        say(\"WARN  no tile keyword matched - using every floor/part in the view. Check the legend.\")\n        hits = [(el, d) for el, d in infos if el.Category.BuiltInCategory != BuiltInCategory.OST_GenericModel]\n    groups = {}\n    for el, d in hits:\n        g = groups.setdefault(d[\"key\"], dict(d, els=[], area=0.0))\n        g[\"els\"].append(el)\n        g[\"area\"] += area_m2(el)\n    ordered = sorted(groups.values(), key=lambda g: -g[\"area\"])\n    if not ordered:\n        say(\"STOP  no tile elements in the view\")\n        return\n    for i, g in enumerate(ordered):\n        g[\"code\"] = g.get(\"mark\") or \"%s%02d\" % (CODE_PREFIX, i + 1)\n        r, gg, b = PALETTE[i % len(PALETTE)]\n        g[\"rgb\"] = (r, gg, b)\n        g[\"qty\"] = len(g[\"els\"])\n    say(\"Tile types found: \" + \", \".join(\"%s=%s (%d)\" % (g[\"code\"], g[\"label\"], g[\"qty\"]) for g in ordered))\n    solid = solid_fill_id()\n\n    # ---- 3 highlight\n    def highlight():\n        for g in ordered:\n            ogs = OverrideGraphicSettings()\n            c = Color(*g[\"rgb\"])\n            ogs.SetSurfaceForegroundPatternId(solid)\n            ogs.SetSurfaceForegroundPatternColor(c)\n            ogs.SetCutForegroundPatternId(solid)\n            ogs.SetCutForegroundPatternColor(c)\n            for el in g[\"els\"]:\n                view.SetElementOverrides(el.Id, ogs)\n    step(\"highlight tile types\", highlight)\n\n    # ---- 4 tile code labels\n    def labels():\n        tt = doc.GetDefaultElementTypeId(ElementTypeGroup.TextNoteType)\n        for g in ordered:\n            biggest = sorted(g[\"els\"], key=lambda e: -area_m2(e))[:MAX_LABELS_PER_TYPE]\n            for el in biggest:\n                bb = el.get_BoundingBox(view)\n                if bb is None:\n                    continue\n                pt = XYZ((bb.Min.X + bb.Max.X) / 2.0, (bb.Min.Y + bb.Max.Y) / 2.0, 0)\n                TextNote.Create(doc, view.Id, pt, g[\"code\"], tt)\n    step(\"tile code labels\", labels)\n\n    # ---- 5 grid to grid dimensions\n    def dims():\n        grids = [g for g in FilteredElementCollector(doc, view.Id).OfClass(Grid)\n                 if isinstance(g.Curve, Line)]\n        if len(grids) < 2:\n            say(\"WARN  fewer than 2 straight grids visible in the view - no dimensions\")\n            return\n        u = grids[0].Curve.Direction\n        u = XYZ(u.X, u.Y, 0).Normalize()\n        v = XYZ(-u.Y, u.X, 0)\n        parallel_u, parallel_v, skipped = [], [], 0\n        for g in grids:\n            d = g.Curve.Direction\n            d = XYZ(d.X, d.Y, 0).Normalize()\n            dot = abs(d.DotProduct(u))\n            if dot > 0.999:\n                parallel_u.append(g)\n            elif dot < 0.01:\n                parallel_v.append(g)\n            else:\n                skipped += 1\n        if skipped:\n            say(\"WARN  %d skewed grid(s) not dimensioned\" % skipped)\n        z = lvl.Elevation if lvl else 0.0\n\n        def pt(along, a, across, c):\n            return along.Multiply(a).Add(across.Multiply(c)).Add(XYZ(0, 0, z))\n\n        def run(group, along, across):\n            if len(group) < 2:\n                return\n            rows = []\n            for g in group:\n                p0, p1 = g.Curve.GetEndPoint(0), g.Curve.GetEndPoint(1)\n                rows.append((p0.DotProduct(across), g, max(p0.DotProduct(along), p1.DotProduct(along))))\n            rows.sort(key=lambda r: r[0])\n            clean = [rows[0]]\n            for r in rows[1:]:\n                if abs(r[0] - clean[-1][0]) > 0.005:\n                    clean.append(r)\n            if len(clean) < 2:\n                return\n            a_max = max(r[2] for r in clean)\n            c0, c1 = clean[0][0], clean[-1][0]\n            chain = ReferenceArray()\n            for r in clean:\n                chain.Append(Reference(r[1]))\n            off1 = DIM_OFFSET_PAPER_MM * SCALE * MM\n            doc.Create.NewDimension(view, Line.CreateBound(pt(along, a_max + off1, across, c0),\n                                                           pt(along, a_max + off1, across, c1)), chain)\n            if len(clean) > 2:\n                overall = ReferenceArray()\n                overall.Append(Reference(clean[0][1]))\n                overall.Append(Reference(clean[-1][1]))\n                off2 = DIM_OVERALL_PAPER_MM * SCALE * MM\n                doc.Create.NewDimension(view, Line.CreateBound(pt(along, a_max + off2, across, c0),\n                                                               pt(along, a_max + off2, across, c1)), overall)\n        run(parallel_u, u, v)\n        run(parallel_v, v, u)\n    step(\"grid-to-grid dimensions (chain + overall)\", dims)\n\n    # ---- 6 legend (drafting view)\n    def legend():\n        vft = [x for x in FilteredElementCollector(doc).OfClass(ViewFamilyType)\n               if x.ViewFamily == ViewFamily.Drafting][0]\n        dv = ViewDrafting.Create(doc, vft.Id)\n        dv.Name = LEGEND_NAME\n        dv.Scale = 1\n        base = FilteredElementCollector(doc).OfClass(FilledRegionType).FirstElement()\n        tt = doc.GetDefaultElementTypeId(ElementTypeGroup.TextNoteType)\n        cols = [(\"\", 14), (\"CODE\", 16), (\"TILE TYPE\", 78), (\"SIZE\", 30), (\"MATERIAL\", 55),\n                (\"THK mm\", 16), (\"AREA m2\", 22), (\"QTY\", 14)]\n        row_h = 10.0\n        x0, y0 = 0.0, 0.0\n        width = sum(c[1] for c in cols)\n        n_rows = len(ordered) + 3          # title, header, types, total\n        xs = [x0]\n        for c in cols:\n            xs.append(xs[-1] + c[1])\n\n        def P(xmm, ymm):\n            return XYZ(xmm * MM, ymm * MM, 0)\n\n        def hline(y):\n            doc.Create.NewDetailCurve(dv, Line.CreateBound(P(x0, y), P(x0 + width, y)))\n\n        def vline(x, ya, yb):\n            doc.Create.NewDetailCurve(dv, Line.CreateBound(P(x, ya), P(x, yb)))\n\n        def text(xmm, ymm, s):\n            TextNote.Create(doc, dv.Id, P(xmm + 2, ymm - 2.5), str(s), tt)\n\n        total_h = n_rows * row_h\n        for r in range(n_rows + 1):\n            hline(y0 - r * row_h)\n        for x in xs:\n            vline(x, y0 - row_h, y0 - total_h)          # title row is one merged cell\n        vline(xs[0], y0, y0 - row_h)\n        vline(xs[-1], y0, y0 - row_h)\n        text(x0, y0, \"LEGEND - TILE TYPES   (\" + PROJECT + \"-\" + ORIGINATOR + \"-\" + VOLUME + \"-\" +\n             level_code + \"-\" + DOC_TYPE + \"-\" + ROLE + \"-\" + SEQUENCE + \")\")\n        hy = y0 - row_h\n        for i, c in enumerate(cols):\n            text(xs[i], hy, c[0])\n        total_area, total_qty = 0.0, 0\n        for ri, g in enumerate(ordered):\n            ytop = y0 - (ri + 2) * row_h\n            nm = \"ISO TILE \" + g[\"code\"]\n            frt = None\n            for f in FilteredElementCollector(doc).OfClass(FilledRegionType):\n                if f.Name == nm:\n                    frt = f\n                    break\n            if frt is None:\n                frt = doc.GetElement(base.Duplicate(nm).Id)\n            frt.ForegroundPatternId = solid\n            frt.ForegroundPatternColor = Color(*g[\"rgb\"])\n            loop = CurveLoop()\n            a, b = P(xs[0] + 2, ytop - 2), P(xs[1] - 2, ytop - row_h + 2)\n            c1, c2 = XYZ(a.X, b.Y, 0), XYZ(b.X, a.Y, 0)\n            for p, q in ((a, c2), (c2, b), (b, c1), (c1, a)):\n                loop.Append(Line.CreateBound(p, q))\n            loops = List[CurveLoop]()\n            loops.Add(loop)\n            FilledRegion.Create(doc, dv.Id, frt.Id, loops)\n            vals = [None, g[\"code\"], g[\"label\"], g[\"size\"], g[\"material\"], g[\"thk\"],\n                    \"%.2f\" % g[\"area\"], g[\"qty\"]]\n            for i, val in enumerate(vals):\n                if val is not None:\n                    text(xs[i], ytop, val)\n            total_area += g[\"area\"]\n            total_qty += g[\"qty\"]\n        ylast = y0 - (n_rows - 1) * row_h\n        text(xs[2], ylast, \"TOTAL\")\n        text(xs[6], ylast, \"%.2f\" % total_area)\n        text(xs[7], ylast, total_qty)\n        return dv\n    legend_view = step(\"tile legend (colour, code, type, size, material, thickness, area, qty)\", legend)\n\n    # ---- 7 schedule\n    def schedule():\n        cat = ElementId(BuiltInCategory.OST_Floors)\n        sch = ViewSchedule.CreateSchedule(doc, cat)\n        sch.Name = SCHEDULE_NAME\n        d = sch.Definition\n        by_name = {}\n        for sf in d.GetSchedulableFields():\n            by_name.setdefault(sf.GetName(doc), sf)\n        added = {}\n        for nm in (\"Family and Type\", \"Level\", \"Area\", \"Count\"):\n            if nm in by_name:\n                added[nm] = d.AddField(by_name[nm])\n        if \"Family and Type\" in added:\n            d.AddSortGroupField(ScheduleSortGroupField(added[\"Family and Type\"].FieldId))\n            d.IsItemized = False\n            names = [g[\"label\"].lower() for g in ordered if not g[\"key\"].startswith(\"part:\")]\n            for k in KEYWORDS:\n                if names and all(k in n for n in names):\n                    d.AddFilter(ScheduleFilter(added[\"Family and Type\"].FieldId, ScheduleFilterType.Contains, k))\n                    break\n        if \"Level\" in added and lvl is not None:\n            d.AddFilter(ScheduleFilter(added[\"Level\"].FieldId, ScheduleFilterType.Equal, lvl.Id))\n            added[\"Level\"].IsHidden = True\n        if \"Area\" in added:\n            added[\"Area\"].DisplayType = ScheduleFieldDisplayType.Totals\n        d.ShowGrandTotal = True\n        return sch\n    sched = step(\"Revit tile schedule (type, area, count, totals)\", schedule)\n\n    # ---- 8 sheet: ISO number, status, revision, placement\n    def sheet_work():\n        sh = sheet\n        if sh is None:\n            tbs = list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_TitleBlocks)\n                       .WhereElementIsElementType())\n            pick = [t for t in tbs if \"SD_A1\" in t.Name.upper()] or tbs\n            sh = ViewSheet.Create(doc, pick[0].Id)\n            say(\"Created a new sheet (no active sheet)\")\n        number = \"-\".join([PROJECT, ORIGINATOR, VOLUME, level_code, DOC_TYPE, ROLE, SEQUENCE])\n        sh.SheetNumber = number\n        sh.Name = SHEET_TITLE\n        say(\"Sheet number: \" + number)\n        wanted = {\"Status\": STATUS, \"Document Status\": STATUS, \"Status Code\": STATUS,\n                  \"Suitability\": STATUS, \"Suitability Code\": STATUS,\n                  \"Revision\": REVISION, \"Document Revision\": REVISION, \"Rev\": REVISION}\n        done = []\n        for pname, val in wanted.items():\n            p = sh.LookupParameter(pname)\n            if p is not None and not p.IsReadOnly and p.StorageType == StorageType.String:\n                p.Set(val)\n                done.append(pname)\n        say(\"Sheet parameters set: \" + (\", \".join(done) if done else\n            \"none - sheet has no Status/Revision text parameter; add them to the sheet or title block\"))\n        tb = list(FilteredElementCollector(doc, sh.Id).OfCategory(BuiltInCategory.OST_TitleBlocks))\n        bb = tb[0].get_BoundingBox(sh) if tb else None\n        W = (bb.Max.X - bb.Min.X) if bb else 2.76\n        H = (bb.Max.Y - bb.Min.Y) if bb else 1.95\n        ox, oy = (bb.Min.X, bb.Min.Y) if bb else (0, 0)\n        if old_vp is not None:\n            centre = old_vp.GetBoxCenter()\n            type_id = old_vp.GetTypeId()\n            doc.Delete(old_vp.Id)          # removes the viewport only, the original view stays in the project\n        else:\n            centre, type_id = XYZ(ox + 0.36 * W, oy + 0.55 * H, 0), None\n        vp = Viewport.Create(doc, sh.Id, view.Id, centre)\n        if type_id is not None:\n            vp.ChangeTypeId(type_id)\n        if legend_view is not None:\n            Viewport.Create(doc, sh.Id, legend_view.Id, XYZ(ox + 0.80 * W, oy + 0.78 * H, 0))\n        if sched is not None:\n            ScheduleSheetInstance.Create(doc, sh.Id, sched.Id, XYZ(ox + 0.68 * W, oy + 0.42 * H, 0))\n    step(\"sheet: ISO 19650 number, status, revision, viewport, legend, schedule\", sheet_work)\n\n\nif RUN:\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    try:\n        main()\n    except Exception:\n        import traceback\n        say('STOPPED - error: ' + traceback.format_exc())\n    finally:\n        TransactionManager.Instance.TransactionTaskDone()\n    OUT = log\nelse:\n    OUT = \"Set Run to True to execute (use Dynamo manual run mode)\"\n",
+      "Engine": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "5f9b3105dbfa4413ab2f17b43e3614cd",
+      "Inputs": [
+        {
+          "Id": "1ae6539be16e48afbfc5eab6d545d6d8",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "41ae29349030414eb77a55884a8190bf",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6af60f5c2cf74afba2aa55a93fca72e7",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "89299a98dca14d56acf8bdfe685286d1",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "31396249c693409a9ea028ec8a8421ea",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bf3b096f68824bd9986d1c7eab878a92",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "c7477a5a2a584168a64ee5f2a93c66b7",
+      "Inputs": [
+        {
+          "Id": "ccea44cbe2d5492190e89099422ecae5",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c90866939f3e4ef3acc5ddb2119686b2",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "690e333199134551879c2ff7675a443b",
+      "End": "1ae6539be16e48afbfc5eab6d545d6d8",
+      "Id": "0516fe86b01c45c0930595cc3ca3b970",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e6a75ffc1dbd443d8fb5d715cb64706d",
+      "End": "41ae29349030414eb77a55884a8190bf",
+      "Id": "8a0d1b076df946858621b712e7f799bd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0913602833964db38f3a53252a2f79fe",
+      "End": "6af60f5c2cf74afba2aa55a93fca72e7",
+      "Id": "9382cf641491430bb21b889012bf3b6a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "aaee47ea61204298b2fd2274fc184527",
+      "End": "89299a98dca14d56acf8bdfe685286d1",
+      "Id": "45f9e838e00d49c7aa8fe574aa380a0e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6ab8b571ca1048ada6e0525bac3f1a0f",
+      "End": "31396249c693409a9ea028ec8a8421ea",
+      "Id": "7988026f1928423a8d9c03f5166e1c8a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bf3b096f68824bd9986d1c7eab878a92",
+      "End": "ccea44cbe2d5492190e89099422ecae5",
+      "Id": "f3c6b5c4c9b04824bfc2a8c8ece524a7",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "310a5faf2d8a46f09c5cc9d6b571ee54",
+        "Name": "Run (set True)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "fc03f4c8a6d9429987beae24e736acb9",
+        "Name": "Project code",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 120.0
+      },
+      {
+        "Id": "eeba5303d34146868939bea144fe2729",
+        "Name": "Originator",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 240.0
+      },
+      {
+        "Id": "dad339c8009b410a955cc1da5a405eac",
+        "Name": "Status",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 360.0
+      },
+      {
+        "Id": "5c6b0956b52f4d4f857b1bea4816b7fb",
+        "Name": "Revision",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 480.0
+      },
+      {
+        "Id": "5f9b3105dbfa4413ab2f17b43e3614cd",
+        "Name": "Tile layout ISO 19650",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 420.0,
+        "Y": 160.0
+      },
+      {
+        "Id": "c7477a5a2a584168a64ee5f2a93c66b7",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 900.0,
+        "Y": 160.0
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 0.7
+  }
+}

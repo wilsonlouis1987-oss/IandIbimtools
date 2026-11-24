@@ -1,0 +1,535 @@
+{
+  "Uuid": "17f1d67c-208d-4fa6-8b1c-cfa50bd807f4",
+  "IsCustomNode": false,
+  "Description": "FLOOR TILE PATTERN: picture of a tile layout -> grid / brick / herringbone (straight or 45 deg), your tile size -> Revit model fill pattern + material painted on the floors in the view",
+  "Name": "B17_MODEL_Floor_Tile_Pattern_From_Image",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "15ddcdf265694af48779ac0f3555846a",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a031cada1b3a4cbb991ae32cb484dcb8",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "",
+      "InputValue": "No file selected."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "6f4160c5287147539921d46616032c48",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a1a6e8fd8f6f4bd1a6743648072a3d41",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "600"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "51a92da2c6ae42dfa32e9b1e62e9a5cb",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2daf15ab897041e58ff502b733b81848",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "4f10e5fa0afc4ee6832a5def553e0fd4",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "31ed19684d19463a9bb44e46cbf87c39",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "cc85df848a9a4cfb84934b292c0f2340",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0648f92aea1f4ea4851ceb9839e704b6",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "59214ecad2f146ada68d73076d23ed4b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "94053a9adefc4aed88c4ead402fa9576",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "VIEW"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "eca94bfaf12e40c48bd013569345ee45",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "650ec4ab7a094da2a55e7a33d3097eaa",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  B17 FLOOR TILE PATTERN FROM A PICTURE   (Revit 2026)   v1\n#  Picture of a tiled floor / tile layout (JPG / PNG ...)  ->\n#    1. joint lines read from the picture: tile shape (square / long) and layout\n#       GRID (straight), BRICK (1/2 offset), BRICK3 (1/3 offset), HERRINGBONE - straight or turned 45 deg\n#    2. you give the tile size in mm (a picture has no scale): \"600\" or \"600 x 1200\"\n#    3. Revit model fill pattern + material \"TILE_<w>x<h>_<layout>\" -> painted on the top of the floors\n#  No picture = typed size + layout.  Run again = pattern / material updated.  pyRevit (IronPython) + Dynamo CPython3.\n# =====================================================================\nimport math, os, re\n\ntry:\n    import clr\n    clr.AddReference('RevitAPI')\n    clr.AddReference('System.Drawing')\n    from Autodesk.Revit.DB import *                       # noqa\n    import System\n    import System.Drawing as SD\n    import System.Drawing.Imaging as SDI\n    import System.Drawing.Drawing2D as SD2\n    from System.Collections.Generic import List\n    REVIT = True\nexcept Exception:\n    REVIT = False\n\nMMF = 1.0 / 304.8\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'B17_tile_log.txt')\nLAYOUTS = ('GRID', 'BRICK', 'BRICK3', 'HERRINGBONE')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\n# ------------------------------------------------------------------ picture -> grey rows (list of lists 0..255)\ndef load_gray(path, max_px=500):\n    from System.Runtime.InteropServices import Marshal\n    src = SD.Bitmap(path)\n    try:\n        W0, H0 = src.Width, src.Height\n        f = min(1.0, float(max_px) / max(W0, H0))\n        W, H = max(8, int(W0 * f)), max(8, int(H0 * f))\n        bmp = SD.Bitmap(W, H, SDI.PixelFormat.Format24bppRgb)\n        g = SD.Graphics.FromImage(bmp)\n        try:\n            g.InterpolationMode = SD2.InterpolationMode.HighQualityBicubic\n            g.DrawImage(src, SD.Rectangle(0, 0, W, H))\n        finally:\n            g.Dispose()\n    finally:\n        src.Dispose()\n    data = bmp.LockBits(SD.Rectangle(0, 0, W, H), SDI.ImageLockMode.ReadOnly, SDI.PixelFormat.Format24bppRgb)\n    try:\n        stride = abs(data.Stride)\n        arr = System.Array.CreateInstance(System.Byte, stride * H)\n        Marshal.Copy(data.Scan0, arr, 0, stride * H)\n    finally:\n        bmp.UnlockBits(data)\n        bmp.Dispose()\n    s = str(System.Text.Encoding.GetEncoding(28591).GetString(arr))\n    rows = []\n    for y in range(H):\n        r = s[y * stride: y * stride + 3 * W]\n        b, gg, rr = r[0::3], r[1::3], r[2::3]\n        rows.append([(ord(rr[i]) * 299 + ord(gg[i]) * 587 + ord(b[i]) * 114) // 1000 for i in range(W)])\n    return rows\n\n\ndef period(p, lo=4, hi=None):\n    \"\"\"main repeat distance (px) of a profile and how clear it is (0..1): the strongest repeat,\n       taking the shortest one that is nearly as strong (so not a multiple of it)\"\"\"\n    n = len(p)\n    hi = min(hi or n // 2, n // 2)\n    if hi <= lo + 2:\n        return None, 0.0\n    m = sum(p) / float(n)\n    q = [v - m for v in p]\n    r0 = sum(v * v for v in q) or 1.0\n    rs = []\n    for k in range(lo, hi):\n        rs.append((k, sum(q[i] * q[i + k] for i in range(n - k)) / r0 * n / float(n - k)))\n    peaks = [(i, k, r) for i, (k, r) in enumerate(rs[1:-1], 1)\n             if r > rs[i - 1][1] and r >= rs[i + 1][1] and r > 0.15]\n    if not peaks:\n        return None, 0.0\n    best = max(r for i, k, r in peaks)\n    i, k, r = min((pk for pk in peaks if pk[2] >= 0.8 * best), key=lambda pk: pk[1])\n    a_, b_, c_ = rs[i - 1][1], rs[i][1], rs[i + 1][1]\n    den = a_ - 2 * b_ + c_\n    if abs(den) > 1e-9:\n        return k + 0.5 * (a_ - c_) / den, min(1.0, r)\n    return float(k), min(1.0, r)\n\n\ndef _peaks(p, per):\n    \"\"\"positions of the joint lines (one per period)\"\"\"\n    n = len(p)\n    out = []\n    x = 0\n    while x < n:\n        hi = min(n, int(x + per))\n        if hi - x < 2:\n            break\n        seg = p[x:hi]\n        k = max(range(len(seg)), key=lambda i: seg[i])\n        out.append(x + k)\n        x = x + k + int(per * 0.5) + 1\n    return out\n\n\n# ------------------------------------------------------------------ joints -> layout (pure Python)  v2\ndef _grad(g):\n    H, W = len(g), len(g[0])\n    gx = [[0] * W for _ in range(H)]\n    gy = [[0] * W for _ in range(H)]\n    for y in range(1, H - 1):\n        r0, r1, r2 = g[y - 1], g[y], g[y + 1]\n        ox, oy = gx[y], gy[y]\n        for x in range(1, W - 1):\n            ox[x] = r1[x + 1] - r1[x - 1]\n            oy[x] = r2[x] - r0[x]\n    return gx, gy\n\n\ndef _diag_share(gx, gy):\n    \"\"\"share of strong edges running at 45 / 135 deg\"\"\"\n    mags = []\n    for ry, rx in zip(gy, gx):\n        for a, b in zip(rx, ry):\n            m = abs(a) + abs(b)\n            if m:\n                mags.append(m)\n    if not mags:\n        return 0.0\n    mags.sort()\n    thr = mags[int(len(mags) * 0.8)]\n    d = n = 0\n    for ry, rx in zip(gy, gx):\n        for a, b in zip(rx, ry):\n            if abs(a) + abs(b) >= thr:\n                n += 1\n                if 0.45 < abs(a) / float(abs(a) + abs(b)) < 0.55 or (abs(a) > 0 and abs(b) > 0 and 0.6 < abs(a) / float(abs(b)) < 1.66):\n                    d += 1\n    return d / float(n or 1)\n\n\ndef _rotate45(g):\n    \"\"\"picture turned 45 deg (inner square only)\"\"\"\n    H, W = len(g), len(g[0])\n    cx, cy = W / 2.0, H / 2.0\n    s = int(min(W, H) / math.sqrt(2.0)) - 2\n    c = math.cos(math.pi / 4)\n    out = []\n    for j in range(s):\n        row = []\n        v = j - s / 2.0\n        for i in range(s):\n            u = i - s / 2.0\n            x = int(cx + u * c - v * c)\n            y = int(cy + u * c + v * c)\n            row.append(g[y][x] if 0 <= x < W and 0 <= y < H else 128)\n        out.append(row)\n    return out\n\n\ndef _transpose(g):\n    return [list(r) for r in zip(*g)]\n\n\ndef _coverage(edge_rows, lines, frac=0.3):\n    \"\"\"how much of each joint line is really a joint (1 = unbroken line, ~0.7 = herringbone dashes)\"\"\"\n    vals = []\n    for y in lines:\n        if y < 2 or y > len(edge_rows) - 3:\n            continue\n        best = None\n        for yy in (y - 1, y, y + 1):\n            r = [abs(v) for v in edge_rows[yy][2:-2]]\n            if best is None or sum(r) > sum(best):\n                best = r\n        if not best:\n            continue\n        hi = sorted(best)[int(len(best) * 0.9)] or 1\n        vals.append(sum(1 for v in best if v >= frac * hi) / float(len(best)))\n    if not vals:\n        return 0.0\n    vals.sort()\n    return vals[len(vals) // 2]\n\n\ndef _band_period_and_stagger(g, gx, rows_at):\n    W = len(g[0])\n    pers, profs = [], []\n    for a, b in zip(rows_at, rows_at[1:]):\n        if b - a < 4:\n            continue\n        prof = [0.0] * W\n        for y in range(a + 2, b - 1):\n            r = gx[y]\n            for x in range(W):\n                prof[x] += abs(r[x])\n        profs.append(prof)\n        p, s = period(prof)\n        if p:\n            pers.append(p)\n    if not pers:\n        return None, 0.0\n    pers.sort()\n    per = pers[len(pers) // 2]\n    phases = []\n    for prof in profs:\n        best, bx = -1.0, 0\n        for s in range(int(per)):\n            v, x = 0.0, float(s)\n            while x < W:\n                v += prof[int(x)]\n                x += per\n            if v > best:\n                best, bx = v, s\n        phases.append(bx / per)\n    d = [((q - p) % 1.0) for p, q in zip(phases, phases[1:])]\n    d = sorted(min(v, 1.0 - v) for v in d)\n    return per, (d[len(d) // 2] if d else 0.0)\n\n\ndef _k_from_dashes(edge_rows, lines, w):\n    \"\"\"herringbone: along a joint line a dash = (length + width), a gap = (length - width) -> length / width\"\"\"\n    ks = []\n    for y in lines:\n        if y < 2 or y > len(edge_rows) - 3:\n            continue\n        r = [max(abs(edge_rows[yy][x]) for yy in (y - 1, y, y + 1)) for x in range(len(edge_rows[0]))]\n        hi = sorted(r)[int(len(r) * 0.9)] or 1\n        on = [v >= 0.3 * hi for v in r]\n        for want in (True, False):                        # crossing joints = tiny blips: fill them in both ways\n            x = 0\n            while x < len(on):\n                if on[x] == want:\n                    x0 = x\n                    while x < len(on) and on[x] == want:\n                        x += 1\n                    if x - x0 <= 3 and x0 > 0 and x < len(on):\n                        for i in range(x0, x):\n                            on[i] = not want\n                else:\n                    x += 1\n        runs, x, n = [], 0, len(on)\n        while x < n:                                      # runs of joint / no joint\n            v = on[x]\n            x0 = x\n            while x < n and on[x] == v:\n                x += 1\n            runs.append([v, x0, x])\n        merged = []\n        for v, x0, x1 in runs:                            # a crossing joint makes a tiny blip: ignore it\n            if merged and (x1 - x0) <= 3 and not v:\n                merged[-1][2] = x1\n                continue\n            if merged and merged[-1][0] == v:\n                merged[-1][2] = x1\n            else:\n                merged.append([v, x0, x1])\n        inner = [m for m in merged if m[1] > 0 and m[2] < n]  # cut-off pieces at the picture edge do not count\n        for v, x0, x1 in inner:\n            L = (x1 - x0) / float(w)\n            if v and L >= 1.8:\n                ks.append(L - 1.0)\n            elif not v and L >= 0.6:\n                ks.append(L + 1.0)\n    if len(ks) < 2:\n        return None\n    ks.sort()\n    return ks[len(ks) // 2]\n\n\ndef read_tiles(g):\n    \"\"\"grey rows -> dict(layout GRID / BRICK / BRICK3 / HERRINGBONE, rot deg, w_px along, h_px across, k, report)\"\"\"\n    gx, gy = _grad(g)\n    rot = 0.0\n    dshare = _diag_share(gx, gy)\n    if dshare > 0.5:                                      # joints at 45 deg: turn the picture straight first\n        g = _rotate45(g)\n        gx, gy = _grad(g)\n        rot = 45.0\n    prow = [sum(abs(v) for v in r) for r in gy]\n    pcol = [sum(abs(gx[y][x]) for y in range(len(gx))) for x in range(len(gx[0]))]\n    py, sy = period(prow)\n    px, sx = period(pcol)\n    if not (px or py):\n        raise Exception('no regular joints found in the picture - type the layout and size instead')\n    px, py = px or py, py or px\n    rows_at = _peaks(prow, py)\n    cols_at = _peaks(pcol, px)\n    cov_h = _coverage(gy, rows_at)\n    cov_v = _coverage(_transpose(gx), cols_at)\n    rep = 'joints {0:.0f} / {1:.0f} px apart, unbroken {2:.0%} / {3:.0%}'.format(py, px, cov_h, cov_v)\n    if cov_h >= 0.85 and cov_v >= 0.85:\n        return {'layout': 'GRID', 'rot': rot, 'w_px': px, 'h_px': py, 'k': None, 'report': 'straight grid, ' + rep}\n    if cov_h >= 0.85 or cov_v >= 0.85:\n        if cov_v > cov_h:                                 # columns unbroken: a brick bond running up the picture\n            g, gx = _transpose(g), _transpose(gy)\n            rows_at, rot = cols_at, rot + 90.0\n        per, st = _band_period_and_stagger(g, gx, rows_at)\n        lay = 'BRICK' if st > 0.4 else ('BRICK3' if st > 0.22 else 'GRID')\n        h = py if rot % 180 == 0 else px\n        return {'layout': lay, 'rot': rot, 'w_px': per or px, 'h_px': h, 'k': None,\n                'report': '{0} bond, row shift {1:.2f}, '.format(lay.lower(), st) + rep}\n    w = (px + py) / 2.0\n    k = _k_from_dashes(gy, rows_at, w) or _k_from_dashes(_transpose(gx), cols_at, w)\n    if not k:                                             # fall back on how broken the lines are: share = (k+1)/2k\n        c = (cov_h + cov_v) / 2.0\n        k = 1.0 / max(0.05, 2.0 * c - 1.0)\n    k = max(1.5, min(6.0, round(k * 2.0) / 2.0))\n    return {'layout': 'HERRINGBONE', 'rot': rot, 'w_px': w * k, 'h_px': w, 'k': k,\n            'report': 'herringbone, tile about {0:.1f} : 1, '.format(k) + rep}\n\n\n# ------------------------------------------------------------------ herringbone tiling (W = tile width, k = length / width)\ndef herringbone_edges(k):\n    \"\"\"unit cell: H brick [0,k]x[0,1], V brick [k-1,k]x[1,k+1]; lattice t1=(-1,1), t2=(k,k).\n       bottom + left edges of every brick draw each joint once.  -> [(angle, origin, length)]\"\"\"\n    return [(0.0, (0.0, 0.0), k), (90.0, (0.0, 0.0), 1.0), (0.0, (k - 1.0, 1.0), 1.0), (90.0, (k - 1.0, 1.0), k)]\n\n\ndef parse_size(text):\n    nums = [float(v) for v in re.findall(r'[\\d.]+', str(text or '').replace(',', '.'))]\n    if not nums:\n        return 600.0, None\n    return nums[0], (nums[1] if len(nums) > 1 else None)\n\n\n# ------------------------------------------------------------------ Revit: fill pattern + material + paint\ndef _grid(angle, origin_uv, offset, shift, segs=None):\n    g = FillGrid()\n    g.Angle = angle\n    g.Origin = origin_uv\n    g.Offset = offset\n    g.Shift = shift\n    if segs:\n        lst = List[float]()\n        for s in segs:\n            lst.Add(s)\n        g.SetSegments(lst)\n    return g\n\n\ndef make_pattern(doc, name, layout, w_mm, h_mm, rot_deg=0.0):\n    \"\"\"model fill pattern: w along the rows, h across them (mm)\"\"\"\n    W, H = w_mm * MMF, h_mm * MMF\n    r = math.radians(rot_deg)\n    grids = List[FillGrid]()\n    if layout == 'HERRINGBONE':                          # w_mm = tile length, h_mm = tile width\n        Wt = min(W, H)\n        k = max(W, H) / Wt\n        for ang, (ox, oy), ln in herringbone_edges(k):\n            o = UV((ox * math.cos(r) - oy * math.sin(r)) * Wt, (ox * math.sin(r) + oy * math.cos(r)) * Wt)\n            if ang == 0.0:                                # next line = t1 = (-1, 1): shift -1, offset 1\n                grids.Add(_grid(r, o, Wt, -Wt, [ln * Wt, (2 * k - ln) * Wt]))\n            else:                                         # vertical: normal (-1, 0) -> offset 1, shift +1\n                grids.Add(_grid(r + math.pi / 2, o, Wt, Wt, [ln * Wt, (2 * k - ln) * Wt]))\n    else:\n        grids.Add(_grid(r, UV(0, 0), H, 0.0))                              # row joints\n        if layout == 'GRID':\n            grids.Add(_grid(r + math.pi / 2, UV(0, 0), W, 0.0))\n        elif layout == 'BRICK':                                            # joints shift half a tile per row\n            grids.Add(_grid(r + math.pi / 2, UV(0, 0), W / 2.0, H, [H, H]))\n        else:                                                              # BRICK3: a third per row\n            grids.Add(_grid(r + math.pi / 2, UV(0, 0), W / 3.0, H, [H, 2 * H]))\n    fp = FillPattern(name, FillPatternTarget.Model, FillPatternHostOrientation.ToHost)\n    fp.SetFillGrids(grids)\n    old = None\n    for e in FilteredElementCollector(doc).OfClass(FillPatternElement):\n        try:\n            if e.Name == name and e.GetFillPattern().Target == FillPatternTarget.Model:\n                old = e\n                break\n        except Exception:\n            pass\n    if old is not None:\n        old.SetFillPattern(fp)\n        return old, False\n    return FillPatternElement.Create(doc, fp), True\n\n\ndef make_material(doc, name, pattern_id):\n    mat = None\n    for m in FilteredElementCollector(doc).OfClass(Material):\n        if m.Name == name:\n            mat = m\n            break\n    new = mat is None\n    if new:\n        mat = doc.GetElement(Material.Create(doc, name))\n        try:\n            mat.Color = Color(225, 220, 210)\n        except Exception:\n            pass\n    for prop in ('SurfaceForegroundPatternId',):\n        try:\n            setattr(mat, prop, pattern_id)\n        except Exception:\n            try:\n                mat.SurfacePatternId = pattern_id                     # older API name\n            except Exception:\n                pass\n    try:\n        mat.SurfaceForegroundPatternColor = Color(120, 120, 120)\n    except Exception:\n        pass\n    return mat, new\n\n\ndef top_faces(floor):\n    opt = Options()\n    opt.ComputeReferences = True\n    res = []\n    for g in floor.get_Geometry(opt):\n        if tname_of(g) == 'Solid' and g.Volume > 0:\n            for f in g.Faces:\n                try:\n                    if tname_of(f) == 'PlanarFace' and f.FaceNormal.Z > 0.9:\n                        res.append(f)\n                except Exception:\n                    pass\n    return res\n\n\ndef tname_of(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef floors_to_paint(doc, uidoc, how):\n    h = (how or 'VIEW').strip().upper()\n    if h.startswith('N'):\n        return [], 'none (pattern + material only)'\n    sel = []\n    try:\n        sel = [doc.GetElement(i) for i in uidoc.Selection.GetElementIds()]\n        sel = [e for e in sel if tname_of(e) == 'Floor']\n    except Exception:\n        sel = []\n    if h.startswith('S') and sel:\n        return sel, '{0} selected floor(s)'.format(len(sel))\n    view = uidoc.ActiveView if uidoc is not None else doc.ActiveView\n    fl = [e for e in FilteredElementCollector(doc, view.Id).OfClass(Floor)]\n    return fl, 'all {0} floor(s) in \"{1}\"'.format(len(fl), view.Name) + (' (nothing selected)' if h.startswith('S') else '')\n\n\ntry:\n    class _Cap(IFailuresPreprocessor):\n        __namespace__ = 'B17_TILE'\n\n        def PreprocessFailures(self, fa):\n            for f in fa.GetFailureMessages():\n                try:\n                    if f.GetSeverity() == FailureSeverity.Warning:\n                        fa.DeleteWarning(f)\n                except Exception:\n                    pass\n            return FailureProcessingResult.Continue\nexcept Exception:\n    _Cap = None\n\n\ndef in_tx(doc, name, fn):\n    t = Transaction(doc, name)\n    if _Cap is not None:\n        try:\n            o = t.GetFailureHandlingOptions()\n            o.SetFailuresPreprocessor(_Cap())\n            t.SetFailureHandlingOptions(o)\n        except Exception:\n            pass\n    t.Start()\n    try:\n        r = fn()\n    except Exception:\n        if t.HasStarted() and not t.HasEnded():\n            t.RollBack()\n        raise\n    t.Commit()\n    return r\n\n\ndef show_patterns(doc, view):\n    \"\"\"floor surface patterns are often switched off in plan views (template default): switch them on here\"\"\"\n    try:\n        if view.ViewTemplateId != ElementId.InvalidElementId:\n            return 'CHECK view \"{0}\" has a view template - switch on Floors > Surface patterns there'.format(view.Name)\n        cat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_Floors)\n        o = view.GetCategoryOverrides(cat.Id)\n        if not o.IsSurfaceForegroundPatternVisible:\n            o.SetSurfaceForegroundPatternVisible(True)\n            view.SetCategoryOverrides(cat.Id, o)\n            msg = 'Floor surface patterns switched on in \"{0}\" (they were off)'.format(view.Name)\n        else:\n            msg = ''\n        try:\n            if str(view.DisplayStyle) in ('Textures', 'Realistic', '5', '6'):\n                msg += ('; ' if msg else '') + 'CHECK \"{0}\" is in {1} style: tile lines show in Shaded / Hidden Line / Consistent Colors'.format(\n                    view.Name, view.DisplayStyle)\n        except Exception:\n            pass\n        return msg\n    except Exception as ex:\n        return 'CHECK could not switch on floor patterns: ' + str(ex)\n\n\ndef show_patterns_all(doc, active):\n    \"\"\"switch floor surface patterns on in every floor plan + the view you are in (views with a template are listed)\"\"\"\n    views = [v for v in FilteredElementCollector(doc).OfClass(ViewPlan)\n             if not v.IsTemplate and v.ViewType in (ViewType.FloorPlan, ViewType.EngineeringPlan, ViewType.AreaPlan)]\n    if active is not None and all(v.Id != active.Id for v in views):\n        views.append(active)\n    on, tpl, notes = [], [], []\n    cat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_Floors)\n    for v in views:\n        try:\n            if v.ViewTemplateId != ElementId.InvalidElementId:\n                tpl.append(v.Name)\n                continue\n            o = v.GetCategoryOverrides(cat.Id)\n            if not o.IsSurfaceForegroundPatternVisible:\n                o.SetSurfaceForegroundPatternVisible(True)\n                v.SetCategoryOverrides(cat.Id, o)\n                on.append(v.Name)\n        except Exception:\n            pass\n    if on:\n        notes.append('Floor surface patterns switched on in {0} view(s): {1}'.format(len(on), ', '.join(on)[:300]))\n    if tpl:\n        notes.append('CHECK {0} view(s) use a view template - switch on Floors > Surface patterns in the template: {1}'.format(\n            len(tpl), ', '.join(tpl)[:200]))\n    try:\n        if active is not None and str(active.DisplayStyle) in ('Textures', 'Realistic'):\n            notes.append('CHECK \"{0}\" is in {1} style: tile lines show in Shaded / Hidden Line / Consistent Colors'.format(\n                active.Name, active.DisplayStyle))\n    except Exception:\n        pass\n    return '; '.join(notes)\n\n\ndef run(doc, uidoc, picture='', size='600', layout='AUTO', rot=0.0, name='', paint='VIEW', make=True):\n    out = []\n    lay = (layout or 'AUTO').strip().upper()\n    if lay.startswith('DIAG'):\n        lay, rot = 'GRID', rot + 45.0\n    if lay.startswith('HERR') and lay != 'HERRINGBONE':\n        lay = 'HERRINGBONE'\n    w_mm, h_mm = parse_size(size)\n    pic = str(picture or '').strip().strip('\"')\n    if pic and pic.lower() != 'no file selected.':\n        if not os.path.isfile(pic):\n            raise Exception('Picture not found: ' + pic)\n        info = read_tiles(load_gray(pic))\n        out.append('Picture: ' + info['report'])\n        if lay == 'AUTO':\n            lay = info['layout']\n            rot = rot + info['rot']\n        if h_mm is None:                                  # one size typed: the other from the picture's proportion\n            if lay == 'HERRINGBONE':\n                h_mm = round(w_mm * (info['k'] or 2.0) / 5.0) * 5.0     # typed = width, length = k x width\n            else:\n                h_mm = round(w_mm * info['h_px'] / info['w_px'] / 5.0) * 5.0\n    if lay not in LAYOUTS:\n        lay = 'GRID'\n    if h_mm is None:\n        h_mm = w_mm * 2.0 if lay == 'HERRINGBONE' else w_mm\n    if lay == 'HERRINGBONE':\n        w_mm, h_mm = min(w_mm, h_mm), max(w_mm, h_mm)    # width x length\n    name = name or 'TILE_{0:.0f}x{1:.0f}_{2}{3}'.format(w_mm, h_mm, lay, '_{0:g}DEG'.format(rot % 180) if rot % 180 else '')\n    out.insert(0, 'Tile {0:.0f} x {1:.0f} mm, {2} layout{3} -> pattern + material \"{4}\"'.format(\n        w_mm, h_mm, lay.lower(), ', turned {0:g} deg'.format(rot % 180) if rot % 180 else '', name))\n    if not make:\n        out.insert(0, 'ONLY READ (Make it = False): nothing made')\n        return out\n    floors, how = floors_to_paint(doc, uidoc, paint)\n    st = {'faces': 0, 'fail': 0}\n\n    def work():\n        fpe, new_p = make_pattern(doc, name, lay, w_mm, h_mm, rot)\n        mat, new_m = make_material(doc, name, fpe.Id)\n        st['new'] = (new_p, new_m)\n        for fl in floors:\n            for f in top_faces(fl):\n                try:\n                    doc.Paint(fl.Id, f, mat.Id)\n                    st['faces'] += 1\n                except Exception as ex:\n                    st['fail'] += 1\n                    log('paint: ' + str(ex))\n        st['vis'] = show_patterns_all(doc, uidoc.ActiveView if uidoc is not None else doc.ActiveView)\n    in_tx(doc, 'B17 Floor tile pattern', work)\n    out.append('{0} pattern, {1} material; painted {2} top face(s) on {3}'.format(\n        'New' if st['new'][0] else 'Updated', 'new' if st['new'][1] else 'updated', st['faces'], how))\n    if st['fail']:\n        out.append('CHECK {0} face(s) could not be painted'.format(st['fail']))\n    if st.get('vis'):\n        out.append(st['vis'])\n    out.append('Move / turn the tiles in Revit: select a pattern line on the floor (Tab) and Move / Rotate / Align it')\n    log('\\n'.join(out))\n    return out\n\n\n# =====================================================================\n#  DYNAMO / DYNAMO PLAYER PART  -  inputs:\n#    0  Tile picture        File Path ('' = no picture: layout + size as typed)\n#    1  Tile size mm        \"75\" (herringbone: width, length from the picture) or \"75 x 190\" / \"600 x 600\"\n#    2  Layout              AUTO (from the picture) / GRID / BRICK / BRICK3 / HERRINGBONE / DIAGONAL\n#    3  Turn degrees        0  (added to the picture's angle)\n#    4  Pattern name        '' = automatic  TILE_<w>x<l>_<layout>\n#    5  Paint floors        VIEW = all floors in the current view,  SELECTED,  NONE = only make the pattern + material\n#    6  Make it             True  (False = only read the picture)\n#  Run again = the same pattern / material is updated.  Ctrl+Z in Revit undoes.\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _d = DocumentManager.Instance.CurrentDBDocument\n        if _d is not None:\n            doc = _d\n            try:\n                uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n            except Exception:\n                pass\n            TM = TransactionManager\n    except Exception:\n        pass\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('TILE_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and (not v.strip() or v.strip().lower() == 'no file selected.')):\n        return default\n    return v\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).lower().replace('mm', '').strip())\n    except Exception:\n        return float(default)\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\nout = []\ntry:\n    if doc is None:\n        raise Exception('No Revit document.')\n    if TM is not None and _flag(6, True):\n        TM.Instance.ForceCloseTransaction()\n    out = run(doc, uidoc, str(_inp(0, '')), str(_inp(1, '600')), str(_inp(2, 'AUTO')), _num(3, 0), str(_inp(4, '')).strip(),\n              str(_inp(5, 'VIEW')), _flag(6, True))\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('B17 Floor tile pattern')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else 'Tile pattern made'\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "d41ef5ba7b51485298787f7ca852c5a1",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "0a06d40ead684b259dfdd44abde7d2ac",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "06678a20babb42e680b601026e577bc2",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ff3a1200ac574212baff66c2bbae379e",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4a41658b0b9f4c4f9c05e56d034d0089",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "309d62a03b9f4992a93609e79199fb69",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2ab6429a68a242408396289953f3c9cc",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "280ed7d49a2f4b0bb6cd9bed38ac9c71",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e2c5d6eac08042788cd2051e369f3f6a",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "bbbde63f7c5d40c4b1f6ec187b4677ae",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "2687ee04a7b44f1ea7204bc59325f64d",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d78d9dc1b56841aa85f922f0a1640722",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "a031cada1b3a4cbb991ae32cb484dcb8",
+      "End": "0a06d40ead684b259dfdd44abde7d2ac",
+      "Id": "a87df6bcc0754d53b44433612e307bd9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a1a6e8fd8f6f4bd1a6743648072a3d41",
+      "End": "06678a20babb42e680b601026e577bc2",
+      "Id": "dcd2e1c2620a4488b8b38389420c458a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2daf15ab897041e58ff502b733b81848",
+      "End": "ff3a1200ac574212baff66c2bbae379e",
+      "Id": "2aa71cde3dc04cb2ad525331fea55a99",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "31ed19684d19463a9bb44e46cbf87c39",
+      "End": "4a41658b0b9f4c4f9c05e56d034d0089",
+      "Id": "1f12b692137846868276ffb3252e6393",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0648f92aea1f4ea4851ceb9839e704b6",
+      "End": "309d62a03b9f4992a93609e79199fb69",
+      "Id": "106f7ba8544d4cf3a26dd0e7d81ec799",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "94053a9adefc4aed88c4ead402fa9576",
+      "End": "2ab6429a68a242408396289953f3c9cc",
+      "Id": "7117932365e64dafa5ae0eab13279750",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "650ec4ab7a094da2a55e7a33d3097eaa",
+      "End": "280ed7d49a2f4b0bb6cd9bed38ac9c71",
+      "Id": "60baeec31ce544e0960f91327a1f62c5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e2c5d6eac08042788cd2051e369f3f6a",
+      "End": "2687ee04a7b44f1ea7204bc59325f64d",
+      "Id": "5d4fcac44ac34e39a04f63b5e6bee98d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "15ddcdf265694af48779ac0f3555846a",
+        "Name": "0  Tile picture",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "6f4160c5287147539921d46616032c48",
+        "Name": "1  Tile size mm: 75 or 75 x 190",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "51a92da2c6ae42dfa32e9b1e62e9a5cb",
+        "Name": "2  Layout: AUTO/GRID/BRICK/BRICK3/HERRINGBONE/DIAGONAL",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 300
+      },
+      {
+        "Id": "4f10e5fa0afc4ee6832a5def553e0fd4",
+        "Name": "3  Turn degrees",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "cc85df848a9a4cfb84934b292c0f2340",
+        "Name": "4  Pattern name (blank = auto)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "59214ecad2f146ada68d73076d23ed4b",
+        "Name": "5  Paint floors: VIEW / SELECTED / NONE",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "eca94bfaf12e40c48bd013569345ee45",
+        "Name": "6  Make it (False = only read)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "d41ef5ba7b51485298787f7ca852c5a1",
+        "Name": "B17 FLOOR TILE PATTERN ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1700.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "bbbde63f7c5d40c4b1f6ec187b4677ae",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2050.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "96437130d5e0445f8ef61692debcd600",
+        "Title": "1  PICTURE + SIZE",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "15ddcdf265694af48779ac0f3555846a",
+          "6f4160c5287147539921d46616032c48",
+          "51a92da2c6ae42dfa32e9b1e62e9a5cb"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 585,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 490,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "74f7cfbc38d24e9198d3a5f2686a516c",
+        "Title": "2  PATTERN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "4f10e5fa0afc4ee6832a5def553e0fd4",
+          "cc85df848a9a4cfb84934b292c0f2340"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 435,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 340,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "48ff4bdc4dfd4920b4242b9f3b99c751",
+        "Title": "3  FLOORS + RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "59214ecad2f146ada68d73076d23ed4b",
+          "eca94bfaf12e40c48bd013569345ee45"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 435,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 340,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "ca4ff66d555b4bddaeb97c3601a5cf25",
+        "Title": "HOW TO USE:  open the view with the floors.  0 = picture of the tiles (grid, brick, herringbone, straight or 45 deg).  1 = tile size in mm (a picture has no scale): one number = width, the length comes from the picture, or 75 x 190.  2 = AUTO reads the layout from the picture.  It makes a model fill pattern + material and paints the top of the floors (5 = VIEW / SELECTED / NONE).  Move the tiles in Revit: Tab-select a pattern line, Move / Rotate / Align.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 1600.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

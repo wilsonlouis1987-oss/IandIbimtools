@@ -1,0 +1,626 @@
+{
+  "Uuid": "864abf75-ce07-47f9-9b33-8f87e00ef109",
+  "IsCustomNode": false,
+  "Description": "SHAFT OPENINGS: every X box drawn with Revit lines or in a CAD in the open plan -> Revit shaft opening with your base / top level, offsets or height, X symbol lines in every plan it passes",
+  "Name": "B15_MODEL_Shaft_Openings_From_X_Lines_Revit_Or_CAD",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "5e26c7880b184d3a8483337b56f875da",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "61d4cc251584415abcc1407f8069026c",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "7c8677b1c3394a78aa28b817fa0f3818",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e6845e1ad2c24998ab089b7dd21ac6a4",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "6c5fe21fb9a54d68ab09bc7a2abf148b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "801237ce4f834298a32eea3a724ccd75",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "4174bc0f189f423ba3f74f4eba66a522",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "613e99e470344e09975512303429cc83",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "-300"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "cd3ace4810e040bab137da052d0581c5",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "98440a157d574bea95fb6e639081fb9a",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "118ac077bc094b1b82f8a8d0fdc387be",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ab5de59650864abfb06450c8d589544b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "f13871e628f64aaeb2e74d56dfca2ff2",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bbc6f3f643c5405bb57f94f85f95ed8d",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "3000"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "834076e34d1947818fd312944ce1f23d",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "834d9c233fc24bd6a5e39a8b16bfc538",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "c25dcf9ab34d41e2a6f1ed68f442f080",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "566ac04116fe4c64a3c4884cf34f6866",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  B15 SHAFT OPENINGS FROM X BOXES - REVIT LINES OR CAD   (Revit 2026)   v1\n#  Every box with an X (two lines corner to corner) in the open plan -> Revit Shaft Opening\n#    - Revit lines: symbolic / detail / model lines (an X split at the middle into 4 pieces works too)\n#    - CAD: lines / polylines of a DWG linked or imported in the plan\n#  You set the height: base level + base offset, then top level + top offset, or an unconnected height.\n#  The X is drawn as lines (style \"B15 Shaft X\") in every floor plan the shaft passes through.\n#  Run again = the shafts in the same place get the new height (no doubles); the X lines are redrawn.\n#  Runs in pyRevit (IronPython 2.7) and Dynamo CPython3.\n# =====================================================================\nimport math, os\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *                           # noqa\n\nMMF = 1.0 / 304.8\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'B15_shaft_log.txt')\nSTYLE = 'B15 Shaft X'\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ndef tname_of(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef plan_view(doc, uidoc):\n    try:\n        v = uidoc.ActiveView if uidoc is not None else doc.ActiveView\n    except Exception:\n        v = doc.ActiveView\n    if v is not None and tname_of(v) == 'ViewPlan' and not v.IsTemplate:\n        return v\n    try:\n        for uv in uidoc.GetOpenUIViews():\n            ov = doc.GetElement(uv.ViewId)\n            if ov is not None and tname_of(ov) == 'ViewPlan' and not ov.IsTemplate:\n                return ov\n    except Exception:\n        pass\n    return None\n\n\ndef levels_of(doc):\n    return sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation)\n\n\ndef find_level(doc, name):\n    if not name:\n        return None\n    lv = levels_of(doc)\n    for l in lv:\n        if l.Name.strip().upper() == str(name).strip().upper():\n            return l\n    for l in lv:\n        if str(name).strip().upper() in l.Name.upper():\n            return l\n    raise Exception('No level \"{0}\". Levels: {1}'.format(name, ', '.join(l.Name for l in lv)))\n\n\n# ------------------------------------------------------------------ lines in the plan (Revit + CAD) -> 2D segments\ndef _seg(p, q):\n    return ((p.X, p.Y), (q.X, q.Y))\n\n\ndef revit_segments(doc, view, style=''):\n    out = []\n    for e in FilteredElementCollector(doc, view.Id).OfClass(CurveElement):\n        try:\n            if e.LineStyle is not None and e.LineStyle.Name == STYLE:\n                continue                                  # our own X symbols\n            if style and style.upper() not in (e.LineStyle.Name if e.LineStyle is not None else '').upper():\n                continue\n            c = e.GeometryCurve\n            if c is not None and c.IsBound and tname_of(c) == 'Line':\n                out.append(_seg(c.GetEndPoint(0), c.GetEndPoint(1)))\n        except Exception:\n            pass\n    return out\n\n\ndef _walk(geo, tf, out, layer_word, doc):\n    for g in geo:\n        n = tname_of(g)\n        if n == 'GeometryInstance':\n            _walk(g.GetSymbolGeometry(), tf.Multiply(g.Transform), out, layer_word, doc)\n            continue\n        if layer_word:\n            try:\n                gs = doc.GetElement(g.GraphicsStyleId)\n                nm = gs.GraphicsStyleCategory.Name if gs is not None else ''\n                if layer_word.upper() not in nm.upper():\n                    continue\n            except Exception:\n                continue\n        if n == 'Line':\n            out.append(_seg(tf.OfPoint(g.GetEndPoint(0)), tf.OfPoint(g.GetEndPoint(1))))\n        elif n == 'PolyLine':\n            pts = [tf.OfPoint(p) for p in g.GetCoordinates()]\n            for a, b in zip(pts, pts[1:]):\n                out.append(_seg(a, b))\n\n\ndef cad_segments(doc, view, layer=''):\n    out = []\n    opt = Options()\n    opt.View = view\n    for ii in FilteredElementCollector(doc, view.Id).OfClass(ImportInstance):\n        try:\n            _walk(ii.get_Geometry(opt), Transform.Identity, out, layer, doc)\n        except Exception as ex:\n            log('cad: ' + str(ex))\n    return out\n\n\n# ------------------------------------------------------------------ X boxes\ndef _merge_split(segs, tol):\n    \"\"\"an X drawn as 4 half lines (corner to middle) -> 2 full diagonals\"\"\"\n    segs = [s for s in segs if math.hypot(s[1][0] - s[0][0], s[1][1] - s[0][1]) > tol]\n    changed = True\n    while changed:\n        changed = False\n        for i in range(len(segs)):\n            a = segs[i]\n            da = (a[1][0] - a[0][0], a[1][1] - a[0][1])\n            la = math.hypot(*da)\n            for j in range(i + 1, len(segs)):\n                b = segs[j]\n                db = (b[1][0] - b[0][0], b[1][1] - b[0][1])\n                lb = math.hypot(*db)\n                if abs(da[0] * db[1] - da[1] * db[0]) > 0.01 * la * lb:\n                    continue\n                for pa in (0, 1):\n                    for pb in (0, 1):\n                        if math.hypot(a[pa][0] - b[pb][0], a[pa][1] - b[pb][1]) <= tol:\n                            segs[i] = (a[1 - pa], b[1 - pb])\n                            del segs[j]\n                            changed = True\n                            break\n                    if changed:\n                        break\n                if changed:\n                    break\n            if changed:\n                break\n    return segs\n\n\ndef x_boxes(segs, min_mm=150.0, tol_mm=25.0):\n    \"\"\"two lines of equal length crossing at their middles -> box corners [(x, y) * 4] (feet)\"\"\"\n    tol = tol_mm * MMF\n    segs = _merge_split(segs, tol)\n    info = []\n    for p, q in segs:\n        L = math.hypot(q[0] - p[0], q[1] - p[1])\n        if L >= min_mm * MMF:\n            info.append((p, q, L, ((p[0] + q[0]) / 2.0, (p[1] + q[1]) / 2.0)))\n    info.sort(key=lambda s: (round(s[3][0] / tol), round(s[3][1] / tol)))\n    out, used = [], set()\n    for i in range(len(info)):\n        if i in used:\n            continue\n        p1, q1, L1, m1 = info[i]\n        for j in range(i + 1, len(info)):\n            if j in used:\n                continue\n            p2, q2, L2, m2 = info[j]\n            if abs(L1 - L2) > max(tol, 0.02 * L1) or math.hypot(m1[0] - m2[0], m1[1] - m2[1]) > tol:\n                continue\n            d1 = ((q1[0] - p1[0]) / L1, (q1[1] - p1[1]) / L1)\n            d2 = ((q2[0] - p2[0]) / L2, (q2[1] - p2[1]) / L2)\n            if abs(d1[0] * d2[1] - d1[1] * d2[0]) < 0.2:\n                continue\n            used.update((i, j))\n            out.append([p1, p2, q1, q2])                  # around the box\n            break\n    uniq = []\n    for b in out:                                         # same X in Revit and CAD: once\n        c = (sum(p[0] for p in b) / 4.0, sum(p[1] for p in b) / 4.0)\n        if all(math.hypot(c[0] - u[1][0], c[1] - u[1][1]) > tol for u in uniq):\n            uniq.append((b, c))\n    return [b for b, c in uniq]\n\n\n# ------------------------------------------------------------------ Revit\ntry:\n    class _Cap(IFailuresPreprocessor):\n        __namespace__ = 'B15_SHAFTS'\n\n        def PreprocessFailures(self, fa):\n            for f in fa.GetFailureMessages():\n                try:\n                    if f.GetSeverity() == FailureSeverity.Warning:\n                        fa.DeleteWarning(f)\n                except Exception:\n                    pass\n            return FailureProcessingResult.Continue\nexcept Exception:\n    _Cap = None\n\n\ndef in_tx(doc, name, fn):\n    t = Transaction(doc, name)\n    if _Cap is not None:\n        try:\n            o = t.GetFailureHandlingOptions()\n            o.SetFailuresPreprocessor(_Cap())\n            t.SetFailureHandlingOptions(o)\n        except Exception:\n            pass\n    t.Start()\n    try:\n        r = fn()\n    except Exception:\n        if t.HasStarted() and not t.HasEnded():\n            t.RollBack()\n        raise\n    t.Commit()\n    return r\n\n\ndef _setp(e, bip, val):\n    try:\n        p = e.get_Parameter(bip)\n        if p is not None and not p.IsReadOnly:\n            p.Set(val)\n            return True\n    except Exception:\n        pass\n    return False\n\n\ndef existing_shaft(doc, box, tol_mm=30.0):\n    tol = tol_mm * MMF\n    xs, ys = [p[0] for p in box], [p[1] for p in box]\n    for o in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_ShaftOpening).WhereElementIsNotElementType():\n        try:\n            bb = o.get_BoundingBox(None)\n            if abs(bb.Min.X - min(xs)) < tol and abs(bb.Max.X - max(xs)) < tol and \\\n                    abs(bb.Min.Y - min(ys)) < tol and abs(bb.Max.Y - max(ys)) < tol:\n                return o\n        except Exception:\n            pass\n    return None\n\n\ndef set_height(op, base, base_off, top, top_off, height):\n    _setp(op, BuiltInParameter.WALL_BASE_CONSTRAINT, base.Id)\n    _setp(op, BuiltInParameter.WALL_BASE_OFFSET, base_off * MMF)\n    if top is not None:\n        _setp(op, BuiltInParameter.WALL_HEIGHT_TYPE, top.Id)\n        _setp(op, BuiltInParameter.WALL_TOP_OFFSET, top_off * MMF)\n    else:\n        _setp(op, BuiltInParameter.WALL_HEIGHT_TYPE, ElementId.InvalidElementId)\n        _setp(op, BuiltInParameter.WALL_USER_HEIGHT_PARAM, height * MMF)\n\n\ndef shaft_range(doc, op):\n    \"\"\"(bottom, top) elevation in feet of a shaft opening\"\"\"\n    bb = op.get_BoundingBox(None)\n    return bb.Min.Z, bb.Max.Z\n\n\ndef x_style(doc):\n    cat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_Lines)\n    sub = None\n    for c in cat.SubCategories:\n        if c.Name == STYLE:\n            sub = c\n            break\n    if sub is None:\n        sub = doc.Settings.Categories.NewSubcategory(cat, STYLE)\n        try:\n            sub.LineColor = Color(255, 0, 0)\n        except Exception:\n            pass\n    return sub.GetGraphicsStyle(GraphicsStyleType.Projection)\n\n\ndef draw_x(doc, view, box, gs):\n    z = 0.0\n    pts = [XYZ(p[0], p[1], z) for p in box]\n    for a, b in ((0, 1), (1, 2), (2, 3), (3, 0), (0, 2), (1, 3)):\n        dc = doc.Create.NewDetailCurve(view, Line.CreateBound(pts[a], pts[b]))\n        dc.LineStyle = gs\n\n\ndef run(doc, uidoc, source='AUTO', style='', base_name='', base_off=-300.0, top_name='', top_off=0.0,\n        height=3000.0, symbol=True, make=True):\n    view = plan_view(doc, uidoc)\n    if view is None:\n        raise Exception('Open the floor plan with the shaft boxes first.')\n    src = (source or 'AUTO').strip().upper()[:1]\n    segs, how = [], []\n    if src in ('A', 'R'):\n        r = revit_segments(doc, view, style)\n        segs += r\n        how.append('{0} Revit lines'.format(len(r)))\n    if src in ('A', 'C'):\n        c = cad_segments(doc, view, style)\n        segs += c\n        how.append('{0} CAD lines'.format(len(c)))\n    boxes = x_boxes(segs)\n    base = find_level(doc, base_name) or (view.GenLevel if view.GenLevel is not None else levels_of(doc)[0])\n    top = find_level(doc, top_name)\n    if top is not None and top.Elevation + top_off * MMF <= base.Elevation + base_off * MMF:\n        raise Exception('Top level \"{0}\" is not above the base \"{1}\"'.format(top.Name, base.Name))\n    hdesc = 'to \"{0}\" {1:+.0f} mm'.format(top.Name, float(top_off)) if top is not None else 'height {0:.0f} mm'.format(float(height))\n    out = ['{0} X box(es) found in \"{1}\" ({2})'.format(len(boxes), view.Name, ', '.join(how))]\n    if not make:\n        out.insert(0, 'ONLY COUNT (Make it = False): nothing built')\n        return out\n    st = {'new': 0, 'upd': 0, 'fail': [], 'views': set(), 'ops': []}\n\n    def work():\n        for b in boxes:\n            try:\n                op = existing_shaft(doc, b)\n                if op is None:\n                    ca = CurveArray()\n                    pts = [XYZ(p[0], p[1], base.Elevation) for p in b]\n                    for i in range(4):\n                        ca.Append(Line.CreateBound(pts[i], pts[(i + 1) % 4]))\n                    op = doc.Create.NewOpening(base, top if top is not None else base, ca)\n                    st['new'] += 1\n                else:\n                    st['upd'] += 1\n                set_height(op, base, base_off, top, top_off, height)\n                st['ops'].append((op, b))\n            except Exception as ex:\n                st['fail'].append((str(ex).splitlines() or ['?'])[0][:100])\n        if not symbol:\n            return\n        gs = x_style(doc)\n        old = []\n        for e in FilteredElementCollector(doc).OfClass(CurveElement):     # old X symbols go (list first, then delete)\n            try:\n                if e.LineStyle is not None and e.LineStyle.Name == STYLE:\n                    old.append(e.Id)\n            except Exception:\n                pass\n        for i in old:\n            try:\n                doc.Delete(i)\n            except Exception:\n                pass\n        doc.Regenerate()\n        plans = [v for v in FilteredElementCollector(doc).OfClass(ViewPlan)\n                 if not v.IsTemplate and v.ViewType == ViewType.FloorPlan and v.GenLevel is not None]\n        for op, b in st['ops']:\n            try:\n                z0, z1 = shaft_range(doc, op)\n            except Exception:\n                continue\n            for v in plans:\n                ze = v.GenLevel.Elevation\n                if z0 - 1e-6 <= ze <= z1 + 1e-6:\n                    try:\n                        draw_x(doc, v, b, gs)\n                        st['views'].add(v.Name)\n                    except Exception as ex:\n                        log('x in {0}: {1}'.format(v.Name, ex))\n\n    in_tx(doc, 'B15 Shaft openings', work)\n    out.append('Shaft openings: {0} new, {1} updated - base \"{2}\" {3:+.0f} mm, {4}'.format(\n        st['new'], st['upd'], base.Name, float(base_off), hdesc))\n    if symbol:\n        out.append('X symbol lines (\"{0}\") in {1} plan(s): {2}'.format(STYLE, len(st['views']), ', '.join(sorted(st['views']))[:400]))\n    if not boxes:\n        out.append('CHECK no X found: each shaft needs two lines corner to corner (Revit lines, or CAD lines in this plan)')\n    for f_ in st['fail'][:6]:\n        out.append('CHECK ' + f_)\n    out.append('Run again with another height = same shafts updated (no doubles)')\n    log('\\n'.join(out))\n    return out\n\n\n# =====================================================================\n#  DYNAMO / DYNAMO PLAYER PART  -  inputs:\n#    0  Lines from        AUTO = Revit lines + CAD in the open plan,  REVIT,  CAD\n#    1  Line style / CAD layer contains   '' = all lines\n#    2  Base level        '' = level of the open plan\n#    3  Base offset mm    -300  (below the level so the floor slab is cut)\n#    4  Top level         '' = use the shaft height (input 6)\n#    5  Top offset mm     0\n#    6  Shaft height mm   3000  (when no top level)\n#    7  X symbol in plans True  (lines \"B15 Shaft X\" in every floor plan the shaft passes)\n#    8  Make it           True  (False = only count the X boxes)\n#  Run again with another height = the same shafts are updated (no doubles).  Ctrl+Z in Revit undoes.\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _d = DocumentManager.Instance.CurrentDBDocument\n        if _d is not None:\n            doc = _d\n            try:\n                uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n            except Exception:\n                pass\n            TM = TransactionManager\n    except Exception:\n        pass\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('SHAFT_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and not v.strip()):\n        return default\n    return v\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).lower().replace('mm', '').strip())\n    except Exception:\n        return float(default)\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\nout = []\ntry:\n    if doc is None:\n        raise Exception('No Revit document.')\n    if TM is not None and _flag(8, True):\n        TM.Instance.ForceCloseTransaction()\n    out = run(doc, uidoc, str(_inp(0, 'AUTO')), str(_inp(1, '')).strip(), str(_inp(2, '')).strip(), _num(3, -300),\n              str(_inp(4, '')).strip(), _num(5, 0), _num(6, 3000), _flag(7, True), _flag(8, True))\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('B15 Shaft openings')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else 'Shaft openings'\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "cc71308044bd4d45bf300c1fcc284c77",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "b4158720c1e944d3b6465e9fd7f11a9d",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "47957bcc1dbb4addac2828028211a7ee",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b66b7eda7c43409093f43d58535bbc38",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ded6ed4e563c438c9db8600dbd56893a",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e419af8f63f5410da56c1e346407009d",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2be7ff05235e404c85525977f624da15",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "790f40a404d04b0387d352f3ec60d0ee",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3eb06d39742c487db97466ec6a007762",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b705836da01e486d962085929adf3dd6",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "932b175ba29c43fabee2cb9bbe756d40",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "775a0fc1644e4044b209dd71cf06fb7a",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "b39355b989df48879f50e686b660e740",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "26cba8be3f6e4d4484e40d285c6c3039",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "61d4cc251584415abcc1407f8069026c",
+      "End": "b4158720c1e944d3b6465e9fd7f11a9d",
+      "Id": "b9d613e492184d8e9d77d86bafc9a2b7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e6845e1ad2c24998ab089b7dd21ac6a4",
+      "End": "47957bcc1dbb4addac2828028211a7ee",
+      "Id": "ba94124d64df4421b57c0e0be1af8afd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "801237ce4f834298a32eea3a724ccd75",
+      "End": "b66b7eda7c43409093f43d58535bbc38",
+      "Id": "9e9988d156604e7dbd1629dfee6163a1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "613e99e470344e09975512303429cc83",
+      "End": "ded6ed4e563c438c9db8600dbd56893a",
+      "Id": "b9b663ab5b6d4f82adc411b69a8286d9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "98440a157d574bea95fb6e639081fb9a",
+      "End": "e419af8f63f5410da56c1e346407009d",
+      "Id": "a6707361ce8a4a56b101d0e7b9f7f888",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ab5de59650864abfb06450c8d589544b",
+      "End": "2be7ff05235e404c85525977f624da15",
+      "Id": "91bb1f4c6a6644ddaac75f1fee516066",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bbc6f3f643c5405bb57f94f85f95ed8d",
+      "End": "790f40a404d04b0387d352f3ec60d0ee",
+      "Id": "00206929e9844ab1b0295d9148105473",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "834d9c233fc24bd6a5e39a8b16bfc538",
+      "End": "3eb06d39742c487db97466ec6a007762",
+      "Id": "84bfe81e858241f4894b0b2f8a16ebaa",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "566ac04116fe4c64a3c4884cf34f6866",
+      "End": "b705836da01e486d962085929adf3dd6",
+      "Id": "40f3209f8bec422897ab23921adceaeb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "932b175ba29c43fabee2cb9bbe756d40",
+      "End": "b39355b989df48879f50e686b660e740",
+      "Id": "a26d508036424894817559a8fecc1608",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "5e26c7880b184d3a8483337b56f875da",
+        "Name": "0  Lines from: AUTO / REVIT / CAD",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "7c8677b1c3394a78aa28b817fa0f3818",
+        "Name": "1  Line style or CAD layer contains",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "6c5fe21fb9a54d68ab09bc7a2abf148b",
+        "Name": "2  Base level (blank = open plan)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "4174bc0f189f423ba3f74f4eba66a522",
+        "Name": "3  Base offset mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "cd3ace4810e040bab137da052d0581c5",
+        "Name": "4  Top level (blank = use height)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 300
+      },
+      {
+        "Id": "118ac077bc094b1b82f8a8d0fdc387be",
+        "Name": "5  Top offset mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 450
+      },
+      {
+        "Id": "f13871e628f64aaeb2e74d56dfca2ff2",
+        "Name": "6  Shaft height mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 600
+      },
+      {
+        "Id": "834076e34d1947818fd312944ce1f23d",
+        "Name": "7  X symbol in plans",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "c25dcf9ab34d41e2a6f1ed68f442f080",
+        "Name": "8  Make it (False = only count)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "cc71308044bd4d45bf300c1fcc284c77",
+        "Name": "B15 SHAFT OPENINGS ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1700.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "775a0fc1644e4044b209dd71cf06fb7a",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2050.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "2e31a26f37b148849f8517e36ebd95de",
+        "Title": "1  X BOXES",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "5e26c7880b184d3a8483337b56f875da",
+          "7c8677b1c3394a78aa28b817fa0f3818"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 435,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 340,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "6da2170a1c0a4018b5e993d69a7f5c3a",
+        "Title": "2  SHAFT HEIGHT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "6c5fe21fb9a54d68ab09bc7a2abf148b",
+          "4174bc0f189f423ba3f74f4eba66a522",
+          "cd3ace4810e040bab137da052d0581c5",
+          "118ac077bc094b1b82f8a8d0fdc387be",
+          "f13871e628f64aaeb2e74d56dfca2ff2"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 885,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 790,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "6caf81735bb54971b2edde974e605122",
+        "Title": "3  SYMBOL + RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "834076e34d1947818fd312944ce1f23d",
+          "c25dcf9ab34d41e2a6f1ed68f442f080"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 435,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 340,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "c280c555cea640d8a808df8c5b36664d",
+        "Title": "HOW TO USE:  open the floor plan with the shaft boxes.  Every box with an X (two lines corner to corner) in Revit lines (symbolic / detail / model) or in a CAD linked / imported in the plan becomes a SHAFT OPENING.  Height: base level + base offset, then top level + top offset, or blank top level = shaft height (6).  7 = the X drawn in every plan the shaft passes.  Run again with another height = the same shafts are updated (no doubles).",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 1600.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

@@ -1,0 +1,442 @@
+{
+  "Uuid": "8ab33ae6-8e1b-47f3-a0f9-478a4a7866b6",
+  "IsCustomNode": false,
+  "Description": "COLOURS: ribbon, Properties, Project Browser and drawing background in any colour (names, R,G,B, #hex)",
+  "Name": "A08_SETUP_Revit_Colours_Ribbon_Properties_Project_Browser_Background",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "89f70aaf14954236a51d2dfa655b12de",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "229204ac99f24c709429f5ac24bd4f09",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "NAVY"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "fc0d6eb75d094733a1a1d3e65f975921",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "20b892170bf94c4fb4306496b5ebca96",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "ffcb180e475444228b60046aeae74b2b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b0902b2dc34c4b20966a3ff382ec9321",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "7b18fb06c5da4a9497abf36a53f6e6e4",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3f31eb2d480f47939eed53c1422d9499",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "WHITE"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "14ccc84531ec43e6bbe8f8894e92cb1d",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1b390a02d7094c8c8e530b3ad31fe9b0",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  A08 COLOURS - four Revit colours in one click   (Revit 2026)   v2\n#    Ribbon            every ribbon panel (all tabs)\n#    Properties        the Properties palette\n#    Project Browser   the Project Browser\n#    Background        the drawing area\n#  Any colour: a name (NAVY, DARKGREY ...), R,G,B or #RRGGBB.  RESET = Revit's normal colour.  Blank = keep.\n#  Properties + Project Browser: only their title bar + frame are WPF; the list inside is native MFC (theme colour only).\n#  Ribbon / Properties / Project Browser have no Revit setting: they are painted through their WPF controls and\n#  re-applied at every Revit start (SD_Tools.extension\\startup.py).  The text keeps the theme colour.\n#  Runs in pyRevit (IronPython 2.7) and Dynamo CPython3.\n# =====================================================================\nimport os\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import Color, ColorOptions          # noqa\n\nAPPDIR = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit')\nLOG = os.path.join(APPDIR, 'A08_theme_log.txt')\nFILES = {'ribbon': os.path.join(APPDIR, 'A08_ribbon_colour.txt'),\n         'properties': os.path.join(APPDIR, 'A08_properties_colour.txt'),\n         'browser': os.path.join(APPDIR, 'A08_browser_colour.txt')}\nRESET_WORDS = ('RESET', 'DEFAULT', 'NORMAL', 'THEME', 'OFF')\n\nCOLOURS = {\n    'WHITE': (255, 255, 255), 'BLACK': (0, 0, 0), 'GREY': (128, 128, 128), 'LIGHTGREY': (210, 210, 210),\n    'DARKGREY': (60, 60, 60), 'CREAM': (255, 250, 235), 'NAVY': (33, 40, 60), 'BLUEPRINT': (20, 45, 95),\n    'BLUE': (0, 59, 189), 'GREEN': (0, 120, 60), 'ORANGE': (255, 128, 0), 'RED': (160, 30, 30),\n    'MAGENTA': (200, 0, 200), 'CYAN': (0, 190, 220), 'YELLOW': (240, 200, 0), 'PURPLE': (90, 50, 140),\n    'MAROON': (128, 64, 64), 'TEAL': (0, 90, 100), 'OLIVE': (80, 90, 40),\n}\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ndef is_reset(v):\n    return str(v or '').strip().upper() in RESET_WORDS\n\n\ndef colour_of(v):\n    \"\"\"name / 'R,G,B' / '#RRGGBB' -> (r, g, b); None = keep (blank)\"\"\"\n    t = str(v or '').strip().upper().replace(' ', '').replace('GRAY', 'GREY')\n    if not t or t in ('KEEP', '-', 'NONE'):\n        return None\n    if t in COLOURS:\n        return COLOURS[t]\n    if t.startswith('#') and len(t) == 7:\n        return tuple(int(t[i:i + 2], 16) for i in (1, 3, 5))\n    parts = [p for p in t.replace(';', ',').split(',') if p]\n    if len(parts) == 3:\n        return tuple(max(0, min(255, int(float(p)))) for p in parts)\n    raise Exception('Colour \"{0}\" - use a name ({1}), R,G,B or #RRGGBB'.format(v, ', '.join(sorted(COLOURS))))\n\n\ndef saved(key):\n    try:\n        with open(FILES[key]) as f:\n            t = f.read().strip()\n        return colour_of(t) if t else None\n    except Exception:\n        return None\n\n\ndef save(key, rgb):\n    try:\n        if rgb is None:\n            if os.path.exists(FILES[key]):\n                os.remove(FILES[key])\n        else:\n            with open(FILES[key], 'w') as f:\n                f.write('{0},{1},{2}'.format(*rgb))\n    except Exception as ex:\n        log('save {0}: {1}'.format(key, ex))\n\n\ndef _wpf():\n    for a in ('PresentationFramework', 'PresentationCore', 'WindowsBase'):\n        clr.AddReference(a)\n\n\ndef _brush(rgb, k=1.0):\n    from System.Windows.Media import SolidColorBrush\n    from System.Windows.Media import Color as WColor\n    return SolidColorBrush(WColor.FromRgb(int(rgb[0] * k), int(rgb[1] * k), int(rgb[2] * k)))\n\n\n# ------------------------------------------------------------------ ribbon (AdWindows panels)\ndef apply_ribbon(rgb):\n    \"\"\"rgb = (r, g, b) or None = back to normal.  Returns painted panel count.\"\"\"\n    clr.AddReference('AdWindows')\n    _wpf()\n    from Autodesk.Windows import ComponentManager\n    body = _brush(rgb) if rgb is not None else None\n    title = _brush(rgb, 0.8) if rgb is not None else None\n    n = 0\n    for tab in ComponentManager.Ribbon.Tabs:\n        for panel in tab.Panels:\n            try:\n                panel.CustomPanelBackground = body\n                panel.CustomPanelTitleBarBackground = title\n                panel.CustomSlideOutPanelBackground = body\n                n += 1\n            except Exception:\n                pass\n    return n\n\n\n# ------------------------------------------------------------------ Properties / Project Browser (WPF inside Revit)\nPANE_KEYS = {'properties': ('PROPERTIESPALETTE', 'PROPERTYPALETTE', 'PROPERTYGRID', 'ELEMENTPROPERTIES', 'PROPERTIESPANE',\n                            'PROPERTIESCONTROL', 'PROPERTIESVIEW'),\n             'browser': ('PROJECTBROWSER',)}            # (not 'BROWSER': Revit's web views are WebBrowserControl)\nPANE_TITLES = {'properties': ('PROPERTIES',), 'browser': ('PROJECT BROWSER',)}\nPAINT_TYPES = ('Border', 'Grid', 'DockPanel', 'StackPanel', 'TreeView', 'ListBox', 'ListView', 'DataGrid',\n               'ScrollViewer', 'UserControl', 'ContentPresenter', 'Panel', 'ItemsPresenter', 'VirtualizingStackPanel')\n\n\ndef _roots():\n    \"\"\"every WPF visual root in Revit: normal windows AND WPF content hosted inside Revit's own (native) frame\"\"\"\n    _wpf()\n    from System.Windows import Application, PresentationSource\n    out = []\n    try:\n        for src in PresentationSource.CurrentSources:\n            try:\n                if src.RootVisual is not None:\n                    out.append(src.RootVisual)\n            except Exception:\n                pass\n    except Exception as ex:\n        log('sources: ' + str(ex))\n    try:\n        for w in Application.Current.Windows:\n            if w not in out:\n                out.append(w)\n    except Exception:\n        pass\n    return out\n\n\ndef apply_pane(key, rgb):\n    \"\"\"paint the Properties palette ('properties') or Project Browser ('browser'); rgb None = normal.\n    Returns (painted count, roots found).\"\"\"\n    _wpf()\n    from System.Windows.Controls import Control, Panel, Border\n    from System.Windows.Media import VisualTreeHelper\n    brush = _brush(rgb) if rgb is not None else None\n    keys = PANE_KEYS[key]\n    painted, roots, names, inner = 0, [], set(), set()\n    stack = [(r, False) for r in _roots()]\n    guard = 0\n    while stack and guard < 400000:\n        guard += 1\n        v, inside = stack.pop()\n        try:\n            t = v.GetType()\n            tn, short = (t.FullName or ''), t.Name\n        except Exception:\n            continue\n        up = tn.upper()\n        try:\n            nm = (v.Name or '').upper()\n        except Exception:\n            nm = ''\n        hit = inside or (any(k in up for k in keys) and 'WEBBROWSER' not in up)\n        if not hit and short == 'LayoutAnchorableControl':    # a dock panel: find it by its title\n            try:\n                title = str(v.Model.Title or '').upper()\n            except Exception:\n                title = ''\n            if any(tt in title for tt in PANE_TITLES[key]):\n                hit, nm = True, title\n        if hit and not inside:\n            roots.append(tn + ('#' + nm if nm else ''))\n        if hit and len(inner) < 70:\n            inner.add(short)\n        if any(w in up for w in ('BROWSER', 'PROPERT', 'PALETTE', 'DOCK')) and len(names) < 80:\n            names.add(tn)\n        if hit and (not inside or short in PAINT_TYPES):\n            try:\n                prop = Control.BackgroundProperty if isinstance(v, Control) else (\n                    Panel.BackgroundProperty if isinstance(v, Panel) else (\n                        Border.BackgroundProperty if isinstance(v, Border) else None))\n                if prop is not None:\n                    if brush is None:\n                        v.ClearValue(prop)\n                    else:\n                        v.SetValue(prop, brush)\n                    painted += 1\n            except Exception:\n                pass\n        try:\n            n = VisualTreeHelper.GetChildrenCount(v)\n        except Exception:\n            n = 0\n        for i in range(n):\n            try:\n                stack.append((VisualTreeHelper.GetChild(v, i), hit))\n            except Exception:\n                pass\n    log('{0}: painted {1}; roots {2}; inside {3}'.format(key, painted, roots[:6], sorted(inner)))\n    return painted, roots\n\n\n# ------------------------------------------------------------------ drawing area background\ndef current_background(uiapp=None):\n    try:\n        c = uiapp.Application.BackgroundColor if uiapp is not None else ColorOptions.GetColorOptions().BackgroundColor\n        return '{0},{1},{2}'.format(c.Red, c.Green, c.Blue)\n    except Exception:\n        return '?'\n\n\ndef apply_background(rgb, uiapp=None):\n    \"\"\"rgb None = WHITE (Revit normal)\"\"\"\n    rgb = rgb if rgb is not None else (255, 255, 255)\n    col = Color(rgb[0], rgb[1], rgb[2])\n    ColorOptions.GetColorOptions().BackgroundColor = col\n    if uiapp is not None:\n        try:\n            uiapp.Application.BackgroundColor = col           # the colour the views really draw with\n            uiapp.ActiveUIDocument.RefreshActiveView()\n        except Exception as ex:\n            log('background: ' + str(ex))\n\n\ndef text_fit(rgb):\n    \"\"\"readable text: a dark colour needs Revit's DARK theme (white text), a light colour the LIGHT theme (dark text).\n    Returns 'DARK' / 'LIGHT' / None (theme already right).\"\"\"\n    clr.AddReference('RevitAPIUI')\n    from Autodesk.Revit.UI import UIThemeManager, UITheme\n    want = UITheme.Dark if (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) < 140 else UITheme.Light\n    if UIThemeManager.CurrentTheme == want:\n        return None\n    try:\n        UIThemeManager.FollowSystemColorTheme = False\n    except Exception:\n        pass\n    UIThemeManager.CurrentTheme = want\n    return 'DARK' if want == UITheme.Dark else 'LIGHT'\n\n\ndef current(uiapp=None):\n    def txt(key):\n        r = saved(key)\n        return '{0},{1},{2}'.format(*r) if r else 'normal'\n    return {'ribbon': txt('ribbon'), 'properties': txt('properties'), 'browser': txt('browser'),\n            'background': current_background(uiapp)}\n\n\ndef reapply_saved():\n    \"\"\"startup: put the saved ribbon / Properties / Project Browser colours back\"\"\"\n    for key in ('ribbon', 'properties', 'browser'):\n        rgb = saved(key)\n        if rgb is not None:\n            try:\n                apply_ribbon(rgb) if key == 'ribbon' else apply_pane(key, rgb)\n            except Exception as ex:\n                log('startup {0}: {1}'.format(key, ex))\n\n\ndef run(ribbon='', properties='', browser='', background='', uiapp=None):\n    \"\"\"each: colour (name / R,G,B / #RRGGBB), RESET = Revit normal, blank = keep\"\"\"\n    before = current(uiapp)\n    out = []\n    panel_cols = [colour_of(v) for v in (ribbon, properties, browser) if str(v or '').strip() and not is_reset(v)]\n    if panel_cols:                                         # theme first (it redraws the panels), then the colours\n        th = text_fit(panel_cols[0])\n        if th:\n            out.append('  Theme set to {0} so the text stays readable on this colour'.format(th))\n            for key in ('ribbon', 'properties', 'browser'):   # colours kept from before, re-applied after the redraw\n                val = {'ribbon': ribbon, 'properties': properties, 'browser': browser}[key]\n                if not str(val or '').strip() and saved(key) is not None:\n                    try:\n                        apply_ribbon(saved(key)) if key == 'ribbon' else apply_pane(key, saved(key))\n                    except Exception:\n                        pass\n    for key, val, label in (('ribbon', ribbon, 'Ribbon'), ('properties', properties, 'Properties'),\n                            ('browser', browser, 'Project Browser')):\n        if not str(val or '').strip():\n            continue\n        rgb = None if is_reset(val) else colour_of(val)\n        if key == 'ribbon':\n            n = apply_ribbon(rgb)\n            ok = n > 0\n            what = '{0} panels'.format(n)\n        else:\n            n, roots = apply_pane(key, rgb)\n            ok = bool(roots)\n            what = '{0} parts'.format(n)\n        if ok:\n            save(key, rgb)\n            out.append('  {0}: {1} -> {2}  ({3}, kept after a Revit restart){4}'.format(\n                label, before[key], 'normal' if rgb is None else '{0},{1},{2}'.format(*rgb), what,\n                '' if key == 'ribbon' else ' - title bar + frame only: the list inside is drawn by Revit itself (MFC) and keeps the theme colour'))\n        else:\n            out.append('  {0}: NOT CHANGED - Revit draws this panel itself, no script can reach its colour'.format(label))\n    if str(background or '').strip():\n        rgb = None if is_reset(background) else colour_of(background)\n        apply_background(rgb, uiapp)\n        out.append('  Background: {0} -> {1}'.format(before['background'], current_background(uiapp)))\n    out.insert(0, 'Colours changed' if out else 'Nothing asked - colours unchanged')\n    out.append('Dark colours get white text, light colours dark text.  RESET puts a part back to normal.')\n    log('\\n'.join(out))\n    return out\n\n\n# =====================================================================\n#  DYNAMO / DYNAMO PLAYER PART  -  inputs (each: a colour name, R,G,B or #RRGGBB;  RESET = normal;  blank = keep):\n#    0  Ribbon colour            e.g. NAVY, DARKGREY, TEAL, 40,50,70\n#    1  Properties colour        title bar + frame (the list inside is drawn by Revit itself)\n#    2  Project Browser colour   title bar + frame (the tree inside is drawn by Revit itself)\n#    3  Background colour        the drawing area, e.g. WHITE, BLACK, CREAM, 30,30,30\n#    4  RUN                      False = PREVIEW (shows now + what would change),  True = change\n#  Dark colours switch Revit to its dark theme (white text), light colours to the light theme (dark text).\n#  A setting on this PC, not saved in the model.\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\n    RAW = list(IN)\nexcept NameError:\n    DYNAMO = False\n    RAW = list(globals().get('COLOUR_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    return default if v is None else v\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\nUIAPP = globals().get('__revit__')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        UIAPP = DocumentManager.Instance.CurrentUIApplication\n    except Exception:\n        UIAPP = None\n\nout = []\ntry:\n    args = [str(_inp(i, '')) for i in range(4)]\n    if _flag(4, False):\n        out = run(args[0], args[1], args[2], args[3], UIAPP)\n    else:\n        for a in args:\n            if a.strip() and not is_reset(a):\n                colour_of(a)                              # check the typed values\n        now = current(UIAPP)\n        out = ['PREVIEW (RUN = False): nothing changed',\n               '  now: ribbon {0}, Properties {1}, Project Browser {2}, background {3}'.format(\n                   now['ribbon'], now['properties'], now['browser'], now['background']),\n               '  would set: ribbon {0}, Properties {1}, Project Browser {2}, background {3}'.format(\n                   *[a.strip() or 'keep' for a in args])]\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('A08 Colours')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else (\n            'Preview - nothing changed' if out and out[0].startswith('PREVIEW') else 'Colours changed')\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "9c227f18080b476a81c0afac85506796",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "110b9513da65497bb79a33746de4e6bf",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8f9b166aeafa4780bc7dbf671a34bcdb",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bba89761e8be4296a2753d71d85ec54e",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b2dc038052b74f75894f6e500922094e",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1305dd34e0084a7a9b4cc8b2d3ad035f",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "61100bade54c44019d1958447e5ec701",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "7db5a409917445e3b553d7410d0ed9d8",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "1f08e74d15a740a6a306f9d63cefcde8",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a9da94d2fc8248869cfc81608383f0c4",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "229204ac99f24c709429f5ac24bd4f09",
+      "End": "110b9513da65497bb79a33746de4e6bf",
+      "Id": "ec5ebe43fe5b4b4a82cdee0700f71c8f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "20b892170bf94c4fb4306496b5ebca96",
+      "End": "8f9b166aeafa4780bc7dbf671a34bcdb",
+      "Id": "8edc3a88ae394db7aed68ec5ba21e8fd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b0902b2dc34c4b20966a3ff382ec9321",
+      "End": "bba89761e8be4296a2753d71d85ec54e",
+      "Id": "f497522e17c54418a93864ced4460153",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3f31eb2d480f47939eed53c1422d9499",
+      "End": "b2dc038052b74f75894f6e500922094e",
+      "Id": "c6df284de7eb45cb8a28d6df2da9c78b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1b390a02d7094c8c8e530b3ad31fe9b0",
+      "End": "1305dd34e0084a7a9b4cc8b2d3ad035f",
+      "Id": "7d64f5c741c3403683462f5d82a03439",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "61100bade54c44019d1958447e5ec701",
+      "End": "1f08e74d15a740a6a306f9d63cefcde8",
+      "Id": "7365cda9680842508bc018045984238f",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "89f70aaf14954236a51d2dfa655b12de",
+        "Name": "0  Ribbon colour (name / R,G,B / RESET / blank)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "fc0d6eb75d094733a1a1d3e65f975921",
+        "Name": "1  Properties colour",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "ffcb180e475444228b60046aeae74b2b",
+        "Name": "2  Project Browser colour",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 300
+      },
+      {
+        "Id": "7b18fb06c5da4a9497abf36a53f6e6e4",
+        "Name": "3  Background colour",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "14ccc84531ec43e6bbe8f8894e92cb1d",
+        "Name": "4  RUN (False = preview)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "9c227f18080b476a81c0afac85506796",
+        "Name": "A08 COLOURS ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2300.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "7db5a409917445e3b553d7410d0ed9d8",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2650.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "b26762110bba4cf0a768b23cc24067d2",
+        "Title": "1  PANELS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "89f70aaf14954236a51d2dfa655b12de",
+          "fc0d6eb75d094733a1a1d3e65f975921",
+          "ffcb180e475444228b60046aeae74b2b"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 585,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 490,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "349d49a9ccd7495b920f90dabb521999",
+        "Title": "2  DRAWING AREA",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "7b18fb06c5da4a9497abf36a53f6e6e4"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 285,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 190,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "220f4c4cfbd54470b4f6eea66e8dd8cd",
+        "Title": "3  RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "14ccc84531ec43e6bbe8f8894e92cb1d"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 285,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 190,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "3a2d8512557641f2b106cb6e484d727f",
+        "Title": "HOW TO USE:  type a colour for each part:  a name (NAVY, BLUEPRINT, DARKGREY, TEAL, PURPLE, MAROON, OLIVE, GREEN, BLACK, WHITE, CREAM, LIGHTGREY), or R,G,B (e.g. 40,50,70), or #RRGGBB.  RESET = back to normal, blank = keep.  0 = ribbon, 1 = Properties, 2 = Project Browser (title bar + frame; the list inside is drawn by Revit), 3 = drawing area background.  Dark colours give white text, light colours dark text.  RUN False = preview, True = change.  Kept after a Revit restart.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 2200.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

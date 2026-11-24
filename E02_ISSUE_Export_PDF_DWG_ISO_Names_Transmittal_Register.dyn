@@ -1,0 +1,399 @@
+{
+  "Uuid": "25671ea7-eff3-43c0-b2ad-689d34927bf0",
+  "IsCustomNode": false,
+  "Description": "Issue sheets: PDF + DWG per sheet with ISO 19650 file names, a transmittal per issue and an issue register in Excel",
+  "Name": "CAD2BIM_Export_PDF_DWG",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "e2835dc20f1e422e863fde75e70e9c40",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1b39a9f3af0f49c89439903791ab7065",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "",
+      "InputValue": "No file selected."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "928b2441b30344ee9a351304a8b897a5",
+          "Name": "path",
+          "Description": "Path to the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+          "Name": "file",
+          "Description": "File object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a file object from the given path",
+      "Id": "86337e6929b34db8a0abe470f28ed0e9"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f805a5952b2846c5a4872752b6961cd7",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b925d23d7193473fad0e6b987eb78666",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "541e337a1ae84661ad4e944f087fb612",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - ISSUE SHEETS: PDF + DWG WITH ISO 19650 FILE NAMES\n#  one Excel = the issue sheet: mark ISSUE = YES on the sheets to send, Run -> PDF / DWG per sheet,\n#  named  <sheet number>-<status>-<revision>  (e.g. 2524-SD-ZZ-00-DR-A-1001-S2-P01.pdf), a transmittal and a register.\n#  first run with no Excel: the Excel is created next to the .rvt with all Revit sheets.  Plain .xlsx, no Excel needed.\nimport os\nimport re\nimport datetime\nimport traceback\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\nimport os\nimport re\nimport zipfile\nimport xml.etree.ElementTree as ET\n\n# ======================================================================== tiny .xlsx reader / writer\nNS = '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'\nRNS = '{http://schemas.openxmlformats.org/officeDocument/2006/relationships}'\n\n\ndef _esc(s):\n    s = re.sub(u'[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f]', '', u'%s' % s)\n    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('\"', '&quot;')\n\n\ndef _ref(ci, ri):\n    s, ci = '', ci + 1\n    while ci:\n        ci, rem = divmod(ci - 1, 26)\n        s = chr(65 + rem) + s\n    return '%s%d' % (s, ri + 1)\n\n\ndef _colidx(ref):\n    n = 0\n    for ch in ''.join(c for c in ref if c.isalpha()):\n        n = n * 26 + (ord(ch.upper()) - 64)\n    return n - 1\n\n\ndef xlsx_read(path, sheet_name):\n    z = zipfile.ZipFile(path)\n    try:\n        shared = []\n        if 'xl/sharedStrings.xml' in z.namelist():\n            for si in ET.fromstring(z.read('xl/sharedStrings.xml')).iter(NS + 'si'):\n                shared.append(''.join(t.text or '' for t in si.iter(NS + 't')))\n        wb = ET.fromstring(z.read('xl/workbook.xml'))\n        rmap = dict((r.get('Id'), r.get('Target')) for r in ET.fromstring(z.read('xl/_rels/workbook.xml.rels')))\n        target = None\n        for sh in wb.iter(NS + 'sheet'):\n            if sh.get('name', '').strip().upper() == sheet_name.upper():\n                target = rmap.get(sh.get(RNS + 'id'))\n        if target is None:\n            return None\n        target = target.lstrip('/')\n        if not target.startswith('xl/'):\n            target = 'xl/' + target\n        root = ET.fromstring(z.read(target))\n    finally:\n        z.close()\n    rows = []\n    for r in root.iter(NS + 'row'):\n        vals = {}\n        for c in r.iter(NS + 'c'):\n            t, v = c.get('t'), c.find(NS + 'v')\n            if t == 's' and v is not None:\n                val = shared[int(v.text)]\n            elif t == 'inlineStr':\n                val = ''.join(x.text or '' for x in c.iter(NS + 't'))\n            elif v is not None and v.text not in (None, ''):\n                val = v.text\n                if t not in ('str', 'e', 'b'):\n                    try:\n                        fl = float(val)\n                        val = str(int(fl)) if fl == int(fl) else str(fl)\n                    except ValueError:\n                        pass\n            else:\n                val = ''\n            vals[_colidx(c.get('r'))] = (val or '').strip()\n        rno = int(r.get('r')) if r.get('r') else len(rows) + 1\n        while len(rows) < rno - 1:\n            rows.append([])\n        rows.append([vals.get(i, '') for i in range(max(vals) + 1)] if vals else [])\n    return rows\n\n\nSTYLES = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<styleSheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">'\n          '<fonts count=\"5\"><font><sz val=\"11\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"10\"/><color rgb=\"FFFFFFFF\"/><name val=\"Arial\"/></font>'\n          '<font><sz val=\"11\"/><color rgb=\"FF0000FF\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"14\"/><name val=\"Arial\"/></font>'\n          '<font><i/><sz val=\"10\"/><color rgb=\"FF595959\"/><name val=\"Arial\"/></font></fonts>'\n          '<fills count=\"4\"><fill><patternFill patternType=\"none\"/></fill><fill><patternFill patternType=\"gray125\"/></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FF1F3864\"/><bgColor indexed=\"64\"/></patternFill></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FFF2F2F2\"/><bgColor indexed=\"64\"/></patternFill></fill></fills>'\n          '<borders count=\"2\"><border><left/><right/><top/><bottom/><diagonal/></border>'\n          '<border><left style=\"thin\"><color rgb=\"FFBFBFBF\"/></left><right style=\"thin\"><color rgb=\"FFBFBFBF\"/></right>'\n          '<top style=\"thin\"><color rgb=\"FFBFBFBF\"/></top><bottom style=\"thin\"><color rgb=\"FFBFBFBF\"/></bottom><diagonal/></border></borders>'\n          '<cellStyleXfs count=\"1\"><xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\"/></cellStyleXfs>'\n          '<cellXfs count=\"7\">'\n          '<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\"/>'                                         # 0 normal\n          '<xf numFmtId=\"49\" fontId=\"1\" fillId=\"2\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\" applyAlignment=\"1\">'\n          '<alignment wrapText=\"1\" vertical=\"center\" horizontal=\"center\"/></xf>'                                  # 1 header\n          '<xf numFmtId=\"49\" fontId=\"2\" fillId=\"0\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyBorder=\"1\"/>'  # 2 blue input (text)\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 3 grey calculated\n          '<xf numFmtId=\"0\" fontId=\"3\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyFont=\"1\"/>'                           # 4 title\n          '<xf numFmtId=\"49\" fontId=\"4\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\"/>'     # 5 note\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 6 grey key\n          '</cellXfs><cellStyles count=\"1\"><cellStyle name=\"Normal\" xfId=\"0\" builtinId=\"0\"/></cellStyles></styleSheet>')\n\n\ndef _sheet_xml(rows, widths, freeze=None, validations=None, col_styles=None, heights=None):\n    \"\"\"rows: list of lists; a cell = value, or (value, style), or ('=formula', cached, style)\"\"\"\n    cs = col_styles or {}\n    out = ['<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n           '<worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">']\n    if freeze:\n        out.append('<sheetViews><sheetView workbookViewId=\"0\"><pane ySplit=\"%d\" topLeftCell=\"A%d\" activePane=\"bottomLeft\" '\n                   'state=\"frozen\"/></sheetView></sheetViews>' % (freeze, freeze + 1))\n    out.append('<cols>' + ''.join('<col min=\"%d\" max=\"%d\" width=\"%s\" customWidth=\"1\"%s/>'\n                                  % (i + 1, i + 1, w, (' style=\"%d\"' % cs[i]) if i in cs else '')\n                                  for i, w in enumerate(widths)) + '</cols><sheetData>')\n    for ri, row in enumerate(rows):\n        cells = []\n        for ci, cell in enumerate(row):\n            ref, style, f = _ref(ci, ri), cs.get(ci, 0), None\n            if isinstance(cell, tuple):\n                if len(cell) == 3:\n                    f, val, style = cell\n                else:\n                    val, style = cell\n            else:\n                val = cell\n            sa = ' s=\"%d\"' % style if style else ''\n            if f:\n                cells.append('<c r=\"%s\"%s t=\"str\"><f>%s</f><v>%s</v></c>' % (ref, sa, _esc(f.lstrip('=')), _esc(val)))\n            elif val is None or val == '':\n                if style:\n                    cells.append('<c r=\"%s\"%s/>' % (ref, sa))\n            else:\n                cells.append('<c r=\"%s\"%s t=\"inlineStr\"><is><t xml:space=\"preserve\">%s</t></is></c>' % (ref, sa, _esc(val)))\n        ht = (' ht=\"%s\" customHeight=\"1\"' % heights[ri]) if heights and ri in heights else ''\n        out.append('<row r=\"%d\"%s>%s</row>' % (ri + 1, ht, ''.join(cells)))\n    out.append('</sheetData>')\n    if validations:\n        out.append('<dataValidations count=\"%d\">' % len(validations))\n        for sqref, formula in validations:\n            out.append('<dataValidation type=\"list\" allowBlank=\"1\" showErrorMessage=\"0\" sqref=\"%s\"><formula1>%s</formula1>'\n                       '</dataValidation>' % (sqref, _esc(formula)))\n        out.append('</dataValidations>')\n    out.append('</worksheet>')\n    return ''.join(out)\n\n\ndef xlsx_write(path, sheets):\n    \"\"\"sheets: list of (name, sheet_xml)\"\"\"\n    n = len(sheets)\n    ct = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">'\n          '<Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>'\n          '<Default Extension=\"xml\" ContentType=\"application/xml\"/>'\n          '<Override PartName=\"/xl/workbook.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml\"/>'\n          '<Override PartName=\"/xl/styles.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml\"/>'\n          + ''.join('<Override PartName=\"/xl/worksheets/sheet%d.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml\"/>' % (i + 1)\n                    for i in range(n)) + '</Types>')\n    rels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n            '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n            '<Relationship Id=\"rId1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\" Target=\"xl/workbook.xml\"/>'\n            '</Relationships>')\n    wb = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<workbook xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" '\n          'xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">'\n          '<bookViews><workbookView activeTab=\"0\"/></bookViews><sheets>'\n          + ''.join('<sheet name=\"%s\" sheetId=\"%d\" r:id=\"rId%d\"/>' % (_esc(s[0]), i + 1, i + 1) for i, s in enumerate(sheets))\n          + '</sheets><calcPr calcId=\"191029\" fullCalcOnLoad=\"1\"/></workbook>')\n    wrels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n             '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n             + ''.join('<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet\" '\n                       'Target=\"worksheets/sheet%d.xml\"/>' % (i + 1, i + 1) for i in range(n))\n             + '<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles\" '\n               'Target=\"styles.xml\"/></Relationships>' % (n + 1))\n    tmp = path + '.tmp'\n    z = zipfile.ZipFile(tmp, 'w', zipfile.ZIP_DEFLATED)\n    try:\n        z.writestr('[Content_Types].xml', ct)\n        z.writestr('_rels/.rels', rels)\n        z.writestr('xl/workbook.xml', wb)\n        z.writestr('xl/_rels/workbook.xml.rels', wrels)\n        z.writestr('xl/styles.xml', STYLES)\n        for i, (name, xml) in enumerate(sheets):\n            z.writestr('xl/worksheets/sheet%d.xml' % (i + 1), xml.encode('utf-8'))\n    finally:\n        z.close()\n    try:\n        if os.path.exists(path):\n            os.remove(path)\n        os.rename(tmp, path)\n    except Exception:\n        os.remove(tmp)\n        raise\n\n\n\n\nSETTINGS = [('Output folder', '', 'blank = ISSUE\\\\<date> next to the .rvt'),\n            ('File name pattern', '{number}-{status}-{revision}', 'tokens: {number} {name} {status} {revision} {date}'),\n            ('Export PDF', 'YES', 'YES / NO'),\n            ('Export DWG', 'YES', 'YES / NO'),\n            ('Also one combined PDF', 'NO', 'YES = all issued sheets in one PDF as well'),\n            ('DWG export setup', '', 'name of a DWG export setup in Revit (blank = Revit default)'),\n            ('Clear ISSUE marks after export', 'YES', 'YES = the ISSUE column is emptied after a successful issue'),\n            ('Keep DWG .pcp files', 'NO', 'NO = the plot-config .pcp files Revit writes next to each DWG are removed'),\n            ('Issued by', '', 'your name / initials'),\n            ('Issued to', '', 'e.g. Client, Structural consultant'),\n            ('Purpose of issue', 'For information', 'e.g. For information / For comment / For construction')]\nSH_COLS = [('ISSUE\\n(type YES)', 11), ('SHEET NUMBER', 30), ('SHEET NAME', 44), ('STATUS\\n(blank = Revit)', 12),\n           ('REVISION\\n(blank = Revit)', 12), ('LAST ISSUED', 14), ('LAST FILE', 50)]\nREG_COLS = [('DATE', 12), ('SHEET NUMBER', 30), ('SHEET NAME', 44), ('STATUS', 9), ('REVISION', 10), ('FORMAT', 8),\n            ('FILE', 50), ('ISSUED TO', 26), ('PURPOSE', 24), ('ISSUED BY', 14)]\nYES = ('YES', 'Y', 'X', '1', 'TRUE')\nSTATUS_PARAMS = ['Status', 'Suitability', 'Suitability Code', 'Status Code', 'Document Status']\nREVISION_PARAMS = ['Revision', 'Document Revision', 'Rev']\n\n\ndef natural(s):\n    return [int(t) if t.isdigit() else t.lower() for t in re.split(r'(\\d+)', s or '')]\n\n\ndef write_book(path, st, sheets, register, title):\n    se = [[('CAD2BIM  ISSUE  -  ' + (title or 'PROJECT'), 4)], [('SETTING', 1), ('VALUE', 1), ('NOTE', 1)]]\n    for k, d, n in SETTINGS:\n        se.append([(k, 6), (st.get(k, d), 2), (n, 5)])\n    sh = [[('SHEETS  -  type YES in column A for every sheet to issue, save, close, Run', 4)], [],\n          [(c[0], 1) for c in SH_COLS]]\n    for r in sheets:\n        r = (list(r) + [''] * 7)[:7]\n        sh.append([(r[0], 2), (r[1], 3), (r[2], 3), (r[3], 2), (r[4], 2), (r[5], 3), (r[6], 3)])\n    rg = [[('ISSUE REGISTER  -  every file issued (written by the script)', 4)], [], [(c[0], 1) for c in REG_COLS]]\n    for r in register:\n        rg.append([(x, 3) for x in (list(r) + [''] * 10)[:10]])\n    help_rows = [[('HOW TO USE', 4)], [],\n                 ['1.  SETTINGS: output folder, file name pattern (ISO: {number}-{status}-{revision}), PDF / DWG, issued to / purpose.'],\n                 ['2.  SHEETS: type YES in the ISSUE column of the sheets to send.  STATUS / REVISION blank = taken from the Revit sheet.'],\n                 ['3.  Save and CLOSE the Excel, run the Dynamo graph CAD2BIM_Export_PDF_DWG (EXPORT on).'],\n                 ['4.  Files go to ISSUE\\\\<date>\\\\ next to the .rvt, with a TRANSMITTAL Excel.  The REGISTER tab keeps the history.'],\n                 ['5.  New sheets in Revit? Switch REFRESH on once: the SHEETS list is updated (your YES marks are kept).'],\n                 [], ['Blue = you type.   Grey = written by the script.']]\n    xlsx_write(path, [('SHEETS', _sheet_xml(sh, [c[1] for c in SH_COLS], freeze=3, heights={2: 32},\n                                            validations=[('A4:A%d' % (len(sh) + 200), '\"YES\"')])),\n                      ('SETTINGS', _sheet_xml(se, [32, 40, 80], freeze=2)),\n                      ('REGISTER', _sheet_xml(rg, [c[1] for c in REG_COLS], freeze=3)),\n                      ('HOW TO USE', _sheet_xml(help_rows, [130]))])\n\n\ndef read_book(path):\n    st = dict((k, d) for k, d, n in SETTINGS)\n    for r in (xlsx_read(path, 'SETTINGS') or []):\n        if len(r) >= 2 and r[0]:\n            for k, d, n in SETTINGS:\n                if r[0].strip().lower() == k.lower():\n                    st[k] = r[1].strip()\n    rows = xlsx_read(path, 'SHEETS')\n    if rows is None:\n        raise Exception('the Excel has no SHEETS tab - leave the file box empty once to create a new Excel')\n    hi = next((i for i, r in enumerate(rows) if len(r) > 1 and r[1].strip().upper() == 'SHEET NUMBER'), None)\n    sheets = []\n    for r in rows[(hi + 1 if hi is not None else 3):]:\n        r = (list(r) + [''] * 7)[:7]\n        if r[1]:\n            sheets.append(r)\n    reg = []\n    rr = xlsx_read(path, 'REGISTER') or []\n    hi = next((i for i, r in enumerate(rr) if r and r[0].strip().upper() == 'DATE'), None)\n    for r in rr[(hi + 1 if hi is not None else 3):]:\n        if any(r):\n            reg.append((list(r) + [''] * 10)[:10])\n    return st, sheets, reg\n\n\ndef clean_name(s):\n    s = re.sub(r'[\\\\/:*?\"<>|]', '-', s).strip()\n    s = re.sub(r'-{2,}', '-', s).strip('- .')\n    return s\n\n\n# ======================================================================== Revit part\ndef run(doc, XL, EXPORT, REFRESH, out):\n    from Autodesk.Revit.DB import (FilteredElementCollector, ViewSheet, BuiltInParameter, StorageType, ElementId,\n                                   PDFExportOptions, DWGExportOptions)\n    from System.Collections.Generic import List\n\n    sheets = sorted([s for s in FilteredElementCollector(doc).OfClass(ViewSheet) if not s.IsPlaceholder],\n                    key=lambda s: natural(s.SheetNumber))\n    by_no = dict((s.SheetNumber, s) for s in sheets)\n\n    def ptext(s, names):\n        for n in names:\n            p = s.LookupParameter(n)\n            if p is not None and p.StorageType == StorageType.String and p.AsString():\n                return p.AsString()\n        return ''\n\n    def revit_status(s):\n        return ptext(s, STATUS_PARAMS)\n\n    def revit_rev(s):\n        r = ptext(s, REVISION_PARAMS)\n        if not r:\n            p = s.get_Parameter(BuiltInParameter.SHEET_CURRENT_REVISION)\n            r = (p.AsString() or '') if p is not None else ''\n        return r\n\n    def sheet_rows(keep=None):\n        keep = keep or {}\n        rows = []\n        for s in sheets:\n            old = keep.get(s.SheetNumber, [''] * 7)\n            rows.append([old[0], s.SheetNumber, s.Name, old[3], old[4], old[5], old[6]])\n        return rows\n\n    # ---------------- first run / refresh\n    if not os.path.exists(XL):\n        write_book(XL, {}, sheet_rows(), [], doc.Title)\n        out.append('CAD2BIM ISSUE  -  EXCEL CREATED')\n        out.append('File   : ' + XL)\n        out.append('%d sheet(s) listed.  Type YES in the ISSUE column, save + close, Browse... to this file and Run.' % len(sheets))\n        return\n    st, rows, reg = read_book(XL)\n    if REFRESH:\n        keep = dict((r[1], r) for r in rows)\n        rows = sheet_rows(keep)\n        write_book(XL, st, rows, reg, doc.Title)\n        out.append('SHEETS list refreshed from Revit: %d sheet(s) (your YES marks kept).  Switch REFRESH off again.' % len(rows))\n\n    todo = [r for r in rows if r[0].strip().upper() in YES]\n    if not todo:\n        out.append('CAD2BIM ISSUE  -  nothing marked: type YES in the ISSUE column of the SHEETS tab')\n        out.append('File   : ' + XL)\n        return\n\n    today = datetime.date.today()\n    folder = st.get('Output folder', '').strip().strip('\"')\n    if not folder:\n        base_dir = os.path.dirname(doc.PathName) if doc.PathName else os.path.join(\n            os.environ.get('USERPROFILE', ''), 'Documents', doc.Title + '_ISSUE')\n        folder = os.path.join(base_dir, 'ISSUE', today.strftime('%Y-%m-%d')) if doc.PathName else \\\n            os.path.join(base_dir, today.strftime('%Y-%m-%d'))\n    pattern = st.get('File name pattern', '') or '{number}-{status}-{revision}'\n    do_pdf = st.get('Export PDF', 'YES').strip().upper() in YES\n    do_dwg = st.get('Export DWG', 'YES').strip().upper() in YES\n    combine = st.get('Also one combined PDF', 'NO').strip().upper() in YES\n\n    plan, problems = [], []\n    for r in todo:\n        s = by_no.get(r[1])\n        if s is None:\n            problems.append('%s: no such sheet in Revit (REFRESH the list?)' % r[1])\n            continue\n        status = (r[3] or revit_status(s)).strip().upper()\n        rev = (r[4] or revit_rev(s)).strip().upper()\n        try:\n            name = clean_name(pattern.format(number=s.SheetNumber, name=s.Name, status=status, revision=rev,\n                                             date=today.strftime('%Y%m%d')))\n        except (KeyError, IndexError, ValueError) as ex:\n            raise Exception('File name pattern \"%s\" is not valid (%s) - use {number} {name} {status} {revision} {date}' % (pattern, ex))\n        if not status or not rev:\n            problems.append('%s: %s empty - file name %s' % (s.SheetNumber, 'status' if not status else 'revision', name))\n        plan.append((r, s, name, status, rev))\n    names = [p[2] for p in plan]\n    dup = set(n for n in names if names.count(n) > 1)\n    if dup:\n        raise Exception('two sheets would get the same file name: %s - check the pattern' % ', '.join(sorted(dup)))\n\n    out.append('CAD2BIM ISSUE  -  %s' % ('EXPORTED' if EXPORT else 'CHECK ONLY (EXPORT is off - nothing written)'))\n    out.append('Folder : ' + folder)\n    out.append('Format : %s%s%s' % ('PDF ' if do_pdf else '', 'DWG ' if do_dwg else '', '+ combined PDF' if combine else ''))\n    if not EXPORT:\n        for r, s, name, status, rev in plan:\n            out.append('  would issue  %-30s -> %s%s%s' % (s.SheetNumber, name, '.pdf ' if do_pdf else '', '.dwg' if do_dwg else ''))\n        out.extend('  NOTE ' + p for p in problems)\n        return\n\n    if not os.path.isdir(folder):\n        os.makedirs(folder)\n    pdf_opt = None\n    if do_pdf:\n        pdf_opt = PDFExportOptions()\n        for attr, val in (('Combine', True), ('HideCropBoundaries', True), ('HideReferencePlane', True),\n                          ('HideScopeBoxes', True), ('HideUnreferencedViewTags', True), ('MaskCoincidentLines', True)):\n            try:\n                setattr(pdf_opt, attr, val)\n            except Exception:\n                pass\n    dwg_opt = None\n    if do_dwg:\n        setup = st.get('DWG export setup', '').strip()\n        if setup:\n            try:\n                dwg_opt = DWGExportOptions.GetPredefinedOptions(doc, setup)\n            except Exception:\n                dwg_opt = None\n            if dwg_opt is None:\n                problems.append('DWG export setup \"%s\" not found - Revit default used' % setup)\n        dwg_opt = dwg_opt or DWGExportOptions()\n        try:\n            dwg_opt.MergedViews = True               # one DWG per sheet, views bound in\n        except Exception:\n            pass\n\n    issued, stamp = [], today.strftime('%d/%m/%Y')\n    who, to, why = st.get('Issued by', ''), st.get('Issued to', ''), st.get('Purpose of issue', '')\n    for r, s, name, status, rev in plan:\n        ids = List[ElementId]()\n        ids.Add(s.Id)\n        files = []\n        try:\n            if do_pdf:\n                pdf_opt.FileName = name\n                if doc.Export(folder, ids, pdf_opt):\n                    files.append(('PDF', name + '.pdf'))\n                else:\n                    problems.append('%s: PDF export refused by Revit' % s.SheetNumber)\n            if do_dwg:\n                if doc.Export(folder, name, ids, dwg_opt):\n                    files.append(('DWG', name + '.dwg'))\n                    pcp = os.path.join(folder, name + '.pcp')\n                    if os.path.exists(pcp) and st.get('Keep DWG .pcp files', 'NO').strip().upper() not in YES:\n                        try:\n                            os.remove(pcp)\n                        except Exception:\n                            pass\n                else:\n                    problems.append('%s: DWG export refused by Revit' % s.SheetNumber)\n        except Exception as ex:\n            problems.append('%s: export failed - %s' % (s.SheetNumber, ex))\n            log(traceback.format_exc())\n        for fmt, f in files:\n            reg.append([stamp, s.SheetNumber, s.Name, status, rev, fmt, os.path.join(folder, f), to, why, who])\n            issued.append(reg[-1])\n        if files:\n            out.append('  issued  %-30s %s' % (s.SheetNumber, '  '.join(f for _, f in files)))\n            r[5], r[6] = stamp, os.path.join(folder, files[0][1])\n            if st.get('Clear ISSUE marks after export', 'YES').strip().upper() in YES:\n                r[0] = ''\n    if combine and do_pdf and len(plan) > 1:\n        ids = List[ElementId]()\n        for p in plan:\n            ids.Add(p[1].Id)\n        cname = clean_name('%s-ISSUE-%s' % (doc.Title, today.strftime('%Y%m%d')))\n        pdf_opt.FileName = cname\n        try:\n            if doc.Export(folder, ids, pdf_opt):\n                out.append('  combined PDF  %s.pdf' % cname)\n        except Exception as ex:\n            problems.append('combined PDF failed - %s' % ex)\n\n    # transmittal for this issue (always written, in the issue folder)\n    if issued:\n        tname = os.path.join(folder, 'TRANSMITTAL_%s.xlsx' % datetime.datetime.now().strftime('%Y%m%d_%H%M'))\n        tr = [[('TRANSMITTAL  -  ' + doc.Title, 4)],\n              [('Date: ' + stamp + '     Issued to: ' + (to or '-') + '     Purpose: ' + (why or '-') + '     Issued by: ' + (who or '-'), 5)],\n              [(c[0], 1) for c in REG_COLS]] + [[(x, 3) for x in r] for r in issued]\n        xlsx_write(tname, [('TRANSMITTAL', _sheet_xml(tr, [c[1] for c in REG_COLS], freeze=3))])\n        out.append('  transmittal  ' + os.path.basename(tname))\n        try:\n            write_book(XL, st, rows, reg, doc.Title)\n            out.append('Excel updated: REGISTER +%d line(s), LAST ISSUED filled%s' % (\n                len(issued), ', ISSUE marks cleared' if st.get('Clear ISSUE marks after export', 'YES').strip().upper() in YES else ''))\n        except Exception:\n            problems.append('the Excel is open - REGISTER not updated (the TRANSMITTAL in the issue folder has the list)')\n    out.append('Done: %d file(s) for %d sheet(s).' % (len(issued), len(set(r[1] for r in issued))))\n    if problems:\n        out.append('')\n        out.append('Notes:')\n        out.extend('  ' + p for p in problems)\n\n\n# ======================================================================== Dynamo entry point\ntry:\n    IN\n    _IN_DYNAMO = True\nexcept NameError:\n    _IN_DYNAMO = False\n\nif _IN_DYNAMO:\n    import clr\n    clr.AddReference('RevitAPI')\n    clr.AddReference('RevitServices')\n    from RevitServices.Persistence import DocumentManager\n\n    def file_path(x):\n        if x is None:\n            return ''\n        for a in ('FullName', 'FullPath'):\n            v = getattr(x, a, None)\n            if v:\n                return str(v)\n        s = str(x)\n        return '' if s.strip().lower() in ('', 'no file selected.', 'none', 'null') else s.strip().strip('\"')\n\n    def good_xl(p):\n        if not p:\n            return ''\n        base = os.path.basename(p).lower()\n        if base.startswith('no file selected') or not base.endswith(('.xlsx', '.xlsm')):\n            return ''\n        return p\n\n    out = []\n    doc = DocumentManager.Instance.CurrentDBDocument\n    try:\n        XL = good_xl(file_path(IN[0]))\n        EXPORT, REFRESH = bool(IN[1]), bool(IN[2])\n        log('--- issue started  xl \"%s\" export %s refresh %s' % (XL, EXPORT, REFRESH))\n        if not XL:\n            folder = os.path.dirname(doc.PathName) if doc.PathName else os.path.join(os.environ.get('USERPROFILE', ''), 'Documents')\n            XL = os.path.join(folder, '%s_ISSUE.xlsx' % doc.Title)\n        run(doc, XL, EXPORT, REFRESH, out)          # no transaction: exporting does not change the model\n    except Exception as ex:\n        msg = str(ex)\n        if 'being used by another process' in msg or 'Permission denied' in msg:\n            msg = 'the Excel file is open - close it and run again'\n        out.insert(0, 'FAILED: ' + msg)\n        log(traceback.format_exc())\n    log('\\n'.join(out))\n    OUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "309c2923834249aab68e7b7e75d2b8f5",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "78c62500e9aa4ee4bb15dab1bfa226d1",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d5f4f8786d69482c9d6806b6d8d109f2",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "594b00b8c85e43b4b53a046987d93840",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9f80e8edde5e4c94b3f0db12addfbac2",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "7765f2d35d294e36b7d46cbc1c446edd",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6ba3f9cbe59244ec8c8a512ad42e0ed9",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1b39a9f3af0f49c89439903791ab7065",
+      "End": "928b2441b30344ee9a351304a8b897a5",
+      "Id": "a28c9d27f4a14b50a4206626c08512e9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+      "End": "78c62500e9aa4ee4bb15dab1bfa226d1",
+      "Id": "8f3ab7a173c640ab8532e8d2aa48b533",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f805a5952b2846c5a4872752b6961cd7",
+      "End": "d5f4f8786d69482c9d6806b6d8d109f2",
+      "Id": "8b85f575166e41f78b9c68ee0906c352",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "541e337a1ae84661ad4e944f087fb612",
+      "End": "594b00b8c85e43b4b53a046987d93840",
+      "Id": "27eddc0459f64da59f7739fb6a95a480",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9f80e8edde5e4c94b3f0db12addfbac2",
+      "End": "7765f2d35d294e36b7d46cbc1c446edd",
+      "Id": "41f5afc76ba045ca81eafb88a55c3237",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e2835dc20f1e422e863fde75e70e9c40",
+        "Name": "ISSUE Excel file (Browse...)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "86337e6929b34db8a0abe470f28ed0e9",
+        "Name": "File From Path (watches the Excel)",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 260.0,
+        "Y": 120.0
+      },
+      {
+        "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+        "Name": "EXPORT the sheets marked YES  (off = only report)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 330.0
+      },
+      {
+        "Id": "b925d23d7193473fad0e6b987eb78666",
+        "Name": "REFRESH the sheet list in the Excel from Revit  (keeps YES marks - switch off after)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 465.0
+      },
+      {
+        "Id": "309c2923834249aab68e7b7e75d2b8f5",
+        "Name": "CAD2BIM  Issue  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "68cf0d23c90a41dc89c9b9f711bb8f53",
+        "Title": "1  EXCEL FILE  (Browse... -> your <project>_ISSUE.xlsx)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "e2835dc20f1e422e863fde75e70e9c40",
+          "86337e6929b34db8a0abe470f28ed0e9"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 270.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "0025e04224ea4deb96f04a28223d8bb7",
+        "Title": "2  OPTIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3c535e8d6607453bbb34dd05968bb1cd",
+          "b925d23d7193473fad0e6b987eb78666"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 235.0,
+        "Width": 440.0,
+        "Height": 410.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 330.0,
+        "InitialHeight": 315.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "5cabaf8be57f46098045b2e3226fbdf0",
+        "Title": "3  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "309c2923834249aab68e7b7e75d2b8f5",
+          "f858a1cd0a8f4aaf9052d486f19bcc36"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "ced1e6c8b4ed40aaa80162a67ff58d17",
+        "Title": "HOW TO USE  -  1st run: leave the file empty -> <project>_ISSUE.xlsx is made next to the .rvt with all Revit sheets\nThen Browse... to that Excel.  Type YES in the ISSUE column of the sheets to send, save + CLOSE the Excel, Run.\nPDF + DWG per sheet named <sheet number>-<status>-<revision> go to ISSUE\\<date>\\ with a TRANSMITTAL.  The REGISTER tab keeps the history.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

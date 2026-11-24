@@ -1,0 +1,1270 @@
+{
+  "Uuid": "1912de50-80e3-4ddf-b611-06c39868f17c",
+  "IsCustomNode": false,
+  "Description": "Footings under columns + plinth / top beams column to column, sizes / angle control, marks, concrete report",
+  "Name": "CAD2BIM_Beams_Footings",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 4000.0,
+      "MinimumValue": 300.0,
+      "StepValue": 50.0,
+      "Id": "13952ec41c5b414eb8e8ad5bbc66a4a7",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0ab4a4f9ce494b22a79d95e5260f099b",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 600.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 4000.0,
+      "MinimumValue": 300.0,
+      "StepValue": 50.0,
+      "Id": "29d3cb379e0f48348f25612e01fc8447",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "08500e8efd22432ba0f4519e5a81b0d0",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 600.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 1500.0,
+      "MinimumValue": 200.0,
+      "StepValue": 50.0,
+      "Id": "46a58872d8034d3a88f1d3d6379845be",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fefd95649b034762b614b6d41a027eae",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 500.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 600.0,
+      "MinimumValue": 0.0,
+      "StepValue": 25.0,
+      "Id": "c8c7d23dc6cd4879a130b9e145a1d31f",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f524e59ccbc2419caac73684014f0048",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 150.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 360.0,
+      "MinimumValue": 0.0,
+      "StepValue": 5.0,
+      "Id": "2e42e64d246d4823a7cfd8ab28032d80",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e034b178750a4935934888e143e5e58b",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "d3c53eaf156e454189e12b416ca1cb08",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ffc32030b2094f1092ac4a5ecaf7d15b",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "9b72ac36b19d43deb28224753e5a55ff",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "44c94386c79f4b39b22598b0cacd6c58",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 1000.0,
+      "MinimumValue": 150.0,
+      "StepValue": 25.0,
+      "Id": "dbff4f5b043045639a6bac3fb94365b7",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0525f88b97f44524ba821e493a133672",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 300.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 1500.0,
+      "MinimumValue": 150.0,
+      "StepValue": 25.0,
+      "Id": "dc89d5d79f6d482ba43d1bea25f64c1c",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9b769acd3c5940bebba4a2f34dc09f9c",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 600.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 3000.0,
+      "MinimumValue": -3000.0,
+      "StepValue": 50.0,
+      "Id": "46c2560bf0184e57a61461e47b985e0f",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2ec2d61c8f15499b83e7f8a61f7d45ad",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "9bc71c832ab34e17bb4a206953a943e6",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "44a1c4021a834260aad6a89f90cde27a",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 1000.0,
+      "MinimumValue": 150.0,
+      "StepValue": 25.0,
+      "Id": "1127f6a691734155977dfc65d7ca351b",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "dc5c610e00414954ab965285ba0e7e62",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 300.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 1500.0,
+      "MinimumValue": 150.0,
+      "StepValue": 25.0,
+      "Id": "4f2f730152ad41b592255719f7de928c",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ea1300174c2b41f4b15992f1de49d039",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 450.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "8283d39eaa6a4e6c81c6b8fb1340aa7c",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "79e10ada5c414a80aeaf2e5273a95d06",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 20000.0,
+      "MinimumValue": 1000.0,
+      "StepValue": 500.0,
+      "Id": "acba83ad6abb49b5b869a5c57663ce92",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "78187b45703f41e7839269b286110960",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 10000.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 1000.0,
+      "MinimumValue": 150.0,
+      "StepValue": 25.0,
+      "Id": "3ac4c04d001e4dcc8470dd716050de90",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "190b93c36b2b402fbfb60db90caec467",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 300.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 1500.0,
+      "MinimumValue": 150.0,
+      "StepValue": 25.0,
+      "Id": "1ba41e21b5ea4d098181ba096a40cbf7",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b7b5f2ae5196439ca55ec2d901879cf3",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 450.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "8f9002de4bab416d8f819150ab512170",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c16d9a1dbfba4c308a93b6fb08370420",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "8b36a6e1e974440ca7b2d504224a16a9",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "40c22cf1d0ac48019d21506559b787ff",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "09f74001ef2247569b9fcf4822d77698",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1d0b2185bbf84295895ec939ecee07c4",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - BEAMS + FOOTINGS (professional)  |  footings under columns, plinth + top beams column to column\n#  * nothing selected      -> works on ALL columns\n#  * columns / footings selected -> works only on those columns\n#  * only beams selected   -> only \"resize selected beams\"\n# Re-running UPDATES what is already there (same place = same element), it never duplicates.\nimport os\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\nlog('--- beams + footings v4 started')\nimport clr, math, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nfrom Autodesk.Revit.DB.Structure import StructuralType\nclr.AddReference('RevitServices')\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\nMMF = 1.0 / 304.8\nALIGN_TOL = 300.0          # mm - columns this far off a common line still count as \"in line\"\nMATCH_TOL = 150.0          # mm - existing footing / beam end this close = same element\nFOOT_NAMES = ['Footing-Rectangular', 'M_Footing-Rectangular']\nFOOT_PARAMS = [('Length', 'Width', 'Foundation Thickness'), ('Length', 'Width', 'Thickness')]\nBEAM_NAMES = ['Concrete-Rectangular Beam', 'M_Concrete-Rectangular Beam']\nBEAM_PARAMS = [('b', 'h'), ('Width', 'Depth')]\nout = []\n\n\ndef num(v, d=0.0):\n    try:\n        return float(v)\n    except Exception:\n        return d\n\n\ndef tname(t):\n    p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n    return p.AsString() if p else ''\n\n\ndef idv(eid):\n    try:\n        return eid.Value                    # Revit 2024+\n    except Exception:\n        return eid.IntegerValue\n\n\n_CAT = {}\ndef cat_is(e, bic):\n    if bic not in _CAT:\n        _CAT[bic] = idv(Category.GetCategory(doc, bic).Id)\n    return e is not None and e.Category is not None and idv(e.Category.Id) == _CAT[bic]\n\n\ndef f(v):\n    return '{0:.0f}'.format(v)\n\n\ndef angle_of(e):\n    bx = e.GetTransform().BasisX\n    return math.degrees(math.atan2(bx.Y, bx.X))\n\n\ndef set_angle(e, pt, ang):\n    d = (ang - angle_of(e) + 180.0) % 360.0 - 180.0\n    if abs(d) > 0.01:\n        ElementTransformUtils.RotateElement(doc, e.Id, Line.CreateBound(pt, pt.Add(XYZ.BasisZ)), math.radians(d))\n\n\ndef setp(e, bip, val):\n    p = e.get_Parameter(bip)\n    if p is not None and not p.IsReadOnly:\n        p.Set(val)\n        return True\n    return False\n\n\ndef comment(e, txt):\n    setp(e, BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS, txt)\n\n\ndef params_of(sym, options):\n    for ps in options:\n        if all(sym.LookupParameter(p) is not None for p in ps):\n            return ps\n    return None\n\n\ndef find_symbol(bic, names, options, label):\n    syms = [s for s in FilteredElementCollector(doc).OfCategory(bic).OfClass(FamilySymbol)]\n    for want in names:\n        for s in syms:\n            if s.Family.Name == want and params_of(s, options):\n                return s\n    for s in syms:\n        if params_of(s, options):\n            return s\n    # not loaded -> try the Revit library on this PC\n    root = r'C:\\ProgramData\\Autodesk\\RVT 2026\\Libraries'\n    for dp, dn, fn in os.walk(root):\n        for want in names:\n            if want + '.rfa' in fn:\n                try:\n                    doc.LoadFamily(os.path.join(dp, want + '.rfa'))\n                    log('loaded family ' + os.path.join(dp, want + '.rfa'))\n                    s = _first(bic, options)\n                    if s is not None:\n                        return s\n                except Exception as ex:\n                    log('load failed: ' + str(ex))\n    raise Exception('No {0} family in the project. Load {1}.rfa (Insert > Load Family) and Run again.'.format(label, names[0]))\n\n\ndef _first(bic, options):\n    for s in FilteredElementCollector(doc).OfCategory(bic).OfClass(FamilySymbol):\n        if params_of(s, options):\n            return s\n    return None\n\n\ndef sized_type(base, name, vals, options):\n    ps = params_of(base, options)\n    for sid in base.Family.GetFamilySymbolIds():\n        s = doc.GetElement(sid)\n        if tname(s) == name:\n            break\n    else:\n        s = base.Duplicate(name)\n        for p, v in zip(ps, vals):\n            s.LookupParameter(p).Set(v * MMF)\n    if not s.IsActive:\n        s.Activate()\n    return s\n\n\n\n# ---------------------------------------------------------------- concrete beam family\n# No concrete beam family on this PC -> build one per size from any loaded framing family\n# (e.g. \"W Shapes\"): its steel profile is replaced by a b x h concrete rectangle, the ends stay\n# locked to Member Left / Right so the beam stretches column to column.\nFAM_DIR = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_families')\nGEN_PREFIX = 'CAD2BIM Concrete Beam '\n\n\ndef concrete_beam_base():\n    \"\"\"a loaded rectangular CONCRETE beam family with b/h (or Width/Depth) parameters\"\"\"\n    best = None\n    for s in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralFraming).OfClass(FamilySymbol):\n        fn = s.Family.Name\n        if fn.startswith(GEN_PREFIX):\n            continue\n        if 'CONCRETE' in fn.upper() and params_of(s, BEAM_PARAMS):\n            if fn in BEAM_NAMES:\n                return s\n            best = best or s\n    return best\n\n\ndef gen_family(B, H):\n    want = GEN_PREFIX + '{0}x{1}'.format(f(B), f(H))\n    for fam in FilteredElementCollector(doc).OfClass(Family):\n        if fam.Name == want:\n            return fam\n    return None\n\n\ndef build_beam_rfa(B, H):\n    \"\"\"creates <FAM_DIR>/CAD2BIM Concrete Beam BxH.rfa (needs NO open transaction).\n    Uses any loaded framing family only as a 'template': all its geometry is deleted and a new\n    b x h concrete extrusion is drawn from Member Left to Member Right and locked to both.\"\"\"\n    name = GEN_PREFIX + '{0}x{1}'.format(f(B), f(H))\n    path = os.path.join(FAM_DIR, name + '.rfa')\n    if os.path.exists(path):\n        return path\n    if not os.path.isdir(FAM_DIR):\n        os.makedirs(FAM_DIR)\n    src = None\n    for fam in FilteredElementCollector(doc).OfClass(Family):\n        if fam.FamilyCategory is not None and \\\n                idv(fam.FamilyCategory.Id) == _catid(BuiltInCategory.OST_StructuralFraming) and \\\n                fam.IsEditable and not fam.IsInPlace and not fam.Name.startswith(GEN_PREFIX):\n            if src is None or fam.Name in ('W Shapes', 'W-Wide Flange'):\n                src = fam\n    if src is None:\n        raise Exception('no structural framing family in the project to build a beam family from')\n    log('building beam family {0} from \"{1}\"'.format(name, src.Name))\n    fdoc = doc.EditFamily(src)\n    t = None\n    try:\n        # reference planes along the member\n        rps = [r for r in FilteredElementCollector(fdoc).OfClass(ReferencePlane) if abs(r.Normal.X) > 0.99]\n        byname = dict((r.Name, r) for r in rps)\n        left, right = byname.get('Member Left'), byname.get('Member Right')\n        if left is None or right is None:\n            rps.sort(key=lambda r: r.BubbleEnd.X)\n            if len(rps) < 2:\n                raise Exception('framing family \"{0}\" has no Member Left / Right planes'.format(src.Name))\n            left, right = rps[0], rps[-1]\n        xl, xr = left.BubbleEnd.X, right.BubbleEnd.X\n        log('member planes: {0} x={1:.3f}  {2} x={3:.3f}'.format(left.Name, xl, right.Name, xr))\n        kinds = {}\n        for e in FilteredElementCollector(fdoc).WhereElementIsNotElementType():\n            if isinstance(e, (GenericForm, FreeFormElement)):\n                kinds[e.GetType().Name] = kinds.get(e.GetType().Name, 0) + 1\n        log('template geometry: {0}'.format(kinds))\n        t = Transaction(fdoc, 'CAD2BIM concrete beam')\n        t.Start()\n        fm = fdoc.FamilyManager\n        # delete the steel geometry\n        for e in list(FilteredElementCollector(fdoc).WhereElementIsNotElementType()):\n            if isinstance(e, (GenericForm, FreeFormElement)):\n                try:\n                    fdoc.Delete(e.Id)\n                except Exception:\n                    pass\n        # rectangle on Member Left: top at the reference level, centred on the member axis\n        sp = SketchPlane.Create(fdoc, left.Id)\n        b, h = B * MMF, H * MMF\n        pts = [XYZ(xl, -b / 2, 0), XYZ(xl, b / 2, 0), XYZ(xl, b / 2, -h), XYZ(xl, -b / 2, -h)]\n        loop = CurveArray()\n        for i in range(4):\n            loop.Append(Line.CreateBound(pts[i], pts[(i + 1) % 4]))\n        prof = CurveArrArray()\n        prof.Append(loop)\n        nz = sp.GetPlane().Normal.X\n        depth = (xr - xl) * (1.0 if nz > 0 else -1.0)\n        new = fdoc.FamilyCreate.NewExtrusion(True, prof, sp, depth)\n        fdoc.Regenerate()\n        try:\n            fp = fm.get_Parameter('Structural Material')\n            if fp is not None:\n                fm.AssociateElementParameterToFamilyParameter(new.get_Parameter(BuiltInParameter.MATERIAL_ID_PARAM), fp)\n        except Exception as ex:\n            log('material link skipped: ' + str(ex))\n        # lock both ends to Member Left / Right\n        opt = Options()\n        opt.ComputeReferences = True\n        faces = []\n        for g in new.get_Geometry(opt):\n            if isinstance(g, Solid):\n                for fc in g.Faces:\n                    if isinstance(fc, PlanarFace) and abs(fc.FaceNormal.X) > 0.99:\n                        faces.append(fc)\n        view = None\n        for v in FilteredElementCollector(fdoc).OfClass(ViewPlan):\n            if not v.IsTemplate:\n                view = v\n                break\n        locked = []\n        for rp, x in ((left, xl), (right, xr)):\n            for fc in faces:\n                if abs(fc.Origin.X - x) < 1e-4:\n                    try:\n                        fdoc.FamilyCreate.NewAlignment(view, rp.GetReference(), fc.Reference)\n                        locked.append(rp.Name)\n                    except Exception as ex:\n                        log('lock {0}: {1}'.format(rp.Name, ex))\n        log('beam ends locked to: {0}'.format(locked))\n        if right.Name not in locked:\n            raise Exception('could not lock the beam end to \"{0}\"'.format(right.Name))\n        try:\n            fdoc.OwnerFamily.StructuralMaterialType = StructuralMaterialType.Concrete\n        except Exception:\n            pass\n        types = list(fm.Types)\n        for ft in types[1:]:\n            fm.CurrentType = ft\n            fm.DeleteCurrentType()\n        fm.CurrentType = types[0]\n        fm.RenameCurrentType('{0}x{1}'.format(f(B), f(H)))\n        t.Commit()\n        so = SaveAsOptions()\n        so.OverwriteExistingFile = True\n        fdoc.SaveAs(path, so)\n    finally:\n        try:\n            if t is not None and t.HasStarted() and not t.HasEnded():\n                t.RollBack()\n        except Exception:\n            pass\n        fdoc.Close(False)\n    log('saved ' + path)\n    return path\n\n\ndef _catid(bic):\n    if bic not in _CAT:\n        _CAT[bic] = idv(Category.GetCategory(doc, bic).Id)\n    return _CAT[bic]\n\n\ndef beam_type(B, H, prefix):\n    \"\"\"type for a B x H concrete beam named '<prefix> BxH' (transaction must be open)\"\"\"\n    base = concrete_beam_base()\n    if base is not None:\n        return sized_type(base, '{0} {1}x{2}'.format(prefix, f(B), f(H)), (B, H), BEAM_PARAMS)\n    fam = gen_family(B, H)\n    if fam is None:\n        doc.LoadFamily(os.path.join(FAM_DIR, GEN_PREFIX + '{0}x{1}.rfa'.format(f(B), f(H))))\n        fam = gen_family(B, H)\n        if fam is None:\n            raise Exception('beam family {0}x{1} could not be loaded'.format(f(B), f(H)))\n    sym0 = doc.GetElement(list(fam.GetFamilySymbolIds())[0])\n    name = '{0} {1}x{2}'.format(prefix, f(B), f(H))\n    for sid in fam.GetFamilySymbolIds():\n        s = doc.GetElement(sid)\n        if tname(s) == name:\n            break\n    else:\n        s = sym0.Duplicate(name)\n    if not s.IsActive:\n        s.Activate()\n    try:\n        mats = [m for m in FilteredElementCollector(doc).OfClass(Material) if 'CONCRETE' in m.Name.upper()]\n        mats.sort(key=lambda m: (('CAST' not in m.Name.upper()), len(m.Name)))\n        if mats:\n            setp(s, BuiltInParameter.STRUCTURAL_MATERIAL_PARAM, mats[0].Id)\n    except Exception:\n        pass\n    return s\n\n\ndef prepare_beam_families(sizes):\n    \"\"\"build the .rfa files BEFORE any model transaction (EditFamily needs none open)\"\"\"\n    if concrete_beam_base() is not None:\n        return 'existing concrete beam family \"{0}\"'.format(concrete_beam_base().Family.Name)\n    built = []\n    for B, H in sorted(set(sizes)):\n        if gen_family(B, H) is None:\n            build_beam_rfa(B, H)\n            built.append('{0}x{1}'.format(f(B), f(H)))\n    return 'generated concrete beam families ' + (', '.join(built) if built else '(already in project)')\n\n\ndef workset_for(keys):\n    if not doc.IsWorkshared:\n        return None\n    for ws in FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset):\n        n = ws.Name.upper()\n        if any(k in n for k in keys):\n            return ws.Id.IntegerValue\n    return None\n\n\ndef put_ws(e, wid):\n    if wid is not None:\n        try:\n            setp(e, BuiltInParameter.ELEM_PARTITION_PARAM, wid)\n        except Exception:\n            pass\n\n\ndef lvl(e, bip):\n    p = e.get_Parameter(bip)\n    return doc.GetElement(p.AsElementId()) if p is not None else None\n\n\ndef pval(e, bip):\n    p = e.get_Parameter(bip)\n    return p.AsDouble() if p is not None else 0.0\n\n\nCOL_PARAMS = [('b', 'h'), ('Width', 'Depth'), ('Width', 'Length')]\nTAGS = ('CAD2BIM-FTG', 'CAD2BIM-PB', 'CAD2BIM-TB')\nM3 = 0.3048 ** 3\n\n\ndef col_size(c):\n    \"\"\"column section (mm) from its type parameters, else from its bounding box\"\"\"\n    sym = c.Symbol\n    ps = params_of(sym, COL_PARAMS)\n    if ps:\n        return sym.LookupParameter(ps[0]).AsDouble() / MMF, sym.LookupParameter(ps[1]).AsDouble() / MMF\n    bb = c.get_BoundingBox(None)\n    return (bb.Max.X - bb.Min.X) / MMF, (bb.Max.Y - bb.Min.Y) / MMF\n\n\ndef vol(e):\n    p = e.get_Parameter(BuiltInParameter.HOST_VOLUME_COMPUTED)\n    return p.AsDouble() * M3 if p is not None else 0.0\n\n\ndef tagged(e):\n    p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n    return (p.AsString() or '') if p is not None else ''\n\n\ntry:\n    FL, FB, FT, F_PROJ = num(IN[0], 600), num(IN[1], 600), num(IN[2], 500), num(IN[3], 150)\n    F_ANG = num(IN[4]); F_FOLLOW = bool(IN[5]); DO_F = bool(IN[6])\n    PB_B, PB_H, PB_OFF = num(IN[7], 300), num(IN[8], 600), num(IN[9]); DO_PB = bool(IN[10])\n    TB_B, TB_H = num(IN[11], 300), num(IN[12], 450); DO_TB = bool(IN[13])\n    SPAN = num(IN[14], 10000)\n    SB_B, SB_H = num(IN[15], 300), num(IN[16], 450); DO_SB = bool(IN[17])\n    DO_MARK = bool(IN[18]); DO_REMOVE = bool(IN[19])\n    log('inputs: F {0}x{1}x{2} proj {3} ang {4} follow {5} ({6}) | PB {7}x{8} off {9} ({10}) | TB {11}x{12} ({13}) | '\n        'span {14} | SEL {15}x{16} ({17}) | marks {18} | remove {19}'.format(\n            FL, FB, FT, F_PROJ, F_ANG, F_FOLLOW, DO_F, PB_B, PB_H, PB_OFF, DO_PB, TB_B, TB_H, DO_TB,\n            SPAN, SB_B, SB_H, DO_SB, DO_MARK, DO_REMOVE))\n\n    # ---------------- REMOVE (reset) everything this tool created\n    if DO_REMOVE:\n        dead = [e for bic in (BuiltInCategory.OST_StructuralFoundation, BuiltInCategory.OST_StructuralFraming)\n                for e in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType()\n                if tagged(e) in TAGS]\n        TransactionManager.Instance.EnsureInTransaction(doc)\n        for e in dead:\n            doc.Delete(e.Id)\n        TransactionManager.Instance.TransactionTaskDone()\n        out.extend(['CAD2BIM BEAMS + FOOTINGS  -  REMOVED',\n                    '{0} footings / beams made by this tool were deleted.'.format(len(dead)),\n                    'Set \"Remove\" back to False before the next Run.'])\n        raise StopIteration\n\n    # ---------------- columns\n    cols = []\n    for c in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralColumns).WhereElementIsNotElementType():\n        if not isinstance(c, FamilyInstance) or not hasattr(c.Location, 'Point'):\n            continue                                   # slanted columns are skipped\n        bl, tl = lvl(c, BuiltInParameter.FAMILY_BASE_LEVEL_PARAM), lvl(c, BuiltInParameter.FAMILY_TOP_LEVEL_PARAM)\n        if bl is None or tl is None:\n            continue\n        p = c.Location.Point\n        cb, ch = col_size(c)\n        cols.append({'e': c, 'id': idv(c.Id), 'x': p.X / MMF, 'y': p.Y / MMF, 'ang': angle_of(c),\n                     'bl': bl, 'tl': tl, 'cb': cb, 'ch': ch,\n                     'bot': bl.ProjectElevation + pval(c, BuiltInParameter.FAMILY_BASE_LEVEL_OFFSET_PARAM),\n                     'top': tl.ProjectElevation + pval(c, BuiltInParameter.FAMILY_TOP_LEVEL_OFFSET_PARAM)})\n    if not cols:\n        raise Exception('No vertical structural columns in the model - place columns first.')\n\n    foots = [e for e in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralFoundation)\n             .WhereElementIsNotElementType() if isinstance(e, FamilyInstance) and hasattr(e.Location, 'Point')]\n    beams = [e for e in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralFraming)\n             .WhereElementIsNotElementType() if isinstance(e, FamilyInstance) and hasattr(e.Location, 'Curve')]\n\n    def foot_at(cx, cy):\n        best, bd = None, MATCH_TOL\n        for e in foots:\n            p = e.Location.Point\n            d = math.hypot(p.X / MMF - cx, p.Y / MMF - cy)\n            if d < bd:\n                best, bd = e, d\n        return best\n\n    # ---------------- grid frame (works for rotated grids too) + reading order for marks\n    votes = {}\n    for c in cols:\n        a = round((c['ang'] % 90.0) * 2) / 2.0\n        a = 0.0 if a >= 89.75 else a\n        votes[a] = votes.get(a, 0) + 1\n    th = math.radians(max(votes, key=votes.get))\n    ct, st = math.cos(th), math.sin(th)\n    U = lambda x, y: x * ct + y * st\n    V = lambda x, y: -x * st + y * ct\n    order = lambda x, y: (round(-V(x, y) / 500.0), U(x, y))      # top row first, left to right\n\n    # ---------------- scope from the Revit selection\n    sel = [doc.GetElement(i) for i in uidoc.Selection.GetElementIds()]\n    sel_cols = set(idv(e.Id) for e in sel if cat_is(e, BuiltInCategory.OST_StructuralColumns))\n    for e in sel:\n        if cat_is(e, BuiltInCategory.OST_StructuralFoundation) and hasattr(e.Location, 'Point'):\n            p = e.Location.Point\n            for c in cols:\n                if math.hypot(c['x'] - p.X / MMF, c['y'] - p.Y / MMF) < 300:\n                    sel_cols.add(c['id'])\n    sel_beams = [e for e in sel if cat_is(e, BuiltInCategory.OST_StructuralFraming)]\n    if sel_cols:\n        scope, scope_txt = [c for c in cols if c['id'] in sel_cols], '{0} selected column(s)'\n    elif sel:\n        scope, scope_txt = [], 'selection has no columns - only \"Resize selected beams\" runs'\n    else:\n        scope, scope_txt = cols, 'ALL {0} columns'\n    scope_txt = scope_txt.format(len(scope))\n    in_scope = set(c['id'] for c in scope)\n    full = len(scope) == len(cols)\n\n    # ---------------- beam families first (family editing needs no open model transaction)\n    sizes = []\n    if DO_PB and scope:\n        sizes.append((PB_B, PB_H))\n    if DO_TB and scope:\n        sizes.append((TB_B, TB_H))\n    if DO_SB and sel_beams:\n        sizes.append((SB_B, SB_H))\n    fam_note = ''\n    if sizes:\n        TransactionManager.Instance.ForceCloseTransaction()\n        try:\n            fam_note = prepare_beam_families(sizes)\n        except Exception as ex:                     # beams fail -> footings still run\n            log(traceback.format_exc())\n            fam_note = ('BEAMS SKIPPED - ' + str(ex) + '. Load a concrete beam family '\n                        '(Insert > Load Autodesk Family > \"Concrete-Rectangular Beam\") and Run again.')\n            DO_PB = DO_TB = DO_SB = False\n        log(fam_note)\n\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    report = []\n    touched = {'F': [], 'PB': [], 'TB': [], 'SEL': []}\n\n    def fix_footing(e, c, ang):\n        \"\"\"rotate about the COLUMN axis, then snap: centre under the column, top at column bottom\"\"\"\n        doc.Regenerate()\n        axis = Line.CreateBound(XYZ(c['x'] * MMF, c['y'] * MMF, 0), XYZ(c['x'] * MMF, c['y'] * MMF, 1))\n        d = (ang - angle_of(e) + 180.0) % 360.0 - 180.0\n        if abs(d) > 0.01:\n            ElementTransformUtils.RotateElement(doc, e.Id, axis, math.radians(d))\n            doc.Regenerate()\n        bb = e.get_BoundingBox(None)\n        mv = XYZ(c['x'] * MMF - (bb.Min.X + bb.Max.X) / 2.0,\n                 c['y'] * MMF - (bb.Min.Y + bb.Max.Y) / 2.0,\n                 c['bot'] - bb.Max.Z)\n        if mv.GetLength() > 1.0 * MMF:\n            ElementTransformUtils.MoveElement(doc, e.Id, mv)\n\n    # ---------------- FOOTINGS\n    if DO_F and scope:\n        fsym = find_symbol(BuiltInCategory.OST_StructuralFoundation, FOOT_NAMES, FOOT_PARAMS, 'isolated footing')\n        wid = workset_for(['FOOT', 'FDN', 'FOUNDATION'])\n        made = upd = grown = stray = 0\n        # footings made by this tool that are no longer under any column -> remove\n        for e in list(foots):\n            if tagged(e) == 'CAD2BIM-FTG':\n                p = e.Location.Point\n                if min(math.hypot(c['x'] - p.X / MMF, c['y'] - p.Y / MMF) for c in cols) > 300:\n                    doc.Delete(e.Id)\n                    foots.remove(e)\n                    stray += 1\n        types = {}\n        for c in sorted(scope, key=lambda c: order(c['x'], c['y'])):\n            need = max(c['cb'], c['ch']) + 2.0 * F_PROJ          # never smaller than column + projection\n            L, B = max(FL, need), max(FB, need)\n            if L > FL or B > FB:\n                grown += 1\n            ftype = sized_type(fsym, 'F {0}x{1}x{2}'.format(f(L), f(B), f(FT)), (L, B, FT), FOOT_PARAMS)\n            types[tname(ftype)] = types.get(tname(ftype), 0) + 1\n            e = foot_at(c['x'], c['y'])\n            if e is None:\n                e = doc.Create.NewFamilyInstance(XYZ(c['x'] * MMF, c['y'] * MMF, c['bot']), ftype, c['bl'],\n                                                 StructuralType.Footing)\n                comment(e, 'CAD2BIM-FTG')\n                put_ws(e, wid)\n                foots.append(e)\n                made += 1\n            else:\n                if idv(e.Symbol.Id) != idv(ftype.Id):\n                    e.Symbol = ftype\n                upd += 1\n            fix_footing(e, c, (c['ang'] + F_ANG) if F_FOLLOW else F_ANG)\n            touched['F'].append(e)\n        report.append(('FOOTINGS', made, upd, types,\n                       'centred under each column, top at column bottom, angle = {0}{1}'.format(\n                           'column + ' if F_FOLLOW else '', '{0:.0f} deg'.format(F_ANG)) +\n                       ('; {0} enlarged to keep {1:.0f} mm projection'.format(grown, F_PROJ) if grown else '') +\n                       ('; {0} misplaced old footings removed'.format(stray) if stray else '')))\n\n    # ---------------- GRID BEAMS\n    def pairs(group):\n        res = set()\n        uv = [(U(c['x'], c['y']), V(c['x'], c['y']), c) for c in group]\n        for axis in (0, 1):\n            for a in uv:\n                best, bd = None, None\n                for b in uv:\n                    along, across = b[axis] - a[axis], abs(b[1 - axis] - a[1 - axis])\n                    if along > 300 and across <= ALIGN_TOL and (bd is None or along < bd):\n                        best, bd = b, along\n                if best is not None and bd <= SPAN and a[2]['id'] in in_scope and best[2]['id'] in in_scope:\n                    res.add(tuple(sorted([a[2]['id'], best[2]['id']])))\n        return res\n\n    byid = dict((c['id'], c) for c in cols)\n\n    def beam_between(ca, cb, z):\n        for e in beams:\n            cv = e.Location.Curve\n            p0, p1 = cv.GetEndPoint(0), cv.GetEndPoint(1)\n            if abs((p0.Z + p1.Z) / 2.0 - z) / MMF > 600:\n                continue\n            for s, t in ((p0, p1), (p1, p0)):\n                if math.hypot(s.X / MMF - ca['x'], s.Y / MMF - ca['y']) < MATCH_TOL and \\\n                        math.hypot(t.X / MMF - cb['x'], t.Y / MMF - cb['y']) < MATCH_TOL:\n                    return e\n        return None\n\n    def do_beams(key, title, B, H, prefix, tag, keyf, zf, levelf, offf, ws_keys):\n        btype = beam_type(B, H, prefix)\n        wid = workset_for(ws_keys) or workset_for(['BEAM', 'FRAMING'])\n        groups = {}\n        for c in cols:\n            groups.setdefault(keyf(c), []).append(c)\n        made = upd = 0\n        for g in groups.values():\n            for i, j in sorted(pairs(g)):\n                ca, cb = byid[i], byid[j]\n                z = zf(ca)\n                e = beam_between(ca, cb, z)\n                if e is None:\n                    ln = Line.CreateBound(XYZ(ca['x'] * MMF, ca['y'] * MMF, z), XYZ(cb['x'] * MMF, cb['y'] * MMF, z))\n                    e = doc.Create.NewFamilyInstance(ln, btype, levelf(ca), StructuralType.Beam)\n                    setp(e, BuiltInParameter.STRUCTURAL_BEAM_END0_ELEVATION, offf(ca))\n                    setp(e, BuiltInParameter.STRUCTURAL_BEAM_END1_ELEVATION, offf(ca))\n                    comment(e, tag)\n                    put_ws(e, wid)\n                    beams.append(e)\n                    made += 1\n                else:\n                    if idv(e.Symbol.Id) != idv(btype.Id):\n                        e.Symbol = btype\n                    upd += 1\n                touched[key].append(e)\n        report.append((title, made, upd, {tname(btype): made + upd}, 'column centre to column centre, both grid directions'))\n\n    if DO_PB and scope:\n        do_beams('PB', 'PLINTH BEAMS', PB_B, PB_H, 'PB', 'CAD2BIM-PB',\n                 lambda c: idv(c['bl'].Id),\n                 lambda c: c['bl'].ProjectElevation + PB_OFF * MMF,\n                 lambda c: c['bl'],\n                 lambda c: PB_OFF * MMF, ['PLINTH'])\n    if DO_TB and scope:\n        do_beams('TB', 'TOP BEAMS', TB_B, TB_H, 'B', 'CAD2BIM-TB',\n                 lambda c: round(c['top'] / MMF / 25.0),\n                 lambda c: c['top'],\n                 lambda c: c['tl'],\n                 lambda c: c['top'] - c['tl'].ProjectElevation, ['BEAM', 'FRAMING'])\n\n    # ---------------- RESIZE SELECTED BEAMS\n    if DO_SB:\n        types, n = {}, 0\n        for e in sel_beams:\n            t = beam_type(SB_B, SB_H, 'B')\n            if idv(e.Symbol.Id) != idv(t.Id):\n                e.Symbol = t\n            types[tname(t)] = types.get(tname(t), 0) + 1\n            touched['SEL'].append(e)\n            n += 1\n        report.append(('SELECTED BEAMS', 0, n, types,\n                       'resized' if n else 'no beams selected - select beams in Revit first'))\n\n    # ---------------- MARKS  F1.. / PB1.. / B1..  (only when the whole model is in scope)\n    if DO_MARK and full:\n        def mid(e):\n            if hasattr(e.Location, 'Point'):\n                p = e.Location.Point\n            else:\n                cv = e.Location.Curve\n                p = cv.Evaluate(0.5, True)\n            return order(p.X / MMF, p.Y / MMF)\n        for key, pre in (('F', 'F'), ('PB', 'PB'), ('TB', 'B')):\n            for k, e in enumerate(sorted(touched[key], key=mid)):\n                setp(e, BuiltInParameter.ALL_MODEL_MARK, '{0}{1}'.format(pre, k + 1))\n\n    doc.Regenerate()\n    TransactionManager.Instance.TransactionTaskDone()\n\n    # ---------------- REPORT\n    keymap = {'FOOTINGS': 'F', 'PLINTH BEAMS': 'PB', 'TOP BEAMS': 'TB', 'SELECTED BEAMS': 'SEL'}\n    out.append('CAD2BIM BEAMS + FOOTINGS  -  DONE')\n    out.append('Scope : ' + scope_txt)\n    total = 0.0\n    for title, made, upd, types, note in report:\n        v = sum(vol(e) for e in touched[keymap[title]])\n        total += v\n        out.append('{0:<15}: {1} new, {2} updated  |  concrete {3:.2f} m3'.format(title, made, upd, v))\n        for t in sorted(types):\n            out.append('    {0:<22} x {1}'.format(t, types[t]))\n        out.append('    ' + note)\n    out.append('TOTAL CONCRETE : {0:.2f} m3'.format(total))\n    if fam_note:\n        out.append('Beam family  : ' + fam_note)\n    if DO_MARK and not full:\n        out.append('(marks not renumbered - only part of the model was in scope)')\n    out.append('Save / Sync with Central to keep the changes.')\nexcept StopIteration:\n    pass\nexcept Exception as ex:\n    try:\n        TransactionManager.Instance.ForceCloseTransaction()\n    except Exception:\n        pass\n    out.insert(0, 'FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "64839210f0334d1591b9a0b7d9cf9dd1",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "d7bb5526b56849fea6a115628fb895d6",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c7bd445458b84b53bb5b34a96775cdce",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7f5e1c7d65c04e00a958157c484add18",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4e8c0f962b834267b04ad1acd4eeb30a",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "76475ee814ac4d6f85c2ba1998c3c383",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a20a5df9a7c74a88b1e2208479a2dc35",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d1176e5444fc430089655752097ae8c7",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "eff1c19ea9424af5929e0e5f63822e72",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b72b9b4204f943d9bc237abb30661f2f",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a37b004c3dad425bb2f57712766c2d14",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "777d73219db34138bfd89648ab5f39ec",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f805a46b608144e6a2659e0b4973c00e",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3122db6f260a4422b80913aac575e5ff",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "845508940234452d9d723e88b3d737f5",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ade36a651339404d9a12d72a31905536",
+          "Name": "IN[14]",
+          "Description": "Input #14",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "63b11cc587544d3f8ec2cb513eaafe28",
+          "Name": "IN[15]",
+          "Description": "Input #15",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "da02709b1d99483d8503a844ec8641dc",
+          "Name": "IN[16]",
+          "Description": "Input #16",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "82747d17d2aa405a9e806d9359ee3ddc",
+          "Name": "IN[17]",
+          "Description": "Input #17",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "12e6ba3610034797998738ad325f352c",
+          "Name": "IN[18]",
+          "Description": "Input #18",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c14955f2835f49f0b51c7beb45e9676c",
+          "Name": "IN[19]",
+          "Description": "Input #19",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0f2e4d93b69843068a1ac8be39c96eee",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 420.0,
+      "Id": "e0847b7865da42e58b431b61ee55ccbb",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "a7829dbeeb414a489d31160cd55d847b",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "219bf66023134411a5f8dc2921ff1cef",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0ab4a4f9ce494b22a79d95e5260f099b",
+      "End": "d7bb5526b56849fea6a115628fb895d6",
+      "Id": "7d6451ef9bd84b58a719e9fba3f5b07c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "08500e8efd22432ba0f4519e5a81b0d0",
+      "End": "c7bd445458b84b53bb5b34a96775cdce",
+      "Id": "cc9fb58939b64e9a808b270b343f353b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fefd95649b034762b614b6d41a027eae",
+      "End": "7f5e1c7d65c04e00a958157c484add18",
+      "Id": "9708900932cf4745942171eea7ba413c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f524e59ccbc2419caac73684014f0048",
+      "End": "4e8c0f962b834267b04ad1acd4eeb30a",
+      "Id": "be6625d0f57a43d4881c5c7292079bcb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e034b178750a4935934888e143e5e58b",
+      "End": "76475ee814ac4d6f85c2ba1998c3c383",
+      "Id": "36f40735ee6f4060b22a7d3ce53d834b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ffc32030b2094f1092ac4a5ecaf7d15b",
+      "End": "a20a5df9a7c74a88b1e2208479a2dc35",
+      "Id": "cfde60a8942b4b3f826257fba6992b09",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "44c94386c79f4b39b22598b0cacd6c58",
+      "End": "d1176e5444fc430089655752097ae8c7",
+      "Id": "68b4903d4d3c40369b1f81b9c7798217",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0525f88b97f44524ba821e493a133672",
+      "End": "eff1c19ea9424af5929e0e5f63822e72",
+      "Id": "1bf7cb544ab84f60bf0cba6bb399bb0a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9b769acd3c5940bebba4a2f34dc09f9c",
+      "End": "b72b9b4204f943d9bc237abb30661f2f",
+      "Id": "581387b0091149df9e1d7f0056423e07",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2ec2d61c8f15499b83e7f8a61f7d45ad",
+      "End": "a37b004c3dad425bb2f57712766c2d14",
+      "Id": "9ca07d52fe914b238e75614f2f62d630",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "44a1c4021a834260aad6a89f90cde27a",
+      "End": "777d73219db34138bfd89648ab5f39ec",
+      "Id": "977e2d33d6ec46298c8827e7ff28c5e2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dc5c610e00414954ab965285ba0e7e62",
+      "End": "f805a46b608144e6a2659e0b4973c00e",
+      "Id": "e3d0c3b677b442c2be9bf4c1d413fc28",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ea1300174c2b41f4b15992f1de49d039",
+      "End": "3122db6f260a4422b80913aac575e5ff",
+      "Id": "9f096de08f654beb9a830bd8aea76584",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "79e10ada5c414a80aeaf2e5273a95d06",
+      "End": "845508940234452d9d723e88b3d737f5",
+      "Id": "fe6e978bff6042728153a83b0abd39eb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "78187b45703f41e7839269b286110960",
+      "End": "ade36a651339404d9a12d72a31905536",
+      "Id": "ed917687d3d14bd6a79600fb03866358",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "190b93c36b2b402fbfb60db90caec467",
+      "End": "63b11cc587544d3f8ec2cb513eaafe28",
+      "Id": "68737b32e97645cb844800aafa706313",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b7b5f2ae5196439ca55ec2d901879cf3",
+      "End": "da02709b1d99483d8503a844ec8641dc",
+      "Id": "0834e590f8784c7880366be6e058c5d2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c16d9a1dbfba4c308a93b6fb08370420",
+      "End": "82747d17d2aa405a9e806d9359ee3ddc",
+      "Id": "31bfa0ab48104e59aa7489dd27dd2b96",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "40c22cf1d0ac48019d21506559b787ff",
+      "End": "12e6ba3610034797998738ad325f352c",
+      "Id": "fad24f0d90a7481a9abbec598d8b5747",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1d0b2185bbf84295895ec939ecee07c4",
+      "End": "c14955f2835f49f0b51c7beb45e9676c",
+      "Id": "42563db7668a44ad818e20ac249ba3b1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0f2e4d93b69843068a1ac8be39c96eee",
+      "End": "a7829dbeeb414a489d31160cd55d847b",
+      "Id": "5aa6c1ad06dc4746a1ee3ab2a63ec00f",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "13952ec41c5b414eb8e8ad5bbc66a4a7",
+        "Name": "Length L (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "29d3cb379e0f48348f25612e01fc8447",
+        "Name": "Width B (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "46a58872d8034d3a88f1d3d6379845be",
+        "Name": "Thickness (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 270.0
+      },
+      {
+        "Id": "c8c7d23dc6cd4879a130b9e145a1d31f",
+        "Name": "Min projection beyond column (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 405.0
+      },
+      {
+        "Id": "2e42e64d246d4823a7cfd8ab28032d80",
+        "Name": "Angle (deg)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 540.0
+      },
+      {
+        "Id": "d3c53eaf156e454189e12b416ca1cb08",
+        "Name": "Follow column angle",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 675.0
+      },
+      {
+        "Id": "9b72ac36b19d43deb28224753e5a55ff",
+        "Name": "PLACE / UPDATE FOOTINGS",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 810.0
+      },
+      {
+        "Id": "dbff4f5b043045639a6bac3fb94365b7",
+        "Name": "Plinth beam b (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 460.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "dc89d5d79f6d482ba43d1bea25f64c1c",
+        "Name": "Plinth beam h (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 460.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "46c2560bf0184e57a61461e47b985e0f",
+        "Name": "Top offset from base level (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 460.0,
+        "Y": 270.0
+      },
+      {
+        "Id": "9bc71c832ab34e17bb4a206953a943e6",
+        "Name": "PLACE / UPDATE PLINTH BEAMS",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 460.0,
+        "Y": 405.0
+      },
+      {
+        "Id": "1127f6a691734155977dfc65d7ca351b",
+        "Name": "Top beam b (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 460.0,
+        "Y": 700.0
+      },
+      {
+        "Id": "4f2f730152ad41b592255719f7de928c",
+        "Name": "Top beam h (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 460.0,
+        "Y": 835.0
+      },
+      {
+        "Id": "8283d39eaa6a4e6c81c6b8fb1340aa7c",
+        "Name": "PLACE / UPDATE TOP BEAMS",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 460.0,
+        "Y": 970.0
+      },
+      {
+        "Id": "acba83ad6abb49b5b869a5c57663ce92",
+        "Name": "Max beam span (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 920.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "3ac4c04d001e4dcc8470dd716050de90",
+        "Name": "Selected beam b (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 920.0,
+        "Y": 340.0
+      },
+      {
+        "Id": "1ba41e21b5ea4d098181ba096a40cbf7",
+        "Name": "Selected beam h (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 920.0,
+        "Y": 475.0
+      },
+      {
+        "Id": "8f9002de4bab416d8f819150ab512170",
+        "Name": "RESIZE SELECTED BEAMS",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 920.0,
+        "Y": 610.0
+      },
+      {
+        "Id": "8b36a6e1e974440ca7b2d504224a16a9",
+        "Name": "Number marks F1.. PB1.. B1..",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 920.0,
+        "Y": 840.0
+      },
+      {
+        "Id": "09f74001ef2247569b9fcf4822d77698",
+        "Name": "REMOVE all footings / beams made by this tool",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 920.0,
+        "Y": 975.0
+      },
+      {
+        "Id": "64839210f0334d1591b9a0b7d9cf9dd1",
+        "Name": "CAD2BIM  Beams + Footings  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1450.0,
+        "Y": 250.0
+      },
+      {
+        "Id": "e0847b7865da42e58b431b61ee55ccbb",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1450.0,
+        "Y": 900.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "d1c389462a6742329b35802ebb75bc8b",
+        "Title": "1  FOOTINGS  (under every column)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "13952ec41c5b414eb8e8ad5bbc66a4a7",
+          "29d3cb379e0f48348f25612e01fc8447",
+          "46a58872d8034d3a88f1d3d6379845be",
+          "c8c7d23dc6cd4879a130b9e145a1d31f",
+          "2e42e64d246d4823a7cfd8ab28032d80",
+          "d3c53eaf156e454189e12b416ca1cb08",
+          "9b72ac36b19d43deb28224753e5a55ff"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 420.0,
+        "Height": 1080.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 985.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "0381d92ae39e47c3acabb2f925b7efb6",
+        "Title": "2  PLINTH BEAMS  (column to column, at base level)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "dbff4f5b043045639a6bac3fb94365b7",
+          "dc89d5d79f6d482ba43d1bea25f64c1c",
+          "46c2560bf0184e57a61461e47b985e0f",
+          "9bc71c832ab34e17bb4a206953a943e6"
+        ],
+        "HasNestedGroups": false,
+        "Left": 440.0,
+        "Top": -95.0,
+        "Width": 420.0,
+        "Height": 675.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 580.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "35fc53ea05e6452b913dfa2e6cdec365",
+        "Title": "3  TOP BEAMS  (column to column, at column top)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "1127f6a691734155977dfc65d7ca351b",
+          "4f2f730152ad41b592255719f7de928c",
+          "8283d39eaa6a4e6c81c6b8fb1340aa7c"
+        ],
+        "HasNestedGroups": false,
+        "Left": 440.0,
+        "Top": 605.0,
+        "Width": 420.0,
+        "Height": 540.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 700.0,
+        "InitialHeight": 445.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF9FDF8F"
+      },
+      {
+        "Id": "8c1d19dcf12a4bdb956acf50ed0a2b5e",
+        "Title": "4  OPTIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "acba83ad6abb49b5b869a5c57663ce92"
+        ],
+        "HasNestedGroups": false,
+        "Left": 900.0,
+        "Top": -95.0,
+        "Width": 420.0,
+        "Height": 270.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC8C8C8"
+      },
+      {
+        "Id": "11f78619195e43f98f18933694784f98",
+        "Title": "5  RESIZE SELECTED BEAMS  (select beams in Revit)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3ac4c04d001e4dcc8470dd716050de90",
+          "1ba41e21b5ea4d098181ba096a40cbf7",
+          "8f9002de4bab416d8f819150ab512170"
+        ],
+        "HasNestedGroups": false,
+        "Left": 900.0,
+        "Top": 245.0,
+        "Width": 420.0,
+        "Height": 540.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 340.0,
+        "InitialHeight": 445.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFD9C2F2"
+      },
+      {
+        "Id": "c8a9056478664290b2a9f0a508839369",
+        "Title": "6  MARKS + RESET",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "8b36a6e1e974440ca7b2d504224a16a9",
+          "09f74001ef2247569b9fcf4822d77698"
+        ],
+        "HasNestedGroups": false,
+        "Left": 900.0,
+        "Top": 745.0,
+        "Width": 420.0,
+        "Height": 405.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 840.0,
+        "InitialHeight": 310.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFD9D9"
+      },
+      {
+        "Id": "62fc7a18a6dc4f0082561e7ff9d5ad4f",
+        "Title": "7  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "64839210f0334d1591b9a0b7d9cf9dd1",
+          "e0847b7865da42e58b431b61ee55ccbb"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1430.0,
+        "Top": 155.0,
+        "Width": 700.0,
+        "Height": 1250.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 250.0,
+        "InitialHeight": 1100.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "35e30e1a39aa4306b85218923f8e8661",
+        "Title": "HOW TO USE\n1. In Revit select NOTHING = all columns, or select some columns / footings = only those.\n2. Set sizes in groups 1-3, switch PLACE / UPDATE on for what you want.\n3. Press Run (bottom left). Re-run any time - existing footings / beams are UPDATED, never duplicated.\n4. Change one beam: select it in Revit, use group 5.  Undo everything: group 6 REMOVE = True, Run.\nFooting is never smaller than column + projection.  Results: REPORT + %APPDATA%\\pyRevit\\CAD2BIM_dynamo_log.txt",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

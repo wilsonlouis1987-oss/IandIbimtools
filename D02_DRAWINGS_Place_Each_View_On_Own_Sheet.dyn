@@ -1,0 +1,586 @@
+{
+  "Uuid": "fd434193-e936-4305-98fe-a7af961d2a73",
+  "IsCustomNode": false,
+  "Description": "One view per sheet: filter views, number sheets, centre on the title block, auto scale. Shows a result message box.",
+  "Name": "Views_To_Sheets",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": false,
+      "Id": "fa9f846e4f3a4bd8a7a4ee771e9c7668",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e5aa0f7e9e3543eaace365fc906b4dca",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "False = create the sheets (default). True = list only"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": false,
+      "Id": "56cb18a4b3f84f4c8353e5572d1b9f6a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bbff5ae68ee640159da526e82b719075",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Only the views selected in the Project Browser"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "FloorPlan, CeilingPlan",
+      "Id": "0de9ababb2d14da1a7a8525b75660d9c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0f7c4a802e434109a9e9cf31e2d36a3a",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Comma list, in sheet order. All = every type"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "",
+      "Id": "2d0374d2c6364efaaf65f336fa64f925",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c26bb877a6a7455b9938003c5274b0f7",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "e.g. Level 1;Level 2;!Copy"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "",
+      "Id": "416aaf005b1e4cf8abdfd92b5bf8b856",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9f7e08a14ca24cf39383e6aeeb3da731",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Blank = title block of the active sheet"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "A-101",
+      "Id": "c18b7b333c834454887ac87206fc37e2",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8cb599d1852f4fa6a2fceb206621e0f2",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Counts up, used numbers are skipped"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Title on Sheet",
+      "Id": "7e3eeba11b95448486548ba00a913b46",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bd411723dbe64f5a897b90fea8af7d74",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Title on Sheet falls back to the view name"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Title w Line",
+      "Id": "efff8ec629c34d5ea5934e836cbef254",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d7c83bc3d4574db7b75afe0659bc4849",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Blank = project default"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "20, 130, 20, 20",
+      "Id": "8da8be1dedf8440398d01ac7b1ae8e95",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bb413d268a634cb38afa9f07573c175f",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Free drawing area inside the title block"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "f6830ad457724cccb30a9413863112c7",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c5360ce228d8474f9df530dfdf49b71d",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Largest standard scale that fits; template-locked scales are kept"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# -*- coding: utf-8 -*-\n\"\"\"\nVIEWS TO SHEETS - one view per sheet - Dynamo for Revit 2026 (Python Script node, CPython3)\n\nInputs (all exposed to Dynamo Player)\n  IN[0]  Preview only        False (default) = create the sheets\n                             True = only list what would happen, nothing changes\n                             A Revit message box shows the result after every run.\n  IN[1]  Use selected views  True = only the views selected in the Project Browser\n  IN[2]  View types          e.g. \"FloorPlan, CeilingPlan\"   \"All\" = every placeable type\n                             also: Section, Elevation, 3D, Drafting, Legend, Schedule, AreaPlan,\n                             Structural, Detail   (the order you type is the sheet order)\n  IN[3]  Name contains       blank = all; several separated by ;   e.g. \"Level 1;Level 2\"\n                             start a word with ! to exclude it      e.g. \"!Copy;!Working\"\n  IN[4]  Title block         part of the title block name, e.g. \"SD_A1\"\n                             blank = title block of the active sheet (else the first one loaded)\n  IN[5]  First sheet number  e.g. \"A-101\"  -> A-101, A-102 ... (numbers already used are skipped)\n  IN[6]  Sheet name from     \"Title on Sheet\" (falls back to the view name) or \"View name\"\n  IN[7]  Viewport type       e.g. \"Title w Line\"  (blank = project default)\n  IN[8]  Margins mm          \"left, right, top, bottom\" of the free drawing area inside the title block\n                             e.g. \"20, 130, 20, 20\"  (right = width of the title strip + gap)\n  IN[9]  Auto scale          True = choose the largest standard scale that fits the drawing area\n                             (views whose scale is locked by a view template are left as they are)\nOutput  OUT = log (preview or result)\n\nRules: view templates, sheets and system views are never placed; views already on a sheet are skipped;\neach sheet is created in its own sub-transaction, so one failing view never blocks the others.\n\"\"\"\nimport re\n\n# ---------------------------------------------------------------- settings you may edit\nUPPERCASE_SHEET_NAMES = True\nSKIP_ALREADY_PLACED = True\nSORT_PLANS_BY_LEVEL = True          # plans of the same type ordered by level elevation, then name\nADD_PLAN_TYPE_TO_NAME = True        # \"Level 2\" -> \"LEVEL 2 - FLOOR PLAN\" / \"LEVEL 2 - REFLECTED CEILING PLAN\"\nPLAN_LABELS = {\"FloorPlan\": \"Floor Plan\", \"CeilingPlan\": \"Reflected Ceiling Plan\", \"AreaPlan\": \"Area Plan\",\n               \"EngineeringPlan\": \"Structural Plan\", \"ThreeD\": \"3D View\"}\nCOPY_FROM_ACTIVE_SHEET =[\"Approved By\", \"Designed By\", \"Checked By\", \"Drawn By\", \"Sheet Issue Date\"]\nSTANDARD_SCALES = [1, 2, 5, 10, 20, 25, 50, 75, 100, 125, 150, 200, 250, 300, 400, 500, 750,\n                   1000, 1250, 2000, 2500, 5000]\nTYPE_ALIASES = {\n    \"all\": None, \"plan\": \"FloorPlan\", \"plans\": \"FloorPlan\", \"floorplan\": \"FloorPlan\", \"floor\": \"FloorPlan\",\n    \"rcp\": \"CeilingPlan\", \"ceiling\": \"CeilingPlan\", \"ceilingplan\": \"CeilingPlan\",\n    \"section\": \"Section\", \"sections\": \"Section\", \"elevation\": \"Elevation\", \"elevations\": \"Elevation\",\n    \"3d\": \"ThreeD\", \"threed\": \"ThreeD\", \"drafting\": \"DraftingView\", \"draftingview\": \"DraftingView\",\n    \"legend\": \"Legend\", \"legends\": \"Legend\", \"schedule\": \"Schedule\", \"schedules\": \"Schedule\",\n    \"area\": \"AreaPlan\", \"areaplan\": \"AreaPlan\", \"structural\": \"EngineeringPlan\",\n    \"engineeringplan\": \"EngineeringPlan\", \"detail\": \"Detail\", \"details\": \"Detail\",\n}\nPLACEABLE = [\"FloorPlan\", \"CeilingPlan\", \"EngineeringPlan\", \"AreaPlan\", \"Section\", \"Elevation\", \"Detail\",\n             \"ThreeD\", \"DraftingView\", \"Legend\", \"Schedule\"]\nMM = 1.0 / 304.8\n\n\ndef _change_type(el, type_id):\n    \"\"\"el.ChangeTypeId(type_id) with a fallback: in Dynamo CPython3 (pythonnet) the call can fail to resolve.\"\"\"\n    try:\n        el.ChangeTypeId(type_id)\n        return\n    except Exception:\n        pass\n    from Autodesk.Revit.DB import BuiltInParameter\n    el.get_Parameter(BuiltInParameter.ELEM_TYPE_PARAM).Set(type_id)\n\n\ndef _valid_types(doc, el):\n    \"\"\"_valid_types(doc, el) with a fallback: in Dynamo CPython3 (pythonnet) the call can fail to resolve.\"\"\"\n    try:\n        return list(el.GetValidTypes())\n    except Exception:\n        pass\n    from Autodesk.Revit.DB import FilteredElementCollector, ElementType\n    cur = doc.GetElement(el.GetTypeId())\n    fam = cur.FamilyName if cur is not None else \"Viewport\"\n    out = []\n    for t in FilteredElementCollector(doc).OfClass(ElementType):\n        try:\n            if t.FamilyName == fam:\n                out.append(t.Id)\n        except Exception:\n            pass\n    return out\n\n\ndef views_to_sheets(doc, uidoc, cfg, apply_changes, say):\n    from Autodesk.Revit.DB import (FilteredElementCollector, View, ViewType, ViewSheet, ViewSchedule,\n                                   Viewport, ScheduleSheetInstance, BuiltInCategory, BuiltInParameter,\n                                   ElementId, XYZ, SubTransaction, ElementTransformUtils, Element,\n                                   StorageType, ViewPlan)\n\n    def nm(e):\n        \"\"\"Element / type name - works in IronPython and in Dynamo CPython3 (pythonnet cannot read ElementType.Name directly).\"\"\"\n        for get in (lambda: Element.Name.GetValue(e), lambda: Element.Name.__get__(e), lambda: e.Name):\n            try:\n                n = get()\n                if n:\n                    return n\n            except Exception:\n                pass\n        for bip in (BuiltInParameter.SYMBOL_NAME_PARAM, BuiltInParameter.ALL_MODEL_TYPE_NAME, BuiltInParameter.VIEW_NAME):\n            try:\n                p = e.get_Parameter(bip)\n                if p is not None and p.AsString():\n                    return p.AsString()\n            except Exception:\n                pass\n        return \"\"\n\n    def natural(s):\n        return [int(t) if t.isdigit() else t.lower() for t in re.split(r'(\\d+)', s or \"\")]\n\n    # ---------------- inputs\n    raw_types = [t.strip() for t in re.split(r'[,;]', str(cfg[\"types\"] or \"All\")) if t.strip()]\n    wanted = []\n    for t in raw_types:\n        key = t.lower().replace(\" \", \"\")\n        if key == \"all\":\n            wanted = list(PLACEABLE)\n            break\n        name = TYPE_ALIASES.get(key, t)\n        if name not in PLACEABLE:\n            say(\"WARN   unknown view type '%s' - use one of: %s\" % (t, \", \".join(PLACEABLE)))\n            continue\n        if name not in wanted:\n            wanted.append(name)\n    if not wanted:\n        say(\"STOP   no valid view type given\")\n        return\n    type_order = dict((getattr(ViewType, n), i) for i, n in enumerate(wanted))\n    type_names = dict((getattr(ViewType, n), n) for n in PLACEABLE)\n    words = [w.strip() for w in str(cfg[\"contains\"] or \"\").split(\";\") if w.strip()]\n    include = [w.lower() for w in words if not w.startswith(\"!\")]\n    exclude = [w[1:].lower() for w in words if w.startswith(\"!\") and len(w) > 1]\n\n    # ---------------- candidate views\n    if cfg[\"selected\"]:\n        pool = [doc.GetElement(i) for i in uidoc.Selection.GetElementIds()]\n        pool = [v for v in pool if isinstance(v, View)]\n        if not pool:\n            say(\"STOP   'Use selected views' is True but no views are selected in the Project Browser\")\n            return\n    else:\n        pool = list(FilteredElementCollector(doc).OfClass(View))\n    placed = set(vp.ViewId.Value for vp in FilteredElementCollector(doc).OfClass(Viewport))\n    placed |= set(s.ScheduleId.Value for s in FilteredElementCollector(doc).OfClass(ScheduleSheetInstance))\n    views, skipped = [], []\n    for v in pool:\n        if v.IsTemplate or v.ViewType not in type_order:\n            continue\n        if isinstance(v, ViewSchedule) and (v.IsTitleblockRevisionSchedule or v.IsInternalKeynoteSchedule):\n            continue\n        name = v.Name\n        low = name.lower()\n        if include and not any(w in low for w in include):\n            continue\n        if any(w in low for w in exclude):\n            continue\n        if SKIP_ALREADY_PLACED and v.Id.Value in placed:\n            skipped.append(name)\n            continue\n        views.append(v)\n\n    def sort_key(v):\n        lvl = 0.0\n        if SORT_PLANS_BY_LEVEL and isinstance(v, ViewPlan) and v.GenLevel is not None:\n            lvl = v.GenLevel.Elevation\n        return (type_order[v.ViewType], lvl, natural(v.Name))\n    views.sort(key=sort_key)\n    if skipped:\n        say(\"SKIP   %d view(s) already on a sheet: %s\" % (len(skipped), \", \".join(sorted(skipped, key=natural)[:15]) +\n                                                         (\" ...\" if len(skipped) > 15 else \"\")))\n    if not views:\n        say(\"STOP   no views match (types: %s, name filter: '%s')\" % (\", \".join(wanted), cfg[\"contains\"] or \"\"))\n        return\n\n    # ---------------- title block\n    active = doc.ActiveView\n    ref_sheet = active if isinstance(active, ViewSheet) else None\n    tbs = list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_TitleBlocks).WhereElementIsElementType())\n    if not tbs:\n        say(\"STOP   no title block family loaded in this project\")\n        return\n    tb_type = None\n    tb_text = str(cfg[\"titleblock\"] or \"\").strip().lower()\n    if tb_text:\n        for t in tbs:\n            if tb_text in (t.FamilyName + \" : \" + nm(t)).lower():\n                tb_type = t\n                break\n        if tb_type is None:\n            say(\"STOP   no title block matches '%s'. Loaded: %s\" % (cfg[\"titleblock\"], \", \".join(t.FamilyName + \" : \" + nm(t) for t in tbs)))\n            return\n    elif ref_sheet is not None:\n        inst = list(FilteredElementCollector(doc, ref_sheet.Id).OfCategory(BuiltInCategory.OST_TitleBlocks))\n        if inst:\n            tb_type = doc.GetElement(inst[0].GetTypeId())\n    if tb_type is None:\n        tb_type = tbs[0]\n    say(\"Title block: %s : %s\" % (tb_type.FamilyName, nm(tb_type)))\n\n    # ---------------- viewport type\n    vp_type = None\n    vp_text = str(cfg[\"vptype\"] or \"\").strip().lower()\n\n    # ---------------- sheet numbers\n    used = set(s.SheetNumber for s in FilteredElementCollector(doc).OfClass(ViewSheet))\n    start = str(cfg[\"start\"] or \"A-101\").strip()\n    m = re.match(r'^(.*?)(\\d+)([^\\d]*)$', start)\n    if m:\n        prefix, num, width, suffix = m.group(1), int(m.group(2)), len(m.group(2)), m.group(3)\n    else:\n        prefix, num, width, suffix = start + \"-\", 1, 2, \"\"\n\n    def next_number():\n        n = [num]\n\n        def gen():\n            while True:\n                cand = \"%s%0*d%s\" % (prefix, width, n[0], suffix)\n                n[0] += 1\n                if cand not in used:\n                    used.add(cand)\n                    return cand\n        return gen\n    take_number = next_number()\n\n    def sheet_name(v):\n        name = None\n        if str(cfg[\"namefrom\"] or \"\").strip().lower().startswith(\"title\"):\n            p = v.get_Parameter(BuiltInParameter.VIEW_DESCRIPTION)\n            if p is not None and p.AsString():\n                name = p.AsString()\n        if name is None:\n            name = v.Name\n            label = PLAN_LABELS.get(type_names.get(v.ViewType, \"\"))\n            if ADD_PLAN_TYPE_TO_NAME and label and \"PLAN\" not in name.upper() and \"LAYOUT\" not in name.upper():\n                name = \"%s - %s\" % (name, label)\n        return name.upper() if UPPERCASE_SHEET_NAMES else name\n\n    try:\n        ml, mr, mt, mb = [float(x) for x in str(cfg[\"margins\"] or \"20,130,20,20\").split(\",\")]\n    except Exception:\n        say(\"WARN   margins must be 4 numbers 'left,right,top,bottom' - using 20,130,20,20\")\n        ml, mr, mt, mb = 20.0, 130.0, 20.0, 20.0\n\n    plan = [(take_number(), sheet_name(v), v) for v in views]\n    say(\"%s  %d sheet(s):\" % (\"PLACING\" if apply_changes else \"PREVIEW\", len(plan)))\n    for no, sn, v in plan:\n        scale = (\"1:%d\" % v.Scale) if not isinstance(v, ViewSchedule) else \"schedule\"\n        say(\"       %-14s %-45s <- %s (%s, %s)\" % (no, sn, v.Name, type_names.get(v.ViewType, \"?\"), scale))\n    if not apply_changes:\n        say(\"Preview only - set 'Preview only' = False and run again to create these sheets.\")\n        return\n\n    # ---------------- create\n    def drawing_area(sheet):\n        inst = list(FilteredElementCollector(doc, sheet.Id).OfCategory(BuiltInCategory.OST_TitleBlocks))\n        bb = inst[0].get_BoundingBox(sheet) if inst else None\n        if bb is None:\n            return XYZ(0, 0, 0), XYZ(841 * MM, 594 * MM, 0)\n        return XYZ(bb.Min.X + ml * MM, bb.Min.Y + mb * MM, 0), XYZ(bb.Max.X - mr * MM, bb.Max.Y - mt * MM, 0)\n\n    def fits(o, lo, hi):\n        return (o.MaximumPoint.X - o.MinimumPoint.X) <= (hi.X - lo.X) and \\\n               (o.MaximumPoint.Y - o.MinimumPoint.Y) <= (hi.Y - lo.Y)\n\n    def scale_locked(v):\n        if v.ViewTemplateId is None or v.ViewTemplateId.Value < 0:\n            return False\n        t = doc.GetElement(v.ViewTemplateId)\n        nonc = set(x.Value for x in t.GetNonControlledTemplateParameterIds())\n        ctrl = set(x.Value for x in t.GetTemplateParameterIds())\n        for bip in (BuiltInParameter.VIEW_SCALE_PULLDOWN_METRIC, BuiltInParameter.VIEW_SCALE_PULLDOWN_IMPERIAL,\n                    BuiltInParameter.VIEW_SCALE):\n            if int(bip) in ctrl and int(bip) not in nonc:\n                return True\n        return False\n\n    made = 0\n    for no, sn, v in plan:\n        st = SubTransaction(doc)\n        st.Start()\n        try:\n            sheet = ViewSheet.Create(doc, tb_type.Id)\n            sheet.SheetNumber = no\n            sheet.Name = sn\n            if ref_sheet is not None:\n                for pn in COPY_FROM_ACTIVE_SHEET:\n                    a, b = ref_sheet.LookupParameter(pn), sheet.LookupParameter(pn)\n                    if a is not None and b is not None and not b.IsReadOnly and a.StorageType == StorageType.String:\n                        b.Set(a.AsString() or \"\")\n            doc.Regenerate()\n            lo, hi = drawing_area(sheet)\n            centre = XYZ((lo.X + hi.X) / 2.0, (lo.Y + hi.Y) / 2.0, 0)\n            note = \"\"\n            if isinstance(v, ViewSchedule):\n                si = ScheduleSheetInstance.Create(doc, sheet.Id, v.Id, centre)\n                doc.Regenerate()\n                b = si.get_BoundingBox(sheet)\n                ElementTransformUtils.MoveElement(doc, si.Id, centre.Subtract(XYZ((b.Min.X + b.Max.X) / 2.0, (b.Min.Y + b.Max.Y) / 2.0, 0)))\n            else:\n                if not Viewport.CanAddViewToSheet(doc, sheet.Id, v.Id):\n                    raise Exception(\"Revit does not allow this view on a sheet (empty view or already placed)\")\n                vp = Viewport.Create(doc, sheet.Id, v.Id, centre)\n                if vp is None:\n                    raise Exception(\"Revit could not place it - the view is probably empty\")\n                if vp_text:\n                    for tid in _valid_types(doc, vp):\n                        if nm(doc.GetElement(tid)).lower() == vp_text:\n                            _change_type(vp, tid)\n                            break\n                    else:\n                        note += \" [viewport type '%s' not found]\" % cfg[\"vptype\"]\n                doc.Regenerate()\n                o = vp.GetBoxOutline()\n                can_scale = cfg[\"autoscale\"] and not scale_locked(v) and \\\n                    not (hasattr(v, \"IsPerspective\") and v.IsPerspective) and v.ViewType != ViewType.Legend\n                if can_scale:\n                    best = None\n                    for s in STANDARD_SCALES:\n                        try:\n                            v.Scale = s\n                        except Exception:\n                            continue\n                        doc.Regenerate()\n                        vp.SetBoxCenter(centre)\n                        if fits(vp.GetBoxOutline(), lo, hi):\n                            best = s\n                            break\n                    if best is None:\n                        note += \" [does not fit even at 1:%d]\" % STANDARD_SCALES[-1]\n                    else:\n                        note += \" [scale 1:%d]\" % best\n                elif not fits(o, lo, hi):\n                    note += \" [larger than the drawing area - turn on Auto scale or change the scale]\"\n                vp.SetBoxCenter(centre)\n            st.Commit()\n            made += 1\n            say(\"OK     %-14s %s%s\" % (no, sn, note))\n        except Exception as ex:\n            try:\n                st.RollBack()\n            except Exception:\n                pass\n            say(\"FAILED %-14s %s -> %s\" % (no, v.Name, ex))\n    say(\"Done: %d of %d sheet(s) created.\" % (made, len(plan)))\n\n\n# ---------------------------------------------------------------- Dynamo entry point\ntry:\n    IN\n    _IN_DYNAMO = True\nexcept NameError:\n    _IN_DYNAMO = False\n\nif _IN_DYNAMO:\n    import clr\n    clr.AddReference('RevitAPI')\n    clr.AddReference('RevitServices')\n    from RevitServices.Persistence import DocumentManager\n    from RevitServices.Transactions import TransactionManager\n\n    def arg(i, default):\n        try:\n            v = IN[i]\n        except Exception:\n            return default\n        return default if v is None or v == \"\" else v\n\n    cfg = dict(selected=bool(arg(1, False)), types=arg(2, \"FloorPlan\"), contains=arg(3, \"\"),\n               titleblock=arg(4, \"\"), start=arg(5, \"A-101\"), namefrom=arg(6, \"Title on Sheet\"),\n               vptype=arg(7, \"\"), margins=arg(8, \"20,130,20,20\"), autoscale=bool(arg(9, False)))\n    _log = []\n    _doc = DocumentManager.Instance.CurrentDBDocument\n    _uidoc = DocumentManager.Instance.CurrentUIDocument\n    _run = not bool(arg(0, False))          # IN[0] = \"Preview only\"\n    if _run:\n        TransactionManager.Instance.EnsureInTransaction(_doc)\n    try:\n        views_to_sheets(_doc, _uidoc, cfg, _run, _log.append)\n    except Exception:\n        import traceback\n        _log.append(\"STOPPED - error: \" + traceback.format_exc())\n    finally:\n        if _run:\n            TransactionManager.Instance.TransactionTaskDone()\n    try:                                    # always show the result, also from Dynamo Player\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        _txt = \"\\n\".join(l.replace(\"       \", \"   \") for l in _log)\n        TaskDialog.Show(\"Views to Sheets\", _txt if len(_txt) < 3500 else _txt[:3500] + \"\\n...\")\n    except Exception:\n        pass\n    OUT = _log\n",
+      "Engine": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "b5f6cd5790f94abeb9adf3b7f6298009",
+      "Inputs": [
+        {
+          "Id": "893be20497984bcc9956d4b672f4318f",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "141a3ce56a8e417986ce1c2fc9219661",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "94604edf21184eb9a37c4435274243f2",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "943e0b8fcd6f44e2adfccc1fa304d8a1",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e2ad9d4847174654ab6b591d8405da26",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "262da4a9760745a2bb27e6e9a958f4f7",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fc32bea768744e81a3cbbe8b75ad2b22",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2f15d41cf4ad4f2f9d14b6f3e1e693fe",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a3dae03c684347cc9b1a2080860e5460",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7ee8643fdd804d9591f61ff6f5da9a88",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "76f2d936960740b791668948782d9b53",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "35a5543f5f11443cad304363278af4f1",
+      "Inputs": [
+        {
+          "Id": "a923df2f110745d89639fa901eb27896",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "477c68cd1f884c69bddf3a7dc9fabc4b",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e5aa0f7e9e3543eaace365fc906b4dca",
+      "End": "893be20497984bcc9956d4b672f4318f",
+      "Id": "1ee6db51b963419881437b64319ba4e3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bbff5ae68ee640159da526e82b719075",
+      "End": "141a3ce56a8e417986ce1c2fc9219661",
+      "Id": "330a5e0a711c4e36be75967c89f8bb57",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0f7c4a802e434109a9e9cf31e2d36a3a",
+      "End": "94604edf21184eb9a37c4435274243f2",
+      "Id": "85eecb24a08747f3aa49b1881089e703",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c26bb877a6a7455b9938003c5274b0f7",
+      "End": "943e0b8fcd6f44e2adfccc1fa304d8a1",
+      "Id": "93b3f74e02e14b45a7fea66e908068e4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9f7e08a14ca24cf39383e6aeeb3da731",
+      "End": "e2ad9d4847174654ab6b591d8405da26",
+      "Id": "25d3d46b3b4041c282cef828afaa950d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8cb599d1852f4fa6a2fceb206621e0f2",
+      "End": "262da4a9760745a2bb27e6e9a958f4f7",
+      "Id": "703a5fd8afc44db6a8c501776337b6c7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bd411723dbe64f5a897b90fea8af7d74",
+      "End": "fc32bea768744e81a3cbbe8b75ad2b22",
+      "Id": "37deb01133a147dcbd361e6074d4ed01",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d7c83bc3d4574db7b75afe0659bc4849",
+      "End": "2f15d41cf4ad4f2f9d14b6f3e1e693fe",
+      "Id": "1f4be062e2ac4f70a3bd5882dcaf633e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bb413d268a634cb38afa9f07573c175f",
+      "End": "a3dae03c684347cc9b1a2080860e5460",
+      "Id": "cc81a6d854e641e992c8edce2dc71d44",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c5360ce228d8474f9df530dfdf49b71d",
+      "End": "7ee8643fdd804d9591f61ff6f5da9a88",
+      "Id": "2e221dbf752348c4adbda4f0583a1d9e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "76f2d936960740b791668948782d9b53",
+      "End": "a923df2f110745d89639fa901eb27896",
+      "Id": "9d834524db774da388937c3a9eda4643",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "fa9f846e4f3a4bd8a7a4ee771e9c7668",
+        "Name": "1 Preview only (True = just list, no changes)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "56cb18a4b3f84f4c8353e5572d1b9f6a",
+        "Name": "2 Use selected views",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 110.0
+      },
+      {
+        "Id": "0de9ababb2d14da1a7a8525b75660d9c",
+        "Name": "3 View types",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 220.0
+      },
+      {
+        "Id": "2d0374d2c6364efaaf65f336fa64f925",
+        "Name": "4 Name contains (; separated, ! = exclude)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 330.0
+      },
+      {
+        "Id": "416aaf005b1e4cf8abdfd92b5bf8b856",
+        "Name": "5 Title block (part of name)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 440.0
+      },
+      {
+        "Id": "c18b7b333c834454887ac87206fc37e2",
+        "Name": "6 First sheet number",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 550.0
+      },
+      {
+        "Id": "7e3eeba11b95448486548ba00a913b46",
+        "Name": "7 Sheet name from (Title on Sheet / View name)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 660.0
+      },
+      {
+        "Id": "efff8ec629c34d5ea5934e836cbef254",
+        "Name": "8 Viewport type",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 770.0
+      },
+      {
+        "Id": "8da8be1dedf8440398d01ac7b1ae8e95",
+        "Name": "9 Margins mm (left, right, top, bottom)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 880.0
+      },
+      {
+        "Id": "f6830ad457724cccb30a9413863112c7",
+        "Name": "10 Auto scale to fit",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 990.0
+      },
+      {
+        "Id": "b5f6cd5790f94abeb9adf3b7f6298009",
+        "Name": "Views to Sheets",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 300.0
+      },
+      {
+        "Id": "35a5543f5f11443cad304363278af4f1",
+        "Name": "Result",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 960.0,
+        "Y": 300.0
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 0.7
+  }
+}

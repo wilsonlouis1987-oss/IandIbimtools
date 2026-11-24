@@ -1,0 +1,398 @@
+{
+  "Uuid": "3422de3e-1d69-4ab0-8bb7-e36ca9984297",
+  "IsCustomNode": false,
+  "Description": "Svarda Design - lighting ceiling plan + spot lights midway between the two centre rows of a grid ceiling",
+  "Name": "C05_INTERIOR_Spot_Lights_Between_Centre_Grid_Rows_Lighting_RCP",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [],
+      "Id": "54e9b90437ce4c75a91fca8309c61e7b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a0caace3356543b0a1c8fbaf92dcdfdd",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "InputValue": "BST 020A 40SD00 60 2K4 YV V.2 SBT FLP",
+      "NodeType": "StringInputNode",
+      "Id": "9f4c9379338f410f886558e009638baa",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9a963515a48d4346afd889fa8d144780",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "InputValue": 600.0,
+      "Id": "6f96a73b895c4bc8a15edf6fe9fd9024",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c42925d5ce634f1ca8c6dcf8471de84a",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "InputValue": 0.0,
+      "Id": "12b81d8c8bd94ba6949f74a8e217b0e4",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4536ae8bf2d84268a77b9a6f30cedea9",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "InputValue": 0.0,
+      "Id": "9ae8f9d7224b4c3589bb74b0579d0ce7",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0c78e5c4b2d0497f8d66fd29040f915e",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "InputValue": false,
+      "Id": "5634a45e0a9f45878a3a9bb56854047b",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e2a1a70739c34b0a9c8fc1e82ca8595b",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# Dynamo Python Script node (CPython3) - Revit 2026 / Dynamo 3.6\n# Svarda Design - Hall lighting: makes the lighting ceiling plan and places\n# one line of spot lights midway between the two centre rows of a grid ceiling.\n#\n# Inputs:\n#   IN[0]  Ceiling        -> \"Select Model Element\": the grid ceiling, OR the model group that holds it\n#   IN[1]  Light          -> text: family or type name of the spot light (part of the name is fine),\n#                            or a \"Family Types\" node\n#   IN[2]  Bay size mm    -> ceiling grid module, e.g. 600\n#   IN[3]  Angle deg      -> light line direction: 0 = along X, 90 = along Y, 45 = diagonal\n#   IN[4]  Offset mm      -> shift the line sideways from the ceiling centre (0 = centre)\n#   IN[5]  Run            -> False = preview only, True = create\n#\n# OUT: [report text, placed elements or preview points]. Any error is written into the report.\n\nimport clr, math, traceback\nclr.AddReference('RevitAPI')\nclr.AddReference('RevitServices')\nfrom Autodesk.Revit.DB import *\nfrom Autodesk.Revit.DB.Structure import StructuralType\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nMM = 1.0 / 304.8\nVIEW_NAME = 'FFL 0 - HALL FLOOR - LIGHTING'\nSOURCE_VIEW = 'FFL 0 - HALL FLOOR (RL 100.256 TBC)'\nreport = []\nresult = []\n\n\ndef first(x):\n    while isinstance(x, (list, tuple)):\n        if not x:\n            return None\n        x = x[0]\n    return x\n\n\ndef flat_bottom(el):\n    \"\"\"Largest downward-facing planar face of an element (None if none).\"\"\"\n    opt = Options()\n    opt.ComputeReferences = True\n    best = None\n    geo = el.get_Geometry(opt)\n    if geo is None:\n        return None\n    for g in geo:\n        solids = []\n        if isinstance(g, Solid):\n            solids = [g]\n        elif isinstance(g, GeometryInstance):\n            solids = [s for s in g.GetInstanceGeometry() if isinstance(s, Solid)]\n        for s in solids:\n            for f in s.Faces:\n                if isinstance(f, PlanarFace) and f.FaceNormal.Z < -0.99:\n                    if best is None or f.Area > best.Area:\n                        best = f\n    return best\n\n\ndef resolve_ceiling(el):\n    \"\"\"Accept a Ceiling, or a Group containing ceilings: return (ceiling, bottom face).\"\"\"\n    cands = []\n    # a ceiling picked inside a model group -> use the whole group (largest ceiling wins)\n    if not isinstance(el, Group) and el.GroupId is not None and \\\n            not el.GroupId.Equals(ElementId.InvalidElementId):\n        report.append('Picked ceiling %s is inside a model group - using the largest ceiling of that group.'\n                      % el.Id)\n        el = doc.GetElement(el.GroupId)\n    if isinstance(el, Group):\n        for mid in el.GetMemberIds():\n            m = doc.GetElement(mid)\n            if m is not None and m.Category is not None and \\\n                    m.Category.Id.Equals(ElementId(BuiltInCategory.OST_Ceilings)):\n                cands.append(m)\n        report.append('Selected a model group \"%s\" with %d ceiling(s) inside.' % (el.Name, len(cands)))\n    else:\n        cands = [el]\n    best = (None, None)\n    for c in cands:\n        f = flat_bottom(c)\n        if f is not None and (best[1] is None or f.Area > best[1].Area):\n            best = (c, f)\n    return best\n\n\ndef type_name(s):\n    \"\"\"Type name that works in CPython3 (Element.Name.GetValue fails there).\"\"\"\n    for bip in (BuiltInParameter.SYMBOL_NAME_PARAM, BuiltInParameter.ALL_MODEL_TYPE_NAME):\n        prm = s.get_Parameter(bip)\n        if prm is not None and prm.AsString():\n            return prm.AsString()\n    try:\n        return s.Name\n    except Exception:\n        return '?'\n\n\ndef el_type(el):\n    \"\"\"Type name of an instance, safe in CPython3.\"\"\"\n    try:\n        t = doc.GetElement(el.GetTypeId())\n        return type_name(t) if t is not None else '?'\n    except Exception:\n        return '?'\n\n\ndef find_symbol(val):\n    \"\"\"IN[1] may be a Family Type node output or a text name (family or type, part of the name is fine).\"\"\"\n    el = UnwrapElement(val)\n    if isinstance(el, FamilySymbol):\n        return el\n    if not isinstance(val, str) or not val.strip():\n        raise Exception('Input 2: type the light family name (or part of it).')\n    key = ' '.join(val.lower().split())\n    syms = list(FilteredElementCollector(doc).OfClass(FamilySymbol).ToElements())\n    def label(s):\n        return '%s : %s' % (s.Family.Name, type_name(s))\n    hits = [s for s in syms if key in ' '.join(label(s).lower().split())]\n    if not hits:\n        lights = sorted(set(label(s) for s in syms if s.Category is not None and\n                            s.Category.Id.Equals(ElementId(BuiltInCategory.OST_LightingFixtures))))\n        raise Exception('No family type in this model matches \"%s\". It is probably not loaded: '\n                        'Insert > Load Family, then run again.\\nLighting fixture types loaded now:\\n  %s'\n                        % (val, '\\n  '.join(lights) if lights else '(none)'))\n    # prefer lighting fixtures, then exact type-name match\n    hits.sort(key=lambda s: (not (s.Category is not None and s.Category.Id.Equals(\n        ElementId(BuiltInCategory.OST_LightingFixtures))), type_name(s).lower() != key))\n    report.append('Light type: ' + label(hits[0]) +\n                  ('   (%d matches, used the first)' % len(hits) if len(hits) > 1 else ''))\n    return hits[0]\n\n\ndef main():\n    ceiling_in = UnwrapElement(first(IN[0]))\n    symbol = find_symbol(first(IN[1]))\n    if ceiling_in is None:\n        raise Exception('Input 1: select the grid ceiling first.')\n    bay = float(IN[2]) * MM\n    ang = math.radians(float(IN[3]))\n    offset = float(IN[4]) * MM\n    run = bool(IN[5])\n    if bay <= 0:\n        raise Exception('Input 3: bay size must be more than 0.')\n\n    ceiling, bottom = resolve_ceiling(ceiling_in)\n    if bottom is None:\n        raise Exception('No flat underside found on element %s (%s). Select a flat ceiling '\n                        '(sloped ceilings are not supported).' % (ceiling_in.Id, el_type(ceiling_in)))\n    report.append('Ceiling: id %s, type \"%s\", underside area %.1f m2'\n                  % (ceiling.Id, el_type(ceiling), bottom.Area * 0.092903))\n\n    # outline points of the underside (world coordinates)\n    verts = []\n    for loop in bottom.EdgeLoops:\n        for e in loop:\n            for v in e.AsCurve().Tessellate():\n                verts.append(v)\n    xs = [v.X for v in verts]\n    ys = [v.Y for v in verts]\n    z = sum(v.Z for v in verts) / len(verts)\n    report.append('Underside extents: X %.0f..%.0f  Y %.0f..%.0f mm (%.1f x %.1f m)'\n                  % (min(xs) / MM, max(xs) / MM, min(ys) / MM, max(ys) / MM,\n                     (max(xs) - min(xs)) * 0.3048, (max(ys) - min(ys)) * 0.3048))\n    d = XYZ(math.cos(ang), math.sin(ang), 0)\n    n = XYZ(-math.sin(ang), math.cos(ang), 0)\n    # centre line = middle of the ceiling measured across the light direction\n    across = [XYZ(v.X, v.Y, 0).DotProduct(n) for v in verts]\n    along = [XYZ(v.X, v.Y, 0).DotProduct(d) for v in verts]\n    mid_n = (min(across) + max(across)) / 2.0 + offset\n    mid_d = (min(along) + max(along)) / 2.0\n    origin = d.Multiply(mid_d).Add(n.Multiply(mid_n)).Add(XYZ(0, 0, z))\n\n    def inside(p):\n        r = bottom.Project(p)\n        return r is not None and r.Distance < 0.05 and bottom.IsInside(r.UVPoint)\n\n    # scan the whole length; spots in the middle of each bay, symmetric about the centre\n    half_len = (max(along) - min(along)) / 2.0\n    nb = int(half_len / bay) + 2\n    cand = [origin.Add(d.Multiply((k + 0.5) * bay)) for k in range(-nb, nb)]\n    pts = [p for p in cand if inside(p)]\n    report.append('Positions checked: %d, inside ceiling: %d' % (len(cand), len(pts)))\n    pts.sort(key=lambda p: p.DotProduct(d))\n    report.append('Spots found: %d  (bay %.0f mm, angle %.1f deg, underside z = %.0f mm)'\n                  % (len(pts), bay / MM, math.degrees(ang), z / MM))\n    if not pts:\n        report.append('No spots fit. Check the angle (try 90 or 45) and the offset.')\n\n    if not run:\n        report.append('PREVIEW only. Set RUN = True and click Run to create.')\n        return ['x %.0f  y %.0f mm' % (p.X / MM, p.Y / MM) for p in pts]\n\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    try:\n        # ---- 1. lighting view ----\n        views = [v for v in FilteredElementCollector(doc).OfClass(ViewPlan).ToElements() if not v.IsTemplate]\n        lv = [v for v in views if v.Name == VIEW_NAME]\n        if lv:\n            lv = lv[0]\n            report.append('View already exists: ' + VIEW_NAME)\n        else:\n            src = [v for v in views if v.Name == SOURCE_VIEW and v.ViewType == ViewType.CeilingPlan]\n            if not src:\n                raise Exception('Source ceiling plan not found: ' + SOURCE_VIEW)\n            lv = doc.GetElement(src[0].Duplicate(ViewDuplicateOption.WithDetailing))\n            lv.Name = VIEW_NAME\n            report.append('Created view: ' + VIEW_NAME)\n        if not lv.ViewTemplateId.Equals(ElementId.InvalidElementId):\n            lv.ViewTemplateId = ElementId.InvalidElementId\n        p = lv.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE)\n        if p is not None and not p.IsReadOnly:\n            p.Set(8)  # Electrical\n        sd = lv.LookupParameter('Sub-Discipline')\n        if sd is not None and not sd.IsReadOnly and sd.StorageType == StorageType.String:\n            sd.Set('Lighting')\n\n        solid = [fp for fp in FilteredElementCollector(doc).OfClass(FillPatternElement)\n                 if fp.GetFillPattern().IsSolidFill]\n        ogs = OverrideGraphicSettings()\n        ogs.SetProjectionLineColor(Color(0, 112, 192))\n        ogs.SetProjectionLineWeight(5)\n        if solid:\n            ogs.SetSurfaceForegroundPatternId(solid[0].Id)\n            ogs.SetSurfaceForegroundPatternColor(Color(255, 242, 204))\n        ogs.SetSurfaceTransparency(40)\n        lv.SetCategoryOverrides(ElementId(BuiltInCategory.OST_Ceilings), ogs)\n        lo = OverrideGraphicSettings()\n        lo.SetProjectionLineColor(Color(255, 0, 0))\n        lo.SetProjectionLineWeight(6)\n        lv.SetCategoryOverrides(ElementId(BuiltInCategory.OST_LightingFixtures), lo)\n\n        # ---- 2. spot lights ----\n        if not symbol.IsActive:\n            symbol.Activate()\n            doc.Regenerate()\n        level = doc.GetElement(ceiling.LevelId)\n        placed = []\n        how = ''\n        for pt in pts:\n            inst = None\n            try:   # face-based: sit on the ceiling underside\n                inst = doc.Create.NewFamilyInstance(bottom.Reference, pt, d, symbol)\n                how = 'on ceiling face'\n            except Exception:\n                inst = None\n            if inst is None:\n                try:   # ceiling-hosted\n                    inst = doc.Create.NewFamilyInstance(pt, symbol, ceiling, level, StructuralType.NonStructural)\n                    how = 'hosted by ceiling'\n                except Exception:\n                    inst = None\n            if inst is None:   # plain level-based, raised to ceiling height\n                inst = doc.Create.NewFamilyInstance(XYZ(pt.X, pt.Y, level.Elevation), symbol, level,\n                                                    StructuralType.NonStructural)\n                off = inst.get_Parameter(BuiltInParameter.INSTANCE_ELEVATION_PARAM)\n                if off is None or off.IsReadOnly:\n                    off = inst.get_Parameter(BuiltInParameter.INSTANCE_FREE_HOST_OFFSET_PARAM)\n                if off is not None and not off.IsReadOnly:\n                    off.Set(z - level.Elevation)\n                how = 'on level, offset to ceiling'\n            cm = inst.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n            if cm is not None and not cm.IsReadOnly:\n                cm.Set('HALL SPOT - centre line')\n            placed.append(inst)\n        report.append('Placed %d spot lights (%s). Comments = \"HALL SPOT - centre line\".' % (len(placed), how))\n    finally:\n        TransactionManager.Instance.TransactionTaskDone()\n    return placed\n\n\ntry:\n    result = main()\nexcept Exception as _ex:\n    if str(_ex).startswith('No family type in this model matches'):\n        report.append('FAMILY MISSING - load the light family first (Insert > Load Family), or type the name of a family that is already loaded.')\n        report.append(str(_ex))\n    else:\n        report.append('ERROR:\\n' + traceback.format_exc())\n\ntry:   # also save the report as text, easier to read than the Watch node\n    import os\n    with open(os.path.join(os.environ.get('TEMP', 'C:\\\\Temp'), 'C05_lighting_report.txt'), 'w') as fh:\n        fh.write('\\n'.join(report) + '\\n')\nexcept Exception:\n    pass\n\nOUT = ['\\n'.join(report), result]\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "4617e24040b44cd99d177a5b71917f8a",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "3a9f7440c8464d86a94f9bdeba664036",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "511dfffe8c694f6bbe34d2dc8bd06092",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ab9550016ede4d1abab8c8c55b47f105",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7577b2b79ae84962a2c329c195d29008",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e6f74a1e7f234a499b2c544ae4569f19",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0785591d3dc949bbb716a1223011bb8b",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "31e5728ac94541909b7029e951d1b91f",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "Id": "fce1f23567724f55b1383f2ac8cd56fe",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "ee14e03da411471a9568ee5732f41e64",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "eaa7751f2cca405c8e3aed85851dcf38",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "a0caace3356543b0a1c8fbaf92dcdfdd",
+      "End": "3a9f7440c8464d86a94f9bdeba664036",
+      "Id": "fa6f2ace9e0c4916a62578052e3def86",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9a963515a48d4346afd889fa8d144780",
+      "End": "511dfffe8c694f6bbe34d2dc8bd06092",
+      "Id": "0d67db45b7024778ba1d9c0ae9d7524f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c42925d5ce634f1ca8c6dcf8471de84a",
+      "End": "ab9550016ede4d1abab8c8c55b47f105",
+      "Id": "fccf675432e54087b6acfc29f3f6ff48",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4536ae8bf2d84268a77b9a6f30cedea9",
+      "End": "7577b2b79ae84962a2c329c195d29008",
+      "Id": "c1269a40d5cf407db1ae616ba4c91228",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0c78e5c4b2d0497f8d66fd29040f915e",
+      "End": "e6f74a1e7f234a499b2c544ae4569f19",
+      "Id": "a311c21b07b941bc862c8e881b12707a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e2a1a70739c34b0a9c8fc1e82ca8595b",
+      "End": "0785591d3dc949bbb716a1223011bb8b",
+      "Id": "560f8112d11444508b5152e055f2e2f6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "31e5728ac94541909b7029e951d1b91f",
+      "End": "ee14e03da411471a9568ee5732f41e64",
+      "Id": "3e1eec3a533c481d9c77e022d2cc8b07",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.2.11575",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "54e9b90437ce4c75a91fca8309c61e7b",
+        "Name": "1 - Select the GRID CEILING",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "9f4c9379338f410f886558e009638baa",
+        "Name": "2 - Light family or type name (part is OK)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 140
+      },
+      {
+        "Id": "6f96a73b895c4bc8a15edf6fe9fd9024",
+        "Name": "3 - Ceiling bay size (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 280
+      },
+      {
+        "Id": "12b81d8c8bd94ba6949f74a8e217b0e4",
+        "Name": "4 - Line angle (deg) 0=X 90=Y 45=diagonal",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 400
+      },
+      {
+        "Id": "9ae8f9d7224b4c3589bb74b0579d0ce7",
+        "Name": "5 - Sideways offset (mm) 0=centre",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 520
+      },
+      {
+        "Id": "5634a45e0a9f45878a3a9bb56854047b",
+        "Name": "6 - RUN (False = preview, True = create)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 640
+      },
+      {
+        "Id": "4617e24040b44cd99d177a5b71917f8a",
+        "Name": "Hall Lighting - view + spot lights",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 450,
+        "Y": 280
+      },
+      {
+        "Id": "fce1f23567724f55b1383f2ac8cd56fe",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 800,
+        "Y": 280
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

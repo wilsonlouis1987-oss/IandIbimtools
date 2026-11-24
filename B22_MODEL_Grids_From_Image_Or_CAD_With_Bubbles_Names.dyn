@@ -1,0 +1,811 @@
+{
+  "Uuid": "e351f85d-a653-4f9f-87d0-03679e40a99b",
+  "IsCustomNode": false,
+  "Description": "GRIDS FROM A PLAN PICTURE / PDF OR A CAD: grid lines + bubbles are found, the bubble text is read as the grid name, Revit grids are made at true scale with the bubble on the same end; unread names are listed as guessed",
+  "Name": "B22_MODEL_Grids_From_Image_Or_CAD_With_Bubbles_Names",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "61ea9f0ede5f41388f037a522fa3355b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7ef44e5a336549c691fa6096b2834e71",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "1f26bd3bd3c44aab93a87145196b2235",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "00d5f7ecfe74489dad25557bba32995c",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "",
+      "InputValue": "No file selected."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "266c6a73d46b4b0c8c09051c3afdde84",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9a43cc6926e446dab13db3197674560d",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "1"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "273c2b8185c044e88ed289514a77f670",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a6d9d0e7952647a981092eccb4d7c476",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "ac81a0702a394d06bf57b0621bcd1452",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "718164c8240a4c3dbd561b8aafca0a6c",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "a2f93f8b9ada4dd28b89df4a6f904306",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5b02e52cf332461fa5d73747bacff5e2",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "76d3a9bb4d144f23acd0bf94f43e055b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7c98ad35f9c7425495fda6093d0f3051",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "27b3de37454b4c6ca50ef7f13300a94b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8d8b0ad598494c058d42a54f84178ec0",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "5c44b755d6b2461d9fed2234285cde04",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "52cd5d4a6c5f430e935c5611b0a805c4",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "63890b1b5ed04bfd807d6b74c97aa1c2",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "78a674dafa3d4e8fac266045814a8ee5",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "74ffb797375344009d1eed46405c3b4b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "dd1d1633fc39484392c606a728d9ad7f",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "b202ecad9dea4c33ade0f9e1dec8b00c",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "db93f7614cc4487c90ff77f8b58180a1",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4c97914795154e19a63892d3cfbf164f",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "717e724c1fce42de84c1e9c9134dc69e",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  B22 IMAGE GRID  -  REVIT GRIDS FROM A PLAN PICTURE / PDF OR FROM A CAD   (Revit 2026)   v1 (2026-11-24)\n#  IMAGE: long thin grid lines across the plan + the circle (bubble) at their ends; the text in each bubble is read\n#         (Windows OCR) and becomes the grid name; size from the dimensions written between the grids, else from the\n#         picture already placed in the plan, else from one grid spacing you type.\n#  CAD  : long lines / arcs on a GRID / AXIS layer (or long lines ending in a circle) of the CAD in the open plan; names\n#         from the text in the bubbles (read from the DWG with AutoCAD on this PC, or from a DXF you give).\n#  Revit: real Grid elements, bubble on the same end(s) as the source, named as in the source.  Names that could not\n#         be read are given in sequence and LISTED as guessed.  Run again = nothing doubled; a name already used by\n#         another grid somewhere else is reported, never overwritten.\n#  Picture reading, PDF and OCR are reused from B14 Plan To 3D (b14_core.py of the SD Tools extension).\n#  Runs in pyRevit (IronPython 2.7) and Dynamo CPython3.\n# =====================================================================\nimport math, os, re\n\ntry:\n    import clr\n    clr.AddReference('RevitAPI')\n    from Autodesk.Revit.DB import *                       # noqa\n    import System\n    REVIT = True\nexcept Exception:                                         # plain Python: tests of the detection\n    REVIT = False\n\nMMF = 1.0 / 304.8\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'B22_grid_log.txt')\nTAG = 'B22 GRID'\nRUN1 = re.compile('1+')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\n# ------------------------------------------------------------------ names (pure Python)\nALPHA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'\nALPHA_NO_IO = ''.join(c for c in ALPHA if c not in 'IO')\nTO_DIGIT = {'O': '0', 'Q': '0', 'D': '0', 'I': '1', 'L': '1', '|': '1', '!': '1', 'S': '5', 'B': '8', 'Z': '2', 'G': '6'}\nTO_LETTER = {'0': 'O', '1': 'I', '5': 'S', '8': 'B', '2': 'Z', '6': 'G', '|': 'I', '!': 'I'}\nVALID = re.compile(r\"^([A-Z]{1,2}\\d{0,2}|\\d{1,3}[A-Z]?)(['\\\"]{0,2}|[./\\-]\\d{1,2})$\")\n\n\ndef clean_label(t):\n    t = (t or '').strip().upper().replace(' ', '')\n    t = t.replace(u'\\u2019', \"'\").replace('`', \"'\") if not isinstance(t, bytes) else t\n    t = re.sub(r\"[^A-Z0-9'\\\"./\\-|!]\", '', t)\n    return t[:6]\n\n\ndef _letter_seq(alpha):\n    return list(alpha) + [a + b for a in alpha for b in alpha]\n\n\ndef name_axis(reads, prefer='num', _retry=True):\n    \"\"\"reads [(text read or '', sure)] in order along the plan -> (names [(name, how, read)], kind)\n    how = 'read' (as in the source) / 'guess' (given in sequence).  The sequence is fitted to what was read.\"\"\"\n    n = len(reads)\n    labs = [clean_label(r[0]) for r in reads]\n    raw = list(labs)\n    if _retry and not any(t and r[1] for t, r in zip(labs, reads)):\n        # nothing read for sure: reads count only when at least two of them fit one sequence\n        trial, kind = name_axis(reads, prefer, False)\n        if sum(1 for nm, how, rd in trial if how == 'read') >= 2:\n            return trial, kind\n        labs = [''] * n\n    vote = [t for t, r in zip(labs, reads) if t and r[1]] or labs      # reads that are sure decide numbers / letters\n    nd = sum(1 for t in vote if t and (t[0].isdigit() or (len(t) == 1 and t in '|!')))\n    nl = sum(1 for t in vote if t and t[0].isalpha())\n    kind = 'num' if nd > nl else ('let' if nl > nd else prefer)\n    best = None\n    if kind == 'num':\n        fix = TO_DIGIT\n        tables = [[str(i) for i in range(0, 1000)]]\n    else:\n        fix = TO_LETTER\n        tables = [_letter_seq(ALPHA), _letter_seq(ALPHA_NO_IO)]\n    fixed = [''.join(fix.get(c, c) for c in t) for t in labs]\n    for rank, table in enumerate(tables):\n        idx = dict((t, i) for i, t in enumerate(table))\n        vals = [idx.get(t) if t else None for t in fixed]\n        for step in (1, -1):\n            for i, v in enumerate(vals):\n                if v is None:\n                    continue\n                ids = [v - step * i + step * k for k in range(n)]\n                if min(ids) < 0 or max(ids) >= len(table):\n                    continue\n                cand = (sum(1 for k in range(n) if vals[k] == ids[k]), step == 1, -rank, table, vals, step)\n                if best is None or cand[:3] > best[:3]:\n                    best = cand\n    if best is None:\n        table = tables[0]\n        first = 1 if kind == 'num' else 0\n        best = (0, True, 0, table, [None] * n, 1)\n        seq = [table[first + k] for k in range(n)]\n    else:\n        table, vals, step = best[3], best[4], best[5]\n        anchor = max(range(n), key=lambda i: (vals[i] is not None, 0))\n        for i in range(n):                                 # the anchor = a read label that fits the best run\n            if vals[i] is not None:\n                ids = [vals[i] - step * i + step * k for k in range(n)]\n                if min(ids) >= 0 and max(ids) < len(table) and sum(1 for k in range(n) if vals[k] == ids[k]) == best[0]:\n                    anchor = i\n                    break\n        seq = [table[vals[anchor] - step * anchor + step * k] for k in range(n)]\n    table, vals, step = best[3], best[4], best[5]\n    out, seen = [], set()\n    last = None                                            # (index in the table, position) of the last plain label kept\n    for k in range(n):\n        t, sure = labs[k], bool(reads[k][1])\n        if t and (t == seq[k] or fixed[k] == seq[k]):\n            name, how = seq[k], 'read'\n        elif t and sure and VALID.match(t):\n            name, how = t, 'read'                          # 2A, 1', B1 ... kept as written\n        else:\n            name, how = seq[k], 'guess'\n            if last is not None and 0 <= last[0] + step < len(table) and table[last[0] + step] not in seen:\n                name = table[last[0] + step]               # the next one after the last label read\n        while name in seen:\n            name, how = name + \"'\", 'guess'\n        seen.add(name)\n        if name in table:\n            last = (table.index(name), k)\n        out.append((name, how, raw[k]))\n    return out, kind\n\n\ndef name_grids(vs, hs, custom_v='', custom_h=''):\n    \"\"\"vs / hs: grids in plan order (left -> right, top -> bottom), each with 'label' ('' = not read) and 'sure'.\n    -> sets g['name'], g['how']\"\"\"\n    def reads(gs):\n        return [(g.get('label') or '', g.get('sure', True)) for g in gs]\n    any_v = any(g.get('label') for g in vs)\n    any_h = any(g.get('label') for g in hs)\n    nh, kh = name_axis(reads(hs), 'let')\n    nv, kv = name_axis(reads(vs), 'let' if (not any_v and any_h and kh == 'num') else 'num')\n    if not any_h and any_v and kv == 'let':\n        nh, kh = name_axis(reads(hs), 'num')\n    for gs, names, custom in ((vs, nv, custom_v), (hs, nh, custom_h)):\n        cust = [x.strip() for x in re.split(r'[,;]', str(custom or '')) if x.strip()]\n        for i, g in enumerate(gs):\n            g['name'], g['how'], g['read'] = names[i]\n            if i < len(cust) and cust[i] != g['name']:\n                g['name'], g['how'] = cust[i], 'typed'\n    seen = {}\n    for g in list(vs) + list(hs):                         # the same name in both directions: second one marked\n        while g['name'] in seen:\n            g['name'], g['how'] = g['name'] + \"'\", 'guess'\n        seen[g['name']] = 1\n    return vs, hs\n\n\n# ------------------------------------------------------------------ picture: grid lines + bubbles (pure Python)\ndef _ints(lines):\n    return [int(s, 2) for s in lines]\n\n\ndef _ring(rows, W, H, cx, cy, r):\n    \"\"\"share of a circle (cx, cy, r) that is drawn, share drawn at half the radius (text only), and - when the ring is\n    there - the share drawn just outside it (a bubble stands free: only its grid line touches it)\"\"\"\n    n = int(min(72, max(16, 2 * math.pi * r)))\n    hit = inner = 0\n    pts = []\n    for k in range(n):\n        a = 2 * math.pi * k / n\n        ca, sa = math.cos(a), math.sin(a)\n        pts.append((ca, sa))\n        x, y = int(round(cx + r * ca)), int(round(cy + r * sa))\n        ok = False\n        for yy in (y - 1, y, y + 1):\n            if 0 <= yy < H and '1' in rows[yy][max(0, x - 1):x + 2]:\n                ok = True\n                break\n        hit += 1 if ok else 0\n        x, y = int(round(cx + 0.5 * r * ca)), int(round(cy + 0.5 * r * sa))\n        if 0 <= y < H and 0 <= x < W and rows[y][x] == '1':\n            inner += 1\n    return hit / float(n), inner / float(n)\n\n\ndef _has_label(trows, W, H, cx, cy, r, rows=None):\n    \"\"\"a grid bubble: its name inside (some drawn pixels in the middle, not none and not a filled disc) and it stands\n    free on the paper - nothing but its own grid line in a band around it (circles inside walls / hatch are not bubbles)\"\"\"\n    k = 0.68 * r\n    r0, r1 = (r + 1.8) ** 2, (r + max(3.5, 0.45 * r)) ** 2\n    R = int(math.sqrt(r1)) + 1\n    n = area = band = ink = 0\n    rows = rows or trows                                   # the band is checked in the map the circle was found in too\n    for y in range(int(cy) - R, int(cy) + R + 2):\n        if not 0 <= y < H:\n            continue\n        row = trows[y]\n        row2 = rows[y]\n        for x in range(int(cx) - R, int(cx) + R + 2):\n            if not 0 <= x < W:\n                continue\n            d = (x - cx) ** 2 + (y - cy) ** 2\n            if d <= k * k:\n                area += 1\n                if row[x] == '1':\n                    n += 1\n            elif r0 <= d <= r1:\n                band += 1\n                if row[x] == '1' or row2[x] == '1':\n                    ink += 1\n    return area > 0 and 0.02 * area <= n <= 0.55 * area and ink <= 0.12 * max(band, 1)\n\n\ndef _centre(rows, W, H, cx, cy, r):\n    \"\"\"centre of a found circle to a part of a pixel: middle of the drawn pixels of its ring\"\"\"\n    sx = sy = n = 0\n    r0, r1 = (r - 1.6) ** 2, (r + 1.6) ** 2\n    for y in range(max(0, int(cy - r - 2)), min(H, int(cy + r + 3))):\n        row = rows[y]\n        for x in range(max(0, int(cx - r - 2)), min(W, int(cx + r + 3))):\n            if row[x] == '1' and r0 <= (x - cx) ** 2 + (y - cy) ** 2 <= r1:\n                sx += x\n                sy += y\n                n += 1\n    return (sx / float(n), sy / float(n)) if n >= 8 else (cx, cy)\n\n\ndef _bubble(rows, W, H, x, e, d, G, rmin, rmax):\n    \"\"\"circle on the axis column x just past the line end e (d = -1 up / +1 down) -> (cx, cy, r) or None\"\"\"\n    xi = int(round(x))\n    y0 = int(min(e - d * 2 * rmax, e + d * (G + 2 * rmax)))\n    y1 = int(max(e - d * 2 * rmax, e + d * (G + 2 * rmax)))\n    y0, y1 = max(0, y0), min(H - 1, y1)\n    col = ''.join('1' if '1' in rows[y][max(0, xi - 1):xi + 2] else '0' for y in range(y0, y1 + 1))\n    pts = []\n    for m in RUN1.finditer(col):\n        a, b = m.start() + y0, m.end() - 1 + y0\n        if b - a <= 4:\n            pts.append((a + b) / 2.0)\n        else:\n            pts += [a + 0.5, b - 0.5]\n    best = None\n    for i in range(len(pts)):\n        for j in range(i + 1, len(pts)):\n            r = (pts[j] - pts[i]) / 2.0\n            if r < rmin or r > rmax:\n                continue\n            cy = (pts[i] + pts[j]) / 2.0\n            near = cy - d * r                              # the side of the circle towards the line\n            if d * (near - e) > G + 2 or d * (near - e) < -2 * rmax:\n                continue\n            for dx in (0.0, -1.0, 1.0):\n                ring, inner = _ring(rows, W, H, x + dx, cy, r)\n                if ring >= 0.82 and inner <= 0.6:\n                    cand = (ring + 0.002 * r, x + dx, cy, r)\n                    if best is None or cand > best:\n                        best = cand\n    return (best[1], best[2], best[3]) if best else None\n\n\ndef _axis_lines(rows, side=2, min_share=0.35, need_cover=0.3):\n    \"\"\"long thin vertical lines of a picture -> [{'c': x, 'a': top, 'b': bottom, 'ink': n}]  (dashed lines too)\"\"\"\n    H = len(rows)\n    W = len(rows[0]) if rows else 0\n    if H < 20 or W < 20:\n        return []\n    cols = [''.join(c) for c in zip(*rows)]\n    v = _ints(cols)\n    thin = [0] * W\n    for x in range(W):\n        a = v[x - side] if x - side >= 0 else 0\n        b = v[x + side] if x + side < W else 0\n        thin[x] = v[x] & ~(a | b)\n    Lmin = min_share * H\n    gmax = max(14, int(0.03 * max(W, H)))\n    cands = []\n    for x in range(1, W - 1):\n        band = thin[x - 1] | thin[x] | thin[x + 1]\n        if not band:\n            continue\n        s = bin(band)[2:].rstrip('L')\n        if s.count('1') < need_cover * Lmin:\n            continue\n        s = s.zfill(H)\n        chains = []\n        for m in RUN1.finditer(s):\n            a, b = m.start(), m.end() - 1\n            if chains and a - chains[-1][1] <= gmax:\n                chains[-1][1] = b\n                chains[-1][2] += b - a + 1\n            else:\n                chains.append([a, b, b - a + 1])\n        chains = [c for c in chains if c[1] - c[0] + 1 >= 0.08 * H and c[2] >= need_cover * (c[1] - c[0] + 1)]\n        if not chains:\n            continue\n        a, b = chains[0][0], chains[-1][1]\n        ink = sum(c[2] for c in chains)\n        if b - a + 1 >= Lmin and ink >= need_cover * (b - a + 1):\n            cands.append((x, a, b, ink))\n    out = []\n    i = 0\n    while i < len(cands):\n        j = i\n        while j + 1 < len(cands) and cands[j + 1][0] - cands[j][0] <= 1:\n            j += 1\n        grp = cands[i:j + 1]\n        x, a, b, ink = max(grp, key=lambda c: c[3])\n        if grp[-1][0] - grp[0][0] <= 2 * side + 3:          # a band wider than a line = hatch / fill edge\n            wsum = sum(bin(thin[c[0]]).count('1') for c in grp) or 1\n            cx = sum(c[0] * bin(thin[c[0]]).count('1') for c in grp) / float(wsum)\n            out.append({'c': cx, 'a': a, 'b': b, 'ink': ink})\n        i = j + 1\n    return out\n\n\ndef image_grids(rows, need_bubble=True, trows=None):\n    \"\"\"-> (V grids, H grids, notes).  grid = {'o', 'c' (px across), 'a', 'b' (px ends), 'bub': [circle at a, circle at b]}\n    circle = (x, y, r) in px.  V sorted left -> right, H sorted top -> bottom.\"\"\"\n    H = len(rows)\n    W = len(rows[0]) if rows else 0\n    big = max(W, H)\n    side = 2 if big <= 1500 else 3\n    G = max(14, int(0.03 * big))\n    rmin, rmax = max(5.0, 0.005 * big), max(12.0, 0.045 * big)\n    res = {}\n    notes = []\n    trows = trows or rows                                  # the map the bubble text is looked for in\n    for o in ('V', 'H'):\n        rr = rows if o == 'V' else [''.join(c) for c in zip(*rows)]\n        h, w = len(rr), len(rr[0])\n        found = []\n        for l in _axis_lines(rr, side):\n            ba = _bubble(rr, w, h, l['c'], l['a'], -1, G, rmin, rmax)\n            bb = _bubble(rr, w, h, l['c'], l['b'], 1, G, rmin, rmax)\n            g = {'o': o, 'c': l['c'], 'a': float(l['a']), 'b': float(l['b']), 'bub': [None, None], 'ink': l['ink']}\n            if ba:\n                g['a'] = ba[1] + ba[2]                     # the line ends on the circle\n            if bb:\n                g['b'] = bb[1] - bb[2]\n            if o == 'V':\n                g['bub'] = [ba, bb]\n            else:                                          # back to picture directions: (x, y, r)\n                g['bub'] = [(ba[1], ba[0], ba[2]) if ba else None, (bb[1], bb[0], bb[2]) if bb else None]\n            g['bub'] = [c if (c and _has_label(trows, W, H, c[0], c[1], c[2], rows)) else None for c in g['bub']]\n            found.append(g)\n        res[o] = found\n    with_b = [g for o in 'VH' for g in res[o] if g['bub'][0] or g['bub'][1]]\n    if with_b:\n        rs = sorted(c[2] for g in with_b for c in g['bub'] if c)\n        rmed = rs[len(rs) // 2]\n        for o in 'VH':\n            k = 1 if o == 'V' else 0                       # bubbles of one side stand in a row: their y (V) / x (H)\n            rr = rows if o == 'V' else None\n            for g in res[o]:\n                g['bub'] = [c if (c and 0.75 * rmed <= c[2] <= 1.35 * rmed) else None for c in g['bub']]\n            for e in (0, 1):\n                have = [g['bub'][e] for g in res[o] if g['bub'][e]]\n                if len(have) >= 3:\n                    ok = [c for c in have if sum(1 for d in have if abs(d[k] - c[k]) <= 1.5 * rmed) >= 2]\n                    if 2 * len(ok) >= len(have):\n                        for g in res[o]:\n                            if g['bub'][e] and g['bub'][e] not in ok:\n                                g['bub'][e] = None\n                        have = ok\n                # a line cut short by a dark room / text: look for its bubble in the row of the other bubbles\n                rowsk = sorted(set(int(round(c[k])) for c in have))\n                for g in res[o]:\n                    if g['bub'][e] or not (g['bub'][1 - e] or len(have) >= 2):\n                        continue\n                    best = None\n                    for pos in rowsk:\n                        for dr in (0.0, -0.5, 0.5, -1.0, 1.0):\n                            for dc in (0.0, -1.0, 1.0):\n                                for dp in (0.0, -1.0, 1.0):\n                                    cx, cy = (g['c'] + dc, pos + dp) if o == 'V' else (pos + dp, g['c'] + dc)\n                                    ring, inner = _ring(rows, W, H, cx, cy, rmed + dr)\n                                    if ring >= 0.82 and inner <= 0.6 and (best is None or ring > best[0]) and \\\n                                            _has_label(trows, W, H, cx, cy, rmed + dr, rows):\n                                        best = (ring, (cx, cy, rmed + dr))\n                    if best:\n                        c = best[1]\n                        g['bub'][e] = c\n                        if e == 0:\n                            g['a'] = min(g['a'], c[k] + c[2])\n                        else:\n                            g['b'] = max(g['b'], c[k] - c[2])\n        for o in 'VH':                                     # bubbles in the row of the others whose line is hidden by a wall\n            k = 1 if o == 'V' else 0\n            size = W if o == 'V' else H\n            pt = (lambda t, pos: (t, pos)) if o == 'V' else (lambda t, pos: (pos, t))\n            extra = []\n            for e in (0, 1):\n                have = [g['bub'][e] for g in res[o] if g['bub'][e]]\n                if len(have) < 2:\n                    continue\n                d = 1 if e == 0 else -1                    # from the bubble towards the plan\n                for pos in sorted(set(int(round(c[k])) for c in have)):\n                    hits = []\n                    for t in range(int(rmed) + 1, size - int(rmed) - 1):\n                        if any(abs(g['c'] - t) <= rmed for g in res[o]):\n                            continue\n                        cx, cy = pt(t, pos)\n                        ok = True\n                        for ax, ay in ((rmed, 0), (-rmed, 0), (0, rmed), (0, -rmed)):\n                            x, y = int(round(cx + ax)), int(round(cy + ay))\n                            if not any(0 <= yy < H and '1' in rows[yy][max(0, x - 1):x + 2] for yy in (y - 1, y, y + 1)):\n                                ok = False\n                                break\n                        if not ok:\n                            continue\n                        ring, inner = _ring(rows, W, H, cx, cy, rmed)\n                        if ring >= 0.85 and inner <= 0.6 and _has_label(trows, W, H, cx, cy, rmed, rows):\n                            hits.append((ring, t))\n                    hits.sort(reverse=True)\n                    taken = []\n                    for ring, t in hits:\n                        if any(abs(t - u) <= 2 * rmed for u in taken):\n                            continue\n                        taken.append(t)\n                        cx, cy = pt(t, pos)\n                        m = _centre(rows, W, H, cx, cy, rmed)\n                        tc = m[0] if o == 'V' else m[1]\n                        n_ink = 0                          # a line must leave the bubble towards the plan\n                        L = int(max(6, rmed))\n                        for i in range(L):\n                            x, y = pt(int(round(tc)), int(round(pos + d * (rmed + 2 + i))))\n                            if 0 <= y < H and 0 <= x < W:\n                                if o == 'V' and '1' in rows[y][max(0, x - 1):x + 2]:\n                                    n_ink += 1\n                                elif o == 'H' and any(0 <= yy < H and rows[yy][x] == '1' for yy in (y - 1, y, y + 1)):\n                                    n_ink += 1\n                        if n_ink >= 0.6 * L:\n                            extra.append((e, tc, (m[0], m[1], rmed)))\n            if len(set(int(round(x[1])) for x in extra)) > len(res[o]):\n                extra = []                                 # more hidden than seen: not a grid pattern\n            for e, tc, c in extra:\n                g = next((x for x in res[o] if x.get('weak') and abs(x['c'] - tc) <= 2.0), None)\n                others = [x for x in res[o] if not x.get('weak')]\n                if g is None:\n                    aa = sorted(x['a'] for x in others)[len(others) // 2]\n                    bb = sorted(x['b'] for x in others)[len(others) // 2]\n                    g = {'o': o, 'c': tc, 'a': aa, 'b': bb, 'bub': [None, None], 'ink': 0, 'weak': True}\n                    res[o].append(g)\n                g['bub'][e] = c\n                if e == 0:\n                    g['a'] = c[k] + c[2]\n                else:\n                    g['b'] = c[k] - c[2]\n            nweak = sum(1 for x in res[o] if x.get('weak'))\n            if nweak:\n                notes.append('{0} {1} grids were found from their bubble only (the line is hidden by a wall) - CHECK'.format(\n                    nweak, 'vertical' if o == 'V' else 'horizontal'))\n        for o in 'VH':                                     # the grid line runs through the middle of its bubbles\n            k = 0 if o == 'V' else 1\n            for g in res[o]:\n                cs = []\n                for e in (0, 1):\n                    c = g['bub'][e]\n                    if c:\n                        m = _centre(rows, W, H, c[0], c[1], c[2])\n                        g['bub'][e] = (m[0], m[1], c[2])\n                        cs.append(m[k])\n                if cs and max(cs) - min(cs) <= 2.0 and abs(sum(cs) / len(cs) - g['c']) <= 3.0:\n                    g['c'] = sum(cs) / len(cs)\n        for o in 'VH':\n            keep = [g for g in res[o] if g['bub'][0] or g['bub'][1]]\n            dropped = len(res[o]) - len(keep)\n            if dropped:\n                notes.append('{0} long {1} lines without a bubble were not taken as grids'.format(\n                    dropped, 'vertical' if o == 'V' else 'horizontal'))\n            res[o] = keep\n    elif not need_bubble:\n        notes.append('No grid bubbles (circles) found: every long thin line is taken as a grid - CHECK')\n    else:\n        res = {'V': [], 'H': []}\n    if with_b:                                             # a grid system: bubbles of one side stand in a row\n        rs = sorted(c[2] for o in 'VH' for g in res[o] for c in g['bub'] if c)\n        rm = rs[len(rs) // 2] if rs else 0.0\n        good = {}\n        for o in 'VH':\n            k = 1 if o == 'V' else 0\n            good[o] = False\n            for e in (0, 1):\n                have = [g['bub'][e][k] for g in res[o] if g['bub'][e]]\n                if any(sum(1 for u in have if abs(u - t) <= 1.5 * rm) >= 2 for t in have):\n                    good[o] = True\n        for o, other in (('V', 'H'), ('H', 'V')):\n            if not good[o] and not (len(res[o]) == 1 and good[other]):\n                if res[o]:\n                    notes.append('{0} {1} line(s) ending in a lone circle were not taken as grids'.format(\n                        len(res[o]), 'vertical' if o == 'V' else 'horizontal'))\n                res[o] = []\n    for o in 'VH':\n        res[o].sort(key=lambda g: g['c'])\n        keep = []\n        for g in res[o]:                                   # the same line found twice\n            if keep and g['c'] - keep[-1]['c'] < 4:\n                if g['ink'] > keep[-1]['ink']:\n                    keep[-1] = g\n            else:\n                keep.append(g)\n        res[o] = keep\n    return res['V'], res['H'], notes\n\n\nPS_LABELS = r'''param([string]$path, [string]$boxes, [string]$heights = '40,64', [string]$left = 'GRID', [string]$right = 'END')\n$ErrorActionPreference = 'Stop'\nAdd-Type -AssemblyName System.Drawing\nAdd-Type -AssemblyName System.Runtime.WindowsRuntime\n$null = [Windows.Storage.StorageFile, Windows.Storage, ContentType = WindowsRuntime]\n$null = [Windows.Media.Ocr.OcrEngine, Windows.Foundation, ContentType = WindowsRuntime]\n$null = [Windows.Graphics.Imaging.BitmapDecoder, Windows.Graphics, ContentType = WindowsRuntime]\n$asTask = ([System.WindowsRuntimeSystemExtensions].GetMethods() | Where-Object { $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and $_.GetParameters()[0].ParameterType.Name -eq 'IAsyncOperation`1' })[0]\nfunction Await($op, [Type]$t) { $task = $asTask.MakeGenericMethod($t).Invoke($null, @($op)); $task.Wait() | Out-Null; $task.Result }\n$eng = [Windows.Media.Ocr.OcrEngine]::TryCreateFromUserProfileLanguages()\nif ($eng -eq $null) { 'NOENGINE'; exit }\n$src = New-Object System.Drawing.Bitmap $path\n$items = @()\nforeach ($l in [IO.File]::ReadAllLines($boxes)) { $p = $l.Split('|'); if ($p.Length -ge 4) { $items += ,@([int]$p[0], [double]$p[1], [double]$p[2], [double]$p[3]) } }\n$v = 0\nforeach ($hs in $heights.Split(',')) {\n  $th = [int]$hs\n  $rowH = [int]($th * 1.9); $perSheet = [Math]::Max(1, [int](5000 / $rowH))\n  for ($s0 = 0; $s0 -lt $items.Count; $s0 += $perSheet) {\n    $n = [Math]::Min($perSheet, $items.Count - $s0)\n    $SW = [int]($th * 14); $SH = $rowH * $n + $th\n    $sheet = New-Object System.Drawing.Bitmap $SW, $SH\n    $g = [System.Drawing.Graphics]::FromImage($sheet); $g.Clear([System.Drawing.Color]::White)\n    $g.InterpolationMode = 'HighQualityBicubic'; $g.PixelOffsetMode = 'Half'; $g.TextRenderingHint = 'AntiAlias'; $g.SmoothingMode = 'AntiAlias'\n    $font = New-Object System.Drawing.Font('Arial', [single]($th * 0.62), [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Pixel)\n    $rowsY = @()\n    for ($k = 0; $k -lt $n; $k++) {\n      $it = $items[$s0 + $k]; $cx = $it[1]; $cy = $it[2]; $r = $it[3]\n      $y = [int]($th * 0.5 + $k * $rowH)\n      $z = $th / (2.0 * $r)\n      $g.DrawString($left, $font, [System.Drawing.Brushes]::Black, [single]($th * 0.4), [single]($y + $th * 0.16))\n      $x = [single]($th * 3.6)\n      $dst = New-Object System.Drawing.RectangleF $x, $y, $th, $th\n      $srcR = New-Object System.Drawing.RectangleF ([single]($cx - $r)), ([single]($cy - $r)), ([single](2 * $r)), ([single](2 * $r))\n      $g.DrawImage($src, $dst, $srcR, [System.Drawing.GraphicsUnit]::Pixel)\n      $gp = New-Object System.Drawing.Drawing2D.GraphicsPath\n      $gp.AddRectangle((New-Object System.Drawing.RectangleF ($x - 2), ($y - 2), ($th + 4), ($th + 4)))\n      $k2 = 0.84 * $th / 2\n      $gp.AddEllipse([single]($x + $th / 2 - $k2), [single]($y + $th / 2 - $k2), [single](2 * $k2), [single](2 * $k2))\n      $g.FillPath([System.Drawing.Brushes]::White, $gp); $gp.Dispose()\n      $g.DrawString($right, $font, [System.Drawing.Brushes]::Black, [single]($th * 5.4), [single]($y + $th * 0.16))\n      $rowsY += ,@($it[0], $y)\n    }\n    $g.Dispose()\n    $tmp = [IO.Path]::Combine($env:TEMP, ('B22_labels_{0}_{1}.png' -f $v, $s0))\n    $sheet.Save($tmp, [System.Drawing.Imaging.ImageFormat]::Png); $sheet.Dispose()\n    $file = Await ([Windows.Storage.StorageFile]::GetFileFromPathAsync($tmp)) ([Windows.Storage.StorageFile])\n    $stream = Await ($file.OpenAsync([Windows.Storage.FileAccessMode]::Read)) ([Windows.Storage.Streams.IRandomAccessStream])\n    $dec = Await ([Windows.Graphics.Imaging.BitmapDecoder]::CreateAsync($stream)) ([Windows.Graphics.Imaging.BitmapDecoder])\n    $bmp = Await ($dec.GetSoftwareBitmapAsync()) ([Windows.Graphics.Imaging.SoftwareBitmap])\n    $res = Await ($eng.RecognizeAsync($bmp)) ([Windows.Media.Ocr.OcrResult])\n    $stream.Dispose()\n    foreach ($l in $res.Lines) { foreach ($w in $l.Words) {\n      $rc = $w.BoundingRect; $wx = $rc.X + $rc.Width / 2; $wy = $rc.Y + $rc.Height / 2\n      if ($wx -lt $th * 3.3 -or $wx -gt $th * 4.9) { continue }\n      foreach ($ry in $rowsY) { if ($wy -ge $ry[1] - $th * 0.2 -and $wy -le $ry[1] + $th * 1.2) { \"T|{0}|{1}|{2}|{3}\" -f $ry[0], $v, [int]$rc.X, $w.Text; break } }\n    } }\n  }\n  $v++\n}\n$src.Dispose()\n'DONE'\n'''\n\n\ndef ocr_labels(path, circles, C=None):\n    \"\"\"circles [(x, y, r)] in picture px -> {index: [text read, ...]}: each bubble is read 4 times (2 sizes, between\n    2 pairs of printed words) - the same text twice = sure\"\"\"\n    res = {}\n    if not circles:\n        return res\n    C = C or load_b14()\n    tmp = C['_tmpdir']()\n    ps = os.path.join(tmp, 'b22_labels.ps1')\n    with open(ps, 'w') as f:\n        f.write(PS_LABELS)\n    lst = os.path.join(tmp, 'b22_labels.txt')\n    with open(lst, 'w') as f:\n        for i, c in enumerate(circles):\n            f.write('{0}|{1:.2f}|{2:.2f}|{3:.2f}\\n'.format(i, c[0], c[1], c[2]))\n    for left, right in (('GRID', 'END'), ('No', 'ok')):\n        try:\n            o, e = C['_ps'](['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', ps, path, lst, '40,64', left, right])\n            if 'DONE' not in o:\n                log('label ocr: ' + (e.strip().splitlines() or [o.strip()[:200]])[-1][:300])\n            got = {}\n            for l in o.splitlines():\n                q = l.strip().split('|', 4)\n                if len(q) == 5 and q[0] == 'T':\n                    got.setdefault((int(q[1]), int(q[2])), []).append((int(q[3]), q[4]))\n            for (i, v), ws in got.items():\n                res.setdefault(i, []).append(''.join(t for x, t in sorted(ws)))\n        except Exception as ex:\n            log('label ocr: ' + str(ex))\n    return res\n\n\ndef label_boxes(grids, f=1.0):\n    \"\"\"cut-outs for the text reader: the inside of every bubble -> (boxes in picture px, [(grid, end)])\"\"\"\n    boxes, owner = [], []\n    for g in grids:\n        for e in (0, 1):\n            c = g['bub'][e]\n            if c:\n                k = 0.74 * c[2]\n                boxes.append(((c[0] - k) / f, (c[1] - k) / f, 2 * k / f + 1, 2 * k / f + 1, 0))\n                owner.append((g, e))\n    return boxes, owner\n\n\ndef set_labels(owner, texts, boxes, min_text=5.0):\n    \"\"\"texts {box index: [text at each size]} -> g['label'], g['sure'] (the 2 sizes, or the 2 ends, agree)\"\"\"\n    per = {}\n    for i, (g, e) in enumerate(owner):\n        tx = [clean_label(t) for t in (texts.get(i) or []) if t]\n        tx = [t for t in tx if t]\n        per.setdefault(id(g), [g, []])[1].append(tx)\n    for g, lst in per.values():\n        allr = [t for tx in lst for t in tx]\n        g['label'], g['sure'] = '', False\n        if not allr:\n            continue\n        cnt = {}\n        for t in allr:\n            cnt[t] = cnt.get(t, 0) + 1\n        t, n = max(cnt.items(), key=lambda kv: (kv[1], len(kv[0])))\n        g['label'] = t\n        g['sure'] = n >= 2\n    return owner\n\n\ndef axis_mm(gs, s, dims, o, typed=None):\n    \"\"\"positions of parallel grids in mm from the first one.  Spacing = the dimension written between two grids when it\n    was read for sure; else picture px x scale, set equal to a known spacing when within 1.2 px, else rounded.\n    -> (positions, [(mm, how)])\"\"\"\n    step = 5.0 if s < 5 else (10.0 if s < 12 else (25.0 if s < 30 else 50.0))\n    known = [float(typed)] if typed else []\n    pairs = []\n    for g0, g1 in zip(gs, gs[1:]):\n        exact = None\n        for d in dims or []:\n            if d.get('o') != o or not d.get('ok') or not d.get('mm'):\n                continue\n            if abs(d['a'] - g0['c']) <= 3.0 and abs(d['b'] - g1['c']) <= 3.0:\n                if abs(d['mm'] - (g1['c'] - g0['c']) * s) <= max(0.03 * d['mm'], 1.5 * s):\n                    exact = float(d['mm'])\n                    break\n        pairs.append(exact)\n        if exact:\n            known.append(exact)\n    pos, how = [0.0], []\n    for (g0, g1), exact in zip(zip(gs, gs[1:]), pairs):\n        raw = (g1['c'] - g0['c']) * s\n        if exact:\n            mm, h = exact, 'dimension'\n        else:\n            near = [k for k in known if abs(k - raw) <= 1.2 * s]\n            if near:\n                mm, h = min(near, key=lambda k: abs(k - raw)), 'equal'\n            else:\n                mm, h = round(raw / step) * step, 'measured'\n        pos.append(pos[-1] + mm)\n        how.append((mm, h))\n    return pos, how\n\n\ndef parse_scale(text):\n    \"\"\"'AUTO' | '8850' / 'SPACING 8850' (first two grids) | '1:100' (PDF) | 'PX 93.5' (mm per picture px)\"\"\"\n    t = str(text or '').strip().upper().replace('MM', '').replace(',', '.')\n    if t in ('', 'AUTO', 'DIMS', 'DIMENSIONS'):\n        return 'AUTO', None\n    m = re.match(r'^1\\s*:\\s*([\\d.]+)$', t)\n    if m:\n        return 'SCALE', float(m.group(1))\n    m = re.match(r'^PX\\s*([\\d.]+)$', t)\n    if m:\n        return 'PX', float(m.group(1))\n    m = re.match(r'^(?:SPACING|GRID|DIM)?\\s*([\\d.]+)$', t)\n    if m and float(m.group(1)) > 0:\n        return 'SPACING', float(m.group(1))\n    raise Exception('Scale \"{0}\" not understood. Use AUTO, a grid spacing in mm (8850), 1:100 (PDF) or PX 93.5'.format(text))\n\n\n# ------------------------------------------------------------------ CAD: grid lines + bubbles (pure Python, mm)\nGRID_WORDS = ('GRID', 'AXIS', 'AXES', 'A-AX', '_AX', 'AX-', 'GRD', 'COLUMN LINE', 'C-LINE', 'CENTER', 'CENTRE', 'CLINE')\nSKIP = ('HATCH', 'TEXT', 'DIM', 'ANNO', 'TITLE', 'DEFPOINTS', 'VIEWPORT', 'LEGEND', 'NPLT', 'BOUNDARY', 'PLOT', 'TTLB')\n\n\ndef _ang(s):\n    (x0, y0), (x1, y1) = s\n    return math.degrees(math.atan2(y1 - y0, x1 - x0)) % 180.0\n\n\ndef merge_lines(segs, ang_tol=0.5, off_tol=30.0, gap=2500.0):\n    \"\"\"collinear pieces (dashed / phantom lines) -> one line each: [(p, q)]\"\"\"\n    groups = {}\n    for s in segs:\n        a = _ang(s)\n        t = math.radians(a)\n        d = (math.cos(t), math.sin(t))\n        n = (-d[1], d[0])\n        off = s[0][0] * n[0] + s[0][1] * n[1]\n        t0 = s[0][0] * d[0] + s[0][1] * d[1]\n        t1 = s[1][0] * d[0] + s[1][1] * d[1]\n        hit = None\n        ka = int(round(a / ang_tol))\n        for kk in (ka - 1, ka, ka + 1, ka - int(round(180.0 / ang_tol)), ka + int(round(180.0 / ang_tol))):\n            for g in groups.get(kk, []):\n                da = abs(g['a'] - a) % 180.0\n                if min(da, 180.0 - da) <= ang_tol:\n                    off2 = s[0][0] * g['n'][0] + s[0][1] * g['n'][1]\n                    if abs(off2 - g['off']) <= off_tol:\n                        hit = g\n                        break\n            if hit:\n                break\n        if hit:\n            u0 = s[0][0] * hit['d'][0] + s[0][1] * hit['d'][1]\n            u1 = s[1][0] * hit['d'][0] + s[1][1] * hit['d'][1]\n            hit['iv'].append((min(u0, u1), max(u0, u1)))\n        else:\n            groups.setdefault(ka, []).append({'a': a, 'd': d, 'n': n, 'off': off, 'iv': [(min(t0, t1), max(t0, t1))]})\n    out = []\n    for lst in groups.values():\n        for g in lst:\n            iv = sorted(g['iv'])\n            runs = [list(iv[0])]\n            for a, b in iv[1:]:\n                if a <= runs[-1][1] + gap:\n                    runs[-1][1] = max(runs[-1][1], b)\n                else:\n                    runs.append([a, b])\n            d, n, off = g['d'], g['n'], g['off']\n            for a, b in runs:\n                out.append(((d[0] * a + n[0] * off, d[1] * a + n[1] * off), (d[0] * b + n[0] * off, d[1] * b + n[1] * off)))\n    return out\n\n\ndef bubble_at(line, circles):\n    \"\"\"circles at the ends of a line: {end index: circle} - centre on the line's extension, touching the end\"\"\"\n    (x0, y0), (x1, y1) = line\n    L = math.hypot(x1 - x0, y1 - y0)\n    d = ((x1 - x0) / L, (y1 - y0) / L)\n    res = {}\n    for c in circles:\n        cx, cy, r = c[0], c[1], c[2]\n        t = (cx - x0) * d[0] + (cy - y0) * d[1]\n        perp = abs(-(cx - x0) * d[1] + (cy - y0) * d[0])\n        if perp > 0.3 * r:\n            continue\n        if -2.5 * r <= t <= 0.5 * r:\n            res[0] = (cx, cy, r)\n        elif L - 0.5 * r <= t <= L + 2.5 * r:\n            res[1] = (cx, cy, r)\n    return res\n\n\ndef merge_arcs(arcs, tol=30.0):\n    \"\"\"pieces of one dashed arc -> one arc: [(cx, cy, r, a0, a1)] angles in radians, a1 > a0, counter-clockwise\"\"\"\n    groups = []\n    for cx, cy, r, a0, a1 in arcs:\n        for g in groups:\n            if abs(g[0] - cx) <= tol and abs(g[1] - cy) <= tol and abs(g[2] - r) <= tol:\n                g[3].append((a0, a1))\n                break\n        else:\n            groups.append([cx, cy, r, [(a0, a1)]])\n    out = []\n    for cx, cy, r, iv in groups:\n        ref = iv[0][0]\n        norm = []\n        for a0, a1 in iv:\n            sweep = (a1 - a0) % (2 * math.pi)\n            s = (a0 - ref + math.pi) % (2 * math.pi) - math.pi\n            norm.append((s, s + sweep))\n        lo, hi = min(a for a, b in norm), max(b for a, b in norm)\n        if hi - lo < 1.95 * math.pi:\n            out.append((cx, cy, r, ref + lo, ref + hi))\n    return out\n\n\ndef cad_grids(layers, arcs, circles, layer_text='AUTO'):\n    \"\"\"layers {name: [((x, y), (x, y))]}, arcs {name: [(cx, cy, r, a0, a1)]}, circles [(x, y, r)]  (mm)\n    -> (grids, how, layers used).  grid = {'kind': 'line' / 'arc', 'p', 'q' [, 'arc'], 'bub': {end: circle}}\"\"\"\n    names = sorted(set(list(layers) + list(arcs)))\n    t = str(layer_text or '').strip()\n    auto = t.upper() in ('', 'AUTO', '*', 'ALL')\n    if auto:\n        use = [n for n in names if any(k in n.upper() for k in GRID_WORDS) and not any(k in n.upper() for k in ('IDEN', 'TEXT', 'BUBB'))]\n        use = use or [n for n in names if any(k in n.upper() for k in GRID_WORDS)]\n        how, need_b = 'grid layers', False\n        if not use:\n            use = [n for n in names if not any(k in n.upper() for k in SKIP)]\n            how, need_b = 'all layers (long line ending in a bubble)', True\n    else:\n        keys = [k.strip().upper() for k in re.split(r'[,;]', t) if k.strip()]\n        use = [n for n in names if any(k in n.upper() for k in keys)]\n        how, need_b = 'chosen layers', False\n        if not use:\n            raise Exception('No CAD layer matching \"{0}\". Layers: {1}'.format(t, ', '.join(names)))\n    circles = [c for c in circles if 50.0 <= c[2] <= 5000.0]\n\n    def find(use_layers, need):\n        segs = [s for n in use_layers for s in layers.get(n, [])]\n        ar = [a for n in use_layers for a in arcs.get(n, [])]\n        xs = [p[0] for s in segs for p in s] or [0.0]\n        ys = [p[1] for s in segs for p in s] or [0.0]\n        ext = min(max(xs) - min(xs), max(ys) - min(ys))\n        min_len = 3000.0 if need else max(1500.0, 0.2 * ext)\n        out = []\n        for ln in merge_lines(segs):\n            L = math.hypot(ln[1][0] - ln[0][0], ln[1][1] - ln[0][1])\n            if L < min_len:\n                continue\n            b = bubble_at(ln, circles)\n            if need and not b:\n                continue\n            out.append({'kind': 'line', 'p': ln[0], 'q': ln[1], 'bub': b})\n        for cx, cy, r, a0, a1 in merge_arcs(ar):\n            if r * (a1 - a0) < min_len or r < 1000.0:\n                continue\n            p = (cx + r * math.cos(a0), cy + r * math.sin(a0))\n            q = (cx + r * math.cos(a1), cy + r * math.sin(a1))\n            b = {}\n            for e, pt in ((0, p), (1, q)):\n                for c in circles:\n                    if abs(math.hypot(c[0] - pt[0], c[1] - pt[1]) - c[2]) <= 0.6 * c[2] and c[2] < 0.3 * r:\n                        b[e] = (c[0], c[1], c[2])\n            if need and not b:\n                continue\n            out.append({'kind': 'arc', 'p': p, 'q': q, 'arc': (cx, cy, r, a0, a1), 'bub': b})\n        return out\n\n    grids = find(use, need_b)\n    if not grids and not need_b:\n        use = [n for n in names if not any(k in n.upper() for k in SKIP)]\n        grids = find(use, True)\n        how = 'all layers (long line ending in a bubble)'\n    return grids, how, use\n\n\ndef split_axes(grids):\n    \"\"\"-> (V, H, other): V = across the main direction sorted left -> right, H sorted top -> bottom, the rest (slanted,\n    arcs) sorted left -> right.  Rotated plans: the main direction is the commonest line angle.\"\"\"\n    lines = [g for g in grids if g['kind'] == 'line']\n    votes = {}\n    for g in lines:\n        a = int(round(_ang((g['p'], g['q'])))) % 90\n        votes[a] = votes.get(a, 0) + 1\n    base = max(votes, key=votes.get) if votes else 0\n    if base > 45:\n        base -= 90\n    c, s = math.cos(math.radians(base)), math.sin(math.radians(base))\n    loc = lambda p: (p[0] * c + p[1] * s, -p[0] * s + p[1] * c)\n    V, Hh, other = [], [], []\n    for g in grids:\n        mid = loc(((g['p'][0] + g['q'][0]) / 2.0, (g['p'][1] + g['q'][1]) / 2.0))\n        if g['kind'] != 'line':\n            other.append((mid[0], g))\n            continue\n        a = (_ang((g['p'], g['q'])) - base) % 180.0\n        if abs(a - 90.0) <= 5.0:\n            V.append((mid[0], g))\n        elif a <= 5.0 or a >= 175.0:\n            Hh.append((-mid[1], g))\n        else:\n            other.append((mid[0], g))\n    key = lambda t: t[0]\n    return [g for _, g in sorted(V, key=key)], [g for _, g in sorted(Hh, key=key)], [g for _, g in sorted(other, key=key)]\n\n\n# ------------------------------------------------------------------ DXF text / circle / line reader (grid bubble names)\ndef _pairs(path):\n    with _open_text(path) as fh:\n        while True:\n            c = fh.readline()\n            if not c:\n                return\n            v = fh.readline()\n            try:\n                yield int(c.strip()), v.rstrip('\\r\\n')\n            except ValueError:\n                continue\n\n\ndef _clean_mtext(t):\n    t = re.sub(r'\\\\[A-Za-z][^;\\\\]*;', '', t)              # \\fArial|b0;  \\H2.5;  \\C1; ...\n    t = re.sub(r'\\\\[PpNn~]', ' ', t)\n    return t.replace('{', '').replace('}', '').strip()\n\n\ndef read_dxf(path):\n    \"\"\"-> (texts [(x, y, text, height)], circles [(x, y, r)], line ends [(x, y)]) in drawing units; blocks expanded\"\"\"\n    blocks, ents = {}, []\n    state = {'section': None, 'block': None, 'cur': None}\n\n    def flush():\n        cur = state['cur']\n        if cur is None or cur['t'] == 'BLOCK':\n            return\n        if state['section'] == 'BLOCKS' and state['block'] is not None:\n            blocks[state['block']].append(cur)\n        elif state['section'] == 'ENTITIES':\n            ents.append(cur)\n\n    it = _pairs(path)\n    for code, val in it:\n        if code == 0:\n            flush()\n            state['cur'] = None\n            val = val.strip()\n            if val == 'SECTION':\n                try:\n                    c2, v2 = next(it)\n                except StopIteration:\n                    break\n                state['section'] = v2.strip()\n                continue\n            if val == 'ENDSEC':\n                state['section'] = None\n                continue\n            if state['section'] == 'BLOCKS' and val == 'BLOCK':\n                state['cur'] = {'t': 'BLOCK'}\n                continue\n            if state['section'] == 'BLOCKS' and val == 'ENDBLK':\n                state['block'] = None\n                continue\n            if state['section'] in ('ENTITIES', 'BLOCKS') and val in ('TEXT', 'MTEXT', 'ATTRIB', 'CIRCLE', 'INSERT', 'LINE'):\n                state['cur'] = {'t': val, 'x': 0.0, 'y': 0.0, 'txt': '', 'sx': 1.0, 'sy': 1.0, 'rot': 0.0, 'r': 0.0,\n                                'b': '', 'h': 0.0}\n            continue\n        cur = state['cur']\n        if cur is None:\n            continue\n        try:\n            if cur['t'] == 'BLOCK':\n                if code == 2:\n                    state['block'] = val.strip()\n                    blocks.setdefault(state['block'], [])\n                    state['cur'] = None\n                continue\n            t = cur['t']\n            if code == 10:\n                cur['x'] = float(val)\n            elif code == 20:\n                cur['y'] = float(val)\n            elif code == 11 and t in ('TEXT', 'ATTRIB', 'LINE'):\n                cur['ax'] = float(val)                    # alignment point (centred text) / line end\n            elif code == 21 and t in ('TEXT', 'ATTRIB', 'LINE'):\n                cur['ay'] = float(val)\n            elif code == 1:\n                cur['txt'] += val\n            elif code == 3 and t == 'MTEXT':\n                cur['txt'] += val\n            elif code == 40 and t == 'CIRCLE':\n                cur['r'] = float(val)\n            elif code == 40 and t in ('TEXT', 'ATTRIB', 'MTEXT'):\n                cur['h'] = float(val)\n            elif code == 2 and t == 'INSERT':\n                cur['b'] = val.strip()\n            elif code == 41 and t == 'INSERT':\n                cur['sx'] = float(val)\n            elif code == 42 and t == 'INSERT':\n                cur['sy'] = float(val)\n            elif code == 50 and t == 'INSERT':\n                cur['rot'] = float(val)\n        except ValueError:\n            pass\n    flush()\n    texts, circles, ends = [], [], []\n\n    def pos(e):\n        if e['t'] != 'LINE' and 'ax' in e and 'ay' in e and (abs(e['ax']) + abs(e['ay'])) > 0:\n            return e['ax'], e['ay']\n        return e['x'], e['y']\n\n    def emit(ents_, xf, scale, depth):\n        for e in ents_:\n            t = e['t']\n            if t in ('TEXT', 'MTEXT', 'ATTRIB'):\n                s = _clean_mtext(e['txt']) if t == 'MTEXT' else e['txt'].strip()\n                if s:\n                    x, y = xf(*pos(e))\n                    texts.append((x, y, s, e['h'] * scale))\n            elif t == 'CIRCLE':\n                x, y = xf(e['x'], e['y'])\n                circles.append((x, y, e['r'] * scale))\n            elif t == 'LINE' and 'ax' in e and 'ay' in e:\n                ends.append(xf(e['x'], e['y']))\n                ends.append(xf(e['ax'], e['ay']))\n            elif t == 'INSERT' and depth < 4 and e['b'] in blocks:\n                c, s_ = math.cos(math.radians(e['rot'])), math.sin(math.radians(e['rot']))\n                ix, iy, sx, sy = e['x'], e['y'], e['sx'], e['sy']\n\n                def xf2(px, py, xf=xf, c=c, s_=s_, ix=ix, iy=iy, sx=sx, sy=sy):\n                    qx, qy = px * sx, py * sy\n                    return xf(ix + qx * c - qy * s_, iy + qx * s_ + qy * c)\n                emit(blocks[e['b']], xf2, scale * abs(sx), depth + 1)\n\n    emit(ents, lambda x, y: (x, y), 1.0, 0)\n    return texts, circles, ends\n\n\nUNIT_MM = (1.0, 10.0, 1000.0, 25.4, 304.8)\n\n\ndef fit_points(src, dst, angle, ks=UNIT_MM, cell=20.0, limit=300):\n    \"\"\"drawing coordinates -> model mm: rotation = the CAD's angle, scale = one of the drawing units, shift = the one\n    that puts most src points on dst points.  -> function f(x, y) with f.k, f.n (points matched) or None\"\"\"\n    if not src or not dst:\n        return None\n    ca, sa = math.cos(angle), math.sin(angle)\n    src, dst = src[:limit], dst[:limit]\n    best = None\n    for k in ks:\n        votes = {}\n        for a in src:\n            ax, ay = (a[0] * ca - a[1] * sa) * k, (a[0] * sa + a[1] * ca) * k\n            for b in dst:\n                key = (int(round((b[0] - ax) / cell)), int(round((b[1] - ay) / cell)))\n                votes[key] = votes.get(key, 0) + 1\n        (tx, ty), n = max(votes.items(), key=lambda t: t[1])\n        if best is None or n > best[0]:\n            best = (n, k, tx * cell, ty * cell)\n    n, k, tx, ty = best\n    if n < max(3, 0.3 * min(len(src), len(dst))):\n        return None\n    # refine the shift with the matched points\n    sx = sy = m = 0.0\n    for a in src:\n        ax, ay = (a[0] * ca - a[1] * sa) * k, (a[0] * sa + a[1] * ca) * k\n        for b in dst:\n            if abs(b[0] - ax - tx) <= 1.5 * cell and abs(b[1] - ay - ty) <= 1.5 * cell:\n                sx += b[0] - ax\n                sy += b[1] - ay\n                m += 1\n    if m:\n        tx, ty = sx / m, sy / m\n\n    def f(x, y):\n        return (x * ca - y * sa) * k + tx, (x * sa + y * ca) * k + ty\n    f.k, f.n = k, n\n    return f\n\n\ndef label_cad(grids, texts):\n    \"\"\"texts [(x, y, text, height)] in model mm: the text in a grid's bubble (or just past a bare line end) = its name\"\"\"\n    pts = [(x, y, t.strip(), h) for x, y, t, h in texts if 0 < len(t.strip()) <= 6]\n    n = 0\n    for g in grids:\n        g['label'], g['sure'] = '', True\n        best = None\n        for e in (0, 1):\n            c = g['bub'].get(e)\n            if c:\n                for x, y, t, h in pts:\n                    d = math.hypot(x - c[0], y - c[1])\n                    if d <= 1.25 * c[2] and (best is None or d < best[0]):\n                        best = (d, t)\n        if best is None and not g['bub'] and g['kind'] == 'line':\n            (x0, y0), (x1, y1) = g['p'], g['q']\n            L = math.hypot(x1 - x0, y1 - y0)\n            dx, dy = (x1 - x0) / L, (y1 - y0) / L\n            for x, y, t, h in pts:\n                hh = max(h, 100.0)\n                u = (x - x0) * dx + (y - y0) * dy\n                perp = abs(-(x - x0) * dy + (y - y0) * dx)\n                past = -u if u < 0 else (u - L if u > L else None)\n                if past is not None and past <= 5.0 * hh and perp <= 1.5 * hh and (best is None or past < best[0]):\n                    best = (past, t)\n        if best:\n            g['label'] = clean_label(best[1])\n            n += 1\n    return n\n\n\ndef grid_specs(vs, hs, other):\n    \"\"\"-> list of grids to make: {'name', 'how', 'kind', 'p', 'q', 'arc', 'bub': (end p, end q) or None}\"\"\"\n    out = []\n    for g in list(vs) + list(hs) + list(other):\n        b = g.get('bub') or {}\n        has = (bool(b.get(0)), bool(b.get(1))) if isinstance(b, dict) else (bool(b[0]), bool(b[1]))\n        out.append({'name': g['name'], 'how': g['how'], 'kind': g.get('kind', 'line'), 'p': g['p'], 'q': g['q'],\n                    'arc': g.get('arc'), 'bub': has if (has[0] or has[1]) else None, 'read': g.get('read', '')})\n    return out\n\n\ndef report_names(specs):\n    read = [s['name'] for s in specs if s['how'] == 'read']\n    typed = [s['name'] for s in specs if s['how'] == 'typed']\n    guess = [s['name'] for s in specs if s['how'] == 'guess']\n    out = []\n    if read:\n        out.append('Names READ from the source ({0}): {1}'.format(len(read), ', '.join(read)))\n    if typed:\n        out.append('Names you typed ({0}): {1}'.format(len(typed), ', '.join(typed)))\n    if guess:\n        out.append('Names GUESSED in sequence - CHECK ({0}): {1}'.format(len(guess), ', '.join(guess)))\n    return out\n\n\n# ------------------------------------------------------------------ B14 Plan To 3D engine (picture, PDF, OCR, dimensions)\n_B14 = {}\n\n\ndef b14_paths():\n    here = os.path.dirname(os.path.abspath(globals().get('__file__') or '.'))\n    ext = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'Extensions', 'SD_Tools.extension', 'SD Tools.tab',\n                       'Model.panel', 'B14 Plan To 3D.pushbutton', 'b14_core.py')\n    return [os.path.join(os.path.dirname(here), 'B14 Plan To 3D.pushbutton', 'b14_core.py'),\n            os.path.join(here, 'b14_core.py'), ext, os.environ.get('SD_B14_CORE', '')]\n\n\ndef _open_text(path):\n    if str is bytes:                                      # IronPython 2.7\n        return open(path, 'r')\n    import io\n    return io.open(path, 'r', encoding='utf-8', errors='ignore')\n\n\ndef _read_code(path):\n    with _open_text(path) as fh:\n        return fh.read()\n\n\ndef load_b14():\n    \"\"\"the picture / PDF / OCR / dimension reader of B14 Plan To 3D (one copy of that code for both tools)\"\"\"\n    if _B14:\n        return _B14['ns']\n    for p in b14_paths():\n        if p and os.path.isfile(p):\n            ns = {'__name__': 'b14_core', '__file__': p}\n            exec(compile(_read_code(p), p, 'exec'), ns)\n            _B14['ns'] = ns\n            return ns\n    raise Exception('Grids from a picture need the SD Tools button \"B14 Plan To 3D\" on this PC (b14_core.py not found). '\n                    'Grids from CAD work without it.')\n\n\ndef analyse_image(path, page=1, ocr=None):\n    \"\"\"picture / PDF -> {'img', 'W', 'H', 'F', 'V', 'H_', 'dims', 'paper', 'notes'}  (working px)\"\"\"\n    C = load_b14()\n    img, paper, how = C['raster'](path, int(page))\n    notes = [how] if how else []\n    rows, W, H, orows, F = C['load_ink'](img)\n    try:\n        dm = C['find_dims'](img, rows, F)\n    except Exception as ex:\n        log('dims: ' + str(ex))\n        dm = {'dims': [], 'sc': None}\n    score = lambda r: sum(1 for g in r[0] + r[1] for c in g['bub'] if c)\n    best = image_grids(rows)\n    for thr in (110, 200):                                # very dark lines only / light grey grid lines too\n        if W * H > 1500000 and len(best[0]) + len(best[1]) >= 4:\n            break                                          # big picture, grids already found: no second reading\n        try:\n            b2 = image_grids(C['load_ink'](img, 2600, thr)[0], True, rows)\n            if score(b2) > score(best):\n                best = b2\n        except Exception as ex:\n            log('ink {0}: {1}'.format(thr, ex))\n    V, Hh, n2 = best\n    notes += n2\n    boxes, owner = label_boxes(V + Hh, F)\n    texts = {}\n    if owner:\n        try:\n            circ = [(g['bub'][e][0] / F, g['bub'][e][1] / F, g['bub'][e][2] / F) for g, e in owner]\n            texts = (ocr or ocr_labels)(img, circ)\n        except Exception as ex:\n            log('ocr: ' + str(ex))\n    set_labels(owner, texts, boxes)\n    rs = [c[2] for g in V + Hh for c in g['bub'] if c]\n    if rs and sorted(rs)[len(rs) // 2] / F < 9:\n        for g in V + Hh:\n            g['sure'] = False\n        notes.append('The bubbles are only {0:.0f} px across in this picture: the text in them is too small to read '\n                     'safely - names are checked against the sequence'.format(2 * sorted(rs)[len(rs) // 2] / F))\n    return {'img': img, 'W': W, 'H': H, 'F': F, 'V': V, 'H_': Hh, 'dm': dm, 'paper': paper, 'notes': notes}\n\n\ndef image_scale(an, scale_text='AUTO', underlay_s=None):\n    \"\"\"-> (mm per working px, how, typed spacing or None).  Raises when nothing gives the size.\"\"\"\n    mode, val = parse_scale(scale_text)\n    sc = (an.get('dm') or {}).get('sc')\n    if mode == 'SPACING':\n        gs = an['V'] if len(an['V']) >= 2 else an['H_']\n        if len(gs) < 2:\n            raise Exception('A grid spacing needs two parallel grids in the picture.')\n        px = gs[1]['c'] - gs[0]['c']\n        same = sorted(b['c'] - a['c'] for lst in (an['V'], an['H_']) for a, b in zip(lst, lst[1:])\n                      if abs(b['c'] - a['c'] - px) <= max(2.5, 0.03 * px))\n        pxm = same[len(same) // 2] if len(same) % 2 else (same[len(same) // 2 - 1] + same[len(same) // 2]) / 2.0\n        return val / pxm, 'spacing {0:g} mm between the first two {1} grids, as typed{2}'.format(\n            val, 'vertical' if gs is an['V'] else 'horizontal',\n            ' ({0} spacings of that size in the picture, middle one used)'.format(len(same)) if len(same) > 2 else ''), val\n    if mode == 'PX':\n        return val / an['F'], 'typed: 1 picture px = {0:g} mm'.format(val), None\n    if mode == 'SCALE':\n        if not an.get('paper'):\n            raise Exception('A scale 1:{0:g} only works for a PDF (its paper size is known).'.format(val))\n        return an['paper'] * val / an['F'], 'PDF drawn at 1:{0:g}'.format(val), None\n    if sc and sc.get('sure'):\n        return float(sc['s']), 'dimensions written on the plan ({0} read)'.format(len(sc.get('used') or [])), None\n    if underlay_s:\n        return underlay_s, 'the size the picture has in this plan', None\n    raise Exception('SCALE NEEDED: the dimensions on the picture could not be read for sure. Give the distance between '\n                    'the first two grids in mm (e.g. 8850).')\n\n\ndef spacing_hint(an):\n    \"\"\"(grid a, grid b, px, suggested mm or None) for the question 'distance between the first two grids'\"\"\"\n    gs = an['V'] if len(an['V']) >= 2 else an['H_']\n    if len(gs) < 2:\n        return None\n    o = 'H' if gs is an['V'] else 'V'\n    px = gs[1]['c'] - gs[0]['c']\n    sc = (an.get('dm') or {}).get('sc')\n    mm = None\n    if sc:\n        for d in sc.get('used') or []:\n            if d.get('o') == o and d.get('mm') and abs(d['a'] - gs[0]['c']) <= 3 and abs(d['b'] - gs[1]['c']) <= 3:\n                mm = d['mm']\n        if mm is None and sc.get('s'):\n            mm = round(px * sc['s'] / 50.0) * 50.0\n    return gs[0], gs[1], px, mm\n\n\ndef _typed_spacings(text, pos, how):\n    \"\"\"'8850, 8850, 6050' typed by the user replaces the spacings found (blank / missing entries stay)\"\"\"\n    vals = [x.strip() for x in re.split(r'[,;]', str(text or ''))]\n    if not any(vals) or not how:\n        return pos, how\n    how = list(how)\n    for i, v in enumerate(vals[:len(how)]):\n        try:\n            mm = float(v.lower().replace('mm', ''))\n        except Exception:\n            continue\n        if mm > 0 and abs(mm - how[i][0]) > 1e-6:\n            how[i] = (mm, 'typed')\n    pos = [0.0]\n    for mm, h in how:\n        pos.append(pos[-1] + mm)\n    return pos, how\n\n\ndef spacing_text(an):\n    \"\"\"the spacings found, as the text the user can correct: (across 'a, b, c', up-down 'a, b, c')\"\"\"\n    lay = an.get('layout') or ([], [])\n    return ', '.join('{0:g}'.format(mm) for mm, h in lay[0]), ', '.join('{0:g}'.format(mm) for mm, h in lay[1])\n\n\ndef image_layout(an, s, typed=None, anchor=None, sp_v='', sp_h=''):\n    \"\"\"grids of the picture in model mm.  anchor = (x of the first vertical grid, y of the lowest horizontal grid) or\n    None = that crossing sits on the project origin.  -> (V, H, lines for the report)\"\"\"\n    V, Hh = an['V'], an['H_']\n    dims = [d for d in ((an.get('dm') or {}).get('sc') or {}).get('used', [])] if (an.get('dm') or {}).get('sc') else []\n    ax, ay = anchor or (0.0, 0.0)\n    px_x0 = V[0]['c'] if V else 0.0\n    px_y0 = Hh[-1]['c'] if Hh else float(an['H'])\n    xs, hx = axis_mm(V, s, dims, 'H', typed) if V else ([], [])\n    ys, hy = axis_mm(Hh, s, dims, 'V', typed) if Hh else ([], [])\n    xs, hx = _typed_spacings(sp_v, xs, hx)\n    ys, hy = _typed_spacings(sp_h, ys, hy)\n    an['layout'] = (hx, hy)\n    X = lambda px: ax + (px - px_x0) * s\n    Y = lambda px: ay + (px_y0 - px) * s\n    for g, x in zip(V, xs):\n        g['kind'] = 'line'\n        g['p'], g['q'] = (ax + x, Y(g['a'])), (ax + x, Y(g['b']))\n    total = ys[-1] if ys else 0.0\n    for g, y in zip(Hh, ys):\n        g['kind'] = 'line'\n        g['p'], g['q'] = (X(g['a']), ay + total - y), (X(g['b']), ay + total - y)\n    rep = []\n    for gs, how, word in ((V, hx, 'Across'), (Hh, hy, 'Up-down')):\n        if how:\n            rep.append('{0}: '.format(word) + ', '.join('{0}-{1} {2:g}{3}'.format(\n                a.get('name', '?'), b.get('name', '?'), mm, {'dimension': '', 'measured': '~', 'typed': ' (typed)'}.get(h, '='))\n                for (a, b), (mm, h) in zip(zip(gs, gs[1:]), how)))\n    n_meas = sum(1 for mm, h in hx + hy if h == 'measured')\n    n_dim = sum(1 for mm, h in hx + hy if h == 'dimension')\n    n_typ = sum(1 for mm, h in hx + hy if h == 'typed')\n    if hx or hy:\n        rep.append('Spacings (mm): {0} from a written dimension, {1} equal to a known spacing (=), {2} typed, {3} measured '\n                   'on the picture (~, 1 px = {4:.0f} mm){5}'.format(\n                       n_dim, len(hx) + len(hy) - n_dim - n_meas - n_typ, n_typ, n_meas, s,\n                       ' - CHECK the ~ ones against the drawing' if n_meas else ''))\n    return V, Hh, rep\n\n\n# ------------------------------------------------------------------ Revit\ndef tname_of(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef plan_view(doc, uidoc):\n    try:\n        v = uidoc.ActiveView if uidoc is not None else doc.ActiveView\n    except Exception:\n        v = doc.ActiveView\n    if v is not None and tname_of(v) == 'ViewPlan' and not v.IsTemplate:\n        return v\n    try:\n        for uv in uidoc.GetOpenUIViews():\n            ov = doc.GetElement(uv.ViewId)\n            if ov is not None and tname_of(ov) == 'ViewPlan' and not ov.IsTemplate:\n                return ov\n    except Exception:\n        pass\n    return None\n\n\ndef in_tx(doc, name, fn):\n    t = Transaction(doc, name)\n    t.Start()\n    try:\n        r = fn()\n    except Exception:\n        if t.HasStarted() and not t.HasEnded():\n            t.RollBack()\n        raise\n    t.Commit()\n    return r\n\n\ndef cad_name(doc, cad):\n    try:\n        if cad.Category is not None:\n            return cad.Category.Name\n    except Exception:\n        pass\n    return 'CAD'\n\n\ndef cads_in(doc, view):\n    out = []\n    try:\n        out = [c for c in FilteredElementCollector(doc, view.Id).OfClass(ImportInstance)]\n    except Exception:\n        pass\n    return out\n\n\ndef pick_cad(doc, uidoc, view, name_part=''):\n    cads = cads_in(doc, view)\n    if name_part:\n        m = [c for c in cads if name_part.lower() in cad_name(doc, c).lower()]\n        if not m:\n            raise Exception('No CAD in this plan whose name contains \"{0}\". CADs here: {1}'.format(\n                name_part, ', '.join(cad_name(doc, c) for c in cads) or 'none'))\n        return m[0]\n    try:\n        for eid in uidoc.Selection.GetElementIds():\n            e = doc.GetElement(eid)\n            if e is not None and tname_of(e) == 'ImportInstance':\n                return e\n    except Exception:\n        pass\n    if not cads:\n        raise Exception('No linked / imported CAD in the plan \"{0}\".'.format(view.Name))\n    return cads[0]\n\n\ndef _layer(doc, g, inherited):\n    name = None\n    try:\n        gs = doc.GetElement(g.GraphicsStyleId)\n        if gs is not None and gs.GraphicsStyleCategory is not None:\n            name = gs.GraphicsStyleCategory.Name\n    except Exception:\n        name = None\n    if not name or name == '0':\n        return inherited or name or '0'\n    return name\n\n\ndef read_cad(doc, cad):\n    \"\"\"-> (layers {name: [segments]}, arcs {name: [(cx, cy, r, a0, a1)]}, circles [(x, y, r)]) in model mm\"\"\"\n    opt = Options()\n    opt.ComputeReferences = False\n    try:\n        if cad.ViewSpecific:\n            opt.View = doc.GetElement(cad.OwnerViewId)\n    except Exception:\n        pass\n    layers, arcs, circles = {}, {}, []\n    mm = lambda p: (p.X / MMF, p.Y / MMF)\n\n    def add(ln, ps):\n        for i in range(len(ps) - 1):\n            if abs(ps[i][0] - ps[i + 1][0]) + abs(ps[i][1] - ps[i + 1][1]) > 1e-6:\n                layers.setdefault(ln, []).append((ps[i], ps[i + 1]))\n\n    def walk(geom, inherited):\n        for g in geom:\n            ln = _layer(doc, g, inherited)\n            tn = tname_of(g)\n            if tn == 'GeometryInstance':\n                walk(g.GetInstanceGeometry(), ln)\n            elif tn == 'Arc':\n                c = g.Center\n                if (not g.IsBound) or abs(g.Length - 2 * math.pi * g.Radius) < 1e-3:\n                    circles.append((c.X / MMF, c.Y / MMF, g.Radius / MMF))\n                else:\n                    p0, p1, pm = g.GetEndPoint(0), g.GetEndPoint(1), g.Evaluate(0.5, True)\n                    a0 = math.atan2(p0.Y - c.Y, p0.X - c.X)\n                    am = math.atan2(pm.Y - c.Y, pm.X - c.X)\n                    a1 = math.atan2(p1.Y - c.Y, p1.X - c.X)\n                    if (am - a0) % (2 * math.pi) > (a1 - a0) % (2 * math.pi):\n                        a0, a1 = a1, a0                    # clockwise in the model: store counter-clockwise\n                    arcs.setdefault(ln, []).append((c.X / MMF, c.Y / MMF, g.Radius / MMF, a0,\n                                                    a0 + (a1 - a0) % (2 * math.pi)))\n            elif tn == 'Line':\n                if g.IsBound:\n                    add(ln, [mm(g.GetEndPoint(0)), mm(g.GetEndPoint(1))])\n            elif tn == 'PolyLine':\n                add(ln, [mm(p) for p in g.GetCoordinates()])\n    top = cad.get_Geometry(opt)\n    if top is not None:\n        for g in top:\n            if tname_of(g) == 'GeometryInstance':\n                walk(g.GetInstanceGeometry(), None)\n    return layers, arcs, circles\n\n\ndef cad_path(doc, cad):\n    try:\n        t = doc.GetElement(cad.GetTypeId())\n        ref = ExternalFileUtils.GetExternalFileReference(doc, t.Id)\n        p = ModelPathUtils.ConvertModelPathToUserVisiblePath(ref.GetAbsolutePath())\n        return p if p and os.path.isfile(p) else None\n    except Exception:\n        return None\n\n\ndef accore():\n    import glob\n    c = sorted(glob.glob(r'C:\\Program Files\\Autodesk\\AutoCAD 20*\\accoreconsole.exe'))\n    return c[-1] if c else None\n\n\ndef _run(exe, args, timeout_s=240):\n    if REVIT:\n        psi = System.Diagnostics.ProcessStartInfo(exe, ' '.join('\"' + a + '\"' if ' ' in a else a for a in args))\n        psi.UseShellExecute = False\n        psi.CreateNoWindow = True\n        pr = System.Diagnostics.Process.Start(psi)\n        if not pr.WaitForExit(int(timeout_s * 1000)):\n            try:\n                pr.Kill()\n            except Exception:\n                pass\n        return\n    import subprocess\n    p = subprocess.Popen([exe] + list(args), stdout=subprocess.PIPE, stderr=subprocess.PIPE)\n    p.communicate()\n\n\ndef dwg_to_dxf(dwg):\n    \"\"\"DXF copy of a DWG made by AutoCAD's console on this PC (kept in %TEMP%, reused while the DWG is unchanged)\"\"\"\n    tmp = os.path.join(os.environ.get('TEMP', os.environ.get('APPDATA', '')), 'CAD2BIM_dxf')\n    if not os.path.isdir(tmp):\n        os.makedirs(tmp)\n    base = re.sub(r'[^\\w\\-]+', '_', os.path.splitext(os.path.basename(dwg))[0])[:60]\n    dxf = os.path.join(tmp, '{0}_{1}.dxf'.format(base, int(os.path.getmtime(dwg))))\n    if os.path.exists(dxf) and os.path.getsize(dxf) > 1000:\n        return dxf, 'DWG read with AutoCAD'\n    exe = accore()\n    if exe is None:\n        raise Exception('AutoCAD is not on this PC - save the CAD as DXF and give that file')\n    scr = os.path.join(tmp, 'b22_dxfout.scr')\n    with open(scr, 'w') as fh:\n        fh.write('FILEDIA\\n0\\n_.DXFOUT\\n\"{0}\"\\n16\\n_.QUIT\\n_N\\n'.format(dxf))\n    _run(exe, ['/i', dwg, '/s', scr, '/l', 'en-US'])\n    if not os.path.exists(dxf):\n        raise Exception('AutoCAD did not write the DXF copy of ' + os.path.basename(dwg))\n    return dxf, 'DWG read with AutoCAD'\n\n\ndef cad_texts(doc, cad, layers, circles, text_file=''):\n    \"\"\"-> (texts in model mm, note).  The CAD's text is not in Revit: it is read from the DWG / DXF file itself.\"\"\"\n    src = str(text_file or '').strip().strip('\"')\n    if src.upper() in ('NONE', 'NO', 'OFF'):\n        return [], 'CAD text not used'\n    if not src:\n        src = cad_path(doc, cad) or ''\n        if not src:\n            return [], 'this CAD is imported, not linked, so its file is not known - give the DWG / DXF to read the names'\n    if not os.path.isfile(src):\n        return [], 'file not found: ' + src\n    if src.lower().endswith('.dxf'):\n        dxf, how = src, 'DXF file'\n    else:\n        dxf, how = dwg_to_dxf(src)\n    texts, dcirc, dends = read_dxf(dxf)\n    T = cad.GetTotalTransform()\n    ang = math.atan2(T.BasisX.Y, T.BasisX.X)\n    f = None\n    if len(dcirc) >= 3 and len(circles) >= 3:\n        f = fit_points([(c[0], c[1]) for c in dcirc], [(c[0], c[1]) for c in circles], ang)\n    if f is None:\n        ends = [p for segs in layers.values() for s in segs for p in s]\n        f = fit_points(dends, ends, ang)\n    if f is None:\n        return [], 'the text file does not match the CAD in this plan (is it the same drawing?)'\n    return [(f(x, y)[0], f(x, y)[1], t, h * f.k) for x, y, t, h in texts], '{0}, 1 unit = {1:g} mm'.format(how, f.k)\n\n\n# ---- existing grids\ndef _grid_curve(g):\n    try:\n        return g.Curve\n    except Exception:\n        return None\n\n\ndef _is_line(cv):\n    return cv is not None and tname_of(cv) == 'Line'\n\n\ndef _on_line(cv, p, q, tol_mm=20.0):\n    \"\"\"existing straight grid on the same line as p-q (mm)?  -> perpendicular distance in mm, or None if not parallel\"\"\"\n    a, b = cv.GetEndPoint(0), cv.GetEndPoint(1)\n    d1 = (b.X - a.X, b.Y - a.Y)\n    L1 = math.hypot(d1[0], d1[1])\n    d2 = (q[0] - p[0], q[1] - p[1])\n    L2 = math.hypot(d2[0], d2[1])\n    if L1 < 1e-9 or L2 < 1e-9:\n        return None\n    if abs(d1[0] * d2[1] - d1[1] * d2[0]) / (L1 * L2) > 0.004:\n        return None\n    px, py = p[0] * MMF - a.X, p[1] * MMF - a.Y\n    return (px * d1[1] - py * d1[0]) / L1 / MMF           # signed, mm\n\n\ndef _same_arc(cv, arc, tol_mm=20.0):\n    if cv is None or tname_of(cv) != 'Arc':\n        return False\n    c = cv.Center\n    return (abs(c.X / MMF - arc[0]) <= tol_mm and abs(c.Y / MMF - arc[1]) <= tol_mm and\n            abs(cv.Radius / MMF - arc[2]) <= tol_mm)\n\n\ndef _tag(g):\n    try:\n        p = g.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n        return (p.AsString() or '') if p is not None else None\n    except Exception:\n        return None\n\n\ndef _set_tag(g, text):\n    try:\n        p = g.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n        if p is not None and not p.IsReadOnly:\n            p.Set(text)\n    except Exception:\n        pass\n\n\ndef _curve_for(spec):\n    if spec['kind'] == 'arc':\n        cx, cy, r, a0, a1 = spec['arc']\n        return Arc.Create(XYZ(cx * MMF, cy * MMF, 0), r * MMF, a0, a1, XYZ.BasisX, XYZ.BasisY)\n    p, q = spec['p'], spec['q']\n    return Line.CreateBound(XYZ(p[0] * MMF, p[1] * MMF, 0), XYZ(q[0] * MMF, q[1] * MMF, 0))\n\n\ndef _plan_views(doc):\n    out = []\n    for v in FilteredElementCollector(doc).OfClass(ViewPlan):\n        try:\n            if not v.IsTemplate:\n                out.append(v)\n        except Exception:\n            pass\n    return out\n\n\ndef _bubbles(g, spec, views):\n    \"\"\"bubble on the same end(s) as the source, in every plan view.  -> True when set in at least one view\"\"\"\n    if not spec.get('bub'):\n        return False\n    cv = _grid_curve(g)\n    want = list(spec['bub'])\n    try:\n        e0 = cv.GetEndPoint(0)\n        d0 = math.hypot(e0.X / MMF - spec['p'][0], e0.Y / MMF - spec['p'][1])\n        d1 = math.hypot(e0.X / MMF - spec['q'][0], e0.Y / MMF - spec['q'][1])\n        if d1 < d0:\n            want = [want[1], want[0]]                      # the existing grid runs the other way\n    except Exception:\n        pass\n    ok = False\n    for v in views:\n        for end, w in ((DatumEnds.End0, want[0]), (DatumEnds.End1, want[1])):\n            try:\n                if w:\n                    g.ShowBubbleInView(end, v)\n                else:\n                    g.HideBubbleInView(end, v)\n                ok = True\n            except Exception:\n                pass\n    return ok\n\n\ndef make_grids(doc, specs, make=True):\n    \"\"\"create / update the Revit grids.  -> report lines.  Rules for a rerun:\n       same name on the same line          -> already there (bubbles set again)\n       same name, made by B22, moved source -> the grid is moved onto the source line\n       same name on another grid elsewhere  -> REPORTED, nothing changed, the source grid is not made\n       another name already on this line    -> made by B22: renamed like the source; else REPORTED, kept\"\"\"\n    existing = [g for g in FilteredElementCollector(doc).OfClass(Grid)]\n    by_name = {}\n    for g in existing:\n        try:\n            by_name[g.Name] = g\n        except Exception:\n            pass\n    plan = {'new': [], 'same': [], 'move': [], 'rename': [], 'clash': [], 'online': []}\n    taken = set()\n    for s in specs:\n        same = by_name.get(s['name'])\n        on = None\n        for g in existing:\n            if idv(g.Id) in taken:\n                continue\n            cv = _grid_curve(g)\n            if s['kind'] == 'arc':\n                if _same_arc(cv, s['arc']):\n                    on = g\n                    break\n            elif _is_line(cv):\n                off = _on_line(cv, s['p'], s['q'])\n                if off is not None and abs(off) <= 20.0:\n                    on = g\n                    break\n        if same is not None and on is not None and idv(same.Id) == idv(on.Id):\n            plan['same'].append((s, same))\n            taken.add(idv(same.Id))\n        elif same is not None:\n            cv = _grid_curve(same)\n            off = _on_line(cv, s['p'], s['q']) if (s['kind'] == 'line' and _is_line(cv)) else None\n            mine = (_tag(same) or '').startswith(TAG)\n            if off is not None and on is None and (mine or abs(off) <= 1000.0):\n                plan['move'].append((s, same, off))\n                taken.add(idv(same.Id))\n            else:\n                plan['clash'].append((s, same, off))\n        elif on is not None:\n            if (_tag(on) or '').startswith(TAG):\n                plan['rename'].append((s, on))\n            else:\n                plan['online'].append((s, on))\n            taken.add(idv(on.Id))\n        else:\n            plan['new'].append(s)\n    out = []\n    if not make:\n        out.append('PREVIEW - nothing made yet: {0} new grids, {1} already there, {2} to move, {3} to rename'.format(\n            len(plan['new']), len(plan['same']), len(plan['move']), len(plan['rename'])))\n    else:\n        views = _plan_views(doc)\n        stats = {'bub': 0, 'fail': []}\n\n        def work():\n            for s in plan['new']:\n                try:\n                    cv = _curve_for(s)\n                    g = Grid.Create(doc, cv) if s['kind'] == 'line' else Grid.Create(doc, cv)\n                    g.Name = s['name']\n                    _set_tag(g, TAG + '|' + s['how'])\n                    s['el'] = g\n                except Exception as ex:\n                    stats['fail'].append('{0}: {1}'.format(s['name'], str(ex).split('\\n')[0][:120]))\n            for s, g, off in plan['move']:\n                try:\n                    cv = _grid_curve(g)\n                    a, b = cv.GetEndPoint(0), cv.GetEndPoint(1)\n                    L = math.hypot(b.X - a.X, b.Y - a.Y)\n                    n = XYZ(-(b.Y - a.Y) / L, (b.X - a.X) / L, 0)\n                    ElementTransformUtils.MoveElement(doc, g.Id, n.Multiply(-off * MMF))\n                    s['el'] = g\n                except Exception as ex:\n                    stats['fail'].append('{0}: {1}'.format(s['name'], str(ex).split('\\n')[0][:120]))\n            for s, g in plan['rename']:\n                try:\n                    s['old'] = g.Name\n                    g.Name = s['name']\n                    s['el'] = g\n                except Exception as ex:\n                    stats['fail'].append('{0}: {1}'.format(s['name'], str(ex).split('\\n')[0][:120]))\n            for s, g in plan['same']:\n                s['el'] = g\n            doc.Regenerate()\n            for s in specs:\n                if s.get('el') is not None and _bubbles(s['el'], s, views):\n                    stats['bub'] += 1\n        in_tx(doc, 'B22 Image Grid', work)\n        made = [s['name'] for s in plan['new'] if s.get('el') is not None]\n        out.append('GRIDS MADE: {0}{1}'.format(len(made), ' (' + ', '.join(made) + ')' if made else ''))\n        if stats['fail']:\n            out.append('FAILED: ' + '; '.join(stats['fail'][:8]))\n        if stats['bub']:\n            n1 = sum(1 for s in specs if s.get('bub') and s['bub'][0] != s['bub'][1])\n            n2 = sum(1 for s in specs if s.get('bub') and s['bub'][0] and s['bub'][1])\n            out.append('Bubbles as in the source: {0} grids with a bubble at both ends, {1} at one end (set in all {2} plan '\n                       'views)'.format(n2, n1, len(views)))\n    if plan['same']:\n        out.append('Already there, not changed ({0}): {1}'.format(len(plan['same']), ', '.join(s['name'] for s, g in plan['same'])))\n    if plan['move']:\n        out.append(('Moved onto the source line: ' if make else 'To move onto the source line: ') + ', '.join(\n            '{0} ({1:.0f} mm)'.format(s['name'], abs(off)) for s, g, off in plan['move']))\n    if plan['rename']:\n        out.append(('Renamed like the source: ' if make else 'To rename like the source: ') + ', '.join(\n            '{0} -> {1}'.format(s.get('old') or g.Name, s['name']) for s, g in plan['rename']))\n    if plan['clash']:\n        out.append('NOT MADE - the name is already used by another grid in this project (not changed): ' + ', '.join(\n            '{0}{1}'.format(s['name'], ' ({0:.0f} mm away)'.format(abs(off)) if off is not None else '')\n            for s, g, off in plan['clash']))\n    if plan['online']:\n        out.append('NOT RENAMED - another grid already lies on this line (kept as it is): ' + ', '.join(\n            'source {0} = Revit grid {1}'.format(s['name'], g.Name) for s, g in plan['online']))\n    no_b = [s['name'] for s in specs if not s.get('bub')]\n    if no_b:\n        out.append('No bubble found in the source for: {0} (Revit default left)'.format(', '.join(no_b[:20])))\n    return out\n\n\ndef cad_summary(doc, uidoc, view=None):\n    \"\"\"for the button: CADs in the plan and the layers of the first / selected one that hold long lines\"\"\"\n    view = view or plan_view(doc, uidoc)\n    return [(c, cad_name(doc, c)) for c in cads_in(doc, view)] if view is not None else []\n\n\ndef run_cad(doc, uidoc, cad_part='', layer_text='AUTO', text_file='', custom_v='', custom_h='', make=True, cad=None):\n    view = plan_view(doc, uidoc)\n    if view is None:\n        raise Exception('Open the floor plan with the CAD first.')\n    cad = cad or pick_cad(doc, uidoc, view, cad_part)\n    layers, arcs, circles = read_cad(doc, cad)\n    grids, how, used = cad_grids(layers, arcs, circles, layer_text)\n    names = sorted(set(list(layers) + list(arcs)))\n    if not grids:\n        raise Exception('No grid lines found in \"{0}\" ({1}). Layers: {2}'.format(cad_name(doc, cad), how, ', '.join(names)))\n    try:\n        texts, note = cad_texts(doc, cad, layers, circles, text_file)\n    except Exception as ex:\n        texts, note = [], str(ex).split('\\n')[0]\n    label_cad(grids, texts)\n    V, Hh, other = split_axes(grids)\n    name_grids(V, Hh, custom_v, custom_h)\n    for i, g in enumerate(other):\n        g['name'], g['how'], g['read'] = (g['label'], 'read', g['label']) if g.get('label') else ('X{0}'.format(i + 1), 'guess', '')\n    specs = grid_specs(V, Hh, other)\n    out = ['B22 IMAGE GRID  -  CAD \"{0}\" in plan \"{1}\"'.format(cad_name(doc, cad), view.Name),\n           'Found {0} grid lines on {1}: {2}{3}'.format(len(specs), how, ', '.join(used[:5]), ' ...' if len(used) > 5 else ''),\n           'Scale: the CAD as it sits in the plan (grids lie on the CAD lines)',\n           'Names: ' + (note if texts else 'CAD TEXT NOT READ - ' + note)]\n    n_arc = sum(1 for s in specs if s['kind'] == 'arc')\n    if n_arc:\n        out.append('Curved grids: {0}'.format(n_arc))\n    out += report_names(specs)\n    out += make_grids(doc, specs, make)\n    return out, {'specs': specs, 'layers': names, 'used': used, 'V': V, 'H': Hh}\n\n\ndef find_underlay(doc, view, img):\n    C = load_b14()\n    try:\n        return C['find_underlay'](doc, view, img)\n    except Exception:\n        return None\n\n\ndef preview_image(an, out_path):\n    \"\"\"the picture with the grids found: red line, green bubble, name\"\"\"\n    C = load_b14()\n    SD = C['SD']\n    f = an['F']\n    src = SD.Bitmap(an['img'])\n    try:\n        bmp = SD.Bitmap(src.Width, src.Height)\n        g = SD.Graphics.FromImage(bmp)\n        g.DrawImage(src, 0, 0, src.Width, src.Height)\n    finally:\n        src.Dispose()\n    try:\n        w = max(1.5, bmp.Width / 700.0)\n        red = SD.Pen(SD.Color.FromArgb(255, 230, 0, 0), w)\n        green = SD.Pen(SD.Color.FromArgb(255, 0, 160, 0), w * 1.4)\n        font = SD.Font('Arial', max(9.0, bmp.Height / 55.0), SD.FontStyle.Bold)\n        for gr in an['V'] + an['H_']:\n            if gr['o'] == 'V':\n                g.DrawLine(red, float(gr['c'] / f), float(gr['a'] / f), float(gr['c'] / f), float(gr['b'] / f))\n            else:\n                g.DrawLine(red, float(gr['a'] / f), float(gr['c'] / f), float(gr['b'] / f), float(gr['c'] / f))\n            for c in gr['bub']:\n                if c:\n                    r = c[2] / f\n                    g.DrawEllipse(green, float(c[0] / f - r), float(c[1] / f - r), float(2 * r), float(2 * r))\n                    br = SD.Brushes.Blue if gr.get('how') != 'guess' else SD.Brushes.OrangeRed\n                    g.DrawString(str(gr.get('name', '')), font, br, float(c[0] / f + r), float(c[1] / f - 2.2 * r))\n        g.Dispose()\n        bmp.Save(out_path, C['SDI'].ImageFormat.Png)\n    finally:\n        bmp.Dispose()\n    return out_path\n\n\ndef run_image(doc, uidoc, path, page=1, scale_text='AUTO', custom_v='', custom_h='', underlay=True, make=True, an=None,\n              sp_v='', sp_h=''):\n    view = plan_view(doc, uidoc)\n    if view is None:\n        raise Exception('Open the floor plan where the grids should go first.')\n    C = load_b14()\n    an = an or analyse_image(path, page)\n    V, Hh = an['V'], an['H_']\n    if not V and not Hh:\n        raise Exception('No grid lines with a bubble (circle) at the end found in this picture. Grids must be long thin '\n                        'lines across the plan, straight on the page, ending in a round bubble.')\n    name_grids(V, Hh, custom_v, custom_h)\n    inst = find_underlay(doc, view, an['img'])\n    us = None\n    anchor = None\n    if inst is not None:\n        O, width_mm = C['underlay_geom'](inst)\n        us = width_mm / float(an['W'])\n    s, how, typed = image_scale(an, scale_text, us)\n    px_x0 = V[0]['c'] if V else 0.0\n    px_y0 = Hh[-1]['c'] if Hh else float(an['H'])\n    if inst is not None:\n        anchor = (O.X / MMF + px_x0 * us, O.Y / MMF + (an['H'] - px_y0) * us)\n    V, Hh, rep = image_layout(an, s, typed, anchor, sp_v, sp_h)\n    specs = grid_specs(V, Hh, [])\n    out = ['B22 IMAGE GRID  -  picture \"{0}\" in plan \"{1}\"'.format(os.path.basename(path), view.Name),\n           'Found {0} grid lines with bubbles: {1} across the page, {2} up-down'.format(len(specs), len(Hh), len(V)),\n           'Scale: {0}  (1 px = {1:.1f} mm, picture {2:.1f} x {3:.1f} m)'.format(\n               how, s * an['F'], an['W'] * s / 1000.0, an['H'] * s / 1000.0)]\n    if inst is not None and abs(us - s) > 0.02 * s:\n        out.append('CHECK: the picture in this plan is placed at another size ({0:.1f} mm per px) - the grids follow the '\n                   'scale above, starting on the first grid of the picture'.format(us * an['F']))\n    out += rep\n    out += [n for n in an['notes'] if n]\n    out += report_names(specs)\n    if make and underlay and inst is None:\n        try:\n            lvl = view.GenLevel\n            z = lvl.Elevation if lvl is not None else 0.0\n            org = XYZ(-px_x0 * s * MMF, -(an['H'] - px_y0) * s * MMF, z)\n            in_tx(doc, 'B22 plan picture', lambda: C['place_underlay'](doc, view, an['img'], an['W'] * s, org))\n            out.append('Picture placed under the grids at this scale (first grid crossing = project origin)')\n        except Exception as ex:\n            out.append('Picture not placed: ' + str(ex).split('\\n')[0][:150])\n    elif inst is None:\n        out.append('Position: the crossing of the first vertical and the lowest horizontal grid sits on the project origin')\n    out += make_grids(doc, specs, make)\n    try:\n        tmp = C['_tmpdir']()\n        pv = preview_image(an, os.path.join(tmp, 'B22_grids_' + re.sub(r'[^\\w\\-]+', '_', os.path.basename(path))[:50] + '.png'))\n        an['preview'] = pv\n    except Exception as ex:\n        log('preview: ' + str(ex))\n    return out, {'specs': specs, 'an': an, 'V': V, 'H': Hh}\n\n\ndef run(doc, uidoc, source='AUTO', path='', page=1, scale_text='AUTO', names_v='', names_h='', sp_v='', sp_h='',\n        underlay=True, cad_part='', layer_text='AUTO', text_file='', make=True):\n    \"\"\"one call for Dynamo: source AUTO = the picture when a file is given, else the CAD in the open plan\"\"\"\n    src = str(source or 'AUTO').strip().upper()\n    path = str(path or '').strip().strip('\"')\n    if path.lower() in ('no file selected.', 'none'):\n        path = ''\n    if src not in ('CAD', 'IMAGE'):\n        src = 'IMAGE' if path else 'CAD'\n    if src == 'IMAGE':\n        if not path or not os.path.isfile(path):\n            raise Exception('Picture / PDF not found: \"{0}\"'.format(path))\n        return run_image(doc, uidoc, path, page, scale_text, names_v, names_h, underlay, make, None, sp_v, sp_h)[0]\n    view = plan_view(doc, uidoc)\n    if view is None:\n        raise Exception('Open the floor plan first.')\n    if not cads_in(doc, view):\n        raise Exception('No CAD in the plan \"{0}\" and no picture given. Link the CAD into this plan, or give the '\n                        'picture / PDF with the grids.'.format(view.Name))\n    return run_cad(doc, uidoc, cad_part, layer_text, text_file, names_v, names_h, make)[0]\n\n\n# =====================================================================\n#  DYNAMO / DYNAMO PLAYER PART  -  inputs:\n#    0  Grids from        AUTO = the picture when one is given (1), else the CAD in the open plan;  CAD;  IMAGE\n#    1  Picture / PDF     full path of the plan picture (JPG / PNG / PDF ...) with grid lines + bubbles\n#    2  PDF page          1\n#    3  Scale             AUTO = dimensions written between the grids, else the size of the picture already in the plan\n#                         8850 = distance between the first two grids in mm;  1:100 (PDF);  PX 93.5 (mm per picture px)\n#    4  Names left->right       '' = as read (not read = in sequence, listed as GUESSED);  or  1, 2, 2A, 3 ...\n#    5  Names top->bottom       '' = as read;  or  A, B, C ...\n#    6  Spacings left->right mm '' = as found;  or  8850, 8850, 6050 ...  (picture only)\n#    7  Spacings top->bottom mm '' = as found\n#    8  Picture under the grids True  (picture only)\n#    9  CAD name contains       '' = the CAD selected / the only one in the plan\n#   10  CAD layers              AUTO = GRID / AXIS layers, else long lines ending in a bubble;  or layer names\n#   11  DWG / DXF for the names '' = the linked CAD file itself;  a DXF / DWG path;  NONE = names in sequence\n#   12  MAKE THE GRIDS          False = only report what was found\n#  Run again = nothing doubled.  Ctrl+Z in Revit undoes.\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _d = DocumentManager.Instance.CurrentDBDocument\n        if _d is not None:\n            doc = _d\n            try:\n                uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n            except Exception:\n                pass\n            TM = TransactionManager\n    except Exception:\n        pass\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('GRID_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and not v.strip()):\n        return default\n    return v\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\ndef _int(i, default):\n    try:\n        return int(float(str(_inp(i, default)).strip()))\n    except Exception:\n        return int(default)\n\n\nout = []\ntry:\n    if doc is None:\n        raise Exception('No Revit document.')\n    if TM is not None:\n        TM.Instance.ForceCloseTransaction()\n    out = run(doc, uidoc, str(_inp(0, 'AUTO')), str(_inp(1, '')), _int(2, 1), str(_inp(3, 'AUTO')), str(_inp(4, '')),\n              str(_inp(5, '')), str(_inp(6, '')), str(_inp(7, '')), _flag(8, True), str(_inp(9, '')).strip(),\n              str(_inp(10, 'AUTO')).strip(), str(_inp(11, '')).strip(), _flag(12, False))\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('B22 Image Grid')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else 'Grids from picture / CAD'\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "73b5623368cb49188dba22b71600bb47",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "697eace5620e41e9836bd7e36ea912bd",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f87d10788161436fa8719324f9a4f9c7",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ca6b20e5312f42c4b5e0e7398cd1c7c3",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3e974afd6e3b4a3fb9da498f59b433b7",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5a58e93281334f0ea61577d78006e793",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1286fd6ed71b4a26ae8cd04c1a4c8219",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "904fb4f779274d7abd021f9381e107c1",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f76bb20039894130a31ee5dd639e168f",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8b79b030d3a5402dae77fd8ed555ba45",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "75bab86bb3fb4095b19a752f1652780a",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "96745a61648b44b8bdb53cf424900742",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b28d18ca8a3d423a9cfdd95fd4834412",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "269a556fc6b1412dac0756dabd90bbfa",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7b3437a98b524d55a758085d80bfd079",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "aaf883bfd906421297f01e981b89408b",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "e47c0e44ade5498f826a6f3b657c0970",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f1c7d53e61d9450cb793312c893caf81",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "7ef44e5a336549c691fa6096b2834e71",
+      "End": "697eace5620e41e9836bd7e36ea912bd",
+      "Id": "7b57838773ed4e9d96e37d33e8909e32",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "00d5f7ecfe74489dad25557bba32995c",
+      "End": "f87d10788161436fa8719324f9a4f9c7",
+      "Id": "c94b4efe35f44c1eb6c5e48b38be4eb4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9a43cc6926e446dab13db3197674560d",
+      "End": "ca6b20e5312f42c4b5e0e7398cd1c7c3",
+      "Id": "d916fa6863ca4f2aabb662b2643f428b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a6d9d0e7952647a981092eccb4d7c476",
+      "End": "3e974afd6e3b4a3fb9da498f59b433b7",
+      "Id": "54681628fb174dac9d43c6679ba8141f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "718164c8240a4c3dbd561b8aafca0a6c",
+      "End": "5a58e93281334f0ea61577d78006e793",
+      "Id": "132df94e91644c239c6387e46c9ca5a0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5b02e52cf332461fa5d73747bacff5e2",
+      "End": "1286fd6ed71b4a26ae8cd04c1a4c8219",
+      "Id": "00d634b26943416587edc3d5533d48e4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7c98ad35f9c7425495fda6093d0f3051",
+      "End": "904fb4f779274d7abd021f9381e107c1",
+      "Id": "2c2464dcf15d42ca910fd73d7d2cf041",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8d8b0ad598494c058d42a54f84178ec0",
+      "End": "f76bb20039894130a31ee5dd639e168f",
+      "Id": "19c254972ff54183907673d36a4654c9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "52cd5d4a6c5f430e935c5611b0a805c4",
+      "End": "8b79b030d3a5402dae77fd8ed555ba45",
+      "Id": "e1da4b9dc5de42f890703810801775d6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "78a674dafa3d4e8fac266045814a8ee5",
+      "End": "75bab86bb3fb4095b19a752f1652780a",
+      "Id": "340737458eaa477a9f6b8973cd31c891",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dd1d1633fc39484392c606a728d9ad7f",
+      "End": "96745a61648b44b8bdb53cf424900742",
+      "Id": "e7cbfc48e10c454584ab3d3c171a7254",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "db93f7614cc4487c90ff77f8b58180a1",
+      "End": "b28d18ca8a3d423a9cfdd95fd4834412",
+      "Id": "87dfa7e1e9f14f5093ffa190da5a6ec4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "717e724c1fce42de84c1e9c9134dc69e",
+      "End": "269a556fc6b1412dac0756dabd90bbfa",
+      "Id": "aea0aafdaa69475f881479a99bdf4cce",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7b3437a98b524d55a758085d80bfd079",
+      "End": "e47c0e44ade5498f826a6f3b657c0970",
+      "Id": "3931794bc9e74e7a86e62376779909b6",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "61ea9f0ede5f41388f037a522fa3355b",
+        "Name": "0  Grids from: AUTO (picture if given, else CAD in the plan) / CAD / IMAGE",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "1f26bd3bd3c44aab93a87145196b2235",
+        "Name": "1  Plan picture or PDF with the grids",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "266c6a73d46b4b0c8c09051c3afdde84",
+        "Name": "2  PDF page",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 300
+      },
+      {
+        "Id": "273c2b8185c044e88ed289514a77f670",
+        "Name": "3  Scale: AUTO (dimensions on the plan) / 8850 = first grid spacing mm / 1:100 / PX 93.5",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 450
+      },
+      {
+        "Id": "ac81a0702a394d06bf57b0621bcd1452",
+        "Name": "4  Grid names left to right (blank = as read)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "a2f93f8b9ada4dd28b89df4a6f904306",
+        "Name": "5  Grid names top to bottom (blank = as read)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "76d3a9bb4d144f23acd0bf94f43e055b",
+        "Name": "6  Spacings left to right mm (blank = as found)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 300
+      },
+      {
+        "Id": "27b3de37454b4c6ca50ef7f13300a94b",
+        "Name": "7  Spacings top to bottom mm (blank = as found)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 450
+      },
+      {
+        "Id": "5c44b755d6b2461d9fed2234285cde04",
+        "Name": "8  Picture under the grids",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 600
+      },
+      {
+        "Id": "63890b1b5ed04bfd807d6b74c97aa1c2",
+        "Name": "9  CAD name contains (blank = selected / only CAD)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "74ffb797375344009d1eed46405c3b4b",
+        "Name": "10  CAD layers: AUTO or layer names",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "b202ecad9dea4c33ade0f9e1dec8b00c",
+        "Name": "11  DWG / DXF for the names (blank = linked file, NONE = sequence)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 300
+      },
+      {
+        "Id": "4c97914795154e19a63892d3cfbf164f",
+        "Name": "12  MAKE THE GRIDS (False = only report)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 450
+      },
+      {
+        "Id": "73b5623368cb49188dba22b71600bb47",
+        "Name": "B22 IMAGE GRID ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1700.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "aaf883bfd906421297f01e981b89408b",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2050.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "2c8900d0c3e745d0a932b0241347eeda",
+        "Title": "1  SOURCE + SCALE",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "61ea9f0ede5f41388f037a522fa3355b",
+          "1f26bd3bd3c44aab93a87145196b2235",
+          "266c6a73d46b4b0c8c09051c3afdde84",
+          "273c2b8185c044e88ed289514a77f670"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 735,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 640,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "c516955d591241879b5a16ef7c091c23",
+        "Title": "2  NAMES + SPACINGS (picture)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "ac81a0702a394d06bf57b0621bcd1452",
+          "a2f93f8b9ada4dd28b89df4a6f904306",
+          "76d3a9bb4d144f23acd0bf94f43e055b",
+          "27b3de37454b4c6ca50ef7f13300a94b",
+          "5c44b755d6b2461d9fed2234285cde04"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 885,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 790,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "e4fb78c8e9884d00b239b6be060320b4",
+        "Title": "3  CAD + RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "63890b1b5ed04bfd807d6b74c97aa1c2",
+          "74ffb797375344009d1eed46405c3b4b",
+          "b202ecad9dea4c33ade0f9e1dec8b00c",
+          "4c97914795154e19a63892d3cfbf164f"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 735,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 640,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "81393432d8574a74a5284b20be79f8de",
+        "Title": "HOW TO USE:  open the floor plan.  PICTURE: give the plan picture / PDF (1) - grid lines ending in round bubbles are found, the text in each bubble is read and becomes the grid name, the size comes from the dimensions written between the grids (or type the first grid spacing in 3).  CAD: leave 1 empty - the grid lines of the CAD linked in the plan are used (GRID / AXIS layers, names from the bubble text).  Run first with 12 = False and read the RESULT: names GUESSED and spacings marked ~ must be checked - correct them in 4-7.  Then 12 = True.  Run again = nothing doubled.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 1600.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

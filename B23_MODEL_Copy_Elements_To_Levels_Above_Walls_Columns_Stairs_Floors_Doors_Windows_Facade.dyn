@@ -1,0 +1,1040 @@
+{
+  "Uuid": "7681ab53-92f7-4393-8555-2ebab642478d",
+  "IsCustomNode": false,
+  "Description": "COPY TO LEVELS ABOVE: walls, columns, beams, floors, stairs, doors, windows, facade ... of the open plan copied to the levels above at the same position; you switch each category on or off",
+  "Name": "B23_MODEL_Copy_Elements_To_Levels_Above_Walls_Columns_Stairs_Floors_Doors_Windows_Facade",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "98a043eea04a48c8bf2bb22071979b23",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "493a5bf6d1704d1da144d607f0d24373",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "ALL"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "bcc45eba0b2d4eaaa51fcfb88f375182",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8cd2d8c334cd48adacc7d5c966e24b1a",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "584cf93f1224423e9e49e223aee005f7",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f5f19542f6b5482fa460cc442a429ee0",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "be494c17651b47a29d6e9d0e2becb51b",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2ab6fb28012848b09c86f67818c3d927",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "71a13f390bca42e89105f850543d6e8a",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "99cc3b24c77f4dc9a442e53dd68af490",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "7bc6bcece907474588154d702f48a7e6",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3b7d8cc4e76c42f1b85637f980443ae0",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "02d481b50b1c49ddbe9359d15f0aaaaa",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c713529152214b49b17ec16e702b6902",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "fef64d5b9168432b8e4c56f71453476b",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "afc0c9ad131a43cab11008642093f099",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "1d4603dc35054a39bfbf9eb397e2fb04",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2ba8088276b74b2ea8cbda55c95fd249",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "54ddad94b6c44586a8c0c9cf0e985668",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "912215696fe347708611438b78c76136",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "679057bd6ff64f53bb6dafd26597ee77",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e2e6395c645f4c86b018f32cb1102166",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "67bed9c40ec54e3f9685071eaa2e0f7c",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "de67213f42f94ad4a8f9e0b29a854745",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "fe7558ef84ad4bcf928a63f0d32c194d",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5610e49cd5a54a11b0670da539605220",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "f5e12157936949c18dea26b60bd908fd",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a09f9a465cc94cad96878dafd3486ab9",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "0acdd9c223d948b0ae1142707dea778c",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "55d60638be5f4932accef244589d03d1",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "39d121beceeb442e9998efdff28411c2",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "68731b9f45f3490aa11530edf1597af5",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "NEXT"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "bbf927c0aaaa464fa5cff9c245c082d4",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "51490d740d8342f784cd5c12012e6234",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "SKIP"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "5ec4750734054913b8f6ff8931ee210b",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6e8740069f114789a3785bb35c3592e5",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  B23 COPY ELEMENTS TO LEVELS ABOVE   (Revit 2026)   v1\n#  Open floor plan (or the elements you selected) -> copied up to the levels above, same X,Y, moved up by the\n#  elevation difference.  You tick WHICH categories travel: walls, columns, beams, floors, stairs, railings, doors,\n#  windows, facade (curtain walls), roofs, ceilings, rooms, generic models.  Optional wall type name filter.\n#    * doors / windows come WITH their host wall; if the wall is not copied this run but a B23 copy of it exists on the\n#      target level, they are placed on that copy; otherwise they are skipped and reported (never orphans)\n#    * every copy gets Comments \"B23 COPY|<source level>|<source id>|<target level>\": a rerun skips what is already\n#      there (or replaces it - your choice) and a copy is never copied again\n#    * copies are moved to the new level (base / top level, offsets) so the Level column follows\n#    * Check only = does the work, reports it, rolls everything back.  One transaction group = one Ctrl+Z.\n#  Runs in pyRevit (IronPython 2.7) and Dynamo CPython3.  No XYZ operators, no f-strings.\n# =====================================================================\nimport math, os, re\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *                           # noqa\nclr.AddReference('System')\nfrom System.Collections.Generic import List\nfrom Autodesk.Revit.DB.Structure import StructuralType\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'B23_copy_log.txt')\nTAG = 'B23 COPY|'\nTITLE = 'B23 Copy To Levels Above'\n\n# key, label, built-in categories, default ON\nCATS = [\n    ('WALLS', 'Walls', ['OST_Walls'], True),\n    ('FACADE', 'Facade (curtain walls with panels + mullions)', ['OST_Walls'], True),\n    ('COLUMNS', 'Columns (structural + architectural)', ['OST_StructuralColumns', 'OST_Columns'], True),\n    ('BEAMS', 'Beams (structural framing)', ['OST_StructuralFraming'], True),\n    ('FLOORS', 'Floors', ['OST_Floors'], False),\n    ('STAIRS', 'Stairs', ['OST_Stairs'], True),\n    ('RAILINGS', 'Railings', ['OST_StairsRailing'], True),\n    ('DOORS', 'Doors', ['OST_Doors'], True),\n    ('WINDOWS', 'Windows', ['OST_Windows'], True),\n    ('ROOFS', 'Roofs', ['OST_Roofs'], False),\n    ('CEILINGS', 'Ceilings', ['OST_Ceilings'], False),\n    ('ROOMS', 'Rooms', ['OST_Rooms'], False),\n    ('GENERIC', 'Generic models', ['OST_GenericModel'], False),\n]\nLABEL = dict((c[0], c[1]) for c in CATS)\nDEFAULT_ON = [c[0] for c in CATS if c[3]]\nALL_KEYS = [c[0] for c in CATS]\n\n# which parameters carry the level of each category: (base level, base offset, top level, top offset)\nRELEVEL = {\n    'COLUMNS': ('FAMILY_BASE_LEVEL_PARAM', 'FAMILY_BASE_LEVEL_OFFSET_PARAM', 'FAMILY_TOP_LEVEL_PARAM', 'FAMILY_TOP_LEVEL_OFFSET_PARAM'),\n    'STAIRS': ('STAIRS_BASE_LEVEL_PARAM', 'STAIRS_BASE_OFFSET', 'STAIRS_TOP_LEVEL_PARAM', 'STAIRS_TOP_OFFSET'),\n    'ROOFS': ('ROOF_BASE_LEVEL_PARAM', 'ROOF_LEVEL_OFFSET_PARAM', None, None),\n    'FLOORS': ('LEVEL_PARAM', 'FLOOR_HEIGHTABOVELEVEL_PARAM', None, None),\n    'CEILINGS': ('LEVEL_PARAM', 'CEILING_HEIGHTABOVELEVEL_PARAM', None, None),\n    'BEAMS': ('INSTANCE_REFERENCE_LEVEL_PARAM', None, None, None),\n    'GENERIC': ('FAMILY_LEVEL_PARAM', None, None, None),\n}\nLEVEL_BIPS = ['WALL_BASE_CONSTRAINT', 'FAMILY_BASE_LEVEL_PARAM', 'INSTANCE_REFERENCE_LEVEL_PARAM', 'STAIRS_BASE_LEVEL_PARAM',\n              'ROOF_BASE_LEVEL_PARAM', 'LEVEL_PARAM', 'FAMILY_LEVEL_PARAM', 'SCHEDULE_LEVEL_PARAM']\nHOST_KEYS = ('WALLS', 'FACADE', 'FLOORS', 'ROOFS', 'CEILINGS', 'STAIRS')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\n# ===================================================================== pure logic (tested with a fake model)\ndef parse_levels(text, levels, src):\n    \"\"\"text: ALL | names 'L2, L3' | range 'L2..L5' (also 'L2 to L5').  levels: sorted objects with Name + Elevation.\n    Returns (targets above src sorted by elevation, notes).\"\"\"\n    t = str(text or '').strip()\n    if not t:\n        raise Exception('Type the target levels: ALL, or names like L2, L3, or a range L2..L5.')\n    eps = 1e-6\n    above = [l for l in levels if l.Elevation > src.Elevation + eps]\n    if t.upper() in ('ALL', 'ALL ABOVE', 'ABOVE', 'YES', 'TRUE'):\n        return list(above), []\n\n    def find(n):\n        n = n.strip()\n        hit = [l for l in levels if l.Name.strip().upper() == n.upper()]\n        if not hit:\n            hit = [l for l in levels if n.upper() in l.Name.upper()]\n            if len(hit) > 1:\n                raise Exception('\"{0}\" matches more than one level ({1}) - type the full name.'.format(\n                    n, ', '.join(l.Name for l in hit)))\n        if not hit:\n            raise Exception('No level \"{0}\". Levels: {1}'.format(n, ', '.join(l.Name for l in levels)))\n        return hit[0]\n\n    out, notes, names = [], [], set()\n    rng_re = re.compile(r'\\s*(?:\\.\\.|\\bto\\b)\\s*', re.I)\n    for part in re.split(r'[,;|]+', t):\n        part = part.strip()\n        if not part:\n            continue\n        ends = rng_re.split(part)\n        if len(ends) == 2 and ends[0].strip() and ends[1].strip():\n            a, b = find(ends[0]), find(ends[1])\n            lo, hi = min(a.Elevation, b.Elevation), max(a.Elevation, b.Elevation)\n            picked = [l for l in levels if lo - eps <= l.Elevation <= hi + eps]\n        else:\n            picked = [find(part)]\n        for l in picked:\n            if l.Elevation <= src.Elevation + eps:\n                note = 'level {0} is not above {1} - ignored'.format(l.Name, src.Name)\n                if note not in notes:\n                    notes.append(note)\n            elif l.Name not in names:\n                names.add(l.Name)\n                out.append(l)\n    out.sort(key=lambda l: l.Elevation)\n    return out, notes\n\n\ndef name_matches(name, text):\n    \"\"\"wall type name filter: 'EXTERNAL' / 'EXTERNAL, 300' (any) / '!INTERNAL' (exclude).  blank = all.\"\"\"\n    t = str(text or '').strip()\n    if not t:\n        return True\n    n = str(name or '').upper()\n    inc, exc = [], []\n    for p in re.split(r'[,;|]+', t):\n        p = p.strip()\n        if not p:\n            continue\n        if p.startswith('!'):\n            if p[1:].strip():\n                exc.append(p[1:].strip().upper())\n        else:\n            inc.append(p.upper())\n    if any(x in n for x in exc):\n        return False\n    return (not inc) or any(x in n for x in inc)\n\n\ndef make_tag(src_name, src_id, tgt_name):\n    return '{0}{1}|{2}|{3}'.format(TAG, src_name, src_id, tgt_name)\n\n\ndef parse_tag(text):\n    \"\"\"-> (src level, src id, target level) or None\"\"\"\n    s = str(text or '')\n    if not s.startswith(TAG):\n        return None\n    parts = s[len(TAG):].split('|')\n    if len(parts) < 3:\n        return None\n    try:\n        return parts[0], int(parts[1]), parts[2]\n    except Exception:\n        return None\n\n\ndef plan_target(items, existing, tgt_name, rerun):\n    \"\"\"items: dicts with id, key, host (source id of the host or None).  existing: {(src id, target name): [new ids]}.\n    rerun SKIP = leave what is already copied, REPLACE = delete the old copy and copy again.\n    -> dict(copy=[items], rehost=[items], skip=[(item, reason)], replace=[items])\"\"\"\n    skip, replace, cand = [], [], []\n    for it in items:\n        if existing.get((it['id'], tgt_name)):\n            if str(rerun).upper() == 'REPLACE':\n                cand.append(it)\n            else:\n                skip.append((it, 'already copied by an earlier run'))\n        else:\n            cand.append(it)\n    cand_ids = set(i['id'] for i in cand)\n    copy, rehost = [], []\n    for it in cand:\n        h = it.get('host')\n        if h is None or h in cand_ids:\n            copy.append(it)\n        elif it['key'] in ('DOORS', 'WINDOWS') and existing.get((h, tgt_name)) and it.get('host_key') in ('WALLS', 'FACADE'):\n            rehost.append(it)\n        else:\n            skip.append((it, 'host {0} not copied (tick it / check the type filter)'.format(\n                LABEL.get(it.get('host_key'), 'element').lower())))\n    # REPLACE: an old copy is only deleted when the element really gets copied again\n    for it in copy + rehost:\n        if existing.get((it['id'], tgt_name)):\n            replace.append(it)\n    return {'copy': copy, 'rehost': rehost, 'skip': skip, 'replace': replace}\n\n\ndef _xyd(a, b, dz, use_z):\n    dx, dy = b[0] - a[0], b[1] - a[1]\n    dzz = (b[2] - (a[2] + dz)) if use_z else 0.0\n    return math.sqrt(dx * dx + dy * dy + dzz * dzz)\n\n\ndef match_pairs(src_list, new_list, dz, tol=0.5):\n    \"\"\"src_list / new_list: dicts with cat, type, pt (x, y, z).  Pairs one-to-one, nearest first, in 3 stages:\n    1 same category + type at (x, y, z + dz)   2 same category + type, x y only (some families report a Location z that\n    ignores the offset, e.g. columns)   3 same category, x y only (type changed by Revit).\n    Stacked source elements at the same x y are paired one by one.  -> {index in src_list: index in new_list}\"\"\"\n    out, used = {}, set()\n    for same_type, use_z in ((True, True), (True, False), (False, False)):\n        cands = []\n        for i, sdict in enumerate(src_list):\n            if i in out:\n                continue\n            for j, n in enumerate(new_list):\n                if j in used or sdict['cat'] != n['cat'] or (same_type and sdict['type'] != n['type']):\n                    continue\n                d = _xyd(sdict['pt'], n['pt'], dz, use_z)\n                if d <= tol:\n                    cands.append((d, i, j))\n        cands.sort()\n        for d, i, j in cands:\n            if i in out or j in used:\n                continue\n            out[i] = j\n            used.add(j)\n    return out\n\n\ndef why_unmatched(s, new_list, dz):\n    \"\"\"text for a source element that found no partner among the new elements\"\"\"\n    same = [n for n in new_list if n['cat'] == s['cat']]\n    if not new_list:\n        return 'Revit returned no new elements'\n    if not same:\n        return 'none of the {0} new elements is in its category'.format(len(new_list))\n    best = min(same, key=lambda n: _xyd(s['pt'], n['pt'], dz, False))\n    return 'nearest new element of its category is {0:.0f} mm away in plan, {1:.0f} mm in height, {2}'.format(\n        _xyd(s['pt'], best['pt'], dz, False) * 304.8, abs(best['pt'][2] - (s['pt'][2] + dz)) * 304.8,\n        'same type' if best['type'] == s['type'] else 'different type')\n\n\ndef pair_existing(src_list, exist_list, dz, tol_xy=0.05, tol_z=0.5):\n    \"\"\"untagged elements already standing where a copy would go (same category + type, x y within 15 mm, base height\n    within 150 mm).  one-to-one.  -> {index in src_list: index in exist_list}\"\"\"\n    cands = []\n    for i, sdict in enumerate(src_list):\n        for j, n in enumerate(exist_list):\n            if sdict['cat'] != n['cat'] or sdict['type'] != n['type']:\n                continue\n            d = _xyd(sdict['pt'], n['pt'], dz, False)\n            if d > tol_xy:\n                continue\n            if sdict.get('minz') is not None and n.get('minz') is not None and abs(n['minz'] - (sdict['minz'] + dz)) > tol_z:\n                continue\n            cands.append((d, i, j))\n    cands.sort()\n    out, used = {}, set()\n    for d, i, j in cands:\n        if i in out or j in used:\n            continue\n        out[i] = j\n        used.add(j)\n    return out\n\n\ndef shift_level(levels, lvl, shift):\n    \"\"\"level 'shift' places above/below lvl in the sorted list, or None\"\"\"\n    if lvl is None:\n        return None\n    idx = None\n    for k, l in enumerate(levels):\n        if idv(l.Id) == idv(lvl.Id):\n            idx = k\n    if idx is None or idx + shift < 0 or idx + shift >= len(levels):\n        return None\n    return levels[idx + shift]\n\n\nclass Report(object):\n    \"\"\"counts per target level and category\"\"\"\n\n    def __init__(self):\n        self.t = {}\n        self.order = []\n\n    def _c(self, tgt, key):\n        if tgt not in self.t:\n            self.t[tgt] = {}\n            self.order.append(tgt)\n        d = self.t[tgt]\n        if key not in d:\n            d[key] = {'copied': 0, 'rehost': 0, 'replaced': 0, 'skip': {}, 'fail': [], 'notes': []}\n        return d[key]\n\n    def copied(self, tgt, key, n=1):\n        self._c(tgt, key)['copied'] += n\n\n    def rehosted(self, tgt, key, n=1):\n        self._c(tgt, key)['rehost'] += n\n\n    def replaced(self, tgt, key, n=1):\n        self._c(tgt, key)['replaced'] += n\n\n    def skipped(self, tgt, key, why, n=1):\n        d = self._c(tgt, key)['skip']\n        d[why] = d.get(why, 0) + n\n\n    def note(self, tgt, key, text):\n        n = self._c(tgt, key)['notes']\n        if text not in n:\n            n.append(text)\n\n    def failed(self, tgt, key, msg):\n        self._c(tgt, key)['fail'].append(msg)\n\n    def lines(self, verb):\n        out = []\n        for tgt in self.order:\n            out.append('{0}:'.format(tgt))\n            for k in ALL_KEYS:\n                c = self.t[tgt].get(k)\n                if not c:\n                    continue\n                bits = []\n                if c['copied']:\n                    bits.append('{0} {1}'.format(c['copied'], verb))\n                if c['rehost']:\n                    bits.append('{0} of them put on the host wall copy of an earlier run'.format(c['rehost']))\n                if c['replaced']:\n                    bits.append('{0} old copies replaced'.format(c['replaced']))\n                for why, n in sorted(c['skip'].items()):\n                    bits.append('{0} skipped ({1})'.format(n, why))\n                if c['fail']:\n                    bits.append('{0} FAILED'.format(len(c['fail'])))\n                if not bits and not c['notes']:\n                    bits.append('nothing to copy')\n                out.append('  {0}: {1}'.format(LABEL[k], ', '.join(bits)))\n                for nt in c['notes'][:3]:\n                    out.append('     note: ' + nt)\n                for f in c['fail'][:4]:\n                    out.append('     FAILED: ' + f)\n                if len(c['fail']) > 4:\n                    out.append('     ... {0} more failures'.format(len(c['fail']) - 4))\n        return out\n\n\n# ===================================================================== Revit helpers\ndef tname_of(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef ename(e):\n    for bip in (BuiltInParameter.SYMBOL_NAME_PARAM, BuiltInParameter.ALL_MODEL_TYPE_NAME):\n        try:\n            p = e.get_Parameter(bip)\n            if p is not None and p.AsString():\n                return p.AsString()\n        except Exception:\n            pass\n    try:\n        return Element.Name.GetValue(e)\n    except Exception:\n        return ''\n\n\ndef type_name(doc, e):\n    try:\n        te = doc.GetElement(e.GetTypeId())\n        if te is not None:\n            n = ename(te)\n            if n:\n                return n\n            return Element.Name.GetValue(te)\n    except Exception:\n        pass\n    return ''\n\n\ndef plan_view(doc, uidoc):\n    try:\n        v = uidoc.ActiveView if uidoc is not None else doc.ActiveView\n    except Exception:\n        v = doc.ActiveView\n    if v is not None and tname_of(v) == 'ViewPlan' and not v.IsTemplate and v.GenLevel is not None:\n        return v\n    try:\n        for uv in uidoc.GetOpenUIViews():\n            ov = doc.GetElement(uv.ViewId)\n            if ov is not None and tname_of(ov) == 'ViewPlan' and not ov.IsTemplate and ov.GenLevel is not None:\n                return ov\n    except Exception:\n        pass\n    return None\n\n\ndef levels_of(doc):\n    return sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation)\n\n\ndef P(e, name):\n    bip = getattr(BuiltInParameter, name, None)\n    if bip is None:\n        return None\n    try:\n        return e.get_Parameter(bip)\n    except Exception:\n        return None\n\n\ndef get_id(e, name):\n    p = P(e, name)\n    if p is None:\n        return None\n    try:\n        return p.AsElementId()\n    except Exception:\n        return None\n\n\ndef get_dbl(e, name):\n    p = P(e, name)\n    if p is None:\n        return None\n    try:\n        return p.AsDouble()\n    except Exception:\n        return None\n\n\ndef set_p(e, name, value):\n    p = P(e, name)\n    if p is None:\n        return False\n    try:\n        if p.IsReadOnly:\n            return False\n        return bool(p.Set(value))\n    except Exception:\n        return False\n\n\ndef valid_id(i):\n    return i is not None and idv(i) > 0\n\n\ndef level_id_of(e):\n    for n in LEVEL_BIPS:\n        i = get_id(e, n)\n        if valid_id(i):\n            return i\n    try:\n        i = e.LevelId\n        if valid_id(i):\n            return i\n    except Exception:\n        pass\n    return None\n\n\ndef ref_point(e):\n    try:\n        loc = e.Location\n        if loc is not None:\n            n = tname_of(loc)\n            if n == 'LocationPoint':\n                p = loc.Point\n                return (p.X, p.Y, p.Z)\n            if n == 'LocationCurve':\n                c = loc.Curve\n                a, b = c.GetEndPoint(0), c.GetEndPoint(1)\n                return ((a.X + b.X) / 2.0, (a.Y + b.Y) / 2.0, (a.Z + b.Z) / 2.0)\n    except Exception:\n        pass\n    try:\n        bb = e.get_BoundingBox(None)\n        if bb is not None:\n            return ((bb.Min.X + bb.Max.X) / 2.0, (bb.Min.Y + bb.Max.Y) / 2.0, (bb.Min.Z + bb.Max.Z) / 2.0)\n    except Exception:\n        pass\n    return (0.0, 0.0, 0.0)\n\n\ndef min_z(e):\n    try:\n        bb = e.get_BoundingBox(None)\n        if bb is not None:\n            return bb.Min.Z\n    except Exception:\n        pass\n    return None\n\n\ndef comments_of(e):\n    p = P(e, 'ALL_MODEL_INSTANCE_COMMENTS')\n    try:\n        return (p.AsString() or '') if p is not None else ''\n    except Exception:\n        return ''\n\n\n_CAT = {}\n\n\ndef cat_map():\n    if not _CAT:\n        for key, label, names, on in CATS:\n            for n in names:\n                bic = getattr(BuiltInCategory, n, None)\n                if bic is not None and key != 'FACADE':\n                    _CAT[int(bic)] = key\n    return _CAT\n\n\ndef key_of(e):\n    \"\"\"category key of an element, None if it is not one we handle\"\"\"\n    try:\n        cat = e.Category\n        if cat is None:\n            return None\n        k = cat_map().get(idv(cat.Id))\n    except Exception:\n        return None\n    if k == 'WALLS':\n        try:\n            if e.CurtainGrid is not None:\n                return 'FACADE'\n        except Exception:\n            pass\n        try:\n            if e.IsStackedWallMember:\n                return None\n        except Exception:\n            pass\n    return k\n\n\ndef host_of(doc, e):\n    \"\"\"-> (host source id, host key) of a hosted element, (None, None) when it has no element host\"\"\"\n    h = None\n    try:\n        h = e.Host\n    except Exception:\n        h = None\n    if h is None:\n        try:\n            hid = e.HostId\n            if valid_id(hid):\n                h = doc.GetElement(hid)\n        except Exception:\n            h = None\n    if h is None:\n        return None, None\n    k = key_of(h)\n    if k is None or k not in HOST_KEYS:\n        return None, None\n    return idv(h.Id), k\n\n\ndef snapshot(doc, e, key, levels):\n    d = {'id': idv(e.Id), 'eid': e.Id, 'el': e, 'key': key, 'type': idv(e.GetTypeId()), 'tname': type_name(doc, e),\n         'pt': ref_point(e), 'minz': min_z(e), 'cat': idv(e.Category.Id), 'host': None, 'host_key': None}\n    if key in ('DOORS', 'WINDOWS', 'RAILINGS', 'GENERIC'):\n        d['host'], d['host_key'] = host_of(doc, e)\n    byid = dict((idv(l.Id), l) for l in levels)\n    sp = {}\n    if key in ('WALLS', 'FACADE'):\n        bl = get_id(e, 'WALL_BASE_CONSTRAINT')\n        tl = get_id(e, 'WALL_HEIGHT_TYPE')\n        sp['base'] = byid.get(idv(bl)) if valid_id(bl) else None\n        sp['top'] = byid.get(idv(tl)) if valid_id(tl) else None\n        sp['boff'] = get_dbl(e, 'WALL_BASE_OFFSET') or 0.0\n        sp['toff'] = get_dbl(e, 'WALL_TOP_OFFSET') or 0.0\n        if sp['top'] is not None and sp['base'] is not None:\n            sp['h'] = (sp['top'].Elevation + sp['toff']) - (sp['base'].Elevation + sp['boff'])\n        else:\n            sp['h'] = get_dbl(e, 'WALL_USER_HEIGHT_PARAM')\n    elif key in RELEVEL:\n        bl_n, bo_n, tl_n, to_n = RELEVEL[key]\n        bl = get_id(e, bl_n)\n        sp['base'] = byid.get(idv(bl)) if valid_id(bl) else None\n        sp['boff'] = get_dbl(e, bo_n) if bo_n else None\n        if tl_n:\n            tl = get_id(e, tl_n)\n            sp['top'] = byid.get(idv(tl)) if valid_id(tl) else None\n            sp['toff'] = get_dbl(e, to_n) or 0.0\n    d['spec'] = sp\n    return d\n\n\ndef collect_sources(doc, uidoc, view, src, levels, cats_on, name_filter):\n    \"\"\"-> (items to copy, not-ticked counts, skipped-source notes, used selection?)\"\"\"\n    sel = []\n    if uidoc is not None:\n        try:\n            sel = [doc.GetElement(i) for i in uidoc.Selection.GetElementIds()]\n        except Exception:\n            sel = []\n    sel = [e for e in sel if e is not None]\n    used_sel = len(sel) > 0\n    if used_sel:\n        pool = sel\n    else:\n        bics = List[BuiltInCategory]()\n        for key, label, names, on in CATS:\n            for n in names:\n                b = getattr(BuiltInCategory, n, None)\n                if b is not None and b not in list(bics):\n                    bics.Add(b)\n        pool = list(FilteredElementCollector(doc).WherePasses(ElementMulticategoryFilter(bics)).WhereElementIsNotElementType())\n    items, not_on, notes = [], {}, {}\n    for e in pool:\n        k = key_of(e)\n        if k is None:\n            continue\n        if not used_sel:\n            lid = level_id_of(e)\n            if lid is None or idv(lid) != idv(src.Id):\n                continue\n        if k not in cats_on:\n            not_on[k] = not_on.get(k, 0) + 1\n            continue\n        if comments_of(e).startswith(TAG):\n            notes['is a B23 copy - never copied again'] = notes.get('is a B23 copy - never copied again', 0) + 1\n            continue\n        try:\n            if valid_id(e.GroupId):\n                notes['inside a group - copy the group instead'] = notes.get('inside a group - copy the group instead', 0) + 1\n                continue\n        except Exception:\n            pass\n        if k in ('WALLS', 'FACADE') and not name_matches(type_name(doc, e), name_filter):\n            notes['wall type name filter'] = notes.get('wall type name filter', 0) + 1\n            continue\n        if k == 'ROOMS':\n            try:\n                if e.Location is None or e.Area <= 0:\n                    notes['room not placed / not enclosed'] = notes.get('room not placed / not enclosed', 0) + 1\n                    continue\n            except Exception:\n                continue\n        items.append(snapshot(doc, e, k, levels))\n    return items, not_on, notes, used_sel\n\n\ndef untagged_columns(doc):\n    out = []\n    bics = List[BuiltInCategory]()\n    for n in ('OST_StructuralColumns', 'OST_Columns'):\n        b = getattr(BuiltInCategory, n, None)\n        if b is not None:\n            bics.Add(b)\n    for e in FilteredElementCollector(doc).WherePasses(ElementMulticategoryFilter(bics)).WhereElementIsNotElementType():\n        if comments_of(e).startswith(TAG):\n            continue\n        try:\n            out.append({'el': e, 'cat': idv(e.Category.Id), 'type': idv(e.GetTypeId()), 'pt': ref_point(e), 'minz': min_z(e)})\n        except Exception:\n            pass\n    return out\n\n\ndef existing_copies(doc):\n    \"\"\"{(source id, target level name): [element ids]} for every B23 copy in the model\"\"\"\n    bics = List[BuiltInCategory]()\n    for key, label, names, on in CATS:\n        for n in names:\n            b = getattr(BuiltInCategory, n, None)\n            if b is not None and b not in list(bics):\n                bics.Add(b)\n    ex = {}\n    for e in FilteredElementCollector(doc).WherePasses(ElementMulticategoryFilter(bics)).WhereElementIsNotElementType():\n        t = parse_tag(comments_of(e))\n        if t is None:\n            continue\n        ex.setdefault((t[1], t[2]), []).append(e.Id)\n    return ex\n\n\ntry:\n    class _Cap(IFailuresPreprocessor):\n        __namespace__ = 'B23_COPY'\n\n        def PreprocessFailures(self, fa):\n            for f in fa.GetFailureMessages():\n                try:\n                    if f.GetSeverity() == FailureSeverity.Warning:\n                        fa.DeleteWarning(f)\n                except Exception:\n                    pass\n            return FailureProcessingResult.Continue\nexcept Exception:\n    _Cap = None\n\n\ndef new_tx(doc, name):\n    t = Transaction(doc, name)\n    if _Cap is not None:\n        try:\n            o = t.GetFailureHandlingOptions()\n            o.SetFailuresPreprocessor(_Cap())\n            t.SetFailureHandlingOptions(o)\n        except Exception:\n            pass\n    return t\n\n\ndef committed(status):\n    try:\n        return status == TransactionStatus.Committed or int(status) == int(TransactionStatus.Committed)\n    except Exception:\n        return 'ommitted' in str(status)\n\n\ndef ids_list(ids):\n    lst = List[ElementId]()\n    for i in ids:\n        lst.Add(i)\n    return lst\n\n\ndef level_params(ne, d, src, tgt, levels, dz, wall_mode):\n    \"\"\"move the copy's base / top level to the new level (offsets kept).  returns list of notes.\"\"\"\n    notes = []\n    key, sp = d['key'], d['spec']\n    shift = None\n    for k, l in enumerate(levels):\n        if idv(l.Id) == idv(src.Id):\n            si = k\n        if idv(l.Id) == idv(tgt.Id):\n            ti = k\n    shift = ti - si\n    base = sp.get('base')\n    base_t = shift_level(levels, base, shift) if base is not None else None\n    if key in ('WALLS', 'FACADE'):\n        if base_t is None or sp.get('h') is None:\n            return notes\n        h = sp['h']\n        top_t = shift_level(levels, sp.get('top'), shift) if (wall_mode == 'NEXT' and sp.get('top') is not None) else None\n        set_p(ne, 'WALL_HEIGHT_TYPE', ElementId.InvalidElementId)\n        set_p(ne, 'WALL_USER_HEIGHT_PARAM', h)\n        if set_p(ne, 'WALL_BASE_CONSTRAINT', base_t.Id):\n            set_p(ne, 'WALL_BASE_OFFSET', sp['boff'])\n        if top_t is not None:\n            if not (set_p(ne, 'WALL_HEIGHT_TYPE', top_t.Id) and set_p(ne, 'WALL_TOP_OFFSET', sp['toff'])):\n                notes.append('top constraint not set (kept as height)')\n        elif wall_mode == 'NEXT' and sp.get('top') is not None:\n            notes.append('no level above the target for the top constraint - kept the source height')\n        return notes\n    if key not in RELEVEL or base_t is None:\n        return notes\n    bl_n, bo_n, tl_n, to_n = RELEVEL[key]\n    top = sp.get('top')\n    if tl_n and top is not None:\n        top_t = shift_level(levels, top, shift) if wall_mode == 'NEXT' else None\n        if top_t is not None:\n            set_p(ne, tl_n, top_t.Id)\n            set_p(ne, to_n, sp.get('toff') or 0.0)\n        else:\n            set_p(ne, tl_n, base_t.Id)\n            set_p(ne, to_n, (top.Elevation + (sp.get('toff') or 0.0) + dz) - base_t.Elevation)\n    if set_p(ne, bl_n, base_t.Id):\n        if bo_n and sp.get('boff') is not None:\n            set_p(ne, bo_n, sp['boff'])\n    else:\n        notes.append('level column not changed (Revit does not allow it) - elevation is right')\n    return notes\n\n\ndef set_tag(ne, text):\n    return set_p(ne, 'ALL_MODEL_INSTANCE_COMMENTS', text)\n\n\ndef copy_ids(doc, ids, dz):\n    \"\"\"-> list of new ElementIds\"\"\"\n    res = ElementTransformUtils.CopyElements(doc, ids_list(ids), XYZ(0, 0, dz))\n    return [i for i in res]\n\n\ndef sub_copy(doc, ids, dz):\n    st = SubTransaction(doc)\n    st.Start()\n    try:\n        new = copy_ids(doc, ids, dz)\n        st.Commit()\n        return new, None\n    except Exception as ex:\n        try:\n            st.RollBack()\n        except Exception:\n            pass\n        return [], (str(ex).splitlines() or ['?'])[0][:160]\n\n\ndef place_copy(doc, d_items, new_ids, src, tgt, levels, dz, wall_mode, rep, newmap, quiet_key=None):\n    \"\"\"match new elements to the source items, tag, move to the new level\"\"\"\n    news = []\n    for i in new_ids:\n        ne = doc.GetElement(i)\n        if ne is None or ne.Category is None:\n            continue\n        k = key_of(ne)\n        news.append({'cat': idv(ne.Category.Id), 'type': idv(ne.GetTypeId()), 'pt': ref_point(ne), 'el': ne, 'key': k})\n    pairs = match_pairs(d_items, news, dz)\n    done = []\n    for i, j in pairs.items():\n        d, n = d_items[i], news[j]\n        ne = n['el']\n        set_tag(ne, make_tag(src.Name, d['id'], tgt.Name))\n        newmap[d['id']] = ne.Id\n        done.append((d, ne))\n    for i, d in enumerate(d_items):\n        if i not in pairs:\n            rep.failed(tgt.Name, d['key'], '{0} {1} ({2}): copied but could not be found again, not tagged - {3} (check {4})'.format(\n                d['key'].lower(), d['id'], d.get('tname') or 'type ?', why_unmatched(d, news, dz), tgt.Name))\n    return done\n\n\ndef fix_levels(doc, done, src, tgt, levels, dz, wall_mode, rep):\n    for d, ne in done:\n        try:\n            for note in level_params(ne, d, src, tgt, levels, dz, wall_mode):\n                rep.note(tgt.Name, d['key'], note)\n        except Exception as ex:\n            log('level_params {0}: {1}'.format(d['id'], ex))\n    try:\n        doc.Regenerate()\n    except Exception:\n        pass\n    for d, ne in done:\n        try:\n            if d['minz'] is None:\n                continue\n            z = min_z(ne)\n            if z is None:\n                continue\n            diff = (d['minz'] + dz) - z\n            if abs(diff) > 0.004:\n                ElementTransformUtils.MoveElement(doc, ne.Id, XYZ(0, 0, diff))\n        except Exception as ex:\n            rep.failed(tgt.Name, d['key'], 'element {0}: could not correct the elevation - {1}'.format(\n                d['id'], (str(ex).splitlines() or ['?'])[0][:100]))\n\n\ndef rehost_one(doc, d, host_new_id, tgt, dz):\n    e = d['el']\n    host = doc.GetElement(host_new_id)\n    sym = doc.GetElement(e.GetTypeId())\n    p = e.Location.Point\n    pt = XYZ(p.X, p.Y, p.Z + dz)\n    try:\n        if not sym.IsActive:\n            sym.Activate()\n    except Exception:\n        pass\n    ni = doc.Create.NewFamilyInstance(pt, sym, host, tgt, StructuralType.NonStructural)\n    try:\n        if e.FacingFlipped != ni.FacingFlipped:\n            ni.flipFacing()\n        if e.HandFlipped != ni.HandFlipped:\n            ni.flipHand()\n    except Exception:\n        pass\n    return ni\n\n\ndef room_copy(doc, d, src, tgt):\n    e = d['el']\n    p = e.Location.Point\n    r = doc.Create.NewRoom(tgt, UV(p.X, p.Y))\n    for n in ('ROOM_NAME', 'ROOM_NUMBER'):\n        try:\n            v = P(e, n).AsString()\n            if v:\n                set_p(r, n, v)\n        except Exception:\n            pass\n    set_tag(r, make_tag(src.Name, d['id'], tgt.Name))\n    return r\n\n\n# ===================================================================== the run\ndef run(doc, uidoc, opts):\n    \"\"\"opts: targets (text), cats (keys), name_filter, wall_mode NEXT|HEIGHT, rerun SKIP|REPLACE, make (False = check only)\"\"\"\n    cats_on = [k for k in opts.get('cats', DEFAULT_ON) if k in ALL_KEYS]\n    make = bool(opts.get('make', True))\n    wall_mode = 'HEIGHT' if str(opts.get('wall_mode', 'NEXT')).upper().startswith('H') else 'NEXT'\n    rerun = 'REPLACE' if str(opts.get('rerun', 'SKIP')).upper().startswith('R') else 'SKIP'\n    if not cats_on:\n        raise Exception('No category is ticked - tick at least one.')\n    view = plan_view(doc, uidoc)\n    if view is None:\n        raise Exception('Open the floor plan of the level to copy from first.')\n    src = view.GenLevel\n    levels = levels_of(doc)\n    targets, tnotes = parse_levels(opts.get('targets', ''), levels, src)\n    if not targets:\n        raise Exception('There is no level above {0} to copy to.'.format(src.Name))\n    items, not_on, notes, used_sel = collect_sources(doc, uidoc, view, src, levels, cats_on, opts.get('name_filter', ''))\n    out = []\n    head = 'CHECK ONLY - nothing is changed' if not make else 'COPY'\n    out.append('{0}: {1} -> {2}'.format(head, src.Name, ', '.join(l.Name for l in targets)))\n    out.append('Source: {0}, {1} element(s) in ticked categories'.format(\n        'your selection' if used_sel else 'everything on ' + src.Name, len(items)))\n    if used_sel and not items:\n        raise Exception('Your selection has nothing in the ticked categories. Clear the selection to copy a whole level.')\n    for k, n in sorted(not_on.items()):\n        out.append('  not ticked, left alone: {0} {1}'.format(n, LABEL[k]))\n    for why, n in sorted(notes.items()):\n        out.append('  not copied: {0} ({1})'.format(n, why))\n    for n in tnotes:\n        out.append('  note: ' + n)\n    rep = Report()\n    if not items:\n        out.append('Nothing to copy on this level in the ticked categories.')\n        return out\n    existing = existing_copies(doc)\n    by_id = dict((d['id'], d) for d in items)\n    tg = TransactionGroup(doc, TITLE)\n    tg.Start()\n    try:\n        for tgt in targets:\n            dz = tgt.Elevation - src.Elevation\n            plan = plan_target(items, existing, tgt.Name, rerun)\n            for it, why in plan['skip']:\n                rep.skipped(tgt.Name, it['key'], why)\n            t = new_tx(doc, 'B23 copy to ' + tgt.Name)\n            t.Start()\n            try:\n                work_target(doc, src, tgt, dz, plan, existing, levels, wall_mode, rep, by_id)\n                st = t.Commit()\n                if not committed(st):\n                    rep.failed(tgt.Name, plan['copy'][0]['key'] if plan['copy'] else 'WALLS',\n                               'Revit rejected the changes of this level (all of them were undone)')\n            except Exception as ex:\n                if t.HasStarted() and not t.HasEnded():\n                    t.RollBack()\n                rep.failed(tgt.Name, 'WALLS', 'level failed: ' + (str(ex).splitlines() or ['?'])[0][:160])\n                log('target {0}: {1}'.format(tgt.Name, ex))\n            existing = existing_copies(doc)\n    except Exception:\n        tg.RollBack()\n        raise\n    if make:\n        tg.Assimilate()\n    else:\n        tg.RollBack()\n    out += rep.lines('copied' if make else 'would be copied')\n    if not make:\n        out.append('Nothing was changed. Run again with Check only OFF to copy.')\n    else:\n        out.append('Ctrl+Z undoes this whole run in one step.')\n    return out\n\n\ndef work_target(doc, src, tgt, dz, plan, existing, levels, wall_mode, rep, by_id):\n    # 1 replace: delete old copies (collect ids first, cascade deletes may remove some already)\n    gone = set()\n    if plan['replace']:\n        old = []\n        for it in plan['replace']:\n            for i in existing.get((it['id'], tgt.Name), []):\n                old.append((it, i))\n        for it, i in old:\n            if idv(i) in gone or doc.GetElement(i) is None:\n                continue\n            try:\n                res = doc.Delete(i)\n                for r in res:\n                    gone.add(idv(r))\n                rep.replaced(tgt.Name, it['key'])\n            except Exception as ex:\n                rep.failed(tgt.Name, it['key'], 'old copy of {0} not deleted: {1}'.format(it['id'], str(ex)[:80]))\n    copy = plan['copy']\n    newmap = {}\n    # 1b columns: an untagged identical column already stands there (copy of an earlier run that could not be tagged)\n    # -> do not stack another one (the existing one is left alone, not tagged: it may be a real column of that level)\n    cols = [d for d in copy if d['key'] == 'COLUMNS']\n    if cols:\n        pool = untagged_columns(doc)\n        hit = pair_existing(cols, pool, dz)\n        for i, j in hit.items():\n            rep.skipped(tgt.Name, 'COLUMNS', 'an identical column already stands there (untagged) - not doubled')\n        if hit:\n            gone_ids = set(cols[i]['id'] for i in hit)\n            copy = [d for d in copy if d['id'] not in gone_ids]\n    plan['copy'] = copy\n    plain = [d for d in copy if d['key'] not in ('STAIRS', 'ROOMS') and not (d['key'] == 'RAILINGS' and d.get('host_key') == 'STAIRS')]\n    stairs = [d for d in copy if d['key'] == 'STAIRS']\n    stair_rails = [d for d in copy if d['key'] == 'RAILINGS' and d.get('host_key') == 'STAIRS']\n    rooms = [d for d in copy if d['key'] == 'ROOMS']\n    done_all = []\n    # 2 one CopyElements for everything that is not a stair / room: doors + windows travel with their host wall\n    if plain:\n        new, err = sub_copy(doc, [d['eid'] for d in plain], dz)\n        if err is None:\n            done = place_copy(doc, plain, new, src, tgt, levels, dz, wall_mode, rep, newmap)\n            done_all += done\n            for d, ne in done:\n                rep.copied(tgt.Name, d['key'])\n        else:\n            rep.note(tgt.Name, 'WALLS', 'group copy refused by Revit (' + err + ') - copied one by one')\n            free = [d for d in plain if d.get('host') is None or d['host'] not in by_id]\n            hosted = [d for d in plain if d not in free]\n            for d in free:\n                new1, err1 = sub_copy(doc, [d['eid']], dz)\n                if err1:\n                    rep.failed(tgt.Name, d['key'], '{0} {1}: {2}'.format(d['key'].lower(), d['id'], err1))\n                    continue\n                done = place_copy(doc, [d], new1, src, tgt, levels, dz, wall_mode, rep, newmap)\n                done_all += done\n                rep.copied(tgt.Name, d['key'])\n            for d in hosted:      # hosted ones: onto the copy of their host made just now\n                hn = newmap.get(d['host'])\n                if hn is None or d['key'] not in ('DOORS', 'WINDOWS'):\n                    rep.failed(tgt.Name, d['key'], '{0} {1}: host was not copied'.format(d['key'].lower(), d['id']))\n                    continue\n                plan['rehost'].append(d)\n                existing[(d['host'], tgt.Name)] = [hn]\n    # 3 stairs one by one (each with its railings), they have their own base / top level\n    for d in stairs:\n        new1, err1 = sub_copy(doc, [d['eid']], dz)\n        if err1:\n            rep.failed(tgt.Name, 'STAIRS', 'stair {0}: Revit could not copy it ({1}). Make it with B18 Stairs on {2}'.format(\n                d['id'], err1, tgt.Name))\n            continue\n        rails = [r for r in stair_rails if r['host'] == d['id']]\n        done = place_copy(doc, [d] + rails, new1, src, tgt, levels, dz, wall_mode, rep, newmap)\n        done_all += done\n        for dd, ne in done:\n            rep.copied(tgt.Name, dd['key'])\n    # railings of stairs that were not copied this run are already reported as skipped by plan_target\n    # 4 rooms: new rooms at the same X,Y\n    for d in rooms:\n        try:\n            r = room_copy(doc, d, src, tgt)\n            rep.copied(tgt.Name, 'ROOMS')\n        except Exception as ex:\n            rep.failed(tgt.Name, 'ROOMS', 'room {0}: {1}'.format(d['id'], (str(ex).splitlines() or ['?'])[0][:120]))\n    fix_levels(doc, done_all, src, tgt, levels, dz, wall_mode, rep)\n    # 5 doors / windows onto copies of their host walls that already exist (earlier run)\n    for d in plan['rehost']:\n        hid = existing.get((d['host'], tgt.Name))\n        hn = newmap.get(d['host']) or (hid[0] if hid else None)\n        if hn is None or doc.GetElement(hn) is None:\n            rep.failed(tgt.Name, d['key'], '{0} {1}: host wall copy not found'.format(d['key'].lower(), d['id']))\n            continue\n        try:\n            ni = rehost_one(doc, d, hn, tgt, dz)\n            set_tag(ni, make_tag(src.Name, d['id'], tgt.Name))\n            rep.copied(tgt.Name, d['key'])\n            rep.rehosted(tgt.Name, d['key'])\n        except Exception as ex:\n            rep.failed(tgt.Name, d['key'], '{0} {1}: could not place on the copied wall - {2}'.format(\n                d['key'].lower(), d['id'], (str(ex).splitlines() or ['?'])[0][:100]))\n# =====================================================================\n#  DYNAMO / DYNAMO PLAYER PART  -  inputs:\n#    0  Target levels      ALL = every level above, or names \"L2, L3\", or a range \"L2..L5\"\n#    1-13 category switches (True / False): Walls, Columns, Beams, Floors, Stairs, Railings, Doors, Windows,\n#         Facade (curtain walls), Roofs, Ceilings, Rooms, Generic models\n#    14 Wall type filter   '' = all, 'EXTERNAL' = only types whose name contains it, '!INTERNAL' = leave those out\n#    15 Wall height        NEXT = top constrained to the next level above the target, HEIGHT = same height as the source\n#    16 If already copied  SKIP = leave earlier copies, REPLACE = delete them and copy again\n#    17 Make it            True  (False = only check: does it, reports it, rolls back)\n#  Source = the open floor plan's level, or your selection if one exists.  Ctrl+Z in Revit undoes the whole run.\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _d = DocumentManager.Instance.CurrentDBDocument\n        if _d is not None:\n            doc = _d\n            try:\n                uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n            except Exception:\n                pass\n            TM = TransactionManager\n    except Exception:\n        pass\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('B23_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and not v.strip()):\n        return default\n    return v\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).lower().replace('mm', '').strip())\n    except Exception:\n        return float(default)\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\nout = []\nKEYS = ['WALLS', 'COLUMNS', 'BEAMS', 'FLOORS', 'STAIRS', 'RAILINGS', 'DOORS', 'WINDOWS', 'FACADE', 'ROOFS', 'CEILINGS', 'ROOMS', 'GENERIC']\ntry:\n    if doc is None:\n        raise Exception('No Revit document.')\n    make = _flag(17, False)\n    if TM is not None:\n        TM.Instance.ForceCloseTransaction()\n    cats = [k for i, k in enumerate(KEYS) if _flag(i + 1, k in DEFAULT_ON)]\n    out = run(doc, uidoc, {'targets': str(_inp(0, 'ALL')).strip(), 'cats': cats, 'name_filter': str(_inp(14, '')).strip(),\n                           'wall_mode': str(_inp(15, 'NEXT')).strip(), 'rerun': str(_inp(16, 'SKIP')).strip(), 'make': make})\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('B23 Copy To Levels Above')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else 'Done'\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "78bc2f0feadf4dc3ba1c650fce60bc11",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "418e97ae75344e36b4f3e30d43d375a2",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "40d8a73eebbf4845a656dac27eeb478a",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0acc1c30b6514676a12d015bc229ac48",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "87794e718431444d9b89a7ce10c841b3",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d46d31473ef04c63b35ec4ee3f0376a7",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "66e63ddb69a646dca5e93bbd2e0662a1",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a6164294cfc142778e2505670a2e97b5",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e3793d808a394ae494e3986bb21479c6",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c454e608b1df4f64a32f1071caddb184",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a85ec1cdb9d4478f8f7a334d153d4459",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "55719fa0f91f4309a8df9330f3271d07",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4d0d3f25478a431582a6c716f815f32e",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2925879932b243bd80764bd23f55724c",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0079d69592a5483680162e31bd534ea5",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fca425ef8d5a4c04862ce408502f9764",
+          "Name": "IN[14]",
+          "Description": "Input #14",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "628d19350d3e46299bcc6e0733bfa8cf",
+          "Name": "IN[15]",
+          "Description": "Input #15",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "27dc338b6ac3435f8d311ef14eada6f0",
+          "Name": "IN[16]",
+          "Description": "Input #16",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "65deb364126f4b95a4d568fb94406b81",
+          "Name": "IN[17]",
+          "Description": "Input #17",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7f830e26a9514bf6bdebca956c311e92",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "69f1da77292e4e7192245d5a81f108dd",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "7a2d0c5cef8f4667af3691e1aa38cb3c",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "808da3b18ed94fa389d57b62b7758b33",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "493a5bf6d1704d1da144d607f0d24373",
+      "End": "418e97ae75344e36b4f3e30d43d375a2",
+      "Id": "5b21740e06794ca1854b62647a910449",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8cd2d8c334cd48adacc7d5c966e24b1a",
+      "End": "40d8a73eebbf4845a656dac27eeb478a",
+      "Id": "eef70d7b08e1413fba0186115b25235a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f5f19542f6b5482fa460cc442a429ee0",
+      "End": "0acc1c30b6514676a12d015bc229ac48",
+      "Id": "0194d88351da4ce889ed1713da5c9002",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2ab6fb28012848b09c86f67818c3d927",
+      "End": "87794e718431444d9b89a7ce10c841b3",
+      "Id": "cc9c1c2a8800483e917dc078e2a69daa",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "99cc3b24c77f4dc9a442e53dd68af490",
+      "End": "d46d31473ef04c63b35ec4ee3f0376a7",
+      "Id": "61b6e4a3a02a4f98bba9ae941f913a87",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3b7d8cc4e76c42f1b85637f980443ae0",
+      "End": "66e63ddb69a646dca5e93bbd2e0662a1",
+      "Id": "779630aa6ee54b6bae99c643be628a1d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c713529152214b49b17ec16e702b6902",
+      "End": "a6164294cfc142778e2505670a2e97b5",
+      "Id": "ddebc49d5a3b454a90b1435541b3a0da",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "afc0c9ad131a43cab11008642093f099",
+      "End": "e3793d808a394ae494e3986bb21479c6",
+      "Id": "9e19d2dcb24a4edf89132afe98667f65",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2ba8088276b74b2ea8cbda55c95fd249",
+      "End": "c454e608b1df4f64a32f1071caddb184",
+      "Id": "6e2c1902bcf244d7b2cc1326a405d606",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "912215696fe347708611438b78c76136",
+      "End": "a85ec1cdb9d4478f8f7a334d153d4459",
+      "Id": "baaad25dfce646faa0053bb8760b591a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e2e6395c645f4c86b018f32cb1102166",
+      "End": "55719fa0f91f4309a8df9330f3271d07",
+      "Id": "3b85676ecda14c14a6f704c7123192f9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "de67213f42f94ad4a8f9e0b29a854745",
+      "End": "4d0d3f25478a431582a6c716f815f32e",
+      "Id": "37f96ec988d340efa4105a7cfcf1a275",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5610e49cd5a54a11b0670da539605220",
+      "End": "2925879932b243bd80764bd23f55724c",
+      "Id": "a3d2314d86e14e768e6f0ce72e4ff23d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a09f9a465cc94cad96878dafd3486ab9",
+      "End": "0079d69592a5483680162e31bd534ea5",
+      "Id": "51d4fc10fae54e5abc269e08f9ec4123",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "55d60638be5f4932accef244589d03d1",
+      "End": "fca425ef8d5a4c04862ce408502f9764",
+      "Id": "d64d9a3aa58d4a3fa6a8bfbb8627f59a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "68731b9f45f3490aa11530edf1597af5",
+      "End": "628d19350d3e46299bcc6e0733bfa8cf",
+      "Id": "9401215b0a604ba6b99b1af9708ada09",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "51490d740d8342f784cd5c12012e6234",
+      "End": "27dc338b6ac3435f8d311ef14eada6f0",
+      "Id": "5011e8d87f7749b1a4e340c9a34eee7d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6e8740069f114789a3785bb35c3592e5",
+      "End": "65deb364126f4b95a4d568fb94406b81",
+      "Id": "02976b8899bb409b9780007b8754fb79",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7f830e26a9514bf6bdebca956c311e92",
+      "End": "7a2d0c5cef8f4667af3691e1aa38cb3c",
+      "Id": "b2e95cb311ea4fe59489156cb2ad958f",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "98a043eea04a48c8bf2bb22071979b23",
+        "Name": "0  Copy to levels: ALL / L2, L3 / L2..L5",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "bcc45eba0b2d4eaaa51fcfb88f375182",
+        "Name": "1  Walls",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "584cf93f1224423e9e49e223aee005f7",
+        "Name": "2  Columns",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "be494c17651b47a29d6e9d0e2becb51b",
+        "Name": "3  Beams",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 300
+      },
+      {
+        "Id": "71a13f390bca42e89105f850543d6e8a",
+        "Name": "4  Floors",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 450
+      },
+      {
+        "Id": "7bc6bcece907474588154d702f48a7e6",
+        "Name": "5  Stairs",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 600
+      },
+      {
+        "Id": "02d481b50b1c49ddbe9359d15f0aaaaa",
+        "Name": "6  Railings",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 750
+      },
+      {
+        "Id": "fef64d5b9168432b8e4c56f71453476b",
+        "Name": "7  Doors",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 900
+      },
+      {
+        "Id": "1d4603dc35054a39bfbf9eb397e2fb04",
+        "Name": "8  Windows",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 1050
+      },
+      {
+        "Id": "54ddad94b6c44586a8c0c9cf0e985668",
+        "Name": "9  Facade (curtain walls)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 1200
+      },
+      {
+        "Id": "679057bd6ff64f53bb6dafd26597ee77",
+        "Name": "10 Roofs",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 1350
+      },
+      {
+        "Id": "67bed9c40ec54e3f9685071eaa2e0f7c",
+        "Name": "11 Ceilings",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 1500
+      },
+      {
+        "Id": "fe7558ef84ad4bcf928a63f0d32c194d",
+        "Name": "12 Rooms",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 1650
+      },
+      {
+        "Id": "f5e12157936949c18dea26b60bd908fd",
+        "Name": "13 Generic models",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 1800
+      },
+      {
+        "Id": "0acdd9c223d948b0ae1142707dea778c",
+        "Name": "14 Wall type name contains (blank = all, !text = leave out)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "39d121beceeb442e9998efdff28411c2",
+        "Name": "15 Wall height: NEXT (to next level) / HEIGHT (same height)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "bbf927c0aaaa464fa5cff9c245c082d4",
+        "Name": "16 Already copied: SKIP / REPLACE",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 300
+      },
+      {
+        "Id": "5ec4750734054913b8f6ff8931ee210b",
+        "Name": "17 Make it (False = only check)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 450
+      },
+      {
+        "Id": "78bc2f0feadf4dc3ba1c650fce60bc11",
+        "Name": "B23 COPY ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1700.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "69f1da77292e4e7192245d5a81f108dd",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2050.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "4d1ead52102a43869108a4f8cc03ef33",
+        "Title": "1  TARGET LEVELS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "98a043eea04a48c8bf2bb22071979b23"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 285,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 190,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "f74c3c89ae8d44f097454762e54fa377",
+        "Title": "2  WHAT TO COPY (True / False)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "bcc45eba0b2d4eaaa51fcfb88f375182",
+          "584cf93f1224423e9e49e223aee005f7",
+          "be494c17651b47a29d6e9d0e2becb51b",
+          "71a13f390bca42e89105f850543d6e8a",
+          "7bc6bcece907474588154d702f48a7e6",
+          "02d481b50b1c49ddbe9359d15f0aaaaa",
+          "fef64d5b9168432b8e4c56f71453476b",
+          "1d4603dc35054a39bfbf9eb397e2fb04",
+          "54ddad94b6c44586a8c0c9cf0e985668",
+          "679057bd6ff64f53bb6dafd26597ee77",
+          "67bed9c40ec54e3f9685071eaa2e0f7c",
+          "fe7558ef84ad4bcf928a63f0d32c194d",
+          "f5e12157936949c18dea26b60bd908fd"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 2085,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 1990,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "daa719d985b3407d983964abe6ab61a6",
+        "Title": "3  OPTIONS + RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "0acdd9c223d948b0ae1142707dea778c",
+          "39d121beceeb442e9998efdff28411c2",
+          "bbf927c0aaaa464fa5cff9c245c082d4",
+          "5ec4750734054913b8f6ff8931ee210b"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 735,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 640,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "7338a3c43ba94e4bbd66faff649f7cd3",
+        "Title": "HOW TO USE:  open the floor plan of the level to copy from (or select elements).  0 = levels above to copy to.  1-13 = True for each category that should travel; doors + windows come with their host wall.  14 = only wall types whose name contains the text.  Set 17 = False first to see what would be copied, then True.  Run again = nothing is doubled (16 SKIP) or the old copies are replaced (REPLACE).",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 1600.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

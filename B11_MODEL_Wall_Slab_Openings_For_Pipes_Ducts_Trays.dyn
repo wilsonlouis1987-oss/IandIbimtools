@@ -1,0 +1,866 @@
+{
+  "Uuid": "7dc15c29-e357-4b64-af02-9f4fea4337cf",
+  "IsCustomNode": false,
+  "Description": "Wall and slab openings wherever pipes / ducts pass through, sized MEP + clearance, kept in sync",
+  "Name": "CAD2BIM_MEP_Openings",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 200.0,
+      "MinimumValue": 0.0,
+      "StepValue": 5.0,
+      "Id": "cbf6cd0cbfb64fbdb0478d1d47b2c0ba",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "548e50e547414afb8cdaad2da66d2afd",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 10.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 200.0,
+      "MinimumValue": 0.0,
+      "StepValue": 5.0,
+      "Id": "dbcc71dbd1e14682b5793af3e1f2790b",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2b8641118a864ac5bcd36b98fc278b3e",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 10.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "090fbb1d024d42d49037629baa7c7007",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "774f6a3f1043487c8670cadd9351ebd7",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "c7d5c9ca0de54769bbb8809f237713fa",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b6bf216114e644209bd6b2a3a4742324",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "8e73a17f292b4990a3f9c81922c0e3f5",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "658a76386a1c4c2090d479596d95a79d",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "dc65a3e306484f1991895db046edd2df",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7579829609e04186a7c453dcaa59cd26",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "15cdf5e653984fe784ee2772765fc1ce",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1c3a9af4767f401f9abdab319d628904",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "ff2887f8ff624c84a63146f9b411f386",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "56fc2acd8ad24d98a1429c0d1b8c24a6",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "1d46dad0450a4d53bd3ec9a023ec4f94",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ac42d82ba2a447b182364da83f66d5b1",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "5ead5f34f5064e18899992f913390caf",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2e898de2915e47c6856c270a7c35bfbb",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 300.0,
+      "MinimumValue": 0.0,
+      "StepValue": 5.0,
+      "Id": "3dc9003eb6eb40668a9da030d20d4b7b",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d09e2df898b5410482a82806be3ec41a",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "20d0f4b46f464c2daedd4dfcdb6247cd",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a86c61f0217c420097137ec0da936b76",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "fa3b38bccc1b4e78ba59957e7ea6de59",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "424d4923b5e747fa87b0c630376966da",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - MEP OPENINGS (professional)\n#  every pipe / duct (and optionally cable tray / conduit, also from linked MEP models) that passes\n#  through a WALL or SLAB gets an opening = MEP size + clearance  (50 mm pipe + 10 mm -> 60 mm opening)\n#  * slabs: round opening for round pipes / ducts, rectangle for rectangular ducts / trays\n#  * walls: rectangular opening sized to the pipe / duct (also for skewed crossings)\n#  * re-run after MEP changes: openings are resized, moved ones replaced, orphans removed - never duplicated\nimport os\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\nlog('--- MEP openings v1 started')\nimport clr, math, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nclr.AddReference('RevitServices')\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\nMMF = 1.0 / 304.8\nCOL_PARAMS = [('b', 'h'), ('Width', 'Depth'), ('Width', 'Length')]\nout = []\n\n\ndef num(v, d=0.0):\n    try:\n        return float(v)\n    except Exception:\n        return d\n\n\ndef f(v):\n    return '{0:.0f}'.format(v)\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\n_CAT = {}\ndef catid(bic):\n    if bic not in _CAT:\n        _CAT[bic] = idv(Category.GetCategory(doc, bic).Id)\n    return _CAT[bic]\n\n\ndef cat_is(e, bic):\n    return e is not None and e.Category is not None and idv(e.Category.Id) == catid(bic)\n\n\ndef tname(t):\n    p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n    return p.AsString() if p else ''\n\n\ndef setp(e, bip, val):\n    p = e.get_Parameter(bip)\n    if p is not None and not p.IsReadOnly:\n        p.Set(val)\n        return True\n    return False\n\n\ndef getd(e, bip):\n    p = e.get_Parameter(bip)\n    return p.AsDouble() if p is not None else None\n\n\ndef getlvl(e, bip):\n    p = e.get_Parameter(bip)\n    if p is None:\n        return None\n    x = doc.GetElement(p.AsElementId())\n    return x if isinstance(x, Level) else None\n\n\ndef tagged(e):\n    p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n    return (p.AsString() or '') if p is not None else ''\n\n\ndef mark(e, txt):\n    setp(e, BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS, txt)\n\n\ndef workset_for(keys):\n    if not doc.IsWorkshared:\n        return None\n    for ws in FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset):\n        if any(k in ws.Name.upper() for k in keys):\n            return ws.Id.IntegerValue\n    return None\n\n\ndef put_ws(e, wid):\n    if wid is not None:\n        try:\n            setp(e, BuiltInParameter.ELEM_PARTITION_PARAM, wid)\n        except Exception:\n            pass\n\n\ndef material(keys):\n    mats = list(FilteredElementCollector(doc).OfClass(Material))\n    for k in keys:\n        hit = [m for m in mats if k in m.Name.upper()]\n        if hit:\n            hit.sort(key=lambda m: len(m.Name))\n            return hit[0].Id\n    return ElementId.InvalidElementId\n\n\nLEVELS = sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.ProjectElevation)\nLIDX = dict((idv(l.Id), i) for i, l in enumerate(LEVELS))\n\n\ndef parse_levels(text, base=None):\n    \"\"\"'L2, L3' / 'L2..L5' / 'ALL' (= every level above base)\"\"\"\n    res = []\n    names = dict((l.Name.strip().upper(), l) for l in LEVELS)\n    for tok in [t.strip() for t in str(text or '').replace(';', ',').split(',') if t.strip()]:\n        T = tok.upper()\n        if T in ('ALL', '*', 'ALL ABOVE'):\n            b = LIDX[idv(base.Id)] if base is not None else -1\n            res += LEVELS[b + 1:]\n        elif '..' in T:\n            a, b = [names.get(x.strip()) for x in T.split('..', 1)]\n            if a is None or b is None:\n                raise Exception('Unknown level in \"{0}\". Levels: {1}'.format(tok, ', '.join(l.Name for l in LEVELS)))\n            i, j = sorted([LIDX[idv(a.Id)], LIDX[idv(b.Id)]])\n            res += LEVELS[i:j + 1]\n        else:\n            if T not in names:\n                raise Exception('Unknown level \"{0}\". Levels: {1}'.format(tok, ', '.join(l.Name for l in LEVELS)))\n            res.append(names[T])\n    seen, uniq = set(), []\n    for l in res:\n        if idv(l.Id) not in seen:\n            seen.add(idv(l.Id))\n            uniq.append(l)\n    return uniq\n\n\ndef col_size(c):\n    sym = c.Symbol\n    for a, b in COL_PARAMS:\n        if sym.LookupParameter(a) is not None and sym.LookupParameter(b) is not None:\n            return sym.LookupParameter(a).AsDouble() / MMF, sym.LookupParameter(b).AsDouble() / MMF\n    bb = c.get_BoundingBox(None)\n    return (bb.Max.X - bb.Min.X) / MMF, (bb.Max.Y - bb.Min.Y) / MMF\n\n\ndef angle_of(e):\n    bx = e.GetTransform().BasisX\n    return math.degrees(math.atan2(bx.Y, bx.X))\n\n\n\nTAG = 'CAD2BIM-OPENING'\n\n\ndef mep_specs(inc_pipe, inc_duct, inc_cable):\n    s = []\n    if inc_pipe:\n        s.append(('pipe', BuiltInCategory.OST_PipeCurves))\n    if inc_duct:\n        s.append(('duct', BuiltInCategory.OST_DuctCurves))\n    if inc_cable:\n        s.append(('tray', BuiltInCategory.OST_CableTray))\n        s.append(('conduit', BuiltInCategory.OST_Conduit))\n    return s\n\n\ndef pd(e, bip):\n    p = e.get_Parameter(bip)\n    return p.AsDouble() / MMF if (p is not None and p.HasValue) else 0.0\n\n\ndef section(e, kind, use_od):\n    \"\"\"('round', dia_mm) or ('rect', w_mm, h_mm) - size of the MEP element\"\"\"\n    ins = 2.0 * pd(e, BuiltInParameter.RBS_REFERENCE_INSULATION_THICKNESS) if use_od else 0.0\n    if kind == 'pipe':\n        d = pd(e, BuiltInParameter.RBS_PIPE_OUTER_DIAMETER) if use_od else 0.0\n        d = d or pd(e, BuiltInParameter.RBS_PIPE_DIAMETER_PARAM)\n        return ('round', d + ins)\n    if kind == 'conduit':\n        d = pd(e, BuiltInParameter.RBS_CONDUIT_OUTER_DIAM_PARAM) if use_od else 0.0\n        d = d or pd(e, BuiltInParameter.RBS_CONDUIT_DIAMETER_PARAM)\n        return ('round', d)\n    if kind == 'tray':\n        return ('rect', pd(e, BuiltInParameter.RBS_CABLETRAY_WIDTH_PARAM), pd(e, BuiltInParameter.RBS_CABLETRAY_HEIGHT_PARAM))\n    w, h = pd(e, BuiltInParameter.RBS_CURVE_WIDTH_PARAM), pd(e, BuiltInParameter.RBS_CURVE_HEIGHT_PARAM)\n    if w > 0 and h > 0:\n        return ('rect', w + ins, h + ins)\n    return ('round', pd(e, BuiltInParameter.RBS_CURVE_DIAMETER_PARAM) + ins)\n\n\ndef size_txt(sec):\n    return 'D{0}'.format(f(sec[1])) if sec[0] == 'round' else '{0}x{1}'.format(f(sec[1]), f(sec[2]))\n\n\ndef basis(e, line, T):\n    \"\"\"width / height directions of the section (from the connector), in host coordinates\"\"\"\n    d = T.OfVector(line.Direction).Normalize()\n    bx = None\n    try:\n        for c in e.ConnectorManager.Connectors:\n            cs = c.CoordinateSystem\n            bx = T.OfVector(cs.BasisX)\n            break\n    except Exception:\n        pass\n    if bx is None or abs(bx.DotProduct(d)) > 0.9:\n        ref = XYZ.BasisZ if abs(d.Z) < 0.9 else XYZ.BasisX\n        bx = ref.CrossProduct(d)\n    bx = bx.Subtract(d.Multiply(bx.DotProduct(d))).Normalize()\n    by = d.CrossProduct(bx).Normalize()\n    return d, bx, by\n\n\ndef outline_pts(sec, clr, bx, by):\n    \"\"\"section outline (with clearance) as vectors from the centre, in feet\"\"\"\n    if sec[0] == 'round':\n        r = (sec[1] + clr) / 2.0 * MMF\n        return [bx.Multiply(r * math.cos(a)).Add(by.Multiply(r * math.sin(a)))\n                for a in [i * math.pi / 8 for i in range(16)]]\n    w, h = (sec[1] + clr) / 2.0 * MMF, (sec[2] + clr) / 2.0 * MMF\n    return [bx.Multiply(sx * w).Add(by.Multiply(sy * h)) for sx, sy in ((-1, -1), (1, -1), (1, 1), (-1, 1))]\n\n\ndef on_plane(vecs, d, n):\n    \"\"\"slide each section point along the pipe onto the host plane (normal n)\"\"\"\n    dn = d.DotProduct(n)\n    return [v.Subtract(d.Multiply(v.DotProduct(n) / dn)) for v in vecs]\n\n\n_SOL = {}\ndef solids(host):\n    k = idv(host.Id)\n    if k not in _SOL:\n        opt = Options()\n        opt.DetailLevel = ViewDetailLevel.Fine\n        res = []\n        geo = host.get_Geometry(opt)\n        if geo is not None:\n            for g in geo:\n                if isinstance(g, Solid) and g.Volume > 1e-9:\n                    res.append(g)\n                elif isinstance(g, GeometryInstance):\n                    for gg in g.GetInstanceGeometry():\n                        if isinstance(gg, Solid) and gg.Volume > 1e-9:\n                            res.append(gg)\n        _SOL[k] = res\n    return _SOL[k]\n\n\ndef crossings(host, line):\n    pts = []\n    for s in solids(host):\n        try:\n            r = s.IntersectWithCurve(line, SolidCurveIntersectionOptions())\n            for i in range(r.SegmentCount):\n                seg = r.GetCurveSegment(i)\n                if seg.Length > 1e-3:\n                    pts.append(seg.Evaluate(0.5, True))\n        except Exception:\n            pass\n    return pts\n\n\ndef opening_centre(op):\n    try:\n        if op.IsRectBoundary:\n            a, b = op.BoundaryRect[0], op.BoundaryRect[1]\n            return a.Add(b).Multiply(0.5)\n        xs, ys, zs, n = 0.0, 0.0, 0.0, 0\n        for cv in op.BoundaryCurves:\n            p = cv.GetEndPoint(0)\n            xs += p.X; ys += p.Y; zs += p.Z; n += 1\n        return XYZ(xs / n, ys / n, zs / n) if n else None\n    except Exception:\n        return None\n\n\ndef make_opening(host, kind_host, c, d, bx, by, sec, clr, round_slab):\n    \"\"\"returns (opening, 'WxH' text) or raises\"\"\"\n    vecs = outline_pts(sec, clr, bx, by)\n    if kind_host == 'wall':\n        lc = host.Location\n        if not hasattr(lc, 'Curve') or not isinstance(lc.Curve, Line):\n            raise Exception('curved wall')\n        wd = lc.Curve.Direction.Normalize()\n        wn = XYZ(-wd.Y, wd.X, 0)\n        if abs(d.DotProduct(wn)) < 0.26:\n            raise Exception('runs along the wall (< 15 deg)')\n        pp = on_plane(vecs, d, wn)\n        hw = max(abs(v.DotProduct(wd)) for v in pp)\n        hh = max(abs(v.Z) for v in pp)\n        p1 = c.Subtract(wd.Multiply(hw)).Subtract(XYZ.BasisZ.Multiply(hh))\n        p2 = c.Add(wd.Multiply(hw)).Add(XYZ.BasisZ.Multiply(hh))\n        op = doc.Create.NewOpening(host, p1, p2)\n        return op, '{0}x{1}'.format(f(2 * hw / MMF), f(2 * hh / MMF))\n    # slab\n    if abs(d.Z) < 0.26:\n        raise Exception('runs along the slab (< 15 deg)')\n    ca = CurveArray()\n    if sec[0] == 'round' and round_slab and abs(d.Z) > 0.995:\n        r = (sec[1] + clr) / 2.0 * MMF\n        ca.Append(Arc.Create(c, r, 0.0, math.pi, XYZ.BasisX, XYZ.BasisY))\n        ca.Append(Arc.Create(c, r, math.pi, 2 * math.pi, XYZ.BasisX, XYZ.BasisY))\n        txt = 'D{0}'.format(f(2 * r / MMF))\n    else:\n        pp = on_plane(vecs, d, XYZ.BasisZ)\n        if sec[0] == 'round' and not round_slab:          # square opening for round MEP\n            hx = max(abs(v.X) for v in pp); hy = max(abs(v.Y) for v in pp)\n            pp = [XYZ(-hx, -hy, 0), XYZ(hx, -hy, 0), XYZ(hx, hy, 0), XYZ(-hx, hy, 0)]\n        for i in range(len(pp)):\n            a, b = c.Add(pp[i]), c.Add(pp[(i + 1) % len(pp)])\n            ca.Append(Line.CreateBound(a, b))\n        xs = [v.X for v in pp]; ys = [v.Y for v in pp]\n        txt = '{0}x{1}'.format(f((max(xs) - min(xs)) / MMF), f((max(ys) - min(ys)) / MMF))\n    op = doc.Create.NewOpening(host, ca, True)\n    return op, txt\n\n\ntry:\n    CLR_P = num(IN[0], 10); CLR_D = num(IN[1], 10); USE_OD = bool(IN[2])\n    DO_WALL = bool(IN[3]); DO_SLAB = bool(IN[4]); ROUND = bool(IN[5])\n    INC_P = bool(IN[6]); INC_D = bool(IN[7]); INC_C = bool(IN[8]); LINKS = bool(IN[9])\n    MIN_SZ = num(IN[10], 0); SYNC = bool(IN[11]); ONLY_SEL = bool(IN[12])\n    log('inputs: clr pipe {0} duct {1} od {2} | walls {3} slabs {4} round {5} | pipe {6} duct {7} cable {8} links {9} | '\n        'min {10} sync {11} selected {12}'.format(CLR_P, CLR_D, USE_OD, DO_WALL, DO_SLAB, ROUND, INC_P, INC_D, INC_C,\n                                                  LINKS, MIN_SZ, SYNC, ONLY_SEL))\n    if not (DO_WALL or DO_SLAB):\n        raise Exception('Switch on WALL and / or SLAB openings')\n    specs = mep_specs(INC_P, INC_D, INC_C)\n    if not specs:\n        raise Exception('Switch on pipes and / or ducts')\n\n    # ---------------- every MEP run: (uid, kind, element, line in host coords, transform)\n    sources = [(doc, Transform.Identity, '')]\n    if LINKS:\n        for li in FilteredElementCollector(doc).OfClass(RevitLinkInstance):\n            ld = li.GetLinkDocument()\n            if ld is not None:\n                sources.append((ld, li.GetTotalTransform(), li.UniqueId + ':'))\n    sel_ids = set(idv(i) for i in uidoc.Selection.GetElementIds()) if ONLY_SEL else None\n    runs = {}\n    for sdoc, T, pre in sources:\n        for kind, bic in specs:\n            for e in FilteredElementCollector(sdoc).OfCategory(bic).WhereElementIsNotElementType():\n                if sel_ids is not None and (pre or idv(e.Id) not in sel_ids):\n                    continue\n                lc = e.Location\n                if not hasattr(lc, 'Curve') or not isinstance(lc.Curve, Line):\n                    continue\n                sec = section(e, kind, USE_OD)\n                if max(sec[1:]) <= 0 or max(sec[1:]) < MIN_SZ:\n                    continue\n                ln = Line.CreateBound(T.OfPoint(lc.Curve.GetEndPoint(0)), T.OfPoint(lc.Curve.GetEndPoint(1)))\n                runs[pre + e.UniqueId] = (kind, e, ln, T, sec)\n    if ONLY_SEL and not runs:\n        raise Exception('Select pipes / ducts in Revit first (or switch off \"Only selected\")')\n    log('MEP runs: {0}'.format(len(runs)))\n\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    removed = resized = 0\n\n    # ---------------- 1 keep existing openings in sync with the MEP\n    existing = {}                                   # (host id, uid) -> [opening centres]\n    def sig(run):\n        clr = CLR_P if run[0] in ('pipe', 'conduit') else CLR_D\n        return '{0}+{1:.0f}'.format(size_txt(run[4]), clr)\n\n    for op in list(FilteredElementCollector(doc).OfClass(Opening)):\n        t = tagged(op)\n        if not t.startswith(TAG + '|'):\n            continue\n        parts = t.split('|')\n        uid = parts[1] if len(parts) > 1 else ''\n        old_sig = parts[2] if len(parts) > 2 else ''\n        host, c, run = op.Host, opening_centre(op), runs.get(uid)\n        state = 'ok'\n        if run is None:\n            state = 'gone' if not ONLY_SEL else 'ok'        # only-selected mode never deletes others\n        elif host is None or c is None:\n            state = 'moved'\n        else:\n            ln = run[2]\n            if isinstance(host, Wall):\n                pr = ln.Project(c)\n                near = pr is not None and pr.Distance < 25.0 * MMF\n            else:\n                p0, p1 = ln.GetEndPoint(0), ln.GetEndPoint(1)\n                near = False\n                if abs(p1.Z - p0.Z) > 1e-6:\n                    tt = (c.Z - p0.Z) / (p1.Z - p0.Z)\n                    q = p0.Add(p1.Subtract(p0).Multiply(tt))\n                    near = math.hypot(q.X - c.X, q.Y - c.Y) < 25.0 * MMF\n            if not near:\n                state = 'moved'\n            elif old_sig != sig(run):\n                state = 'resized'\n        if state == 'ok':\n            if run is not None:\n                existing.setdefault((idv(host.Id), uid), []).append(c)\n            continue\n        if not SYNC:\n            continue\n        try:\n            doc.Delete(op.Id)\n            if state == 'gone':\n                removed += 1\n            else:\n                resized += 1\n        except Exception:\n            pass\n    doc.Regenerate()\n    _SOL.clear()\n\n    # ---------------- 2 new openings where MEP crosses walls / slabs\n    made = {'wall': 0, 'slab': 0}\n    skipped, errors, by_size = [], 0, {}\n    for uid, (kind, e, ln, T, sec) in runs.items():\n        clr = CLR_P if kind in ('pipe', 'conduit') else CLR_D\n        d, bx, by = basis(e, e.Location.Curve, T)\n        rad = (max(sec[1:]) + clr) * MMF\n        p0, p1 = ln.GetEndPoint(0), ln.GetEndPoint(1)\n        mn = XYZ(min(p0.X, p1.X) - rad, min(p0.Y, p1.Y) - rad, min(p0.Z, p1.Z) - rad)\n        mx = XYZ(max(p0.X, p1.X) + rad, max(p0.Y, p1.Y) + rad, max(p0.Z, p1.Z) + rad)\n        bbf = BoundingBoxIntersectsFilter(Outline(mn, mx))\n        hosts = []\n        if DO_WALL:\n            hosts += [('wall', w) for w in FilteredElementCollector(doc).OfClass(Wall).WherePasses(bbf)\n                      if w.WallType.Kind != WallKind.Curtain]\n        if DO_SLAB:\n            hosts += [('slab', fl) for fl in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Floors)\n                      .WhereElementIsNotElementType().WherePasses(bbf) if isinstance(fl, Floor)]\n        for hk, host in hosts:\n            for c in crossings(host, ln):\n                prev = existing.get((idv(host.Id), uid), [])\n                if any(c.DistanceTo(q) < 50.0 * MMF for q in prev):\n                    continue\n                try:\n                    op, txt = make_opening(host, hk, c, d, bx, by, sec, clr, ROUND)\n                    mark(op, '{0}|{1}|{2}+{3:.0f}'.format(TAG, uid, size_txt(sec), clr))\n                    existing.setdefault((idv(host.Id), uid), []).append(c)\n                    made[hk] += 1\n                    kk = '{0} {1} -> {2} {3}'.format(kind, size_txt(sec), hk, txt)\n                    by_size[kk] = by_size.get(kk, 0) + 1\n                except Exception as ex:\n                    errors += 1\n                    if len(skipped) < 12:\n                        skipped.append('{0} {1} in {2} {3}: {4}'.format(kind, size_txt(sec), hk, idv(host.Id), ex))\n    TransactionManager.Instance.TransactionTaskDone()\n\n    out.append('CAD2BIM MEP OPENINGS  -  DONE')\n    out.append('MEP runs checked : {0}  ({1}{2})'.format(\n        len(runs), ', '.join(k for k, _ in specs), ' + linked models' if len(sources) > 1 else ''))\n    out.append('New openings     : {0} in walls, {1} in slabs'.format(made['wall'], made['slab']))\n    out.append('Clearance        : pipes +{0:.0f} mm, ducts +{1:.0f} mm  ({2})'.format(\n        CLR_P, CLR_D, 'outside size + insulation' if USE_OD else 'nominal size'))\n    if resized or removed:\n        out.append('Updated          : {0} re-sized / moved, {1} removed (MEP deleted)'.format(resized, removed))\n    for k in sorted(by_size):\n        out.append('    {0:<44} x {1}'.format(k, by_size[k]))\n    if errors:\n        out.append('Not cut          : {0} (e.g. pipe running inside / along a wall, curved wall):'.format(errors))\n        out.extend('    ' + s for s in skipped)\n    out.append('Re-run after every MEP update - openings follow the pipes and ducts.')\nexcept Exception as ex:\n    try:\n        TransactionManager.Instance.ForceCloseTransaction()\n    except Exception:\n        pass\n    out.insert(0, 'FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "95d81c0652a34c9a94ec8c538c385396",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "5f8631694fc84c18b0eae6e647db987c",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8b1ae748d95f476f894658eb23cb05b4",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7d0226572faf44b898c57c4b562e9f1c",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f304f8a7f64e407185ac06a5e008975c",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4d5500da3acf4068a3a6c270c52b4d9c",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6fe03d070ec442ac88a7736408856510",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0de8a5875c6846749b2d4350691a47bd",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fdc7920c35de44abb8f20aa9d451f90b",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "96187cef90be44e3aa2c251704e2adcf",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4bf58a81a8114e2bbf95c7ed228ea4f2",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9b65943d585b48ddafafbef4c3fcd77d",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "17bec9d8e1d14b57bb57b3cafeb259ed",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b009000d460845a491f4cd376d0e5ad2",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f0ed7bf4d0eb4b3cad394a4cda86ce09",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "dc6c529bf0cf4accbd2ed3b2cb54c336",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "d59e858bab02471e9c61d80dad72a3d9",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a5bd103dc9734698ba50be5f2f0a8f7c",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "548e50e547414afb8cdaad2da66d2afd",
+      "End": "5f8631694fc84c18b0eae6e647db987c",
+      "Id": "ad899576a1504edc8ac5bbe1f51f32a0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2b8641118a864ac5bcd36b98fc278b3e",
+      "End": "8b1ae748d95f476f894658eb23cb05b4",
+      "Id": "d968f46d40f3410ebc84f32d3eb21338",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "774f6a3f1043487c8670cadd9351ebd7",
+      "End": "7d0226572faf44b898c57c4b562e9f1c",
+      "Id": "bd05b30917a24d66a609004e20031008",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b6bf216114e644209bd6b2a3a4742324",
+      "End": "f304f8a7f64e407185ac06a5e008975c",
+      "Id": "4866b835e7bd47928b567f9da7e70e43",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "658a76386a1c4c2090d479596d95a79d",
+      "End": "4d5500da3acf4068a3a6c270c52b4d9c",
+      "Id": "b14be48feb714804907580e97003373b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7579829609e04186a7c453dcaa59cd26",
+      "End": "6fe03d070ec442ac88a7736408856510",
+      "Id": "ce72f1d1058c43469347faf18307a532",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1c3a9af4767f401f9abdab319d628904",
+      "End": "0de8a5875c6846749b2d4350691a47bd",
+      "Id": "ee5cc9c9919f4bf193bb7c836210838d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "56fc2acd8ad24d98a1429c0d1b8c24a6",
+      "End": "fdc7920c35de44abb8f20aa9d451f90b",
+      "Id": "1d5f623e5ec34af3874dcb4828777c8f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ac42d82ba2a447b182364da83f66d5b1",
+      "End": "96187cef90be44e3aa2c251704e2adcf",
+      "Id": "5d7fa2b083244eb4bd6b278fed756d9d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2e898de2915e47c6856c270a7c35bfbb",
+      "End": "4bf58a81a8114e2bbf95c7ed228ea4f2",
+      "Id": "54114f59cd4f4d59b4527bd052947724",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d09e2df898b5410482a82806be3ec41a",
+      "End": "9b65943d585b48ddafafbef4c3fcd77d",
+      "Id": "25f4dd9c3a304d53811810e04e2a93b6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a86c61f0217c420097137ec0da936b76",
+      "End": "17bec9d8e1d14b57bb57b3cafeb259ed",
+      "Id": "0d5c3180b8bc4d569bdccc4d85731bb4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "424d4923b5e747fa87b0c630376966da",
+      "End": "b009000d460845a491f4cd376d0e5ad2",
+      "Id": "80ec600d0c1a43e0af396a4b6186db98",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f0ed7bf4d0eb4b3cad394a4cda86ce09",
+      "End": "d59e858bab02471e9c61d80dad72a3d9",
+      "Id": "4fefc8931da54262bf22a0cec1c26936",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "cbf6cd0cbfb64fbdb0478d1d47b2c0ba",
+        "Name": "Pipe / conduit clearance, total (mm)  50 dia -> 60",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "dbcc71dbd1e14682b5793af3e1f2790b",
+        "Name": "Duct / tray clearance, total (mm)  50x50 -> 60x60",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "090fbb1d024d42d49037629baa7c7007",
+        "Name": "Use OUTSIDE size + insulation (off = nominal size)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 270.0
+      },
+      {
+        "Id": "c7d5c9ca0de54769bbb8809f237713fa",
+        "Name": "Openings in WALLS",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 520.0
+      },
+      {
+        "Id": "8e73a17f292b4990a3f9c81922c0e3f5",
+        "Name": "Openings in SLABS",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 655.0
+      },
+      {
+        "Id": "dc65a3e306484f1991895db046edd2df",
+        "Name": "Round openings in slabs for round pipes / ducts",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 790.0
+      },
+      {
+        "Id": "15cdf5e653984fe784ee2772765fc1ce",
+        "Name": "Pipes",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "ff2887f8ff624c84a63146f9b411f386",
+        "Name": "Ducts",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "1d46dad0450a4d53bd3ec9a023ec4f94",
+        "Name": "Cable trays + conduits",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 270.0
+      },
+      {
+        "Id": "5ead5f34f5064e18899992f913390caf",
+        "Name": "Include MEP from LINKED models",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 405.0
+      },
+      {
+        "Id": "3dc9003eb6eb40668a9da030d20d4b7b",
+        "Name": "Ignore MEP smaller than (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 540.0
+      },
+      {
+        "Id": "20d0f4b46f464c2daedd4dfcdb6247cd",
+        "Name": "Keep in sync: resize / move / remove openings when MEP changed",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 960.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "fa3b38bccc1b4e78ba59957e7ea6de59",
+        "Name": "Only the pipes / ducts I select",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 960.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "95d81c0652a34c9a94ec8c538c385396",
+        "Name": "CAD2BIM  MEP Openings  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "dc6c529bf0cf4accbd2ed3b2cb54c336",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "c463dd8609d34e1689ccc5c3262b7a98",
+        "Title": "1  OPENING SIZE  (opening = MEP size + clearance)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "cbf6cd0cbfb64fbdb0478d1d47b2c0ba",
+          "dbcc71dbd1e14682b5793af3e1f2790b",
+          "090fbb1d024d42d49037629baa7c7007"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 540.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 445.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "87170de9244a4481840f30c6fc0d77f3",
+        "Title": "2  WHERE",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "c7d5c9ca0de54769bbb8809f237713fa",
+          "8e73a17f292b4990a3f9c81922c0e3f5",
+          "dc65a3e306484f1991895db046edd2df"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 425.0,
+        "Width": 440.0,
+        "Height": 540.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 520.0,
+        "InitialHeight": 445.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "0ed210dcae6145699c3b6298e976bd22",
+        "Title": "3  WHICH MEP",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "15cdf5e653984fe784ee2772765fc1ce",
+          "ff2887f8ff624c84a63146f9b411f386",
+          "1d46dad0450a4d53bd3ec9a023ec4f94",
+          "5ead5f34f5064e18899992f913390caf",
+          "3dc9003eb6eb40668a9da030d20d4b7b"
+        ],
+        "HasNestedGroups": false,
+        "Left": 460.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 810.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 715.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF9FDF8F"
+      },
+      {
+        "Id": "1a569b7c468645c6bd591db4e13fcae2",
+        "Title": "4  UPDATE",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "20d0f4b46f464c2daedd4dfcdb6247cd",
+          "fa3b38bccc1b4e78ba59957e7ea6de59"
+        ],
+        "HasNestedGroups": false,
+        "Left": 940.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 405.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 310.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFD9C2F2"
+      },
+      {
+        "Id": "ca3e120548e7446c8ca8f917867ada63",
+        "Title": "5  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "95d81c0652a34c9a94ec8c538c385396",
+          "dc6c529bf0cf4accbd2ed3b2cb54c336"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "5607b53d698d444db056a76151d7c5d5",
+        "Title": "HOW TO USE  -  model / link your pipes and ducts, set the clearance, Run\nEvery pipe / duct passing through a wall or slab gets an opening = size + clearance (50 mm pipe + 10 -> 60 mm, 50x50 duct + 10 -> 60x60).\nSlabs: round openings for round pipes, rectangles for ducts.  Walls: rectangular openings (Revit wall openings are rectangular).\nAfter MEP changes just Run again: openings are resized / moved / removed to match - never duplicated.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

@@ -1,0 +1,902 @@
+{
+  "Uuid": "f71b413d-fc9c-4a96-9e3a-e782607de3d5",
+  "IsCustomNode": false,
+  "Description": "STAIRS: the stair drawn with Revit lines or CAD lines in the open plan -> real Revit stairs (straight runs, landings, railings) floor to floor, FIT riser ~150 / tread ~300 inside the drawn outline, or from an Area / Room named STAIR; optionally repeated on the floors above",
+  "Name": "B18_MODEL_Stairs_From_Revit_Lines_Or_CAD_Tread_Lines",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "c2ede134be5a4117aa95f8e5aaf2a08c",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6724e76a4a014576b7894a1c0e85a148",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "SMART"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "40958bcb078541e1b83ddb7e9f0a7389",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fd901b55332643df844bc824c4da955f",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "868c6c58d4cb4f6288a4af256c70d73f",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cc28d87c49764ec7b415fa7efb06ad89",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "STAIR"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "6717a93846ae4d3e8b60b7dd3e2fc3c0",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1a8e000355a0404e9efd8b652249b459",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "2b422a683dcb424b99d773d344489dea",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ccb12057f5f54bd6b310317380b1e03a",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "12f05685978749e096c457f86ddc3f66",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "98aef13d02ef4a9389f7f25790afa5e9",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "190"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "841bcaa065ad433db670f389aa52f163",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a39bcc153aff47f89637c87f8b933ee1",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "FIT"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "ea7908f2577a43b582e0c1cf19b3bc42",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "30b8de74ed7f43a482559339bef94ed5",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "150"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "8e9233f2c07148718508e42aa1c30b70",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4a9bbd3bef0b44bb94dd8d6ea69c5c46",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "300"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "9f4c58baa0da4a19b46550daf95cb230",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7f22f84bc2204c768baeed4b5fb3b0ba",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "907bf267578f49b8a26af2ea4e8eb0dd",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0312dd279e8b442cbdb2993ebf7402b5",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "af44823d76a94f3a816f3a12a420bd0d",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "515fcd706d724f2db295f9774ea123eb",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "ALL"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "c7acaadfd36148ee826728d4e9e72f14",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "56b42d265d824086a3ff416c05670cb6",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "c080829594e74c728be06f15961ff938",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "13a6930786d14d14ad9ed98bf9c12537",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "d5bb907e38774b1ea70125568f7651d7",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "40a55c029ed749bfb288350c1096534c",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  B18 STAIRS FROM REVIT LINES OR CAD LINES   (Revit 2026)   v2\n#  The stair drawn in the open floor plan -> real Revit stairs (runs + landings + railings)\n#    - REVIT: model / detail lines in the plan (selected lines only, if lines are selected)\n#    - CAD:   lines / polylines of a DWG linked or imported in the plan (optional layer filter)\n#  A flight = 3+ parallel, equally long, evenly spaced tread (riser) lines.  Every line = one riser,\n#  a longer landing / floor edge line just after the last tread line is the last riser.\n#  Flights close to each other = one stair, joined by landings.  Walk line arrow -> the UP end.\n#  Base = level of the plan, top = next level (or the top level / height you give).\n#  Riser count + width + tread from the lines, riser height = level-to-level height / risers (checked).\n#  Run again = the B18 stairs in the same place are replaced (no doubles).  One undo (Ctrl+Z).\n#  v2: tread lines up to 600 mm apart; Risers = FIT keeps the drawn outline and takes riser ~150 / tread ~300; the\n#      lines drawn too few for the storey are NOT built silently; source AREA = Area / Room named STAIR (lines inside\n#      it, else automatic layout); repeat = the same stair on the floors above (floor to floor, per level).\n#  PREVIEW (make = False) builds everything, reports, then rolls it back.\n#  Runs in pyRevit (IronPython 2.7) and Dynamo CPython3.\n# =====================================================================\nimport math, os\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *                           # noqa\nfrom Autodesk.Revit.DB.Architecture import Stairs, StairsRun, StairsLanding, StairsType, StairsRunJustification, \\\n    Railing, RailingType, RailingPlacementPosition       # noqa\n\nMMF = 1.0 / 304.8\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'B18_stairs_log.txt')\nTAG = 'B18 STAIR'\nTYPE_NAME = 'B18 Stair'\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ndef tname_of(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef type_name(t):\n    try:\n        p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n        if p is not None and p.AsString():\n            return p.AsString()\n    except Exception:\n        pass\n    try:\n        return Element.Name.__get__(t)\n    except Exception:\n        try:\n            return t.Name\n        except Exception:\n            return ''\n\n\ndef plan_view(doc, uidoc):\n    try:\n        v = uidoc.ActiveView if uidoc is not None else doc.ActiveView\n    except Exception:\n        v = doc.ActiveView\n    if v is not None and tname_of(v) == 'ViewPlan' and not v.IsTemplate:\n        return v\n    try:\n        for uv in uidoc.GetOpenUIViews():\n            ov = doc.GetElement(uv.ViewId)\n            if ov is not None and tname_of(ov) == 'ViewPlan' and not ov.IsTemplate:\n                return ov\n    except Exception:\n        pass\n    return None\n\n\ndef levels_of(doc):\n    return sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation)\n\n\ndef find_level(doc, name):\n    if not name:\n        return None\n    lv = levels_of(doc)\n    for l in lv:\n        if l.Name.strip().upper() == str(name).strip().upper():\n            return l\n    for l in lv:\n        if str(name).strip().upper() in l.Name.upper():\n            return l\n    raise Exception('No level \"{0}\". Levels: {1}'.format(name, ', '.join(l.Name for l in lv)))\n\n\n# ------------------------------------------------------------------ lines in the plan (Revit + CAD) -> 2D segments in mm\ndef _seg(p, q):\n    return ((p.X / MMF, p.Y / MMF), (q.X / MMF, q.Y / MMF))\n\n\nLINE_KINDS = ('ModelLine', 'DetailLine', 'SymbolicCurve', 'ModelCurve', 'DetailCurve')\n\n\ndef selected_ids(uidoc):\n    try:\n        return [i for i in uidoc.Selection.GetElementIds()]\n    except Exception:\n        return []\n\n\ndef revit_segments(doc, view, style='', only=None):\n    out = []\n    src = [doc.GetElement(i) for i in only] if only else FilteredElementCollector(doc, view.Id).OfClass(CurveElement)\n    for e in src:\n        try:\n            if e is None or tname_of(e) not in LINE_KINDS:\n                continue\n            if style and style.upper() not in (e.LineStyle.Name if e.LineStyle is not None else '').upper():\n                continue\n            c = e.GeometryCurve\n            if c is not None and c.IsBound and tname_of(c) == 'Line':\n                out.append(_seg(c.GetEndPoint(0), c.GetEndPoint(1)))\n        except Exception:\n            pass\n    return out\n\n\ndef _walk(geo, tf, out, layer_word, doc):\n    for g in geo:\n        n = tname_of(g)\n        if n == 'GeometryInstance':\n            _walk(g.GetSymbolGeometry(), tf.Multiply(g.Transform), out, layer_word, doc)\n            continue\n        if layer_word:\n            try:\n                gs = doc.GetElement(g.GraphicsStyleId)\n                nm = gs.GraphicsStyleCategory.Name if gs is not None else ''\n                if layer_word.upper() not in nm.upper():\n                    continue\n            except Exception:\n                continue\n        if n == 'Line':\n            out.append(_seg(tf.OfPoint(g.GetEndPoint(0)), tf.OfPoint(g.GetEndPoint(1))))\n        elif n == 'PolyLine':\n            pts = [tf.OfPoint(p) for p in g.GetCoordinates()]\n            for a, b in zip(pts, pts[1:]):\n                out.append(_seg(a, b))\n\n\ndef cad_segments(doc, view, layer='', only=None):\n    out = []\n    opt = Options()\n    opt.View = view\n    src = [doc.GetElement(i) for i in only] if only else FilteredElementCollector(doc, view.Id).OfClass(ImportInstance)\n    for ii in src:\n        if ii is None or tname_of(ii) != 'ImportInstance':\n            continue\n        try:\n            _walk(ii.get_Geometry(opt), Transform.Identity, out, layer, doc)\n        except Exception as ex:\n            log('cad: ' + str(ex))\n    return out\n\n\n# ------------------------------------------------------------------ stair finding (all in mm)\ndef _len(s):\n    return math.hypot(s[1][0] - s[0][0], s[1][1] - s[0][1])\n\n\ndef _ang(s):\n    (x0, y0), (x1, y1) = s\n    return math.degrees(math.atan2(y1 - y0, x1 - x0)) % 180.0\n\n\ndef _adiff(a, b):\n    return abs(((a - b + 90.0) % 180.0) - 90.0)\n\n\ndef _merge_collinear(segs, ang_tol=1.0, off_tol=15.0, gap=100.0):\n    \"\"\"join pieces of one tread line that a walk line / arrow / CAD export split; drop exact copies\"\"\"\n    groups = {}\n    for s in segs:\n        if _len(s) < 1.0:\n            continue\n        a = round(_ang(s) / ang_tol) * ang_tol % 180.0\n        t = math.radians(a)\n        d = (math.cos(t), math.sin(t))\n        n = (-d[1], d[0])\n        off = s[0][0] * n[0] + s[0][1] * n[1]\n        key = (a, int(round(off / off_tol)))\n        t0 = s[0][0] * d[0] + s[0][1] * d[1]\n        t1 = s[1][0] * d[0] + s[1][1] * d[1]\n        groups.setdefault(key, []).append((min(t0, t1), max(t0, t1), off, d, n))\n    out = []\n    for key, iv in groups.items():\n        iv.sort(key=lambda x: (x[0], x[1]))\n        cur = list(iv[0])\n        offs = [cur[2]]\n        for a, b, off, d, n in iv[1:]:\n            # pieces split by a walk line join; two full-width flights side by side (dog-leg) stay apart\n            if a <= cur[1] + 1.0 or (a <= cur[1] + gap and max(cur[1] - cur[0], b - a) < 750.0):\n                cur[1] = max(cur[1], b)\n                offs.append(off)\n            else:\n                out.append((cur, sum(offs) / len(offs)))\n                cur = [a, b, off, d, n]\n                offs = [off]\n        out.append((cur, sum(offs) / len(offs)))\n    res = []\n    for (a, b, _, d, n), off in out:\n        res.append(((d[0] * a + n[0] * off, d[1] * a + n[1] * off), (d[0] * b + n[0] * off, d[1] * b + n[1] * off)))\n    return res\n\n\ndef find_flights(segs, tmin=100.0, tmax=600.0, wmin=600.0, wmax=3500.0, min_lines=3, max_lines=25):\n    \"\"\"flights = >= min_lines parallel, equally long, evenly spaced, overlapping lines (the risers)\n    that are NOT crossed by many perpendicular lines (that would be a tile grid / hatch)\"\"\"\n    merged = _merge_collinear(segs)\n    lines = [s for s in merged if wmin <= _len(s) <= wmax]\n    by_ang = {}\n    for s in lines:\n        by_ang.setdefault(int(round(_ang(s))) % 180, []).append(s)\n    flights, used = [], set()\n    for a, ss in by_ang.items():\n        t = math.radians(a)\n        v = (math.cos(t), math.sin(t))\n        u = (-v[1], v[0])                                 # v along the tread, u = walking direction\n        info = []\n        for s in ss:\n            s0 = s[0][0] * u[0] + s[0][1] * u[1]\n            l0 = s[0][0] * v[0] + s[0][1] * v[1]\n            l1 = s[1][0] * v[0] + s[1][1] * v[1]\n            info.append((s0, min(l0, l1), max(l0, l1), s))\n        info.sort(key=lambda i: i[0])\n        perp = None\n        for i0 in range(len(info)):\n            if id(info[i0][3]) in used:\n                continue\n            chain = [info[i0]]\n            for j in range(i0 + 1, len(info)):\n                cand = info[j]\n                if id(cand[3]) in used:\n                    continue\n                last = chain[-1]\n                gap = cand[0] - last[0]\n                if gap < tmin:\n                    continue\n                if gap > tmax:\n                    break\n                L1, L2 = last[2] - last[1], cand[2] - cand[1]\n                ov = min(last[2], cand[2]) - max(last[1], cand[1])\n                if abs(L1 - L2) > 0.1 * max(L1, L2) or ov < 0.85 * min(L1, L2):\n                    continue\n                if len(chain) >= 2:\n                    sp = chain[1][0] - chain[0][0]\n                    if abs(gap - sp) > max(10.0, 0.06 * sp):\n                        continue\n                chain.append(cand)\n            if len(chain) > max_lines:                    # far too many = a hatch, not a stair\n                for c in chain:\n                    used.add(id(c[3]))\n                continue\n            if len(chain) < min_lines:\n                continue\n            pos = [c[0] for c in chain]\n            lo = sorted(c[1] for c in chain)[len(chain) // 2]\n            hi = sorted(c[2] for c in chain)[len(chain) // 2]\n            if perp is None:                              # tile grid / hatch test\n                perp = []\n                for q in merged:\n                    if _adiff(_ang(q), a) > 88.0:\n                        q0 = q[0][0] * u[0] + q[0][1] * u[1]\n                        q1 = q[1][0] * u[0] + q[1][1] * u[1]\n                        lat = q[0][0] * v[0] + q[0][1] * v[1]\n                        perp.append((min(q0, q1), max(q0, q1), lat))\n            span = pos[-1] - pos[0]\n            cross = sum(1 for q0, q1, lat in perp\n                        if lo + 50 < lat < hi - 50 and min(q1, pos[-1]) - max(q0, pos[0]) > 0.5 * span)\n            if cross > 2:\n                continue\n            for c in chain:\n                used.add(id(c[3]))\n            if any(abs(g['s'][0] - pos[0]) < 20 and abs(g['s'][-1] - pos[-1]) < 20 and\n                   abs(g['lat'] - (lo + hi) / 2.0) < 20 and g['u'] == u for g in flights):\n                continue\n            flights.append({'u': u, 'v': v, 'a': a, 's': pos, 'lat': (lo + hi) / 2.0, 'w': hi - lo,\n                            'spacing': span / (len(pos) - 1), 'ext': []})\n    for f in flights:\n        _extend_edges(f, merged)\n    return flights\n\n\ndef _extend_edges(f, merged):\n    \"\"\"a longer landing / floor edge line one tread after the last (or before the first) line = also a riser\"\"\"\n    u, v, sp = f['u'], f['v'], f['spacing']\n    lo, hi = f['lat'] - f['w'] / 2.0, f['lat'] + f['w'] / 2.0\n    for end in (0, -1):\n        s_end = f['s'][end]\n        sgn = -1.0 if end == 0 else 1.0\n        want = s_end + sgn * sp\n        for q in merged:\n            if _adiff(_ang(q), f['a']) > 1.5 or _len(q) < f['w'] * 1.15:\n                continue\n            q0 = q[0][0] * u[0] + q[0][1] * u[1]\n            if abs(q0 - want) > max(10.0, 0.06 * sp):\n                continue\n            l0 = q[0][0] * v[0] + q[0][1] * v[1]\n            l1 = q[1][0] * v[0] + q[1][1] * v[1]\n            if min(max(l0, l1), hi) - max(min(l0, l1), lo) >= 0.9 * f['w']:\n                if end == 0:\n                    f['s'].insert(0, q0)\n                else:\n                    f['s'].append(q0)\n                f['ext'].append('start' if end == 0 else 'end')\n                break\n\n\ndef _pt(f, s, lat=None):\n    lat = f['lat'] if lat is None else lat\n    return (f['u'][0] * s + f['v'][0] * lat, f['u'][1] * s + f['v'][1] * lat)\n\n\ndef group_stairs(flights, near=1.6):\n    \"\"\"flights close to each other belong to one stair\"\"\"\n    n = len(flights)\n    par = list(range(n))\n\n    def fnd(a):\n        while par[a] != a:\n            par[a] = par[par[a]]\n            a = par[a]\n        return a\n    ends = [[_pt(f, f['s'][0]), _pt(f, f['s'][-1])] for f in flights]\n    for i in range(n):\n        for j in range(i + 1, n):\n            d = min(math.hypot(a[0] - b[0], a[1] - b[1]) for a in ends[i] for b in ends[j])\n            if d < near * max(flights[i]['w'], flights[j]['w']):\n                par[fnd(i)] = fnd(j)\n    groups = {}\n    for i in range(n):\n        groups.setdefault(fnd(i), []).append(flights[i])\n    return list(groups.values())\n\n\ndef _free_gap(f, end, segs):\n    \"\"\"free space in front of this flight end (to the next parallel line across the flight)\"\"\"\n    u, v = f['u'], f['v']\n    s_end = f['s'][end]\n    sgn = 1.0 if (end == -1) == (f['s'][-1] > f['s'][0]) else -1.0\n    best = 6000.0\n    for q in segs:\n        if _adiff(_ang(q), f['a']) > 5.0:\n            continue\n        l0 = q[0][0] * v[0] + q[0][1] * v[1]\n        l1 = q[1][0] * v[0] + q[1][1] * v[1]\n        ov = min(max(l0, l1), f['lat'] + f['w'] / 2.0) - max(min(l0, l1), f['lat'] - f['w'] / 2.0)\n        if ov < 0.5 * f['w']:\n            continue\n        d = (q[0][0] * u[0] + q[0][1] * u[1] - s_end) * sgn\n        if 30.0 < d < best:\n            best = d\n    return best\n\n\ndef _on_line(pt, q, tol=15.0):\n    L = _len(q)\n    d = (q[1][0] - q[0][0], q[1][1] - q[0][1])\n    t = ((pt[0] - q[0][0]) * d[0] + (pt[1] - q[0][1]) * d[1]) / L\n    off = abs((pt[0] - q[0][0]) * d[1] - (pt[1] - q[0][1]) * d[0]) / L\n    return off < tol and -20.0 < t < L + 20.0\n\n\ndef _shared_edge(fi, ei, fj, ej, merged):\n    \"\"\"one line (landing edge) runs through the end riser of both flights -> they meet at that landing\"\"\"\n    if _adiff(fi['a'], fj['a']) > 1.5:\n        return False\n    a, b = _pt(fi, fi['s'][ei]), _pt(fj, fj['s'][ej])\n    for q in merged:\n        if _adiff(_ang(q), fi['a']) <= 1.5 and _len(q) > fi['w'] * 1.15 and _on_line(a, q) and _on_line(b, q):\n            return True\n    return False\n\n\ndef _band_edges(fi, fj):\n    \"\"\"the lateral band of flight j seen along flight i's walking axis -> (lowest, highest) s of that band\"\"\"\n    lo_j, hi_j = fj['lat'] - fj['w'] / 2.0, fj['lat'] + fj['w'] / 2.0\n    xs = []\n    for lat in (lo_j, hi_j):\n        p = _pt(fj, fj['s'][0], lat)\n        xs.append(p[0] * fi['u'][0] + p[1] * fi['u'][1])\n    return min(xs), max(xs)\n\n\ndef _out_sgn(f, end):\n    return 1.0 if (end == -1) == (f['s'][-1] > f['s'][0]) else -1.0\n\n\ndef _band_gap(fi, ei, fj):\n    \"\"\"mm that flight i must run on, out of its end ei, to reach flight j's band (0 = already there, 20000+ = band is behind)\"\"\"\n    lo, hi = _band_edges(fi, fj)\n    s_end = fi['s'][ei]\n    sg = _out_sgn(fi, ei)\n    if lo - 60.0 <= s_end <= hi + 60.0:\n        return 0.0\n    d = (lo - s_end) * sg if s_end < lo else (hi - s_end) * sg\n    if d >= -60.0:\n        return max(d, 0.0)\n    return 20000.0 - d\n\n\ndef order_stair(flights, segs):\n    \"\"\"flights bottom -> top, each with 's' in walking order (first riser .. last riser)\"\"\"\n    merged = _merge_collinear(segs)\n    if len(flights) == 1:\n        f = dict(flights[0])\n        s = list(f['s'])\n        if _free_gap(f, 0, segs) > _free_gap(f, -1, segs):     # bottom = the end with less free space in front\n            s.reverse()\n        f['s'] = s\n        return [f]\n    n = len(flights)\n    cands = []\n    for i in range(n):\n        for j in range(i + 1, n):\n            for ei in (0, -1):\n                for ej in (0, -1):\n                    a, b = _pt(flights[i], flights[i]['s'][ei]), _pt(flights[j], flights[j]['s'][ej])\n                    # flights meet at the landing: the closest ends, and a landing is closed in (little free space\n                    # beyond it), while the floor ends open onto the room\n                    if abs(_adiff(flights[i]['a'], flights[j]['a']) - 90.0) < 6.0:\n                        # L stair: the landing is where the two flights' bands cross - the ends that reach the other\n                        # flight's band meet there (the far ends are closed in by the outline, which fooled free space)\n                        score = _band_gap(flights[i], ei, flights[j]) + _band_gap(flights[j], ej, flights[i])\n                    else:\n                        score = math.hypot(a[0] - b[0], a[1] - b[1]) + 0.5 * (\n                            min(_free_gap(flights[i], ei, segs), 3000.0) + min(_free_gap(flights[j], ej, segs), 3000.0))\n                        if _shared_edge(flights[i], ei, flights[j], ej, merged):\n                            score -= 100000.0\n                    cands.append((score, i, ei, j, ej))\n    cands.sort()\n    deg = [0] * n\n    used_end, links = set(), {}\n    par = list(range(n))\n\n    def fnd(a):\n        while par[a] != a:\n            a = par[a]\n        return a\n    for score, i, ei, j, ej in cands:\n        if (i, ei) in used_end or (j, ej) in used_end or fnd(i) == fnd(j):\n            continue\n        used_end.add((i, ei))\n        used_end.add((j, ej))\n        links.setdefault(i, []).append((j, ei, ej))\n        links.setdefault(j, []).append((i, ej, ei))\n        par[fnd(i)] = fnd(j)\n        deg[i] += 1\n        deg[j] += 1\n        if sum(deg) == 2 * (n - 1):\n            break\n    starts = [i for i in range(n) if deg[i] <= 1]\n    starts.sort(key=lambda i: (flights[i]['lat'], flights[i]['s'][0]))\n    cur = starts[0]\n    order, prev, into_end = [], None, None\n    while cur is not None:\n        f = dict(flights[cur])\n        s = list(f['s'])\n        nxt = [l for l in links.get(cur, []) if l[0] != prev]\n        if nxt:\n            if nxt[0][1] == 0:                            # leaves through its first line -> reverse\n                s.reverse()\n        elif into_end == -1:\n            s.reverse()\n        f['s'] = s\n        order.append(f)\n        if nxt:\n            prev, cur, into_end = cur, nxt[0][0], nxt[0][2]\n        else:\n            cur = None\n    if len(order) != n:\n        return None\n    return order\n\n\ndef _reverse(order):\n    out = []\n    for f in reversed(order):\n        g = dict(f)\n        g['s'] = list(reversed(f['s']))\n        out.append(g)\n    return out\n\n\ndef arrow_tips(segs):\n    \"\"\"walk line arrow heads: 2 short lines (60-700 mm) meeting at a point at an angle 15-120 deg\"\"\"\n    short = [s for s in segs if 60.0 <= _len(s) <= 700.0]\n    tips = []\n    for i in range(len(short)):\n        for j in range(i + 1, len(short)):\n            a, b = short[i], short[j]\n            for pa in (0, 1):\n                for pb in (0, 1):\n                    if math.hypot(a[pa][0] - b[pb][0], a[pa][1] - b[pb][1]) < 5.0:\n                        da = (a[1 - pa][0] - a[pa][0], a[1 - pa][1] - a[pa][1])\n                        db = (b[1 - pb][0] - b[pb][0], b[1 - pb][1] - b[pb][1])\n                        c = (da[0] * db[0] + da[1] * db[1]) / (_len(a) * _len(b))\n                        ang = math.degrees(math.acos(max(-1.0, min(1.0, c))))\n                        if 15.0 <= ang <= 120.0:\n                            tips.append(a[pa])\n    return tips\n\n\ndef orient(order, segs, tips, flip=False):\n    \"\"\"walking order: arrow tip near an end = top; flip turns it round\"\"\"\n    how = 'free space'\n    if tips:\n        bot = _pt(order[0], order[0]['s'][0])\n        top = _pt(order[-1], order[-1]['s'][-1])\n        reach = 1.6 * max(f['w'] for f in order)\n        db = min(math.hypot(t[0] - bot[0], t[1] - bot[1]) for t in tips)\n        dt = min(math.hypot(t[0] - top[0], t[1] - top[1]) for t in tips)\n        if min(db, dt) < reach:\n            how = 'arrow'\n            if db < dt:\n                order = _reverse(order)\n    if flip:\n        order = _reverse(order)\n        how += ' + flipped'\n    return order, how\n\n\ndef footprint(order, pad=150.0):\n    pts = []\n    for f in order:\n        for s in (f['s'][0], f['s'][-1]):\n            for lat in (f['lat'] - f['w'] / 2.0, f['lat'] + f['w'] / 2.0):\n                pts.append(_pt(f, s, lat))\n    xs, ys = [p[0] for p in pts], [p[1] for p in pts]\n    return (min(xs) - pad, min(ys) - pad, max(xs) + pad, max(ys) + pad)\n\n\n# ------------------------------------------------------------------ Revit\nREVIT_ERRORS = []\n\ntry:\n    import uuid as _uuid\n\n    class _Quiet(IFailuresPreprocessor):\n        __namespace__ = 'B18_' + _uuid.uuid4().hex[:10]\n\n        def PreprocessFailures(self, fa):\n            err = False\n            try:\n                for m in fa.GetFailureMessages():\n                    if m.GetSeverity() == FailureSeverity.Warning:\n                        fa.DeleteWarning(m)\n                    else:\n                        err = True\n                        try:\n                            REVIT_ERRORS.append(m.GetDescriptionText())\n                        except Exception:\n                            REVIT_ERRORS.append('Revit error')\n            except Exception:\n                pass\n            if err:\n                return FailureProcessingResult.ProceedWithRollBack\n            return FailureProcessingResult.Continue\nexcept Exception:\n    _Quiet = None\n\n\ndef _pre():\n    try:\n        return _Quiet() if _Quiet is not None else None\n    except Exception:\n        return None\n\n\ndef in_tx(doc, name, fn):\n    t = Transaction(doc, name)\n    p = _pre()\n    if p is not None:\n        try:\n            o = t.GetFailureHandlingOptions()\n            o.SetFailuresPreprocessor(p)\n            t.SetFailureHandlingOptions(o)\n        except Exception:\n            pass\n    t.Start()\n    try:\n        r = fn()\n    except Exception:\n        if t.HasStarted() and not t.HasEnded():\n            t.RollBack()\n        raise\n    t.Commit()\n    return r\n\n\ndef _setp(e, bip, val):\n    try:\n        p = e.get_Parameter(bip)\n        if p is not None and not p.IsReadOnly:\n            p.Set(val)\n            return True\n    except Exception:\n        pass\n    return False\n\n\ndef _comment(e):\n    try:\n        p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n        return (p.AsString() or '') if p is not None else ''\n    except Exception:\n        return ''\n\n\ndef old_stairs(doc, base, boxes):\n    \"\"\"B18 stairs on this base level whose plan box overlaps a new stair's footprint\"\"\"\n    out = []\n    for s in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Stairs).WhereElementIsNotElementType():\n        if tname_of(s) != 'Stairs' or not _comment(s).startswith(TAG):\n            continue\n        try:\n            p = s.get_Parameter(BuiltInParameter.STAIRS_BASE_LEVEL_PARAM)\n            if p is not None and idv(p.AsElementId()) != idv(base.Id):\n                continue\n            bb = s.get_BoundingBox(None)\n            x0, y0, x1, y1 = bb.Min.X / MMF, bb.Min.Y / MMF, bb.Max.X / MMF, bb.Max.Y / MMF\n            if any(x0 < b[2] and b[0] < x1 and y0 < b[3] and b[1] < y1 for b in boxes):\n                out.append(s.Id)\n        except Exception:\n            pass\n    return out\n\n\ndef stair_type(doc, rh, tread, width):\n    types = list(FilteredElementCollector(doc).OfClass(StairsType))\n    if not types:\n        raise Exception('No stair type in the project - load / make one first')\n    st = [t for t in types if type_name(t) == TYPE_NAME]\n    if st:\n        st = st[0]\n    else:\n        pref = [t for t in types if any(k in type_name(t).upper() for k in ('CAST', 'MONOLITHIC', 'CONCRETE', 'RCC'))]\n        st = (pref or types)[0].Duplicate(TYPE_NAME)\n    for attr, val, fn in (('MaxRiserHeight', (rh + 1.0) * MMF, max), ('MinTreadDepth', (tread - 1.0) * MMF, min),\n                          ('MinRunWidth', (width - 1.0) * MMF, min)):\n        try:\n            setattr(st, attr, fn(getattr(st, attr), val))\n        except Exception as ex:\n            log('type {0}: {1}'.format(attr, ex))\n    return st\n\n\ndef railing_type(doc):\n    rts = list(FilteredElementCollector(doc).OfClass(RailingType))\n    for keys in (('HANDRAIL',), ('900',), ('1100',), ('GUARD',)):\n        for t in rts:\n            if any(k in type_name(t).upper() for k in keys):\n                return t\n    return rts[0] if rts else None\n\n\ndef risers_fit(order, H, maxr):\n    \"\"\"risers per flight so that riser <= maxr (spread like the drawn line counts)\"\"\"\n    R = int(math.ceil(H / maxr - 1e-6))\n    base = [len(f['s']) for f in order]\n    tot = float(sum(base))\n    rs = [max(2, int(round(R * b / tot))) for b in base]\n    while sum(rs) > R:\n        rs[rs.index(max(rs))] -= 1\n    while sum(rs) < R:\n        rs[rs.index(min(rs))] += 1\n    return rs\n\n\ndef run_start(order, i, r, tread):\n    \"\"\"where run i starts (mm along its walking axis): the first flight of a multi-flight stair is anchored at its\n    landing end, so the landing sits exactly where it is drawn; the other flights start at their first line\"\"\"\n    f = order[i]\n    sgn = 1.0 if f['s'][-1] > f['s'][0] else -1.0\n    if i == 0 and len(order) > 1:\n        return f['s'][-1] - sgn * (r - 1) * tread\n    return f['s'][0]\n\n\ndef landing_rect(f1, r1, f2, tread, width_ovr=0.0, start1=None):\n    \"\"\"landing between flight 1 (its last riser) and flight 2 (its first riser) -> 4 corner points (mm)\"\"\"\n    w1 = width_ovr if width_ovr > 0 else f1['w']\n    w2 = width_ovr if width_ovr > 0 else f2['w']\n    u1, v1 = f1['u'], f1['v']\n    sgn = 1.0 if f1['s'][-1] > f1['s'][0] else -1.0\n    e = (f1['s'][0] if start1 is None else start1) + sgn * (r1 - 1) * tread   # last riser of flight 1\n    lat2 = f2['lat']\n    p2 = [_pt(f2, f2['s'][0], lat2 - w2 / 2.0), _pt(f2, f2['s'][0], lat2 + w2 / 2.0)]   # first riser of flight 2\n    pu = [(p[0] * u1[0] + p[1] * u1[1]) for p in p2]\n    pv = [(p[0] * v1[0] + p[1] * v1[1]) for p in p2]\n    D = max(sgn * (x - e) for x in pu)\n    if D < 0.5 * min(w1, w2):                              # flight 2 starts level with the landing edge (U stair)\n        D = max(w1, w2)\n    v_lo = min([f1['lat'] - w1 / 2.0] + pv)\n    v_hi = max([f1['lat'] + w1 / 2.0] + pv)\n\n    def P(s_, l_):\n        return (u1[0] * s_ + v1[0] * l_, u1[1] * s_ + v1[1] * l_)\n    return [P(e, v_lo), P(e + sgn * D, v_lo), P(e + sgn * D, v_hi), P(e, v_hi)]\n\n\n_Z_PREF = ['abs']\n\n\ndef _z_order(base, zrel):\n    \"\"\"z values to try for a run path: project elevation of the floor (+ run offset), or relative to the base level\"\"\"\n    ab, rl = base.Elevation + zrel, zrel\n    if base.Elevation < 1e-6:\n        return [rl]\n    return [ab, rl] if _Z_PREF[0] == 'abs' else [rl, ab]\n\n\ndef build_stair(doc, base, top, height_ft, order, rs, tread, width_ovr, stype, tag):\n    \"\"\"StairsEditScope -> straight runs (+ automatic landings). returns (stairs id, riser mm, notes)\"\"\"\n    R = sum(rs)\n    H = (top.Elevation - base.Elevation) if top is not None else height_ft\n    rh = H / R\n    scope = StairsEditScope(doc, 'B18 stair')\n    sid = scope.Start(base.Id, top.Id if top is not None else base.Id)\n    t = Transaction(doc, 'B18 stair runs')\n    t.Start()\n    notes = []\n    try:\n        st = doc.GetElement(sid)\n        try:\n            tp = st.get_Parameter(BuiltInParameter.ELEM_TYPE_PARAM)\n            if tp is not None and not tp.IsReadOnly and idv(tp.AsElementId()) != idv(stype.Id):\n                tp.Set(stype.Id)\n        except Exception as ex:\n            notes.append('type: {0}'.format(ex))\n        if top is None:\n            _setp(st, BuiltInParameter.STAIRS_TOP_LEVEL_PARAM, ElementId.InvalidElementId)\n            if not _setp(st, BuiltInParameter.STAIRS_STAIRS_HEIGHT, H):\n                notes.append('height not set - set \"Desired Stair Height\" by hand')\n        st.DesiredRisersNumber = R\n        st.ActualTreadDepth = tread * MMF\n        runs, zrel, starts = [], 0.0, []\n        for i_, (f, r) in enumerate(zip(order, rs)):\n            s0 = run_start(order, i_, r, tread)\n            starts.append(s0)\n            sgn = 1.0 if f['s'][-1] > f['s'][0] else -1.0\n            a = _pt(f, s0)\n            b = _pt(f, s0 + sgn * (r - 1) * tread)\n            run, zused = None, None\n            for zc in _z_order(base, zrel):                  # project z of the level first, then relative to the base level\n                try:\n                    ln = Line.CreateBound(XYZ(a[0] * MMF, a[1] * MMF, zc), XYZ(b[0] * MMF, b[1] * MMF, zc))\n                    run = StairsRun.CreateStraightRun(doc, sid, ln, StairsRunJustification.Center)\n                    zused = zc\n                    _Z_PREF[0] = 'abs' if abs(zc - zrel - base.Elevation) < 1e-6 and base.Elevation > 1e-6 else (\n                        'rel' if base.Elevation > 1e-6 else _Z_PREF[0])\n                    break\n                except Exception as ex:\n                    log('run path z={0:.4f} ft start=({1:.4f},{2:.4f}) end=({3:.4f},{4:.4f}) base {5} elev {6:.4f} ft zrel {7:.4f}: {8}'.format(\n                        zc, a[0] * MMF, a[1] * MMF, b[0] * MMF, b[1] * MMF, base.Name, base.Elevation, zrel, ex))\n                    run = None\n            if run is None:\n                raise Exception('Revit refused the run path line (location path not valid at z {0:.0f} / {1:.0f} mm)'.format(\n                    (zrel + base.Elevation) / MMF, zrel / MMF))\n            run.ActualRunWidth = (width_ovr if width_ovr > 0 else f['w']) * MMF\n            try:\n                zbase = zrel + base.Elevation if abs(zused - zrel) > 1e-6 else zrel\n                if abs(run.BaseElevation - zbase) > 1e-4 and abs(run.BaseElevation - zrel) > 1e-4:\n                    run.TopElevation = zbase + r * rh\n                    run.BaseElevation = zbase\n            except Exception as ex:\n                notes.append('run elevation: {0}'.format(ex))\n            runs.append(run)\n            zrel += r * rh\n        for i in range(len(runs) - 1):\n            try:\n                StairsLanding.CreateAutomaticLanding(doc, runs[i].Id, runs[i + 1].Id)\n                continue\n            except Exception as ex:\n                log('auto landing {0}: {1}'.format(i + 1, ex))\n            pts = landing_rect(order[i], rs[i], order[i + 1], tread, width_ovr, starts[i])\n            made_l = False\n            for lz in ([base.Elevation, 0.0] if (zused is not None and abs(zused) > 1e-6) else [0.0]):\n                try:\n                    loop = CurveLoop()\n                    xyz = [XYZ(p[0] * MMF, p[1] * MMF, lz) for p in pts]\n                    for k in range(4):\n                        loop.Append(Line.CreateBound(xyz[k], xyz[(k + 1) % 4]))\n                    StairsLanding.CreateSketchedLanding(doc, sid, loop, runs[i].TopElevation)\n                    made_l = True\n                    break\n                except Exception as ex:\n                    log('sketched landing {0} z={1}: {2}'.format(i + 1, lz, ex))\n            if not made_l:\n                notes.append('landing {0}-{1} not made - sketch it in Edit Stairs'.format(i + 1, i + 2))\n        _setp(st, BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS, tag)\n        t.Commit()\n    except Exception:\n        if t.HasStarted() and not t.HasEnded():\n            t.RollBack()\n        scope.Cancel()\n        raise\n    scope.Commit(_pre())\n    return sid, rh / MMF, notes\n\n\ndef collect_segments(doc, uidoc, view, source, layer):\n    src = (source or 'AUTO').strip().upper()[:1]\n    sel = selected_ids(uidoc)\n    sel_lines = [i for i in sel if tname_of(doc.GetElement(i)) in LINE_KINDS]\n    sel_cad = [i for i in sel if tname_of(doc.GetElement(i)) == 'ImportInstance']\n    use_sel = bool(sel_lines or sel_cad)\n    segs, how = [], []\n    if src in ('A', 'R'):\n        r = revit_segments(doc, view, layer, sel_lines if use_sel else None) if (sel_lines or not use_sel) else []\n        segs += r\n        how.append('{0} Revit lines{1}'.format(len(r), ' (selected)' if use_sel else ''))\n    if src in ('A', 'C'):\n        c = cad_segments(doc, view, layer, sel_cad if use_sel else None) if (sel_cad or not use_sel) else []\n        segs += c\n        how.append('{0} CAD lines{1}'.format(len(c), ' (selected CAD)' if use_sel else ''))\n    return segs, how\n\n\ndef find_stairs(segs, flip=False):\n    flights = find_flights(segs)\n    tips = arrow_tips(segs)\n    stairs = []\n    for grp in group_stairs(flights):\n        order = order_stair(grp, segs)\n        if order is None:                                 # could not chain them: each flight its own stair\n            for f in grp:\n                o, how = orient(order_stair([f], segs), segs, tips, flip)\n                stairs.append((o, how))\n            continue\n        o, how = orient(order, segs, tips, flip)\n        stairs.append((o, how))\n    stairs.sort(key=lambda sh: (round(_pt(sh[0][0], sh[0][0]['s'][0])[1] / 1000.0), _pt(sh[0][0], sh[0][0]['s'][0])[0]))\n    return stairs\n\n\n# ------------------------------------------------------------------ FIT: riser count / tread that fit the drawn footprint\nMIN_TREAD = 250.0\n\n\ndef _closing(f, merged, end):\n    \"\"\"s of the line that closes the stair at its free end: the farthest parallel line across the whole flight that lies\n    at (or within about one tread beyond) the last drawn tread line - the outline edge. Else the last drawn line.\"\"\"\n    s_end = f['s'][end]\n    sg = _out_sgn(f, end)\n    lo, hi = f['lat'] - f['w'] / 2.0, f['lat'] + f['w'] / 2.0\n    best = 0.0\n    reach = 1.15 * f['spacing']\n    for q in merged:\n        if _adiff(_ang(q), f['a']) > 2.0 or _len(q) < 0.85 * f['w']:\n            continue\n        l0 = q[0][0] * f['v'][0] + q[0][1] * f['v'][1]\n        l1 = q[1][0] * f['v'][0] + q[1][1] * f['v'][1]\n        if min(max(l0, l1), hi) - max(min(l0, l1), lo) < 0.85 * f['w']:\n            continue\n        d = (q[0][0] * f['u'][0] + q[0][1] * f['u'][1] - s_end) * sg\n        if -20.0 <= d <= reach and d > best:\n            best = d\n    return s_end + sg * best\n\n\ndef _near_edge(f, other, drawn_s):\n    \"\"\"landing edge on flight f's axis, taken from the other flight's band (L stair) - the edge closest to the drawn line\"\"\"\n    if abs(_adiff(f['a'], other['a']) - 90.0) < 6.0:\n        lo, hi = _band_edges(f, other)\n        return lo if abs(lo - drawn_s) <= abs(hi - drawn_s) else hi\n    return drawn_s\n\n\ndef _alloc(R, weights, caps):\n    n = len(weights)\n    W = float(sum(weights)) or 1.0\n    rs = [max(2, int(R * w / W + 0.5)) for w in weights]\n    if caps is not None:\n        rs = [min(r, max(2, c)) for r, c in zip(rs, caps)]\n    guard = 0\n    while sum(rs) > R and guard < 200:\n        guard += 1\n        k = max(range(n), key=lambda i: rs[i])\n        if rs[k] <= 2:\n            return None\n        rs[k] -= 1\n    while sum(rs) < R and guard < 400:\n        guard += 1\n        spare = [(((caps[i] - rs[i]) if caps is not None else 999), i) for i in range(n)]\n        spare.sort(reverse=True)\n        if spare[0][0] <= 0:\n            return None\n        rs[spare[0][1]] += 1\n    return rs if sum(rs) == R else None\n\n\ndef fit_stair(order, segs, H, max_r, pref_r, pref_t, width_ovr=0.0):\n    \"\"\"new risers / tread for a drawn stair of storey height H (mm): the riser as near pref_r as possible (never over max_r),\n    the tread as near pref_t as possible (never under 250), flights kept INSIDE the drawn footprint (outline edge ->\n    landing edge). Cannot fit -> flights are extended past the drawing (reported). returns a dict\"\"\"\n    merged = _merge_collinear(segs)\n    n = len(order)\n    max_r = float(max_r)\n    pref_r = min(max(float(pref_r or 150.0), 100.0), max_r)\n    pref_t = float(pref_t or 300.0)\n    anchors, avail, weights = [], [], []\n    for i, f in enumerate(order):\n        sgn = 1.0 if f['s'][-1] > f['s'][0] else -1.0\n        if n == 1:\n            a_s = _closing(f, merged, 0)\n            b_s = _closing(f, merged, -1)\n            anchors.append(('start', a_s))\n            avail.append(abs(b_s - a_s))\n        elif i == 0:\n            e0 = _near_edge(f, order[1], f['s'][-1])\n            a_s = _closing(f, merged, 0)\n            anchors.append(('end', e0))\n            avail.append(max(0.0, (e0 - a_s) * sgn))\n        else:\n            g = _near_edge(f, order[i - 1], f['s'][0])\n            b_s = _closing(f, merged, -1)\n            anchors.append(('start', g))\n            avail.append(max(0.0, (b_s - g) * sgn))\n        weights.append(max(avail[-1], 500.0))\n    R0 = int(math.ceil(H / pref_r - 1e-6))\n    Rmin = max(2 * n, int(math.ceil(H / max_r - 1e-6)))\n    R0 = max(R0, Rmin)\n    ts = []\n    t = pref_t\n    while t >= MIN_TREAD - 1e-6:\n        ts.append(t)\n        t -= 5.0\n    best = None\n    for strict in (True, False):\n        for R in range(R0, Rmin - 1, -1):\n            for t in ts:\n                caps = [int(math.floor(a / t + 1e-6)) + 1 for a in avail]\n                rs = _alloc(R, weights, caps if strict else None)\n                if rs is None:\n                    continue\n                over = sum(max(0.0, (r - 1) * t - a) for r, a in zip(rs, avail))\n                cost = (H / R - H / R0) / 40.0 + (pref_t - t) / 50.0 + over / 40.0\n                if best is None or cost < best[0] - 1e-9:\n                    best = (cost, R, t, rs, over)\n        if best is not None:\n            break\n    if best is None:\n        return None\n    _, R, t, rs, over = best\n    out, notes = [], []\n    for i, (f, r) in enumerate(zip(order, rs)):\n        g = dict(f)\n        sgn = 1.0 if f['s'][-1] > f['s'][0] else -1.0\n        kind, a_s = anchors[i]\n        if kind == 'end':\n            last = a_s\n            first = last - sgn * (r - 1) * t\n        else:\n            first = a_s\n            last = first + sgn * (r - 1) * t\n        g['s'] = [first, last]\n        g['ext'] = []\n        g['spacing'] = t\n        out.append(g)\n        ex = (r - 1) * t - avail[i]\n        if ex > 20.0:\n            notes.append('flight {0} is {1:.0f} mm longer than the drawn outline'.format(i + 1, ex))\n    return {'order': out, 'rs': rs, 'tread': t, 'rh': H / R, 'over': over, 'notes': notes, 'avail': avail}\n\n\n# ------------------------------------------------------------------ Area / Room named STAIR\ndef _in_poly(pt, poly):\n    x, y = pt\n    inside = False\n    n = len(poly)\n    j = n - 1\n    for i in range(n):\n        xi, yi = poly[i]\n        xj, yj = poly[j]\n        if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / ((yj - yi) or 1e-9) + xi:\n            inside = not inside\n        j = i\n    return inside\n\n\ndef _dist_seg(pt, a, b):\n    dx, dy = b[0] - a[0], b[1] - a[1]\n    L2 = dx * dx + dy * dy\n    t = 0.0 if L2 < 1e-9 else max(0.0, min(1.0, ((pt[0] - a[0]) * dx + (pt[1] - a[1]) * dy) / L2))\n    return math.hypot(pt[0] - (a[0] + t * dx), pt[1] - (a[1] + t * dy))\n\n\ndef _near_poly(pt, poly, tol):\n    return _in_poly(pt, poly) or any(_dist_seg(pt, poly[i - 1], poly[i]) <= tol for i in range(len(poly)))\n\n\ndef segs_in_poly(segs, poly, tol=250.0):\n    \"\"\"lines inside or touching the area outline (both ends inside / on it, or the middle inside)\"\"\"\n    out = []\n    for s in segs:\n        mid = ((s[0][0] + s[1][0]) / 2.0, (s[0][1] + s[1][1]) / 2.0)\n        a, b = _near_poly(s[0], poly, tol), _near_poly(s[1], poly, tol)\n        if (a and b) or _in_poly(mid, poly):\n            out.append(s)\n    return out\n\n\ndef boundary_pts(sp):\n    \"\"\"outer boundary of a Room / Area as mm points\"\"\"\n    loops = sp.GetBoundarySegments(SpatialElementBoundaryOptions())\n    best, best_a = None, -1.0\n    for loop in loops:\n        pts = []\n        for seg in loop:\n            for p in seg.GetCurve().Tessellate():\n                q = (p.X / MMF, p.Y / MMF)\n                if not pts or abs(pts[-1][0] - q[0]) + abs(pts[-1][1] - q[1]) > 1:\n                    pts.append(q)\n        if len(pts) >= 3:\n            a = abs(sum(pts[i - 1][0] * pts[i][1] - pts[i][0] * pts[i - 1][1] for i in range(len(pts)))) / 2.0\n            if a > best_a:\n                best, best_a = pts, a\n    return best\n\n\ndef space_name(sp):\n    try:\n        p = sp.get_Parameter(BuiltInParameter.ROOM_NAME)\n        return (p.AsString() if p is not None else '') or ''\n    except Exception:\n        return ''\n\n\ndef find_spaces(doc, text):\n    \"\"\"Areas (every area plan) and Rooms whose name contains the text (comma = several) -> dicts with level + outline\"\"\"\n    keys = [k.strip().upper() for k in str(text or 'STAIR').split(',') if k.strip()] or ['STAIR']\n    found = []\n    for bic, kind in ((BuiltInCategory.OST_Areas, 'Area'), (BuiltInCategory.OST_Rooms, 'Room')):\n        for sp in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType():\n            try:\n                nm = space_name(sp)\n                if sp.Area <= 0 or not any(k in nm.upper() for k in keys):\n                    continue\n                lv = doc.GetElement(sp.LevelId)\n                pts = boundary_pts(sp)\n                if lv is None or not pts:\n                    continue\n                cx = sum(p[0] for p in pts) / len(pts)\n                cy = sum(p[1] for p in pts) / len(pts)\n                if any(idv(o['lv'].Id) == idv(lv.Id) and abs(o['c'][0] - cx) < 500 and abs(o['c'][1] - cy) < 500 for o in found):\n                    continue                              # an Area on the same footprint as a Room = the same stair\n                found.append({'sp': sp, 'kind': kind, 'name': nm, 'lv': lv, 'pts': pts, 'c': (cx, cy)})\n            except Exception as ex:\n                log('space: ' + str(ex))\n    return found\n\n\ndef plan_for_level(doc, level, prefer):\n    \"\"\"the floor plan whose lines are read for this level (the open plan if it is that level)\"\"\"\n    try:\n        if prefer is not None and prefer.GenLevel is not None and idv(prefer.GenLevel.Id) == idv(level.Id):\n            return prefer\n    except Exception:\n        pass\n    cands = []\n    for v in FilteredElementCollector(doc).OfClass(ViewPlan):\n        try:\n            if v.IsTemplate or v.GenLevel is None or idv(v.GenLevel.Id) != idv(level.Id):\n                continue\n            if 'FLOOR' not in str(v.ViewType).upper() and str(v.ViewType) not in ('1', '2'):\n                continue\n            cands.append(v)\n        except Exception:\n            pass\n    cands.sort(key=lambda v: (0 if 'ARCH' in v.Name.upper() else 1, v.Name))\n    return cands[0] if cands else None\n\n\n# ------------------------------------------------------------------ no lines inside the area: automatic layout (as B10)\ndef oriented_rect(pts):\n    \"\"\"smallest rectangle aligned with a long wall -> (angle, u0, u1, v0, v1)  (u = long side)\"\"\"\n    best = None\n    n = len(pts)\n    edges = sorted(((math.hypot(pts[(i + 1) % n][0] - pts[i][0], pts[(i + 1) % n][1] - pts[i][1]), i)\n                    for i in range(n)), reverse=True)\n    for _, i in edges[:4]:\n        a = math.atan2(pts[(i + 1) % n][1] - pts[i][1], pts[(i + 1) % n][0] - pts[i][0])\n        c, s = math.cos(a), math.sin(a)\n        us = [p[0] * c + p[1] * s for p in pts]\n        vs = [-p[0] * s + p[1] * c for p in pts]\n        r = (max(us) - min(us)) * (max(vs) - min(vs))\n        if best is None or r < best[0]:\n            best = (r, a, min(us), max(us), min(vs), max(vs))\n    _, a, u0, u1, v0, v1 = best\n    if (v1 - v0) > (u1 - u0):\n        a += math.pi / 2\n        c, s = math.cos(a), math.sin(a)\n        us = [p[0] * c + p[1] * s for p in pts]\n        vs = [-p[0] * s + p[1] * c for p in pts]\n        u0, u1, v0, v1 = min(us), max(us), min(vs), max(vs)\n    return a, u0, u1, v0, v1\n\n\ndef plan_layout(rect, H, maxr, tread, gap, width_req, flip=False, wmax=2000.0):\n    \"\"\"dog-leg (2 flights + half landing) if it fits, else a straight flight -> (kind, flights, risers, info)\"\"\"\n    a, u0, u1, v0, v1 = rect\n    L, W = u1 - u0, v1 - v0\n    c, s = math.cos(a), math.sin(a)\n    U = (c, s)\n    Vv = (-s, c)\n    R = int(math.ceil(H / maxr - 1e-6))\n    r1 = int(math.ceil(R / 2.0))\n    r2 = R - r1\n    du, dv = -1.0, -1.0\n    if flip:\n        dv = -dv\n    sgn_u = 1.0 if du < 0 else -1.0\n    far = u1 if du < 0 else u0\n    wf = (W - gap) / 2.0\n    if width_req > 0:\n        wf = min(wf, width_req)\n    wf = min(wf, wmax)\n    need = (r1 - 1) * tread + wf\n    if wf >= 750 and r2 >= 2 and need <= L + 1:\n        s_top = far - sgn_u * wf\n        s_bot = s_top - sgn_u * (r1 - 1) * tread\n        side1 = (v0 + wf / 2.0) if dv < 0 else (v1 - wf / 2.0)\n        side2 = (v1 - wf / 2.0) if dv < 0 else (v0 + wf / 2.0)\n        f1 = {'u': U, 'v': Vv, 'a': 0.0, 's': [s_bot, s_top], 'lat': side1, 'w': wf, 'ext': [], 'spacing': tread}\n        f2 = {'u': U, 'v': Vv, 'a': 0.0, 's': [s_top, s_top - sgn_u * (r2 - 1) * tread], 'lat': side2, 'w': wf, 'ext': [],\n              'spacing': tread}\n        return 'dog-leg', [f1, f2], [r1, r2], {'R': R, 'rh': H / R, 'w': wf, 'need': need, 'L': L, 'W': W}\n    ws = min(W, width_req if width_req > 0 else W, wmax)\n    need_s = (R - 1) * tread\n    if ws >= 750 and need_s <= L + 1:\n        s_top = far\n        s_bot = s_top - sgn_u * need_s\n        f = {'u': U, 'v': Vv, 'a': 0.0, 's': [s_bot, s_top], 'lat': (v0 + v1) / 2.0, 'w': ws, 'ext': [], 'spacing': tread}\n        return 'straight', [f], [R], {'R': R, 'rh': H / R, 'w': ws, 'need': need_s, 'L': L, 'W': W}\n    return None, [], [], {'R': R, 'rh': H / R, 'need': need, 'L': L, 'W': W, 'wf': wf}\n\n\ndef fit_layout(rect, H, pref_r, max_r, tread, min_t, gap, width_req, flip=False):\n    \"\"\"plan_layout with the preferred riser / tread; room too short -> the gentlest riser (up to max_r) / tread (down to\n    min_t) that fits. info['tread'] = tread used, info['auto'] = changed\"\"\"\n    kind, fl, rs, info = plan_layout(rect, H, pref_r, tread, gap, width_req, flip)\n    info['tread'] = tread\n    info['auto'] = False\n    info['rmax'] = max_r\n    info['tmin'] = min(tread, min_t)\n    if kind is not None:\n        return kind, fl, rs, info\n    R0 = info['R']\n    Rmin = max(2, int(math.ceil(H / max_r - 1e-6)))\n    best = None\n    for R in range(R0, Rmin - 1, -1):\n        t = tread\n        while t >= info['tmin'] - 1e-6:\n            cost = (H / R - H / R0) / 40.0 + (tread - t) / 50.0\n            if best is not None and cost >= best[0] - 1e-9:\n                break\n            k2, f2, r2, i2 = plan_layout(rect, H, H / R + 1e-6, t, gap, width_req, flip)\n            if k2 is not None:\n                best = (cost, k2, f2, r2, i2, t)\n                break\n            t -= 5.0\n    if best is None:\n        return kind, fl, rs, info\n    _, k2, f2, r2, i2, t = best\n    i2['tread'] = t\n    i2['auto'] = True\n    i2['rmax'] = max_r\n    i2['tmin'] = info['tmin']\n    return k2, f2, r2, i2\n\n\n# ------------------------------------------------------------------ levels: repeat the stair on the floors above\ndef repeat_stop(doc, base, text):\n    \"\"\"'' / THIS / NONE -> None;  ALL -> the top level;  a level name -> that level (stairs reach it)\"\"\"\n    t = str(text or '').strip()\n    if not t or t.upper() in ('THIS', 'NONE', 'NO', 'FALSE', 'THIS LEVEL ONLY', 'THIS LEVEL'):\n        return None\n    lv = levels_of(doc)\n    if t.upper() in ('ALL', 'ALL ABOVE', 'ALL LEVELS ABOVE', 'YES', 'TRUE'):\n        return lv[-1] if lv[-1].Elevation > base.Elevation + 1e-6 else None\n    if t.upper().startswith('UP TO'):\n        t = t[5:].strip()\n    return find_level(doc, t)\n\n\nMIN_STOREY_MM = 2000.0        # a level less than this above the one below gets NO stair of its own - the stair bridges it\n\n\ndef next_storey(doc, cur, notes, limit=None):\n    \"\"\"the next level above cur that is at least MIN_STOREY_MM higher (by ELEVATION, not by name); skipped ones go to notes\"\"\"\n    for l in levels_of(doc):\n        if l.Elevation <= cur.Elevation + 1e-6 or (limit is not None and l.Elevation > limit.Elevation + 1e-6):\n            continue\n        d = (l.Elevation - cur.Elevation) / MMF\n        if d >= MIN_STOREY_MM:\n            return l\n        msg = '{0} is only {1:.0f} mm above {2} - skipped (no stair for that storey)'.format(l.Name, d, cur.Name)\n        if msg not in notes:\n            notes.append(msg)\n    return None\n\n\ndef floors_for(doc, base, top, stop, notes=None):\n    \"\"\"[(base, top)] floor to floor: the first floor, then every level above up to the stop level (by elevation)\"\"\"\n    notes = notes if notes is not None else []\n    res = [(base, top)]\n    if stop is None or top is None:\n        return res\n    cur = top\n    while cur.Elevation < stop.Elevation - 1e-6:\n        nxt = next_storey(doc, cur, notes, stop)\n        if nxt is None:\n            break\n        res.append((cur, nxt))\n        cur = nxt\n    return res\n\n\ndef copy_stair(doc, src_sid, dz, base, top, tag, maxr):\n    \"\"\"a floor that could not be built from the lines: copy the first floor's stair (+ railings) up by dz and give it\n    this floor's base / top level -> new stairs id\"\"\"\n    from System.Collections.Generic import List\n    src = doc.GetElement(src_sid)\n    ids = List[ElementId]()\n    ids.Add(src_sid)\n    try:\n        for r_ in src.GetAssociatedRailings():\n            ids.Add(r_)\n    except Exception:\n        pass\n    new = ElementTransformUtils.CopyElements(doc, ids, XYZ(0.0, 0.0, dz))\n    sid = None\n    for i in new:\n        e = doc.GetElement(i)\n        if e is not None and tname_of(e) == 'Stairs':\n            sid = i\n    if sid is None:\n        raise Exception('copy gave no stair')\n    st = doc.GetElement(sid)\n    _setp(st, BuiltInParameter.STAIRS_BASE_LEVEL_PARAM, base.Id)\n    _setp(st, BuiltInParameter.STAIRS_TOP_LEVEL_PARAM, top.Id)\n    _setp(st, BuiltInParameter.STAIRS_BASE_OFFSET, 0.0)\n    _setp(st, BuiltInParameter.STAIRS_TOP_OFFSET, 0.0)\n    _setp(st, BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS, tag)\n    return sid\n\n\ndef _lvl_names(pairs):\n    return ', '.join('{0}->{1}'.format(b.Name, t.Name) if t is not None else b.Name for b, t in pairs)\n\n\ndef plan_floor(job, base, top, H, o):\n    \"\"\"one stair on one floor -> plan dict (order, rs, tread, rh ...) or skip = why it is not built\"\"\"\n    p = {'job': job, 'base': base, 'top': top, 'H': H, 'skip': None, 'notes': [], 'warn': []}\n    maxr, pref_r = o['max_riser'], o['pref_riser']\n    pref_t = o['tread'] if o['tread'] > 0 else o['pref_tread']\n    lab = job['label']\n    if job.get('poly') is not None:                                  # no lines inside the area: automatic layout\n        kind, fl, rs, info = fit_layout(oriented_rect(job['poly']), H, pref_r, maxr, pref_t, MIN_TREAD, 150.0, o['width'], o['flip'])\n        if kind is None:\n            p['skip'] = ('{0}: NOT BUILT - the area is {1:.0f} x {2:.0f} mm, a stair for {3:.0f} mm needs about {4:.0f} mm '\n                         'of length even with riser up to {5:.0f} / tread down to {6:.0f}. Make the area longer, or draw the '\n                         'stair lines in it.'.format(lab, info['L'], info['W'], H, info['need'], maxr, info['tmin']))\n            return p\n        p.update({'order': fl, 'rs': rs, 'tread': info['tread'], 'rh': H / float(sum(rs)), 'how': 'auto layout ' + kind})\n        if info['auto']:\n            p['warn'].append('CHECK {0}: area too short for riser {1:.0f} / tread {2:.0f} - built riser {3:.1f} x tread {4:.0f}'.format(\n                lab, pref_r, pref_t, p['rh'], info['tread']))\n        return p\n    order = job['order']\n    if o['fit']:\n        fr = fit_stair(order, job['segs'], H, maxr, pref_r, pref_t, o['width'])\n        if fr is None:\n            p['skip'] = '{0}: NOT BUILT - no riser count fits {1:.0f} mm with these flights'.format(lab, H)\n            return p\n        p.update({'order': fr['order'], 'rs': fr['rs'], 'tread': fr['tread'], 'rh': fr['rh'], 'how': job['how']})\n        drawn = sum(len(f['s']) for f in order)\n        p['fit_note'] = 'FIT: drawn {0} risers -> {1} ({2} mm storey)'.format(drawn, sum(fr['rs']), int(round(H)))\n        if fr['notes']:\n            p['warn'].append('CHECK {0}: {1} - the drawing is too short for {2} risers at tread >= {3:.0f}; flights were '\n                             'extended (or give a bigger Max riser / lower floor height)'.format(\n                                 lab, '; '.join(fr['notes']), sum(fr['rs']), MIN_TREAD))\n    else:\n        rs = [len(f['s']) for f in order]\n        tr = o['tread'] if o['tread'] > 0 else round(sum(f['spacing'] for f in order) / len(order))\n        rh = H / float(sum(rs))\n        if rh > maxr + 0.5:\n            fr = fit_stair(order, job['segs'], H, maxr, pref_r, pref_t, o['width'])\n            alt = ('Risers = FIT would make {0} risers of {1:.1f} mm with tread {2:.0f} ({3})'.format(\n                sum(fr['rs']), fr['rh'], fr['tread'], 'inside the drawn outline' if not fr['notes'] else\n                'flights extended past the drawing')) if fr is not None else 'Risers = FIT'\n            p['skip'] = ('{0}: NOT BUILT - the drawing has {1} risers = {2:.1f} mm each for {3:.0f} mm floor to floor '\n                         '(max {4:.0f}; {5} needed). Choose: (1) {6}; (2) a bigger Max riser; (3) draw more tread lines.'.format(\n                             lab, sum(rs), rh, H, maxr, int(math.ceil(H / maxr - 1e-6)), alt))\n            return p\n        p.update({'order': order, 'rs': rs, 'tread': tr, 'rh': rh, 'how': job['how']})\n    if p['rh'] < 100.0:\n        p['warn'].append('CHECK {0}: riser only {1:.1f} mm - too many risers for {2:.0f} mm'.format(lab, p['rh'], H))\n    bl = 2 * p['rh'] + p['tread']\n    if not 550.0 <= bl <= 700.0:\n        p['warn'].append('CHECK {0}: 2 x riser + tread = {1:.0f} mm (comfortable 550-700)'.format(lab, bl))\n    return p\n\n\ndef run(doc, uidoc, source='AUTO', layer='', top_name='', height=0.0, max_riser=190.0, riser_mode='FIT',\n        tread=0.0, width=0.0, flip=False, rails=True, make=True, area_text='STAIR', repeat='', pref_riser=150.0,\n        pref_tread=300.0):\n    \"\"\"source: AUTO / REVIT / CAD = the lines of the open plan;  AREA = the Area / Room named area_text (lines inside it,\n    else an automatic layout).  repeat: '' / THIS = this floor only, ALL = every floor above, a level name = up to it\"\"\"\n    view = plan_view(doc, uidoc)\n    height = float(height or 0.0)\n    o = {'max_riser': float(max_riser or 190.0), 'tread': float(tread or 0.0), 'width': float(width or 0.0), 'flip': bool(flip),\n         'pref_riser': float(pref_riser or 150.0), 'pref_tread': float(pref_tread or 300.0),\n         'fit': str(riser_mode or 'FIT').strip().upper().startswith('F')}\n    src_txt = (source or 'AUTO').strip().upper()\n    if src_txt.startswith('SMART'):                       # Area / Room named STAIR if there is one, else the lines of the plan\n        area_mode = bool(find_spaces(doc, area_text))\n        source = 'AUTO'\n    else:\n        area_mode = src_txt.startswith('AREA') or src_txt.startswith('STAIR')\n    out, jobs = [], []\n    if not area_mode:\n        if view is None:\n            raise Exception('Open the floor plan with the stair lines first.')\n        base0 = view.GenLevel if view.GenLevel is not None else levels_of(doc)[0]\n        segs, how = collect_segments(doc, uidoc, view, source, (layer or '').strip())\n        stairs = find_stairs(segs, flip)\n        out.append('{0} stair(s) found in \"{1}\" ({2})'.format(len(stairs), view.Name, ', '.join(how)))\n        if not stairs:\n            out.append('CHECK no stair found: a flight = 3+ parallel tread lines, same length (600-3500 mm), evenly spaced '\n                       '100-600 mm. Use the layer / line style filter, select the stair lines first, or use the source '\n                       '\"From Area / Room named STAIR\".')\n            return out\n        for k, (order, how_dir) in enumerate(stairs):\n            jobs.append({'label': 'stair {0}'.format(k + 1), 'base': base0, 'order': order, 'how': how_dir, 'segs': segs,\n                         'poly': None})\n    else:\n        spaces = find_spaces(doc, area_text)\n        if not spaces:\n            out.append('CHECK no Area or Room named \"{0}\" (Areas in Area Plans are searched too). Name the stair area / room, '\n                       'or change the name text.'.format(area_text))\n            return out\n        out.append('{0} Area / Room named \"{1}\": {2}'.format(len(spaces), area_text, ', '.join(\n            '{0} \"{1}\" on {2}'.format(s['kind'], s['name'], s['lv'].Name) for s in spaces)))\n        for sp in spaces:\n            v = plan_for_level(doc, sp['lv'], view)\n            segs = []\n            if v is not None:\n                same = view is not None and idv(v.Id) == idv(view.Id)\n                allsegs, _h = collect_segments(doc, uidoc if same else None, v, 'AUTO', (layer or '').strip())\n                segs = segs_in_poly(allsegs, sp['pts'])\n            stairs = find_stairs(segs, flip) if segs else []\n            lab = '{0} \"{1}\"'.format(sp['kind'], sp['name'])\n            if stairs:\n                out.append('  {0} ({1}, plan \"{2}\"): {3} line(s) inside -> {4} stair drawing(s)'.format(\n                    lab, sp['lv'].Name, v.Name if v is not None else '-', len(segs), len(stairs)))\n                for k, (order, how_dir) in enumerate(stairs):\n                    jobs.append({'label': lab if len(stairs) == 1 else '{0} #{1}'.format(lab, k + 1), 'base': sp['lv'],\n                                 'order': order, 'how': how_dir, 'segs': segs, 'poly': None})\n            else:\n                out.append('  {0} ({1}, plan \"{2}\"): {3} line(s) inside, no stair flights in them -> automatic layout '\n                           'inside the area'.format(lab, sp['lv'].Name, v.Name if v is not None else 'no plan view', len(segs)))\n                jobs.append({'label': lab, 'base': sp['lv'], 'order': None, 'how': 'auto', 'segs': [], 'poly': sp['pts']})\n    # ---------------- floors for every stair\n    plans, skipped, lvl_notes = [], [], []\n    for job in jobs:\n        if job.get('poly') is not None:\n            job['c'] = (sum(q[0] for q in job['poly']) / len(job['poly']), sum(q[1] for q in job['poly']) / len(job['poly']))\n        else:\n            bx = footprint(job['order'])\n            job['c'] = ((bx[0] + bx[2]) / 2.0, (bx[1] + bx[3]) / 2.0)\n    for job in jobs:\n        base = job['base']\n        if top_name:\n            top = find_level(doc, top_name)\n        elif height > 0:\n            top = None\n        else:\n            top = next_storey(doc, base, lvl_notes)\n            if top is None:\n                skipped.append('{0}: no level at least {2:.0f} mm above \"{1}\" - give a stair height'.format(\n                    job['label'], base.Name, MIN_STOREY_MM))\n                continue\n        if top is not None and top.Elevation <= base.Elevation + 1e-6:\n            skipped.append('{0}: top level \"{1}\" is not above \"{2}\"'.format(job['label'], top.Name, base.Name))\n            continue\n        stop = repeat_stop(doc, base, repeat)\n        if stop is not None and top is None:\n            out.append('NOTE repeat above needs a top level - with a typed height only this floor is made')\n        if stop is not None and stop.Elevation <= base.Elevation + 1e-6:\n            skipped.append('{0}: repeat level \"{1}\" is not above \"{2}\"'.format(job['label'], stop.Name, base.Name))\n            stop = None\n        floors = floors_for(doc, base, top, stop, lvl_notes)\n        keep = [floors[0]]\n        for b_, t_ in floors[1:]:                                   # a floor with its own drawing / Area keeps it\n            if any(j2 is not job and idv(j2['base'].Id) == idv(b_.Id) and abs(j2['c'][0] - job['c'][0]) < 1500.0 and\n                   abs(j2['c'][1] - job['c'][1]) < 1500.0 for j2 in jobs):\n                skipped.append('{0} on {1}: that floor has its own stair drawing / Area - kept'.format(job['label'], b_.Name))\n            else:\n                keep.append((b_, t_))\n        floors = keep\n        job['floors'] = floors\n        for b_, t_ in floors:\n            H = (t_.Elevation - b_.Elevation) / MMF if t_ is not None else height\n            p = plan_floor(job, b_, t_, H, o)\n            if p['skip']:\n                skipped.append('{0} on {1}: {2}'.format(job['label'], b_.Name, p['skip']) if b_ is not base else p['skip'])\n            else:\n                plans.append(p)\n    out.append('Floors: ' + ' | '.join('{0}: {1}'.format(j['label'], _lvl_names(j['floors'])) for j in jobs if 'floors' in j)[:300])\n    out.append('Risers: {0}   max riser {1:.0f} mm{2}'.format(\n        'FIT (riser near {0:.0f}, tread near {1:.0f}, inside the drawn outline)'.format(\n            o['pref_riser'], o['tread'] if o['tread'] > 0 else o['pref_tread']) if o['fit'] else 'as many as drawn lines',\n        o['max_riser'], ''))\n    st = {'new': 0, 'del': 0, 'rail': 0, 'rows': [], 'fail': [], 'notes': [], 'levels': [], 'src': {}}\n    warn = []\n    for p in plans:\n        warn += p['warn']\n\n    def work():\n        if not plans:\n            return\n        bases = {}\n        for p in plans:\n            bases.setdefault(idv(p['base'].Id), (p['base'], []))[1].append(p)\n        for key in sorted(bases, key=lambda k: bases[k][0].Elevation):\n            b_, ps = bases[key]\n            old = old_stairs(doc, b_, [footprint(p['order']) for p in ps])\n            if old:\n                def kill(old=old):\n                    for i in old:\n                        try:\n                            doc.Delete(i)\n                            st['del'] += 1\n                        except Exception:\n                            pass\n                in_tx(doc, 'B18 remove old stairs', kill)\n        stype = in_tx(doc, 'B18 stair type', lambda: stair_type(\n            doc, max(p['rh'] for p in plans), min(p['tread'] for p in plans),\n            min(o['width'] if o['width'] > 0 else min(f['w'] for f in p['order']) for p in plans)))\n        rtype = railing_type(doc) if rails else None\n        counter = {}\n        for p in sorted(plans, key=lambda q: (q['base'].Elevation, q['job']['label'])):\n            base, top, order, rs, tr = p['base'], p['top'], p['order'], p['rs'], p['tread']\n            counter[idv(base.Id)] = counter.get(idv(base.Id), 0) + 1\n            n = counter[idv(base.Id)]\n            tag = '{0}|{1}|{2}'.format(TAG, base.Name, n)\n            where = '{0}->{1}'.format(base.Name, top.Name if top is not None else '{0:.0f} mm'.format(p['H']))\n            del REVIT_ERRORS[:]\n            try:\n                method = 'from the lines'\n                try:\n                    sid, rh_real, notes = build_stair(doc, base, top, p['H'] * MMF, order, rs, tr, o['width'], stype, tag)\n                    st['src'].setdefault(id(p['job']), (sid, base.Elevation, base.Name))\n                except Exception as ex1:\n                    src = st['src'].get(id(p['job']))\n                    if src is None or top is None:\n                        raise\n                    why1 = REVIT_ERRORS[-1] if REVIT_ERRORS else (str(ex1).splitlines() or ['?'])[0]\n                    log('lines failed on {0}: {1} -> copying the stair of {2}'.format(where, why1, src[2]))\n                    del REVIT_ERRORS[:]\n                    sid = in_tx(doc, 'B18 copy stair', lambda: copy_stair(\n                        doc, src[0], base.Elevation - src[1], base, top, tag, o['max_riser']))\n                    rh_real, notes = 0.0, []\n                    method = 'COPIED from {0} (lines failed: {1})'.format(src[2], why1[:70])\n                st['new'] += 1\n                if base.Name not in st['levels']:\n                    st['levels'].append(base.Name)\n                s_el = doc.GetElement(sid)\n                try:\n                    act = s_el.ActualRisersNumber\n                    rh_real = s_el.ActualRiserHeight / MMF\n                except Exception:\n                    act = sum(rs)\n                if method.startswith('COPIED') and rh_real > o['max_riser'] + 0.5:\n                    st['notes'].append('{0}: the copy has riser {1:.0f} mm (storey height differs) - check it'.format(where, rh_real))\n                ws = '/'.join('{0:.0f}'.format(o['width'] if o['width'] > 0 else f['w']) for f in order)\n                st['rows'].append('  {0}  {1}: {2} flight(s) {3} risers ({4} built) | riser {5:.1f} x tread {6:.0f} | width {7} | '\n                                  'up by {8} | {10}{9}'.format(\n                                      where, p['job']['label'], len(order), '+'.join(str(r) for r in rs), act, rh_real,\n                                      float(tr), ws, p['how'],\n                                      ' | ' + p['fit_note'] if p.get('fit_note') and p['base'] is p['job']['base'] else '', method))\n                st['notes'] += ['{0} {1}: {2}'.format(where, p['job']['label'], x) for x in notes]\n                try:\n                    have = list(s_el.GetAssociatedRailings())\n                except Exception:\n                    have = []\n                if rtype is not None and not have:\n                    def rail(sid=sid):\n                        try:\n                            ids = Railing.Create(doc, sid, rtype.Id, RailingPlacementPosition.Treads)\n                            st['rail'] += len(list(ids))\n                        except Exception as ex:\n                            if 'already has associated railings' not in str(ex):\n                                st['notes'].append('{0} railing: {1}'.format(where, str(ex)[:80]))\n                    in_tx(doc, 'B18 railings', rail)\n                elif rtype is None and have:\n                    def unrail(have=have):\n                        for r_ in have:\n                            doc.Delete(r_)\n                    in_tx(doc, 'B18 no railings', unrail)\n                else:\n                    st['rail'] += len(have)\n            except Exception as ex:\n                why = REVIT_ERRORS[-1] if REVIT_ERRORS else (str(ex).splitlines() or ['?'])[0]\n                st['fail'].append('{0} {1}: Revit could not make it - {2}'.format(where, p['job']['label'], why[:140]))\n\n    tg = TransactionGroup(doc, 'B18 Stairs')\n    tg.Start()\n    try:\n        work()\n    except Exception:\n        tg.RollBack()\n        raise\n    if make:\n        tg.Assimilate()\n    else:\n        tg.RollBack()\n        out.insert(0, 'PREVIEW (Make it = False): built to test, then rolled back - nothing changed')\n    out.append('Stairs: {0} {1}, {2} old B18 stair(s) replaced, {3} railing(s), type \"{4}\"'.format(\n        st['new'], 'made' if make else 'would be made', st['del'], st['rail'], TYPE_NAME))\n    if st['levels']:\n        out.append('{0} on: {1}'.format('Built' if make else 'Would be built', ', '.join(st['levels'])))\n    expected = sum(len(j['floors']) for j in jobs if 'floors' in j)\n    out.append('Storeys: {0} expected, {1} {2}{3}'.format(expected, st['new'], 'built' if make else 'would be built',\n                                                         '' if st['new'] == expected else '  <-- NOT ALL BUILT, see below'))\n    out += st['rows']\n    out += lvl_notes\n    out += warn\n    for s_ in skipped[:8]:\n        out.append('SKIPPED ' + s_)\n    for f_ in st['fail'][:6]:\n        out.append('FAILED ' + f_)\n    for n_ in st['notes'][:6]:\n        out.append('NOTE ' + n_)\n    out.append('Run again = these stairs are replaced (no doubles).  Wrong way up? Run with Flip.')\n    log('\\n'.join(out))\n    return out\n\n\n# =====================================================================\n#  DYNAMO / DYNAMO PLAYER PART  -  inputs:\n#    0  Lines from         AUTO = Revit lines + CAD in the open plan,  REVIT,  CAD   (selected lines only, if any),\n#                          AREA = the Area / Room named in 2 (lines inside it; none -> automatic layout in it)\n#    1  Line style / CAD layer contains   '' = all lines\n#    2  Area / Room name contains         STAIR (comma = several; Areas of Area Plans are searched too)\n#    3  Top level          '' = next level above the plan / area level\n#    4  Stair height mm    0 = use the top level  (> 0 and no top level = unconnected height)\n#    5  Max riser mm       190  (the riser is never higher)\n#    6  Risers             FIT = riser ~near 7 / tread near 8 inside the drawn outline,  LINES = one riser per drawn line\n#    7  Preferred riser mm 150\n#    8  Preferred tread mm 300  (FIT never goes under 250)\n#    9  Tread mm           0 = preferred (FIT) / from the line spacing (LINES)\n#   10  Width mm           0 = from the tread line length\n#   11  Repeat above       '' / THIS = this floor only,  ALL = every floor above,  or a level name = up to that level\n#   12  Flip (UP at the other end)   False\n#   13  Railings           True\n#   14  RUN                False = PREVIEW (builds, reports, rolls back),  True = make the stairs\n#  Run again = the B18 stairs in the same place are replaced (no doubles).  Ctrl+Z in Revit undoes.\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _dyn_doc = DocumentManager.Instance.CurrentDBDocument\n        if _dyn_doc is not None:\n            doc = _dyn_doc\n            try:\n                uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n            except Exception:\n                pass\n            TM = TransactionManager\n    except Exception:\n        pass\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('STAIR_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and not v.strip()):\n        return default\n    return v\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).lower().replace('mm', '').strip())\n    except Exception:\n        return float(default)\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\nout = []\ntry:\n    if doc is None:\n        raise Exception('No Revit document.')\n    if TM is not None:\n        TM.Instance.ForceCloseTransaction()\n    out = run(doc, uidoc, str(_inp(0, 'SMART')), str(_inp(1, '')).strip(), str(_inp(3, '')).strip(), _num(4, 0),\n              _num(5, 190), str(_inp(6, 'FIT')), _num(9, 0), _num(10, 0), _flag(12, False), _flag(13, True),\n              _flag(14, False), str(_inp(2, 'STAIR')).strip(), str(_inp(11, '')).strip(), _num(7, 150), _num(8, 300))\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('B18 Stairs')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else (\n            'Preview - nothing changed' if out and out[0].startswith('PREVIEW') else 'Stairs')\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "78b5cd5e82434983b84626d72a0781bd",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "dcd60279652c4b71baa3b0bc83d7b0a2",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2a41a8ab5b814808baf373aebd614ceb",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7501dcbb3acb465488fd15d9d7157714",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c73ceeff92744237a0c7ab8b1c806328",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f56d097da4fb4850bb2fa31fc675e9b4",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6e6635abe73a4dd3b8f31410cec70034",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "955df6687c3a46aa867cf464727d639d",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fa7ff4ca7ccd47e988fbd1e7a3fda09f",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "62dfef5948574ca5841781e5aba31877",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "39248f6eab40414fb00aec51f20d0eec",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c5aa083bdccb466ab25621545a3adadc",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7b637a949ee94462a2f66e78b095a9fa",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7fdc537d43924691979db3f2a86e3438",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e8f072fbde044a8ca3c13feb669c5c17",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d4a3b016f2694709b63a8798ccdd0be1",
+          "Name": "IN[14]",
+          "Description": "Input #14",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "598934df02074194809fda3d3e264f53",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "fc21b2ca9a32489090f63d4d99ae5f69",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "f991070ad5e342ecb3942d61daf5509d",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "da612602776c4fc78c5b122fa9faf007",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "6724e76a4a014576b7894a1c0e85a148",
+      "End": "dcd60279652c4b71baa3b0bc83d7b0a2",
+      "Id": "6a3932ddc71b4a34b6b8f0f406237fc9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fd901b55332643df844bc824c4da955f",
+      "End": "2a41a8ab5b814808baf373aebd614ceb",
+      "Id": "38606497ebec41bc90133b098f7b4d5a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "cc28d87c49764ec7b415fa7efb06ad89",
+      "End": "7501dcbb3acb465488fd15d9d7157714",
+      "Id": "a183ce3f4c0e4cf8a5514ea50165f22c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1a8e000355a0404e9efd8b652249b459",
+      "End": "c73ceeff92744237a0c7ab8b1c806328",
+      "Id": "1c8c777f644841798655be9077c6135f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ccb12057f5f54bd6b310317380b1e03a",
+      "End": "f56d097da4fb4850bb2fa31fc675e9b4",
+      "Id": "f8f5c063b2434299b6e11734fd5ec60c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "98aef13d02ef4a9389f7f25790afa5e9",
+      "End": "6e6635abe73a4dd3b8f31410cec70034",
+      "Id": "ddc114229eb64bebad197435be66bb92",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a39bcc153aff47f89637c87f8b933ee1",
+      "End": "955df6687c3a46aa867cf464727d639d",
+      "Id": "ad6a9216998e4402b617b9f761f9fa90",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "30b8de74ed7f43a482559339bef94ed5",
+      "End": "fa7ff4ca7ccd47e988fbd1e7a3fda09f",
+      "Id": "f4b5f25e91eb4f65b599f7eec086b85a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4a9bbd3bef0b44bb94dd8d6ea69c5c46",
+      "End": "62dfef5948574ca5841781e5aba31877",
+      "Id": "e180ab871f30467d9d150e7feb7c5e77",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7f22f84bc2204c768baeed4b5fb3b0ba",
+      "End": "39248f6eab40414fb00aec51f20d0eec",
+      "Id": "7410e3f4d5944a6f9379fd2afe1d6d96",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0312dd279e8b442cbdb2993ebf7402b5",
+      "End": "c5aa083bdccb466ab25621545a3adadc",
+      "Id": "ad139ba9d12e4f9bac071762a4881991",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "515fcd706d724f2db295f9774ea123eb",
+      "End": "7b637a949ee94462a2f66e78b095a9fa",
+      "Id": "6cf17adabc2d497aa1740bfa936a6648",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "56b42d265d824086a3ff416c05670cb6",
+      "End": "7fdc537d43924691979db3f2a86e3438",
+      "Id": "1becde226a7b4f9680acf98522a98dc4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "13a6930786d14d14ad9ed98bf9c12537",
+      "End": "e8f072fbde044a8ca3c13feb669c5c17",
+      "Id": "aea5473b0cf84f18aa0db788c4719394",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "40a55c029ed749bfb288350c1096534c",
+      "End": "d4a3b016f2694709b63a8798ccdd0be1",
+      "Id": "279c90547cb7451f8e81846248ca33cc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "598934df02074194809fda3d3e264f53",
+      "End": "f991070ad5e342ecb3942d61daf5509d",
+      "Id": "cd5993a1976c414fb66fab1ad3cd0c33",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "c2ede134be5a4117aa95f8e5aaf2a08c",
+        "Name": "0  Lines from: SMART (Area STAIR, else plan lines) / AUTO / REVIT / CAD / AREA",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "40958bcb078541e1b83ddb7e9f0a7389",
+        "Name": "1  Line style or CAD layer contains",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "868c6c58d4cb4f6288a4af256c70d73f",
+        "Name": "2  Area / Room name contains (source AREA)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 300
+      },
+      {
+        "Id": "6717a93846ae4d3e8b60b7dd3e2fc3c0",
+        "Name": "3  Top level (blank = next level)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "2b422a683dcb424b99d773d344489dea",
+        "Name": "4  Stair height mm (0 = top level)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "12f05685978749e096c457f86ddc3f66",
+        "Name": "5  Max riser mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 300
+      },
+      {
+        "Id": "841bcaa065ad433db670f389aa52f163",
+        "Name": "6  Risers: FIT / LINES",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 450
+      },
+      {
+        "Id": "ea7908f2577a43b582e0c1cf19b3bc42",
+        "Name": "7  Preferred riser mm (FIT)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 600
+      },
+      {
+        "Id": "8e9233f2c07148718508e42aa1c30b70",
+        "Name": "8  Preferred tread mm (FIT)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 750
+      },
+      {
+        "Id": "9f4c58baa0da4a19b46550daf95cb230",
+        "Name": "9  Tread mm (0 = automatic)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 900
+      },
+      {
+        "Id": "907bf267578f49b8a26af2ea4e8eb0dd",
+        "Name": "10  Width mm (0 = from lines)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 1050
+      },
+      {
+        "Id": "af44823d76a94f3a816f3a12a420bd0d",
+        "Name": "11  Repeat above: ALL / blank = this floor only / level name",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "c7acaadfd36148ee826728d4e9e72f14",
+        "Name": "12  Flip (UP at the other end)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "c080829594e74c728be06f15961ff938",
+        "Name": "13  Railings",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 300
+      },
+      {
+        "Id": "d5bb907e38774b1ea70125568f7651d7",
+        "Name": "14  RUN (False = preview)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 450
+      },
+      {
+        "Id": "78b5cd5e82434983b84626d72a0781bd",
+        "Name": "B18 STAIRS ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1700.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "fc21b2ca9a32489090f63d4d99ae5f69",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2050.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "74c7977782fb40e1bcaf01da3a2eb07e",
+        "Title": "1  STAIR LINES",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "c2ede134be5a4117aa95f8e5aaf2a08c",
+          "40958bcb078541e1b83ddb7e9f0a7389",
+          "868c6c58d4cb4f6288a4af256c70d73f"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 585,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 490,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "56926e53c6aa41e9acc57706ff86f8e2",
+        "Title": "2  LEVELS + RISERS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "6717a93846ae4d3e8b60b7dd3e2fc3c0",
+          "2b422a683dcb424b99d773d344489dea",
+          "12f05685978749e096c457f86ddc3f66",
+          "841bcaa065ad433db670f389aa52f163",
+          "ea7908f2577a43b582e0c1cf19b3bc42",
+          "8e9233f2c07148718508e42aa1c30b70",
+          "9f4c58baa0da4a19b46550daf95cb230",
+          "907bf267578f49b8a26af2ea4e8eb0dd"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 1335,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 1240,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "a7c9f542faf84ce4886ff0d178a44b50",
+        "Title": "3  OPTIONS + RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "af44823d76a94f3a816f3a12a420bd0d",
+          "c7acaadfd36148ee826728d4e9e72f14",
+          "c080829594e74c728be06f15961ff938",
+          "d5bb907e38774b1ea70125568f7651d7"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 735,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 640,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "5d113508a4584ea1b51c0d634a78556b",
+        "Title": "HOW TO USE:  open the floor plan with the stair drawn in Revit lines (model / detail) or in a CAD linked / imported in the plan (select lines first = only those) - or set 0 = AREA to use the Area / Room named STAIR (lines inside it, else an automatic layout).  A flight = 3+ parallel tread lines; flights close together = one stair with landings; the walk-line arrow = UP (or Flip).  Floor to floor from the plan level to the next level (3) or a height (4).  FIT (6) = riser (7) / tread (8) inside the drawn outline; LINES = one riser per line, NOT built when the riser is over 5.  Repeat (11) = the same stair on the floors above.  RUN False = preview.  Run again = replaced (no doubles).",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 1600.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

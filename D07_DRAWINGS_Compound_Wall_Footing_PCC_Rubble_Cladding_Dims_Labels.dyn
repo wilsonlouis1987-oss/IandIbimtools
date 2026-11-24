@@ -1,0 +1,785 @@
+{
+  "Uuid": "997e4b16-f2d6-43a0-a479-76f14f17b0ae",
+  "IsCustomNode": false,
+  "Description": "Compound wall details for any project: stepped stone footing + P.C.C. in sections, random rubble stone cladding in sections/elevations, plan wall hatch, dimensions and labels. Shows a result message box.",
+  "Name": "Compound_Wall_Details",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": false,
+      "Id": "1da00873b431449ea2e61ebb4bd80e6e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a3974e3f04bf444f9186dff5cec80f0d",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "False = make the changes. True = list only"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": false,
+      "Id": "f8177a2146004cf1906b7a943d1151b0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "348173618cf5404ea7f08722ed460ab5",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "True = only walls selected in Revit"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "STONE;COMPOUND",
+      "Id": "8b7b81cd5f94446e931bd80bf7af8b5f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0acd877764f144238e5318bc27250f93",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Compound walls = wall types whose name contains one of these words"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "",
+      "Id": "e124367dab5b4825ae664acffdd8e7d6",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a1230d1286e44b7db5c316c48fcbd77a",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Exact name or part of it. Blank = every section/elevation/plan on the active sheet"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "750x450; 900x450",
+      "Id": "a0f0b12fcc6943d6bca3cb0bd3344bc7",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "495fd361f11f46b6ba9d8a35b46bbcb5",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Stepped R.R. stone footing, top step first"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "1050x150",
+      "Id": "fb759143e3ea4cfda4c1cb7c92e0def8",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "63aa2a9c6cfc46dca2935f23806399c8",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "P.C.C. 1:4:8 bed under the footing"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "172,170,162",
+      "Id": "41f229014dc748f1b2c09f408186e49a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9dc155d3e19c439293a0ae3efca2de22",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Random rubble stone colour on the wall"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "222,205,170",
+      "Id": "00b249bed9c14f79be5056135a54c43d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "88dba83518774995aff6c79130245cf7",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Background colour of the footing hatch"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "205,205,205",
+      "Id": "d26fd02d50784171ba6eb43dc90fe62d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a03a972f74c2477b8314e3cf1310d405",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Background colour of the P.C.C. bed"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "8fd36dd7d6d74cf4bde0588bf1f491f1",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "70957d79143d4c61af1926dab9a85743",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Thickness, widths, height chain, length"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "1e0018bc5e5e4bb78048b70c5b3683f8",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a3d4946489634d8ca03afaa12a38e817",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Text notes with leaders"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "150,105,55",
+      "Id": "b85152bc6447479dab42ea6ea2b96574",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "23d87eb1277a4fadb5f7f01bdbaf3e27",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Coarse scale fill of the compound wall type = random rubble in this colour"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "{T} THK. STONE WALL IN CM 1:6,",
+      "Id": "51324885be144fcdb9774121db101efe",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2960df2f5038406392384f7cecb76af0",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "First line of the section wall label"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": false,
+      "Id": "dd4c8d6649e643a7a7bb7bbde177da87",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7889928a62a047d783085c77c4c186c8",
+          "Name": "",
+          "Description": "Selection between a true and false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "False = stone colour only on the wall, no hatch lines"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# -*- coding: utf-8 -*-\n\"\"\"\nCOMPOUND WALL DETAILS - foundation, random rubble stone cladding, dimensions, labels\nDynamo for Revit 2026 (Python Script node, CPython3)        Svarda Design - D07\n\nWhat it does, view by view (views = the ones you list, or every view on the active sheet):\n  SECTION    under every compound wall the section cuts:\n               - stepped R.R. stone masonry footing (filled region) + P.C.C. bed (filled region)\n               - the wall itself shows random rubble stone hatch + stone colour (this wall only)\n               - dimensions: wall thickness, every footing width, P.C.C. width, height chain\n               - labels with leaders: wall, footing, P.C.C.\n  ELEVATION  for every compound wall facing the view:\n               - random rubble stone cladding pattern + colour on the wall face (this wall only)\n               - footing band + P.C.C. band below ground (filled regions)\n               - dimensions: height chain (P.C.C. / footing / wall) and wall length\n               - labels: cladding, footing\n  PLAN       for every compound wall in the plan:\n               - dimensions: thickness and length;  label with leader\n  WALL TYPE  (optional) coarse scale fill of the compound wall type = random rubble, so every\n             coarse plan shows the stone hatch.\n\nInputs (all exposed to Dynamo Player)\n  IN[0]  Preview only            False (default) = make the changes.  True = only list, nothing changes\n  IN[1]  Use selected walls      True = only the walls selected in Revit\n  IN[2]  Wall type contains      compound walls = wall types whose name contains one of these words\n                                 e.g. \"STONE;COMPOUND;BOUNDARY\"\n  IN[3]  Views                   names separated by ;  (exact name or part of it)\n                                 blank = every section / elevation / plan on the ACTIVE SHEET\n                                 (or only the active view when it is not a sheet)\n  IN[4]  Footing steps mm        top step first, \"width x depth; width x depth\"   e.g. \"750x450; 900x450\"\n  IN[5]  P.C.C. bed mm           \"width x thickness\"   e.g. \"1050x150\"\n  IN[6]  Cladding colour RGB     e.g. \"172,170,162\"  (grey natural stone)\n  IN[7]  Footing colour RGB      e.g. \"222,205,170\"\n  IN[8]  P.C.C. colour RGB       e.g. \"205,205,205\"\n  IN[9]  Add dimensions          True / False\n  IN[10] Add labels              True / False\n  IN[11] Plan hatch colour RGB   colour of the rubble hatch on the wall type in coarse plans\n                                 e.g. \"150,105,55\"   blank = do not change the wall type\n  IN[12] Wall label              first line of the wall label; {T} = wall thickness in mm\n                                 e.g. \"{T} THK. STONE WALL IN CM 1:6,\"\n  IN[13] Wall rubble hatch lines False (default) = wall shows the stone colour only (no hatch lines)\n                                 True = random rubble lines over the stone colour\nOutput  OUT = log.  A Revit message box shows the result after every run.\n\nSafe to run again: a view that already has this script's footing regions or reference lines is\nskipped (delete them to redo that view).  Every view runs in its own sub-transaction, so one\nfailing view never blocks the others.\n\"\"\"\nimport math\n\n# ---------------------------------------------------------------- settings you may edit\nTAG = \"SD_D07_COMPOUND_WALL\"            # written to Comments of the regions it creates\nREF_LINE_STYLE = \"SD_D07_REF\"           # line style of the (hidden-in-plain-sight) dimension reference lines\nRUBBLE_NAME = \"RANDOM RUBBLE STONE\"     # drafting fill pattern (created from the data below)\nTRIANGLES_NAME = \"SD_TRIANGLES\"         # footing hatch (created if missing)\nFOOTING_TYPE = \"RR STONE MASONRY\"       # filled region type names (created if missing)\nPCC_TYPE = \"PCC 1-4-8\"\nCONCRETE_PATTERN = \"Concrete\"           # used for P.C.C. if the project has it\nTEXT_WIDTH_MM = 90                     # paper width of the label boxes\nDIM_GAP_MM = 8                          # paper distance between stacked dimension strings\nLABEL_GAP_MM = 22                       # paper distance from the foundation to the labels\nFOOTING_LABEL = \"R.R. STONE MASONRY FOOTING\\nIN CM 1:6 ({N} STEPS)\"\nPCC_LABEL = \"P.C.C. 1:4:8, {D} THK.\\nOVER COMPACTED EARTH\"\nCLAD_LABEL_2 = \"RANDOM RUBBLE CLADDING\"\nELEV_CLAD_LABEL = \"RANDOM RUBBLE STONE CLADDING\\n(GREY NATURAL STONE, IRREGULAR)\"\nELEV_FOOT_LABEL = \"R.R. STONE MASONRY FOOTING IN CM 1:6\\nON P.C.C. 1:4:8, {D} THK.\"\nPLAN_LABEL = \"{T} THK. STONE MASONRY\\nCOMPOUND WALL IN CM 1:6\"\n\n# random rubble stone, tileable 24 mm (paper) tile - periodic Voronoi, one row per line family:\n# (angle deg, x0, y0, shift, spacing, dash, gap)  in paper mm  - same as RANDOM_RUBBLE_STONE.pat\nRUBBLE_LINES = [\n(45.000000, 0.000000, 5.000000, 16.970563, 16.970563, 1.414214, -32.526912),\n    (-74.054604, 0.000000, 5.000000, 75.823031, 3.296654, 7.280110, -167.442527),\n    (90.000000, 0.000000, 12.000000, 0.000000, 24.000000, 2.000000, -22.000000),\n    (-80.537678, 0.000000, 12.000000, 122.312847, 3.945576, 6.082763, -139.903538),\n    (0.000000, 0.000000, 14.000000, 0.000000, 24.000000, 5.000000, -19.000000),\n    (-14.036243, 1.000000, 6.000000, 23.283420, 5.820855, 4.123106, -94.831429),\n    (45.000000, 1.000000, 21.000000, 16.970563, 16.970563, 1.414214, -32.526912),\n    (11.309932, 2.000000, 22.000000, 98.842532, 4.706787, 5.099020, -117.277449),\n    (-71.565051, 5.000000, 5.000000, 53.126265, 7.589466, 6.324555, -69.570109),\n    (45.000000, 5.000000, 5.000000, 16.970563, 16.970563, 4.242641, -29.698485),\n    (45.000000, 5.000000, 14.000000, 16.970563, 16.970563, 1.414214, -32.526912),\n    (-63.434949, 5.000000, 14.000000, 32.199379, 10.733126, 6.708204, -46.957428),\n    (75.963757, 6.000000, 15.000000, 23.283420, 5.820855, 8.246211, -90.708324),\n    (-8.130102, 6.000000, 15.000000, 23.758788, 3.394113, 7.071068, -162.634560),\n    (0.000000, 7.000000, 23.000000, 0.000000, 24.000000, 1.000000, -23.000000),\n    (0.000000, 8.000000, 8.000000, 0.000000, 24.000000, 2.000000, -22.000000),\n    (0.000000, 8.000000, 23.000000, 0.000000, 24.000000, 6.000000, -18.000000),\n    (63.434949, 10.000000, 8.000000, 21.466253, 10.733126, 6.708204, -46.957428),\n    (-38.659808, 10.000000, 8.000000, 119.941449, 3.748170, 6.403124, -147.271857),\n    (26.565051, 13.000000, 14.000000, 32.199379, 10.733126, 2.236068, -51.429563),\n    (63.434949, 14.000000, -1.000000, 21.466253, 10.733126, 2.236068, -51.429563),\n    (-71.565051, 14.000000, 23.000000, 53.126265, 7.589466, 6.324555, -69.570109),\n    (90.000000, 15.000000, 1.000000, 0.000000, 24.000000, 3.000000, -21.000000),\n    (11.309932, 15.000000, 1.000000, 98.842532, 4.706787, 5.099020, -117.277449),\n    (71.565051, 15.000000, 4.000000, 22.768399, 7.589466, 3.162278, -72.732386),\n    (-82.874984, 15.000000, 15.000000, 169.679517, 2.976834, 8.062258, -185.431928),\n    (63.434949, 15.000000, 15.000000, 21.466253, 10.733126, 2.236068, -51.429563),\n    (18.434949, 16.000000, 7.000000, 53.126265, 7.589466, 3.162278, -72.732386),\n    (-9.462322, 16.000000, 17.000000, 23.673454, 3.945576, 6.082763, -139.903538),\n    (-53.130102, 19.000000, 8.000000, 33.600000, 4.800000, 5.000000, -115.000000),\n    (38.659808, 19.000000, 8.000000, 33.733533, 3.748170, 6.403124, -147.271857),\n    (45.000000, 20.000000, 2.000000, 16.970563, 16.970563, 2.828427, -31.112698),\n    (-45.000000, 20.000000, 26.000000, 16.970563, 16.970563, 7.071068, -26.870058),\n    (26.565051, 22.000000, 4.000000, 32.199379, 10.733126, 2.236068, -51.429563),\n    (-45.000000, 22.000000, 16.000000, 16.970563, 16.970563, 2.828427, -31.112698),\n    (59.036243, 22.000000, 16.000000, 53.507559, 4.115966, 5.830952, -134.111894),\n]\n\n\ndef mm(v):\n    return float(v) / 304.8\n\n\ndef parse_pairs(s):\n    out = []\n    for part in str(s).split(\";\"):\n        part = part.strip().lower().replace(\"*\", \"x\").replace(\" \", \"\")\n        if not part:\n            continue\n        a, b = part.split(\"x\")\n        out.append((mm(a), mm(b)))\n    return out\n\n\ndef parse_rgb(s, default):\n    try:\n        r, g, b = [int(float(x)) for x in str(s).replace(\";\", \",\").split(\",\")[:3]]\n        return (r, g, b)\n    except Exception:\n        return default\n\n\ndef compound_wall_details(doc, uidoc, cfg, run, say):\n    from System.Collections.Generic import List\n    from Autodesk.Revit.DB import (Element, ElementId, FilteredElementCollector, Wall, WallType,\n                                   View, ViewSheet, ViewType, BuiltInParameter, BuiltInCategory,\n                                   FillPatternElement, FillPattern, FillGrid, FillPatternTarget,\n                                   FillPatternHostOrientation, FilledRegion, FilledRegionType,\n                                   CurveLoop, Line, XYZ, UV, Color, OverrideGraphicSettings,\n                                   ReferenceArray, TextNote, TextNoteType, TextNoteOptions,\n                                   HorizontalTextAlignment, TextNoteLeaderTypes, SubTransaction,\n                                   ElementTypeGroup, Options, Solid, GeometryInstance, CurveElement,\n                                   GraphicsStyleType, LocationCurve)\n\n    def nm(e):                            # type names: read the parameter (Name is unreliable in CPython3)\n        if e is None:\n            return \"\"\n        for bip in (BuiltInParameter.SYMBOL_NAME_PARAM, BuiltInParameter.ALL_MODEL_TYPE_NAME):\n            try:\n                p = e.get_Parameter(bip)\n                if p is not None and p.AsString():\n                    return p.AsString()\n            except Exception:\n                pass\n        for getter in (lambda x: Element.Name.__get__(x), lambda x: x.Name):\n            try:\n                s = getter(e)\n                if s:\n                    return s\n            except Exception:\n                pass\n        return \"\"\n\n    def col(rgb):\n        return Color(rgb[0], rgb[1], rgb[2])\n\n    # ------------------------------------------------------------ compound walls\n    words = [w.strip().lower() for w in str(cfg[\"types\"]).split(\";\") if w.strip()]\n\n    def tname(o):                         # runtime .NET type name (isinstance is unreliable in CPython3)\n        try:\n            return o.GetType().Name\n        except Exception:\n            return type(o).__name__\n\n    def wall_line(w):\n        try:\n            crv = w.Location.Curve\n        except Exception:\n            return None\n        return crv if tname(crv) == \"Line\" else None\n\n    def is_compound(w):\n        if tname(w) != \"Wall\":\n            return False\n        if wall_line(w) is None:\n            return False\n        if not words:\n            return True\n        tn = nm(doc.GetElement(w.GetTypeId())).lower()\n        return any(x in tn for x in words)\n\n    def eid(e):\n        try:\n            return e.Id.Value                 # Revit 2024+\n        except Exception:\n            return e.Id.IntegerValue\n\n    selected = None\n    if cfg[\"selected\"]:\n        selected = set()\n        for i in uidoc.Selection.GetElementIds():\n            e = doc.GetElement(i)\n            if e is not None and e.GetType().Name == \"Wall\":\n                selected.add(eid(e))\n        if not selected:\n            say(\"Use selected walls = True, but no walls are selected in Revit.\")\n            return\n\n    def walls_in(view):\n        res = []\n        for w in FilteredElementCollector(doc, view.Id).OfClass(Wall):\n            if not is_compound(w):\n                continue\n            if selected is not None and eid(w) not in selected:\n                continue\n            res.append(w)\n        return res\n\n    # ------------------------------------------------------------ target views\n    want = [v.strip() for v in str(cfg[\"views\"]).split(\";\") if v.strip()]\n    ok_types = (ViewType.Section, ViewType.Elevation, ViewType.FloorPlan, ViewType.Detail)\n    views = []\n    if want:\n        allv = [v for v in FilteredElementCollector(doc).OfClass(View)\n                if not v.IsTemplate and v.ViewType in ok_types]\n        for w in want:\n            hit = [v for v in allv if v.Name == w] or [v for v in allv if w.lower() in v.Name.lower()]\n            for v in hit:\n                if v.Id not in [x.Id for x in views]:\n                    views.append(v)\n            if not hit:\n                say(\"NOT FOUND view '%s'\" % w)\n    else:\n        av = doc.ActiveView\n        if av.ViewType == ViewType.DrawingSheet:\n            for i in av.GetAllPlacedViews():\n                v = doc.GetElement(i)\n                if v.ViewType in ok_types:\n                    views.append(v)\n        elif av.ViewType in ok_types:\n            views.append(av)\n    if not views:\n        say(\"No section / elevation / plan views found. Open the compound wall sheet or list the views.\")\n        return\n\n    # ------------------------------------------------------------ patterns & types\n    def find_pattern(name):\n        for fpe in FilteredElementCollector(doc).OfClass(FillPatternElement):\n            fp = fpe.GetFillPattern()\n            if fp.Name.lower() == name.lower() and fp.Target == FillPatternTarget.Drafting:\n                return fpe\n        return None\n\n    def solid_fill():\n        for fpe in FilteredElementCollector(doc).OfClass(FillPatternElement):\n            if fpe.GetFillPattern().IsSolidFill:\n                return fpe\n        return None\n\n    def make_pattern(name, grids):\n        fp = FillPattern(name, FillPatternTarget.Drafting, FillPatternHostOrientation.ToView)\n        lst = List[FillGrid]()\n        for g in grids:\n            lst.Add(g)\n        fp.SetFillGrids(lst)\n        return FillPatternElement.Create(doc, fp)\n\n    def grid(angle_deg, x0, y0, shift, offset, segs=None):\n        g = FillGrid()\n        g.Angle = math.radians(angle_deg)\n        g.Origin = UV(mm(x0), mm(y0))\n        g.Shift = mm(shift)\n        g.Offset = mm(offset)\n        if segs:\n            s = List[float]()\n            for v in segs:\n                s.Add(mm(v))\n            g.SetSegments(s)\n        return g\n\n    rubble = find_pattern(RUBBLE_NAME)\n    tri = find_pattern(TRIANGLES_NAME) or find_pattern(\"Triangles\")\n    conc = find_pattern(CONCRETE_PATTERN)\n    solid = solid_fill()\n    if run:\n        if rubble is None:\n            rubble = make_pattern(RUBBLE_NAME, [grid(a, x, y, sh, sp, [d, -gp])\n                                                for (a, x, y, sh, sp, d, gp) in RUBBLE_LINES])\n            say(\"Created fill pattern %s\" % RUBBLE_NAME)\n        if tri is None:\n            h = 2.5\n            tri = make_pattern(TRIANGLES_NAME, [grid(0, 0, 0, 0, h), grid(60, 0, 0, 0, h),\n                                                grid(120, 0, 0, 0, h)])\n            say(\"Created fill pattern %s\" % TRIANGLES_NAME)\n\n    inv = ElementId.InvalidElementId\n\n    def region_type(name, fg, fg_rgb, bg, bg_rgb):\n        frts = list(FilteredElementCollector(doc).OfClass(FilledRegionType))\n        t = None\n        for x in frts:\n            if nm(x).lower() == name.lower():\n                t = x\n                break\n        if t is None:\n            t = doc.GetElement(frts[0].Duplicate(name).Id)\n            say(\"Created filled region type %s\" % name)\n        t.ForegroundPatternId = fg.Id if fg else inv\n        t.ForegroundPatternColor = col(fg_rgb)\n        t.BackgroundPatternId = bg.Id if bg else inv\n        t.BackgroundPatternColor = col(bg_rgb)\n        return t\n\n    foot_t = pcc_t = None\n    if run:\n        foot_t = region_type(FOOTING_TYPE, tri, (0, 0, 0), solid, cfg[\"foot_rgb\"])\n        pcc_t = region_type(PCC_TYPE, conc, (0, 0, 0), solid, cfg[\"pcc_rgb\"])\n\n    def stone_ogs():\n        o = OverrideGraphicSettings()\n        if cfg[\"wall_hatch\"]:                 # random rubble lines over the stone colour\n            fg_id, fg_col = rubble.Id, Color(60, 60, 60)\n        else:                                 # stone colour only (solid), hides the coarse wall-type hatch too\n            fg_id, fg_col = solid.Id, col(cfg[\"clad_rgb\"])\n        o.SetCutForegroundPatternId(fg_id)\n        o.SetCutForegroundPatternColor(fg_col)\n        o.SetCutForegroundPatternVisible(True)\n        o.SetSurfaceForegroundPatternColor(fg_col)\n        o.SetCutBackgroundPatternId(solid.Id)\n        o.SetCutBackgroundPatternColor(col(cfg[\"clad_rgb\"]))\n        o.SetCutBackgroundPatternVisible(True)\n        o.SetSurfaceForegroundPatternId(fg_id)\n        o.SetSurfaceForegroundPatternVisible(True)\n        o.SetSurfaceBackgroundPatternId(solid.Id)\n        o.SetSurfaceBackgroundPatternColor(col(cfg[\"clad_rgb\"]))\n        o.SetSurfaceBackgroundPatternVisible(True)\n        return o\n\n    # reference line style (sub-category of Lines)\n    ref_style = None\n    if run and cfg[\"dims\"]:\n        lines_cat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_Lines)\n        sub = None\n        for c in lines_cat.SubCategories:\n            if c.Name == REF_LINE_STYLE:\n                sub = c\n        if sub is None:\n            sub = doc.Settings.Categories.NewSubcategory(lines_cat, REF_LINE_STYLE)\n            sub.LineColor = Color(0, 0, 0)\n            sub.SetLineWeight(1, GraphicsStyleType.Projection)\n        ref_style = sub.GetGraphicsStyle(GraphicsStyleType.Projection)\n\n    text_type = None\n    tts = list(FilteredElementCollector(doc).OfClass(TextNoteType))\n    for t in tts:\n        if \"2.5\" in nm(t):\n            text_type = t\n            break\n    if text_type is None and tts:\n        text_type = doc.GetElement(doc.GetDefaultElementTypeId(ElementTypeGroup.TextNoteType)) or tts[0]\n    dim_type = doc.GetElement(doc.GetDefaultElementTypeId(ElementTypeGroup.LinearDimensionType))\n\n    # plan hatch on the wall type\n    if cfg[\"plan_rgb\"] is not None:\n        wtypes = {}\n        for v in views:\n            for w in walls_in(v):\n                wtypes[eid(doc.GetElement(w.GetTypeId()))] = doc.GetElement(w.GetTypeId())\n        for wt in wtypes.values():\n            if run:\n                try:\n                    wt.get_Parameter(BuiltInParameter.COARSE_SCALE_FILL_PATTERN_ID_PARAM).Set(rubble.Id)\n                    r, g, b = cfg[\"plan_rgb\"]\n                    wt.get_Parameter(BuiltInParameter.COARSE_SCALE_FILL_PATTERN_COLOR).Set(r + (g << 8) + (b << 16))\n                    say(\"Wall type %s: coarse fill = %s\" % (nm(wt), RUBBLE_NAME))\n                except Exception as ex:\n                    say(\"Wall type %s: coarse fill not set (%s)\" % (nm(wt), ex))\n            else:\n                say(\"Would set coarse fill on wall type %s\" % nm(wt))\n\n    # ------------------------------------------------------------ helpers in view frame\n    class Frame(object):\n        def __init__(self, view):\n            self.R = view.RightDirection\n            self.U = view.UpDirection\n            self.N = view.ViewDirection\n            o = view.Origin\n            self.base = o.Subtract(self.R.Multiply(o.DotProduct(self.R))).Subtract(self.U.Multiply(o.DotProduct(self.U)))\n            self.scale = float(view.Scale)\n\n        def P(self, x, z):\n            return self.base.Add(self.R.Multiply(x)).Add(self.U.Multiply(z))\n\n        def x(self, p):\n            return p.DotProduct(self.R)\n\n        def z(self, p):\n            return p.DotProduct(self.U)\n\n    def already_done(view):\n        for fr in FilteredElementCollector(doc, view.Id).OfClass(FilledRegion):\n            p = fr.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n            if p and p.AsString() == TAG:\n                return True\n        if ref_style is not None:\n            for c in FilteredElementCollector(doc, view.Id).OfClass(CurveElement):\n                try:\n                    if c.LineStyle and c.LineStyle.Id == ref_style.Id:\n                        return True\n                except Exception:\n                    pass\n        return False\n\n    def region(view, ftype, pts2d, F):\n        loop = CurveLoop()\n        n = len(pts2d)\n        for i in range(n):\n            a = F.P(*pts2d[i])\n            b = F.P(*pts2d[(i + 1) % n])\n            if a.DistanceTo(b) > 1e-6:\n                loop.Append(Line.CreateBound(a, b))\n        loops = List[CurveLoop]()\n        loops.Add(loop)\n        fr = FilledRegion.Create(doc, ftype.Id, view.Id, loops)\n        p = fr.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n        if p and not p.IsReadOnly:\n            p.Set(TAG)\n        return fr\n\n    def ref_line(view, a, b):\n        dc = doc.Create.NewDetailCurve(view, Line.CreateBound(a, b))\n        if ref_style is not None:\n            dc.LineStyle = ref_style\n        return dc.GeometryCurve.Reference\n\n    def dimension(view, a, b, refs):\n        ra = ReferenceArray()\n        for r in refs:\n            ra.Append(r)\n        if dim_type is not None:\n            return doc.Create.NewDimension(view, Line.CreateBound(a, b), ra, dim_type)\n        return doc.Create.NewDimension(view, Line.CreateBound(a, b), ra)\n\n    def clear_small_texts(dim, push, min_len_mm=250):\n        \"\"\"move the text of short segments (e.g. 150 P.C.C.) sideways so it does not sit on its neighbour\"\"\"\n        try:\n            for seg in dim.Segments:\n                v = seg.Value\n                if v is not None and v * 304.8 < min_len_mm:\n                    seg.TextPosition = seg.TextPosition.Add(push)\n        except Exception:\n            pass\n\n    def label(view, F, text_pt, arrow_pt, text):\n        right_side = (text_pt.Subtract(arrow_pt)).DotProduct(F.R) > 0\n        opts = TextNoteOptions(text_type.Id)\n        opts.HorizontalAlignment = HorizontalTextAlignment.Left if right_side else HorizontalTextAlignment.Right\n        tn = TextNote.Create(doc, view.Id, text_pt, mm(TEXT_WIDTH_MM), text, opts)\n        ld = tn.AddLeader(TextNoteLeaderTypes.TNLT_STRAIGHT_L if right_side else TextNoteLeaderTypes.TNLT_STRAIGHT_R)\n        ld.End = arrow_pt\n        return tn\n\n    def wall_frame(w):\n        crv = wall_line(w)\n        p0 = crv.GetEndPoint(0)\n        p1 = crv.GetEndPoint(1)\n        d = p1.Subtract(p0).Normalize()\n        n = XYZ(-d.Y, d.X, 0)\n        bb = w.get_BoundingBox(None)\n        return p0, p1, d, n, w.Width, bb.Min.Z, bb.Max.Z\n\n    class _PF(object):                    # minimal frame for plan labels (only R is used)\n        def __init__(self, view):\n            self.R = view.RightDirection\n\n    steps = cfg[\"steps\"]\n    pw, pd = cfg[\"pcc\"]\n    dsum = sum(s[1] for s in steps)\n\n    # ------------------------------------------------------------ SECTION\n    def do_section(view, F):\n        count = 0\n        for w in walls_in(view):\n            p0, p1, d, n, t, zb, zt = wall_frame(w)\n            hits = []\n            for sg in (1.0, -1.0):\n                a = p0.Add(n.Multiply(sg * t / 2.0))\n                b = p1.Add(n.Multiply(sg * t / 2.0))\n                den = b.Subtract(a).DotProduct(F.N)\n                if abs(den) < 1e-9:\n                    hits = []\n                    break\n                s = view.Origin.Subtract(a).DotProduct(F.N) / den\n                hits.append((F.x(a.Add(b.Subtract(a).Multiply(s))), s))\n            if len(hits) != 2 or not any(-0.02 <= s <= 1.02 for _, s in hits):\n                continue\n            xa, xb = sorted(h[0] for h in hits)\n            xc = (xa + xb) / 2.0\n            count += 1\n            name = \"%s (id %s)\" % (nm(doc.GetElement(w.GetTypeId())), eid(w))\n            if not run:\n                say(\"   would detail wall %s  thickness %d mm\" % (name, round(t * 304.8)))\n                continue\n            view.SetElementOverrides(w.Id, stone_ogs())\n            # footing (stepped) + P.C.C.\n            left = []\n            z = zb\n            for (sw, sd) in steps:\n                left.append((xc - sw / 2.0, z))\n                left.append((xc - sw / 2.0, z - sd))\n                z -= sd\n            right = [(2 * xc - x, zz) for (x, zz) in reversed(left)]\n            region(view, foot_t, left + right, F)\n            zs = zb - dsum\n            region(view, pcc_t, [(xc - pw / 2, zs), (xc - pw / 2, zs - pd), (xc + pw / 2, zs - pd), (xc + pw / 2, zs)], F)\n            maxw = max([pw] + [s[0] for s in steps])\n            g = mm(DIM_GAP_MM) * F.scale\n            if cfg[\"dims\"]:\n                # height chain (right side)\n                refs = [ref_line(view, F.P(xa, zt), F.P(xb, zt)),\n                        ref_line(view, F.P(xc - steps[0][0] / 2, zb), F.P(xc + steps[0][0] / 2, zb))]\n                z = zb\n                for i, (sw, sd) in enumerate(steps):\n                    z -= sd\n                    if i + 1 < len(steps):\n                        nw = steps[i + 1][0]\n                        if abs(nw - sw) > 1e-6:\n                            refs.append(ref_line(view, F.P(xc + min(sw, nw) / 2, z), F.P(xc + max(sw, nw) / 2, z)))\n                    else:\n                        refs.append(ref_line(view, F.P(xc - sw / 2, z), F.P(xc + sw / 2, z)))\n                refs.append(ref_line(view, F.P(xc - pw / 2, zs - pd), F.P(xc + pw / 2, zs - pd)))\n                xd = xc + maxw / 2 + 2 * g\n                chain = dimension(view, F.P(xd, zt), F.P(xd, zs - pd), refs)\n                clear_small_texts(chain, F.R.Multiply(1.2 * g))\n                # wall thickness (above the wall)\n                ra = [ref_line(view, F.P(xa, zb), F.P(xa, zt)), ref_line(view, F.P(xb, zb), F.P(xb, zt))]\n                dimension(view, F.P(xa, zt + 2 * g), F.P(xb, zt + 2 * g), ra)\n                # widths below, narrowest first\n                layers = []\n                z = zb\n                for (sw, sd) in steps:\n                    layers.append((sw, z, z - sd))\n                    z -= sd\n                layers.append((pw, zs, zs - pd))\n                k = 1\n                for (lw, ztop, zbot) in sorted(layers, key=lambda q: q[0]):\n                    ra = [ref_line(view, F.P(xc - lw / 2, ztop), F.P(xc - lw / 2, zbot)),\n                          ref_line(view, F.P(xc + lw / 2, ztop), F.P(xc + lw / 2, zbot))]\n                    zz = zs - pd - g * k\n                    dimension(view, F.P(xc - lw / 2, zz), F.P(xc + lw / 2, zz), ra)\n                    k += 1\n            if cfg[\"labels\"]:\n                lx = xc - maxw / 2 - mm(LABEL_GAP_MM) * F.scale\n                wl = cfg[\"wall_label\"].replace(\"{T}\", str(int(round(t * 304.8)))) + \"\\n\" + CLAD_LABEL_2\n                label(view, F, F.P(lx, zb + (zt - zb) * 0.55), F.P(xc, zb + (zt - zb) * 0.45), wl)\n                label(view, F, F.P(lx, zb - dsum * 0.15), F.P(xc, zb - dsum * 0.5),\n                      FOOTING_LABEL.replace(\"{N}\", str(len(steps))))\n                label(view, F, F.P(lx, zs - pd - 1.5 * g), F.P(xc - pw / 4, zs - pd / 2),\n                      PCC_LABEL.replace(\"{D}\", str(int(round(pd * 304.8)))))\n            say(\"   OK wall %s\" % name)\n        return count\n\n    # ------------------------------------------------------------ ELEVATION\n    opts = Options()\n    opts.ComputeReferences = False\n\n    def x_extent(w, F):\n        xs = []\n        try:\n            for go in w.get_Geometry(opts):\n                solids = [go] if tname(go) == \"Solid\" else []\n                if tname(go) == \"GeometryInstance\":\n                    solids = [s for s in go.GetInstanceGeometry() if tname(s) == \"Solid\"]\n                for s in solids:\n                    for e in s.Edges:\n                        for p in e.Tessellate():\n                            xs.append(F.x(p))\n        except Exception:\n            xs = []\n        if not xs:\n            ln = wall_line(w)\n            p0, p1 = ln.GetEndPoint(0), ln.GetEndPoint(1)\n            xs = [F.x(p0), F.x(p1)]\n        return min(xs), max(xs)\n\n    def do_elevation(view, F):\n        count = 0\n        for w in walls_in(view):\n            p0, p1, d, n, t, zb, zt = wall_frame(w)\n            if abs(n.DotProduct(F.N)) < 0.9:      # wall seen end-on: same stone look, no footing band\n                if run:\n                    view.SetElementOverrides(w.Id, stone_ogs())\n                continue\n            x0, x1 = x_extent(w, F)\n            count += 1\n            name = \"%s (id %s)\" % (nm(doc.GetElement(w.GetTypeId())), eid(w))\n            if not run:\n                say(\"   would detail wall face %s  length %d mm\" % (name, round((x1 - x0) * 304.8)))\n                continue\n            view.SetElementOverrides(w.Id, stone_ogs())\n            zs = zb - dsum\n            region(view, foot_t, [(x0, zb), (x0, zs), (x1, zs), (x1, zb)], F)\n            region(view, pcc_t, [(x0, zs), (x0, zs - pd), (x1, zs - pd), (x1, zs)], F)\n            g = mm(DIM_GAP_MM) * F.scale\n            if cfg[\"dims\"]:\n                refs = [ref_line(view, F.P(x0, zt), F.P(x1, zt)), ref_line(view, F.P(x0, zb), F.P(x1, zb)),\n                        ref_line(view, F.P(x0, zs), F.P(x1, zs)), ref_line(view, F.P(x0, zs - pd), F.P(x1, zs - pd))]\n                chain = dimension(view, F.P(x0 - 2 * g, zt), F.P(x0 - 2 * g, zs - pd), refs)\n                clear_small_texts(chain, F.R.Multiply(-1.2 * g))\n                ra = [ref_line(view, F.P(x0, zb), F.P(x0, zt)), ref_line(view, F.P(x1, zb), F.P(x1, zt))]\n                dimension(view, F.P(x0, zt + 2 * g), F.P(x1, zt + 2 * g), ra)\n            if cfg[\"labels\"]:\n                L = x1 - x0\n                lx = x0 - mm(LABEL_GAP_MM) * F.scale\n                label(view, F, F.P(lx, zt - (zt - zb) * 0.1), F.P(x0 + L * 0.12, zb + (zt - zb) * 0.6), ELEV_CLAD_LABEL)\n                label(view, F, F.P(lx, zs - pd - 1.5 * g), F.P(x0 + L * 0.15, zb - dsum * 0.5),\n                      ELEV_FOOT_LABEL.replace(\"{D}\", str(int(round(pd * 304.8)))))\n            say(\"   OK wall face %s\" % name)\n        return count\n\n    # ------------------------------------------------------------ PLAN\n    def do_plan(view):\n        count = 0\n        lvl = view.GenLevel\n        zp = lvl.Elevation if lvl is not None else 0.0\n        R = view.RightDirection\n        g = mm(DIM_GAP_MM) * float(view.Scale)\n        for w in walls_in(view):\n            p0, p1, d, n, t, zb, zt = wall_frame(w)\n            P0 = XYZ(p0.X, p0.Y, zp)\n            P1 = XYZ(p1.X, p1.Y, zp)\n            L = P0.DistanceTo(P1)\n            mid = P0.Add(P1).Multiply(0.5)\n            ext = w.Orientation\n            inner = ext.Negate()\n            count += 1\n            name = \"%s (id %s)\" % (nm(doc.GetElement(w.GetTypeId())), eid(w))\n            if not run:\n                say(\"   would dimension wall %s  %d x %d mm\" % (name, round(L * 304.8), round(t * 304.8)))\n                continue\n            h = n.Multiply(t / 2.0)\n            if cfg[\"dims\"]:\n                seg = min(mm(1000), L * 0.3) / 2.0\n                fa = ref_line(view, mid.Add(h).Subtract(d.Multiply(seg)), mid.Add(h).Add(d.Multiply(seg)))\n                fb = ref_line(view, mid.Subtract(h).Subtract(d.Multiply(seg)), mid.Subtract(h).Add(d.Multiply(seg)))\n                c = mid.Add(d.Multiply(seg * 0.5))\n                dimension(view, c.Subtract(n.Multiply(t)), c.Add(n.Multiply(t)), [fa, fb])\n                ea = ref_line(view, P0.Subtract(h), P0.Add(h))\n                eb = ref_line(view, P1.Subtract(h), P1.Add(h))\n                off = inner.Multiply(t / 2.0 + 3 * g)\n                dimension(view, P0.Add(off), P1.Add(off), [ea, eb])\n            if cfg[\"labels\"]:\n                arrow = P0.Add(d.Multiply(L * 0.25))\n                tp = arrow.Add(inner.Multiply(t / 2.0 + 6 * g))\n                tp = tp.Add(R.Multiply(2 * g if inner.DotProduct(R) >= 0 else -2 * g))\n                label(view, _PF(view), tp, arrow, PLAN_LABEL.replace(\"{T}\", str(int(round(t * 304.8)))))\n            say(\"   OK wall %s\" % name)\n        return count\n\n    # ------------------------------------------------------------ run views\n    done = 0\n    for v in views:\n        vt = v.ViewType\n        kind = {ViewType.Section: \"SECTION\", ViewType.Detail: \"SECTION\", ViewType.Elevation: \"ELEVATION\",\n                ViewType.FloorPlan: \"PLAN\"}[vt]\n        say(\"%s  %s  (1:%d)\" % (kind, v.Name, v.Scale))\n        if run and already_done(v):\n            say(\"   skipped - already has %s elements (delete them to redo)\" % TAG)\n            continue\n        st = SubTransaction(doc) if run else None\n        try:\n            if st:\n                st.Start()\n            if kind == \"SECTION\":\n                c = do_section(v, Frame(v))\n            elif kind == \"ELEVATION\":\n                c = do_elevation(v, Frame(v))\n            else:\n                c = do_plan(v)\n            if c == 0:\n                found = set()\n                for w in FilteredElementCollector(doc, v.Id).OfClass(Wall):\n                    try:\n                        found.add(nm(doc.GetElement(w.GetTypeId())))\n                    except Exception:\n                        pass\n                say(\"   no compound wall found in this view (check 'Wall type contains'). Wall types here: %s\"\n                    % (\", \".join(sorted(found)) or \"none\"))\n                try:\n                    allw = list(FilteredElementCollector(doc).OfClass(Wall).ToElements())\n                    catw = list(FilteredElementCollector(doc, v.Id).OfCategory(BuiltInCategory.OST_Walls)\n                                .WhereElementIsNotElementType().ToElements())\n                    say(\"   [diag] doc=%s walls in model=%d, walls in view by category=%d, words=%s\"\n                        % (doc.Title, len(allw), len(catw), words))\n                    for w in catw[:3]:\n                        say(\"   [diag] %s type=%s line=%s compound=%s\" % (tname(w), nm(doc.GetElement(w.GetTypeId())),\n                                                                       wall_line(w) is not None, is_compound(w)))\n                except Exception as ex:\n                    say(\"   [diag] failed %s\" % ex)\n            if st:\n                st.Commit()\n            done += c\n        except Exception as ex:\n            if st:\n                try:\n                    st.RollBack()\n                except Exception:\n                    pass\n            import traceback\n            say(\"   FAILED -> %s\" % ex)\n            say(traceback.format_exc().splitlines()[-1])\n    say(\"Done: %d wall(s) %s in %d view(s).\" % (done, \"detailed\" if run else \"found\", len(views)))\n\n\n# ---------------------------------------------------------------- Dynamo entry point\ntry:\n    IN\n    _IN_DYNAMO = True\nexcept NameError:\n    _IN_DYNAMO = False\n\nif _IN_DYNAMO:\n    import clr\n    clr.AddReference('RevitAPI')\n    clr.AddReference('RevitServices')\n    from RevitServices.Persistence import DocumentManager\n    from RevitServices.Transactions import TransactionManager\n\n    def arg(i, default):\n        try:\n            v = IN[i]\n        except Exception:\n            return default\n        return default if v is None or v == \"\" else v\n\n    _plan = str(arg(11, \"\")).strip()\n    cfg = dict(selected=bool(arg(1, False)), types=arg(2, \"STONE;COMPOUND\"), views=arg(3, \"\"),\n               steps=parse_pairs(arg(4, \"750x450; 900x450\")), pcc=parse_pairs(arg(5, \"1050x150\"))[0],\n               clad_rgb=parse_rgb(arg(6, \"\"), (172, 170, 162)), foot_rgb=parse_rgb(arg(7, \"\"), (222, 205, 170)),\n               pcc_rgb=parse_rgb(arg(8, \"\"), (205, 205, 205)), dims=bool(arg(9, True)), labels=bool(arg(10, True)),\n               plan_rgb=parse_rgb(_plan, (150, 105, 55)) if _plan else None,\n               wall_label=str(arg(12, \"{T} THK. STONE WALL IN CM 1:6,\")),\n               wall_hatch=bool(arg(13, False)))\n    _log = []\n    _doc = DocumentManager.Instance.CurrentDBDocument\n    _uidoc = DocumentManager.Instance.CurrentUIDocument\n    _run = not bool(arg(0, False))          # IN[0] = \"Preview only\"\n    if _run:\n        TransactionManager.Instance.EnsureInTransaction(_doc)\n    try:\n        compound_wall_details(_doc, _uidoc, cfg, _run, _log.append)\n    except Exception:\n        import traceback\n        _log.append(\"STOPPED - error: \" + traceback.format_exc())\n    finally:\n        if _run:\n            TransactionManager.Instance.TransactionTaskDone()\n    _txt = \"\\n\".join(str(l) for l in _log)\n    try:                                    # log file: %TEMP%\\D07_compound_wall_last_run.txt\n        import os, tempfile\n        with open(os.path.join(tempfile.gettempdir(), \"D07_compound_wall_last_run.txt\"), \"w\") as _f:\n            _f.write(_txt)\n    except Exception:\n        pass\n    try:                                    # always show the result, also from Dynamo Player\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        TaskDialog.Show(\"Compound Wall Details\", _txt if len(_txt) < 3500 else _txt[:3500] + \"\\n...\")\n    except Exception as _ex:\n        _log.append(\"(message box not shown: %s)\" % _ex)\n    OUT = _log\n",
+      "Engine": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "615fa7ec698e415e9602b83f1016b296",
+      "Inputs": [
+        {
+          "Id": "1221f674de724042b02055f8de71a8ce",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a76d317e13eb4407993fbf9d9926b783",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9361578f626c41c8aa6e3461b094c318",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "362dad492b0f417ca820ac30066450a7",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b9c4b68a572141d596324e3ef9f62910",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "647362e9e0c84ad5bb0a59625e5670af",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bb2c8ddb743e4cc0bfa859c0b109e237",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9d1513c18eee46ab8904ee45b58b2f0f",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7bddbc69679445daaf144f034d258cb6",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "05a1c8512fad4fcfa3a9180406be39b4",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c4e8c6067d894bdf97c4757b69b2b6b2",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ba503a560e44482d967f0b911fc47669",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d08e394b27bb43e9ad94c91da56b2609",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4ffc06e0a3ee48cbaa354f13cda5e232",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "92b5986b17234dd3af4401cedf443710",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "2ca3540768264bf1a3817bc942e3c4b6",
+      "Inputs": [
+        {
+          "Id": "48853f0bf75b47219f7f124fd15e12af",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a3fa0d3613b242c3abb657ac044e7abe",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "a3974e3f04bf444f9186dff5cec80f0d",
+      "End": "1221f674de724042b02055f8de71a8ce",
+      "Id": "1cdd9a36a58641888cb064fd69e8976a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "348173618cf5404ea7f08722ed460ab5",
+      "End": "a76d317e13eb4407993fbf9d9926b783",
+      "Id": "cd2a85519bb34d31b1963bb1f55a9cf5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0acd877764f144238e5318bc27250f93",
+      "End": "9361578f626c41c8aa6e3461b094c318",
+      "Id": "25ed3a0e29cf4dc98a712e2b4beb82bb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a1230d1286e44b7db5c316c48fcbd77a",
+      "End": "362dad492b0f417ca820ac30066450a7",
+      "Id": "b89aeb9f49194c9198765b23d346cf77",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "495fd361f11f46b6ba9d8a35b46bbcb5",
+      "End": "b9c4b68a572141d596324e3ef9f62910",
+      "Id": "7eca67b08e6245009bfc93c69e969bc8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "63aa2a9c6cfc46dca2935f23806399c8",
+      "End": "647362e9e0c84ad5bb0a59625e5670af",
+      "Id": "817547590da94ee1842e04c10000dafc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9dc155d3e19c439293a0ae3efca2de22",
+      "End": "bb2c8ddb743e4cc0bfa859c0b109e237",
+      "Id": "9020f1d06fd04fb5bf58f6d965592498",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "88dba83518774995aff6c79130245cf7",
+      "End": "9d1513c18eee46ab8904ee45b58b2f0f",
+      "Id": "c14c8a096b464f6f8a52a3c9f76bfe68",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a03a972f74c2477b8314e3cf1310d405",
+      "End": "7bddbc69679445daaf144f034d258cb6",
+      "Id": "fbfd129ee83343d8add0194703815d7b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "70957d79143d4c61af1926dab9a85743",
+      "End": "05a1c8512fad4fcfa3a9180406be39b4",
+      "Id": "07a64f8a9f894be39e14b076a42affca",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a3d4946489634d8ca03afaa12a38e817",
+      "End": "c4e8c6067d894bdf97c4757b69b2b6b2",
+      "Id": "5ad6217a2acc4fb2a1b92f4cc95b84fa",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "23d87eb1277a4fadb5f7f01bdbaf3e27",
+      "End": "ba503a560e44482d967f0b911fc47669",
+      "Id": "033238e512bf45d4bbd36f067f62bbc7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2960df2f5038406392384f7cecb76af0",
+      "End": "d08e394b27bb43e9ad94c91da56b2609",
+      "Id": "1b3a52da0b0f41ca8395f13d42e18a0e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7889928a62a047d783085c77c4c186c8",
+      "End": "4ffc06e0a3ee48cbaa354f13cda5e232",
+      "Id": "e4575fd958e74cd7b4644da3ebc765a8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "92b5986b17234dd3af4401cedf443710",
+      "End": "48853f0bf75b47219f7f124fd15e12af",
+      "Id": "16ea69e5809b4633ae632d776ae09d61",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.0",
+      "Data": {}
+    }
+  ],
+  "Author": "Svarda Design",
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "1da00873b431449ea2e61ebb4bd80e6e",
+        "Name": "1 Preview only (True = just list, no changes)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "f8177a2146004cf1906b7a943d1151b0",
+        "Name": "2 Use selected walls",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 110.0
+      },
+      {
+        "Id": "8b7b81cd5f94446e931bd80bf7af8b5f",
+        "Name": "3 Wall type contains (; separated)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 220.0
+      },
+      {
+        "Id": "e124367dab5b4825ae664acffdd8e7d6",
+        "Name": "4 Views (; separated, blank = views on active sheet)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 330.0
+      },
+      {
+        "Id": "a0f0b12fcc6943d6bca3cb0bd3344bc7",
+        "Name": "5 Footing steps mm (top first: width x depth; ...)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 440.0
+      },
+      {
+        "Id": "fb759143e3ea4cfda4c1cb7c92e0def8",
+        "Name": "6 PCC bed mm (width x thickness)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 550.0
+      },
+      {
+        "Id": "41f229014dc748f1b2c09f408186e49a",
+        "Name": "7 Cladding colour RGB",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 660.0
+      },
+      {
+        "Id": "00b249bed9c14f79be5056135a54c43d",
+        "Name": "8 Footing colour RGB",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 770.0
+      },
+      {
+        "Id": "d26fd02d50784171ba6eb43dc90fe62d",
+        "Name": "9 PCC colour RGB",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 880.0
+      },
+      {
+        "Id": "8fd36dd7d6d74cf4bde0588bf1f491f1",
+        "Name": "10 Add dimensions",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 990.0
+      },
+      {
+        "Id": "1e0018bc5e5e4bb78048b70c5b3683f8",
+        "Name": "11 Add labels",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1100.0
+      },
+      {
+        "Id": "b85152bc6447479dab42ea6ea2b96574",
+        "Name": "12 Plan hatch colour RGB (blank = keep wall type)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1210.0
+      },
+      {
+        "Id": "51324885be144fcdb9774121db101efe",
+        "Name": "13 Wall label ({T} = thickness mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1320.0
+      },
+      {
+        "Id": "dd4c8d6649e643a7a7bb7bbde177da87",
+        "Name": "14 Wall rubble hatch lines (False = colour only)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1430.0
+      },
+      {
+        "Id": "615fa7ec698e415e9602b83f1016b296",
+        "Name": "Compound Wall Details",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520.0,
+        "Y": 520.0
+      },
+      {
+        "Id": "2ca3540768264bf1a3817bc942e3c4b6",
+        "Name": "Result",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1000.0,
+        "Y": 520.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "f64feeca8aa44837abb0ca357565bd08",
+        "Title": "D07 COMPOUND WALL DETAILS - open the compound wall sheet, check the inputs, Run.\nSections: stepped R.R. footing + P.C.C. + rubble wall hatch. Elevations: rubble cladding + footing bands.\nPlan: wall type rubble hatch, thickness/length dims, label. Views already done are skipped.",
+        "DescriptionText": null,
+        "IconName": null,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -170.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 60.0,
+    "Zoom": 0.6
+  }
+}

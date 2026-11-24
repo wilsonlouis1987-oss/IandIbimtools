@@ -1,0 +1,506 @@
+{
+  "Uuid": "540a7027-6965-4570-ad6d-9b792e5341d0",
+  "IsCustomNode": false,
+  "Description": "Sliders for selected columns",
+  "Name": "CAD2BIM_Column_Control",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 360.0,
+      "MinimumValue": 0.0,
+      "StepValue": 5.0,
+      "Id": "eb9e7727978b492cad5749f605bfeeb7",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5190d326c0584ffaa906c7ba0704dfba",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "1368814c335a4c56b5d026823bb62af9",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c6aa8240a7a54210b0dcacdcc4cd04b6",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 1500.0,
+      "MinimumValue": 150.0,
+      "StepValue": 25.0,
+      "Id": "93b4a781e56d4cb6903bd972f36f7232",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4eb4a26737874abebceeae85e5ad7c1e",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 300.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 1500.0,
+      "MinimumValue": 150.0,
+      "StepValue": 25.0,
+      "Id": "510000083ed84a11b6fafeb648269dbe",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4e6f97cab7ab45ad82a550eea806555d",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 600.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "1bf464a963fd46b1af11e5446f9a2ddc",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "63aa16fb827a46c493e7a950034ff2be",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 1500.0,
+      "MinimumValue": -1500.0,
+      "StepValue": 50.0,
+      "Id": "8340e7eeff6147f5b6e722349647462d",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "eba844c5b81047228c2e9b04869383e0",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 1500.0,
+      "MinimumValue": -2000.0,
+      "StepValue": 50.0,
+      "Id": "af0c2662aa0047708dc190554c6caf83",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b21d77750d5f4a4ca247b6febd6a6423",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "0e94b3cf657c46708ebb77a877d8e1ab",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "997905c9c10a4b07a99a10d2e3e2da8b",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "5193aef5d9de4d19ac444ee347bba263",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "76b2902575984f07b7055d0ae8e0aca5",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - COLUMN CONTROL for the columns SELECTED in Revit (sliders -> Run)\nimport os\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\nlog('--- column control started')\nimport clr, math, re, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nclr.AddReference('RevitServices')\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nMMF = 1.0 / 304.8\nSIZE_PARAMS = [('b', 'h'), ('Width', 'Depth'), ('Width', 'Length')]\nout = []\n\n\ndef num(v, d=0.0):\n    try:\n        return float(v)\n    except Exception:\n        return d\n\n\ndef tname(t):\n    p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n    return p.AsString() if p else ''\n\n\ntry:\n    ANGLE = num(IN[0]); DO_ROT = bool(IN[1])\n    B = num(IN[2]); H = num(IN[3]); DO_SIZE = bool(IN[4])\n    TOP_OFF = num(IN[5]); BASE_OFF = num(IN[6]); DO_HEIGHT = bool(IN[7])\n    TOP_LEVEL = str(IN[8] or '').strip()\n    log('inputs: angle {0} ({1}), size {2}x{3} ({4}), top {5} base {6} ({7}), top level \"{8}\"'.format(\n        ANGLE, DO_ROT, B, H, DO_SIZE, TOP_OFF, BASE_OFF, DO_HEIGHT, TOP_LEVEL))\n    uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n    cols = []\n    for eid in uidoc.Selection.GetElementIds():\n        e = doc.GetElement(eid)\n        if isinstance(e, FamilyInstance) and e.Category is not None and \\\n                e.Category.Id.ToString() in (Category.GetCategory(doc, BuiltInCategory.OST_StructuralColumns).Id.ToString(),\n                                             Category.GetCategory(doc, BuiltInCategory.OST_Columns).Id.ToString()):\n            cols.append(e)\n    if not cols:\n        raise Exception('Select one or more columns in Revit, then press Run')\n    top_lv = None\n    if DO_HEIGHT and TOP_LEVEL:\n        m = [l for l in FilteredElementCollector(doc).OfClass(Level) if l.Name.lower() == TOP_LEVEL.lower()]\n        if not m:\n            raise Exception('No level named \"{0}\"'.format(TOP_LEVEL))\n        top_lv = m[0]\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    made = set()\n    for c in cols:\n        if DO_SIZE and B > 0 and H > 0:\n            sym = c.Symbol\n            sp = None\n            for a, b in SIZE_PARAMS:\n                if sym.LookupParameter(a) is not None and sym.LookupParameter(b) is not None:\n                    sp = (a, b)\n                    break\n            if sp is None:\n                out.append('size skipped: type \"{0}\" has no b/h or Width/Depth'.format(tname(sym)))\n            else:\n                old = tname(sym)\n                new = re.sub(r'\\d+(\\.\\d+)?\\s*[xX]\\s*\\d+(\\.\\d+)?', '{0:.0f}x{1:.0f}'.format(B, H), old)\n                if new == old:\n                    new = '{0} {1:.0f}x{2:.0f}'.format(sym.Family.Name, B, H)\n                target = None\n                for sid in sym.Family.GetFamilySymbolIds():\n                    s = doc.GetElement(sid)\n                    if tname(s) == new:\n                        target = s\n                if target is None:\n                    target = sym.Duplicate(new)\n                    target.LookupParameter(sp[0]).Set(B * MMF)\n                    target.LookupParameter(sp[1]).Set(H * MMF)\n                    made.add(new)\n                if not target.IsActive:\n                    target.Activate()\n                if c.Symbol.Id.ToString() != target.Id.ToString():\n                    c.Symbol = target\n        if DO_HEIGHT:\n            if top_lv is not None:\n                c.get_Parameter(BuiltInParameter.FAMILY_TOP_LEVEL_PARAM).Set(top_lv.Id)\n            c.get_Parameter(BuiltInParameter.FAMILY_TOP_LEVEL_OFFSET_PARAM).Set(TOP_OFF * MMF)\n            c.get_Parameter(BuiltInParameter.FAMILY_BASE_LEVEL_OFFSET_PARAM).Set(BASE_OFF * MMF)\n        if DO_ROT:\n            pt = c.Location.Point\n            bx = c.GetTransform().BasisX\n            cur = math.degrees(math.atan2(bx.Y, bx.X))\n            delta = (ANGLE - cur + 180.0) % 360.0 - 180.0\n            if abs(delta) > 0.01:\n                ElementTransformUtils.RotateElement(doc, c.Id, Line.CreateBound(pt, pt.Add(XYZ.BasisZ)), math.radians(delta))\n    TransactionManager.Instance.TransactionTaskDone()\n    out.insert(0, 'DONE on {0} selected column(s): {1}{2}{3}'.format(\n        len(cols),\n        'angle {0:.0f} deg; '.format(ANGLE) if DO_ROT else '',\n        'size {0:.0f}x{1:.0f}; '.format(B, H) if DO_SIZE else '',\n        'top {0}{1:+.0f} / base {2:+.0f}'.format(TOP_LEVEL + ' ' if top_lv else '', TOP_OFF, BASE_OFF) if DO_HEIGHT else ''))\n    if made:\n        out.append('new type(s): ' + ', '.join(sorted(made)))\nexcept Exception as ex:\n    try:\n        TransactionManager.Instance.ForceCloseTransaction()\n    except Exception:\n        pass\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "8631a14b505848f0b016c32d2944cab8",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "bc1eb5153fc04c87b06c9f0f94779c45",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8ce36b20ba874211bc3e49c5b2178b9f",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5c897c93ae0d4430b48a0790ce8574cc",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5a2b5e217113499f8d55df7c6ec685b9",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7c6612a70ea94f79882eaffcb03e03bb",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "de3ae0c2b6ff406e92be7dcaa1ce457a",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "75ada064719444bcbfe7e327cd2655de",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3c45e7c5dfef42feac53b1a0f2fb0cdb",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a21a042b4f5e445d904318fe406ee8d3",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f0cf86e964c04ae08871b3a8db98d125",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "5190d326c0584ffaa906c7ba0704dfba",
+      "End": "bc1eb5153fc04c87b06c9f0f94779c45",
+      "Id": "7bae2a12c60046579449c07130188e64",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c6aa8240a7a54210b0dcacdcc4cd04b6",
+      "End": "8ce36b20ba874211bc3e49c5b2178b9f",
+      "Id": "c2a0b5cd7f8d4ea6a017cabac6f413e0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4eb4a26737874abebceeae85e5ad7c1e",
+      "End": "5c897c93ae0d4430b48a0790ce8574cc",
+      "Id": "7fc91121a1b4453fa105eaf3fe842de3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4e6f97cab7ab45ad82a550eea806555d",
+      "End": "5a2b5e217113499f8d55df7c6ec685b9",
+      "Id": "7a50af84824049b686444b1880ca9ebd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "63aa16fb827a46c493e7a950034ff2be",
+      "End": "7c6612a70ea94f79882eaffcb03e03bb",
+      "Id": "7d9de176061d44b489c433a3174efbbc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "eba844c5b81047228c2e9b04869383e0",
+      "End": "de3ae0c2b6ff406e92be7dcaa1ce457a",
+      "Id": "5648269cf45841eea30e197d7b700e8d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b21d77750d5f4a4ca247b6febd6a6423",
+      "End": "75ada064719444bcbfe7e327cd2655de",
+      "Id": "e5f30271d53d4d4984687d807c720678",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "997905c9c10a4b07a99a10d2e3e2da8b",
+      "End": "3c45e7c5dfef42feac53b1a0f2fb0cdb",
+      "Id": "cc05c846b01441e6b7c1e18e161ec420",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "76b2902575984f07b7055d0ae8e0aca5",
+      "End": "a21a042b4f5e445d904318fe406ee8d3",
+      "Id": "98f87e577f4542a2896bdf42379b1bef",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "eb9e7727978b492cad5749f605bfeeb7",
+        "Name": "Rotation angle (deg)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "1368814c335a4c56b5d026823bb62af9",
+        "Name": "Apply rotation",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 140.0
+      },
+      {
+        "Id": "93b4a781e56d4cb6903bd972f36f7232",
+        "Name": "Width b (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 300.0
+      },
+      {
+        "Id": "510000083ed84a11b6fafeb648269dbe",
+        "Name": "Depth h (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 440.0
+      },
+      {
+        "Id": "1bf464a963fd46b1af11e5446f9a2ddc",
+        "Name": "Apply size",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 580.0
+      },
+      {
+        "Id": "8340e7eeff6147f5b6e722349647462d",
+        "Name": "Top offset (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 740.0
+      },
+      {
+        "Id": "af0c2662aa0047708dc190554c6caf83",
+        "Name": "Base offset (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 880.0
+      },
+      {
+        "Id": "0e94b3cf657c46708ebb77a877d8e1ab",
+        "Name": "Apply height",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1020.0
+      },
+      {
+        "Id": "5193aef5d9de4d19ac444ee347bba263",
+        "Name": "Top level name ('' = keep)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1160.0
+      },
+      {
+        "Id": "8631a14b505848f0b016c32d2944cab8",
+        "Name": "Column control (selected columns)",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520.0,
+        "Y": 420.0
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

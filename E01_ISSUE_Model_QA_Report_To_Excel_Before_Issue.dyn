@@ -1,0 +1,399 @@
+{
+  "Uuid": "b3cbdc09-6bc6-494f-8626-f58e553844f5",
+  "IsCustomNode": false,
+  "Description": "Model health check before every issue: warnings, rooms, views not on sheets, sheet numbers, CAD imports, links, in-place families, groups, purgeable, levels - QA report Excel (model not changed)",
+  "Name": "CAD2BIM_Model_QA_Check",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "e2835dc20f1e422e863fde75e70e9c40",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1b39a9f3af0f49c89439903791ab7065",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "",
+      "InputValue": "No file selected."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "928b2441b30344ee9a351304a8b897a5",
+          "Name": "path",
+          "Description": "Path to the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+          "Name": "file",
+          "Description": "File object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a file object from the given path",
+      "Id": "86337e6929b34db8a0abe470f28ed0e9"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f805a5952b2846c5a4872752b6961cd7",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b925d23d7193473fad0e6b987eb78666",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "541e337a1ae84661ad4e944f087fb612",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - MODEL QA CHECK\n#  reads the model (never changes it) and writes a QA report Excel: a SUMMARY with OK / CHECK per item\n#  and one tab per check with the element ids, so problems are easy to find (Manage > Select by ID).\nimport os\nimport re\nimport datetime\nimport traceback\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\nimport os\nimport re\nimport zipfile\nimport xml.etree.ElementTree as ET\n\n# ======================================================================== tiny .xlsx reader / writer\nNS = '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'\nRNS = '{http://schemas.openxmlformats.org/officeDocument/2006/relationships}'\n\n\ndef _esc(s):\n    s = re.sub(u'[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f]', '', u'%s' % s)\n    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('\"', '&quot;')\n\n\ndef _ref(ci, ri):\n    s, ci = '', ci + 1\n    while ci:\n        ci, rem = divmod(ci - 1, 26)\n        s = chr(65 + rem) + s\n    return '%s%d' % (s, ri + 1)\n\n\ndef _colidx(ref):\n    n = 0\n    for ch in ''.join(c for c in ref if c.isalpha()):\n        n = n * 26 + (ord(ch.upper()) - 64)\n    return n - 1\n\n\ndef xlsx_read(path, sheet_name):\n    z = zipfile.ZipFile(path)\n    try:\n        shared = []\n        if 'xl/sharedStrings.xml' in z.namelist():\n            for si in ET.fromstring(z.read('xl/sharedStrings.xml')).iter(NS + 'si'):\n                shared.append(''.join(t.text or '' for t in si.iter(NS + 't')))\n        wb = ET.fromstring(z.read('xl/workbook.xml'))\n        rmap = dict((r.get('Id'), r.get('Target')) for r in ET.fromstring(z.read('xl/_rels/workbook.xml.rels')))\n        target = None\n        for sh in wb.iter(NS + 'sheet'):\n            if sh.get('name', '').strip().upper() == sheet_name.upper():\n                target = rmap.get(sh.get(RNS + 'id'))\n        if target is None:\n            return None\n        target = target.lstrip('/')\n        if not target.startswith('xl/'):\n            target = 'xl/' + target\n        root = ET.fromstring(z.read(target))\n    finally:\n        z.close()\n    rows = []\n    for r in root.iter(NS + 'row'):\n        vals = {}\n        for c in r.iter(NS + 'c'):\n            t, v = c.get('t'), c.find(NS + 'v')\n            if t == 's' and v is not None:\n                val = shared[int(v.text)]\n            elif t == 'inlineStr':\n                val = ''.join(x.text or '' for x in c.iter(NS + 't'))\n            elif v is not None and v.text not in (None, ''):\n                val = v.text\n                if t not in ('str', 'e', 'b'):\n                    try:\n                        fl = float(val)\n                        val = str(int(fl)) if fl == int(fl) else str(fl)\n                    except ValueError:\n                        pass\n            else:\n                val = ''\n            vals[_colidx(c.get('r'))] = (val or '').strip()\n        rno = int(r.get('r')) if r.get('r') else len(rows) + 1\n        while len(rows) < rno - 1:\n            rows.append([])\n        rows.append([vals.get(i, '') for i in range(max(vals) + 1)] if vals else [])\n    return rows\n\n\nSTYLES = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<styleSheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">'\n          '<fonts count=\"5\"><font><sz val=\"11\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"10\"/><color rgb=\"FFFFFFFF\"/><name val=\"Arial\"/></font>'\n          '<font><sz val=\"11\"/><color rgb=\"FF0000FF\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"14\"/><name val=\"Arial\"/></font>'\n          '<font><i/><sz val=\"10\"/><color rgb=\"FF595959\"/><name val=\"Arial\"/></font></fonts>'\n          '<fills count=\"4\"><fill><patternFill patternType=\"none\"/></fill><fill><patternFill patternType=\"gray125\"/></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FF1F3864\"/><bgColor indexed=\"64\"/></patternFill></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FFF2F2F2\"/><bgColor indexed=\"64\"/></patternFill></fill></fills>'\n          '<borders count=\"2\"><border><left/><right/><top/><bottom/><diagonal/></border>'\n          '<border><left style=\"thin\"><color rgb=\"FFBFBFBF\"/></left><right style=\"thin\"><color rgb=\"FFBFBFBF\"/></right>'\n          '<top style=\"thin\"><color rgb=\"FFBFBFBF\"/></top><bottom style=\"thin\"><color rgb=\"FFBFBFBF\"/></bottom><diagonal/></border></borders>'\n          '<cellStyleXfs count=\"1\"><xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\"/></cellStyleXfs>'\n          '<cellXfs count=\"7\">'\n          '<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\"/>'                                         # 0 normal\n          '<xf numFmtId=\"49\" fontId=\"1\" fillId=\"2\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\" applyAlignment=\"1\">'\n          '<alignment wrapText=\"1\" vertical=\"center\" horizontal=\"center\"/></xf>'                                  # 1 header\n          '<xf numFmtId=\"49\" fontId=\"2\" fillId=\"0\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyBorder=\"1\"/>'  # 2 blue input (text)\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 3 grey calculated\n          '<xf numFmtId=\"0\" fontId=\"3\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyFont=\"1\"/>'                           # 4 title\n          '<xf numFmtId=\"49\" fontId=\"4\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\"/>'     # 5 note\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 6 grey key\n          '</cellXfs><cellStyles count=\"1\"><cellStyle name=\"Normal\" xfId=\"0\" builtinId=\"0\"/></cellStyles></styleSheet>')\n\n\ndef _sheet_xml(rows, widths, freeze=None, validations=None, col_styles=None, heights=None):\n    \"\"\"rows: list of lists; a cell = value, or (value, style), or ('=formula', cached, style)\"\"\"\n    cs = col_styles or {}\n    out = ['<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n           '<worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">']\n    if freeze:\n        out.append('<sheetViews><sheetView workbookViewId=\"0\"><pane ySplit=\"%d\" topLeftCell=\"A%d\" activePane=\"bottomLeft\" '\n                   'state=\"frozen\"/></sheetView></sheetViews>' % (freeze, freeze + 1))\n    out.append('<cols>' + ''.join('<col min=\"%d\" max=\"%d\" width=\"%s\" customWidth=\"1\"%s/>'\n                                  % (i + 1, i + 1, w, (' style=\"%d\"' % cs[i]) if i in cs else '')\n                                  for i, w in enumerate(widths)) + '</cols><sheetData>')\n    for ri, row in enumerate(rows):\n        cells = []\n        for ci, cell in enumerate(row):\n            ref, style, f = _ref(ci, ri), cs.get(ci, 0), None\n            if isinstance(cell, tuple):\n                if len(cell) == 3:\n                    f, val, style = cell\n                else:\n                    val, style = cell\n            else:\n                val = cell\n            sa = ' s=\"%d\"' % style if style else ''\n            if f:\n                cells.append('<c r=\"%s\"%s t=\"str\"><f>%s</f><v>%s</v></c>' % (ref, sa, _esc(f.lstrip('=')), _esc(val)))\n            elif val is None or val == '':\n                if style:\n                    cells.append('<c r=\"%s\"%s/>' % (ref, sa))\n            else:\n                cells.append('<c r=\"%s\"%s t=\"inlineStr\"><is><t xml:space=\"preserve\">%s</t></is></c>' % (ref, sa, _esc(val)))\n        ht = (' ht=\"%s\" customHeight=\"1\"' % heights[ri]) if heights and ri in heights else ''\n        out.append('<row r=\"%d\"%s>%s</row>' % (ri + 1, ht, ''.join(cells)))\n    out.append('</sheetData>')\n    if validations:\n        out.append('<dataValidations count=\"%d\">' % len(validations))\n        for sqref, formula in validations:\n            out.append('<dataValidation type=\"list\" allowBlank=\"1\" showErrorMessage=\"0\" sqref=\"%s\"><formula1>%s</formula1>'\n                       '</dataValidation>' % (sqref, _esc(formula)))\n        out.append('</dataValidations>')\n    out.append('</worksheet>')\n    return ''.join(out)\n\n\ndef xlsx_write(path, sheets):\n    \"\"\"sheets: list of (name, sheet_xml)\"\"\"\n    n = len(sheets)\n    ct = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">'\n          '<Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>'\n          '<Default Extension=\"xml\" ContentType=\"application/xml\"/>'\n          '<Override PartName=\"/xl/workbook.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml\"/>'\n          '<Override PartName=\"/xl/styles.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml\"/>'\n          + ''.join('<Override PartName=\"/xl/worksheets/sheet%d.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml\"/>' % (i + 1)\n                    for i in range(n)) + '</Types>')\n    rels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n            '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n            '<Relationship Id=\"rId1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\" Target=\"xl/workbook.xml\"/>'\n            '</Relationships>')\n    wb = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<workbook xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" '\n          'xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">'\n          '<bookViews><workbookView activeTab=\"0\"/></bookViews><sheets>'\n          + ''.join('<sheet name=\"%s\" sheetId=\"%d\" r:id=\"rId%d\"/>' % (_esc(s[0]), i + 1, i + 1) for i, s in enumerate(sheets))\n          + '</sheets><calcPr calcId=\"191029\" fullCalcOnLoad=\"1\"/></workbook>')\n    wrels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n             '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n             + ''.join('<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet\" '\n                       'Target=\"worksheets/sheet%d.xml\"/>' % (i + 1, i + 1) for i in range(n))\n             + '<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles\" '\n               'Target=\"styles.xml\"/></Relationships>' % (n + 1))\n    tmp = path + '.tmp'\n    z = zipfile.ZipFile(tmp, 'w', zipfile.ZIP_DEFLATED)\n    try:\n        z.writestr('[Content_Types].xml', ct)\n        z.writestr('_rels/.rels', rels)\n        z.writestr('xl/workbook.xml', wb)\n        z.writestr('xl/_rels/workbook.xml.rels', wrels)\n        z.writestr('xl/styles.xml', STYLES)\n        for i, (name, xml) in enumerate(sheets):\n            z.writestr('xl/worksheets/sheet%d.xml' % (i + 1), xml.encode('utf-8'))\n    finally:\n        z.close()\n    try:\n        if os.path.exists(path):\n            os.remove(path)\n        os.rename(tmp, path)\n    except Exception:\n        os.remove(tmp)\n        raise\n\n\n\n\nISO_RE = re.compile(r'^([A-Z0-9]{2,6})-([A-Z0-9]{2,6})-([A-Z0-9]{2})-([A-Z0-9]{2})-([A-Z0-9]{2})-([A-Z])-(\\d{3,6})$')\n\n\ndef natural(s):\n    return [int(t) if t.isdigit() else t.lower() for t in re.split(r'(\\d+)', s or '')]\n\n\ndef run(doc, XL, OPEN, out):\n    from Autodesk.Revit.DB import (FilteredElementCollector, View, ViewSheet, ViewSchedule, ViewType, ImportInstance,\n                                   RevitLinkType, RevitLinkInstance, FamilyInstance, Family, Group, GroupType,\n                                   BuiltInCategory, BuiltInParameter, Element, ElementId, CADLinkType, Level, ViewPlan)\n    from System.Collections.Generic import HashSet\n\n    def nm(e):\n        for get in (lambda: Element.Name.GetValue(e), lambda: Element.Name.__get__(e), lambda: e.Name):\n            try:\n                n = get()\n                if n:\n                    return n\n            except Exception:\n                pass\n        return ''\n\n    def idv(eid):\n        try:\n            return eid.Value\n        except Exception:\n            return eid.IntegerValue\n\n    def cat(e):\n        return e.Category.Name if e is not None and e.Category is not None else ''\n\n    checks = []          # (name, rows(header+data), status, what to do)\n\n    # 1 warnings\n    warns = list(doc.GetWarnings())\n    by_type = {}\n    rows = [['WARNING', 'ELEMENT IDS', 'CATEGORIES']]\n    for w in warns:\n        txt = w.GetDescriptionText()\n        ids = [idv(i) for i in w.GetFailingElements()] + [idv(i) for i in w.GetAdditionalElements()]\n        cats = sorted(set(cat(doc.GetElement(x)) for x in w.GetFailingElements()))\n        rows.append([txt, ', '.join(str(i) for i in ids[:30]), ', '.join(c for c in cats if c)])\n        by_type[txt] = by_type.get(txt, 0) + 1\n    checks.append(('WARNINGS', rows, len(warns),\n                   'Fix from the top of the list: Manage > Warnings, or Manage > Select by ID with the ids'))\n    top = sorted(by_type.items(), key=lambda kv: -kv[1])[:10]\n\n    # 2 rooms\n    rows = [['ROOM NUMBER', 'ROOM NAME', 'LEVEL', 'PROBLEM', 'ID']]\n    for r in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Rooms).WhereElementIsNotElementType():\n        try:\n            area = r.Area\n        except Exception:\n            continue\n        if area > 0:\n            continue\n        num = r.get_Parameter(BuiltInParameter.ROOM_NUMBER).AsString() or ''\n        rn = r.get_Parameter(BuiltInParameter.ROOM_NAME).AsString() or ''\n        lvl = doc.GetElement(r.LevelId).Name if r.LevelId is not None and idv(r.LevelId) > 0 else ''\n        prob = 'not placed' if r.Location is None else 'not enclosed (no boundary) or redundant'\n        rows.append([num, rn, lvl, prob, str(idv(r.Id))])\n    checks.append(('ROOMS', rows, len(rows) - 1, 'Place unplaced rooms or delete them; close room boundaries'))\n\n    # 3 views not on sheets\n    placed = set()\n    sheets = list(FilteredElementCollector(doc).OfClass(ViewSheet))\n    for s in sheets:\n        placed |= set(idv(i) for i in s.GetAllPlacedViews())\n    vt_name = {}\n    for n in dir(ViewType):\n        if not n.startswith('_'):\n            try:\n                vt_name[getattr(ViewType, n)] = n\n            except Exception:\n                pass\n    skip = set(getattr(ViewType, n, None) for n in (\n        'DrawingSheet', 'ProjectBrowser', 'SystemBrowser', 'Internal', 'Undefined', 'Schedule', 'Legend', 'Report',\n        'CostReport', 'LoadsReport', 'PresureLossReport', 'PanelSchedule', 'ColumnSchedule'))\n    rows = [['VIEW NAME', 'VIEW TYPE', 'LEVEL', 'ID']]\n    for v in FilteredElementCollector(doc).OfClass(View):\n        if v.IsTemplate or v.ViewType in skip or idv(v.Id) in placed:\n            continue\n        lvl = v.GenLevel.Name if isinstance(v, ViewPlan) and v.GenLevel is not None else ''\n        rows.append([v.Name, vt_name.get(v.ViewType, ''), lvl, str(idv(v.Id))])\n    rows[1:] = sorted(rows[1:], key=lambda r: (r[1], natural(r[0])))\n    checks.append(('VIEWS NOT ON SHEETS', rows, len(rows) - 1,\n                   'Normal for working views; delete old copies, or place them with CAD2BIM_Sheets_From_Excel'))\n\n    # 4 sheets: numbering + empty sheets\n    iso_used = any(ISO_RE.match(s.SheetNumber) for s in sheets)\n    rows = [['SHEET NUMBER', 'SHEET NAME', 'PROBLEM', 'ID']]\n    for s in sorted(sheets, key=lambda s: natural(s.SheetNumber)):\n        probs = []\n        if iso_used and not ISO_RE.match(s.SheetNumber):\n            probs.append('number is not ISO 19650 (Project-Originator-Volume-Level-Type-Role-Number)')\n        if not s.IsPlaceholder and not list(s.GetAllPlacedViews()):\n            probs.append('no views on the sheet')\n        if probs:\n            rows.append([s.SheetNumber, s.Name, '; '.join(probs), str(idv(s.Id))])\n    checks.append(('SHEETS', rows, len(rows) - 1, 'Renumber / fill the sheets in CAD2BIM_Sheets_From_Excel'))\n\n    # 5 CAD\n    rows = [['CAD FILE', 'LINKED / IMPORTED', 'VIEW SPECIFIC', 'OWNER VIEW', 'ID']]\n    imp = 0\n    for c in FilteredElementCollector(doc).OfClass(ImportInstance):\n        t = doc.GetElement(c.GetTypeId())\n        linked = c.IsLinked\n        if not linked:\n            imp += 1\n        ov = doc.GetElement(c.OwnerViewId) if c.ViewSpecific else None\n        rows.append([nm(t), 'linked' if linked else 'IMPORTED', 'yes' if c.ViewSpecific else 'no', ov.Name if ov else '',\n                     str(idv(c.Id))])\n    checks.append(('CAD', rows, imp, 'Imported CAD makes the model heavy: delete it or use Link CAD instead'))\n\n    # 6 Revit links\n    rows = [['LINK', 'STATUS', 'ID']]\n    bad = 0\n    for lt in FilteredElementCollector(doc).OfClass(RevitLinkType):\n        try:\n            loaded = RevitLinkType.IsLoaded(doc, lt.Id)\n        except Exception:\n            loaded = True\n        if not loaded:\n            bad += 1\n        rows.append([nm(lt), 'loaded' if loaded else 'NOT LOADED', str(idv(lt.Id))])\n    checks.append(('LINKS', rows, bad, 'Reload or remove unloaded links (Manage > Manage Links)'))\n\n    # 7 in-place families\n    rows = [['FAMILY', 'CATEGORY', 'INSTANCES']]\n    inplace = {}\n    for f in FilteredElementCollector(doc).OfClass(Family):\n        if f.IsInPlace:\n            inplace[nm(f)] = cat(f) if f.FamilyCategory is None else f.FamilyCategory.Name\n    for k in sorted(inplace, key=natural):\n        rows.append([k, inplace[k], ''])\n    checks.append(('IN-PLACE FAMILIES', rows, len(inplace), 'Keep in-place families few - they are slow and hard to schedule'))\n\n    # 8 groups\n    rows = [['GROUP TYPE', 'INSTANCES']]\n    gcount = {}\n    for g in FilteredElementCollector(doc).OfClass(Group):\n        k = nm(doc.GetElement(g.GetTypeId()))\n        gcount[k] = gcount.get(k, 0) + 1\n    unused = 0\n    for gt in FilteredElementCollector(doc).OfClass(GroupType):\n        k = nm(gt)\n        n = gcount.get(k, 0)\n        if n == 0:\n            unused += 1\n        rows.append([k, str(n)])\n    checks.append(('GROUPS', rows, unused, 'Unused group types (0 instances) can be purged'))\n\n    # 9 purgeable (Revit 2024+)\n    rows = [['ELEMENT', 'CATEGORY / CLASS', 'ID']]\n    n_purge = 0\n    try:\n        ids = doc.GetUnusedElements(HashSet[ElementId]())\n        for i in list(ids)[:2000]:\n            e = doc.GetElement(i)\n            rows.append([nm(e), cat(e) or e.GetType().Name, str(idv(i))])\n        n_purge = ids.Count\n        checks.append(('PURGEABLE', rows, n_purge, 'Manage > Purge Unused (check the list first)'))\n    except Exception as ex:\n        checks.append(('PURGEABLE', rows + [['not available in this Revit version', '', '']], 0, 'Manage > Purge Unused'))\n\n    # 10 levels without a floor plan\n    plans = set(idv(v.GenLevel.Id) for v in FilteredElementCollector(doc).OfClass(ViewPlan)\n                if not v.IsTemplate and v.GenLevel is not None)\n    rows = [['LEVEL', 'ELEVATION (internal)', 'ID']]\n    for l in sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation):\n        if idv(l.Id) not in plans:\n            rows.append([l.Name, '%.3f' % l.Elevation, str(idv(l.Id))])\n    checks.append(('LEVELS', rows, len(rows) - 1, 'Levels with no plan view: create plans (CAD2BIM_Levels_From_Excel) or delete the level'))\n\n    # ---------------- write the report\n    size = ''\n    try:\n        if doc.PathName and os.path.exists(doc.PathName):\n            size = '%.1f MB' % (os.path.getsize(doc.PathName) / 1048576.0)\n    except Exception:\n        pass\n    n_el = FilteredElementCollector(doc).WhereElementIsNotElementType().GetElementCount()\n    summ = [[('CAD2BIM  MODEL QA CHECK  -  %s' % doc.Title, 4)],\n            [('Date: %s     File size: %s     Elements: %d     Sheets: %d' % (\n                datetime.datetime.now().strftime('%d/%m/%Y %H:%M'), size or 'not saved', n_el, len(sheets)), 5)],\n            [('CHECK', 1), ('COUNT', 1), ('STATUS', 1), ('WHAT TO DO', 1)]]\n    for name, rows, count, todo in checks:\n        status = 'OK' if count == 0 else ('INFO' if name in ('VIEWS NOT ON SHEETS', 'IN-PLACE FAMILIES', 'PURGEABLE') else 'CHECK')\n        summ.append([(name, 6), (str(count), 2), (status, 3 if status == 'OK' else 2), (todo, 5)])\n    if top:\n        summ.append([])\n        summ.append([('MOST COMMON WARNINGS', 1), ('COUNT', 1)])\n        for t, n in top:\n            summ.append([(t, 0), (str(n), 0)])\n    tabs = [('SUMMARY', _sheet_xml(summ, [70, 10, 10, 90], freeze=3))]\n    for name, rows, count, todo in checks:\n        data = [[(h, 1) for h in rows[0]]] + [[(c, 0) for c in r] for r in rows[1:]]\n        widths = [60 if i == 0 else 30 for i in range(len(rows[0]))]\n        tabs.append((name[:31], _sheet_xml(data, widths, freeze=1)))\n    xlsx_write(XL, tabs)\n\n    out.append('CAD2BIM MODEL QA CHECK  -  DONE  (the model was not changed)')\n    out.append('Report : ' + XL)\n    out.append('%-22s %6s  %s' % ('CHECK', 'COUNT', 'STATUS'))\n    for name, rows, count, todo in checks:\n        status = 'OK' if count == 0 else ('INFO' if name in ('VIEWS NOT ON SHEETS', 'IN-PLACE FAMILIES', 'PURGEABLE') else 'CHECK')\n        out.append('%-22s %6d  %s' % (name, count, status))\n    if OPEN:\n        try:\n            os.startfile(XL)\n        except Exception:\n            pass\n\n\n# ======================================================================== Dynamo entry point\ntry:\n    IN\n    _IN_DYNAMO = True\nexcept NameError:\n    _IN_DYNAMO = False\n\nif _IN_DYNAMO:\n    import clr\n    clr.AddReference('RevitAPI')\n    clr.AddReference('RevitServices')\n    from RevitServices.Persistence import DocumentManager\n\n    def file_path(x):\n        if x is None:\n            return ''\n        for a in ('FullName', 'FullPath'):\n            v = getattr(x, a, None)\n            if v:\n                return str(v)\n        s = str(x)\n        return '' if s.strip().lower() in ('', 'no file selected.', 'none', 'null') else s.strip().strip('\"')\n\n    out = []\n    doc = DocumentManager.Instance.CurrentDBDocument\n    try:\n        p = file_path(IN[0])\n        RUN, OPEN = bool(IN[1]), bool(IN[2])\n        log('--- qa started  folder \"%s\" run %s open %s' % (p, RUN, OPEN))\n        stamp = datetime.datetime.now().strftime('%Y%m%d_%H%M')\n        if p and os.path.isdir(p):\n            folder = p\n        elif p and os.path.basename(p).lower().endswith('.xlsx') and not os.path.basename(p).lower().startswith('no file'):\n            folder = os.path.dirname(p)\n        else:\n            folder = os.path.dirname(doc.PathName) if doc.PathName else os.path.join(os.environ.get('USERPROFILE', ''), 'Documents')\n        XL = os.path.join(folder, '%s_QA_%s.xlsx' % (doc.Title, stamp))\n        if RUN:\n            run(doc, XL, OPEN, out)                  # read only - no transaction\n        else:\n            out.append('RUN is off - switch it on and Run to write the QA report.')\n    except Exception as ex:\n        out.insert(0, 'FAILED: ' + str(ex))\n        log(traceback.format_exc())\n    log('\\n'.join(out))\n    OUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "309c2923834249aab68e7b7e75d2b8f5",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "78c62500e9aa4ee4bb15dab1bfa226d1",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8de3ff262095435288594983bcfe2244",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6aef527ae51744b982dcb71c363a3f3b",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9f80e8edde5e4c94b3f0db12addfbac2",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "7765f2d35d294e36b7d46cbc1c446edd",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6ba3f9cbe59244ec8c8a512ad42e0ed9",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1b39a9f3af0f49c89439903791ab7065",
+      "End": "928b2441b30344ee9a351304a8b897a5",
+      "Id": "c3801413eb4249d0bb5c4927a602dd7c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+      "End": "78c62500e9aa4ee4bb15dab1bfa226d1",
+      "Id": "4973a116fa8f4a34b3b0db8e4ed3f7cc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f805a5952b2846c5a4872752b6961cd7",
+      "End": "8de3ff262095435288594983bcfe2244",
+      "Id": "ba918d7ad4a74227b4363aace7c75272",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "541e337a1ae84661ad4e944f087fb612",
+      "End": "6aef527ae51744b982dcb71c363a3f3b",
+      "Id": "299665813d8c4fe4afc0ff705027dca1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9f80e8edde5e4c94b3f0db12addfbac2",
+      "End": "7765f2d35d294e36b7d46cbc1c446edd",
+      "Id": "c2c75f4f30e64729b467e5563d50fed5",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e2835dc20f1e422e863fde75e70e9c40",
+        "Name": "REPORT FOLDER  (Browse... any file in it - empty = next to the .rvt)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "86337e6929b34db8a0abe470f28ed0e9",
+        "Name": "File From Path (watches the Excel)",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 260.0,
+        "Y": 120.0
+      },
+      {
+        "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+        "Name": "RUN the check  (writes <project>_QA_<date>.xlsx - the model is never changed)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 330.0
+      },
+      {
+        "Id": "b925d23d7193473fad0e6b987eb78666",
+        "Name": "OPEN the report in Excel when done",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 465.0
+      },
+      {
+        "Id": "309c2923834249aab68e7b7e75d2b8f5",
+        "Name": "CAD2BIM  Model QA  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "7317c32d461d464e90a4bf6510e82655",
+        "Title": "1  REPORT FOLDER  (optional)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "e2835dc20f1e422e863fde75e70e9c40",
+          "86337e6929b34db8a0abe470f28ed0e9"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 270.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "4aca35f697274925a852834fa1caf8c7",
+        "Title": "2  OPTIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3c535e8d6607453bbb34dd05968bb1cd",
+          "b925d23d7193473fad0e6b987eb78666"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 235.0,
+        "Width": 440.0,
+        "Height": 410.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 330.0,
+        "InitialHeight": 315.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "d2bbcc620766490cb3f9683f7fb9660e",
+        "Title": "3  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "309c2923834249aab68e7b7e75d2b8f5",
+          "f858a1cd0a8f4aaf9052d486f19bcc36"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "977439cd07e542d0b3c3005b9342cc88",
+        "Title": "HOW TO USE  -  Run before every issue.  The model is only READ, never changed.\nA report <project>_QA_<date>.xlsx is written next to the .rvt: SUMMARY with OK / CHECK per item + one tab per check with the element IDs.\nFind an element: Manage > Select by ID > paste the ID.  Checks: warnings, rooms, views not on sheets, sheets, CAD imports, links, in-place families, groups, purgeable, levels.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

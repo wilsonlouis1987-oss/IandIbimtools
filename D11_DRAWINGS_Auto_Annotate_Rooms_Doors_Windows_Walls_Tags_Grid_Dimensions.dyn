@@ -1,0 +1,1153 @@
+{
+  "Uuid": "e5346042-0e7e-4a85-a35b-30d8a4f678d6",
+  "IsCustomNode": false,
+  "Description": "ANNOTATE the open plan: room tags with area, door tags D1 D2.., window tags W1 W2.., wall tags, grid-to-grid chain + overall dimensions; sections / elevations: level heads + level and grid dimensions. Missing tags are loaded. Run again = no duplicates.",
+  "Name": "D11_DRAWINGS_Auto_Annotate_Rooms_Doors_Windows_Walls_Tags_Grid_Dimensions",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "9646ebb9d62642a38cadb6a9e9eef5c3",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8d5c72280913492e9f162186778d74a1",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "6942e599bf0c4cd081111cb564548452",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7afb28a6d6a349f28169786cc1910079",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "8c36375eaeaf4bb89d90f811cbefab6e",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "912a5bd14b784976aad731f852ad0bb6",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b6988968e25f479cb9f55f0fd3dcc17e",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "61e81f830bed4e9187fd4da2ec43223f",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "c46d3db604be4685a18b1995492f11f0",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "13d1b5ed951f454c9778e2c722431703",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "33207e0484a94f0fbdcf213120f831cf",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "28c8306ebec3493a9b38cf259c605bea",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b55fa3cbd98844a8955f2a0e87f779f5",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "245994b1bbb74094b9f0094fe73c4d0d",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b571d2f96628462c9d112fc4acb1874b",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2c67b272119840f8ba469dab47453303",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "c61a2f29957245af8dfa1d9ed4b76042",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "199a71b02ee24c62b22782c98eade521",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "MARK"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "ff4e3660831548aaa5305cb62adc4492",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6a4d7d66340847b08eaeb958fbcacddb",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "D"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "9cd06722c3a14cf0b6f01749311c475e",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0c2967ae81e34556a8e784e47acb4acf",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "W"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "19b34422f66f434aa06e49ce135d1402",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "137b417742e943459007c02e5974de86",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "WT"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "15831cdbb0ae4a5182b8510c0af338b2",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2e5e6b63e4604091a5e07fa4f32d48f2",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "CURRENT"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "1d005fd81e8449848d54145882d1c588",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "27516d37bc324f87947615df80b0a27f",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "ALL"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "bbf82c64adc04c64a81b11a4bbf66d4c",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b4aeabf463904b88987f958a09db0420",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "1000"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "6d3112b14ebd46bda1948d0a85729026",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ccff1def0c2f4f159e121c29b7b632ed",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "a5fb161c40c94f0fbfdeb9193c584d3e",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3304001dfa254146a2a30c98a0dc036a",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "f32abbf83d0c4eb5adb632a72891f09a",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "20afd2f64e754696a8dc2515f4cb488c",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "84bcaac382a1455d990b55575dc395fc",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "892c93ea1333407c9c710bde98451280",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "07d07efaab664800a84d83cb33a44b43",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "dccf80dfaee94853a81db719e7c5f9ef",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  D11 AUTO ANNOTATE   (Revit 2026)   v1\n#  Open plan  -> room tags with AREA, door tags + D1 D2 D3.., window tags + W1 W2.., wall tags (+ wall Type Marks),\n#                grid-to-grid chain dimension + overall dimension (top + left of the grids)\n#  Section / elevation -> level heads both ends, level-to-level + grid-to-grid dimensions\n#  Missing tag family -> loaded from the Revit library, else copied from the Revit default template;\n#  a window tag that only shows Type Mark gets an \"SD_Window Tag_Mark\" made from the door tag.\n#  Run again = no second tag / dimension.  Everything is ONE undo (Ctrl+Z).\n#  Runs in pyRevit (IronPython 2.7) and Dynamo CPython3.\n# =====================================================================\nimport os, re, math, datetime\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *                           # noqa\nclr.AddReference('System')\nfrom System.Collections.Generic import List\n\nMMF = 1.0 / 304.8\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'D11_annotate_log.txt')\nTITLE = 'D11 Auto Annotate'\n\nDEFAULTS = {\n    'rooms': True,            # room tags with name, number, AREA\n    'doors': True,            # door tags\n    'windows': True,          # window tags\n    'walls': True,            # wall tags\n    'grids': True,            # grid-to-grid chain + overall dimension\n    'levels': True,           # sections / elevations: level heads + level dimensions\n    'number': True,           # number doors D1.. and windows W1..\n    'renumber': False,        # False = keep marks you typed (only empty / plain Revit numbers get a new number)\n    'number_by': 'MARK',      # MARK = every door its own number (Mark);  TYPE = one number per door type (Type Mark)\n    'door_prefix': 'D',\n    'window_prefix': 'W',\n    'wall_prefix': 'WT',      # empty wall Type Marks get WT1, WT2..  ('' = leave wall Type Marks alone)\n    'wall_mode': 'ALL',       # ALL = every wall longer than wall_min_mm;  TYPE = one tag per wall type in the view\n    'wall_min_mm': 1000,\n    'dim_both_sides': False,  # False = grid dims top + left;  True = also bottom + right\n    'wall_dims': True,        # outside: chain to both faces of every wall + overall, 4 sides (like a hand-drawn string)\n    'room_dims': True,        # inside every room: clear width and length between wall faces\n    'make_rooms': True,       # place rooms in closed wall areas of the plan's level that have no room (else nothing to tag)\n}\n\nCATS = {   # key: (element category, tag category, file names in the library)\n    'rooms': (BuiltInCategory.OST_Rooms, BuiltInCategory.OST_RoomTags, 'room tag'),\n    'doors': (BuiltInCategory.OST_Doors, BuiltInCategory.OST_DoorTags, 'door tag'),\n    'windows': (BuiltInCategory.OST_Windows, BuiltInCategory.OST_WindowTags, 'window tag'),\n    'walls': (BuiltInCategory.OST_Walls, BuiltInCategory.OST_WallTags, 'wall tag'),\n}\nPLAN_TYPES = ('FloorPlan', 'EngineeringPlan', 'CeilingPlan', 'AreaPlan')\nSECTION_TYPES = ('Section', 'Elevation', 'Detail')\n\n\n# ----------------------------------------------------------------- small helpers\ndef log(msg):\n    try:\n        d = os.path.dirname(LOG)\n        if not os.path.isdir(d):\n            os.makedirs(d)\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ndef tname_of(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef cat_val(bic):\n    try:\n        return int(bic)\n    except Exception:\n        return idv(ElementId(bic))\n\n\ndef pstr(e, bip):\n    try:\n        p = e.get_Parameter(bip)\n        if p is not None:\n            return p.AsString() or ''\n    except Exception:\n        pass\n    return ''\n\n\ndef ename(e):\n    for bip in (BuiltInParameter.SYMBOL_NAME_PARAM, BuiltInParameter.ALL_MODEL_TYPE_NAME):\n        v = pstr(e, bip)\n        if v:\n            return v\n    try:\n        return Element.Name.GetValue(e)\n    except Exception:\n        try:\n            return e.Name\n        except Exception:\n            return ''\n\n\ndef fname(sym):\n    for bip in (BuiltInParameter.SYMBOL_FAMILY_NAME_PARAM, BuiltInParameter.ALL_MODEL_FAMILY_NAME):\n        v = pstr(sym, bip)\n        if v:\n            return v\n    try:\n        return sym.FamilyName\n    except Exception:\n        return ''\n\n\ndef full_name(sym):\n    return '{0} : {1}'.format(fname(sym), ename(sym))\n\n\ndef vname(v):\n    try:\n        return v.Name\n    except Exception:\n        return ename(v)\n\n\ndef vtype_is(view, names):\n    try:\n        t = view.ViewType\n    except Exception:\n        return False\n    for n in names:\n        try:\n            if t == getattr(ViewType, n):\n                return True\n        except Exception:\n            pass\n    return False\n\n\ndef is_plan(view):\n    return vtype_is(view, PLAN_TYPES)\n\n\ndef is_section(view):\n    return vtype_is(view, SECTION_TYPES)\n\n\ndef set_type(el, tid):\n    try:\n        el.ChangeTypeId(tid)\n        return True\n    except Exception:\n        pass\n    try:\n        p = el.get_Parameter(BuiltInParameter.ELEM_TYPE_PARAM)\n        if p is not None and not p.IsReadOnly:\n            p.Set(tid)\n            return True\n    except Exception:\n        pass\n    return False\n\n\ndef loc_point(e):\n    try:\n        loc = e.Location\n        if loc is not None and tname_of(loc) == 'LocationPoint':\n            return loc.Point\n    except Exception:\n        pass\n    try:\n        bb = e.get_BoundingBox(None)\n        if bb is not None:\n            return bb.Min.Add(bb.Max).Multiply(0.5)\n    except Exception:\n        pass\n    return None\n\n\ndef flat(v):\n    try:\n        x = XYZ(v.X, v.Y, 0.0)\n        if x.GetLength() < 1e-9:\n            return None\n        return x.Normalize()\n    except Exception:\n        return None\n\n\ndef level_elev(doc, e):\n    for getter in (lambda: e.LevelId, lambda: e.Host.LevelId):\n        try:\n            lv = doc.GetElement(getter())\n            if lv is not None and tname_of(lv) == 'Level':\n                return lv.Elevation\n        except Exception:\n            pass\n    return 0.0\n\n\ndef in_view(doc, view, bic):\n    try:\n        return list(FilteredElementCollector(doc, view.Id).OfCategory(bic).WhereElementIsNotElementType().ToElements())\n    except Exception:\n        return []\n\n\ndef tag_symbols(doc, tagbic):\n    res = []\n    for s in FilteredElementCollector(doc).OfCategory(tagbic).WhereElementIsElementType().ToElements():\n        if tname_of(s) in ('FamilySymbol', 'RoomTagType', 'AreaTagType', 'SpaceTagType'):   # room tags = RoomTagType\n            res.append(s)\n    return res\n\n\ndef is_metric(doc):\n    try:\n        return doc.DisplayUnitSystem == DisplayUnit.METRIC\n    except Exception:\n        return True\n\n\ndef get_settings(s):\n    r = dict(DEFAULTS)\n    if s:\n        r.update(s)\n    return r\n\n\n# ----------------------------------------------------------------- 1. tag families: library, then default template\ndef library_dirs(doc):\n    dirs = []\n    try:\n        lp = doc.Application.GetLibraryPaths()\n        for k in lp.Keys:\n            dirs.append(lp[k])\n    except Exception:\n        pass\n    ver = '2026'\n    try:\n        ver = doc.Application.VersionNumber\n    except Exception:\n        pass\n    dirs.append(r'C:\\ProgramData\\Autodesk\\RVT {0}\\Libraries'.format(ver))\n    out = []\n    for d in dirs:\n        if d and os.path.isdir(d) and d not in out:\n            out.append(d)\n    return out\n\n\ndef find_library_rfa(doc, word):\n    \"\"\"Tag .rfa in the Revit library whose name contains e.g. 'door tag' (metric M_ first for metric projects).\"\"\"\n    hits = []\n    for d in library_dirs(doc):\n        for root, _dirs, files in os.walk(d):\n            for f in files:\n                fl = f.lower()\n                if fl.endswith('.rfa') and word in fl:\n                    hits.append(os.path.join(root, f))\n    if not hits:\n        return None\n    m = is_metric(doc)\n\n    def score(p):\n        b = os.path.basename(p).lower()\n        return (0 if b.startswith('m_') == m else 1, 0 if 'annotation' in p.lower() else 1, len(b))\n    return sorted(hits, key=score)[0]\n\n\ndef template_paths(doc):\n    ver = '2026'\n    try:\n        ver = doc.Application.VersionNumber\n    except Exception:\n        pass\n    base = r'C:\\ProgramData\\Autodesk\\RVT {0}\\Templates'.format(ver)\n    met = [r'English\\DefaultMetric.rte', r'Default_M_ENU.rte', r'English\\Default-Multi-Discipline_Metric.rte',\n           r'English\\DefaultGBRENU.rte', r'Default_M_ENG.rte']\n    imp = [r'English\\DefaultUS-Canada.rte', r'Default_I_ENU.rte', r'English-Imperial\\DefaultUS-Canada.rte']\n    names = met + imp if is_metric(doc) else imp + met\n    try:\n        dt = doc.Application.DefaultProjectTemplate\n        if dt:\n            names.insert(0, dt)\n    except Exception:\n        pass\n    out = []\n    for n in names:\n        p = n if os.path.isabs(n) else os.path.join(base, n)\n        if os.path.isfile(p) and p not in out:\n            out.append(p)\n    return out\n\n\n_HANDLER = None\ntry:\n    class _UseDestTypes(IDuplicateTypeNamesHandler):\n        __namespace__ = 'SD_D11_v1'\n\n        def OnDuplicateTypeNamesFound(self, args):\n            return DuplicateTypeAction.UseDestinationTypes\n    _HANDLER = _UseDestTypes()\nexcept Exception:\n    _HANDLER = None\n\n\ndef copy_from_template(doc, wants, out):\n    \"\"\"wants: list of (key, tagbic, only_area).  Opens the default template in memory (not on screen),\n    copies the tag types into this project and closes it again.\"\"\"\n    paths = template_paths(doc)\n    if not paths:\n        out.append('CHECK no Revit default template found to copy tags from')\n        return\n    app = doc.Application\n    for path in paths:\n        tdoc = None\n        try:\n            tdoc = app.NewProjectDocument(path)\n        except Exception as ex:\n            log('template {0}: {1}'.format(path, ex))\n            continue\n        try:\n            ids = List[ElementId]()\n            got = []\n            for key, tagbic, only_area in wants:\n                for s in tag_symbols(tdoc, tagbic):\n                    if only_area and 'area' not in ename(s).lower():\n                        continue\n                    ids.Add(s.Id)\n                    got.append(full_name(s))\n            if ids.Count == 0:\n                continue\n            t = Transaction(doc, 'D11 load tags from template')\n            t.Start()\n            try:\n                opts = CopyPasteOptions()\n                if _HANDLER is not None:\n                    opts.SetDuplicateTypeNamesHandler(_HANDLER)\n                ElementTransformUtils.CopyElements(tdoc, ids, doc, Transform.Identity, opts)\n                t.Commit()\n                out.append('LOADED from template {0}: {1}'.format(os.path.basename(path), ', '.join(sorted(set(got)))))\n                return\n            except Exception as ex:\n                if t.HasStarted() and not t.HasEnded():\n                    t.RollBack()\n                out.append('CHECK copy tags from {0} failed: {1}'.format(os.path.basename(path), ex))\n        finally:\n            try:\n                tdoc.Close(False)\n            except Exception:\n                pass\n    out.append('CHECK the tags could not be copied from a Revit template')\n\n\ndef ensure_tag_families(doc, s, out):\n    \"\"\"'If there is no tag, make it': load the missing tag families (library first, then the default template).\"\"\"\n    wants = []\n    for key in ('rooms', 'doors', 'windows', 'walls'):\n        if not s.get(key):\n            continue\n        _ebic, tagbic, word = CATS[key]\n        syms = tag_symbols(doc, tagbic)\n        if key == 'rooms' and syms and not any('area' in ename(x).lower() for x in syms):\n            wants.append((key, tagbic, True))            # room tag without area -> fetch the area type\n            continue\n        if syms:\n            continue\n        rfa = find_library_rfa(doc, word)\n        if rfa:\n            t = Transaction(doc, 'D11 load ' + word)\n            t.Start()\n            ok = False\n            try:\n                ok = doc.LoadFamily(rfa)\n                if isinstance(ok, tuple):\n                    ok = ok[0]\n                t.Commit()\n            except Exception as ex:\n                t.RollBack()\n                log('load {0}: {1}'.format(rfa, ex))\n            if ok and tag_symbols(doc, tagbic):\n                out.append('LOADED {0} from the library ({1})'.format(word, rfa))\n                continue\n        wants.append((key, tagbic, False))\n    if wants:\n        copy_from_template(doc, wants, out)\n    for key, tagbic, only_area in wants:\n        if not tag_symbols(doc, tagbic):\n            out.append('CHECK no {0} family found in the library or the templates - load one (Insert > Load Family)'.format(\n                CATS[key][2]))\n\n\n# ----------------------------------------------------------------- 2. which tag type: does it show Mark or Type Mark?\ndef tag_point(doc, view, e):\n    p = loc_point(e)\n    if p is not None:\n        return p\n    try:\n        c = e.Location.Curve\n        return c.Evaluate(0.5, True)\n    except Exception:\n        return XYZ(0, 0, 0)\n\n\ndef new_tag(doc, view, sym, e, pt):\n    if not sym.IsActive:\n        sym.Activate()\n    try:\n        return IndependentTag.Create(doc, sym.Id, view.Id, Reference(e), False, TagOrientation.Horizontal, pt)\n    except Exception:\n        tg = IndependentTag.Create(doc, view.Id, Reference(e), False, TagMode.TM_ADDBY_CATEGORY,\n                                   TagOrientation.Horizontal, pt)\n        set_type(tg, sym.Id)\n        return tg\n\n\ndef probe_label(doc, view, sym, e):\n    \"\"\"'MARK' / 'TYPE' / 'OTHER' - what the tag type shows. Test tag with test values, rolled back.\"\"\"\n    t = Transaction(doc, 'D11 probe')\n    t.Start()\n    txt = ''\n    try:\n        pm = e.get_Parameter(BuiltInParameter.ALL_MODEL_MARK)\n        if pm is not None and not pm.IsReadOnly:\n            pm.Set('ZQM7')\n        et = doc.GetElement(e.GetTypeId())\n        pt = et.get_Parameter(BuiltInParameter.ALL_MODEL_TYPE_MARK) if et is not None else None\n        if pt is not None and not pt.IsReadOnly:\n            pt.Set('ZQT7')\n        tg = new_tag(doc, view, sym, e, tag_point(doc, view, e))\n        doc.Regenerate()\n        txt = tg.TagText or ''\n    except Exception as ex:\n        log('probe {0}: {1}'.format(full_name(sym), ex))\n        txt = None\n    finally:\n        t.RollBack()\n    if txt is None:\n        return None\n    if 'ZQM7' in txt:\n        return 'MARK'\n    if 'ZQT7' in txt:\n        return 'TYPE'\n    return 'OTHER'\n\n\ndef first_family_symbols(syms):\n    seen, res = set(), []\n    for s in syms:\n        f = fname(s)\n        if f not in seen:\n            seen.add(f)\n            res.append(s)\n    return res\n\n\ndef make_mark_tag(doc, src_sym, target_tagbic, new_name, out):\n    \"\"\"Copy of a tag family that shows Mark (e.g. the door tag), switched to another tag category.\"\"\"\n    path = os.path.join(os.environ.get('TEMP', os.environ.get('TMP', '.')), new_name + '.rfa')\n    fdoc = None\n    try:\n        fdoc = doc.EditFamily(src_sym.Family)\n        t = Transaction(fdoc, 'D11 tag category')\n        t.Start()\n        fdoc.OwnerFamily.FamilyCategory = Category.GetCategory(fdoc, target_tagbic)\n        t.Commit()\n        so = SaveAsOptions()\n        so.OverwriteExistingFile = True\n        fdoc.SaveAs(path, so)\n    except Exception as ex:\n        out.append('CHECK could not make {0}: {1}'.format(new_name, ex))\n        return False\n    finally:\n        try:\n            if fdoc is not None:\n                fdoc.Close(False)\n        except Exception:\n            pass\n    t = Transaction(doc, 'D11 load ' + new_name)\n    t.Start()\n    try:\n        ok = doc.LoadFamily(path)\n        if isinstance(ok, tuple):\n            ok = ok[0]\n        t.Commit()\n    except Exception as ex:\n        t.RollBack()\n        out.append('CHECK could not load {0}: {1}'.format(new_name, ex))\n        return False\n    if ok:\n        out.append('MADE tag family \"{0}\" (copy of {1}, shows Mark)'.format(new_name, fname(src_sym)))\n    return bool(ok)\n\n\ndef choose_tags(doc, views, s, out):\n    \"\"\"-> {key: (symbol, shows)}  shows = MARK / TYPE / OTHER / None.\"\"\"\n    res = {}\n    plan_views = [v for v in views if is_plan(v)]\n    want = 'TYPE' if str(s['number_by']).upper().startswith('T') else 'MARK'\n    for key in ('rooms', 'doors', 'windows', 'walls'):\n        if not s.get(key):\n            continue\n        ebic, tagbic, word = CATS[key]\n        syms = tag_symbols(doc, tagbic)\n        if not syms:\n            continue\n        if key == 'rooms':\n            area = [x for x in syms if 'area' in ename(x).lower()]\n            res[key] = ((area or syms)[0], 'AREA' if area else 'OTHER')\n            if not area:\n                out.append('CHECK no room tag type with area - rooms tagged with \"{0}\" (no area shown)'.format(full_name(syms[0])))\n            continue\n        sample, sview = None, None\n        for v in plan_views:\n            els = in_view(doc, v, ebic)\n            if els:\n                sample, sview = els[0], v\n                break\n        if sample is None:\n            res[key] = (syms[0], None)\n            continue\n        shows = [(x, probe_label(doc, sview, x, sample)) for x in first_family_symbols(syms)]\n        log('{0} tags: {1}'.format(key, [(full_name(x), w) for x, w in shows]))\n        target = 'TYPE' if key == 'walls' else want\n        pick = next(((x, w) for x, w in shows if w == target), None)\n        if pick is None and key == 'windows' and target == 'MARK':\n            # the window tag shows Type Mark only -> make one from a tag that shows Mark (the door tag)\n            src = None\n            door, dview = None, None\n            for v in plan_views:\n                els = in_view(doc, v, BuiltInCategory.OST_Doors)\n                if els:\n                    door, dview = els[0], v\n                    break\n            for d in first_family_symbols(tag_symbols(doc, BuiltInCategory.OST_DoorTags)):\n                if door is not None and probe_label(doc, dview, d, door) == 'MARK':\n                    src = d\n                    break\n            if src is not None and make_mark_tag(doc, src, tagbic, 'SD_Window Tag_Mark', out):\n                for x in first_family_symbols(tag_symbols(doc, tagbic)):\n                    if fname(x) == 'SD_Window Tag_Mark':\n                        w = probe_label(doc, sview, x, sample)\n                        if w == 'MARK':\n                            pick = (x, w)\n                        break\n        if pick is None:\n            pick = shows[0]\n        res[key] = pick\n    return res\n\n\n# ----------------------------------------------------------------- 3. numbering D1.. W1..\ndef sort_key(doc, e):\n    p = loc_point(e) or XYZ(0, 0, 0)\n    band = 2000 * MMF\n    return (round(level_elev(doc, e), 3), -int(math.floor(p.Y / band + 0.5)), round(p.X, 3), idv(e.Id))\n\n\ndef _next_free(used, n):\n    while n in used:\n        n += 1\n    return n\n\n\ndef number_instances(doc, bic, prefix, renumber):\n    els = [e for e in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType().ToElements()\n           if tname_of(e) == 'FamilyInstance']\n    els.sort(key=lambda e: sort_key(doc, e))\n    pat = re.compile(r'^' + re.escape(prefix) + r'(\\d+)$', re.I)\n    used, todo, kept = set(), [], 0\n    for e in els:\n        m = pstr(e, BuiltInParameter.ALL_MODEL_MARK).strip()\n        if renumber or not m or m.isdigit():\n            todo.append(e)\n        else:\n            kept += 1\n            mm = pat.match(m)\n            if mm:\n                used.add(int(mm.group(1)))\n    n, done, failed, first, last = 1, 0, 0, None, None\n    for e in todo:\n        n = _next_free(used, n)\n        val = prefix + str(n)\n        try:\n            p = e.get_Parameter(BuiltInParameter.ALL_MODEL_MARK)\n            if p is None or p.IsReadOnly:\n                raise Exception('read only')\n            if (p.AsString() or '') != val:\n                p.Set(val)\n            done += 1\n            used.add(n)\n            first = first or val\n            last = val\n            n += 1\n        except Exception:\n            failed += 1\n    return {'total': len(els), 'numbered': done, 'kept': kept, 'failed': failed, 'first': first, 'last': last}\n\n\ndef number_types(doc, bic, prefix, renumber, types=None):\n    \"\"\"One number per TYPE (Type Mark), types sorted by width, height, name.\"\"\"\n    if types is None:\n        tids = {}\n        for e in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType().ToElements():\n            try:\n                tids[idv(e.GetTypeId())] = e.GetTypeId()\n            except Exception:\n                pass\n        types = [doc.GetElement(t) for t in tids.values()]\n    types = [t for t in types if t is not None]\n\n    def size(t):\n        vals = []\n        for bip in (BuiltInParameter.WALL_ATTR_WIDTH_PARAM, BuiltInParameter.DOOR_WIDTH, BuiltInParameter.WINDOW_WIDTH,\n                    BuiltInParameter.FAMILY_WIDTH_PARAM, BuiltInParameter.DOOR_HEIGHT, BuiltInParameter.WINDOW_HEIGHT,\n                    BuiltInParameter.FAMILY_HEIGHT_PARAM):\n            try:\n                p = t.get_Parameter(bip)\n                if p is not None and p.HasValue:\n                    vals.append(round(p.AsDouble(), 4))\n            except Exception:\n                pass\n        return (vals[:2] + [0, 0])[:2] + [fname(t) if tname_of(t) == 'FamilySymbol' else '', ename(t)]\n    types.sort(key=size)\n    pat = re.compile(r'^' + re.escape(prefix) + r'(\\d+)$', re.I)\n    used, todo, kept = set(), [], 0\n    for t in types:\n        m = pstr(t, BuiltInParameter.ALL_MODEL_TYPE_MARK).strip()\n        if renumber or not m or m.isdigit():\n            todo.append(t)\n        else:\n            kept += 1\n            mm = pat.match(m)\n            if mm:\n                used.add(int(mm.group(1)))\n    n, done, first, last = 1, 0, None, None\n    for t in todo:\n        n = _next_free(used, n)\n        val = prefix + str(n)\n        try:\n            p = t.get_Parameter(BuiltInParameter.ALL_MODEL_TYPE_MARK)\n            if p is not None and not p.IsReadOnly:\n                if (p.AsString() or '') != val:\n                    p.Set(val)\n                done += 1\n                used.add(n)\n                first = first or val\n                last = val\n                n += 1\n        except Exception:\n            pass\n    return {'total': len(types), 'numbered': done, 'kept': kept, 'failed': 0, 'first': first, 'last': last}\n\n\ndef num_line(label, r, what):\n    if r['numbered'] == 0:\n        return '{0}: {1} {2}, all kept ({3} with your own mark)'.format(label, r['total'], what, r['kept'])\n    return '{0}: {1} {2} numbered {3}..{4}{5}{6}'.format(\n        label, r['numbered'], what, r['first'], r['last'],\n        ', {0} kept'.format(r['kept']) if r['kept'] else '',\n        ', {0} FAILED (in a group / read only)'.format(r['failed']) if r['failed'] else '')\n\n\n# ----------------------------------------------------------------- 4. tags in a view\ndef tagged_ids(doc, view, tagbic):\n    want = (cat_val(tagbic), cat_val(BuiltInCategory.OST_MultiCategoryTags))\n    res = set()\n    for t in FilteredElementCollector(doc, view.Id).OfClass(IndependentTag).ToElements():\n        try:\n            if t.Category is None or idv(t.Category.Id) not in want:\n                continue\n        except Exception:\n            continue\n        ids = []\n        try:\n            ids = list(t.GetTaggedLocalElementIds())\n        except Exception:\n            try:\n                ids = [t.TaggedLocalElementId]\n            except Exception:\n                pass\n        for i in ids:\n            res.add(idv(i))\n    return res\n\n\ndef room_point(r):\n    \"\"\"Point inside the room, as close as possible to the middle of its box (not on a wall).\"\"\"\n    p = loc_point(r)\n    try:\n        bb = r.get_BoundingBox(None)\n        z = (p.Z if p is not None else bb.Min.Z) + 0.5\n        cx, cy = (bb.Min.X + bb.Max.X) / 2.0, (bb.Min.Y + bb.Max.Y) / 2.0\n        dx, dy = (bb.Max.X - bb.Min.X), (bb.Max.Y - bb.Min.Y)\n        best, bd = None, 1e18\n        n = 8\n        for i in range(n + 1):\n            for j in range(n + 1):\n                x = bb.Min.X + dx * (0.08 + 0.84 * i / float(n))\n                y = bb.Min.Y + dy * (0.08 + 0.84 * j / float(n))\n                d = (x - cx) ** 2 + (y - cy) ** 2\n                if d < bd and r.IsPointInRoom(XYZ(x, y, z)):\n                    # keep clear of walls: all 4 neighbours 600 mm away must be in the room too\n                    m = 600 * MMF\n                    if all(r.IsPointInRoom(XYZ(x + ox, y + oy, z)) for ox, oy in ((m, 0), (-m, 0), (0, m), (0, -m))):\n                        best, bd = XYZ(x, y, z - 0.5), d\n        if best is not None:\n            return best\n    except Exception:\n        pass\n    return p\n\n\ndef tag_rooms(doc, view, sym, out, fresh=None):\n    have = set()\n    retyped = 0\n    fresh = fresh or set()\n    new_auto = 0\n    area_ok = sym is not None and 'area' in ename(sym).lower()\n    for t in in_view(doc, view, BuiltInCategory.OST_RoomTags):\n        for getter in (lambda: t.Room.Id, lambda: t.TaggedLocalRoomId):\n            try:\n                have.add(idv(getter()))\n                break\n            except Exception:\n                pass\n        if idv(t.Id) in fresh:\n            new_auto += 1\n            continue\n        try:   # existing room tag without area -> the area tag type (no second tag)\n            tt = doc.GetElement(t.GetTypeId())\n            if area_ok and tt is not None and 'area' not in ename(tt).lower():\n                if not sym.IsActive:\n                    sym.Activate()\n                if set_type(t, sym.Id):\n                    retyped += 1\n        except Exception:\n            pass\n    made = skip = bad = 0\n    for r in in_view(doc, view, BuiltInCategory.OST_Rooms):\n        try:\n            if r.Area <= 1e-6:\n                bad += 1\n                continue\n        except Exception:\n            continue\n        if idv(r.Id) in have:\n            skip += 1\n            continue\n        p = room_point(r)\n        try:\n            tg = doc.Create.NewRoomTag(LinkElementId(r.Id), UV(p.X, p.Y), view.Id)\n            if tg is not None and sym is not None:\n                if not sym.IsActive:\n                    sym.Activate()\n                if idv(tg.GetTypeId()) != idv(sym.Id):\n                    set_type(tg, sym.Id)\n            made += 1\n        except Exception as ex:\n            bad += 1\n            log('room tag {0}: {1}'.format(idv(r.Id), ex))\n    made += new_auto\n    skip -= new_auto\n    out.append('  Rooms: {0} tagged (name, number, area){1}{2}{3}'.format(made, ', {0} already tagged'.format(skip) if skip else '',\n                                                     ', {0} tags switched to the AREA type'.format(retyped) if retyped else '',\n                                                     ', {0} not placed / not enclosed'.format(bad) if bad else ''))\n    return made\n\n\ndef room_at(doc, view, p):\n    try:\n        z = view.GenLevel.Elevation + 3.0\n    except Exception:\n        z = p.Z + 3.0\n    try:\n        return doc.GetRoomAtPoint(XYZ(p.X, p.Y, z))\n    except Exception:\n        return None\n\n\ndef hosted_side(doc, view, e, p, f, dist, key):\n    \"\"\"Unit vector: doors -> the side the swing is drawn on;  windows -> the outside (side without a room).\"\"\"\n    neg = f.Negate()\n    if key == 'doors':\n        try:\n            bb = e.get_BoundingBox(view)\n            c = bb.Min.Add(bb.Max).Multiply(0.5)\n            d = XYZ(c.X - p.X, c.Y - p.Y, 0).DotProduct(f)\n            if abs(d) > 0.05:\n                return f if d > 0 else neg\n        except Exception:\n            pass\n    ra = room_at(doc, view, p.Add(f.Multiply(dist)))\n    rb = room_at(doc, view, p.Add(neg.Multiply(dist)))\n    if (ra is None) != (rb is None):\n        outside = f if ra is None else neg\n        return outside if key == 'windows' else outside.Negate()\n    try:\n        o = flat(e.Host.Orientation)                   # wall exterior side\n        if o is not None:\n            return o if key == 'windows' else o.Negate()\n    except Exception:\n        pass\n    return f\n\n\ndef tag_hosted(doc, view, key, sym, out):\n    ebic, tagbic, word = CATS[key]\n    have = tagged_ids(doc, view, tagbic)\n    k = view.Scale * MMF\n    made = skip = bad = 0\n    for e in in_view(doc, view, ebic):\n        if tname_of(e) != 'FamilyInstance':\n            continue\n        if idv(e.Id) in have:\n            skip += 1\n            continue\n        p = loc_point(e)\n        if p is None:\n            bad += 1\n            continue\n        half = 0.0\n        try:\n            half = e.Host.Width / 2.0\n        except Exception:\n            pass\n        f = None\n        try:\n            f = flat(e.FacingOrientation)\n        except Exception:\n            pass\n        if f is not None:\n            side = hosted_side(doc, view, e, p, f, half + 4.0 * k, key)\n            p = p.Add(side.Multiply(half + (5.0 if key == 'doors' else 4.0) * k))\n        try:\n            new_tag(doc, view, sym, e, p)\n            made += 1\n        except Exception as ex:\n            bad += 1\n            log('{0} tag {1}: {2}'.format(key, idv(e.Id), ex))\n    out.append('  {0}: {1} tagged{2}{3}'.format(key.capitalize(), made,\n                                                ', {0} already tagged'.format(skip) if skip else '',\n                                                ', {0} FAILED'.format(bad) if bad else ''))\n    return made\n\n\ndef wall_tag_point(doc, w, k, view=None):\n    c = w.Location.Curve\n    inserts = []\n    try:\n        for i in w.FindInserts(True, False, False, False):\n            p = loc_point(doc.GetElement(i))\n            if p is not None:\n                inserts.append(p)\n    except Exception:\n        pass\n    best, bestd = 0.5, -1.0\n    for t in (0.5, 0.35, 0.65, 0.25, 0.75, 0.15, 0.85):\n        p = c.Evaluate(t, True)\n        d = min([XYZ(p.X - q.X, p.Y - q.Y, 0).GetLength() for q in inserts]) if inserts else 1e9\n        if d > bestd + 1e-6:\n            best, bestd = t, d\n        if d > 1500 * MMF:\n            break\n    p = c.Evaluate(best, True)\n    try:\n        der = c.ComputeDerivatives(best, True).BasisX\n        n = flat(XYZ(-der.Y, der.X, 0))\n    except Exception:\n        n = None\n    try:\n        o = flat(w.Orientation)\n        if n is not None and o is not None and n.DotProduct(o) > 0:\n            n = n.Negate()                          # tag on the inner side\n    except Exception:\n        pass\n    if n is not None and view is not None:          # outer wall: tag on the side with the room\n        d = w.Width / 2.0 + 3.5 * k\n        ra, rb = room_at(doc, view, p.Add(n.Multiply(d))), room_at(doc, view, p.Add(n.Negate().Multiply(d)))\n        if ra is None and rb is not None:\n            n = n.Negate()\n    if n is not None:\n        p = p.Add(n.Multiply(w.Width / 2.0 + 3.5 * k))\n    return p\n\n\ndef tag_walls(doc, view, sym, s, out):\n    ebic, tagbic, word = CATS['walls']\n    have = tagged_ids(doc, view, tagbic)\n    k = view.Scale * MMF\n    minlen = float(s.get('wall_min_mm') or 0) * MMF\n    walls = []\n    for w in in_view(doc, view, ebic):\n        if tname_of(w) != 'Wall':\n            continue\n        try:\n            c = w.Location.Curve\n            if c.Length < minlen:\n                continue\n        except Exception:\n            continue\n        walls.append(w)\n    per_type = str(s.get('wall_mode', 'ALL')).upper().startswith('T')\n    if per_type:\n        tagged_types = set(idv(w.GetTypeId()) for w in walls if idv(w.Id) in have)\n        best = {}\n        for w in walls:\n            t = idv(w.GetTypeId())\n            if t in tagged_types:\n                continue\n            if t not in best or w.Location.Curve.Length > best[t].Location.Curve.Length:\n                best[t] = w\n        todo = list(best.values())\n        skip = len(tagged_types)\n    else:\n        todo = [w for w in walls if idv(w.Id) not in have]\n        skip = len(walls) - len(todo)\n    made = bad = 0\n    for w in todo:\n        try:\n            new_tag(doc, view, sym, w, wall_tag_point(doc, w, k, view))\n            made += 1\n        except Exception as ex:\n            bad += 1\n            log('wall tag {0}: {1}'.format(idv(w.Id), ex))\n    out.append('  Walls: {0} tagged{1}{2}{3}'.format(made, ' (one per wall type)' if per_type else '',\n                                                     ', {0} already tagged'.format(skip) if skip else '',\n                                                     ', {0} FAILED'.format(bad) if bad else ''))\n    return made\n\n\n# ----------------------------------------------------------------- 5. grid / level dimensions\ndef _v2(view):\n    return view.Origin, view.RightDirection, view.UpDirection\n\n\ndef _to2(p, O, R, U):\n    d = p.Subtract(O)\n    return (d.DotProduct(R), d.DotProduct(U))\n\n\ndef _to3(x, y, O, R, U):\n    return O.Add(R.Multiply(x)).Add(U.Multiply(y))\n\n\ndef datum_items(doc, view, elems):\n    O, R, U = _v2(view)\n    res = []\n    for d in elems:\n        c = None\n        try:\n            cs = d.GetCurvesInView(DatumExtentType.ViewSpecific, view)\n            cs = list(cs) if cs is not None else []        # CPython3 hands IList over as a list\n            if cs:\n                c = cs[0]\n        except Exception:\n            pass\n        if c is None:\n            try:\n                c = d.Curve\n            except Exception:\n                c = None\n        if c is None or tname_of(c) != 'Line':\n            continue\n        a = _to2(c.GetEndPoint(0), O, R, U)\n        b = _to2(c.GetEndPoint(1), O, R, U)\n        if math.hypot(b[0] - a[0], b[1] - a[1]) < 1e-6:\n            continue\n        res.append((d, a, b))\n    return res\n\n\ndef group_parallel(items):\n    groups = []                                   # [ [ux, uy], [(d, a, b)] ]\n    for d, a, b in items:\n        dx, dy = b[0] - a[0], b[1] - a[1]\n        L = math.hypot(dx, dy)\n        ux, uy = dx / L, dy / L\n        if abs(uy) > abs(ux):\n            if uy < 0:\n                ux, uy = -ux, -uy\n        elif ux < 0:\n            ux, uy = -ux, -uy\n        for g in groups:\n            if abs(g[0][0] * uy - g[0][1] * ux) < 0.02 and g[0][0] * ux + g[0][1] * uy > 0:\n                g[1].append((d, a, b))\n                break\n        else:\n            groups.append([[ux, uy], [(d, a, b)]])\n    return groups\n\n\ndef existing_dims(doc, view):\n    O, R, U = _v2(view)\n    res = []\n    for dm in FilteredElementCollector(doc, view.Id).OfClass(Dimension).ToElements():\n        if 'Spot' in tname_of(dm):                         # Revit 2021+: LinearDimension, AngularDimension..\n            continue\n        try:\n            ids = set(idv(r.ElementId) for r in dm.References)\n        except Exception:\n            continue\n        pos = None\n        try:\n            pos = _to2(dm.Origin, O, R, U)                 # single segment\n        except Exception:\n            try:\n                pos = _to2(dm.Segments.get_Item(0).Origin, O, R, U)    # chain: a point on the dimension line\n            except Exception:\n                try:\n                    for sg in dm.Segments:\n                        pos = _to2(sg.Origin, O, R, U)\n                        break\n                except Exception as ex:\n                    log('dim {0} position: {1}'.format(idv(dm.Id), ex))\n        res.append((dm, ids, pos))\n    return res\n\n\ndef dim_ref(d):\n    try:\n        return Reference(d)\n    except Exception:\n        return d.GetPlaneReference()\n\n\ndef dimension_group(doc, view, g, both, existing, out, label, bext=None, dtype=None):\n    (ux, uy), items = g\n    nx, ny = -uy, ux\n    rows = []\n    for d, a, b in items:\n        pos = a[0] * nx + a[1] * ny\n        e0, e1 = a[0] * ux + a[1] * uy, b[0] * ux + b[1] * uy\n        rows.append((pos, d, min(e0, e1), max(e0, e1)))\n    rows.sort(key=lambda r: r[0])\n    clean = []\n    for r in rows:\n        if clean and abs(r[0] - clean[-1][0]) < 1.0 * MMF:\n            continue                               # two datums on the same line\n        clean.append(r)\n    if len(clean) < 2:\n        return 0, 0\n    O, R, U = _v2(view)\n    k = view.Scale * MMF\n    vertical = abs(uy) > abs(ux)\n    lo = min(r[2] for r in clean)\n    hi = max(r[3] for r in clean)\n    mid = (lo + hi) / 2.0\n    # plan: vertical grids -> top, horizontal grids -> left;  section: grids -> bottom (below level 1), levels -> left\n    first = 'lo' if (not vertical or is_section(view)) else 'hi'\n    sides = [first]\n    if both:\n        sides.append('hi' if first == 'lo' else 'lo')\n    all_ids = set(idv(r[1].Id) for r in clean)\n    chain_ids = set(all_ids)\n    over_ids = set([idv(clean[0][1].Id), idv(clean[-1][1].Id)])\n    made = skipped = 0\n    to_delete = []\n    for side in sides:\n        sign = -1.0 if side == 'hi' else 1.0\n        end = hi if side == 'hi' else lo\n        c_at, o_at = end + sign * 14.0 * k, end + sign * 7.0 * k\n        if bext is not None:                       # keep grid dims outside the wall dimension strings\n            corners = [(bext[0], bext[1]), (bext[0], bext[3]), (bext[2], bext[1]), (bext[2], bext[3])]\n            along_b = [x * ux + y * uy for x, y in corners]\n            if side == 'hi':\n                c_at = max(c_at, max(along_b) + 30.0 * k)\n                o_at = c_at + 7.0 * k\n            else:\n                c_at = min(c_at, min(along_b) - 30.0 * k)\n                o_at = c_at - 7.0 * k\n        wanted = [('chain', chain_ids, c_at, [r[1] for r in clean])]\n        if len(clean) > 2:\n            wanted.append(('overall', over_ids, o_at, [clean[0][1], clean[-1][1]]))\n        for kind, ids, s_at, datums in wanted:\n            found = False\n            for dm, dids, pos in existing:\n                if pos is None:\n                    continue\n                along = pos[0] * ux + pos[1] * uy\n                on_side = (along > mid) if side == 'hi' else (along <= mid)\n                if not on_side:\n                    continue\n                if dids == ids:\n                    found = True\n                    if bext is not None and abs(along - s_at) > 2.0 * k:    # our older grid dim -> move it out\n                        try:\n                            d2 = s_at - along\n                            ElementTransformUtils.MoveElement(doc, dm.Id, R.Multiply(ux * d2).Add(U.Multiply(uy * d2)))\n                        except Exception:\n                            pass\n                elif (kind == 'chain' and len(dids) >= 3 and dids < all_ids and abs(along - s_at) < 20.0 * k):\n                    to_delete.append(dm)            # older chain from before a grid was added\n            if found:\n                skipped += 1\n                continue\n            ra = ReferenceArray()\n            for d in datums:\n                ra.Append(dim_ref(d))\n            n0, n1 = clean[0][0], clean[-1][0]\n            p0 = _to3(ux * s_at + nx * n0, uy * s_at + ny * n0, O, R, U)\n            p1 = _to3(ux * s_at + nx * n1, uy * s_at + ny * n1, O, R, U)\n            try:\n                new_dim(doc, view, Line.CreateBound(p0, p1), ra, dtype)\n                made += 1\n            except Exception as ex:\n                out.append('  CHECK {0} {1} dimension failed: {2}'.format(label, kind, ex))\n    for dm in to_delete:\n        try:\n            doc.Delete(dm.Id)\n        except Exception:\n            pass\n    return made, skipped\n\n\ndef dimension_datums(doc, view, s, out):\n    items = []\n    grids = [g for g in FilteredElementCollector(doc, view.Id).OfClass(Grid).ToElements()]\n    items += [('grid', x) for x in datum_items(doc, view, grids)]\n    if is_section(view) and s.get('levels'):\n        lv = [l for l in FilteredElementCollector(doc, view.Id).OfClass(Level).ToElements()]\n        items += [('level', x) for x in datum_items(doc, view, lv)]\n    existing = existing_dims(doc, view)\n    dtype = user_dim_type(doc, view)\n    bext = None\n    if is_plan(view) and s.get('wall_dims'):\n        segs = wall_segments(doc, view)\n        if segs:\n            bext = building_ext(segs)\n    made = skipped = 0\n    for kind in ('grid', 'level'):\n        for g in group_parallel([x for k2, x in items if k2 == kind]):\n            m, sk = dimension_group(doc, view, g, bool(s.get('dim_both_sides')), existing, out, kind,\n                                    bext if kind == 'grid' else None, dtype)\n            made += m\n            skipped += sk\n    ng = len([1 for k2, x in items if k2 == 'grid'])\n    nl = len([1 for k2, x in items if k2 == 'level'])\n    out.append('  Dimensions: {0} made ({1} grids{2}){3}'.format(\n        made, ng, ', {0} levels'.format(nl) if nl else '', ', {0} already there'.format(skipped) if skipped else ''))\n    return made\n\n\n# ----------------------------------------------------------------- 5b. wall + room dimensions (plan)\ndef new_dim(doc, view, line, ra, dtype=None):\n    if dtype is not None:\n        try:\n            return doc.Create.NewDimension(view, line, ra, dtype)\n        except Exception:\n            pass\n    return doc.Create.NewDimension(view, line, ra)\n\n\ndef user_dim_type(doc, view):\n    \"\"\"The linear dimension type already used in this view (most common), else None = Revit default.\"\"\"\n    count, first = {}, {}\n    for dm in FilteredElementCollector(doc, view.Id).OfClass(Dimension).ToElements():\n        if tname_of(dm) != 'LinearDimension':\n            continue\n        try:\n            t = idv(dm.GetTypeId())\n            count[t] = count.get(t, 0) + 1\n            first.setdefault(t, dm.GetTypeId())\n        except Exception:\n            pass\n    if not count:\n        return None\n    best = max(count.items(), key=lambda kv: kv[1])[0]\n    return doc.GetElement(first[best])\n\n\ndef stable(doc, ref):\n    try:\n        return ref.ConvertToStableRepresentation(doc)\n    except Exception:\n        return str(idv(ref.ElementId))\n\n\ndef dim_ref_sets(doc, view):\n    res = []\n    for dm in FilteredElementCollector(doc, view.Id).OfClass(Dimension).ToElements():\n        if 'Spot' in tname_of(dm):\n            continue\n        try:\n            res.append(frozenset(stable(doc, r) for r in dm.References))\n        except Exception:\n            pass\n    return res\n\n\ndef outside_dims(doc, view):\n    \"\"\"Linear dims in the view: (number of references, unit direction 2D, a point on the line 2D).\"\"\"\n    O, R, U = _v2(view)\n    res = []\n    for dm in FilteredElementCollector(doc, view.Id).OfClass(Dimension).ToElements():\n        if tname_of(dm) != 'LinearDimension':\n            continue\n        try:\n            kinds = set(tname_of(doc.GetElement(r.ElementId)) for r in dm.References)\n            if kinds and kinds <= set(['Grid', 'Level', 'ReferencePlane']):\n                continue                                   # grid / level strings are not wall strings\n            n = dm.References.Size\n            d3 = dm.Curve.Direction\n            d2 = (d3.DotProduct(R), d3.DotProduct(U))\n            pts = []                                 # both ends of every segment, along the dimension line\n            nseg = 0\n            try:\n                nseg = dm.NumberOfSegments\n            except Exception:\n                pass\n            if nseg > 1:\n                for sg in dm.Segments:\n                    v = sg.Value or 0.0\n                    pts += [sg.Origin.Subtract(d3.Multiply(v / 2.0)), sg.Origin.Add(d3.Multiply(v / 2.0))]\n            else:\n                p = dm.Origin\n                v = dm.Value or 0.0\n                pts = [p.Subtract(d3.Multiply(v / 2.0)), p.Add(d3.Multiply(v / 2.0))]\n            if not pts:\n                continue\n            p2s = [_to2(q, O, R, U) for q in pts]\n            res.append((n, d2, p2s))\n        except Exception:\n            pass\n    return res\n\n\ndef wall_faces(doc, view, w):\n    \"\"\"[(ref, (x, y) point in view 2D, (nx, ny) normal)] for the two side faces of a straight wall.\"\"\"\n    O, R, U = _v2(view)\n    res = []\n    for shell in (ShellLayerType.Exterior, ShellLayerType.Interior):\n        try:\n            refs = list(HostObjectUtils.GetSideFaces(w, shell))\n        except Exception:\n            refs = []\n        for ref in refs[:1]:\n            try:\n                f = w.GetGeometryObjectFromReference(ref)\n                bb = f.GetBoundingBox()\n                uv = UV((bb.Min.U + bb.Max.U) / 2.0, (bb.Min.V + bb.Max.V) / 2.0)\n                p = f.Evaluate(uv)\n                n = f.ComputeNormal(uv)\n                res.append((ref, _to2(p, O, R, U), (n.DotProduct(R), n.DotProduct(U))))\n            except Exception as ex:\n                log('wall face {0}: {1}'.format(idv(w.Id), ex))\n    return res\n\n\ndef wall_segments(doc, view):\n    \"\"\"Straight walls of the plan: dict(w, a, b (view 2D), d (unit dir), wd (width)).\"\"\"\n    O, R, U = _v2(view)\n    segs = []\n    for w in in_view(doc, view, BuiltInCategory.OST_Walls):\n        if tname_of(w) != 'Wall':\n            continue\n        try:\n            c = w.Location.Curve\n            if tname_of(c) != 'Line':\n                continue\n            a, b = _to2(c.GetEndPoint(0), O, R, U), _to2(c.GetEndPoint(1), O, R, U)\n            L = math.hypot(b[0] - a[0], b[1] - a[1])\n            if L < 1e-6:\n                continue\n            segs.append({'w': w, 'a': a, 'b': b, 'd': ((b[0] - a[0]) / L, (b[1] - a[1]) / L), 'wd': w.Width})\n        except Exception:\n            pass\n    return segs\n\n\ndef building_ext(segs):\n    xs = [p[0] for g in segs for p in (g['a'], g['b'])]\n    ys = [p[1] for g in segs for p in (g['a'], g['b'])]\n    t = max(g['wd'] for g in segs) / 2.0\n    return (min(xs) - t, min(ys) - t, max(xs) + t, max(ys) + t)\n\n\ndef _cross_at(g, m, pos):\n    \"\"\"Where wall g crosses the line coord[m] = pos -> the other coordinate, or None.\"\"\"\n    a, b = g['a'], g['b']\n    o = 1 - m\n    if (a[m] - pos) * (b[m] - pos) > 0 or abs(b[m] - a[m]) < 1e-9:\n        return None\n    return a[o] + (pos - a[m]) * (b[o] - a[o]) / (b[m] - a[m])\n\n\ndef wall_dims(doc, view, s, out, dtype=None):\n    \"\"\"Outside strings like a hand-drawn one, on EVERY face of the outline (stepped buildings too):\n    chain to both faces of each wall that reaches that face + overall.  A string you drew yourself is kept.\"\"\"\n    segs = wall_segments(doc, view)\n    if not segs:\n        out.append('  Wall dimensions: no straight walls in this plan')\n        return 0\n    O, R, U = _v2(view)\n    k = view.Scale * MMF\n    ext = building_ext(segs)\n    wmax = max(g['wd'] for g in segs)\n    tol = 1.5 * wmax + 50 * MMF\n    step_tol = 2000 * MMF                         # faces closer than 2 m = one face (slanted walls, small recesses)\n    have = dim_ref_sets(doc, view)\n    drawn = outside_dims(doc, view)\n    faces_cache = {}\n    made = skipped = strings = 0\n\n    def faces_of(g, m):\n        key = idv(g['w'].Id)\n        if key not in faces_cache:\n            faces_cache[key] = wall_faces(doc, view, g['w'])\n        return [(p2[m], ref) for ref, p2, n2 in faces_cache[key] if abs(n2[m]) > 0.996]\n\n    # (side, measured axis m, sign): bottom / top measure x, left / right measure y\n    for name, m, sign in (('bottom', 0, -1), ('top', 0, 1), ('left', 1, -1), ('right', 1, 1)):\n        o = 1 - m\n        square = [g for g in segs if abs(g['d'][m]) <= 0.087]          # walls square to this side\n        exposed = []\n        for g in square:\n            end = max(g['a'][o], g['b'][o]) if sign > 0 else min(g['a'][o], g['b'][o])\n            pos = (g['a'][m] + g['b'][m]) / 2.0\n            blocked = False\n            for q in segs:\n                if q is g:\n                    continue\n                t = _cross_at(q, m, pos)\n                if t is not None and sign * (t - end) > tol:\n                    blocked = True                  # another wall further out on this side\n                    break\n            if not blocked:\n                exposed.append((end, g))\n        # one string per face of the outline: group the exposed walls by how far out they end\n        exposed.sort(key=lambda x: -sign * x[0])\n        faces_out = []\n        for end, g in exposed:\n            if faces_out and sign * (faces_out[-1][0] - end) <= step_tol:\n                faces_out[-1][1].append(g)\n            else:\n                faces_out.append([end, [g]])\n        for top_end, group in faces_out:\n            edge = top_end + sign * wmax / 2.0\n            members = list(group)\n            # corner walls: the nearest square wall on each end that runs through this face line (closes the step)\n            gpos = [(g['a'][m] + g['b'][m]) / 2.0 for g in group]\n            lo_p, hi_p = min(gpos), max(gpos)\n            left = right = None\n            for g in square:\n                if g in members:\n                    continue\n                lo_o, hi_o = min(g['a'][o], g['b'][o]), max(g['a'][o], g['b'][o])\n                if not (lo_o - 1e-6 <= edge <= hi_o + 1e-6):\n                    continue\n                p = (g['a'][m] + g['b'][m]) / 2.0\n                if p < lo_p and (left is None or p > left[0]):\n                    left = (p, g)\n                if p > hi_p and (right is None or p < right[0]):\n                    right = (p, g)\n            for c in (left, right):\n                if c is not None:\n                    members.append(c[1])\n            rows = []\n            for g in members:\n                rows += faces_of(g, m)\n            rows.sort(key=lambda r: r[0])\n            clean = []\n            for r in rows:\n                if clean and abs(r[0] - clean[-1][0]) < 1.0 * MMF:\n                    continue\n                clean.append(r)\n            if len(clean) < 2:\n                continue\n            span_lo, span_hi = clean[0][0], clean[-1][0]\n            strings += 1\n            # strings already drawn outside this face (yours or ours) over the same stretch: keep them\n            near = [n for n, d2, p2s in drawn if abs(d2[m]) > 0.996\n                    and 0 < sign * (p2s[0][o] - edge) < 60.0 * k\n                    and min(q[m] for q in p2s) < span_hi - 0.5 and max(q[m] for q in p2s) > span_lo + 0.5]\n            has_chain = any(n >= 3 for n in near)\n            has_over = any(n == 2 for n in near)\n            for kind, refs, off in (('chain', [r[1] for r in clean], 12.0),\n                                    ('overall', [clean[0][1], clean[-1][1]], 19.5)):\n                if kind == 'overall' and len(clean) == 2:\n                    continue\n                if (kind == 'chain' and has_chain) or (kind == 'overall' and has_over):\n                    skipped += 1\n                    continue\n                key = frozenset(stable(doc, r) for r in refs)\n                if key in have:\n                    skipped += 1\n                    continue\n                at = edge + sign * off * k\n                p0, p1 = [0.0, 0.0], [0.0, 0.0]\n                p0[m], p1[m] = span_lo, span_hi\n                p0[o] = p1[o] = at\n                ra = ReferenceArray()\n                for r in refs:\n                    ra.Append(r)\n                try:\n                    new_dim(doc, view, Line.CreateBound(_to3(p0[0], p0[1], O, R, U), _to3(p1[0], p1[1], O, R, U)),\n                            ra, dtype)\n                    have.append(key)\n                    made += 1\n                except Exception as ex:\n                    out.append('  CHECK wall {0} {1} dimension failed: {2}'.format(name, kind, ex))\n    out.append('  Wall dimensions outside: {0} made on {1} faces of the outline (chain + overall){2}'.format(\n        made, strings, ', {0} already there'.format(skipped) if skipped else ''))\n    return made\n\n\ndef room_dims(doc, view, s, out, dtype=None):\n    \"\"\"Inside every room: clear width and length between the wall faces (where opposite walls are parallel).\"\"\"\n    O, R, U = _v2(view)\n    k = view.Scale * MMF\n    have = dim_ref_sets(doc, view)\n    opts = SpatialElementBoundaryOptions()\n    made = skipped = notsq = 0\n    faces_cache = {}\n    for r in in_view(doc, view, BuiltInCategory.OST_Rooms):\n        try:\n            if r.Area <= 1e-6:\n                continue\n        except Exception:\n            continue\n        c3 = room_point(r)\n        if c3 is None:\n            continue\n        c = _to2(c3, O, R, U)\n        segs = []\n        try:\n            for loop in r.GetBoundarySegments(opts):\n                for sg in loop:\n                    w = doc.GetElement(sg.ElementId)\n                    if w is None or tname_of(w) != 'Wall':\n                        continue\n                    cv = sg.GetCurve()\n                    a, b = _to2(cv.GetEndPoint(0), O, R, U), _to2(cv.GetEndPoint(1), O, R, U)\n                    L = math.hypot(b[0] - a[0], b[1] - a[1])\n                    if L > 1e-6:\n                        segs.append((w, a, b, ((b[0] - a[0]) / L, (b[1] - a[1]) / L)))\n        except Exception as ex:\n            log('room boundary {0}: {1}'.format(idv(r.Id), ex))\n            continue\n        # width (m=0): line just below the room tag;  length (m=1): line just right of the tag\n        for m, shift in ((0, -9.0), (1, 12.0)):\n            o = 1 - m\n            line_o = c[o] + shift * k\n            pt = [0.0, 0.0]\n            pt[m], pt[o] = c[m], line_o\n            q3 = _to3(pt[0], pt[1], O, R, U)\n            try:\n                if not r.IsPointInRoom(XYZ(q3.X, q3.Y, c3.Z + 0.5)):\n                    line_o = c[o]\n            except Exception:\n                line_o = c[o]\n            lo = hi = None\n            for w, a, b, d in segs:\n                if abs(d[m]) > 0.087:\n                    continue\n                if (a[o] - line_o) * (b[o] - line_o) > 0:\n                    continue\n                pos = (a[m] + b[m]) / 2.0\n                if pos < c[m] and (lo is None or pos > lo[0]):\n                    lo = (pos, w)\n                if pos > c[m] and (hi is None or pos < hi[0]):\n                    hi = (pos, w)\n            if lo is None or hi is None:\n                notsq += 1\n                continue\n            refs = []\n            for side_pos, w, want in ((lo[0], lo[1], 1), (hi[0], hi[1], -1)):\n                key = idv(w.Id)\n                if key not in faces_cache:\n                    faces_cache[key] = wall_faces(doc, view, w)\n                best = None\n                for ref, p2, n2 in faces_cache[key]:\n                    if abs(n2[m]) < 0.996:\n                        continue\n                    dist = abs(p2[m] - side_pos)\n                    if want * (p2[m] - side_pos) >= -1.0 * MMF and (best is None or dist < best[0]):\n                        best = (dist, ref, p2[m])            # the face towards the room\n                if best is None:\n                    break\n                refs.append((best[2], best[1]))\n            if len(refs) < 2 or refs[1][0] - refs[0][0] < 300 * MMF:\n                notsq += 1\n                continue\n            key = frozenset(stable(doc, x[1]) for x in refs)\n            if key in have:\n                skipped += 1\n                continue\n            p0, p1 = [0.0, 0.0], [0.0, 0.0]\n            p0[m], p1[m] = refs[0][0], refs[1][0]\n            p0[o] = p1[o] = line_o\n            ra = ReferenceArray()\n            ra.Append(refs[0][1])\n            ra.Append(refs[1][1])\n            try:\n                new_dim(doc, view, Line.CreateBound(_to3(p0[0], p0[1], O, R, U), _to3(p1[0], p1[1], O, R, U)), ra, dtype)\n                have.append(key)\n                made += 1\n            except Exception as ex:\n                log('room dim {0}: {1}'.format(idv(r.Id), ex))\n                notsq += 1\n    out.append('  Room size dimensions: {0} made{1}{2}'.format(\n        made, ', {0} already there'.format(skipped) if skipped else '',\n        ', {0} skipped (slanted / open side)'.format(notsq) if notsq else ''))\n    return made\n\n\ndef level_heads(doc, view, out):\n    cat = Category.GetCategory(doc, BuiltInCategory.OST_Levels)\n    try:\n        if view.GetCategoryHidden(cat.Id):\n            if view.CanCategoryBeHidden(cat.Id) and (view.ViewTemplateId == ElementId.InvalidElementId):\n                view.SetCategoryHidden(cat.Id, False)\n                doc.Regenerate()\n                out.append('  Levels were hidden in this view - switched on')\n            else:\n                out.append('  CHECK levels are hidden by the view template \"{0}\"'.format(\n                    vname(doc.GetElement(view.ViewTemplateId))))\n    except Exception:\n        pass\n    n = 0\n    lv = [l for l in FilteredElementCollector(doc, view.Id).OfClass(Level).ToElements()]\n    for l in lv:\n        for end in (DatumEnds.End0, DatumEnds.End1):\n            try:\n                if not l.IsBubbleVisibleInView(end, view):\n                    l.ShowBubbleInView(end, view)\n                    n += 1\n            except Exception:\n                pass\n    out.append('  Levels: {0} in view, {1} level heads switched on'.format(len(lv), n))\n\n\n# ----------------------------------------------------------------- 6. views + main\ndef resolve_views(doc, uidoc, txt):\n    t = (txt or 'CURRENT').strip()\n    T = t.upper()\n    allv = [v for v in FilteredElementCollector(doc).OfClass(View).ToElements() if not v.IsTemplate]\n    if T in ('', 'CURRENT', 'ACTIVE'):\n        v = None\n        try:\n            v = uidoc.ActiveView if uidoc is not None else doc.ActiveView\n        except Exception:\n            v = doc.ActiveView\n        return [v] if v is not None else []\n    if T in ('ALL PLANS', 'ALL_PLANS', 'PLANS'):\n        return sorted([v for v in allv if vtype_is(v, ('FloorPlan',))], key=vname)\n    names = [w.strip().lower() for w in re.split(r'[,;\\n]+', t) if w.strip()]\n    return [v for v in allv if vname(v).lower() in names]\n\n\ndef make_rooms(doc, view, out, area_sym=None):\n    \"\"\"Rooms in every closed wall area of the plan's level that has none.  Revit tags them itself -> area tag type.\"\"\"\n    try:\n        lv = view.GenLevel\n        if lv is None:\n            return\n        before = set(idv(t.Id) for t in in_view(doc, view, BuiltInCategory.OST_RoomTags))\n        phase = doc.GetElement(view.get_Parameter(BuiltInParameter.VIEW_PHASE).AsElementId())\n        # only closed areas that have NO room yet (NewRooms2 would put a second room in every area)\n        topo = doc.get_PlanTopology(lv, phase) if phase is not None else doc.get_PlanTopology(lv)\n        n = 0\n        for circ in topo.Circuits:\n            try:\n                if circ.IsRoomLocated:\n                    continue\n                doc.Create.NewRoom(None, circ)\n                n += 1\n            except Exception as ex:\n                log('new room: {0}'.format(ex))\n        doc.Regenerate()\n        if area_sym is not None:\n            if not area_sym.IsActive:\n                area_sym.Activate()\n            for t in in_view(doc, view, BuiltInCategory.OST_RoomTags):\n                if idv(t.Id) not in before and idv(t.GetTypeId()) != idv(area_sym.Id):\n                    set_type(t, area_sym.Id)\n        for t in in_view(doc, view, BuiltInCategory.OST_RoomTags):\n            if idv(t.Id) in before:\n                continue\n            try:                                       # new tag -> clear point in the middle of the room\n                q, cur = room_point(t.Room), t.Location.Point\n                if q is not None:\n                    t.Location.Move(XYZ(q.X - cur.X, q.Y - cur.Y, 0))\n            except Exception:\n                pass\n        out.append('  Rooms placed in closed areas: {0}'.format(n))\n        return set(idv(t.Id) for t in in_view(doc, view, BuiltInCategory.OST_RoomTags)) - before\n    except Exception as ex:\n        out.append('  CHECK place rooms: {0}'.format(ex))\n    return set()\n\n\ndef run(doc, uidoc, views, settings=None, preview=False):\n    \"\"\"Main entry for the button and the Dynamo graph.  Returns the report lines.\"\"\"\n    s = get_settings(settings)\n    head = ['{0}  -  {1}  -  {2}'.format(TITLE, doc.Title, datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))]\n    out = []\n    views = [v for v in views if v is not None]\n    use = [v for v in views if is_plan(v) or is_section(v)]\n    for v in views:\n        if v not in use:\n            out.append('SKIPPED view \"{0}\" - open a floor plan, section or elevation'.format(vname(v)))\n    if not use:\n        return head + out + ['FAILED no plan / section / elevation to annotate']\n    plans = [v for v in use if is_plan(v)]\n\n    pre = []\n    if plans:\n        ensure_tag_families(doc, s, pre)\n    tags = choose_tags(doc, plans, s, pre) if plans else {}\n    want = 'TYPE' if str(s['number_by']).upper().startswith('T') else 'MARK'\n\n    tg = TransactionGroup(doc, TITLE)\n    tg.Start()\n    try:\n        # numbering (whole project, so D1.. runs over all levels)\n        num = []\n        t = Transaction(doc, 'D11 numbering')\n        t.Start()\n        try:\n            for key, label, pfx in (('doors', 'Doors', s['door_prefix']), ('windows', 'Windows', s['window_prefix'])):\n                if not (s.get('number') and s.get(key)):\n                    continue\n                shows = tags.get(key, (None, None))[1]\n                by = want\n                if want == 'MARK' and shows == 'TYPE':\n                    by = 'TYPE'\n                    num.append('CHECK {0} tag shows Type Mark, not Mark - {1} TYPES numbered instead'.format(\n                        key[:-1], key[:-1]))\n                if by == 'MARK':\n                    num.append(num_line(label, number_instances(doc, CATS[key][0], pfx, s['renumber']), key))\n                else:\n                    num.append(num_line(label + ' (types)', number_types(doc, CATS[key][0], pfx, s['renumber']), 'types'))\n            if s.get('walls') and (s.get('wall_prefix') or '').strip() and tags.get('walls', (None, None))[1] == 'TYPE':\n                wtypes = {}\n                for v in plans:\n                    for w in in_view(doc, v, BuiltInCategory.OST_Walls):\n                        if tname_of(w) == 'Wall':\n                            wtypes[idv(w.GetTypeId())] = doc.GetElement(w.GetTypeId())\n                if wtypes:\n                    num.append(num_line('Wall types', number_types(doc, BuiltInCategory.OST_Walls, s['wall_prefix'].strip(),\n                                                                   s['renumber'], list(wtypes.values())), 'types'))\n            t.Commit()\n        except Exception as ex:\n            t.RollBack()\n            num.append('FAILED numbering: {0}'.format(ex))\n\n        made = {'tags': 0, 'dims': 0}\n        for v in use:\n            vout = ['VIEW \"{0}\"  ({1}, 1:{2})'.format(vname(v), 'plan' if is_plan(v) else 'section / elevation', v.Scale)]\n            t = Transaction(doc, 'D11 annotate ' + vname(v))\n            t.Start()\n            try:\n                if is_plan(v):\n                    fresh = set()\n                    if s.get('make_rooms') and s.get('rooms'):\n                        fresh = make_rooms(doc, v, vout, tags.get('rooms', (None, None))[0])\n                        doc.Regenerate()\n                    if s.get('rooms') and not in_view(doc, v, BuiltInCategory.OST_Rooms):\n                        vout.append('  CHECK Rooms: NO rooms in this plan - nothing to tag. ' + (\n                            'No closed wall areas found either (walls must close the room; use Room Separation lines).'\n                            if s.get('make_rooms') else 'Switch on \"Place rooms\" (button: 9 More > 7) or place rooms.'))\n                    elif s.get('rooms') and 'rooms' in tags:\n                        made['tags'] += tag_rooms(doc, v, tags['rooms'][0], vout, fresh)\n                    for key in ('doors', 'windows'):\n                        if s.get(key) and key in tags:\n                            made['tags'] += tag_hosted(doc, v, key, tags[key][0], vout)\n                    if s.get('walls') and 'walls' in tags:\n                        made['tags'] += tag_walls(doc, v, tags['walls'][0], s, vout)\n                    dtype = user_dim_type(doc, v)\n                    if s.get('wall_dims'):\n                        made['dims'] += wall_dims(doc, v, s, vout, dtype)\n                    if s.get('room_dims'):\n                        made['dims'] += room_dims(doc, v, s, vout, dtype)\n                    for key in ('rooms', 'doors', 'windows', 'walls'):\n                        if s.get(key) and key not in tags:\n                            vout.append('  {0}: SKIPPED - no {1} family'.format(key.capitalize(), CATS[key][2]))\n                else:\n                    if s.get('levels'):\n                        level_heads(doc, v, vout)\n                if s.get('grids'):\n                    made['dims'] += dimension_datums(doc, v, s, vout)\n                elif is_section(v) and s.get('levels'):\n                    made['dims'] += dimension_levels_only(doc, v, s, vout)\n                st = t.Commit()\n                if st != TransactionStatus.Committed:\n                    vout.append('  FAILED: Revit rolled this view back (a warning was cancelled) - nothing kept here')\n            except Exception as ex:\n                t.RollBack()\n                vout.append('  FAILED: {0}'.format(ex))\n                log('view {0}: {1}'.format(vname(v), ex))\n            out += vout\n        tagline = []\n        for key in ('rooms', 'doors', 'windows', 'walls'):\n            if key in tags:\n                tagline.append('{0} = {1}{2}'.format(key, full_name(tags[key][0]),\n                                                     ' (shows {0})'.format(tags[key][1]) if tags[key][1] else ''))\n        if preview:\n            tg.RollBack()\n            head.append('PREVIEW ONLY - nothing kept (RUN = True to annotate)')\n        else:\n            tg.Assimilate()\n        head.append('{0} tags, {1} dimensions made in {2} view(s)'.format(made['tags'], made['dims'], len(use)))\n    except Exception:\n        if tg.HasStarted() and not tg.HasEnded():\n            tg.RollBack()\n        raise\n    lines = head + [''] + pre + num + [''] + out + ([''] + ['Tag types: '] + ['  ' + x for x in tagline] if tagline else [])\n    log('\\n=== ' + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '\\n' + '\\n'.join(lines))\n    return lines\n\n\ndef dimension_levels_only(doc, view, s, out):\n    \"\"\"Sections with grid dims off: only the level-to-level dimensions.\"\"\"\n    lv = [l for l in FilteredElementCollector(doc, view.Id).OfClass(Level).ToElements()]\n    existing = existing_dims(doc, view)\n    made = skipped = 0\n    for g in group_parallel(datum_items(doc, view, lv)):\n        m, sk = dimension_group(doc, view, g, bool(s.get('dim_both_sides')), existing, out, 'level')\n        made += m\n        skipped += sk\n    out.append('  Level dimensions: {0} made{1}'.format(made, ', {0} already there'.format(skipped) if skipped else ''))\n    return made\n\n\n# =====================================================================\n#  DYNAMO PART - reads the input switches and runs the D11 engine above.\n#  RUN = False -> preview: everything is made, counted and undone again (nothing kept).\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        doc = DocumentManager.Instance.CurrentDBDocument\n        try:\n            uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n        except Exception:\n            uidoc = None\n        TM = TransactionManager\n    except Exception:\n        pass\n\n_IN = list(IN) if DYNAMO else list(globals().get('D11_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = _IN[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and not v.strip()):\n        return default\n    return v\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y', 'ON')\n    return bool(v)\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).lower().replace('mm', '').strip())\n    except Exception:\n        return default\n\n\nS = {\n    'rooms': _flag(0, True), 'doors': _flag(1, True), 'windows': _flag(2, True), 'walls': _flag(3, True),\n    'grids': _flag(4, True), 'levels': _flag(5, True),\n    'number': _flag(6, True), 'renumber': _flag(7, False),\n    'number_by': 'TYPE' if str(_inp(8, 'MARK')).strip().upper().startswith('T') else 'MARK',\n    'door_prefix': str(_inp(9, 'D')).strip(), 'window_prefix': str(_inp(10, 'W')).strip(),\n    'wall_prefix': '' if str(_inp(11, 'WT')).strip().upper() in ('NONE', '-', 'NO') else str(_inp(11, 'WT')).strip(),\n    'wall_mode': 'TYPE' if str(_inp(13, 'ALL')).strip().upper().startswith('T') else 'ALL',\n    'wall_min_mm': _num(14, 1000.0), 'dim_both_sides': _flag(15, False), 'make_rooms': _flag(16, True),\n    'wall_dims': _flag(18, True), 'room_dims': _flag(19, True),\n}\nGO = _flag(17, True)\nVIEWS_TXT = str(_inp(12, 'CURRENT'))\n\nout = []\ntry:\n    if doc is None:\n        raise Exception('No Revit document.')\n    if TM is not None:\n        TM.Instance.ForceCloseTransaction()              # the engine runs its own transactions (one undo)\n    views = resolve_views(doc, uidoc, VIEWS_TXT)\n    if not views:\n        out = ['FAILED no view found for \"{0}\" - use CURRENT, ALL PLANS or view names'.format(VIEWS_TXT)]\n    else:\n        out = run(doc, uidoc, views, S, preview=not GO)\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    out.append(traceback.format_exc())\n    log('\\n'.join(out))\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('D11 Auto Annotate')\n        td.MainInstruction = (out[1] if len(out) > 1 and out[1] else out[0]) if out else 'done'\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "2e5e1bbb44bd4be5a91f458bd4726362",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "d1e25eb2780b404f9cb0451e9ac4bdbd",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c034793049104b5c98517ab3db529193",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "293d33d1b3774e49a0a4bdf5bc1af6f5",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a9ad9f9c813446a5b630dc0dab17a77e",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dcadd92bdb08459c96c9eb58ccf28f8c",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0e37b801bf964a12ad63cfb672aa9f27",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "02e84dda058b4ad38d30b9bb9ca86df1",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8ccc9223b9ff4442b9f024e10e3d94df",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "53064c5485744ff5b503c29bf9a3be65",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "11093c57f3384a3abf23d819e3c56bdc",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e0c0c2f92d6742a2b353b6f4b77bb2b3",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "399c14c126f6441cb05205bf4e3c94df",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "902b0d866c8c4113ae4fec96fe857a81",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "eeedf1a9fe0c493498b8fb546be674a9",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c163ea5eaa7b429a891762510bdd2212",
+          "Name": "IN[14]",
+          "Description": "Input #14",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a3f56944525c4ecdbaf082e49d930f19",
+          "Name": "IN[15]",
+          "Description": "Input #15",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ba62637d099e4f4c9ff4601b9ec4e5f8",
+          "Name": "IN[16]",
+          "Description": "Input #16",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "908bd0cf03fc4d40bf59d8d299ed417b",
+          "Name": "IN[17]",
+          "Description": "Input #17",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4e8c2f058573456da6416871e9313948",
+          "Name": "IN[18]",
+          "Description": "Input #18",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a9c08c217ce84421884b533d36436404",
+          "Name": "IN[19]",
+          "Description": "Input #19",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9deee7b6c76945da951c16871067299f",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "96b7c94eb3694bf99e7f8e415bb1aa48",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "b27e468fd1b34d54b71d9c71fd674ed6",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "30d4ddc20ea74e9088bca85d21a3e7a2",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "8d5c72280913492e9f162186778d74a1",
+      "End": "d1e25eb2780b404f9cb0451e9ac4bdbd",
+      "Id": "42784de2f4c043ca94fe88e6bba1e86f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7afb28a6d6a349f28169786cc1910079",
+      "End": "c034793049104b5c98517ab3db529193",
+      "Id": "a7395e05f73144dd829e04bc75d38031",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "912a5bd14b784976aad731f852ad0bb6",
+      "End": "293d33d1b3774e49a0a4bdf5bc1af6f5",
+      "Id": "72c5dda169444668856d44f3ad9b2656",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "61e81f830bed4e9187fd4da2ec43223f",
+      "End": "a9ad9f9c813446a5b630dc0dab17a77e",
+      "Id": "25c16d1d4fe14f179bf9156c01163c64",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "13d1b5ed951f454c9778e2c722431703",
+      "End": "dcadd92bdb08459c96c9eb58ccf28f8c",
+      "Id": "875903e59f604dec8a6f702c93ad216f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "28c8306ebec3493a9b38cf259c605bea",
+      "End": "0e37b801bf964a12ad63cfb672aa9f27",
+      "Id": "1f1b318bc229408eb534755dcd7a2fe2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "245994b1bbb74094b9f0094fe73c4d0d",
+      "End": "02e84dda058b4ad38d30b9bb9ca86df1",
+      "Id": "06f1c1b9a75e443ead7bf06409b5bfab",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2c67b272119840f8ba469dab47453303",
+      "End": "8ccc9223b9ff4442b9f024e10e3d94df",
+      "Id": "c3e308cf9263455e9a2ce8c814e4d0f6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "199a71b02ee24c62b22782c98eade521",
+      "End": "53064c5485744ff5b503c29bf9a3be65",
+      "Id": "9f6dc5aaab1246e7a754e9a1e67b3190",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6a4d7d66340847b08eaeb958fbcacddb",
+      "End": "11093c57f3384a3abf23d819e3c56bdc",
+      "Id": "e1d9e60e8ecb4e33bc1b6bd4227186a7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0c2967ae81e34556a8e784e47acb4acf",
+      "End": "e0c0c2f92d6742a2b353b6f4b77bb2b3",
+      "Id": "8522965e1ddf4875a3b493540017df09",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "137b417742e943459007c02e5974de86",
+      "End": "399c14c126f6441cb05205bf4e3c94df",
+      "Id": "0d56b632558e44dfa74cb3b319d6f976",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2e5e6b63e4604091a5e07fa4f32d48f2",
+      "End": "902b0d866c8c4113ae4fec96fe857a81",
+      "Id": "a6379b9aea0e4e50a32912343b1b44d3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "27516d37bc324f87947615df80b0a27f",
+      "End": "eeedf1a9fe0c493498b8fb546be674a9",
+      "Id": "56ee967ba560466982a98786d9e4b717",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b4aeabf463904b88987f958a09db0420",
+      "End": "c163ea5eaa7b429a891762510bdd2212",
+      "Id": "a9df295928dc4bf19a398693071c4f04",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ccff1def0c2f4f159e121c29b7b632ed",
+      "End": "a3f56944525c4ecdbaf082e49d930f19",
+      "Id": "8fd4c4f688494f76ab17de4efa43dac7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3304001dfa254146a2a30c98a0dc036a",
+      "End": "ba62637d099e4f4c9ff4601b9ec4e5f8",
+      "Id": "39d81332fb4342f7809a3569522a585c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "20afd2f64e754696a8dc2515f4cb488c",
+      "End": "908bd0cf03fc4d40bf59d8d299ed417b",
+      "Id": "9f77a764e04e46708462e9c4dd87e575",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "892c93ea1333407c9c710bde98451280",
+      "End": "4e8c2f058573456da6416871e9313948",
+      "Id": "ce7ab356c9aa4bdf8e363d1eed0c7e42",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dccf80dfaee94853a81db719e7c5f9ef",
+      "End": "a9c08c217ce84421884b533d36436404",
+      "Id": "7c5ec16c8fee47218934a6911726e02e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9deee7b6c76945da951c16871067299f",
+      "End": "b27e468fd1b34d54b71d9c71fd674ed6",
+      "Id": "fe866316f7344f85b7e79227cbd6a6f4",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "9646ebb9d62642a38cadb6a9e9eef5c3",
+        "Name": "ROOM tags with AREA",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "6942e599bf0c4cd081111cb564548452",
+        "Name": "DOOR tags",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "8c36375eaeaf4bb89d90f811cbefab6e",
+        "Name": "WINDOW tags",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 300
+      },
+      {
+        "Id": "b6988968e25f479cb9f55f0fd3dcc17e",
+        "Name": "WALL tags",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 450
+      },
+      {
+        "Id": "c46d3db604be4685a18b1995492f11f0",
+        "Name": "GRID-to-GRID dimensions (chain + overall)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 600
+      },
+      {
+        "Id": "33207e0484a94f0fbdcf213120f831cf",
+        "Name": "LEVELS in sections / elevations (heads + dims)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 750
+      },
+      {
+        "Id": "b55fa3cbd98844a8955f2a0e87f779f5",
+        "Name": "NUMBER doors D1, D2..  and windows W1, W2..",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "b571d2f96628462c9d112fc4acb1874b",
+        "Name": "RENUMBER existing marks  (False = keep yours)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "c61a2f29957245af8dfa1d9ed4b76042",
+        "Name": "Number by: MARK (each door) / TYPE (each door type)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 300
+      },
+      {
+        "Id": "ff4e3660831548aaa5305cb62adc4492",
+        "Name": "Door prefix",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 450
+      },
+      {
+        "Id": "9cd06722c3a14cf0b6f01749311c475e",
+        "Name": "Window prefix",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 600
+      },
+      {
+        "Id": "19b34422f66f434aa06e49ce135d1402",
+        "Name": "Wall Type Mark prefix for empty ones (NONE = leave)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 750
+      },
+      {
+        "Id": "15831cdbb0ae4a5182b8510c0af338b2",
+        "Name": "VIEWS: CURRENT  or  ALL PLANS  or  L1, L2, Section 1",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "1d005fd81e8449848d54145882d1c588",
+        "Name": "Wall tags on: ALL walls / TYPE (one per wall type)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "bbf82c64adc04c64a81b11a4bbf66d4c",
+        "Name": "Tag walls longer than (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 300
+      },
+      {
+        "Id": "6d3112b14ebd46bda1948d0a85729026",
+        "Name": "Grid dims on ALL 4 sides  (False = top + left)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 450
+      },
+      {
+        "Id": "a5fb161c40c94f0fbfdeb9193c584d3e",
+        "Name": "PLACE ROOMS in closed areas without a room (needed for room tags)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 600
+      },
+      {
+        "Id": "f32abbf83d0c4eb5adb632a72891f09a",
+        "Name": "RUN  (False = preview: count, then undo)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1680,
+        "Y": 0
+      },
+      {
+        "Id": "84bcaac382a1455d990b55575dc395fc",
+        "Name": "WALL dimensions OUTSIDE (every wall face + overall, 4 sides)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 900
+      },
+      {
+        "Id": "07d07efaab664800a84d83cb33a44b43",
+        "Name": "ROOM SIZES inside every room (clear width x length)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 1050
+      },
+      {
+        "Id": "2e5e1bbb44bd4be5a91f458bd4726362",
+        "Name": "D11 AUTO ANNOTATE ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2260.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "96b7c94eb3694bf99e7f8e415bb1aa48",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2660.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "871143b0399e460b8347ec75040d82dd",
+        "Title": "1  WHAT TO ANNOTATE  (True = yes)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "9646ebb9d62642a38cadb6a9e9eef5c3",
+          "6942e599bf0c4cd081111cb564548452",
+          "8c36375eaeaf4bb89d90f811cbefab6e",
+          "b6988968e25f479cb9f55f0fd3dcc17e",
+          "c46d3db604be4685a18b1995492f11f0",
+          "33207e0484a94f0fbdcf213120f831cf",
+          "84bcaac382a1455d990b55575dc395fc",
+          "07d07efaab664800a84d83cb33a44b43"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 1335,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 1240,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "6777bf00817147bf801121b7d48e0556",
+        "Title": "2  DOOR / WINDOW NUMBERS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "b55fa3cbd98844a8955f2a0e87f779f5",
+          "b571d2f96628462c9d112fc4acb1874b",
+          "c61a2f29957245af8dfa1d9ed4b76042",
+          "ff4e3660831548aaa5305cb62adc4492",
+          "9cd06722c3a14cf0b6f01749311c475e",
+          "19b34422f66f434aa06e49ce135d1402"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 1035,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 940,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFF8A8A"
+      },
+      {
+        "Id": "0975e2f2c5a04a65a2349a1ea7907d86",
+        "Title": "3  VIEWS + OPTIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "15831cdbb0ae4a5182b8510c0af338b2",
+          "1d005fd81e8449848d54145882d1c588",
+          "bbf82c64adc04c64a81b11a4bbf66d4c",
+          "6d3112b14ebd46bda1948d0a85729026",
+          "a5fb161c40c94f0fbfdeb9193c584d3e"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 885,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 790,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "96795b1ceab84856810137974f4c6d79",
+        "Title": "4  RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "f32abbf83d0c4eb5adb632a72891f09a"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1660.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 285,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 190,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "daab501984fe42c6954d83f4f171a7e7",
+        "Title": "HOW TO USE:  open the floor plan (or a section / elevation), then RUN.   1 = what to annotate.   2 = doors get D1, D2.. and windows W1, W2.. in Mark (level by level, top to bottom, left to right); RENUMBER False keeps marks you typed.   3 = VIEWS: CURRENT, ALL PLANS or view names.   4 = RUN False = only count.   Missing tag family -> loaded from the Revit library or default template.  Run again = no second tag / dimension.  Ctrl+Z undoes all.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 2200.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

@@ -1,0 +1,625 @@
+{
+  "Uuid": "0867c8aa-3d51-4b78-a30b-6566230700f8",
+  "IsCustomNode": false,
+  "Description": "Levels from an Excel list: names, elevations, floor-to-floor heights - edit the Excel, Revit follows",
+  "Name": "CAD2BIM_Levels_From_Excel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "e2835dc20f1e422e863fde75e70e9c40",
+      "Name": "LEVELS Excel file (Browse...)",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "No file selected.",
+      "Description": "Allows you to select a file on the system and returns its file path"
+    },
+    {
+      "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+      "Name": "SYNC Revit levels with the Excel  (off = only report)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "b925d23d7193473fad0e6b987eb78666",
+      "Name": "New levels get a floor plan + ceiling plan",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "098c0f6232c940f39689de2f975e87ad",
+      "Name": "Rename plan views together with their level",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "8252e30b58c241ed9cef7a02c5d0c0e4",
+      "Name": "DELETE Revit levels whose row was removed from the Excel  (levels with walls etc. on them are kept)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False"
+    },
+    {
+      "Id": "6fb05509bb49421f84b2d4653f8a2088",
+      "Name": "EXPORT Revit levels to the Excel  (overwrites it - switch off after)",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "false",
+      "Description": "Enables selection between True and False"
+    }
+  ],
+  "Outputs": [
+    {
+      "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+      "Name": "REPORT",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "e2835dc20f1e422e863fde75e70e9c40",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1b39a9f3af0f49c89439903791ab7065",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "",
+      "InputValue": "No file selected."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "Id": "86337e6929b34db8a0abe470f28ed0e9",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "928b2441b30344ee9a351304a8b897a5",
+          "Name": "path",
+          "Description": "Path to the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+          "Name": "file",
+          "Description": "File object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a file object from the given path"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f805a5952b2846c5a4872752b6961cd7",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b925d23d7193473fad0e6b987eb78666",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "541e337a1ae84661ad4e944f087fb612",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "098c0f6232c940f39689de2f975e87ad",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5ec052b7587a474cb4cf23dbe97bf542",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "8252e30b58c241ed9cef7a02c5d0c0e4",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bca21ecbcb6b4992a353159e2cc767af",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "6fb05509bb49421f84b2d4653f8a2088",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a3339c73d6f44f2886f3d57872e76bb4",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - LEVELS FROM EXCEL (professional)\n#  one Excel sheet = the level list: name, elevation, floor-to-floor height, plan views, building story\n#  edit the Excel and save -> Revit levels are renamed / moved / added / deleted (Automatic run mode watches the file)\n#  a row removed from the Excel deletes its level (switch DELETE) - but never a level that still has walls, floors,\n#  rooms ... on it, and never when the Excel does not belong to this model.\n#  first run with no Excel: the Excel is created from the Revit levels.  Plain .xlsx, no Excel needed to run.\nimport os\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\nlog('--- levels v5 started')\nimport clr, math, re, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nfrom Autodesk.Revit.DB.Architecture import *        # Stairs, StairsRun, StairsLanding, Railing ...\nclr.AddReference('RevitServices')\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nclr.AddReference('System')\nfrom System.Collections.Generic import List\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\nMMF = 1.0 / 304.8\nCOL_PARAMS = [('b', 'h'), ('Width', 'Depth'), ('Width', 'Length')]\nout = []\n\n\ndef num(v, d=0.0):\n    try:\n        return float(v)\n    except Exception:\n        return d\n\n\ndef f(v):\n    return '{0:.0f}'.format(v)\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\n_CAT = {}\ndef catid(bic):\n    if bic not in _CAT:\n        _CAT[bic] = idv(Category.GetCategory(doc, bic).Id)\n    return _CAT[bic]\n\n\ndef cat_is(e, bic):\n    return e is not None and e.Category is not None and idv(e.Category.Id) == catid(bic)\n\n\ndef tname(t):\n    p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n    return p.AsString() if p else ''\n\n\ndef setp(e, bip, val):\n    p = e.get_Parameter(bip)\n    if p is not None and not p.IsReadOnly:\n        p.Set(val)\n        return True\n    return False\n\n\ndef getd(e, bip):\n    p = e.get_Parameter(bip)\n    return p.AsDouble() if p is not None else None\n\n\ndef getlvl(e, bip):\n    p = e.get_Parameter(bip)\n    if p is None:\n        return None\n    x = doc.GetElement(p.AsElementId())\n    return x if isinstance(x, Level) else None\n\n\n\ndef tagged(e):\n    p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n    return (p.AsString() or '') if p is not None else ''\n\n\ndef to_mm(v):\n    return v / MMF\n\n\ndef pt(p):\n    return (to_mm(p.X), to_mm(p.Y))\n\n\ndef layer_name(g, inherited):\n    name = None\n    try:\n        gs = doc.GetElement(g.GraphicsStyleId)\n        if gs is not None and gs.GraphicsStyleCategory is not None:\n            name = gs.GraphicsStyleCategory.Name\n    except Exception:\n        name = None\n    if not name or name == '0':\n        return inherited or name or '0'\n    return name\n\n\nCIRCLES = {}\n\n\n\n# ------------------------------------------------------------------ tiny .xlsx reader / writer (no Excel, no packages)\nimport zipfile, xml.etree.ElementTree as ET\nfrom xml.sax.saxutils import escape as _esc\n\nNS = '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'\nRNS = '{http://schemas.openxmlformats.org/officeDocument/2006/relationships}'\n\n\ndef _col(ref):\n    s = ''.join(ch for ch in ref if ch.isalpha())\n    n = 0\n    for ch in s:\n        n = n * 26 + (ord(ch.upper()) - 64)\n    return n - 1\n\n\ndef xlsx_read(path, sheet_name=None):\n    \"\"\"-> list of rows (list of cell values: str / float / None) of the first (or named) sheet\"\"\"\n    z = zipfile.ZipFile(path)\n    shared = []\n    if 'xl/sharedStrings.xml' in z.namelist():\n        root = ET.fromstring(z.read('xl/sharedStrings.xml'))\n        for si in root.iter(NS + 'si'):\n            shared.append(''.join(t.text or '' for t in si.iter(NS + 't')))\n    wb = ET.fromstring(z.read('xl/workbook.xml'))\n    rels = ET.fromstring(z.read('xl/_rels/workbook.xml.rels'))\n    rmap = dict((r.get('Id'), r.get('Target')) for r in rels)\n    target = None\n    for sh in wb.iter(NS + 'sheet'):\n        if sheet_name is None or sh.get('name', '').upper() == sheet_name.upper():\n            target = rmap.get(sh.get(RNS + 'id'))\n            break\n    if target is None:\n        target = 'worksheets/sheet1.xml'\n    target = target.lstrip('/')\n    if not target.startswith('xl/'):\n        target = 'xl/' + target\n    root = ET.fromstring(z.read(target))\n    rows = []\n    for r in root.iter(NS + 'row'):\n        vals = {}\n        for c in r.iter(NS + 'c'):\n            t = c.get('t')\n            v = c.find(NS + 'v')\n            if t == 's' and v is not None:\n                val = shared[int(v.text)]\n            elif t == 'inlineStr':\n                val = ''.join(x.text or '' for x in c.iter(NS + 't'))\n            elif t in ('str', 'e') and v is not None:\n                val = v.text\n            elif t == 'b' and v is not None:\n                val = v.text == '1'\n            elif v is not None and v.text not in (None, ''):\n                try:\n                    val = float(v.text)\n                except Exception:\n                    val = v.text\n            else:\n                val = None\n            vals[_col(c.get('r'))] = val\n        if vals:\n            row = [None] * (max(vals) + 1)\n            for k, val in vals.items():\n                row[k] = val\n            rows.append(row)\n        else:\n            rows.append([])\n    z.close()\n    return rows\n\n\ndef _cell(ref, val, style=0):\n    s = ' s=\"{0}\"'.format(style) if style else ''\n    if val is None:\n        return '<c r=\"{0}\"{1}/>'.format(ref, s)\n    if isinstance(val, tuple):                         # ('=formula', cached value)\n        f, v = val\n        return '<c r=\"{0}\"{1}><f>{2}</f><v>{3}</v></c>'.format(ref, s, _esc(f.lstrip('=')), v)\n    if isinstance(val, (int, float)) and not isinstance(val, bool):\n        return '<c r=\"{0}\"{1}><v>{2}</v></c>'.format(ref, s, val)\n    return '<c r=\"{0}\"{1} t=\"inlineStr\"><is><t xml:space=\"preserve\">{2}</t></is></c>'.format(ref, s, _esc(str(val)))\n\n\ndef _ref(ci, ri):\n    s = ''\n    ci += 1\n    while ci:\n        ci, rem = divmod(ci - 1, 26)\n        s = chr(65 + rem) + s\n    return '{0}{1}'.format(s, ri + 1)\n\n\ndef _sheet_xml(rows, widths, styles, freeze=None):\n    cols = ''.join('<col min=\"{0}\" max=\"{0}\" width=\"{1}\" customWidth=\"1\"/>'.format(i + 1, w) for i, w in enumerate(widths))\n    pane = ''\n    if freeze:\n        pane = ('<sheetViews><sheetView workbookViewId=\"0\"><pane ySplit=\"{0}\" topLeftCell=\"A{1}\" activePane=\"bottomLeft\" '\n                'state=\"frozen\"/></sheetView></sheetViews>').format(freeze, freeze + 1)\n    body = []\n    for ri, row in enumerate(rows):\n        cells = ''.join(_cell(_ref(ci, ri), v, styles.get((ri, ci), styles.get(('row', ri), 0)))\n                        for ci, v in enumerate(row))\n        body.append('<row r=\"{0}\">{1}</row>'.format(ri + 1, cells))\n    return ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n            '<worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">{0}<cols>{1}</cols>'\n            '<sheetData>{2}</sheetData></worksheet>').format(pane, cols, ''.join(body))\n\n\nSTYLES = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<styleSheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">'\n          '<numFmts count=\"1\"><numFmt numFmtId=\"164\" formatCode=\"#,##0\"/></numFmts>'\n          '<fonts count=\"4\"><font><sz val=\"11\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"11\"/><color rgb=\"FFFFFFFF\"/><name val=\"Arial\"/></font>'\n          '<font><sz val=\"11\"/><color rgb=\"FF0000FF\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"14\"/><name val=\"Arial\"/></font></fonts>'\n          '<fills count=\"4\"><fill><patternFill patternType=\"none\"/></fill><fill><patternFill patternType=\"gray125\"/></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FF1F3864\"/><bgColor indexed=\"64\"/></patternFill></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FFF2F2F2\"/><bgColor indexed=\"64\"/></patternFill></fill></fills>'\n          '<borders count=\"2\"><border><left/><right/><top/><bottom/><diagonal/></border>'\n          '<border><left style=\"thin\"><color rgb=\"FFBFBFBF\"/></left><right style=\"thin\"><color rgb=\"FFBFBFBF\"/></right>'\n          '<top style=\"thin\"><color rgb=\"FFBFBFBF\"/></top><bottom style=\"thin\"><color rgb=\"FFBFBFBF\"/></bottom><diagonal/></border></borders>'\n          '<cellStyleXfs count=\"1\"><xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\"/></cellStyleXfs>'\n          '<cellXfs count=\"7\">'\n          '<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\"/>'                                   # 0 normal\n          '<xf numFmtId=\"0\" fontId=\"1\" fillId=\"2\" borderId=\"1\" xfId=\"0\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\">'\n          '<alignment wrapText=\"1\" vertical=\"center\"/></xf>'                                                 # 1 header\n          '<xf numFmtId=\"0\" fontId=\"2\" fillId=\"0\" borderId=\"1\" xfId=\"0\" applyFont=\"1\" applyBorder=\"1\"/>'     # 2 input text\n          '<xf numFmtId=\"164\" fontId=\"2\" fillId=\"0\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyBorder=\"1\"/>'  # 3 input number\n          '<xf numFmtId=\"164\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 4 formula\n          '<xf numFmtId=\"0\" fontId=\"3\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyFont=\"1\"/>'                     # 5 title\n          '<xf numFmtId=\"0\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyFill=\"1\" applyBorder=\"1\"/>'     # 6 grey text\n          '</cellXfs><cellStyles count=\"1\"><cellStyle name=\"Normal\" xfId=\"0\" builtinId=\"0\"/></cellStyles></styleSheet>')\n\n\ndef xlsx_write(path, sheets):\n    \"\"\"sheets: list of (name, rows, widths, styles{(r,c): id}, freeze_rows)\"\"\"\n    ct = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">'\n          '<Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>'\n          '<Default Extension=\"xml\" ContentType=\"application/xml\"/>'\n          '<Override PartName=\"/xl/workbook.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml\"/>'\n          '<Override PartName=\"/xl/styles.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml\"/>'\n          + ''.join('<Override PartName=\"/xl/worksheets/sheet{0}.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml\"/>'.format(i + 1)\n                    for i in range(len(sheets))) + '</Types>')\n    rels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n            '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n            '<Relationship Id=\"rId1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\" Target=\"xl/workbook.xml\"/>'\n            '</Relationships>')\n    wb = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<workbook xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" '\n          'xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><sheets>'\n          + ''.join('<sheet name=\"{0}\" sheetId=\"{1}\" r:id=\"rId{1}\"/>'.format(_esc(s[0]), i + 1) for i, s in enumerate(sheets))\n          + '</sheets><calcPr calcId=\"191029\" fullCalcOnLoad=\"1\"/></workbook>')\n    wrels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n             '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n             + ''.join('<Relationship Id=\"rId{0}\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet\" '\n                       'Target=\"worksheets/sheet{0}.xml\"/>'.format(i + 1) for i in range(len(sheets)))\n             + '<Relationship Id=\"rId{0}\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles\" '\n               'Target=\"styles.xml\"/></Relationships>'.format(len(sheets) + 1))\n    z = zipfile.ZipFile(path, 'w', zipfile.ZIP_DEFLATED)\n    z.writestr('[Content_Types].xml', ct)\n    z.writestr('_rels/.rels', rels)\n    z.writestr('xl/workbook.xml', wb)\n    z.writestr('xl/_rels/workbook.xml.rels', wrels)\n    z.writestr('xl/styles.xml', STYLES)\n    for i, (name, rows, widths, styles, freeze) in enumerate(sheets):\n        z.writestr('xl/worksheets/sheet{0}.xml'.format(i + 1), _sheet_xml(rows, widths, styles, freeze))\n    z.close()\n\n\nHDR = ['LEVEL NAME', 'ELEVATION (mm)', 'FLOOR-TO-FLOOR HEIGHT (mm)', 'PLAN VIEWS (YES / NO)',\n       'BUILDING STORY (YES / NO)', 'NOTES', 'REVIT ID (do not edit)']\nHDR_ROW = 2\n\n\ndef levels_workbook(path, rows_in, project=''):\n    \"\"\"rows_in: [(name, elev_mm, views_bool, story_bool, revit_id)] sorted by elevation\"\"\"\n    rows = [['CAD2BIM  LEVELS  -  ' + (project or 'PROJECT'), None, None, None, None, None, None], [], HDR]\n    st = {(0, 0): 5}\n    for c in range(len(HDR)):\n        st[(HDR_ROW, c)] = 1\n    n = len(rows_in)\n    for i, (name, el, views, story, rid) in enumerate(rows_in):\n        r = HDR_ROW + 1 + i                          # 0-based row index\n        nxt = rows_in[i + 1][1] if i + 1 < n else None\n        f2f = round(nxt - el) if nxt is not None else 3000\n        if i == 0:\n            elev = round(el)\n            st[(r, 1)] = 3\n        else:\n            elev = ('={0}+{1}'.format(_ref(1, r - 1), _ref(2, r - 1)), round(el))\n            st[(r, 1)] = 4\n        rows.append([name, elev, f2f, 'YES' if views else 'NO', 'YES' if story else 'NO', '', rid])\n        st[(r, 0)] = 2\n        st[(r, 2)] = 3\n        st[(r, 3)] = 2\n        st[(r, 4)] = 2\n        st[(r, 5)] = 2\n        st[(r, 6)] = 6\n    help_rows = [['HOW TO USE'], [],\n                 ['1.  Type the level names in column A (rename here = rename in Revit).'],\n                 ['2.  Type the FIRST elevation in column B (blue), then the floor-to-floor height of every level in column C.'],\n                 ['    Column B (grey) calculates itself: elevation = level below + its floor-to-floor height.'],\n                 ['3.  Add a level: insert a row, copy the formula of column B from the row above, leave REVIT ID empty.'],\n                 ['4.  Remove a level: delete its row and save. Revit deletes the level and its plans (graph switch DELETE on).'],\n                 ['    A level that still has walls, floors, rooms ... on it is kept - move or delete those in Revit first.'],\n                 ['5.  Save the file (Ctrl+S).  Dynamo graph CAD2BIM_Levels_From_Excel (Automatic mode) updates Revit by itself.'],\n                 [], ['Blue = you type.   Grey = calculated / written by the script.   Units: mm.']]\n    xlsx_write(path, [('LEVELS', rows, [34, 18, 28, 22, 24, 30, 22], st, HDR_ROW + 1),\n                      ('HOW TO USE', help_rows, [120], {(0, 0): 5}, None)])\n\n\ndef write_levels_workbook(path, rows_in, project=''):\n    try:\n        levels_workbook(path, rows_in, project)\n    except (IOError, OSError):\n        raise Exception('cannot write the Excel because it is open in Excel / WPS. Close the file there, then switch '\n                        'EXPORT on again.  ({0})'.format(path))\n\n\ndef read_levels_workbook(path):\n    \"\"\"the Excel may still be being saved when the graph wakes up -> wait and try again\"\"\"\n    import time\n    last = None\n    for _ in range(8):\n        try:\n            return levels_from_workbook(path)\n        except Exception as ex:\n            if not (isinstance(ex, (IOError, OSError, EOFError)) or ex.__class__.__name__ in ('BadZipFile', 'BadZipfile', 'error')):\n                raise\n            last = ex\n            time.sleep(0.5)\n    raise Exception('cannot read the Excel (still being saved, or locked) - save it once more.  ({0})'.format(\n        str(last).split(chr(10))[0]))\n\n\ndef levels_from_workbook(path):\n    \"\"\"-> list of dicts {name, elev, f2f, views, story, rid} in sheet order\"\"\"\n    rows = xlsx_read(path, 'LEVELS')\n    hi = None\n    for i, r in enumerate(rows):\n        if r and isinstance(r[0], str) and r[0].strip().upper().startswith('LEVEL NAME'):\n            hi = i\n            break\n    if hi is None:\n        raise Exception('sheet LEVELS has no header row starting with \"LEVEL NAME\"')\n    out_, prev = [], None\n\n    def g(r, k):\n        return r[k] if len(r) > k else None\n    for r in rows[hi + 1:]:\n        name = g(r, 0)\n        if name is None or str(name).strip() == '':\n            continue\n        name = '{0:g}'.format(name) if isinstance(name, float) else str(name).strip()\n        el, f2f = g(r, 1), g(r, 2)\n        try:\n            el = float(el) if el not in (None, '') else None\n        except Exception:\n            el = None\n        try:\n            f2f = float(f2f) if f2f not in (None, '') else None\n        except Exception:\n            f2f = None\n        if el is None and prev is not None and prev['f2f'] is not None:\n            el = prev['elev'] + prev['f2f']            # formula without a saved value -> calculate\n        if el is None:\n            raise Exception('level \"{0}\": no elevation (type it in column B)'.format(name))\n        yn = lambda v, d: d if v in (None, '') else str(v).strip().upper() in ('YES', 'Y', 'TRUE', '1', '1.0')\n        rid = g(r, 6)\n        try:\n            rid = int(float(rid)) if rid not in (None, '') else None\n        except Exception:\n            rid = None\n        d = {'name': name, 'elev': el, 'f2f': f2f, 'views': yn(g(r, 3), True), 'story': yn(g(r, 4), True), 'rid': rid}\n        out_.append(d)\n        prev = d\n    return out_\n\n\n# ================================================================== LEVEL SYNC\ndef lvl_elev(l):\n    p = l.get_Parameter(BuiltInParameter.LEVEL_ELEV)\n    return (p.AsDouble() if p is not None else l.Elevation) / MMF\n\n\ndef set_elev(l, mm):\n    p = l.get_Parameter(BuiltInParameter.LEVEL_ELEV)\n    if p is not None and not p.IsReadOnly:\n        p.Set(mm * MMF)\n    else:\n        l.Elevation = mm * MMF\n\n\ndef vft(kind):\n    for t in FilteredElementCollector(doc).OfClass(ViewFamilyType):\n        if t.ViewFamily == kind:\n            return t\n    return None\n\n\ndef plans_of(l):\n    return [v for v in FilteredElementCollector(doc).OfClass(ViewPlan)\n            if not v.IsTemplate and v.GenLevel is not None and idv(v.GenLevel.Id) == idv(l.Id)]\n\n\ndef unique_view_name(name, vtype, taken):\n    n, k = name, 2\n    while (vtype, n) in taken:\n        n = '{0} ({1})'.format(name, k)\n        k += 1\n    taken.add((vtype, n))\n    return n\n\n\ndef file_path(x):\n    if x is None:\n        return ''\n    for a in ('FullName', 'FullPath'):\n        v = getattr(x, a, None)\n        if v:\n            return str(v)\n    s = str(x)\n    return '' if s.strip().lower() in ('', 'no file selected.', 'none', 'null') else s.strip().strip('\"')\n\n\ndef good_xl(p):\n    \"\"\"only a real .xlsx path counts (Dynamo turns 'No file selected.' into a path in the graph folder)\"\"\"\n    if not p:\n        return ''\n    base = os.path.basename(p).lower()\n    if base.startswith('no file selected') or not base.endswith(('.xlsx', '.xlsm')):\n        return ''\n    return p\n\n\ntry:\n    XL = good_xl(file_path(IN[0]))\n    SYNC, VIEWS, REN_VIEWS, DELETE, EXPORT = bool(IN[1]), bool(IN[2]), bool(IN[3]), bool(IN[4]), bool(IN[5])\n    log('inputs xl \"{0}\" sync {1} views {2} renviews {3} delete {4} export {5}'.format(XL, SYNC, VIEWS, REN_VIEWS, DELETE, EXPORT))\n    levels = sorted([l for l in FilteredElementCollector(doc).OfClass(Level)], key=lvl_elev)\n    proj = doc.Title\n    xl_note = ''\n    if XL and not os.path.exists(XL) and not os.path.isdir(os.path.dirname(XL)):   # path from another computer\n        xl_note = 'NOTE   : the Excel saved in the graph is not on this computer ({0}) - the file above is used. '\\\n                  'Browse to your own Excel in the first input to change it.'.format(XL)\n        XL = ''\n    if not XL:                                     # no file chosen -> <Project>_LEVELS.xlsx next to the model\n        folder = os.path.dirname(doc.PathName) if doc.PathName else os.path.join(os.environ.get('USERPROFILE', ''), 'Documents')\n        if not os.path.isdir(folder):\n            folder = os.path.join(os.path.expanduser('~'), 'Documents')\n            if not os.path.isdir(folder):\n                os.makedirs(folder)\n        XL = os.path.join(folder, '{0}_LEVELS.xlsx'.format(proj))\n    created = False\n    if EXPORT or not os.path.exists(XL):\n        write_levels_workbook(XL, [(l.Name, lvl_elev(l), bool(plans_of(l)),\n                              (l.get_Parameter(BuiltInParameter.LEVEL_IS_BUILDING_STORY).AsInteger() == 1\n                               if l.get_Parameter(BuiltInParameter.LEVEL_IS_BUILDING_STORY) is not None else True),\n                              idv(l.Id)) for l in levels], proj)\n        created = True\n        out.append('CAD2BIM LEVELS  -  EXCEL {0}'.format('EXPORTED' if EXPORT else 'CREATED'))\n        out.extend(['File   : ' + XL] + ([xl_note] if xl_note else []))\n        out.append('{0} Revit levels written.  Edit names / heights in Excel, save, and the graph updates Revit.'.format(len(levels)))\n        if EXPORT:\n            out.append('Switch \"EXPORT Revit levels to Excel\" back OFF, then edit the Excel.')\n        raise StopIteration\n    rows = read_levels_workbook(XL)\n    if not rows:\n        raise Exception('the Excel has no level rows under the header - nothing changed in Revit (Revit must keep at '\n                        'least one level). Type at least one level row, or switch EXPORT on once to refill the Excel '\n                        'from the Revit levels.')\n    names = [r['name'] for r in rows]\n    dup = set(n for n in names if names.count(n) > 1)\n    if dup:\n        raise Exception('the same level name twice in Excel: ' + ', '.join(sorted(dup)))\n\n    # ---------------- match Excel rows to Revit levels: Revit ID -> name -> same elevation -> order\n    by_id = dict((idv(l.Id), l) for l in levels)\n    pair, free = {}, list(levels)\n    for i, r in enumerate(rows):\n        l = by_id.get(r['rid']) if r['rid'] else None\n        if l is not None and l in free:\n            pair[i] = l\n            free.remove(l)\n    with_id = len([r for r in rows if r['rid']])\n    id_hits = len(pair)\n    for i, r in enumerate(rows):\n        if i in pair:\n            continue\n        l = next((l for l in free if l.Name == r['name']), None)\n        if l is not None:\n            pair[i] = l\n            free.remove(l)\n    name_hits = len(pair) - id_hits\n    for i, r in enumerate(rows):\n        if i in pair:\n            continue\n        l = next((l for l in free if abs(lvl_elev(l) - r['elev']) < 1.0), None)\n        if l is not None:\n            pair[i] = l\n            free.remove(l)\n    rest = [i for i in range(len(rows)) if i not in pair]\n    if rest and free and (not DELETE or len(rest) == len(free)):   # leftovers in order = renamed + moved\n        for i, l in zip(sorted(rest, key=lambda i: rows[i]['elev']), sorted(free, key=lvl_elev)):\n            pair[i] = l\n        free = [l for l in free if l not in pair.values()]\n        rest = [i for i in range(len(rows)) if i not in pair]\n\n    acts = []\n    if SYNC:\n        TransactionManager.Instance.EnsureInTransaction(doc)\n        taken = set((v.ViewType, v.Name) for v in FilteredElementCollector(doc).OfClass(View) if not v.IsTemplate)\n        # rename in two steps so swapped names never clash\n        renames = [(i, l, l.Name) for i, l in pair.items() if l.Name != rows[i]['name']]\n        others = set(l.Name for l in levels if l not in pair.values())\n        clash = [rows[i]['name'] for i, l, o in renames if rows[i]['name'] in others] + \\\n                [rows[i]['name'] for i in rest if rows[i]['name'] in others]\n        if clash and not DELETE:\n            raise Exception('name(s) {0} already used by Revit levels that are not in the Excel - rename those first'.format(\n                ', '.join(clash)))\n        for k, (i, l, old) in enumerate(renames):\n            l.Name = 'tmp_cad2bim_{0}'.format(k)\n        for i, l, old in renames:\n            new = rows[i]['name']\n            l.Name = new\n            acts.append('RENAMED  {0}  ->  {1}'.format(old, new))\n            if REN_VIEWS:\n                for v in plans_of(l):\n                    if v.Name == old or v.Name.startswith(old + ' ') or v.Name.startswith(old + '('):\n                        try:\n                            nn = new + v.Name[len(old):]\n                            v.Name = unique_view_name(nn, v.ViewType, taken)\n                        except Exception as ex:\n                            log('rename view {0}: {1}'.format(v.Name, ex))\n        for i, l in pair.items():\n            r = rows[i]\n            old = lvl_elev(l)\n            if abs(old - r['elev']) >= 0.5:\n                set_elev(l, r['elev'])\n                acts.append('MOVED    {0}  {1:.0f} -> {2:.0f} mm'.format(r['name'], old, r['elev']))\n            p = l.get_Parameter(BuiltInParameter.LEVEL_IS_BUILDING_STORY)\n            if p is not None and not p.IsReadOnly and (p.AsInteger() == 1) != r['story']:\n                p.Set(1 if r['story'] else 0)\n        deleted = []\n        if DELETE and free:\n            missing = ', '.join(l.Name for l in free)\n            if with_id and not id_hits and name_hits * 2 < len(rows):   # other model's Excel: ids and names do not fit\n                acts.append('NOT DELETED  {0}: the levels in this Excel are not from this model - '\n                            'wrong Excel? (EXPORT writes a fresh one)'.format(missing))\n            elif len(free) > len(pair) and not id_hits:   # many rows removed is fine in this model's own Excel\n                acts.append('NOT DELETED  {0}: more levels are missing from the Excel than are in it - '\n                            'wrong Excel? Delete them in Revit if you mean it'.format(missing))\n            else:\n                keep = []\n                for l in free:\n                    nm, lid = l.Name, l.Id\n                    st = None\n                    try:\n                        st = SubTransaction(doc)            # try it first: what would go with the level?\n                        st.Start()\n                        gone = list(doc.Delete(lid))\n                        st.RollBack()\n                        st = None\n                        nviews, cnt = 0, {}\n                        for gid in gone:\n                            e = doc.GetElement(gid)\n                            if e is None or idv(gid) == idv(lid):\n                                continue\n                            if hasattr(e, 'ViewType'):\n                                nviews += 1\n                                continue\n                            try:\n                                c = e.Category\n                                if c is not None and c.CategoryType == CategoryType.Model and not e.ViewSpecific:\n                                    cnt[c.Name] = cnt.get(c.Name, 0) + 1\n                            except Exception:\n                                pass\n                        if cnt:\n                            keep.append(doc.GetElement(lid))\n                            acts.append('KEPT     {0}: {1} element(s) are on it ({2}) - move or delete them in Revit, '\n                                        'then save the Excel again'.format(nm, sum(cnt.values()), ', '.join(\n                                            '{0} {1}'.format(v, k) for k, v in sorted(cnt.items(), key=lambda kv: -kv[1])[:5])))\n                            continue\n                        doc.Delete(lid)\n                        deleted.append(nm)\n                        acts.append('DELETED  {0}{1}'.format(nm, '  + its {0} plan view(s)'.format(nviews) if nviews else ''))\n                    except Exception as ex:\n                        try:\n                            if st is not None and st.HasStarted() and not st.HasEnded():\n                                st.RollBack()\n                        except Exception:\n                            pass\n                        keep.append(doc.GetElement(lid))\n                        acts.append('could not delete {0}: {1}  (if its plan is the view you have open, open another '\n                                    'view and save the Excel again)'.format(nm, str(ex).split(chr(10))[0]))\n                free = [l for l in keep if l is not None]\n        fp, cp = vft(ViewFamily.FloorPlan), vft(ViewFamily.CeilingPlan)\n        for i in rest:\n            r = rows[i]\n            l = Level.Create(doc, r['elev'] * MMF)\n            set_elev(l, r['elev'])\n            l.Name = r['name']\n            p = l.get_Parameter(BuiltInParameter.LEVEL_IS_BUILDING_STORY)\n            if p is not None and not p.IsReadOnly:\n                p.Set(1 if r['story'] else 0)\n            pair[i] = l\n            msg = 'ADDED    {0}  at {1:.0f} mm'.format(r['name'], r['elev'])\n            if VIEWS and r['views']:\n                made = []\n                for t, lab in ((fp, 'floor plan'), (cp, 'ceiling plan')):\n                    if t is None:\n                        continue\n                    try:\n                        v = ViewPlan.Create(doc, t.Id, l.Id)\n                        v.Name = unique_view_name(r['name'], v.ViewType, taken)\n                        made.append(lab)\n                    except Exception as ex:\n                        log('view {0}: {1}'.format(r['name'], ex))\n                if made:\n                    msg += '  + ' + ' + '.join(made)\n            acts.append(msg)\n        TransactionManager.Instance.TransactionTaskDone()\n\n    out.append('CAD2BIM LEVELS FROM EXCEL  -  {0}'.format('SYNCED' if SYNC else 'CHECK ONLY (sync is off)'))\n    out.extend(['File   : ' + XL] + ([xl_note] if xl_note else []))\n    out.append('Excel  : {0} levels    Revit : {1} levels'.format(len(rows), FilteredElementCollector(doc).OfClass(Level).GetElementCount()))\n    if acts:\n        out.append('Changes:')\n        out.extend('  ' + a for a in acts)\n    else:\n        out.append('Revit already matches the Excel - nothing to change.' if SYNC else\n                   '{0} rows would be added, {1} levels would change'.format(len(rest), len(pair)))\n    out.append('')\n    out.append('{0:<26} {1:>10} {2:>10}'.format('LEVEL', 'ELEV mm', 'F-to-F'))\n    for i, r in enumerate(rows):\n        out.append('{0:<26} {1:>10.0f} {2:>10}'.format(r['name'][:26], r['elev'],\n                                                     '{0:.0f}'.format(r['f2f']) if r['f2f'] is not None and i < len(rows) - 1 else ''))\n    if free:\n        out.append('Revit levels NOT in the Excel (kept): ' + ', '.join(l.Name for l in free) +\n                   ('   - see Changes above for why' if DELETE and SYNC else '   - add them to Excel, or switch on DELETE'))\n    out.append('Save / Sync with Central to keep the changes.')\nexcept StopIteration:\n    pass\nexcept Exception as ex:\n    try:\n        TransactionManager.Instance.ForceCloseTransaction()\n    except Exception:\n        pass\n    out.insert(0, 'FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\ntry:                                                    # problems must not hide in the REPORT node\n    _bad = [l.strip() for l in out if l.startswith('FAILED') or 'NOT DELETED' in l or l.strip().startswith('KEPT ')\n            or 'could not delete' in l or l.startswith('NOTE')]\n    if _bad:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog as _TD\n        _d = _TD('Levels from Excel')\n        _d.MainInstruction = 'Levels from Excel - please check'\n        _d.MainContent = '\\n\\n'.join(_bad)[:1800]\n        _d.Show()\nexcept Exception as ex:\n    log('dialog: ' + str(ex))\nOUT = out\n",
+      "Engine": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "309c2923834249aab68e7b7e75d2b8f5",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "78c62500e9aa4ee4bb15dab1bfa226d1",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "766f114cdc35409ca18253b30cac99b5",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e9007c0324954d7a8fc9043db6563018",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "991b01955c9b4922a90cb99c780351e7",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ce7bd32066c146da872bfbc61d229eda",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "85b81ad2c5664748a82262b37659d3a0",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9f80e8edde5e4c94b3f0db12addfbac2",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "7765f2d35d294e36b7d46cbc1c446edd",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6ba3f9cbe59244ec8c8a512ad42e0ed9",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1b39a9f3af0f49c89439903791ab7065",
+      "End": "928b2441b30344ee9a351304a8b897a5",
+      "Id": "c21e92efb9c1459b962de1fc6b54399a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+      "End": "78c62500e9aa4ee4bb15dab1bfa226d1",
+      "Id": "83771dff52c34b2cbbb871e4168eca0d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f805a5952b2846c5a4872752b6961cd7",
+      "End": "766f114cdc35409ca18253b30cac99b5",
+      "Id": "53eed850806348f6ab6d10234771e0a9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "541e337a1ae84661ad4e944f087fb612",
+      "End": "e9007c0324954d7a8fc9043db6563018",
+      "Id": "fc434a0da2f24ec4b24c0672633cae1a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5ec052b7587a474cb4cf23dbe97bf542",
+      "End": "991b01955c9b4922a90cb99c780351e7",
+      "Id": "180a2156d6364558b1f57b0c5eecc7e1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bca21ecbcb6b4992a353159e2cc767af",
+      "End": "ce7bd32066c146da872bfbc61d229eda",
+      "Id": "89286df0dbcb4f2db602237e69b194c3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a3339c73d6f44f2886f3d57872e76bb4",
+      "End": "85b81ad2c5664748a82262b37659d3a0",
+      "Id": "3a11c8d6683241a19e09b1fe3721f5e1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9f80e8edde5e4c94b3f0db12addfbac2",
+      "End": "7765f2d35d294e36b7d46cbc1c446edd",
+      "Id": "1360675bc2a844a6be34ba6bdde65002",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Project5_LEVELS.xlsx",
+      "ReferenceType": "External",
+      "Nodes": [
+        "e2835dc20f1e422e863fde75e70e9c40"
+      ]
+    }
+  ],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": null,
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.2.11575",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e2835dc20f1e422e863fde75e70e9c40",
+        "Name": "LEVELS Excel file (Browse...)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "86337e6929b34db8a0abe470f28ed0e9",
+        "Name": "File From Path (watches the Excel)",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 260.0,
+        "Y": 120.0
+      },
+      {
+        "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+        "Name": "SYNC Revit levels with the Excel  (off = only report)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 330.0
+      },
+      {
+        "Id": "b925d23d7193473fad0e6b987eb78666",
+        "Name": "New levels get a floor plan + ceiling plan",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 465.0
+      },
+      {
+        "Id": "098c0f6232c940f39689de2f975e87ad",
+        "Name": "Rename plan views together with their level",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 600.0
+      },
+      {
+        "Id": "8252e30b58c241ed9cef7a02c5d0c0e4",
+        "Name": "DELETE Revit levels whose row was removed from the Excel  (levels with walls etc. on them are kept)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 735.0
+      },
+      {
+        "Id": "6fb05509bb49421f84b2d4653f8a2088",
+        "Name": "EXPORT Revit levels to the Excel  (overwrites it - switch off after)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 870.0
+      },
+      {
+        "Id": "309c2923834249aab68e7b7e75d2b8f5",
+        "Name": "CAD2BIM  Levels  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "b54efc77c3614f0cb4839d64b463e039",
+        "Title": "1  EXCEL FILE  (Browse... -> your LEVELS.xlsx)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "e2835dc20f1e422e863fde75e70e9c40",
+          "86337e6929b34db8a0abe470f28ed0e9"
+        ],
+        "HasNestedGroups": false,
+        "Left": -10.0,
+        "Top": -59.0,
+        "Width": 611.0,
+        "Height": 311.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 265.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "305618d70d0546f0ad7c3ac622fbcd28",
+        "Title": "2  OPTIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3c535e8d6607453bbb34dd05968bb1cd",
+          "b925d23d7193473fad0e6b987eb78666",
+          "098c0f6232c940f39689de2f975e87ad",
+          "8252e30b58c241ed9cef7a02c5d0c0e4",
+          "6fb05509bb49421f84b2d4653f8a2088"
+        ],
+        "HasNestedGroups": false,
+        "Left": -10.0,
+        "Top": 271.0,
+        "Width": 581.0,
+        "Height": 731.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 330.0,
+        "InitialHeight": 685.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "9d7a4ca96d5b48fba4e5a096abffa3b1",
+        "Title": "3  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "309c2923834249aab68e7b7e75d2b8f5",
+          "f858a1cd0a8f4aaf9052d486f19bcc36"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1490.0,
+        "Top": 91.0,
+        "Width": 717.0,
+        "Height": 911.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 545.0,
+        "TextblockHeight": 49.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "967e5006b7a74373a22745d07bfeecbe",
+        "Title": "HOW TO USE  -  1st run: leave the file empty -> <project>_LEVELS.xlsx is made next to the .rvt from your Revit levels\nThen Browse... to that Excel.  Edit names / first elevation / floor-to-floor heights, SAVE the Excel -> Revit updates by itself (Automatic mode).\nNew row = new level (+ floor and ceiling plan).  Renamed row = renamed level + its views.  Deleted row = kept in Revit unless DELETE is on.\nMatching uses the REVIT ID column, then the name, then the elevation - never doubles levels.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

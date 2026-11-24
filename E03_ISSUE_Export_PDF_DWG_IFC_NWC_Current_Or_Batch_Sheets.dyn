@@ -1,0 +1,1154 @@
+{
+  "Uuid": "a823af02-2819-4c7d-8363-cadd27977549",
+  "IsCustomNode": false,
+  "Description": "EXPORT: PDF (full fit paper, separate or combined) + DWG of the current page or a batch of sheets, IFC + NWC of a 3D view, to the folder you choose with file names from a pattern",
+  "Name": "E03_ISSUE_Export_PDF_DWG_IFC_NWC_Current_Or_Batch_Sheets",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "d6aa01898f8048c89d0843b6abd6421b",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6e5c714351eb4ed98dd94a3930e1ad82",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4731c967679d44a4b4e3040804ff21dc",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8268138628114518bd15ea192e903114",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "59c931b8896141f79a7b94ddb9058c4b",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "34265aca884247cda9edc7a70800b6a6",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "c03c8eb5d4174136910b239380d44d87",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b736fb324076455a9e01a8c9d279a32d",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b2973f2db89144ab8aa8f1142ef8cfa8",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7ca0af683a0142d397699c6be2bd70ad",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "8ddadbaaffdb4946b08ed0c1c385363a",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "916da0ce2e794ee4bde60fd211719082",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "ALL"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4e09d515caca4315a97ed242dcf49d0d",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ab3667f2459e44ce9ad13cc858d03a39",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "39214ac9fefe4f19a8e4062355df8c59",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4b76b501232f4445b75d1a4900d04072",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Directory, CoreNodeModels",
+      "Id": "9d8fa5f1a13d4cd6b725f7525b863ea4",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1de608033a7b4c17ac00ee19828f4b5c",
+          "Name": "",
+          "Description": "Directory path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a directory on the system and returns its path",
+      "HintPath": "",
+      "InputValue": "No file selected."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "722dfc5b52ad46d9b817ddb9f1ed12d0",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7b03561ce88d4b26a68390ae2de47cdf",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "70f03f9865a84e8c9eabd125b00f41ad",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "364eb59af7cb4115a287a4e675327403",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "24b6343779f94a15aee35d06dc523e2f",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "874054a600db4d37b2142f4c988a45a4",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "{number}_{name}"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "de3b5ce4f4534f898eb59b869029d4a3",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4f6512af76b349ea98a4c6e8b2148fcf",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "{project}_SHEETS_{date}"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "19b544fef4dc4d66b2f9137919b6c5b4",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2b9ae13c297d4d0b96c9866ef0a02ada",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Color"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "c1b9b1d05c6245c698171c63dd239b6b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5381d6b2ce304d3482f408a0427f3683",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "2f3c963e52874d13bd9642d374531e8f",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "37aa90970cb741e4a2ec0faf485f6f7d",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Shared"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "5b6ea46172e54792be881788595c9bbb",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7a37b485992f425e8607e2d84c843a94",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "IFC2x3CV2"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "b0df04d59a0c4316b5e09e0f14759d82",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7324a063efae48eab8de6f237f014b8e",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "{3D}"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "dfef0e36ba39410eabd952c179be7212",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "31cb35bdd0234b10861ae04096b2cc3f",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "{project}_{date}"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "0d64fd7a0de94206a9bdecda336f0e48",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3d11500084254ee6a2912f5853d41b4d",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n\"\"\"E03 Export - pyRevit button (SD Tools > Issue).\nExports PDF + DWG (sheets) and IFC + NWC (a 3D view) in one go, to a folder YOU choose,\nwith file names from a pattern.  Every setting is remembered per project and can be\nchanged in the button (Change ... options) or as defaults right below (DEFAULTS).\nworks in pyRevit IronPython 2.7, Revit 2022+ (PDF export API).\"\"\"\nimport os\nimport re\nimport json\nimport datetime\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import (FilteredElementCollector, ViewSheet, View3D, ElementId, Transaction,\n                               BuiltInParameter, PDFExportOptions, DWGExportOptions, BaseExportOptions,\n                               IFCExportOptions, IFCVersion, NavisworksExportOptions, NavisworksExportScope,\n                               NavisworksCoordinates, OptionalFunctionalityUtils, ColorDepthType,\n                               ExportPaperFormat, ZoomType)\nfrom System.Collections.Generic import List\n\n# ======================================================================================\n#  EXPORT LOCATION - control it here in the script.\n#  Put a folder between the quotes and EVERY export goes there (button folder setting ignored),\n#  e.g.  EXPORT_FOLDER = r'D:\\KIMS\\EXPORT'\n#  Leave it empty ('') to choose the folder in the button (4 > Change folder / location).\n# ======================================================================================\nEXPORT_FOLDER = r''\n\n# ======================================================================================\n#  DEFAULTS - edit here to change what a NEW project starts with.  After the first run the\n#  button remembers your choices per project (file: %APPDATA%\\pyRevit\\SD_Tools_E03_export.json).\n# ======================================================================================\nDEFAULTS = {\n    'formats': ['PDF', 'DWG'],              # any of PDF, DWG, IFC, NWC\n    'folder': '',                           # '' = Documents\\SD_Tools_Export\\<project>\n    'date_folder': True,                    # add a YYYY-MM-DD sub-folder per export\n    'format_folders': True,                 # PDF\\ DWG\\ IFC\\ NWC\\ sub-folders\n    'sheet_name': '{number}_{name}',        # PDF / DWG file name per sheet\n    'pdf_combine': False,                   # True = all sheets in ONE pdf (COMBINED), False = SEPARATE pages\n    'last_sheets': [],                      # sheet numbers of the last batch (button remembers)\n    'pdf_combined_name': '{project}_SHEETS_{date}',\n    'pdf_color': 'Color',                   # Color / GrayScale / BlackLine\n    'pdf_fit': 'Fit',                       # Fit = drawing fills the whole paper (centred, no margin) / 100 = true scale\n    'dwg_setup': '',                        # '' = Revit default DWG settings, or a DWG export setup name\n    'coords': 'Shared',                     # Shared / Internal   (DWG, IFC, NWC)\n    'ifc_version': 'IFC2x3CV2',             # IFC2x3CV2 / IFC4RV / IFC4DTV / IFC4x3\n    'model_view': '{3D}',                   # 3D view exported to IFC / NWC\n    'model_name': '{project}_{date}',       # IFC / NWC file name\n}\n# file name tokens: {number} {name} {rev} {project} {projno} {date} {time} and any sheet or\n# Project Information parameter in braces, e.g. {Sheet Issue Date} {Drawn By} {Client Name}\n\nFORMATS = ['PDF', 'DWG', 'IFC', 'NWC']\nSETTINGS_FILE = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'SD_Tools_E03_export.json')\nIFC_VERSIONS = ['IFC2x3CV2', 'IFC4RV', 'IFC4DTV', 'IFC4x3']\nSITE_PLACEMENT = {'Shared': '0', 'Internal': '3'}       # IFC exporter \"SitePlacement\" option\nBAD = re.compile(r'[\\\\/:*?\"<>|\\r\\n\\t]')\n\n\n# ----------------------------------------------------------------- settings\ndef project_key(doc):\n    return doc.PathName or doc.Title\n\n\ndef project_title(doc):\n    t = doc.Title or 'Project'\n    if t.lower().endswith('.rvt'):\n        t = t[:-4]\n    return BAD.sub('_', t)\n\n\ndef load_settings(doc):\n    s = dict(DEFAULTS)\n    try:\n        with open(SETTINGS_FILE) as fh:\n            data = json.load(fh)\n        s.update(data.get(project_key(doc), {}))\n    except Exception:\n        pass\n    return s\n\n\ndef save_settings(doc, s):\n    try:\n        with open(SETTINGS_FILE) as fh:\n            data = json.load(fh)\n    except Exception:\n        data = {}\n    data[project_key(doc)] = s\n    try:\n        d = os.path.dirname(SETTINGS_FILE)\n        if not os.path.isdir(d):\n            os.makedirs(d)\n        with open(SETTINGS_FILE, 'w') as fh:\n            json.dump(data, fh, indent=1)\n    except Exception:\n        pass\n\n\ndef base_folder(doc, s):\n    if EXPORT_FOLDER.strip():\n        return EXPORT_FOLDER.strip()                         # fixed in the script - always wins\n    return s['folder'] or os.path.join(os.environ.get('USERPROFILE', ''), 'Documents', 'SD_Tools_Export',\n                                       project_title(doc))\n\n\ndef out_folder(doc, s, fmt, stamp):\n    f = base_folder(doc, s)\n    if s.get('date_folder'):\n        f = os.path.join(f, stamp)\n    if s.get('format_folders'):\n        f = os.path.join(f, fmt)\n    if not os.path.isdir(f):\n        os.makedirs(f)\n    return f\n\n\n# ----------------------------------------------------------------- names\ndef pstr(p):\n    if p is None or not p.HasValue:\n        return u''\n    v = p.AsString()\n    if v is None:\n        v = p.AsValueString()\n    return v or u''\n\n\ndef fill(doc, pattern, sheet=None, now=None):\n    now = now or datetime.datetime.now()\n    pi = doc.ProjectInformation\n\n    def rep(m):\n        key = m.group(1).strip()\n        k = key.lower()\n        if k == 'number' and sheet is not None:\n            return getattr(sheet, 'SheetNumber', u'')           # a plain view (current page) has no number\n        if k == 'name' and sheet is not None:\n            return sheet.Name\n        if k == 'rev' and sheet is not None:\n            p = sheet.get_Parameter(BuiltInParameter.SHEET_CURRENT_REVISION)\n            return pstr(p) if p is not None else u''\n        if k == 'project':\n            return project_title(doc)\n        if k == 'projno':\n            return pi.Number or u''\n        if k == 'date':\n            return now.strftime('%Y-%m-%d')\n        if k == 'time':\n            return now.strftime('%H%M')\n        for el in (sheet, pi):\n            if el is not None:\n                p = el.LookupParameter(key)\n                if p is not None:\n                    return pstr(p)\n        return u''\n    name = re.sub(r'\\{([^{}]+)\\}', rep, pattern)\n    name = BAD.sub('-', name).strip(' ._-')\n    return name or u'export'\n\n\ndef unique(name, used):\n    n, i = name, 2\n    while n.lower() in used:\n        n = u'{0}_{1}'.format(name, i)\n        i += 1\n    used.add(n.lower())\n    return n\n\n\n# ----------------------------------------------------------------- model lookups\ndef dwg_setups(doc):\n    try:\n        return sorted(BaseExportOptions.GetPredefinedSetupNames(doc))\n    except Exception:\n        return []\n\n\ndef views_3d(doc):\n    vs = [v for v in FilteredElementCollector(doc).OfClass(View3D) if not v.IsTemplate]\n    return sorted(vs, key=lambda v: v.Name.lower())\n\n\ndef find_view(doc, name):\n    for v in views_3d(doc):\n        if v.Name == name:\n            return v\n    return None\n\n\ndef nwc_available():\n    try:\n        return OptionalFunctionalityUtils.IsNavisworksExporterAvailable()\n    except Exception:\n        return False\n\n\n# ----------------------------------------------------------------- exporters\ndef id_list(ids):\n    \"\"\".NET List[ElementId] - built item by item (works in IronPython and Dynamo CPython3).\"\"\"\n    lst = List[ElementId]()\n    for i in ids:\n        lst.Add(i)\n    return lst\n\n\ndef is_sheet(v):\n    try:\n        return v.GetType().Name == 'ViewSheet'              # isinstance is unreliable in Dynamo CPython3\n    except Exception:\n        return hasattr(v, 'SheetNumber')\n\n\ndef set_enum(opts, prop, enum_name, value):\n    \"\"\"opts.<prop> = DB.<enum_name>.<value> when this Revit version has it.\"\"\"\n    try:\n        import Autodesk.Revit.DB as DB\n        setattr(opts, prop, getattr(getattr(DB, enum_name), value))\n    except Exception:\n        pass\n\n\ndef export_pdf(doc, s, sheets, stamp, now, out):\n    folder = out_folder(doc, s, 'PDF', stamp)\n    opts = PDFExportOptions()\n    opts.Combine = True\n    opts.PaperFormat = ExportPaperFormat.Default            # paper size = each sheet's own size (title block)\n    set_enum(opts, 'PaperPlacement', 'PaperPlacementType', 'Center')\n    set_enum(opts, 'MarginType', 'MarginType', 'NoMargin')\n    if s.get('pdf_fit', 'Fit') == 'Fit':\n        opts.ZoomType = ZoomType.FitToPage                   # full fit paper\n    else:\n        opts.ZoomType = ZoomType.Zoom\n        opts.ZoomPercentage = 100\n    opts.ColorDepth = getattr(ColorDepthType, s.get('pdf_color', 'Color'), ColorDepthType.Color)\n    opts.HideCropBoundaries = True\n    opts.HideScopeBoxes = True\n    opts.HideReferencePlane = True\n    opts.HideUnreferencedViewTags = True\n    if s.get('pdf_combine'):\n        name = fill(doc, s['pdf_combined_name'], None, now)\n        opts.FileName = name\n        ok = doc.Export(folder, id_list([x.Id for x in sheets]), opts)\n        out.append(u'{0} PDF  {1}.pdf  ({2} sheets)'.format('OK' if ok else 'FAILED', name, len(sheets)))\n        return folder\n    used = set()\n    for sh in sheets:\n        name = unique(fill(doc, s['sheet_name'], sh, now), used)\n        opts.FileName = name\n        try:\n            ok = doc.Export(folder, id_list([sh.Id]), opts)\n            out.append(u'{0} PDF  {1}.pdf'.format('OK' if ok else 'FAILED', name))\n        except Exception as ex:\n            out.append(u'FAILED PDF  {0}: {1}  (file open in a PDF viewer?)'.format(name, ex))\n    return folder\n\n\ndef export_dwg(doc, s, sheets, stamp, now, out):\n    folder = out_folder(doc, s, 'DWG', stamp)\n    opts = None\n    if s.get('dwg_setup'):\n        try:\n            opts = DWGExportOptions.GetPredefinedOptions(doc, s['dwg_setup'])\n        except Exception:\n            opts = None\n        if opts is None:\n            out.append(u'CHECK DWG setup \"{0}\" not found - Revit default settings used'.format(s['dwg_setup']))\n    if opts is None:\n        opts = DWGExportOptions()\n    opts.MergedViews = True                                  # one dwg per sheet, no xref files\n    opts.SharedCoords = (s.get('coords') == 'Shared')\n    used = set()\n    for sh in sheets:\n        name = unique(fill(doc, s['sheet_name'], sh, now), used)\n        try:\n            ok = doc.Export(folder, name, id_list([sh.Id]), opts)\n            out.append(u'{0} DWG  {1}.dwg'.format('OK' if ok else 'FAILED', name))\n        except Exception as ex:\n            out.append(u'FAILED DWG  {0}: {1}  (file open in AutoCAD?)'.format(name, ex))\n    return folder\n\n\ndef export_ifc(doc, s, view, stamp, now, out):\n    folder = out_folder(doc, s, 'IFC', stamp)\n    name = fill(doc, s['model_name'], None, now)\n    opts = IFCExportOptions()\n    opts.FileVersion = getattr(IFCVersion, s.get('ifc_version', 'IFC2x3CV2'), IFCVersion.IFC2x3CV2)\n    opts.FilterViewId = view.Id\n    opts.AddOption('VisibleElementsOfCurrentView', 'true')\n    opts.AddOption('SitePlacement', SITE_PLACEMENT.get(s.get('coords'), '0'))\n    opts.AddOption('ExportBaseQuantities', 'true')\n    t = Transaction(doc, 'SD E03 IFC export')               # IFC export needs an open transaction\n    t.Start()\n    try:\n        ok = doc.Export(folder, name, opts)\n        out.append(u'{0} IFC  {1}.ifc  ({2}, view \"{3}\")'.format('OK' if ok else 'FAILED', name,\n                                                                 s.get('ifc_version'), view.Name))\n    except Exception as ex:\n        out.append(u'FAILED IFC  {0}: {1}'.format(name, ex))\n    finally:\n        if t.HasStarted() and not t.HasEnded():\n            t.RollBack()                                     # leave the model untouched\n    return folder\n\n\ndef export_nwc(doc, s, view, stamp, now, out):\n    folder = out_folder(doc, s, 'NWC', stamp)\n    name = fill(doc, s['model_name'], None, now)\n    if not nwc_available():\n        out.append(u'FAILED NWC  Navisworks NWC exporter is not installed for this Revit '\n                   u'(install \"Navisworks NWC Export Utility\" from Autodesk).')\n        return folder\n    opts = NavisworksExportOptions()\n    opts.ExportScope = NavisworksExportScope.View\n    opts.ViewId = view.Id\n    opts.Coordinates = NavisworksCoordinates.Shared if s.get('coords') == 'Shared' else NavisworksCoordinates.Internal\n    opts.ExportLinks = False\n    opts.ConvertElementProperties = True\n    try:\n        doc.Export(folder, name, opts)\n        ok = os.path.isfile(os.path.join(folder, name + '.nwc'))\n        out.append(u'{0} NWC  {1}.nwc  (view \"{2}\")'.format('OK' if ok else 'CHECK', name, view.Name))\n    except Exception as ex:\n        out.append(u'FAILED NWC  {0}: {1}'.format(name, ex))\n    return folder\n\n\ndef run_export(doc, s, sheets, view):\n    \"\"\"Export everything chosen in s['formats'].  Returns (report lines, folders).\"\"\"\n    now = datetime.datetime.now()\n    stamp = now.strftime('%Y-%m-%d')\n    out, folders = [], []\n    sheet_list = [x for x in (sheets or []) if not getattr(x, 'IsPlaceholder', False)]\n    for fmt in [f for f in FORMATS if f in s['formats']]:\n        try:\n            if fmt in ('PDF', 'DWG'):\n                if not sheet_list:\n                    out.append(u'SKIP {0}: no sheets chosen'.format(fmt))\n                    continue\n                f = (export_pdf if fmt == 'PDF' else export_dwg)(doc, s, sheet_list, stamp, now, out)\n            else:\n                if view is None:\n                    out.append(u'SKIP {0}: no 3D view chosen'.format(fmt))\n                    continue\n                f = (export_ifc if fmt == 'IFC' else export_nwc)(doc, s, view, stamp, now, out)\n            if f not in folders:\n                folders.append(f)\n        except Exception as ex:\n            out.append(u'FAILED {0}: {1}'.format(fmt, ex))\n    return out, folders\n\n\n# ----------------------------------------------------------------- dialogs\ndef summary(doc, s):\n    fm = s['formats']\n    lines = [u'Formats:   ' + (u', '.join(f for f in FORMATS if f in fm) or u'none'),\n             u'Folder:    ' + base_folder(doc, s) + (u'\\\\<date>' if s['date_folder'] else u'') +\n             (u'\\\\<format>' if s['format_folders'] else u'')]\n    if 'PDF' in fm or 'DWG' in fm:\n        lines.append(u'Sheet file: ' + s['sheet_name'] + u'   e.g. ' +\n                     fill(doc, s['sheet_name'], first_sheet(doc)) + u'.pdf')\n    if 'PDF' in fm:\n        lines.append(u'PDF:       ' + (u'ONE file  ' + s['pdf_combined_name'] if s['pdf_combine'] else u'one per sheet') +\n                     u', ' + s['pdf_color'] + u', ' + (u'FIT to paper' if s['pdf_fit'] == 'Fit' else u'100%'))\n    if 'DWG' in fm:\n        lines.append(u'DWG:       setup ' + (s['dwg_setup'] or u'<Revit default>'))\n    if 'IFC' in fm or 'NWC' in fm:\n        lines.append(u'IFC/NWC:   view \"' + s['model_view'] + u'\", file ' + s['model_name'] +\n                     (u', ' + s['ifc_version'] if 'IFC' in fm else u''))\n    lines.append(u'Coordinates: ' + s['coords'])\n    return u'\\n'.join(lines)\n\n\ndef first_sheet(doc):\n    sh = sorted([x for x in FilteredElementCollector(doc).OfClass(ViewSheet) if not x.IsPlaceholder],\n                key=lambda x: x.SheetNumber)\n    return sh[0] if sh else None\n\n\ndef change_formats(forms, s):\n    items = [forms.TemplateListItem(f, checked=(f in s['formats'])) for f in FORMATS]\n    res = forms.SelectFromList.show(items, multiselect=True, title='E03 Export - formats', button_name='OK')\n    if res is not None:\n        s['formats'] = [f for f in FORMATS if f in res]\n\n\ndef change_folder(forms, doc, s):\n    pick = forms.CommandSwitchWindow.show(\n        ['Pick a folder...', 'Default (Documents\\\\SD_Tools_Export\\\\<project>)',\n         'Date sub-folder: ' + ('ON - switch off' if s['date_folder'] else 'OFF - switch on'),\n         'PDF / DWG / IFC / NWC sub-folders: ' + ('ON - switch off' if s['format_folders'] else 'OFF - switch on')],\n        message='Export folder now:\\n' + base_folder(doc, s) +\n                ('\\n(fixed by EXPORT_FOLDER at the top of script.py - change it there)' if EXPORT_FOLDER.strip() else ''))\n    if not pick:\n        return\n    if pick.startswith('Pick'):\n        f = forms.pick_folder(title='E03 Export - folder for the exports')\n        if f:\n            s['folder'] = f\n    elif pick.startswith('Default'):\n        s['folder'] = ''\n    elif pick.startswith('Date'):\n        s['date_folder'] = not s['date_folder']\n    else:\n        s['format_folders'] = not s['format_folders']\n\n\ndef change_names(forms, doc, s):\n    tip = ('Tokens: {number} {name} {rev} {project} {projno} {date} {time}\\n'\n           'or any sheet / Project Information parameter, e.g. {Sheet Issue Date} {Drawn By}')\n    v = forms.ask_for_string(default=s['sheet_name'], prompt='PDF / DWG file name per sheet.\\n' + tip,\n                             title='E03 Export - file names')\n    if v is None:\n        return\n    s['sheet_name'] = v.strip() or DEFAULTS['sheet_name']\n    v = forms.ask_for_string(default=s['pdf_combined_name'], prompt='Name of the ONE combined PDF (when used).\\n' + tip,\n                             title='E03 Export - file names')\n    if v is not None:\n        s['pdf_combined_name'] = v.strip() or DEFAULTS['pdf_combined_name']\n    v = forms.ask_for_string(default=s['model_name'], prompt='IFC / NWC file name.\\n' + tip,\n                             title='E03 Export - file names')\n    if v is not None:\n        s['model_name'] = v.strip() or DEFAULTS['model_name']\n\n\ndef change_options(forms, doc, s):\n    while True:\n        opts = ['PDF: ' + ('ONE combined file - switch to one per sheet' if s['pdf_combine']\n                           else 'one file per sheet - switch to ONE combined file'),\n                'PDF colour: ' + s['pdf_color'] + ' - change',\n                'PDF size: ' + ('FIT to paper - switch to 100%' if s['pdf_fit'] == 'Fit' else '100% - switch to FIT to paper'),\n                'DWG export setup: ' + (s['dwg_setup'] or '<Revit default>') + ' - change',\n                'Coordinates: ' + s['coords'] + ' - switch to ' + ('Internal' if s['coords'] == 'Shared' else 'Shared'),\n                'IFC version: ' + s['ifc_version'] + ' - change',\n                '3D view for IFC / NWC: ' + s['model_view'] + ' - change',\n                'Back']\n        pick = forms.CommandSwitchWindow.show(opts, message='E03 Export - options')\n        if not pick or pick == 'Back':\n            return\n        if pick.startswith('PDF:'):\n            s['pdf_combine'] = not s['pdf_combine']\n        elif pick.startswith('PDF size'):\n            s['pdf_fit'] = '100' if s['pdf_fit'] == 'Fit' else 'Fit'\n        elif pick.startswith('PDF colour'):\n            c = forms.CommandSwitchWindow.show(['Color', 'GrayScale', 'BlackLine'], message='PDF colour')\n            if c:\n                s['pdf_color'] = c\n        elif pick.startswith('DWG'):\n            names = ['<Revit default>'] + dwg_setups(doc)\n            c = forms.SelectFromList.show(names, title='DWG export setup (Revit: File > Export > Options > Export Setups DWG/DXF)',\n                                          button_name='Use')\n            if c:\n                s['dwg_setup'] = '' if c == '<Revit default>' else c\n        elif pick.startswith('Coordinates'):\n            s['coords'] = 'Internal' if s['coords'] == 'Shared' else 'Shared'\n        elif pick.startswith('IFC'):\n            c = forms.CommandSwitchWindow.show(IFC_VERSIONS, message='IFC version')\n            if c:\n                s['ifc_version'] = c\n        elif pick.startswith('3D'):\n            vs = views_3d(doc)\n            c = forms.SelectFromList.show([v.Name for v in vs], title='3D view for IFC / NWC', button_name='Use')\n            if c:\n                s['model_view'] = c\n\n\ndef all_sheets(doc):\n    sh = [x for x in FilteredElementCollector(doc).OfClass(ViewSheet) if not x.IsPlaceholder and not x.IsTemplate]\n    return sorted(sh, key=lambda x: x.SheetNumber)\n\n\ndef page_label(v):\n    if is_sheet(v):\n        return u'sheet {0} - {1}'.format(v.SheetNumber, v.Name)\n    return u'{0}: {1}'.format(v.ViewType, v.Name)\n\n\ndef active_page(doc, uidoc):\n    v = None\n    try:\n        v = uidoc.ActiveGraphicalView\n    except Exception:\n        pass\n    if v is None:\n        v = doc.ActiveView\n    try:\n        if v is None or v.IsTemplate or not v.CanBePrinted:\n            return None\n    except Exception:\n        return None\n    return v\n\n\ndef choose_pages(forms, doc, uidoc, s):\n    \"\"\"CURRENT page (open sheet / view) or a BATCH of sheets.  Returns a list of views/sheets.\"\"\"\n    sheets = all_sheets(doc)\n    cur = active_page(doc, uidoc)\n    by_num = dict((x.SheetNumber, x) for x in sheets)\n    last = [by_num[n] for n in s.get('last_sheets', []) if n in by_num]\n    opts = []\n    if cur is not None:\n        opts.append(u'CURRENT page:  ' + page_label(cur))\n    opts.append(u'BATCH: choose sheets...  (tick sheets or pick a sheet set)')\n    if last:\n        opts.append(u'BATCH: same sheets as last time  ({0} sheets: {1} ...)'.format(\n            len(last), u', '.join(x.SheetNumber for x in last[:4])))\n    opts.append(u'BATCH: ALL sheets  ({0})'.format(len(sheets)))\n    msg = u'Which pages?'\n    if 'PDF' in s['formats']:\n        msg += u'\\nPDF: ' + (u'COMBINED - one PDF file' if s['pdf_combine'] else u'SEPARATE - one PDF per page')\n    pick = forms.CommandSwitchWindow.show(opts, message=msg)\n    if not pick:\n        return None\n    if pick.startswith(u'CURRENT'):\n        return [cur]\n    if u'last time' in pick:\n        pages = last\n    elif u'ALL sheets' in pick:\n        pages = sheets\n    else:\n        pages = forms.select_sheets(title='E03 Export - tick the sheets to export', button_name='Export these sheets',\n                                    include_placeholder=False, use_selection=True)\n        if not pages:\n            return None\n        pages = sorted(pages, key=lambda x: x.SheetNumber)\n    s['last_sheets'] = [x.SheetNumber for x in pages]\n    return pages\n\n\n# =====================================================================\n#  DYNAMO PART - reads the SETTINGS at the top of this script.\n#  The only graph input is \"Run\": toggle it to run again with the same settings.\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _d = DocumentManager.Instance.CurrentDBDocument\n        if _d is not None:\n            doc = _d\n            try:\n                uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n            except Exception:\n                pass\n            TM = TransactionManager\n    except Exception:\n        pass\n\n\ndef _setting(name, default):\n    return globals().get(name, default)\n\n\n# settings at the top of the script -> the same list the engine used to get from input nodes\nRAW = [_setting('EXPORT_FORMATS', 'PDF, DWG'), _setting('PAGES', 'CURRENT'), _setting('PDF_PAGES', 'SEPARATE'),\n       _setting('PDF_SIZE', 'FIT'), _setting('FOLDER', ''), _setting('DATE_FOLDER', True),\n       _setting('FORMAT_FOLDERS', True), _setting('SHEET_FILE_NAME', '{number}_{name}'),\n       _setting('COMBINED_PDF_NAME', '{project}_SHEETS_{date}'), _setting('PDF_COLOUR', 'Color'),\n       _setting('DWG_SETUP', ''), _setting('COORDINATES', 'Shared'), _setting('IFC_VERSION', 'IFC2x3CV2'),\n       _setting('VIEW_3D', '{3D}'), _setting('MODEL_FILE_NAME', '{project}_{date}'), _setting('EXPORT', True)]\ndef _switch_inputs(v):\n    \"\"\"Player version with switches (20 inputs) -> the 16-value list the engine reads.\"\"\"\n    def on(x):\n        return x if isinstance(x, bool) else str(x).strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    fmts = [f for f, flag in zip(['PDF', 'DWG', 'IFC', 'NWC'], v[0:4]) if on(flag)]\n    batch = str(v[5] or 'ALL').strip() or 'ALL'\n    return [', '.join(fmts) or 'NONE', batch if on(v[4]) else 'CURRENT', 'COMBINED' if on(v[6]) else 'SEPARATE',\n            'FIT' if on(v[7]) else '100'] + list(v[8:20])\n\n\n_IN = list(IN) if DYNAMO else list(globals().get('E03_INPUTS', []))\nif len(_IN) >= 20:\n    RAW = _switch_inputs(_IN)                            # Player version with True/False switches\nelif len(_IN) >= 16:\n    RAW = _IN                                            # older Player version with 16 text boxes\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and (not v.strip() or v.strip().lower() in ('no file selected.', 'no folder selected.'))):\n        return default\n    return v\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y', 'ON')\n    return bool(v)\n\n\ndef _words(txt):\n    return [w.strip() for w in re.split(r'[,;\\n]+', txt or '') if w.strip()]\n\n\ndef dyn_pages(doc, uidoc, txt, out):\n    t = (txt or 'CURRENT').strip()\n    T = t.upper()\n    if T == 'CURRENT':\n        v = active_page(doc, uidoc)\n        if v is None:\n            out.append('CHECK the open view cannot be printed - open a sheet or a plan first')\n            return []\n        return [v]\n    sheets = all_sheets(doc)\n    if T == 'ALL':\n        return sheets\n    if T.startswith('SET:'):\n        name = t[4:].strip().lower()\n        try:\n            from Autodesk.Revit.DB import ViewSheetSet\n            for vs in FilteredElementCollector(doc).OfClass(ViewSheetSet):\n                if vs.Name.strip().lower() == name:\n                    pages = [v for v in vs.Views if is_sheet(v)]\n                    return sorted(pages, key=lambda x: x.SheetNumber)\n        except Exception as ex:\n            out.append('CHECK sheet sets: {0}'.format(ex))\n        out.append('CHECK sheet set \"{0}\" not found (Revit: Print > Settings > Sheet sets)'.format(t[4:].strip()))\n        return []\n    by_num = dict((x.SheetNumber.upper(), x) for x in sheets)\n    pages = []\n    for w in _words(t):\n        sh = by_num.get(w.upper())\n        if sh is None:\n            out.append('CHECK sheet \"{0}\" not found'.format(w))\n        elif sh not in pages:\n            pages.append(sh)\n    return pages\n\n\ndef dyn_run(doc, uidoc):\n    s = dict(DEFAULTS)\n    s['formats'] = [f for f in FORMATS if f in [w.upper() for w in _words(str(_inp(0, 'PDF, DWG')))]]\n    s['pdf_combine'] = str(_inp(2, 'SEPARATE')).strip().upper().startswith('COMB')\n    s['pdf_fit'] = 'Fit' if str(_inp(3, 'FIT')).strip().upper().startswith('FIT') else '100'\n    s['folder'] = str(_inp(4, '')).strip()\n    s['date_folder'] = _flag(5, True)\n    s['format_folders'] = _flag(6, True)\n    s['sheet_name'] = str(_inp(7, DEFAULTS['sheet_name'])).strip()\n    s['pdf_combined_name'] = str(_inp(8, DEFAULTS['pdf_combined_name'])).strip()\n    c = str(_inp(9, 'Color')).strip().lower()\n    s['pdf_color'] = 'GrayScale' if c.startswith('gr') else ('BlackLine' if c.startswith('bl') else 'Color')\n    s['dwg_setup'] = str(_inp(10, '')).strip()\n    s['coords'] = 'Internal' if str(_inp(11, 'Shared')).strip().upper().startswith('INT') else 'Shared'\n    v = str(_inp(12, 'IFC2x3CV2')).strip().replace(' ', '')\n    s['ifc_version'] = next((x for x in IFC_VERSIONS if x.upper() == v.upper()), 'IFC2x3CV2')\n    s['model_view'] = str(_inp(13, '')).strip()\n    s['model_name'] = str(_inp(14, DEFAULTS['model_name'])).strip()\n    go = _flag(15, True)\n\n    out = []\n    if not s['formats']:\n        return ['FAILED no format - input 0: PDF, DWG, IFC, NWC']\n    pages, view = [], None\n    if 'PDF' in s['formats'] or 'DWG' in s['formats']:\n        pages = dyn_pages(doc, uidoc, str(_inp(1, 'CURRENT')), out)\n    if 'IFC' in s['formats'] or 'NWC' in s['formats']:\n        vs = views_3d(doc)\n        view = find_view(doc, s['model_view']) if s['model_view'] else None\n        if view is None and vs:\n            view = vs[0]                                     # empty / not found -> first 3D view\n            if s['model_view']:\n                out.append('CHECK 3D view \"{0}\" not found - used \"{1}\"  (3D views: {2})'.format(\n                    s['model_view'], view.Name, ', '.join(x.Name for x in vs[:12])))\n        elif view is None:\n            out.append('CHECK no 3D view in this project - make one for IFC / NWC')\n\n    now = datetime.datetime.now()\n    folder = base_folder(doc, s) + ('\\\\' + now.strftime('%Y-%m-%d') if s['date_folder'] else '')\n    head = ['E03 EXPORT  -  ' + doc.Title,\n            'Formats: ' + ', '.join(s['formats']),\n            'Folder:  ' + folder + ('\\\\<format>' if s['format_folders'] else ''),\n            'PDF:     ' + ('COMBINED -> ' + fill(doc, s['pdf_combined_name'], None, now) + '.pdf' if s['pdf_combine']\n                           else 'SEPARATE pages') + ', ' + ('FIT to paper' if s['pdf_fit'] == 'Fit' else '100%') +\n            ', ' + s['pdf_color'],\n            'Coordinates: ' + s['coords'], '']\n    if not go:\n        lines = ['PREVIEW ONLY - NOTHING EXPORTED.  Set EXPORT NOW (or EXPORT at the top of the script) = True and run again.', ''] + head\n        used = set()\n        for p in pages:\n            lines.append('  ' + unique(fill(doc, s['sheet_name'], p, now), used) + '   <- ' + p.Name)\n        if view is not None:\n            lines.append('  ' + fill(doc, s['model_name'], None, now) + '.ifc / .nwc   <- 3D view \"' + view.Name + '\"')\n        if 'NWC' in s['formats'] and not nwc_available():\n            lines.append('CHECK NWC exporter not installed (Autodesk \"Navisworks NWC Export Utility\")')\n        return lines + out\n    report, folders = run_export(doc, s, pages, view)\n    if folders and _setting('OPEN_FOLDER', True):\n        try:\n            os.startfile(folders[0] if len(folders) == 1 else os.path.dirname(folders[0]))\n        except Exception:\n            pass\n    return head + out + report + [''] + ['Folder: ' + f for f in folders]\n\n\nE03_LOG = os.path.join(os.environ.get('USERPROFILE', ''), 'Documents', 'SD_Tools_Export', 'E03_export_log.txt')\n\n\ndef e03_log(lines):\n    try:\n        if not os.path.isdir(os.path.dirname(E03_LOG)):\n            os.makedirs(os.path.dirname(E03_LOG))\n        with open(E03_LOG, 'a', encoding='utf-8') as fh:\n            fh.write('\\n=== ' + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '\\n')\n            fh.write('inputs: ' + repr(RAW) + '\\n')\n            fh.write('\\n'.join(str(x) for x in lines) + '\\n')\n    except Exception:\n        pass\n\n\nout = []\ntry:\n    if doc is None:\n        raise Exception('No Revit document.')\n    if TM is not None:\n        TM.Instance.ForceCloseTransaction()              # exports need no open Dynamo transaction\n    out = dyn_run(doc, uidoc)\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    out.append(traceback.format_exc())\ne03_log(out)\nif DYNAMO and _flag(15, True) and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('E03 Export')\n        n = len([l for l in out if l.startswith('OK')])\n        td.MainInstruction = '{0} file(s) exported'.format(n) + (' - CHECK the list' if any(\n            l.startswith(('FAILED', 'CHECK')) for l in out) else '')\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "7d4c5da4a1694d1a8b729f77f2579e59",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "d416922233c8413080699d72a5b6f3da",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a26c47a54ed54c88a919f747d7287a24",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5da248f328674680815dd2657c284b8d",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b080d5ae02784e6db02c7ef117ea3369",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3b35d73ce605407795717a4bfb58bc84",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bf7ff822fedd4a55bcbb3f1f5bbd89f5",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c3bf52a36450426598ef4e0e7a59e25d",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "681877c587a04ff9ac17564cfc5d2ed7",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d2e6fc1b1e2a4ec088549f8f7e4b52ed",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fbb8439a9596413d9b85dfd50f1ec720",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "32afa2b2522e436d9d66b8c8420bfc36",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1b449caf25d54d93b5746e7afa9d73fa",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3832848797c5431daf77b982eff55e84",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4795df0fabb14172b6a0e2f9fc90f0de",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "32bb6b29cc514d8eaae6a63e2aa10f3a",
+          "Name": "IN[14]",
+          "Description": "Input #14",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "859ab83481fa4ee1af940b925032a6ca",
+          "Name": "IN[15]",
+          "Description": "Input #15",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dc81f80828f94c0d832856d8ae0a366e",
+          "Name": "IN[16]",
+          "Description": "Input #16",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "59c8b1cdb62e484fa0cb99c804103d8d",
+          "Name": "IN[17]",
+          "Description": "Input #17",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "71ca0fe04c7840e39c0edb669a437882",
+          "Name": "IN[18]",
+          "Description": "Input #18",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "596fe13c59454892b1a230f3f52a0ef4",
+          "Name": "IN[19]",
+          "Description": "Input #19",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a391f3a0e5384e108ff277e48be17a9c",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "776b50a4a34a4247bbd260f4b2aa63ba",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "0c1ea29430e5435e95d716a30f1fb0d7",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2714d8a823c040f1bf013975dfb7ed7a",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "6e5c714351eb4ed98dd94a3930e1ad82",
+      "End": "d416922233c8413080699d72a5b6f3da",
+      "Id": "3b17e3641c084900a58dc49c31ec9df8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8268138628114518bd15ea192e903114",
+      "End": "a26c47a54ed54c88a919f747d7287a24",
+      "Id": "cdc46052cc534b48b84b046494185c18",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "34265aca884247cda9edc7a70800b6a6",
+      "End": "5da248f328674680815dd2657c284b8d",
+      "Id": "b1d740ca38314e3ba183c48cf222d408",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b736fb324076455a9e01a8c9d279a32d",
+      "End": "b080d5ae02784e6db02c7ef117ea3369",
+      "Id": "7ae4ce7eb5b14a43bbbc2dfee9523680",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7ca0af683a0142d397699c6be2bd70ad",
+      "End": "3b35d73ce605407795717a4bfb58bc84",
+      "Id": "b0ec407d86764b2886fb38894fac285c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "916da0ce2e794ee4bde60fd211719082",
+      "End": "bf7ff822fedd4a55bcbb3f1f5bbd89f5",
+      "Id": "a2b6ec2b5c7d48919bd566a6fc1969f7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ab3667f2459e44ce9ad13cc858d03a39",
+      "End": "c3bf52a36450426598ef4e0e7a59e25d",
+      "Id": "b58e28765dca4a229d144fa27db2797e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4b76b501232f4445b75d1a4900d04072",
+      "End": "681877c587a04ff9ac17564cfc5d2ed7",
+      "Id": "f35fc147aa6f4fda87d27cbedfaccfa0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1de608033a7b4c17ac00ee19828f4b5c",
+      "End": "d2e6fc1b1e2a4ec088549f8f7e4b52ed",
+      "Id": "752da3f97b0f41779408130c6433dd36",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7b03561ce88d4b26a68390ae2de47cdf",
+      "End": "fbb8439a9596413d9b85dfd50f1ec720",
+      "Id": "d1b661cfc80b4a46a3657ade2f928952",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "364eb59af7cb4115a287a4e675327403",
+      "End": "32afa2b2522e436d9d66b8c8420bfc36",
+      "Id": "c6d0601d76694ebfbcbff7781dc67001",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "874054a600db4d37b2142f4c988a45a4",
+      "End": "1b449caf25d54d93b5746e7afa9d73fa",
+      "Id": "9b8e61b3168e4eb6958588b830913530",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4f6512af76b349ea98a4c6e8b2148fcf",
+      "End": "3832848797c5431daf77b982eff55e84",
+      "Id": "52ce883e5e144dd6ab8b38557a49ae63",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2b9ae13c297d4d0b96c9866ef0a02ada",
+      "End": "4795df0fabb14172b6a0e2f9fc90f0de",
+      "Id": "3ffce1e71ce24eedb74a5fa132e7f649",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5381d6b2ce304d3482f408a0427f3683",
+      "End": "32bb6b29cc514d8eaae6a63e2aa10f3a",
+      "Id": "23ac7d57a7ba4d1f97b9a5d2dcc49c16",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "37aa90970cb741e4a2ec0faf485f6f7d",
+      "End": "859ab83481fa4ee1af940b925032a6ca",
+      "Id": "5d359eab7794454a90aa08162440ff36",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7a37b485992f425e8607e2d84c843a94",
+      "End": "dc81f80828f94c0d832856d8ae0a366e",
+      "Id": "79c84883b79148b29aa15d39a8c0233a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7324a063efae48eab8de6f237f014b8e",
+      "End": "59c8b1cdb62e484fa0cb99c804103d8d",
+      "Id": "9735f5e58a294a70b4d68122e74601a6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "31cb35bdd0234b10861ae04096b2cc3f",
+      "End": "71ca0fe04c7840e39c0edb669a437882",
+      "Id": "ddcbd11b83da404e9dc807f78c95629a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3d11500084254ee6a2912f5853d41b4d",
+      "End": "596fe13c59454892b1a230f3f52a0ef4",
+      "Id": "721fb4c986ee4cafbb8b8f71167ca6fa",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a391f3a0e5384e108ff277e48be17a9c",
+      "End": "0c1ea29430e5435e95d716a30f1fb0d7",
+      "Id": "a428c5b4ee0e40a6a0584540726d9639",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "d6aa01898f8048c89d0843b6abd6421b",
+        "Name": "PDF",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "4731c967679d44a4b4e3040804ff21dc",
+        "Name": "DWG",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "59c931b8896141f79a7b94ddb9058c4b",
+        "Name": "IFC",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 300
+      },
+      {
+        "Id": "c03c8eb5d4174136910b239380d44d87",
+        "Name": "NWC  (needs Navisworks NWC Export Utility)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 450
+      },
+      {
+        "Id": "b2973f2db89144ab8aa8f1142ef8cfa8",
+        "Name": "BATCH PRINT  (False = CURRENT page only)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "8ddadbaaffdb4946b08ed0c1c385363a",
+        "Name": "BATCH sheets: ALL  or  A101, A201  or  SET: name",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "4e09d515caca4315a97ed242dcf49d0d",
+        "Name": "PDF COMBINED in one file  (False = separate pages)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 300
+      },
+      {
+        "Id": "39214ac9fefe4f19a8e4062355df8c59",
+        "Name": "PDF FIT TO PAPER  (False = 100% scale)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 450
+      },
+      {
+        "Id": "9d8fa5f1a13d4cd6b725f7525b863ea4",
+        "Name": "FOLDER  (empty = Documents\\SD_Tools_Export\\project)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "722dfc5b52ad46d9b817ddb9f1ed12d0",
+        "Name": "Date sub-folder",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "70f03f9865a84e8c9eabd125b00f41ad",
+        "Name": "PDF / DWG / IFC / NWC sub-folders",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 300
+      },
+      {
+        "Id": "24b6343779f94a15aee35d06dc523e2f",
+        "Name": "Sheet file name  {number} {name} {rev} {date}",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 450
+      },
+      {
+        "Id": "de3b5ce4f4534f898eb59b869029d4a3",
+        "Name": "Combined PDF name",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 600
+      },
+      {
+        "Id": "19b544fef4dc4d66b2f9137919b6c5b4",
+        "Name": "PDF colour: Color / GrayScale / BlackLine",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1680,
+        "Y": 0
+      },
+      {
+        "Id": "c1b9b1d05c6245c698171c63dd239b6b",
+        "Name": "DWG export setup (empty = Revit default)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1680,
+        "Y": 150
+      },
+      {
+        "Id": "2f3c963e52874d13bd9642d374531e8f",
+        "Name": "Coordinates: Shared / Internal",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1680,
+        "Y": 300
+      },
+      {
+        "Id": "5b6ea46172e54792be881788595c9bbb",
+        "Name": "IFC version: IFC2x3CV2 / IFC4RV / IFC4x3",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1680,
+        "Y": 450
+      },
+      {
+        "Id": "b0df04d59a0c4316b5e09e0f14759d82",
+        "Name": "IFC / NWC  3D view",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1680,
+        "Y": 600
+      },
+      {
+        "Id": "dfef0e36ba39410eabd952c179be7212",
+        "Name": "IFC / NWC  file name",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1680,
+        "Y": 750
+      },
+      {
+        "Id": "0d64fd7a0de94206a9bdecda336f0e48",
+        "Name": "EXPORT NOW  (False = only list the file names)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1680,
+        "Y": 900
+      },
+      {
+        "Id": "7d4c5da4a1694d1a8b729f77f2579e59",
+        "Name": "E03 EXPORT ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2260.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "776b50a4a34a4247bbd260f4b2aa63ba",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2660.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "76dc01e969e14b1bb46455913dd8c147",
+        "Title": "1  WHAT TO EXPORT  (True = yes)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "d6aa01898f8048c89d0843b6abd6421b",
+          "4731c967679d44a4b4e3040804ff21dc",
+          "59c931b8896141f79a7b94ddb9058c4b",
+          "c03c8eb5d4174136910b239380d44d87"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 735,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 640,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "26c9a8624dce4bbb886b1771b2304dfb",
+        "Title": "2  WHICH PAGES",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "b2973f2db89144ab8aa8f1142ef8cfa8",
+          "8ddadbaaffdb4946b08ed0c1c385363a",
+          "4e09d515caca4315a97ed242dcf49d0d",
+          "39214ac9fefe4f19a8e4062355df8c59"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 735,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 640,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFF8A8A"
+      },
+      {
+        "Id": "6515c9b997ae4a0cb71538b00e4c5163",
+        "Title": "3  WHERE + FILE NAMES",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "9d8fa5f1a13d4cd6b725f7525b863ea4",
+          "722dfc5b52ad46d9b817ddb9f1ed12d0",
+          "70f03f9865a84e8c9eabd125b00f41ad",
+          "24b6343779f94a15aee35d06dc523e2f",
+          "de3b5ce4f4534f898eb59b869029d4a3"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 885,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 790,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "41e8e18836ba493cbaad4ea3f1f22660",
+        "Title": "4  OPTIONS + EXPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "19b544fef4dc4d66b2f9137919b6c5b4",
+          "c1b9b1d05c6245c698171c63dd239b6b",
+          "2f3c963e52874d13bd9642d374531e8f",
+          "5b6ea46172e54792be881788595c9bbb",
+          "b0df04d59a0c4316b5e09e0f14759d82",
+          "dfef0e36ba39410eabd952c179be7212",
+          "0d64fd7a0de94206a9bdecda336f0e48"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1660.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 1185,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 1090,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "dc1c890853804b39b06ce19f5bfa1c35",
+        "Title": "HOW TO USE:  1 = switch on PDF / DWG / IFC / NWC.   2 = BATCH PRINT False = only the open sheet / view;  True = the sheets in \"BATCH sheets\" (ALL, or A101, A201, or SET: <sheet set name>).  PDF COMBINED True = one PDF file.  FIT TO PAPER True = drawing fills the whole page.   3 = FOLDER (Browse).   4 = IFC version + 3D view for IFC / NWC, then RUN.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 2200.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

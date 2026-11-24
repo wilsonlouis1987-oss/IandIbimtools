@@ -1,0 +1,353 @@
+{
+  "Uuid": "671c7d42-2612-4765-b413-5e66e30abdfd",
+  "IsCustomNode": false,
+  "Description": "Revisions from an Excel (P01, P02 / C01 ...): created, dated, put on the sheets with X marks; each sheet's Revision text = latest revision",
+  "Name": "CAD2BIM_Revisions_From_Excel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "e2835dc20f1e422e863fde75e70e9c40",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1b39a9f3af0f49c89439903791ab7065",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "",
+      "InputValue": "No file selected."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "928b2441b30344ee9a351304a8b897a5",
+          "Name": "path",
+          "Description": "Path to the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+          "Name": "file",
+          "Description": "File object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a file object from the given path",
+      "Id": "86337e6929b34db8a0abe470f28ed0e9"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f805a5952b2846c5a4872752b6961cd7",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - REVISIONS FROM EXCEL (ISO 19650: P01, P02 ... preliminary / C01, C02 ... contractual)\n#  one Excel = the revision list + which sheet carries which revision (X in the sheet row)\n#  Revit revisions are created / updated, put on the sheets, and each sheet's \"Revision\" text = its latest revision\n#  (so CAD2BIM_Export_PDF_DWG names files ...-P02.pdf).  First run with no Excel: made from the Revit revisions.\nimport os\nimport re\nimport traceback\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\nimport os\nimport re\nimport zipfile\nimport xml.etree.ElementTree as ET\n\n# ======================================================================== tiny .xlsx reader / writer\nNS = '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'\nRNS = '{http://schemas.openxmlformats.org/officeDocument/2006/relationships}'\n\n\ndef _esc(s):\n    s = re.sub(u'[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f]', '', u'%s' % s)\n    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('\"', '&quot;')\n\n\ndef _ref(ci, ri):\n    s, ci = '', ci + 1\n    while ci:\n        ci, rem = divmod(ci - 1, 26)\n        s = chr(65 + rem) + s\n    return '%s%d' % (s, ri + 1)\n\n\ndef _colidx(ref):\n    n = 0\n    for ch in ''.join(c for c in ref if c.isalpha()):\n        n = n * 26 + (ord(ch.upper()) - 64)\n    return n - 1\n\n\ndef xlsx_read(path, sheet_name):\n    z = zipfile.ZipFile(path)\n    try:\n        shared = []\n        if 'xl/sharedStrings.xml' in z.namelist():\n            for si in ET.fromstring(z.read('xl/sharedStrings.xml')).iter(NS + 'si'):\n                shared.append(''.join(t.text or '' for t in si.iter(NS + 't')))\n        wb = ET.fromstring(z.read('xl/workbook.xml'))\n        rmap = dict((r.get('Id'), r.get('Target')) for r in ET.fromstring(z.read('xl/_rels/workbook.xml.rels')))\n        target = None\n        for sh in wb.iter(NS + 'sheet'):\n            if sh.get('name', '').strip().upper() == sheet_name.upper():\n                target = rmap.get(sh.get(RNS + 'id'))\n        if target is None:\n            return None\n        target = target.lstrip('/')\n        if not target.startswith('xl/'):\n            target = 'xl/' + target\n        root = ET.fromstring(z.read(target))\n    finally:\n        z.close()\n    rows = []\n    for r in root.iter(NS + 'row'):\n        vals = {}\n        for c in r.iter(NS + 'c'):\n            t, v = c.get('t'), c.find(NS + 'v')\n            if t == 's' and v is not None:\n                val = shared[int(v.text)]\n            elif t == 'inlineStr':\n                val = ''.join(x.text or '' for x in c.iter(NS + 't'))\n            elif v is not None and v.text not in (None, ''):\n                val = v.text\n                if t not in ('str', 'e', 'b'):\n                    try:\n                        fl = float(val)\n                        val = str(int(fl)) if fl == int(fl) else str(fl)\n                    except ValueError:\n                        pass\n            else:\n                val = ''\n            vals[_colidx(c.get('r'))] = (val or '').strip()\n        rno = int(r.get('r')) if r.get('r') else len(rows) + 1\n        while len(rows) < rno - 1:\n            rows.append([])\n        rows.append([vals.get(i, '') for i in range(max(vals) + 1)] if vals else [])\n    return rows\n\n\nSTYLES = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<styleSheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">'\n          '<fonts count=\"5\"><font><sz val=\"11\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"10\"/><color rgb=\"FFFFFFFF\"/><name val=\"Arial\"/></font>'\n          '<font><sz val=\"11\"/><color rgb=\"FF0000FF\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"14\"/><name val=\"Arial\"/></font>'\n          '<font><i/><sz val=\"10\"/><color rgb=\"FF595959\"/><name val=\"Arial\"/></font></fonts>'\n          '<fills count=\"4\"><fill><patternFill patternType=\"none\"/></fill><fill><patternFill patternType=\"gray125\"/></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FF1F3864\"/><bgColor indexed=\"64\"/></patternFill></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FFF2F2F2\"/><bgColor indexed=\"64\"/></patternFill></fill></fills>'\n          '<borders count=\"2\"><border><left/><right/><top/><bottom/><diagonal/></border>'\n          '<border><left style=\"thin\"><color rgb=\"FFBFBFBF\"/></left><right style=\"thin\"><color rgb=\"FFBFBFBF\"/></right>'\n          '<top style=\"thin\"><color rgb=\"FFBFBFBF\"/></top><bottom style=\"thin\"><color rgb=\"FFBFBFBF\"/></bottom><diagonal/></border></borders>'\n          '<cellStyleXfs count=\"1\"><xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\"/></cellStyleXfs>'\n          '<cellXfs count=\"7\">'\n          '<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\"/>'                                         # 0 normal\n          '<xf numFmtId=\"49\" fontId=\"1\" fillId=\"2\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\" applyAlignment=\"1\">'\n          '<alignment wrapText=\"1\" vertical=\"center\" horizontal=\"center\"/></xf>'                                  # 1 header\n          '<xf numFmtId=\"49\" fontId=\"2\" fillId=\"0\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyBorder=\"1\"/>'  # 2 blue input (text)\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 3 grey calculated\n          '<xf numFmtId=\"0\" fontId=\"3\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyFont=\"1\"/>'                           # 4 title\n          '<xf numFmtId=\"49\" fontId=\"4\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\"/>'     # 5 note\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 6 grey key\n          '</cellXfs><cellStyles count=\"1\"><cellStyle name=\"Normal\" xfId=\"0\" builtinId=\"0\"/></cellStyles></styleSheet>')\n\n\ndef _sheet_xml(rows, widths, freeze=None, validations=None, col_styles=None, heights=None):\n    \"\"\"rows: list of lists; a cell = value, or (value, style), or ('=formula', cached, style)\"\"\"\n    cs = col_styles or {}\n    out = ['<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n           '<worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">']\n    if freeze:\n        out.append('<sheetViews><sheetView workbookViewId=\"0\"><pane ySplit=\"%d\" topLeftCell=\"A%d\" activePane=\"bottomLeft\" '\n                   'state=\"frozen\"/></sheetView></sheetViews>' % (freeze, freeze + 1))\n    out.append('<cols>' + ''.join('<col min=\"%d\" max=\"%d\" width=\"%s\" customWidth=\"1\"%s/>'\n                                  % (i + 1, i + 1, w, (' style=\"%d\"' % cs[i]) if i in cs else '')\n                                  for i, w in enumerate(widths)) + '</cols><sheetData>')\n    for ri, row in enumerate(rows):\n        cells = []\n        for ci, cell in enumerate(row):\n            ref, style, f = _ref(ci, ri), cs.get(ci, 0), None\n            if isinstance(cell, tuple):\n                if len(cell) == 3:\n                    f, val, style = cell\n                else:\n                    val, style = cell\n            else:\n                val = cell\n            sa = ' s=\"%d\"' % style if style else ''\n            if f:\n                cells.append('<c r=\"%s\"%s t=\"str\"><f>%s</f><v>%s</v></c>' % (ref, sa, _esc(f.lstrip('=')), _esc(val)))\n            elif val is None or val == '':\n                if style:\n                    cells.append('<c r=\"%s\"%s/>' % (ref, sa))\n            else:\n                cells.append('<c r=\"%s\"%s t=\"inlineStr\"><is><t xml:space=\"preserve\">%s</t></is></c>' % (ref, sa, _esc(val)))\n        ht = (' ht=\"%s\" customHeight=\"1\"' % heights[ri]) if heights and ri in heights else ''\n        out.append('<row r=\"%d\"%s>%s</row>' % (ri + 1, ht, ''.join(cells)))\n    out.append('</sheetData>')\n    if validations:\n        out.append('<dataValidations count=\"%d\">' % len(validations))\n        for sqref, formula in validations:\n            out.append('<dataValidation type=\"list\" allowBlank=\"1\" showErrorMessage=\"0\" sqref=\"%s\"><formula1>%s</formula1>'\n                       '</dataValidation>' % (sqref, _esc(formula)))\n        out.append('</dataValidations>')\n    out.append('</worksheet>')\n    return ''.join(out)\n\n\ndef xlsx_write(path, sheets):\n    \"\"\"sheets: list of (name, sheet_xml)\"\"\"\n    n = len(sheets)\n    ct = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">'\n          '<Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>'\n          '<Default Extension=\"xml\" ContentType=\"application/xml\"/>'\n          '<Override PartName=\"/xl/workbook.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml\"/>'\n          '<Override PartName=\"/xl/styles.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml\"/>'\n          + ''.join('<Override PartName=\"/xl/worksheets/sheet%d.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml\"/>' % (i + 1)\n                    for i in range(n)) + '</Types>')\n    rels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n            '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n            '<Relationship Id=\"rId1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\" Target=\"xl/workbook.xml\"/>'\n            '</Relationships>')\n    wb = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<workbook xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" '\n          'xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">'\n          '<bookViews><workbookView activeTab=\"0\"/></bookViews><sheets>'\n          + ''.join('<sheet name=\"%s\" sheetId=\"%d\" r:id=\"rId%d\"/>' % (_esc(s[0]), i + 1, i + 1) for i, s in enumerate(sheets))\n          + '</sheets><calcPr calcId=\"191029\" fullCalcOnLoad=\"1\"/></workbook>')\n    wrels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n             '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n             + ''.join('<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet\" '\n                       'Target=\"worksheets/sheet%d.xml\"/>' % (i + 1, i + 1) for i in range(n))\n             + '<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles\" '\n               'Target=\"styles.xml\"/></Relationships>' % (n + 1))\n    tmp = path + '.tmp'\n    z = zipfile.ZipFile(tmp, 'w', zipfile.ZIP_DEFLATED)\n    try:\n        z.writestr('[Content_Types].xml', ct)\n        z.writestr('_rels/.rels', rels)\n        z.writestr('xl/workbook.xml', wb)\n        z.writestr('xl/_rels/workbook.xml.rels', wrels)\n        z.writestr('xl/styles.xml', STYLES)\n        for i, (name, xml) in enumerate(sheets):\n            z.writestr('xl/worksheets/sheet%d.xml' % (i + 1), xml.encode('utf-8'))\n    finally:\n        z.close()\n    try:\n        if os.path.exists(path):\n            os.remove(path)\n        os.rename(tmp, path)\n    except Exception:\n        os.remove(tmp)\n        raise\n\n\n\n\nREV_COLS = [('REVISION\\n(P01, C01 ...)', 14), ('DATE', 14), ('DESCRIPTION', 44), ('ISSUED TO', 24), ('ISSUED BY', 14),\n            ('ISSUED\\n(YES = locked)', 14), ('REVIT NUMBER\\n(written)', 14), ('REVIT ID\\n(do not edit)', 14)]\nYES = ('YES', 'Y', 'X', '1', 'TRUE')\nREV_RE = re.compile(r'^([A-Z]+)(\\d+)$')\nREVISION_PARAMS = ['Revision', 'Document Revision', 'Rev']\n\n\ndef natural(s):\n    return [int(t) if t.isdigit() else t.lower() for t in re.split(r'(\\d+)', s or '')]\n\n\ndef write_book(path, revs, sheet_rows, rev_labels, title):\n    \"\"\"revs: [label, date, desc, to, by, issued, revit_no, id]; sheet_rows: [number, name, {label: 'X'}]\"\"\"\n    rv = [[('CAD2BIM  REVISIONS  -  ' + (title or 'PROJECT'), 4)], [], [(c[0], 1) for c in REV_COLS]]\n    for r in revs:\n        r = (list(r) + [''] * 8)[:8]\n        rv.append([(r[0], 2), (r[1], 2), (r[2], 2), (r[3], 2), (r[4], 2), (r[5], 2), (r[6], 3), (r[7], 3)])\n    for i in range(30):\n        rv.append([('', 2)] * 6)\n    hdr = [('SHEET NUMBER', 1), ('SHEET NAME', 1)] + [(l, 1) for l in rev_labels]\n    sh = [[('SHEETS  -  type X under a revision to put it on the sheet', 4)], [], hdr]\n    for num, name, marks in sheet_rows:\n        sh.append([(num, 3), (name, 3)] + [(marks.get(l, ''), 2) for l in rev_labels])\n    help_rows = [[('HOW TO USE', 4)], [],\n                 ['1.  REVISIONS tab: one row per revision - P01, P02 ... (preliminary) or C01, C02 ... (contractual), date, description.'],\n                 ['    New row = new Revit revision.  Change a date / description here = changed in Revit.  Rows are never deleted in Revit.'],\n                 ['2.  Run once - the SHEETS tab gets a column for every revision.'],\n                 ['3.  SHEETS tab: type X under a revision for every sheet that carries it.  Save, close, Run.'],\n                 ['4.  Each sheet then shows the revision in its revision schedule, and its \"Revision\" text = its latest revision'],\n                 ['    -> CAD2BIM_Export_PDF_DWG names the files ...-P02.pdf automatically.'],\n                 ['5.  ISSUED = YES locks a revision in Revit (as the Revit \"Issued\" tick).'],\n                 [], ['Blue = you type.   Grey = written by the script.']]\n    xlsx_write(path, [('REVISIONS', _sheet_xml(rv, [c[1] for c in REV_COLS], freeze=3, heights={2: 32},\n                                               validations=[('F4:F200', '\"YES,NO\"')])),\n                      ('SHEETS', _sheet_xml(sh, [30, 44] + [9] * len(rev_labels), freeze=3)),\n                      ('HOW TO USE', _sheet_xml(help_rows, [130]))])\n\n\ndef read_book(path):\n    rows = xlsx_read(path, 'REVISIONS')\n    if rows is None:\n        raise Exception('the Excel has no REVISIONS tab - leave the file box empty once to create a new Excel')\n    hi = next((i for i, r in enumerate(rows) if r and r[0].strip().upper().startswith('REVISION')\n               and i > 0), None)\n    revs = []\n    for n, r in enumerate(rows[(hi + 1 if hi is not None else 3):], start=(hi + 2 if hi is not None else 4)):\n        r = (list(r) + [''] * 8)[:8]\n        if r[0] or r[2]:\n            revs.append(dict(row=n, label=r[0].strip().upper(), date=r[1], desc=r[2], to=r[3], by=r[4],\n                             issued=r[5].strip().upper() in YES, rid=r[7]))\n    marks = {}\n    srows = xlsx_read(path, 'SHEETS') or []\n    shi = next((i for i, r in enumerate(srows) if r and r[0].strip().upper() == 'SHEET NUMBER'), None)\n    if shi is not None:\n        labels = [c.strip().upper() for c in srows[shi][2:]]\n        for r in srows[shi + 1:]:\n            if r and r[0]:\n                marks[r[0]] = dict((labels[i], (r[2 + i] if 2 + i < len(r) else '').strip().upper() in YES)\n                                   for i in range(len(labels)) if labels[i])\n    return revs, marks\n\n\n# ======================================================================== Revit part\ndef run(doc, XL, APPLY, out):\n    from Autodesk.Revit.DB import (FilteredElementCollector, ViewSheet, Revision, RevisionNumberingSequence,\n                                   NumericRevisionSettings, ElementId, StorageType, BuiltInParameter)\n    from System.Collections.Generic import List\n\n    def idv(eid):\n        try:\n            return eid.Value\n        except Exception:\n            return eid.IntegerValue\n\n    sheets = sorted(FilteredElementCollector(doc).OfClass(ViewSheet), key=lambda s: s.SheetNumber)\n    sheets = sorted(sheets, key=lambda s: natural(s.SheetNumber))\n    revisions = list(Revision.GetAllRevisionIds(doc))\n    revisions = [doc.GetElement(i) for i in revisions]\n\n    def label_of(r):\n        return (r.RevisionNumber or '').strip().upper()\n\n    def sheet_marks(s):\n        ids = set(idv(i) for i in s.GetAllRevisionIds())\n        return dict((label_of(r), 'X') for r in revisions if idv(r.Id) in ids)\n\n    if not os.path.exists(XL):\n        revs = [[label_of(r), r.RevisionDate, r.Description, r.IssuedTo, r.IssuedBy, 'YES' if r.Issued else '',\n                 r.RevisionNumber, str(idv(r.Id))] for r in revisions]\n        if not revs:\n            revs = [['P01', '', 'First issue for information', '', '', '', '', '']]\n        labels = [r[0] for r in revs]\n        write_book(XL, revs, [(s.SheetNumber, s.Name, sheet_marks(s)) for s in sheets], labels, doc.Title)\n        out.append('CAD2BIM REVISIONS  -  EXCEL CREATED')\n        out.append('File   : ' + XL)\n        out.append('%d revision(s), %d sheet(s).  Fill REVISIONS, mark X on SHEETS, save, Browse... to this file and Run.'\n                   % (len(revs), len(sheets)))\n        return\n\n    revs, marks = read_book(XL)\n    acts, notes = [], []\n    by_id = dict((str(idv(r.Id)), r) for r in revisions)\n    by_label = dict((label_of(r), r) for r in revisions)\n    labels = []\n\n    seqs = {}\n\n    def sequence(prefix):\n        if prefix in seqs:\n            return seqs[prefix]\n        name = 'CAD2BIM %s01' % prefix\n        for e in FilteredElementCollector(doc).OfClass(RevisionNumberingSequence):\n            if e.SequenceName == name:\n                seqs[prefix] = e\n                return e\n        st = NumericRevisionSettings()\n        st.Prefix = prefix\n        st.MinimumDigits = 2\n        st.StartNumber = 1\n        seqs[prefix] = RevisionNumberingSequence.CreateNumericSequence(doc, name, st)\n        acts.append('SEQUENCE   %s01, %s02 ... created' % (prefix, prefix))\n        return seqs[prefix]\n\n    # ---------------- revisions: match by REVIT ID, then by label; create the rest (in Excel order)\n    for d in revs:\n        r = by_id.get(d['rid']) if d['rid'] else None\n        if r is None and d['label']:\n            r = by_label.get(d['label'])\n        m = REV_RE.match(d['label'])\n        created = r is None\n        if r is None:\n            if not m:\n                notes.append('row %d: \"%s\" is not a revision like P01 / C01 - skipped' % (d['row'], d['label']))\n                continue\n            if APPLY:\n                r = Revision.Create(doc)\n                r.RevisionNumberingSequenceId = sequence(m.group(1)).Id\n                revisions.append(r)\n            acts.append('NEW        %s  %s' % (d['label'], d['desc']))\n        if r is not None:\n            if r.Issued:\n                if not d['issued'] and APPLY:\n                    r.Issued = False\n                    acts.append('UNLOCKED   %s' % d['label'])\n            for attr, val in (('RevisionDate', d['date']), ('Description', d['desc']), ('IssuedTo', d['to']),\n                              ('IssuedBy', d['by'])):\n                if (getattr(r, attr) or '') != (val or ''):\n                    if APPLY:\n                        setattr(r, attr, val or '')\n                    if not created:\n                        acts.append('UPDATED    %s  %s = %s' % (d['label'], attr, val))\n            d['rev'] = r\n        labels.append(d['label'])\n    if APPLY:\n        doc.Regenerate()\n    for d in revs:\n        r = d.get('rev')\n        if r is not None and label_of(r) and d['label'] and label_of(r) != d['label']:\n            notes.append('row %d: Excel says %s but Revit numbers it %s (Revit numbers in date order per P / C sequence)'\n                         % (d['row'], d['label'], label_of(r)))\n\n    # ---------------- sheets: X marks -> revisions on sheets\n    lab2rev = dict((d['label'], d.get('rev')) for d in revs if d.get('rev') is not None)\n    for s in sheets:\n        want = marks.get(s.SheetNumber)\n        if want is None:\n            continue\n        cur = set(idv(i) for i in s.GetAdditionalRevisionIds())\n        new = set(cur)\n        for lab, on in want.items():\n            r = lab2rev.get(lab)\n            if r is None:\n                continue\n            if on:\n                new.add(idv(r.Id))\n            else:\n                new.discard(idv(r.Id))\n        if new != cur:\n            ids = List[ElementId]()\n            for r in revisions:\n                if idv(r.Id) in new:\n                    ids.Add(r.Id)\n            if APPLY:\n                s.SetAdditionalRevisionIds(ids)\n            added = [label_of(r) for r in revisions if idv(r.Id) in new - cur]\n            removed = [label_of(r) for r in revisions if idv(r.Id) in cur - new]\n            acts.append('SHEET      %-28s %s%s' % (s.SheetNumber, ('+' + ' +'.join(added)) if added else '',\n                                                  ('  -' + ' -'.join(removed)) if removed else ''))\n    # ---------------- each sheet's Revision text = its latest revision\n    if APPLY:\n        doc.Regenerate()\n        for s in sheets:\n            cid = s.GetCurrentRevision()\n            lab = label_of(doc.GetElement(cid)) if cid is not None and idv(cid) > 0 else ''\n            for n in REVISION_PARAMS:\n                p = s.LookupParameter(n)\n                if p is not None and not p.IsReadOnly and p.StorageType == StorageType.String and (p.AsString() or '') != lab:\n                    p.Set(lab)\n                    if lab:\n                        acts.append('REV TEXT   %-28s = %s' % (s.SheetNumber, lab))\n        for d in revs:\n            r = d.get('rev')\n            if r is not None and d['issued'] and not r.Issued:\n                r.Issued = True\n                acts.append('ISSUED     %s (locked)' % d['label'])\n\n    out.append('CAD2BIM REVISIONS  -  %s' % ('APPLIED' if APPLY else 'CHECK ONLY (APPLY is off - Revit not changed)'))\n    out.append('File   : ' + XL)\n    if acts:\n        out.append('Changes:')\n        out.extend('  ' + a for a in acts)\n    else:\n        out.append('Revit already matches the Excel - nothing to change.')\n    # refresh the Excel so the SHEETS tab has a column for every revision (only when something new appeared)\n    excel_labels = []\n    try:\n        srows = xlsx_read(XL, 'SHEETS') or []\n        shi = next((i for i, r in enumerate(srows) if r and r[0].strip().upper() == 'SHEET NUMBER'), None)\n        excel_labels = [c.strip().upper() for c in srows[shi][2:]] if shi is not None else []\n    except Exception:\n        pass\n    all_labels = [l for l in labels if l]\n    if APPLY and (set(all_labels) - set(excel_labels) or any(not d['rid'] and d.get('rev') is not None for d in revs)):\n        try:\n            rows_out = []\n            for d in revs:\n                r = d.get('rev')\n                rows_out.append([d['label'], d['date'], d['desc'], d['to'], d['by'], 'YES' if d['issued'] else '',\n                                 r.RevisionNumber if r is not None else '', str(idv(r.Id)) if r is not None else ''])\n            sh_rows = []\n            for s in sheets:\n                m = marks.get(s.SheetNumber, {})\n                sh_rows.append((s.SheetNumber, s.Name, dict((l, 'X') for l, on in m.items() if on)))\n            write_book(XL, rows_out, sh_rows, all_labels, doc.Title)\n            out.append('Excel updated: SHEETS tab has a column for every revision, REVIT IDs written.')\n        except Exception:\n            notes.append('the Excel is open - close it and Run again to add the new revision columns / IDs')\n    if notes:\n        out.append('')\n        out.append('Notes:')\n        out.extend('  ' + n for n in notes)\n\n\n# ======================================================================== Dynamo entry point\ntry:\n    IN\n    _IN_DYNAMO = True\nexcept NameError:\n    _IN_DYNAMO = False\n\nif _IN_DYNAMO:\n    import clr\n    clr.AddReference('RevitAPI')\n    clr.AddReference('RevitServices')\n    from RevitServices.Persistence import DocumentManager\n    from RevitServices.Transactions import TransactionManager\n\n    def file_path(x):\n        if x is None:\n            return ''\n        for a in ('FullName', 'FullPath'):\n            v = getattr(x, a, None)\n            if v:\n                return str(v)\n        s = str(x)\n        return '' if s.strip().lower() in ('', 'no file selected.', 'none', 'null') else s.strip().strip('\"')\n\n    def good_xl(p):\n        if not p:\n            return ''\n        base = os.path.basename(p).lower()\n        if base.startswith('no file selected') or not base.endswith(('.xlsx', '.xlsm')):\n            return ''\n        return p\n\n    out = []\n    doc = DocumentManager.Instance.CurrentDBDocument\n    _sub = None\n    try:\n        XL = good_xl(file_path(IN[0]))\n        APPLY = bool(IN[1])\n        log('--- revisions started  xl \"%s\" apply %s' % (XL, APPLY))\n        if not XL:\n            folder = os.path.dirname(doc.PathName) if doc.PathName else os.path.join(os.environ.get('USERPROFILE', ''), 'Documents')\n            XL = os.path.join(folder, '%s_REVISIONS.xlsx' % doc.Title)\n        if APPLY and os.path.exists(XL):\n            from Autodesk.Revit.DB import SubTransaction\n            TransactionManager.Instance.EnsureInTransaction(doc)\n            _sub = SubTransaction(doc)\n            _sub.Start()\n        run(doc, XL, APPLY, out)\n        if _sub is not None:\n            _sub.Commit()\n            TransactionManager.Instance.TransactionTaskDone()\n    except Exception as ex:\n        try:\n            if _sub is not None:\n                _sub.RollBack()\n                out.append('Nothing was changed in Revit (the whole run was undone).')\n            TransactionManager.Instance.TransactionTaskDone()\n        except Exception:\n            pass\n        out.insert(0, 'FAILED: ' + str(ex))\n        log(traceback.format_exc())\n    log('\\n'.join(out))\n    OUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "309c2923834249aab68e7b7e75d2b8f5",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "78c62500e9aa4ee4bb15dab1bfa226d1",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ac5e7e84f914429aaaaf33ca15b8106c",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9f80e8edde5e4c94b3f0db12addfbac2",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "7765f2d35d294e36b7d46cbc1c446edd",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6ba3f9cbe59244ec8c8a512ad42e0ed9",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1b39a9f3af0f49c89439903791ab7065",
+      "End": "928b2441b30344ee9a351304a8b897a5",
+      "Id": "4d6e524af0ea45289d404fc553fbc98d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+      "End": "78c62500e9aa4ee4bb15dab1bfa226d1",
+      "Id": "263b1d388dc04160b1886c71e2dc3b83",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f805a5952b2846c5a4872752b6961cd7",
+      "End": "ac5e7e84f914429aaaaf33ca15b8106c",
+      "Id": "f8be859b5751464889333a24b7c343c0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9f80e8edde5e4c94b3f0db12addfbac2",
+      "End": "7765f2d35d294e36b7d46cbc1c446edd",
+      "Id": "da2613cb3c5646c69f51913e253b2e7e",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e2835dc20f1e422e863fde75e70e9c40",
+        "Name": "REVISIONS Excel file (Browse...)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "86337e6929b34db8a0abe470f28ed0e9",
+        "Name": "File From Path (watches the Excel)",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 260.0,
+        "Y": 120.0
+      },
+      {
+        "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+        "Name": "APPLY to Revit  (off = only report)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 330.0
+      },
+      {
+        "Id": "309c2923834249aab68e7b7e75d2b8f5",
+        "Name": "CAD2BIM  Revisions  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "b21ed525d4904f789f199d47b86e0590",
+        "Title": "1  EXCEL FILE  (Browse... -> your <project>_REVISIONS.xlsx)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "e2835dc20f1e422e863fde75e70e9c40",
+          "86337e6929b34db8a0abe470f28ed0e9"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 270.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "aa79e005708241ef90226c0894c0246d",
+        "Title": "2  OPTIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3c535e8d6607453bbb34dd05968bb1cd"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 235.0,
+        "Width": 440.0,
+        "Height": 275.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 330.0,
+        "InitialHeight": 180.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "9f25a5fd90d24027a62571d91b55af67",
+        "Title": "3  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "309c2923834249aab68e7b7e75d2b8f5",
+          "f858a1cd0a8f4aaf9052d486f19bcc36"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "69d03a03672c43eaace52c88ac2564f9",
+        "Title": "HOW TO USE  -  1st run: leave the file empty -> <project>_REVISIONS.xlsx is made next to the .rvt from the Revit revisions\nThen Browse... to that Excel.  REVISIONS tab: P01, P02 ... / C01 ... with date + description.  Run once -> SHEETS tab gets a column per revision.\nType X under a revision for every sheet that carries it, save + close, Run.  Each sheet's Revision text = its latest revision (used by CAD2BIM_Export_PDF_DWG).",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

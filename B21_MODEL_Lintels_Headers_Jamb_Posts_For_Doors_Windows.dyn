@@ -1,0 +1,626 @@
+{
+  "Uuid": "d729b8a1-0336-4822-b26e-2653a4814061",
+  "IsCustomNode": false,
+  "Description": "LINTELS + JAMBS: concrete header over every door / window and jamb posts beside them, sizes controlled",
+  "Name": "B21_MODEL_Lintels_Headers_Jamb_Posts_For_Doors_Windows",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "a078a0d888304031b57bd35044532d10",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "644ec80c316345c49482be1702cb9ebb",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "VIEW"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "228a8ba0219e42f089b8c0c077c0ac62",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9faecea1085d44ee91f30dc844bcdb08",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "2e1e3571808f4685bbeb6a1afad47c5c",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bd110a515dfe427786448c22c93b6d5e",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "fe78eabb72e44afbbf3a6dd43471fc40",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "83423a3d10134f019b7de7acc26216ca",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "150"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "1aabcfaffcef45d99d7949075cd4ccd8",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "30ab96706a0d40eba21d699fff0a1a2d",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "150"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "1773259396914cbaaf07c655460268b5",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "85b9d6c4cffa49a898817e5dcd0dd8c0",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "d6ec9810c2a1412d8a938a37d0cb972b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f7231e1a6f6141c4b74e9dedc0976cf6",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "DOORS"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "6e353c12c92e4f7ebd464e38c5784862",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a44da31e172e408085b4c05d1da18434",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "150"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "276c9d9535094c22a6eb1a0f06d46efb",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c5f9c5aa9b704f68b6105972f8e75e3e",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  B21 LINTELS (HEADERS) + JAMB POSTS FOR DOORS AND WINDOWS   (Revit 2026)   v1\n#  For every door / window in a straight wall:\n#    LINTEL  concrete beam over the opening: width = wall thickness (or yours), depth (150), bearing into the wall each\n#            side (150); its underside sits at the opening's head height\n#    JAMBS   concrete post each side of the opening (width along the wall 150, thickness = wall), floor -> lintel underside;\n#            a side that already has a column (B19 or any) gets none\n#  SCOPE VIEW = openings in the open plan, ALL = whole model.  Rerun = its own lintels / jambs of those openings replaced.\n#  One undo.  PREVIEW (make = False) counts, builds nothing.  Runs in pyRevit (IronPython 2.7) and Dynamo CPython3.\n# =====================================================================\nimport math, os\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *                           # noqa\nfrom Autodesk.Revit.DB.Structure import StructuralType   # noqa\n\nMMF = 1.0 / 304.8\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'B21_lintels_log.txt')\nTAG_L, TAG_J = 'B21 LINTEL', 'B21 JAMB'\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ndef tname(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef type_name(t):\n    try:\n        p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n        if p is not None and p.AsString():\n            return p.AsString()\n    except Exception:\n        pass\n    try:\n        return Element.Name.__get__(t)\n    except Exception:\n        return ''\n\n\ndef open_view(doc, uidoc):\n    try:\n        v = uidoc.ActiveView if uidoc is not None else doc.ActiveView\n    except Exception:\n        v = doc.ActiveView\n    if v is not None and tname(v) == 'ViewPlan' and not v.IsTemplate:\n        return v\n    try:\n        for uv in uidoc.GetOpenUIViews():\n            ov = doc.GetElement(uv.ViewId)\n            if ov is not None and tname(ov) == 'ViewPlan' and not ov.IsTemplate:\n                return ov\n    except Exception:\n        pass\n    return None\n\n\ndef _dbl(fi, bips, names):\n    for src in (fi, fi.Symbol):\n        for bip in bips:\n            try:\n                p = src.get_Parameter(bip)\n                if p is not None and p.HasValue and p.AsDouble() > 0:\n                    return p.AsDouble() / MMF\n            except Exception:\n                pass\n        for nm in names:\n            try:\n                p = src.LookupParameter(nm)\n                if p is not None and p.HasValue and p.AsDouble() > 0:\n                    return p.AsDouble() / MMF\n            except Exception:\n                pass\n    return None\n\n\ndef opening_width(fi):\n    return _dbl(fi, (BuiltInParameter.DOOR_WIDTH, BuiltInParameter.WINDOW_WIDTH, BuiltInParameter.FAMILY_ROUGH_WIDTH_PARAM,\n                     BuiltInParameter.FAMILY_WIDTH_PARAM), ('Rough Width', 'Width')) or 900.0\n\n\ndef head_height(fi, level):\n    h = _dbl(fi, (BuiltInParameter.INSTANCE_HEAD_HEIGHT_PARAM,), ('Head Height',))\n    if h:\n        return h\n    try:\n        bb = fi.get_BoundingBox(None)\n        return (bb.Max.Z - level.Elevation) / MMF\n    except Exception:\n        return 2100.0\n\n\ndef is_door(fi):\n    try:\n        return idv(fi.Category.Id) == int(BuiltInCategory.OST_Doors)\n    except Exception:\n        return False\n\n\ndef label(fi):\n    try:\n        m = fi.get_Parameter(BuiltInParameter.ALL_MODEL_MARK).AsString()\n    except Exception:\n        m = ''\n    return '{0} {1}'.format('Door' if is_door(fi) else 'Window', m or '#' + str(idv(fi.Id)))\n\n\n# ------------------------------------------------------------------ families + sized types\ndef pick_symbol(doc, bic, what):\n    syms = [s for s in FilteredElementCollector(doc).OfCategory(bic).OfClass(FamilySymbol)]\n    if not syms:\n        raise Exception('No structural {0} family in this project - load one: Insert > Load Autodesk Family > Structural {1} > '\n                        'Concrete > (M_)Concrete-Rectangular {2}'.format(what, 'Columns' if what == 'column' else 'Framing',\n                                                                         'Column' if what == 'column' else 'Beam'))\n\n    def score(s):\n        fn = (s.Family.Name or '').upper()\n        return (('CONCRETE' in fn) * 2 + ('RECT' in fn) * 2, fn)\n    return sorted(syms, key=score, reverse=True)[0]\n\n\nDIM_NAMES = {'column': (('b', 'h'), ('Width', 'Depth'), ('Width', 'Length')),\n             'beam': (('b', 'h'), ('Width', 'Depth'), ('Width', 'Height'))}\n_TYPES = {}\n\n\ndef sized_type(doc, base, what, b, h, prefix):\n    name = '{0} {1:.0f}x{2:.0f}'.format(prefix, float(b), float(h))\n    if name in _TYPES:\n        return _TYPES[name]\n    for s in base.Family.GetFamilySymbolIds():\n        e = doc.GetElement(s)\n        if type_name(e) == name:\n            _TYPES[name] = e\n            return e\n    pair = None\n    for pb, ph in DIM_NAMES[what]:\n        if base.LookupParameter(pb) is not None and base.LookupParameter(ph) is not None:\n            pair = (pb, ph)\n            break\n    if pair is None:\n        _TYPES[name] = base\n        return base\n    t = base.Duplicate(name)\n    for pn, v in zip(pair, (b, h)):\n        p = t.LookupParameter(pn)\n        if p is not None and not p.IsReadOnly:\n            p.Set(v * MMF)\n    if not t.IsActive:\n        t.Activate()\n    _TYPES[name] = t\n    return t\n\n\n# ------------------------------------------------------------------ Revit helpers\ntry:\n    import uuid as _uuid\n\n    class _Quiet(IFailuresPreprocessor):\n        __namespace__ = 'B21_' + _uuid.uuid4().hex[:10]\n\n        def PreprocessFailures(self, fa):\n            try:\n                for m in fa.GetFailureMessages():\n                    if m.GetSeverity() == FailureSeverity.Warning:\n                        fa.DeleteWarning(m)\n            except Exception:\n                pass\n            return FailureProcessingResult.Continue\nexcept Exception:\n    _Quiet = None\n\n\ndef in_tx(doc, name, fn):\n    t = Transaction(doc, name)\n    if _Quiet is not None:\n        try:\n            o = t.GetFailureHandlingOptions()\n            o.SetFailuresPreprocessor(_Quiet())\n            t.SetFailureHandlingOptions(o)\n        except Exception:\n            pass\n    t.Start()\n    try:\n        r = fn()\n    except Exception:\n        if t.HasStarted() and not t.HasEnded():\n            t.RollBack()\n        raise\n    t.Commit()\n    return r\n\n\ndef _comment(e):\n    try:\n        p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n        return (p.AsString() or '') if p is not None else ''\n    except Exception:\n        return ''\n\n\ndef _setc(e, txt):\n    try:\n        e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS).Set(txt)\n    except Exception:\n        pass\n\n\ndef column_boxes(doc):\n    \"\"\"(xmin, ymin, xmax, ymax, zmin, zmax) mm of every column that is not a B21 jamb\"\"\"\n    out = []\n    for bic in (BuiltInCategory.OST_StructuralColumns, BuiltInCategory.OST_Columns):\n        for e in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType():\n            if _comment(e).startswith(TAG_J):\n                continue\n            try:\n                bb = e.get_BoundingBox(None)\n                out.append((bb.Min.X / MMF, bb.Min.Y / MMF, bb.Max.X / MMF, bb.Max.Y / MMF, bb.Min.Z / MMF, bb.Max.Z / MMF))\n            except Exception:\n                pass\n    return out\n\n\ndef column_there(boxes, p, z0, z1, r=60.0):\n    for x0, y0, x1, y1, c0, c1 in boxes:\n        if x0 - r <= p[0] <= x1 + r and y0 - r <= p[1] <= y1 + r and c1 > z0 + 1 and c0 < z1 - 1:\n            return True\n    return False\n\n\ndef run(doc, uidoc, scope='VIEW', doors=True, windows=True, depth=150.0, bearing=150.0, width=0.0, jambs='DOORS',\n        jamb_w=150.0, make=True):\n    depth, bearing, width, jamb_w = float(depth or 150), float(bearing or 0), float(width or 0), float(jamb_w or 150)\n    jm = str(jambs or 'NONE').strip().upper()\n    jamb_for = (lambda fi: False) if jm.startswith('N') else ((lambda fi: is_door(fi)) if jm.startswith('D') else (lambda fi: True))\n    view = open_view(doc, uidoc)\n    use_view = str(scope or 'VIEW').strip().upper().startswith('V') and view is not None\n    cats = ([BuiltInCategory.OST_Doors] if doors else []) + ([BuiltInCategory.OST_Windows] if windows else [])\n    if not cats:\n        raise Exception('Pick doors and / or windows.')\n    inserts = []\n    for bic in cats:\n        col = FilteredElementCollector(doc, view.Id) if use_view else FilteredElementCollector(doc)\n        for fi in col.OfCategory(bic).WhereElementIsNotElementType():\n            try:\n                if tname(fi) == 'FamilyInstance' and fi.Host is not None and tname(fi.Host) == 'Wall' and \\\n                        tname(fi.Host.Location.Curve) == 'Line':\n                    inserts.append(fi)\n            except Exception:\n                pass\n    boxes = column_boxes(doc)\n    plans = []                                            # (fi, level, a, b, z_line, lintel w, jamb points)\n    for fi in inserts:\n        try:\n            w = fi.Host\n            lvl = doc.GetElement(fi.LevelId)\n            c = w.Location.Curve\n            p0, p1 = c.GetEndPoint(0), c.GetEndPoint(1)\n            d = ((p1.X - p0.X), (p1.Y - p0.Y))\n            L = math.hypot(*d)\n            d = (d[0] / L, d[1] / L)\n            lp = fi.Location.Point\n            cx, cy = lp.X / MMF, lp.Y / MMF\n            wd = opening_width(fi)\n            thk = w.Width / MMF\n            hh = head_height(fi, lvl)\n            half = wd / 2.0 + bearing\n            a = (cx - d[0] * half, cy - d[1] * half)\n            b = (cx + d[0] * half, cy + d[1] * half)\n            z_top = lvl.Elevation / MMF + hh + depth\n            js = []\n            if jamb_for(fi):\n                off = wd / 2.0 + jamb_w / 2.0\n                z0, z1 = lvl.Elevation / MMF, lvl.Elevation / MMF + hh\n                for sgn in (-1, 1):\n                    q = (cx + sgn * d[0] * off, cy + sgn * d[1] * off)\n                    if not column_there(boxes, q, z0, z1):\n                        js.append(q)\n            plans.append((fi, lvl, a, b, z_top, width if width > 0 else thk, hh, js, math.atan2(d[1], d[0]), thk))\n        except Exception as ex:\n            log('opening {0}: {1}'.format(idv(fi.Id), ex))\n    nl, nj = len(plans), sum(len(p[7]) for p in plans)\n    out = ['{0} door(s) / window(s) in {1}: {2} lintel(s) {3:.0f} deep, bearing {4:.0f} mm each side, {5} jamb post(s) '\n           '{6:.0f} mm wide ({7})'.format(len(inserts), '\"{0}\"'.format(view.Name) if use_view else 'the whole model', nl,\n                                          depth, bearing, nj, jamb_w,\n                                          'no jambs' if jm.startswith('N') else ('doors only' if jm.startswith('D') else 'doors + windows'))]\n    if not make:\n        out.insert(0, 'PREVIEW (RUN = False): nothing built')\n        log('\\n'.join(out))\n        return out\n    st = {'l': 0, 'j': 0, 'del': 0, 'fail': []}\n    ids = set(str(idv(p[0].Id)) for p in plans)\n    tg = TransactionGroup(doc, 'B21 Lintels + jambs')\n    tg.Start()\n    try:\n        def clean():\n            old = []\n            for bic in (BuiltInCategory.OST_StructuralFraming, BuiltInCategory.OST_StructuralColumns):\n                for e in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType():\n                    c_ = _comment(e)\n                    if (c_.startswith(TAG_L) or c_.startswith(TAG_J)) and c_.split('|')[-1] in ids:\n                        old.append(e.Id)\n            for i in old:\n                try:\n                    doc.Delete(i)\n                    st['del'] += 1\n                except Exception:\n                    pass\n        in_tx(doc, 'B21 remove old', clean)\n        bsym = pick_symbol(doc, BuiltInCategory.OST_StructuralFraming, 'beam')\n        csym = pick_symbol(doc, BuiltInCategory.OST_StructuralColumns, 'column') if nj else None\n\n        def build():\n            for fi, lvl, a, b, z_top, lw, hh, js, ang, thk in plans:\n                key = str(idv(fi.Id))\n                try:\n                    sym = sized_type(doc, bsym, 'beam', lw, depth, 'B21 L')\n                    if not sym.IsActive:\n                        sym.Activate()\n                    ln = Line.CreateBound(XYZ(a[0] * MMF, a[1] * MMF, z_top * MMF), XYZ(b[0] * MMF, b[1] * MMF, z_top * MMF))\n                    bm = doc.Create.NewFamilyInstance(ln, sym, lvl, StructuralType.Beam)\n                    _setc(bm, '{0}|{1}'.format(TAG_L, key))\n                    st['l'] += 1\n                except Exception as ex:\n                    st['fail'].append('lintel {0}: {1}'.format(label(fi), str(ex).splitlines()[0][:80]))\n                for q in js:\n                    try:\n                        sym = sized_type(doc, csym, 'column', thk, jamb_w, 'B21 J')\n                        if not sym.IsActive:\n                            sym.Activate()\n                        col = doc.Create.NewFamilyInstance(XYZ(q[0] * MMF, q[1] * MMF, lvl.Elevation), sym, lvl,\n                                                           StructuralType.Column)\n                        for bip, val in ((BuiltInParameter.FAMILY_BASE_LEVEL_PARAM, lvl.Id),\n                                         (BuiltInParameter.FAMILY_TOP_LEVEL_PARAM, lvl.Id)):\n                            try:\n                                col.get_Parameter(bip).Set(val)\n                            except Exception:\n                                pass\n                        try:\n                            col.get_Parameter(BuiltInParameter.FAMILY_BASE_LEVEL_OFFSET_PARAM).Set(0.0)\n                            col.get_Parameter(BuiltInParameter.FAMILY_TOP_LEVEL_OFFSET_PARAM).Set(hh * MMF)\n                        except Exception:\n                            pass\n                        rot = ang - math.pi / 2.0                 # h (jamb width) along the wall\n                        if abs(math.sin(rot)) > 1e-6:\n                            ax = Line.CreateBound(XYZ(q[0] * MMF, q[1] * MMF, lvl.Elevation),\n                                                  XYZ(q[0] * MMF, q[1] * MMF, lvl.Elevation + 1))\n                            ElementTransformUtils.RotateElement(doc, col.Id, ax, rot)\n                        _setc(col, '{0}|{1}'.format(TAG_J, key))\n                        st['j'] += 1\n                    except Exception as ex:\n                        st['fail'].append('jamb {0}: {1}'.format(label(fi), str(ex).splitlines()[0][:80]))\n        in_tx(doc, 'B21 place', build)\n    except Exception:\n        tg.RollBack()\n        raise\n    tg.Assimilate()\n    out.insert(0, 'Built: {0} lintel(s) + {1} jamb post(s); {2} old B21 element(s) replaced'.format(st['l'], st['j'], st['del']))\n    for f_ in st['fail'][:8]:\n        out.append('FAILED ' + f_)\n    out.append('Run again = replaced (no doubles).  Ctrl+Z undoes the whole run.')\n    log('\\n'.join(out))\n    return out\n\n\n# =====================================================================\n#  DYNAMO / DYNAMO PLAYER PART  -  inputs:\n#    0  Scope             VIEW = openings in the open plan,  ALL = whole model\n#    1  Doors             True\n#    2  Windows           True\n#    3  Lintel depth mm   150\n#    4  Bearing mm        150  (into the wall each side)\n#    5  Lintel width mm   0 = wall thickness\n#    6  Jamb posts        DOORS / ALL (doors + windows) / NONE\n#    7  Jamb width mm     150  (along the wall; thickness = wall)\n#    8  RUN               False = PREVIEW (counts),  True = build\n#  Run again = the B21 lintels / jambs of those openings are replaced.  Ctrl+Z in Revit undoes.\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _d = DocumentManager.Instance.CurrentDBDocument\n        if _d is not None:\n            doc = _d\n            try:\n                uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n            except Exception:\n                pass\n            TM = TransactionManager\n    except Exception:\n        pass\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('LINTEL_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and not v.strip()):\n        return default\n    return v\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).lower().replace('mm', '').strip())\n    except Exception:\n        return float(default)\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\nout = []\ntry:\n    if doc is None:\n        raise Exception('No Revit document.')\n    if TM is not None:\n        TM.Instance.ForceCloseTransaction()\n    out = run(doc, uidoc, str(_inp(0, 'VIEW')), _flag(1, True), _flag(2, True), _num(3, 150), _num(4, 150), _num(5, 0),\n              str(_inp(6, 'DOORS')), _num(7, 150), _flag(8, False))\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('B21 Lintels + jambs')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else (\n            'Preview - nothing built' if out and out[0].startswith('PREVIEW') else 'Lintels + jambs')\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "5d1518fb24d14e879b9a359a2f08de23",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "37ec9008185a45fc9fc98379612cfef8",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "133279358609479199aa2b1b04efe629",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "63f6c6a6990548d0b3b42e13d17e4e60",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "71c58ce3a3244fe99e709691bd472a0c",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "663e7cf1d87c42dca311df5aafde098d",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7661f2cecf7342109826d78553f753db",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d660db2c1fc94ab196ab200152740732",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6ed83d48fea44cd98151d7fcf54a7f00",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "966f5f81af1143d9876fecc3162947b8",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e8bf1279b9fd470a9f0e815dcc9dcc32",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "f698d1ab43974114b3b4600ecf02b245",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "85527624e75d46eba1709ab8ed360b94",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1d8e938d3e7b46e28b924f46df812297",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "644ec80c316345c49482be1702cb9ebb",
+      "End": "37ec9008185a45fc9fc98379612cfef8",
+      "Id": "63a9f83dd8fb4b959e9ada5a56891b66",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9faecea1085d44ee91f30dc844bcdb08",
+      "End": "133279358609479199aa2b1b04efe629",
+      "Id": "89fb262a33924ce59882d58c8e50ef81",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bd110a515dfe427786448c22c93b6d5e",
+      "End": "63f6c6a6990548d0b3b42e13d17e4e60",
+      "Id": "f15b98fb939840d28a23558a7c1424e2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "83423a3d10134f019b7de7acc26216ca",
+      "End": "71c58ce3a3244fe99e709691bd472a0c",
+      "Id": "29fc5612712a49eabc297c2ddd00b398",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "30ab96706a0d40eba21d699fff0a1a2d",
+      "End": "663e7cf1d87c42dca311df5aafde098d",
+      "Id": "6de6d635ac034065b1f1870beb6e2b09",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "85b9d6c4cffa49a898817e5dcd0dd8c0",
+      "End": "7661f2cecf7342109826d78553f753db",
+      "Id": "3f4ee9f911ab49a18cbad3218d3c4182",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f7231e1a6f6141c4b74e9dedc0976cf6",
+      "End": "d660db2c1fc94ab196ab200152740732",
+      "Id": "2b7008a4adfa4209b5a56bbe5e9d1a46",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a44da31e172e408085b4c05d1da18434",
+      "End": "6ed83d48fea44cd98151d7fcf54a7f00",
+      "Id": "95819785ce024c30b381c10eac067cdc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c5f9c5aa9b704f68b6105972f8e75e3e",
+      "End": "966f5f81af1143d9876fecc3162947b8",
+      "Id": "f92af1dfd8d04b97b09177aee27831b1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e8bf1279b9fd470a9f0e815dcc9dcc32",
+      "End": "85527624e75d46eba1709ab8ed360b94",
+      "Id": "db325dca738e4057aa552e73af0e0104",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "a078a0d888304031b57bd35044532d10",
+        "Name": "0  Scope: VIEW / ALL",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "228a8ba0219e42f089b8c0c077c0ac62",
+        "Name": "1  Doors",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "2e1e3571808f4685bbeb6a1afad47c5c",
+        "Name": "2  Windows",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 300
+      },
+      {
+        "Id": "fe78eabb72e44afbbf3a6dd43471fc40",
+        "Name": "3  Lintel depth mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "1aabcfaffcef45d99d7949075cd4ccd8",
+        "Name": "4  Bearing each side mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "1773259396914cbaaf07c655460268b5",
+        "Name": "5  Lintel width mm (0 = wall)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 300
+      },
+      {
+        "Id": "d6ec9810c2a1412d8a938a37d0cb972b",
+        "Name": "6  Jamb posts: DOORS / ALL / NONE",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "6e353c12c92e4f7ebd464e38c5784862",
+        "Name": "7  Jamb width mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 150
+      },
+      {
+        "Id": "276c9d9535094c22a6eb1a0f06d46efb",
+        "Name": "8  RUN (False = preview)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 300
+      },
+      {
+        "Id": "5d1518fb24d14e879b9a359a2f08de23",
+        "Name": "B21 LINTELS + JAMBS ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1700.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "f698d1ab43974114b3b4600ecf02b245",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2050.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "564a76160f8d4b5da35e4cee378712a5",
+        "Title": "1  OPENINGS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "a078a0d888304031b57bd35044532d10",
+          "228a8ba0219e42f089b8c0c077c0ac62",
+          "2e1e3571808f4685bbeb6a1afad47c5c"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 585,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 490,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "04d276a987444eea836f80536c28d5b8",
+        "Title": "2  LINTEL",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "fe78eabb72e44afbbf3a6dd43471fc40",
+          "1aabcfaffcef45d99d7949075cd4ccd8",
+          "1773259396914cbaaf07c655460268b5"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 585,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 490,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "180a402ca1bf4cc4b885d9b0d5a913fc",
+        "Title": "3  JAMBS + RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "d6ec9810c2a1412d8a938a37d0cb972b",
+          "6e353c12c92e4f7ebd464e38c5784862",
+          "276c9d9535094c22a6eb1a0f06d46efb"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 585,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 490,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "d434b48df9fb45ad86eefaf560f02e77",
+        "Title": "HOW TO USE:  open the plan (or ALL = whole model).  Every door / window gets a concrete LINTEL: width = wall (or 5), depth 3, bearing 4 into the wall each side, underside at the head height.  JAMB POSTS (6): a concrete post each side, floor to lintel, width 7 along the wall; a side that already has a column gets none.  RUN False = counts only.  Run again = replaced.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 1600.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

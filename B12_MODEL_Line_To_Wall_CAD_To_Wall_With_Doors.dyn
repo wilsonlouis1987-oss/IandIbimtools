@@ -1,0 +1,994 @@
+{
+  "Uuid": "12b73f9e-8661-49b4-86d9-aec9f586da9b",
+  "IsCustomNode": false,
+  "Description": "LINE TO WALL / CAD TO WALL: walls from lines drawn in Revit or from a CAD plan; gaps become doors; closed rooms get a door",
+  "Name": "B12_MODEL_Line_To_Wall_CAD_To_Wall_With_Doors",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "3d2fb9d589994ce585aa9ce516b57b98",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "91e6d4cc22474cf688e836c39bf1036e",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "9c2ee517be63441f860fa6a2500966be",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a2f5719f23054c8bba876cff3e85286c",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "99a2d2ed27d24d7381f70bc321ee9b26",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f5155363c5a143f5968f88125baaf34b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "03681443a99a4b26a981b2f79ccb61f8",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "be8e1bf3f61f44898876720b1de18650",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "561e9478b46a442bbe426fb232fd4169",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "86cd85793bfd45fb945a245a6efc0d3a",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "432f9cfa7d924c24b6091effb965eeed",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c7eac68105784730bf6bba9a6b9c5bc4",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "a84e664604b242e1ae3fe0e1af162bd5",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1c621c378e45458db41cb8aad5fa5b2f",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "230"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "12ca04c8ff5b469da1d4ca5e857fc738",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f7e30672562a4c81a51d9d62da5c9dd8",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "3000"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "3f4cbe4aab624d8987d2aaae75655663",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "53c1733bff5c43f5a1b62110ab65297b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Brick"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "624a3bf16e7e4fdb9e28d5495fdf2c69",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a8b714dc6e634303bd51d3a3fde9f17c",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "eb2f808c172b43f6bbc2cbd2aa40b3c9",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a3b5a07e439649efa5cf0a53e74c5a42",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "600, 4000"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "c3c376b420354d63b988c0dffbd475fc",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d6aed6ce40ef4f349af4ff6e6afcd402",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "2100"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "91e45038e00e421eb1327efa33071243",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8d966ce772234d0ab23c0a6383f6b69c",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "1300"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4de2d1fbd292433eb2704a06926e2482",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "237e0dbc4fea496ab5883a8ceb1be8a7",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b0e6ca7e88db44f0a7193a16e64cb66a",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c41f0c3f4aa644f794612cad894bc84b",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "bc5271dd0d2f4a83b6a02290466cb7a8",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a67179da9a4f4b5196d3ee699eac8d54",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "5792dd05b0584d3aa09c9fad8ba450b8",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5da09d5df5d64102a5bba4600612712d",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "900"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# =====================================================================\n#  CAD2BIM - B12 WALLS + DOORS FROM REVIT LINES OR CAD   (Revit 2026)   v2\n#  Lines -> walls (your thickness + height), gaps in the lines -> doors of the gap's width, anywhere.\n#  Inputs (Dynamo Player / SD Tools button):\n#    0  From               LINES = lines you drew in the plan, CAD = a CAD, AUTO = lines if any, else CAD\n#    1  CAD file to link   .dwg / .dxf path ('' = no new link)\n#    2  CAD name contains  '' = the CAD selected in Revit (or the only CAD linked)\n#    3  Line style / layer '' = all lines in the view (selected lines first) / CAD: wall layers found automatically\n#    4  Drawn as           CENTRE = one line per wall,  DOUBLE = two lines per wall,  AUTO = Revit lines centre, CAD double\n#    5  Level              '' = the level of the plan view you run from (else the lowest level)\n#    6  Wall thickness mm  230\n#    7  Wall height mm     3000\n#    8  Wall material      Brick  (type name A_WAL_BRK_230)\n#    9  Doors in gaps      True\n#    10 Door widths mm     '600, 4000' = gaps in this range become doors; smaller gaps are closed, bigger stay open\n#    11 Door height mm     2100\n#    12 Double door from   1300 mm wide\n#    13 Keep CAD thickness True = DOUBLE lines keep their own thickness (snapped 100/115/150/200/230/300)\n#    14 Dry run            True = only report\n#    15 Closed rooms       True = every room without a door gets one (in its longest wall to a reachable room)\n#    16 Auto door width    900 mm\n#  Run again = replaces the walls + doors it made before from the same source.  Dynamo CPython3 + IronPython.\n# =====================================================================\nimport clr, math, os, re, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nfrom Autodesk.Revit.DB.Structure import StructuralType\nclr.AddReference('System')\nfrom System.Collections.Generic import List\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nif DYNAMO:\n    clr.AddReference('RevitServices')\n    from RevitServices.Persistence import DocumentManager\n    from RevitServices.Transactions import TransactionManager\n    doc = DocumentManager.Instance.CurrentDBDocument\n    try:\n        uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n    except Exception:\n        uidoc = None\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('WALL_INPUTS', []))\n    uidoc = globals().get('uidoc', None)\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    return default if v is None or (isinstance(v, str) and not v.strip()) else v\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).replace('mm', '').strip())\n    except Exception:\n        return float(default)\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\nSOURCE = str(_inp(0, 'AUTO')).strip().upper()[:1] or 'A'\nCAD_FILE = str(_inp(1, '')).strip().strip('\"')\nCAD_NAME = str(_inp(2, '')).strip()\nSTYLE = str(_inp(3, '')).strip()\nDRAWN = str(_inp(4, 'AUTO')).strip().upper()[:1] or 'A'\nLEVEL_NAME = str(_inp(5, '')).strip()\nTHK = _num(6, 230)\nHEIGHT = _num(7, 3000)\nMATERIAL = str(_inp(8, 'Brick')).strip() or 'Brick'\nDOORS = _flag(9, True)\n_dw = [float(x) for x in re.findall(r'\\d+(?:\\.\\d+)?', str(_inp(10, '600, 4000')))]\nDOOR_MIN, DOOR_MAX = (_dw + [600.0, 4000.0])[:2] if len(_dw) >= 2 else (600.0, 4000.0)\nDOOR_H = _num(11, 2100)\nDOUBLE_FROM = _num(12, 1300)\nKEEP_CAD_THK = _flag(13, True)\nDRY_RUN = _flag(14, False)\nROOM_DOORS = _flag(15, True)\nAUTO_DOOR_W = _num(16, 900)\nSTD_THK = [100.0, 115.0, 150.0, 200.0, 230.0, 300.0]\nMMF = 1.0 / 304.8\nout = []\n\n\ndef tname_of(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef ename(e):\n    for bip in (BuiltInParameter.SYMBOL_NAME_PARAM, BuiltInParameter.ALL_MODEL_TYPE_NAME):\n        try:\n            p = e.get_Parameter(bip)\n            if p is not None and p.AsString():\n                return p.AsString()\n        except Exception:\n            pass\n    try:\n        return e.Name\n    except Exception:\n        return ''\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef to_mm(v):\n    return v / MMF\n\n\ndef pt(p):\n    return (to_mm(p.X), to_mm(p.Y))\n\n\n# ------------------------------------------------------------------ Revit failures: keep warnings out of the way\nREVIT_MSGS = []\nCAP_MODE = {'rollback': False}\ntry:\n    class _Cap(IFailuresPreprocessor):\n        __namespace__ = 'CAD2BIM_B12'\n        def PreprocessFailures(self, fa):\n            error = False\n            for f in fa.GetFailureMessages():\n                REVIT_MSGS.append('{0}: {1}'.format(f.GetSeverity(), f.GetDescriptionText()))\n                try:\n                    if f.GetSeverity() == FailureSeverity.Warning:\n                        fa.DeleteWarning(f)\n                    else:\n                        error = True\n                except Exception:\n                    pass\n            if error and CAP_MODE['rollback']:\n                return FailureProcessingResult.ProceedWithRollBack\n            return FailureProcessingResult.Continue\nexcept Exception:\n    _Cap = None\n\n\ndef run_tx(name, fn, rollback_on_error):\n    CAP_MODE['rollback'] = rollback_on_error\n    t = Transaction(doc, name)\n    if _Cap is not None:\n        try:\n            o = t.GetFailureHandlingOptions()\n            o.SetFailuresPreprocessor(_Cap())\n            if rollback_on_error:\n                o.SetClearAfterRollback(True)\n            t.SetFailureHandlingOptions(o)\n        except Exception:\n            pass\n    t.Start()\n    try:\n        fn()\n    except Exception:\n        if t.HasStarted() and not t.HasEnded():\n            t.RollBack()\n        raise\n    return str(t.Commit())\n\n\n# ------------------------------------------------------------------ geometry (from B03, proven)\ndef _canon(p, q):\n    a = math.degrees(math.atan2(q[1] - p[1], q[0] - p[0])) % 180.0\n    if a > 179.5:\n        a -= 180.0\n    t = math.radians(a)\n    return a, (math.cos(t), math.sin(t))\n\n\ndef merge_runs(segs, gap, off_tol=2.0, ang_tol=0.3):\n    groups = []\n    for p, q in segs:\n        if math.hypot(q[0] - p[0], q[1] - p[1]) < 1.0:\n            continue\n        a, d = _canon(p, q)\n        n = (-d[1], d[0])\n        off = p[0] * n[0] + p[1] * n[1]\n        t0, t1 = p[0] * d[0] + p[1] * d[1], q[0] * d[0] + q[1] * d[1]\n        for g in groups:\n            da = abs(g['a'] - a)\n            if min(da, 180.0 - da) <= ang_tol and abs(off - g['off']) <= off_tol:\n                g['iv'].append((min(t0, t1), max(t0, t1)))\n                break\n        else:\n            groups.append({'a': a, 'd': d, 'n': n, 'off': off, 'iv': [(min(t0, t1), max(t0, t1))]})\n    runs = []\n    for g in groups:\n        iv = sorted(g['iv'])\n        cur = list(iv[0])\n        for a, b in iv[1:]:\n            if a <= cur[1] + gap:\n                cur[1] = max(cur[1], b)\n            else:\n                runs.append({'a': g['a'], 'd': g['d'], 'n': g['n'], 'off': g['off'], 't0': cur[0], 't1': cur[1]})\n                cur = [a, b]\n        runs.append({'a': g['a'], 'd': g['d'], 'n': g['n'], 'off': g['off'], 't0': cur[0], 't1': cur[1]})\n    return runs\n\n\ndef pair_walls(runs, tmin, tmax, min_len):\n    cand = []\n    for i in range(len(runs)):\n        A = runs[i]\n        for j in range(i + 1, len(runs)):\n            B = runs[j]\n            da = abs(A['a'] - B['a'])\n            if min(da, 180.0 - da) > 0.5:\n                continue\n            sgn = 1.0 if (A['d'][0] * B['d'][0] + A['d'][1] * B['d'][1]) > 0 else -1.0\n            offB = B['off'] * sgn\n            th = abs(offB - A['off'])\n            if th < tmin or th > tmax:\n                continue\n            b0, b1 = (B['t0'], B['t1']) if sgn > 0 else (-B['t1'], -B['t0'])\n            lo, hi = max(A['t0'], b0), min(A['t1'], b1)\n            if hi - lo < min_len:\n                continue\n            cand.append((th, i, j, lo, hi, (A['off'] + offB) / 2.0))\n    cand.sort(key=lambda c: c[0])\n    used = {}\n    walls = []\n    for th, i, j, lo, hi, mid in cand:\n        def covered(k):\n            return sum(max(0.0, min(hi, b) - max(lo, a)) for a, b in used.get(k, []))\n        if covered(i) > 0.5 * (hi - lo) or covered(j) > 0.5 * (hi - lo):\n            continue\n        used.setdefault(i, []).append((lo, hi))\n        used.setdefault(j, []).append((lo, hi))\n        A = runs[i]\n        d, n = A['d'], A['n']\n        p = (d[0] * lo + n[0] * mid, d[1] * lo + n[1] * mid)\n        q = (d[0] * hi + n[0] * mid, d[1] * hi + n[1] * mid)\n        walls.append({'p': p, 'q': q, 't': th})\n    return walls\n\n\ndef _inter(p1, d1, p2, d2):\n    den = d1[0] * d2[1] - d1[1] * d2[0]\n    if abs(den) < 1e-9:\n        return None\n    return ((p2[0] - p1[0]) * d2[1] - (p2[1] - p1[1]) * d2[0]) / den\n\n\ndef _dir(w):\n    L = math.hypot(w['q'][0] - w['p'][0], w['q'][1] - w['p'][1]) or 1.0\n    return ((w['q'][0] - w['p'][0]) / L, (w['q'][1] - w['p'][1]) / L), L\n\n\ndef snap_thk(t):\n    best = min(STD_THK, key=lambda s: abs(s - t))\n    return float(best) if abs(best - t) <= max(8.0, 0.06 * best) else float(round(t / 5.0) * 5.0)\n\n\n# ------------------------------------------------------------------ walls with door gaps\ndef build_walls(pieces):\n    \"\"\"pieces {p,q,t} -> continuous walls through door gaps; doors at gaps (world mm)\"\"\"\n    groups = []\n    for pc in pieces:\n        a, d = _canon(pc['p'], pc['q'])\n        n = (-d[1], d[0])\n        off = pc['p'][0] * n[0] + pc['p'][1] * n[1]\n        t0 = pc['p'][0] * d[0] + pc['p'][1] * d[1]\n        t1 = pc['q'][0] * d[0] + pc['q'][1] * d[1]\n        for g in groups:\n            da = abs(g['a'] - a)\n            if min(da, 180.0 - da) <= 0.5 and abs(off - g['off']) <= max(5.0, 0.25 * pc['t']) and abs(g['t'] - pc['t']) < 1.0:\n                g['iv'].append((min(t0, t1), max(t0, t1)))\n                break\n        else:\n            groups.append({'a': a, 'd': d, 'n': n, 'off': off, 't': pc['t'], 'iv': [(min(t0, t1), max(t0, t1))]})\n    walls = []\n    for g in groups:\n        d, n, off = g['d'], g['n'], g['off']\n\n        def P(t):\n            return (d[0] * t + n[0] * off, d[1] * t + n[1] * off)\n        iv = sorted(g['iv'])\n        cur = list(iv[0])\n        doors = []\n        for a, b in iv[1:]:\n            gap = a - cur[1]\n            if gap <= 5.0:\n                cur[1] = max(cur[1], b)\n            elif gap < DOOR_MIN:                          # small gap: close it\n                cur[1] = max(cur[1], b)\n            elif gap <= DOOR_MAX and DOORS:               # door gap: wall runs through, door in it\n                doors.append({'c': P((cur[1] + a) / 2.0), 'w': gap})\n                cur[1] = max(cur[1], b)\n            else:                                         # wide opening: separate walls\n                walls.append({'p': P(cur[0]), 'q': P(cur[1]), 't': g['t'], 'doors': doors})\n                cur, doors = [a, b], []\n        walls.append({'p': P(cur[0]), 'q': P(cur[1]), 't': g['t'], 'doors': doors})\n    return [w for w in walls if math.hypot(w['q'][0] - w['p'][0], w['q'][1] - w['p'][1]) > 50.0]\n\n\ndef join_and_end_doors(walls):\n    \"\"\"L / T corners: extend ends onto the wall they run into.  An end that stops DOOR_MIN..DOOR_MAX short of a\n    wall gets extended too, with a door in that gap (\"door anywhere\").\"\"\"\n    for w in walls:\n        w['d'], w['L'] = _dir(w)\n    for w in walls:\n        for end in ('p', 'q'):\n            E = w[end]\n            dv = w['d'] if end == 'q' else (-w['d'][0], -w['d'][1])\n            best = None\n            for o in walls:\n                if o is w:\n                    continue\n                if abs(w['d'][0] * o['d'][1] - w['d'][1] * o['d'][0]) < 0.17:\n                    continue\n                s = _inter(E, dv, o['p'], o['d'])         # distance along the wall to the other centre line\n                if s is None:\n                    continue\n                X = (E[0] + dv[0] * s, E[1] + dv[1] * s)\n                u = (X[0] - o['p'][0]) * o['d'][0] + (X[1] - o['p'][1]) * o['d'][1]\n                if u < -o['t'] or u > o['L'] + o['t']:\n                    continue\n                face = s - o['t'] / 2.0                   # clear gap to the other wall's face\n                lim_join = max(w['t'], o['t']) / 2.0 + 60.0\n                if -lim_join <= s <= lim_join or (0 < face < DOOR_MIN):\n                    kind = 'join'\n                elif DOORS and DOOR_MIN <= face <= DOOR_MAX:\n                    kind = 'door'\n                else:\n                    continue\n                if best is None or abs(s) < abs(best[0]):\n                    best = (s, X, kind, face)\n            if best is not None:\n                s, X, kind, face = best\n                if kind == 'door':\n                    c = (E[0] + dv[0] * face / 2.0, E[1] + dv[1] * face / 2.0)\n                    w['doors'].append({'c': c, 'w': face})\n                w[end] = X\n        w['d'], w['L'] = _dir(w)\n    return walls\n\n\n# ------------------------------------------------------------------ reading lines / CAD\nLINE_TYPES = ('ModelLine', 'DetailLine', 'ModelArc', 'DetailArc', 'ModelCurve', 'DetailCurve')\nCURVE_TYPES = ('Arc', 'Ellipse', 'NurbSpline', 'HermiteSpline', 'CylindricalHelix')\nDRAW_VIEWS = ('ViewPlan', 'ViewDrafting', 'ViewSection')\nMAX_AUTO_LINES = 500\n\n\ndef active_view():\n    v = globals().get('ACTIVE_VIEW')\n    if v is None:\n        v = doc.ActiveView\n    if v is not None and tname_of(v) in DRAW_VIEWS and not v.IsTemplate:\n        return v\n    try:\n        for uv in uidoc.GetOpenUIViews():\n            ov = doc.GetElement(uv.ViewId)\n            if ov is not None and tname_of(ov) == 'ViewPlan':\n                return ov\n    except Exception:\n        pass\n    return v\n\n\ndef curve_segs(cv):\n    if tname_of(cv) == 'Line':\n        return [(pt(cv.GetEndPoint(0)), pt(cv.GetEndPoint(1)))]\n    ps = [pt(p) for p in cv.Tessellate()]\n    return [(ps[i], ps[i + 1]) for i in range(len(ps) - 1) if ps[i] != ps[i + 1]]\n\n\ndef style_of(e):\n    try:\n        return e.LineStyle.Name\n    except Exception:\n        return ''\n\n\ndef read_revit_lines():\n    picked = []\n    try:\n        for eid in uidoc.Selection.GetElementIds():\n            e = doc.GetElement(eid)\n            if e is not None and tname_of(e) in LINE_TYPES:\n                picked.append(e)\n    except Exception:\n        pass\n    how = 'selected lines'\n    if not picked and SOURCE != 'C':\n        av = active_view()\n        pool = list(FilteredElementCollector(doc, av.Id).OfClass(CurveElement)) if av is not None else []\n        want = STYLE.upper()\n        picked = [e for e in pool if tname_of(e) in LINE_TYPES and (not want or want in style_of(e).upper())]\n        how = '{0} lines in view \"{1}\"'.format(('\"' + STYLE + '\"') if STYLE else 'all', av.Name if av is not None else '?')\n        if SOURCE == 'A' and not STYLE and len(picked) > MAX_AUTO_LINES:\n            return [], how + ' - {0} lines, too many for AUTO: ignored (select the wall lines)'.format(len(picked)), 0\n    segs = []\n    for e in picked:\n        try:\n            if tname_of(e.GeometryCurve) == 'Line':      # walls: straight lines only (arcs = door swings)\n                segs.extend(curve_segs(e.GeometryCurve))\n        except Exception:\n            pass\n    return segs, how, len(picked)\n\n\ndef layer_name(g, inherited):\n    name = None\n    try:\n        gs = doc.GetElement(g.GraphicsStyleId)\n        if gs is not None and gs.GraphicsStyleCategory is not None:\n            name = gs.GraphicsStyleCategory.Name\n    except Exception:\n        name = None\n    if not name or name == '0':\n        return inherited or name or '0'\n    return name\n\n\ndef read_layers(cad):\n    opt = Options()\n    opt.ComputeReferences = False\n    if cad.ViewSpecific:\n        opt.View = doc.GetElement(cad.OwnerViewId)\n    data = {}\n\n    def add(ln, ps):\n        for i in range(len(ps) - 1):\n            if ps[i] != ps[i + 1]:\n                data.setdefault(ln, []).append((ps[i], ps[i + 1]))\n\n    def walk(geom, inherited):\n        for g in geom:\n            ln = layer_name(g, inherited)\n            tn = tname_of(g)\n            if tn == 'GeometryInstance':\n                walk(g.GetInstanceGeometry(), ln)\n            elif tn == 'Line':\n                if g.IsBound:\n                    add(ln, [pt(g.GetEndPoint(0)), pt(g.GetEndPoint(1))])\n            elif tn == 'PolyLine':\n                add(ln, [pt(p) for p in g.GetCoordinates()])\n    for g in cad.get_Geometry(opt):\n        if tname_of(g) == 'GeometryInstance':\n            walk(g.GetInstanceGeometry(), None)\n    return data\n\n\nWALL_WORDS = ('WALL', 'WAL', 'BRICK', 'BLOCK', 'BLK', 'MASONRY', 'PARTITION', 'AAC')\nSKIP_WORDS = ('HATCH', 'TEXT', 'DIM', 'ANNO', 'TITLE', 'DEFPOINTS', 'VIEWPORT', 'GRID', 'AXIS', 'DOOR', 'WIN', 'GLAZ',\n              'FURN', 'SANIT', 'PLUMB', 'ELEC', 'LIGHT', 'CEIL', 'FLOOR', 'TILE', 'STAIR', 'COL', 'BEAM', 'ROOF',\n              'TREE', 'SYMBOL', 'BORDER', 'FRAME', 'LEVEL')\n\n\ndef pick_layers(layers):\n    if STYLE:\n        use = [n for n in layers if STYLE.lower() in n.lower()]\n        if not use:\n            raise Exception('No CAD layer containing \"{0}\". Layers: {1}'.format(STYLE, ', '.join(sorted(layers))))\n        return use\n    use = [n for n in layers if any(w in n.upper() for w in WALL_WORDS) and not any(s in n.upper() for s in ('HATCH', 'TEXT', 'DIM'))]\n    if use:\n        return use\n    return [n for n in layers if not any(s in n.upper() for s in SKIP_WORDS)]\n\n\ndef plan_view_for(level):\n    av = active_view()\n    if av is not None and tname_of(av) == 'ViewPlan' and not av.IsTemplate:\n        return av\n    for v in FilteredElementCollector(doc).OfClass(ViewPlan):\n        try:\n            if not v.IsTemplate and v.GenLevel is not None and v.GenLevel.Id == level.Id:\n                return v\n        except Exception:\n            pass\n    return None\n\n\ndef link_cad(path, level):\n    base = os.path.basename(path).lower()\n    for c in FilteredElementCollector(doc).OfClass(ImportInstance):\n        if c.Category is not None and c.Category.Name.lower() == base:\n            return c, 'already linked'\n    if not os.path.isfile(path):\n        raise Exception('CAD file not found: ' + path)\n    if DRY_RUN:\n        return None, 'would link ' + path\n    view = plan_view_for(level)\n    if view is None:\n        raise Exception('No floor plan to link the CAD into - open a plan view')\n    res = {}\n\n    def do_link():\n        o = DWGImportOptions()\n        o.Unit = ImportUnit.Default                       # the units saved in the CAD file (mm, m, inch, feet ...)\n        o.Placement = ImportPlacement.Origin\n        o.ThisViewOnly = False\n        try:\n            r = doc.Link(path, o, view)\n        except Exception:\n            r = doc.Link(path, o, view, ElementId.InvalidElementId)\n        res['id'] = r[-1] if isinstance(r, tuple) else r\n    run_tx('CAD2BIM link CAD', do_link, False)\n    c = doc.GetElement(res['id'])\n    if c is None:\n        raise Exception('Revit could not link ' + path)\n    return c, 'linked now'\n\n\ndef pick_cad(level):\n    if CAD_FILE:\n        return link_cad(CAD_FILE, level)\n    cads = list(FilteredElementCollector(doc).OfClass(ImportInstance))\n    if CAD_NAME:\n        m = [c for c in cads if c.Category is not None and CAD_NAME.lower() in c.Category.Name.lower()]\n        if m:\n            return m[0], 'by name'\n        raise Exception('No linked CAD whose name contains \"{0}\"'.format(CAD_NAME))\n    try:\n        for eid in uidoc.Selection.GetElementIds():\n            e = doc.GetElement(eid)\n            if e is not None and tname_of(e) == 'ImportInstance':\n                return e, 'selected'\n    except Exception:\n        pass\n    if len(cads) == 1:\n        return cads[0], 'the only CAD linked'\n    if not cads:\n        raise Exception('No wall lines used ({0}) and no CAD linked. Draw the walls with lines in the plan you run from '\n                        '(or select them), or link / give a CAD file.'.format(LINE_HOW[0] if LINE_HOW else 'none'))\n    raise Exception('Select the CAD in Revit first (or input 2 = part of its name). Linked: ' +\n                    ', '.join(c.Category.Name for c in cads if c.Category is not None))\n\n\n# ------------------------------------------------------------------ types\ndef mat_code(m):\n    u = m.upper()\n    for k, c in (('BRICK', 'BRK'), ('AAC', 'AAC'), ('BLOCK', 'BLK'), ('CONCRETE', 'RC'), ('RCC', 'RC'), ('STONE', 'STN'),\n                 ('GYPSUM', 'GYP'), ('GLASS', 'GL')):\n        if k in u:\n            return c\n    return re.sub(r'[^A-Z]', '', u)[:3] or 'GEN'\n\n\ndef material_id(name):\n    mats = list(FilteredElementCollector(doc).OfClass(Material))\n    for m in mats:\n        if m.Name.upper() == name.upper():\n            return m.Id\n    for m in mats:\n        if name.upper() in m.Name.upper():\n            return m.Id\n    return Material.Create(doc, name)\n\n\n_WT = {}\n\n\ndef wall_type(t_mm):\n    key = int(round(t_mm))\n    if key in _WT:\n        return _WT[key]\n    name = 'A_WAL_{0}_{1}'.format(mat_code(MATERIAL), key)\n    wt = next((t for t in FilteredElementCollector(doc).OfClass(WallType) if ename(t) == name), None)\n    if wt is None:\n        base = [t for t in FilteredElementCollector(doc).OfClass(WallType) if t.Kind == WallKind.Basic and t.GetCompoundStructure() is not None]\n        if not base:\n            raise Exception('no basic wall type in this project to copy')\n        wt = base[0].Duplicate(name)\n        cs = wt.GetCompoundStructure()\n        lay = List[CompoundStructureLayer]()\n        lay.Add(CompoundStructureLayer(key * MMF, MaterialFunctionAssignment.Structure, material_id(MATERIAL)))\n        cs.SetLayers(lay)\n        for side in (ShellLayerType.Exterior, ShellLayerType.Interior):\n            try:\n                cs.SetNumberOfShellLayers(side, 0)\n            except Exception:\n                pass\n        try:\n            cs.StructuralMaterialIndex = 0\n        except Exception:\n            pass\n        wt.SetCompoundStructure(cs)\n    _WT[key] = wt\n    return wt\n\n\ndef door_symbols():\n    return [s for s in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Doors).OfClass(FamilySymbol)]\n\n\ndef is_double(s):\n    n = (s.Family.Name + ' ' + ename(s)).upper()\n    return 'DOUBLE' in n or 'DBL' in n or 'PAIR' in n\n\n\ndef lib_door(kind):\n    root = os.path.join(os.environ.get('ProgramData', r'C:\\ProgramData'), 'Autodesk', 'RVT ' + doc.Application.VersionNumber, 'Libraries')\n    want = ['Double-Flush', 'Double-Glass'] if kind == 'double' else ['Single-Flush', 'Single-Panel']\n    for lg in ('English', 'English-Imperial'):\n        base = os.path.join(root, lg)\n        if not os.path.isdir(base):\n            continue\n        for dp, dn, fn in os.walk(base):\n            for w in want:\n                for f_ in fn:\n                    if f_.lower().endswith('.rfa') and w.lower() in f_.lower() and 'vision' not in f_.lower():\n                        try:\n                            doc.LoadFamily(os.path.join(dp, f_))\n                            return os.path.splitext(f_)[0]\n                        except Exception as ex:\n                            log('load door {0}: {1}'.format(f_, ex))\n    return None\n\n\ndef base_symbol(kind):\n    cand = [s for s in door_symbols() if (is_double(s) if kind == 'double' else not is_double(s))]\n    pref = [s for s in cand if 'FLUSH' in s.Family.Name.upper()]\n    if pref or cand:\n        return (pref or cand)[0]\n    fam = lib_door(kind)\n    if fam:\n        cand = [s for s in door_symbols() if s.Family.Name == fam]\n        if cand:\n            return cand[0]\n    if kind == 'double':\n        return base_symbol('single')\n    return None\n\n\ndef set_len(s, names, mm):\n    for n in names:\n        bip = getattr(BuiltInParameter, n, None)\n        p = s.get_Parameter(bip) if bip is not None else None\n        if p is None:\n            p = s.LookupParameter(n)\n        if p is not None and not p.IsReadOnly:\n            try:\n                p.Set(mm * MMF)\n                return True\n            except Exception:\n                pass\n    return False\n\n\n_DT = {}\n\n\ndef door_type(w_mm):\n    kind = 'double' if w_mm > DOUBLE_FROM else 'single'\n    key = (kind, int(round(w_mm / 10.0) * 10), int(round(DOOR_H)))\n    if key in _DT:\n        return _DT[key]\n    base = base_symbol(kind)\n    if base is None:\n        raise Exception('no door family in the project or the Revit library - load one (Insert > Load Family)')\n    name = 'A_DR_{0}_{1:04d}x{2:04d}'.format('DBL' if is_double(base) else 'SGL', key[1], key[2])\n    s = None\n    for sid in base.Family.GetFamilySymbolIds():\n        e = doc.GetElement(sid)\n        if ename(e) == name:\n            s = e\n            break\n    if s is None:\n        s = base.Duplicate(name)\n    set_len(s, ['DOOR_WIDTH', 'FAMILY_WIDTH_PARAM', 'Width', 'Rough Width'], key[1])\n    set_len(s, ['DOOR_HEIGHT', 'FAMILY_HEIGHT_PARAM', 'Height', 'Rough Height'], key[2])\n    if not s.IsActive:\n        s.Activate()\n    _DT[key] = s\n    return s\n\n\n# ------------------------------------------------------------------ closed rooms get a door\ndef room_doors(made, level, existing):\n    \"\"\"temporary rooms on the level -> rooms without access get a door; returns ([(wall id, centre mm, width)], rooms)\"\"\"\n    phase = list(doc.Phases)[-1]\n    try:\n        rids = list(doc.Create.NewRooms2(level, phase))\n    except Exception as ex:\n        log('rooms: ' + str(ex))\n        return [], 0\n    doc.Regenerate()\n    made_rooms = [doc.GetElement(i) for i in rids]\n    opt = SpatialElementBoundaryOptions()\n\n    def loop_area(r):                                     # Room.Area reads 0 inside the transaction: use the boundary\n        best = 0.0\n        try:\n            for loop in r.GetBoundarySegments(opt):\n                P = [pt(sg.GetCurve().GetEndPoint(0)) for sg in loop]\n                a = 0.0\n                for i in range(len(P)):\n                    a += P[i][0] * P[(i + 1) % len(P)][1] - P[(i + 1) % len(P)][0] * P[i][1]\n                best = max(best, abs(a) / 2.0)\n        except Exception:\n            pass\n        return best\n    sized = [(r, loop_area(r)) for r in made_rooms if r is not None]\n    log('rooms made: {0}, areas m2: {1}'.format(len(sized), [round(a / 1e6, 1) for r, a in sized]))\n    rooms = [r for r, a in sized if a > 1e6]              # > 1 m2\n    area = dict((idv(r.Id), a) for r, a in sized)\n    wall_by_id = dict((idv(i), (i, w)) for i, w in made)\n    z = level.Elevation + 1000 * MMF\n\n    def room_at(x, y):\n        p = XYZ(x * MMF, y * MMF, z)\n        for k, r in enumerate(rooms):\n            try:\n                if r.IsPointInRoom(p):\n                    return k\n            except Exception:\n                pass\n        return None\n    parent = list(range(len(rooms)))\n\n    def find(a):\n        while parent[a] != a:\n            parent[a] = parent[parent[a]]\n            a = parent[a]\n        return a\n\n    def union(a, b):\n        parent[find(a)] = find(b)\n\n    def sides(w, c):\n        n = (-w['d'][1], w['d'][0])\n        off = w['t'] / 2.0 + 300.0\n        return room_at(c[0] + n[0] * off, c[1] + n[1] * off), room_at(c[0] - n[0] * off, c[1] - n[1] * off)\n    for wid, c, wd in existing:                           # doors already placed join the rooms on both sides\n        if idv(wid) in wall_by_id:\n            a, b = sides(wall_by_id[idv(wid)][1], c)\n            if a is not None and b is not None:\n                union(a, b)\n    edges = []\n    for k, r in enumerate(rooms):\n        for loop in r.GetBoundarySegments(opt):\n            for sg in loop:\n                eid = sg.ElementId\n                if eid is None or idv(eid) not in wall_by_id:\n                    continue\n                cv = sg.GetCurve()\n                a, b = pt(cv.GetEndPoint(0)), pt(cv.GetEndPoint(1))\n                L = math.hypot(b[0] - a[0], b[1] - a[1])\n                if L < AUTO_DOOR_W + 400.0:\n                    continue\n                w = wall_by_id[idv(eid)][1]\n                m = ((a[0] + b[0]) / 2.0, (a[1] + b[1]) / 2.0)\n                t = (m[0] - w['p'][0]) * w['d'][0] + (m[1] - w['p'][1]) * w['d'][1]\n                c = (w['p'][0] + w['d'][0] * t, w['p'][1] + w['d'][1] * t)\n                o1, o2 = sides(w, c)\n                other = o2 if o1 == k else (o1 if o2 == k else None)\n                if other is None or other == k:\n                    continue\n                edges.append((L, k, other, eid, c))\n    new = []\n    if rooms:\n        root = max(range(len(rooms)), key=lambda i: area.get(idv(rooms[i].Id), 0.0))\n        while True:\n            rc = find(root)\n            best = None\n            for L, a, b, eid, c in edges:\n                if (find(a) == rc) != (find(b) == rc):\n                    # like an architect: a door straight onto the main space (largest room / corridor) first\n                    key = (1 if root in (a, b) else 0, L)\n                    if best is None or key > best[0]:\n                        best = (key, a, b, eid, c)\n            if best is None:\n                break\n            key, a, b, eid, c = best\n            union(a, b)\n            new.append((eid, c, AUTO_DOOR_W))\n    n = len(rooms)\n    for i in rids:                                        # remove every temporary room\n        try:\n            if doc.GetElement(i) is not None:\n                doc.Delete(i)\n        except Exception:\n            pass\n    return new, n\n\n\n# ------------------------------------------------------------------ run\nLINE_HOW = []\ntry:\n    log('--- B12 walls+doors v2 (DRY_RUN={0}) src {1} drawn {2} style \"{3}\" thk {4} h {5} doors {6} {7}-{8}'.format(\n        DRY_RUN, SOURCE, DRAWN, STYLE, THK, HEIGHT, DOORS, DOOR_MIN, DOOR_MAX))\n    all_lv = sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation)\n    if LEVEL_NAME:\n        lv = [l for l in all_lv if l.Name.lower() == LEVEL_NAME.lower()] or [l for l in all_lv if LEVEL_NAME.lower() in l.Name.lower()]\n        if not lv:\n            raise Exception('No level named \"{0}\". Levels: {1}'.format(LEVEL_NAME, ', '.join(l.Name for l in all_lv)))\n        level = lv[0]\n    else:\n        level = None\n        try:\n            gl = active_view().GenLevel\n            level = doc.GetElement(gl.Id) if gl is not None else None\n        except Exception:\n            level = None\n        if level is None:\n            level = all_lv[0]\n    segs, how, n_lines = ([], '', 0) if SOURCE == 'C' else read_revit_lines()\n    LINE_HOW.append(how)\n    if SOURCE == 'L' and not segs:\n        raise Exception('From LINES: no straight lines found ({0}). Draw the walls with model / detail lines in this plan, '\n                        'or select them.'.format(how))\n    if segs:\n        src_name, src = 'REVIT LINES', '{0} Revit line(s) ({1})'.format(n_lines, how)\n        double = DRAWN == 'D'\n    else:\n        cad, cad_how = pick_cad(level)\n        if cad is None:\n            raise Exception('Dry run: ' + cad_how)\n        layers = read_layers(cad)\n        use = pick_layers(layers)\n        for n in use:\n            segs.extend(layers[n])\n        src_name = cad.Category.Name\n        src = 'CAD \"{0}\" ({1}), layer(s) {2}'.format(src_name, cad_how, ', '.join(use[:6]) + (' ...' if len(use) > 6 else ''))\n        double = DRAWN != 'C'\n    if not segs:\n        raise Exception('No lines to make walls from in ' + src)\n    # ---- pieces\n    if double:\n        runs = merge_runs(segs, 5.0)\n        pieces = pair_walls(runs, 75.0, 450.0, 50.0)\n        for pc in pieces:\n            pc['t'] = snap_thk(pc['t']) if KEEP_CAD_THK else THK\n        if not pieces:                                    # no parallel pairs: the lines are centre lines\n            double = False\n    if not double:\n        pieces = [{'p': (r['d'][0] * r['t0'] + r['n'][0] * r['off'], r['d'][1] * r['t0'] + r['n'][1] * r['off']),\n                   'q': (r['d'][0] * r['t1'] + r['n'][0] * r['off'], r['d'][1] * r['t1'] + r['n'][1] * r['off']),\n                   't': THK} for r in merge_runs(segs, 5.0)]\n    pieces = [p for p in pieces if math.hypot(p['q'][0] - p['p'][0], p['q'][1] - p['p'][1]) >= 100.0]\n    walls = join_and_end_doors(build_walls(pieces))\n    walls = [w for w in walls if math.hypot(w['q'][0] - w['p'][0], w['q'][1] - w['p'][1]) >= 100.0]   # no slivers\n    n_doors = sum(len(w['doors']) for w in walls)\n    widths = sorted(int(round(d['w'] / 10.0) * 10) for w in walls for d in w['doors'])\n    summary = '{0}: {1} wall(s) ({2} lines, {3}), {4} door(s){5}, height {6:.0f} mm, level {7}'.format(\n        src, len(walls), 'double' if double else 'centre', ', '.join(sorted(set('{0:.0f}'.format(float(w['t'])) for w in walls))) + ' mm',\n        n_doors, (' ' + ', '.join(str(x) for x in widths[:12]) + (' ...' if len(widths) > 12 else '') + ' mm wide') if widths else '',\n        HEIGHT, level.Name)\n    if DRY_RUN:\n        out.insert(0, 'DRY RUN (nothing built): ' + summary)\n    else:\n        if DYNAMO:\n            TransactionManager.Instance.ForceCloseTransaction()\n        wtag, dtag = 'CAD2BIM-WALL|' + src_name, 'CAD2BIM-DOOR|' + src_name\n        state = {'walls': []}\n\n        def tagged(bic, tag):\n            res = []\n            for e in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType():\n                c = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n                if c is not None and (c.AsString() or '') == tag:\n                    res.append(e.Id)\n            return res\n\n        def step_walls():\n            for i in tagged(BuiltInCategory.OST_Doors, dtag) + tagged(BuiltInCategory.OST_Walls, wtag):\n                try:\n                    doc.Delete(i)\n                except Exception:\n                    pass\n            z = level.Elevation\n            for w in walls:\n                try:                                      # one wall Revit refuses never stops the others\n                    ln = Line.CreateBound(XYZ(w['p'][0] * MMF, w['p'][1] * MMF, z), XYZ(w['q'][0] * MMF, w['q'][1] * MMF, z))\n                    wl = Wall.Create(doc, ln, wall_type(w['t']).Id, level.Id, HEIGHT * MMF, 0.0, False, False)\n                except Exception as ex:\n                    state.setdefault('skip', []).append('{0:.0f} mm long: {1}'.format(\n                        math.hypot(w['q'][0] - w['p'][0], w['q'][1] - w['p'][1]), str(ex).splitlines()[0][:80] if str(ex) else ''))\n                    continue\n                for bip, val in ((BuiltInParameter.WALL_KEY_REF_PARAM, 0), (BuiltInParameter.WALL_HEIGHT_TYPE, ElementId.InvalidElementId)):\n                    try:\n                        p = wl.get_Parameter(bip)\n                        if p is not None and not p.IsReadOnly:\n                            p.Set(val)\n                    except Exception:\n                        pass\n                try:\n                    wl.get_Parameter(BuiltInParameter.WALL_USER_HEIGHT_PARAM).Set(HEIGHT * MMF)\n                except Exception:\n                    pass\n                wl.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS).Set(wtag)\n                state['walls'].append((wl.Id, w))\n\n        REVIT_MSGS[:] = []\n        run_tx('CAD2BIM walls', step_walls, False)\n        made = [(i, w) for i, w in state['walls'] if doc.GetElement(i) is not None]\n        if not made:\n            raise Exception('Revit could not make the walls: ' + ('; '.join(REVIT_MSGS) or 'no reason given'))\n        placed = {'n': 0, 'fail': []}\n\n        def put_door(host, c, wd):\n            try:\n                sym = door_type(wd)\n                e = doc.Create.NewFamilyInstance(XYZ(c[0] * MMF, c[1] * MMF, level.Elevation), sym, host, level,\n                                                 StructuralType.NonStructural)\n                e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS).Set(dtag)\n                return True\n            except Exception as ex:\n                placed['fail'].append('{0:.0f} mm: {1}'.format(wd, ex))\n                return False\n\n        def step_doors():\n            done = []\n            for wid, w in made:\n                host = doc.GetElement(wid)\n                for d in w['doors']:\n                    if put_door(host, d['c'], d['w']):\n                        placed['n'] += 1\n                        done.append((wid, d['c'], d['w']))\n            doc.Regenerate()\n            if ROOM_DOORS:\n                extra, nrooms = room_doors(made, level, done)\n                placed['rooms'] = nrooms\n                for eid, c, wd in extra:\n                    if put_door(doc.GetElement(eid), c, wd):\n                        placed['auto'] += 1\n            doc.Regenerate()\n\n        placed['auto'] = 0\n        placed['rooms'] = 0\n        if n_doors or ROOM_DOORS:\n            REVIT_MSGS[:] = []\n            try:\n                st = run_tx('CAD2BIM doors', step_doors, True)\n            except Exception as ex:\n                st = 'error ' + str(ex)\n            if not st.startswith('Committed'):\n                placed['n'] = 0\n                placed['fail'].append('Revit undid the doors ({0}): {1}'.format(st, '; '.join(REVIT_MSGS)))\n        out.insert(0, 'OK: ' + summary)\n        if state.get('skip'):\n            out.append('CHECK {0} wall(s) skipped (too short / bad shape): {1}'.format(len(state['skip']), '; '.join(state['skip'][:5])))\n        if n_doors:\n            out.append('Doors in your gaps: {0} of {1}'.format(placed['n'], n_doors))\n        if ROOM_DOORS:\n            out.append('Rooms found: {0}; closed rooms given a {1:.0f} mm door: {2}'.format(\n                placed['rooms'], AUTO_DOOR_W, placed['auto']))\n        for f_ in placed['fail'][:8]:\n            out.append('CHECK door ' + f_)\n        out.append('Walls: ' + ', '.join(sorted(set(ename(wall_type(w['t'])) for i, w in made))))\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nif DYNAMO:\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('CAD2BIM - B12 Walls + Doors')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else ('Dry run' if DRY_RUN else 'Walls + doors built')\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "c1a59f16a8b54b39bff2394e042522ac",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "0b66a227f18d4cfe81662709c7a90811",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8cca66df21844e9a9b2d311803a8e3aa",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "da36e3c85f084de486572741dbe08b5d",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2c5b7ca282314383a7598e1f74c519f6",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "30ade73a966249c39ac167abe1dcea77",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0a6c7f33c2074a239c206b60bd1860fc",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "def81463612b4275896881c62f91dd84",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c963b2417124472eb98b2f3b546e4369",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "aa5e09096f7f41598a4b0fe7395e3176",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "71765629d54646439e7c015b558507bb",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "34c877da5e5b4a749009a2cbf5eec824",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "552a7465633f4c388512a6f1c5417f68",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "09799e8d291f497f8b7d0cfc03045391",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e70d128bfe1943c4bcc143352495c0b4",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0b2930608aa1470a9dee46a6c770c3fb",
+          "Name": "IN[14]",
+          "Description": "Input #14",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fb723e72a6a9463eb29f2f54bdefc2dc",
+          "Name": "IN[15]",
+          "Description": "Input #15",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7b00a07358184eae9dc0c8f59dd7a1dc",
+          "Name": "IN[16]",
+          "Description": "Input #16",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3ac06845563641e0924091f9f7339e13",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 700.0,
+      "WatchHeight": 560.0,
+      "Id": "5f4bb1b336b04bc289820e62a1f5023e",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "cecee5f678f94dd585c44ed06cd07831",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5bed777b28074f7eb9bcc938c2e82319",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "91e6d4cc22474cf688e836c39bf1036e",
+      "End": "0b66a227f18d4cfe81662709c7a90811",
+      "Id": "e38e3a0f43af48a29363ab09857d24eb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a2f5719f23054c8bba876cff3e85286c",
+      "End": "8cca66df21844e9a9b2d311803a8e3aa",
+      "Id": "0bb6a2170a72425097b1a4a8a79efeaf",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f5155363c5a143f5968f88125baaf34b",
+      "End": "da36e3c85f084de486572741dbe08b5d",
+      "Id": "04ac927db6f94697afeac52118df551a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "be8e1bf3f61f44898876720b1de18650",
+      "End": "2c5b7ca282314383a7598e1f74c519f6",
+      "Id": "837f767708bd4cb69953ce73c921423b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "86cd85793bfd45fb945a245a6efc0d3a",
+      "End": "30ade73a966249c39ac167abe1dcea77",
+      "Id": "25ba2a4debf249148796c0009c78418c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c7eac68105784730bf6bba9a6b9c5bc4",
+      "End": "0a6c7f33c2074a239c206b60bd1860fc",
+      "Id": "1e3fe48912cc4148a5de7e98df9feeb9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1c621c378e45458db41cb8aad5fa5b2f",
+      "End": "def81463612b4275896881c62f91dd84",
+      "Id": "075babd522b14c7aa3ec7e841490fcd7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f7e30672562a4c81a51d9d62da5c9dd8",
+      "End": "c963b2417124472eb98b2f3b546e4369",
+      "Id": "a6d244dccb4345adaa75098ea3c241d3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "53c1733bff5c43f5a1b62110ab65297b",
+      "End": "aa5e09096f7f41598a4b0fe7395e3176",
+      "Id": "b103777109e04011bc76a0cebe49f5f0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a8b714dc6e634303bd51d3a3fde9f17c",
+      "End": "71765629d54646439e7c015b558507bb",
+      "Id": "47d4824054cb411cbc246dc0322bb310",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a3b5a07e439649efa5cf0a53e74c5a42",
+      "End": "34c877da5e5b4a749009a2cbf5eec824",
+      "Id": "5036e0e35d8f49b585109030300dbb53",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d6aed6ce40ef4f349af4ff6e6afcd402",
+      "End": "552a7465633f4c388512a6f1c5417f68",
+      "Id": "a6cadf4ce6f34e8fa8d94a9d951615bb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8d966ce772234d0ab23c0a6383f6b69c",
+      "End": "09799e8d291f497f8b7d0cfc03045391",
+      "Id": "77d96ed480684377aa3a5db05ae49200",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "237e0dbc4fea496ab5883a8ceb1be8a7",
+      "End": "e70d128bfe1943c4bcc143352495c0b4",
+      "Id": "6b64755c8fd64d99902d4ee1385729b0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c41f0c3f4aa644f794612cad894bc84b",
+      "End": "0b2930608aa1470a9dee46a6c770c3fb",
+      "Id": "df13f95e55524d5c98abda9470a7d330",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a67179da9a4f4b5196d3ee699eac8d54",
+      "End": "fb723e72a6a9463eb29f2f54bdefc2dc",
+      "Id": "229972f62d3c45e69ac4e71fb5935de3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5da09d5df5d64102a5bba4600612712d",
+      "End": "7b00a07358184eae9dc0c8f59dd7a1dc",
+      "Id": "2c2529341b7c4dc795749eb5efd89e9e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3ac06845563641e0924091f9f7339e13",
+      "End": "cecee5f678f94dd585c44ed06cd07831",
+      "Id": "8b0a7b7181c64a7989b5f141cb3b8dfa",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "3d2fb9d589994ce585aa9ce516b57b98",
+        "Name": "0  FROM:  LINES (drawn in the plan) / CAD / AUTO",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "9c2ee517be63441f860fa6a2500966be",
+        "Name": "1  CAD file to link  .dwg / .dxf  (blank = linked / selected CAD)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 135
+      },
+      {
+        "Id": "99a2d2ed27d24d7381f70bc321ee9b26",
+        "Name": "2  CAD name contains  (blank = selected CAD or the only one)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 270
+      },
+      {
+        "Id": "03681443a99a4b26a981b2f79ccb61f8",
+        "Name": "3  Line style / CAD layer contains  (blank = all lines / wall layers found automatically)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 405
+      },
+      {
+        "Id": "561e9478b46a442bbe426fb232fd4169",
+        "Name": "4  Drawn as:  CENTRE (1 line per wall) / DOUBLE (2 lines) / AUTO",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 540
+      },
+      {
+        "Id": "432f9cfa7d924c24b6091effb965eeed",
+        "Name": "5  Level  (blank = level of the plan you run from)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 0
+      },
+      {
+        "Id": "a84e664604b242e1ae3fe0e1af162bd5",
+        "Name": "6  WALL THICKNESS mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 135
+      },
+      {
+        "Id": "12ca04c8ff5b469da1d4ca5e857fc738",
+        "Name": "7  WALL HEIGHT mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 270
+      },
+      {
+        "Id": "3f4cbe4aab624d8987d2aaae75655663",
+        "Name": "8  Wall material  (type name A_WAL_BRK_230)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 520,
+        "Y": 405
+      },
+      {
+        "Id": "624a3bf16e7e4fdb9e28d5495fdf2c69",
+        "Name": "9  Doors in the gaps",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 0
+      },
+      {
+        "Id": "eb2f808c172b43f6bbc2cbd2aa40b3c9",
+        "Name": "10  Door widths mm  min, max  (smaller gaps closed, bigger stay open)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 135
+      },
+      {
+        "Id": "c3c376b420354d63b988c0dffbd475fc",
+        "Name": "11  Door height mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 270
+      },
+      {
+        "Id": "91e45038e00e421eb1327efa33071243",
+        "Name": "12  Double door from mm wide",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 405
+      },
+      {
+        "Id": "4de2d1fbd292433eb2704a06926e2482",
+        "Name": "13  CAD double lines keep their own thickness",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 540
+      },
+      {
+        "Id": "b0e6ca7e88db44f0a7193a16e64cb66a",
+        "Name": "14  Dry run  (True = report only)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 675
+      },
+      {
+        "Id": "bc5271dd0d2f4a83b6a02290466cb7a8",
+        "Name": "15  Closed rooms get a door  (in the longest wall to a reachable room)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 810
+      },
+      {
+        "Id": "5792dd05b0584d3aa09c9fad8ba450b8",
+        "Name": "16  Auto door width mm  (for closed rooms)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1040,
+        "Y": 945
+      },
+      {
+        "Id": "c1a59f16a8b54b39bff2394e042522ac",
+        "Name": "CAD2BIM  B12 WALLS + DOORS  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1600.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "5f4bb1b336b04bc289820e62a1f5023e",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1950.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "d759c4ecc30c4b38b099f5c8ea7026bc",
+        "Title": "1  FROM  (your lines or a CAD)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3d2fb9d589994ce585aa9ce516b57b98",
+          "9c2ee517be63441f860fa6a2500966be",
+          "99a2d2ed27d24d7381f70bc321ee9b26",
+          "03681443a99a4b26a981b2f79ccb61f8",
+          "561e9478b46a442bbe426fb232fd4169"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 480.0,
+        "Height": 830,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 735,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "07b1d6711d484b249f4ecef3b8711520",
+        "Title": "2  WALLS  (level, thickness, height)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "432f9cfa7d924c24b6091effb965eeed",
+          "a84e664604b242e1ae3fe0e1af162bd5",
+          "12ca04c8ff5b469da1d4ca5e857fc738",
+          "3f4cbe4aab624d8987d2aaae75655663"
+        ],
+        "HasNestedGroups": false,
+        "Left": 500.0,
+        "Top": -95.0,
+        "Width": 480.0,
+        "Height": 695,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 600,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "67b04ca5fe2e455ab148ec30fbafcdbd",
+        "Title": "3  DOORS + OPTIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "624a3bf16e7e4fdb9e28d5495fdf2c69",
+          "eb2f808c172b43f6bbc2cbd2aa40b3c9",
+          "c3c376b420354d63b988c0dffbd475fc",
+          "91e45038e00e421eb1327efa33071243",
+          "4de2d1fbd292433eb2704a06926e2482",
+          "b0e6ca7e88db44f0a7193a16e64cb66a",
+          "bc5271dd0d2f4a83b6a02290466cb7a8",
+          "5792dd05b0584d3aa09c9fad8ba450b8"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1020.0,
+        "Top": -95.0,
+        "Width": 480.0,
+        "Height": 1235,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 1140,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "251b1ea88a464d5d84fec7d5fa1c0563",
+        "Title": "HOW TO USE:  draw walls as lines in a plan (leave gaps for doors), OR link / give a CAD plan.  Set thickness + height > Run.  Gaps become doors of their width.  Run again = replaces what it made.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -220.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

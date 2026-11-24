@@ -1,0 +1,353 @@
+{
+  "Uuid": "7aab3c1e-33af-4e5e-9b36-495f94b13a16",
+  "IsCustomNode": false,
+  "Description": "Numbers every door and window (BY ROOM D-101A, BY LEVEL D-L1-001 or SEQUENTIAL D-001) and tags untagged ones in the floor plans; register of old -> new marks in Excel",
+  "Name": "CAD2BIM_Doors_Windows_Numbering",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "e2835dc20f1e422e863fde75e70e9c40",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1b39a9f3af0f49c89439903791ab7065",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "",
+      "InputValue": "No file selected."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "928b2441b30344ee9a351304a8b897a5",
+          "Name": "path",
+          "Description": "Path to the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+          "Name": "file",
+          "Description": "File object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a file object from the given path",
+      "Id": "86337e6929b34db8a0abe470f28ed0e9"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f805a5952b2846c5a4872752b6961cd7",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - DOORS / WINDOWS NUMBERING (+ tags)\n#  settings in one small Excel: method BY ROOM (D-101A), BY LEVEL (D-L1-001) or SEQUENTIAL (D-001), prefixes, digits\n#  every door / window gets its Mark; untagged ones are tagged in the floor plans of their level;\n#  a REGISTER tab lists old mark -> new mark, level, room, element id\nimport os\nimport re\nimport traceback\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\nimport os\nimport re\nimport zipfile\nimport xml.etree.ElementTree as ET\n\n# ======================================================================== tiny .xlsx reader / writer\nNS = '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'\nRNS = '{http://schemas.openxmlformats.org/officeDocument/2006/relationships}'\n\n\ndef _esc(s):\n    s = re.sub(u'[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f]', '', u'%s' % s)\n    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('\"', '&quot;')\n\n\ndef _ref(ci, ri):\n    s, ci = '', ci + 1\n    while ci:\n        ci, rem = divmod(ci - 1, 26)\n        s = chr(65 + rem) + s\n    return '%s%d' % (s, ri + 1)\n\n\ndef _colidx(ref):\n    n = 0\n    for ch in ''.join(c for c in ref if c.isalpha()):\n        n = n * 26 + (ord(ch.upper()) - 64)\n    return n - 1\n\n\ndef xlsx_read(path, sheet_name):\n    z = zipfile.ZipFile(path)\n    try:\n        shared = []\n        if 'xl/sharedStrings.xml' in z.namelist():\n            for si in ET.fromstring(z.read('xl/sharedStrings.xml')).iter(NS + 'si'):\n                shared.append(''.join(t.text or '' for t in si.iter(NS + 't')))\n        wb = ET.fromstring(z.read('xl/workbook.xml'))\n        rmap = dict((r.get('Id'), r.get('Target')) for r in ET.fromstring(z.read('xl/_rels/workbook.xml.rels')))\n        target = None\n        for sh in wb.iter(NS + 'sheet'):\n            if sh.get('name', '').strip().upper() == sheet_name.upper():\n                target = rmap.get(sh.get(RNS + 'id'))\n        if target is None:\n            return None\n        target = target.lstrip('/')\n        if not target.startswith('xl/'):\n            target = 'xl/' + target\n        root = ET.fromstring(z.read(target))\n    finally:\n        z.close()\n    rows = []\n    for r in root.iter(NS + 'row'):\n        vals = {}\n        for c in r.iter(NS + 'c'):\n            t, v = c.get('t'), c.find(NS + 'v')\n            if t == 's' and v is not None:\n                val = shared[int(v.text)]\n            elif t == 'inlineStr':\n                val = ''.join(x.text or '' for x in c.iter(NS + 't'))\n            elif v is not None and v.text not in (None, ''):\n                val = v.text\n                if t not in ('str', 'e', 'b'):\n                    try:\n                        fl = float(val)\n                        val = str(int(fl)) if fl == int(fl) else str(fl)\n                    except ValueError:\n                        pass\n            else:\n                val = ''\n            vals[_colidx(c.get('r'))] = (val or '').strip()\n        rno = int(r.get('r')) if r.get('r') else len(rows) + 1\n        while len(rows) < rno - 1:\n            rows.append([])\n        rows.append([vals.get(i, '') for i in range(max(vals) + 1)] if vals else [])\n    return rows\n\n\nSTYLES = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<styleSheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">'\n          '<fonts count=\"5\"><font><sz val=\"11\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"10\"/><color rgb=\"FFFFFFFF\"/><name val=\"Arial\"/></font>'\n          '<font><sz val=\"11\"/><color rgb=\"FF0000FF\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"14\"/><name val=\"Arial\"/></font>'\n          '<font><i/><sz val=\"10\"/><color rgb=\"FF595959\"/><name val=\"Arial\"/></font></fonts>'\n          '<fills count=\"4\"><fill><patternFill patternType=\"none\"/></fill><fill><patternFill patternType=\"gray125\"/></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FF1F3864\"/><bgColor indexed=\"64\"/></patternFill></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FFF2F2F2\"/><bgColor indexed=\"64\"/></patternFill></fill></fills>'\n          '<borders count=\"2\"><border><left/><right/><top/><bottom/><diagonal/></border>'\n          '<border><left style=\"thin\"><color rgb=\"FFBFBFBF\"/></left><right style=\"thin\"><color rgb=\"FFBFBFBF\"/></right>'\n          '<top style=\"thin\"><color rgb=\"FFBFBFBF\"/></top><bottom style=\"thin\"><color rgb=\"FFBFBFBF\"/></bottom><diagonal/></border></borders>'\n          '<cellStyleXfs count=\"1\"><xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\"/></cellStyleXfs>'\n          '<cellXfs count=\"7\">'\n          '<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\"/>'                                         # 0 normal\n          '<xf numFmtId=\"49\" fontId=\"1\" fillId=\"2\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\" applyAlignment=\"1\">'\n          '<alignment wrapText=\"1\" vertical=\"center\" horizontal=\"center\"/></xf>'                                  # 1 header\n          '<xf numFmtId=\"49\" fontId=\"2\" fillId=\"0\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyBorder=\"1\"/>'  # 2 blue input (text)\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 3 grey calculated\n          '<xf numFmtId=\"0\" fontId=\"3\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyFont=\"1\"/>'                           # 4 title\n          '<xf numFmtId=\"49\" fontId=\"4\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\"/>'     # 5 note\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 6 grey key\n          '</cellXfs><cellStyles count=\"1\"><cellStyle name=\"Normal\" xfId=\"0\" builtinId=\"0\"/></cellStyles></styleSheet>')\n\n\ndef _sheet_xml(rows, widths, freeze=None, validations=None, col_styles=None, heights=None):\n    \"\"\"rows: list of lists; a cell = value, or (value, style), or ('=formula', cached, style)\"\"\"\n    cs = col_styles or {}\n    out = ['<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n           '<worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">']\n    if freeze:\n        out.append('<sheetViews><sheetView workbookViewId=\"0\"><pane ySplit=\"%d\" topLeftCell=\"A%d\" activePane=\"bottomLeft\" '\n                   'state=\"frozen\"/></sheetView></sheetViews>' % (freeze, freeze + 1))\n    out.append('<cols>' + ''.join('<col min=\"%d\" max=\"%d\" width=\"%s\" customWidth=\"1\"%s/>'\n                                  % (i + 1, i + 1, w, (' style=\"%d\"' % cs[i]) if i in cs else '')\n                                  for i, w in enumerate(widths)) + '</cols><sheetData>')\n    for ri, row in enumerate(rows):\n        cells = []\n        for ci, cell in enumerate(row):\n            ref, style, f = _ref(ci, ri), cs.get(ci, 0), None\n            if isinstance(cell, tuple):\n                if len(cell) == 3:\n                    f, val, style = cell\n                else:\n                    val, style = cell\n            else:\n                val = cell\n            sa = ' s=\"%d\"' % style if style else ''\n            if f:\n                cells.append('<c r=\"%s\"%s t=\"str\"><f>%s</f><v>%s</v></c>' % (ref, sa, _esc(f.lstrip('=')), _esc(val)))\n            elif val is None or val == '':\n                if style:\n                    cells.append('<c r=\"%s\"%s/>' % (ref, sa))\n            else:\n                cells.append('<c r=\"%s\"%s t=\"inlineStr\"><is><t xml:space=\"preserve\">%s</t></is></c>' % (ref, sa, _esc(val)))\n        ht = (' ht=\"%s\" customHeight=\"1\"' % heights[ri]) if heights and ri in heights else ''\n        out.append('<row r=\"%d\"%s>%s</row>' % (ri + 1, ht, ''.join(cells)))\n    out.append('</sheetData>')\n    if validations:\n        out.append('<dataValidations count=\"%d\">' % len(validations))\n        for sqref, formula in validations:\n            out.append('<dataValidation type=\"list\" allowBlank=\"1\" showErrorMessage=\"0\" sqref=\"%s\"><formula1>%s</formula1>'\n                       '</dataValidation>' % (sqref, _esc(formula)))\n        out.append('</dataValidations>')\n    out.append('</worksheet>')\n    return ''.join(out)\n\n\ndef xlsx_write(path, sheets):\n    \"\"\"sheets: list of (name, sheet_xml)\"\"\"\n    n = len(sheets)\n    ct = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">'\n          '<Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>'\n          '<Default Extension=\"xml\" ContentType=\"application/xml\"/>'\n          '<Override PartName=\"/xl/workbook.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml\"/>'\n          '<Override PartName=\"/xl/styles.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml\"/>'\n          + ''.join('<Override PartName=\"/xl/worksheets/sheet%d.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml\"/>' % (i + 1)\n                    for i in range(n)) + '</Types>')\n    rels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n            '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n            '<Relationship Id=\"rId1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\" Target=\"xl/workbook.xml\"/>'\n            '</Relationships>')\n    wb = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<workbook xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" '\n          'xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">'\n          '<bookViews><workbookView activeTab=\"0\"/></bookViews><sheets>'\n          + ''.join('<sheet name=\"%s\" sheetId=\"%d\" r:id=\"rId%d\"/>' % (_esc(s[0]), i + 1, i + 1) for i, s in enumerate(sheets))\n          + '</sheets><calcPr calcId=\"191029\" fullCalcOnLoad=\"1\"/></workbook>')\n    wrels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n             '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n             + ''.join('<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet\" '\n                       'Target=\"worksheets/sheet%d.xml\"/>' % (i + 1, i + 1) for i in range(n))\n             + '<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles\" '\n               'Target=\"styles.xml\"/></Relationships>' % (n + 1))\n    tmp = path + '.tmp'\n    z = zipfile.ZipFile(tmp, 'w', zipfile.ZIP_DEFLATED)\n    try:\n        z.writestr('[Content_Types].xml', ct)\n        z.writestr('_rels/.rels', rels)\n        z.writestr('xl/workbook.xml', wb)\n        z.writestr('xl/_rels/workbook.xml.rels', wrels)\n        z.writestr('xl/styles.xml', STYLES)\n        for i, (name, xml) in enumerate(sheets):\n            z.writestr('xl/worksheets/sheet%d.xml' % (i + 1), xml.encode('utf-8'))\n    finally:\n        z.close()\n    try:\n        if os.path.exists(path):\n            os.remove(path)\n        os.rename(tmp, path)\n    except Exception:\n        os.remove(tmp)\n        raise\n\n\n\n\nSETTINGS = [('Number doors', 'YES', 'YES / NO'),\n            ('Number windows', 'YES', 'YES / NO'),\n            ('Method', 'BY ROOM', 'BY ROOM = D-101A, D-101B ...  |  BY LEVEL = D-L1-001  |  SEQUENTIAL = D-001 for the whole project'),\n            ('Door prefix', 'D', 'leave empty for no prefix (BY ROOM then gives 101A)'),\n            ('Window prefix', 'W', ''),\n            ('Separator', '-', 'between prefix / level / number'),\n            ('Digits', '3', 'BY LEVEL and SEQUENTIAL: 3 -> 001'),\n            ('Keep existing marks', 'NO', 'YES = only elements with an empty Mark are numbered'),\n            ('Tag in floor plans', 'ON SHEETS', 'ON SHEETS = tag untagged doors / windows in the floor plans placed on sheets  |  ALL = every floor plan of the level  |  NO')]\nMETHODS = ('BY ROOM', 'BY LEVEL', 'SEQUENTIAL')\nREG_COLS = [('CATEGORY', 12), ('LEVEL', 16), ('ROOM', 22), ('OLD MARK', 14), ('NEW MARK', 14), ('TYPE', 40), ('TAGS ADDED', 11), ('REVIT ID', 12)]\n\n\ndef yes(v):\n    return str(v).strip().upper() in ('YES', 'Y', 'X', 'TRUE', '1')\n\n\ndef natural(s):\n    return [int(t) if t.isdigit() else t.lower() for t in re.split(r'(\\d+)', s or '')]\n\n\ndef letters(i):\n    s = ''\n    i += 1\n    while i:\n        i, r = divmod(i - 1, 26)\n        s = chr(65 + r) + s\n    return s\n\n\ndef write_book(path, cfg, register, title):\n    sh = [[('CAD2BIM  DOOR / WINDOW NUMBERING  -  ' + (title or 'PROJECT'), 4)], [],\n          [('SETTING', 1), ('VALUE', 1), ('NOTE', 1)]]\n    for k, v, note in SETTINGS:\n        sh.append([(k, 6), (cfg.get(k, v), 2), (note, 5)])\n    val = [('B4:B5', '\"YES,NO\"'), ('B6', '\"%s\"' % ','.join(METHODS)), ('B11', '\"YES,NO\"'), ('B12', '\"ON SHEETS,ALL,NO\"')]\n    reg = [[(c[0], 1) for c in REG_COLS]] + [[(x, 0) for x in r] for r in register]\n    help_rows = [[('HOW TO USE', 4)], [],\n                 ['1.  SETTINGS: choose the method and prefixes.  Save, close, run CAD2BIM_Doors_Windows_Numbering (APPLY on).'],\n                 ['2.  BY ROOM: doors take the number of the room they open INTO (To Room), windows the room they belong to,'],\n                 ['    plus a letter A, B, C ... in plan order.  Elements without a room fall back to BY LEVEL numbering.'],\n                 ['3.  Numbering order: level (low to high), then room number, then left-to-right / bottom-to-top in plan.'],\n                 ['4.  Tag in floor plans: ON SHEETS puts the default door / window tag on every untagged element in the floor plans'],\n                 ['    of its level that are placed on sheets, ALL in every floor plan of the level (load a tag family first if Revit has none).'],\n                 ['5.  REGISTER tab = old mark -> new mark for every element (refreshed every run).  Run with APPLY off to preview.']]\n    xlsx_write(path, [('SETTINGS', _sheet_xml(sh, [24, 16, 95], freeze=3, validations=val)),\n                      ('REGISTER', _sheet_xml(reg, [c[1] for c in REG_COLS], freeze=1)),\n                      ('HOW TO USE', _sheet_xml(help_rows, [120]))])\n\n\ndef read_book(path):\n    rows = xlsx_read(path, 'SETTINGS')\n    if rows is None:\n        raise Exception('the Excel has no SETTINGS tab - leave the file box empty once to create a new Excel')\n    cfg = dict((k, v) for k, v, n in SETTINGS)\n    names = dict((k.lower(), k) for k, v, n in SETTINGS)\n    for r in rows:\n        if r and r[0].strip().lower() in names and len(r) > 1:\n            cfg[names[r[0].strip().lower()]] = r[1].strip()\n    return cfg\n\n\n# ======================================================================== Revit part\ndef run(doc, XL, APPLY, out):\n    import System\n    from Autodesk.Revit.DB import (FilteredElementCollector, BuiltInCategory, BuiltInParameter, FamilyInstance, Level,\n                                   ViewPlan, ViewType, IndependentTag, Viewport, XYZ, Reference, TagOrientation, ElementId, FamilySymbol,\n                                   Element)\n\n    def nm(e):\n        for get in (lambda: Element.Name.GetValue(e), lambda: Element.Name.__get__(e), lambda: e.Name):\n            try:\n                n = get()\n                if n:\n                    return n\n            except Exception:\n                pass\n        return ''\n\n    def idv(eid):\n        try:\n            return eid.Value\n        except Exception:\n            return eid.IntegerValue\n\n    if not os.path.exists(XL):\n        write_book(XL, {}, [], doc.Title)\n        out.append('CAD2BIM NUMBERING  -  EXCEL CREATED')\n        out.append('File   : ' + XL)\n        out.append('Check the SETTINGS tab (method BY ROOM, prefixes D / W), save, Browse... to this file and Run.')\n        return\n\n    cfg = read_book(XL)\n    method = cfg['Method'].strip().upper()\n    if method not in METHODS:\n        raise Exception('Method \"%s\" - use BY ROOM, BY LEVEL or SEQUENTIAL' % cfg['Method'])\n    sep = cfg['Separator']\n    try:\n        digits = max(1, int(float(cfg['Digits'])))\n    except Exception:\n        digits = 3\n    keep = yes(cfg['Keep existing marks'])\n    levels = sorted(FilteredElementCollector(doc).OfClass(Level), key=lambda l: l.Elevation)\n    lvl_order = dict((idv(l.Id), i) for i, l in enumerate(levels))\n    lvl_name = dict((idv(l.Id), l.Name) for l in levels)\n    phases = list(doc.Phases)\n    phase = phases[-1] if phases else None\n\n    def room_of(fi, is_door):\n        r = None\n        for getter in ((lambda: fi.get_ToRoom(phase)), (lambda: fi.ToRoom), (lambda: fi.get_FromRoom(phase)), (lambda: fi.FromRoom)):\n            try:\n                r = getter()\n            except Exception:\n                r = None\n            if r is not None and hasattr(r, 'Number'):      # (IronPython returns an indexer object for fi.ToRoom - never a Room)\n                return r\n        try:\n            p = fi.Location.Point\n            lv = doc.GetElement(fi.LevelId) if fi.LevelId is not None else None\n            z = (lv.Elevation if lv is not None else p.Z) + 1.0\n            f = fi.FacingOrientation\n            w = (fi.Host.Width / 2.0 + 0.5) if fi.Host is not None and hasattr(fi.Host, 'Width') else 1.0\n            for sgn in (1, -1):\n                q = XYZ(p.X + f.X * w * sgn, p.Y + f.Y * w * sgn, z)\n                r = doc.GetRoomAtPoint(q, phase) if phase is not None else doc.GetRoomAtPoint(q)\n                if r is not None:\n                    return r\n        except Exception:\n            pass\n        return None\n\n    def mark_of(fi):\n        p = fi.get_Parameter(BuiltInParameter.ALL_MODEL_MARK)\n        return (p.AsString() or '') if p is not None else ''\n\n    def code(lname):\n        return re.sub(r'[^A-Za-z0-9]', '', lname).upper() or 'LVL'\n\n    def join(*parts):\n        return sep.join(p for p in parts if p)\n\n    register, acts, notes = [], [], []\n    tag_jobs = []\n    jobs = []\n    if yes(cfg['Number doors']):\n        jobs.append(('Doors', BuiltInCategory.OST_Doors, cfg['Door prefix'], BuiltInCategory.OST_DoorTags))\n    if yes(cfg['Number windows']):\n        jobs.append(('Windows', BuiltInCategory.OST_Windows, cfg['Window prefix'], BuiltInCategory.OST_WindowTags))\n    for label, bic, prefix, tag_bic in jobs:\n        els = [e for e in FilteredElementCollector(doc).OfCategory(bic).OfClass(FamilyInstance)\n               if e.Location is not None and hasattr(e.Location, 'Point')]\n        info = []\n        for e in els:\n            r = room_of(e, label == 'Doors')\n            lid = idv(e.LevelId) if e.LevelId is not None else -1\n            if lid not in lvl_name and e.Host is not None:\n                try:\n                    lid = idv(e.Host.LevelId)\n                except Exception:\n                    pass\n            pt = e.Location.Point\n            info.append({'el': e, 'room': r, 'rnum': (r.Number if r is not None else ''),\n                         'rname': (r.get_Parameter(BuiltInParameter.ROOM_NAME).AsString() if r is not None else ''),\n                         'lid': lid, 'lname': lvl_name.get(lid, ''), 'x': round(pt.X, 1), 'y': round(pt.Y, 1), 'old': mark_of(e), 'bic': bic})\n        info.sort(key=lambda d: (lvl_order.get(d['lid'], 999), natural(d['rnum']), d['y'], d['x']))\n        used = set(d['old'] for d in info if keep and d['old'])\n        counters = {}\n        for d in info:\n            if keep and d['old']:\n                d['new'] = d['old']\n                continue\n            if method == 'BY ROOM' and d['rnum']:\n                key, gen = ('R', d['rnum']), (lambda i, d=d: join(prefix, d['rnum'] + letters(i)))\n            elif method == 'SEQUENTIAL':\n                key, gen = ('S',), (lambda i: join(prefix, str(i + 1).zfill(digits)))\n            else:\n                key, gen = ('L', d['lid']), (lambda i, d=d: join(prefix, code(d['lname']), str(i + 1).zfill(digits)))\n            i = counters.get(key, 0)\n            while gen(i) in used:\n                i += 1\n            d['new'] = gen(i)\n            used.add(d['new'])\n            counters[key] = i + 1\n        changed = [d for d in info if d['new'] != d['old']]\n        if APPLY and changed:\n            # two passes so a mark that moves to another element never collides on the way\n            for d in changed:\n                d['el'].get_Parameter(BuiltInParameter.ALL_MODEL_MARK).Set('~tmp~%d' % idv(d['el'].Id))\n            for d in changed:\n                d['el'].get_Parameter(BuiltInParameter.ALL_MODEL_MARK).Set(d['new'])\n        acts.append('%-8s %d found, %d renumbered%s' % (label.upper(), len(info), len(changed), '' if APPLY else ' (preview)'))\n        for d in changed[:12]:\n            acts.append('   %-12s -> %s' % (d['old'] or '(empty)', d['new']))\n        if len(changed) > 12:\n            acts.append('   ... %d more in the REGISTER tab' % (len(changed) - 12))\n        tag_jobs.append((label, tag_bic, info))\n\n    # ---------------------------------------------------------------- tags\n    tagged_count = {}\n    tag_mode = cfg['Tag in floor plans'].strip().upper()\n    tag_mode = 'ON SHEETS' if tag_mode in ('YES', 'ON SHEETS', 'SHEETS') else ('ALL' if tag_mode == 'ALL' else 'NO')\n    if tag_mode != 'NO' and tag_jobs:\n        on_sheet = set(idv(vp.ViewId) for vp in FilteredElementCollector(doc).OfClass(Viewport))\n        plans = [v for v in FilteredElementCollector(doc).OfClass(ViewPlan)\n                 if not v.IsTemplate and v.ViewType == ViewType.FloorPlan and v.GenLevel is not None\n                 and (tag_mode == 'ALL' or idv(v.Id) in on_sheet)]\n        plans_by_level = {}\n        for v in plans:\n            plans_by_level.setdefault(idv(v.GenLevel.Id), []).append(v)\n        # existing tags, read project-wide (a view collector misses tags outside the crop region)\n        already = dict((idv(v.Id), set()) for v in plans)\n        n_existing = 0\n        for t in FilteredElementCollector(doc).OfClass(IndependentTag):\n            s = already.get(idv(t.OwnerViewId))\n            if s is None:\n                continue\n            ids = []\n            for get in ((lambda: list(t.GetTaggedLocalElementIds())), (lambda: [r.ElementId for r in t.GetTaggedReferences()]),\n                        (lambda: [t.TaggedLocalElementId])):\n                try:\n                    ids = get()\n                    if ids:\n                        break\n                except Exception:\n                    pass\n            for i in ids:\n                s.add(idv(i))\n            n_existing += 1\n        log('numbering: %d existing tags in %d plan(s)' % (n_existing, len(plans)))\n        visible = {}\n\n        def is_visible(v, bic, eid):\n            k = (idv(v.Id), int(bic))\n            if k not in visible:\n                visible[k] = set(idv(e.Id) for e in FilteredElementCollector(doc, v.Id).OfCategory(bic).WhereElementIsNotElementType())\n            return eid in visible[k]\n\n        for label, tag_bic, info in tag_jobs:\n            tid = doc.GetDefaultFamilyTypeId(ElementId(System.Int64(int(tag_bic))))\n            if tid is None or idv(tid) < 0:\n                syms = list(FilteredElementCollector(doc).OfClass(FamilySymbol).OfCategory(tag_bic))\n                tid = syms[0].Id if syms else None\n            if tid is None:\n                notes.append('no %s tag family loaded - load one (Insert > Load Family > Annotations) and run again' % label[:-1].lower())\n                continue\n            n = 0\n            for d in info:\n                for v in plans_by_level.get(d['lid'], []):\n                    if idv(d['el'].Id) in already[idv(v.Id)] or not is_visible(v, d['bic'], idv(d['el'].Id)):\n                        continue\n                    if APPLY:\n                        IndependentTag.Create(doc, tid, v.Id, Reference(d['el']), False, TagOrientation.Horizontal, d['el'].Location.Point)\n                        already[idv(v.Id)].add(idv(d['el'].Id))\n                    d['tags'] = d.get('tags', 0) + 1\n                    n += 1\n            tagged_count[label] = n\n            acts.append('%-8s %d %s tag(s) %s in %s' % ('TAGS', n, label[:-1].lower(), 'added' if APPLY else 'to add',\n                                                         'floor plans on sheets' if tag_mode == 'ON SHEETS' else 'all floor plans'))\n            if not plans:\n                notes.append('no floor plans %sfor tags' % ('on sheets ' if tag_mode == 'ON SHEETS' else ''))\n    for label, tag_bic, info in tag_jobs:\n        for d in info:\n            register.append([label, d['lname'], (d['rnum'] + ' ' + (d['rname'] or '')).strip(), d['old'], d['new'],\n                             nm(doc.GetElement(d['el'].GetTypeId())) if d['el'].GetTypeId() is not None else '',\n                             str(d.get('tags', 0)), str(idv(d['el'].Id))])\n        if method == 'BY ROOM':\n            no_room = len([d for d in info if not d['rnum']])\n            if no_room:\n                notes.append('%d %s without a room - numbered BY LEVEL (place rooms to number them by room)' % (no_room, label.lower()))\n\n    out.append('CAD2BIM NUMBERING  -  %s  -  %s' % (method, 'APPLIED' if APPLY else 'CHECK ONLY (APPLY is off - Revit not changed)'))\n    out.append('File   : ' + XL)\n    if not jobs:\n        out.append('Number doors and Number windows are both NO - nothing to do.')\n    out.extend('  ' + a for a in acts)\n    try:\n        write_book(XL, cfg, register, doc.Title)\n        out.append('Excel updated: REGISTER tab written (%d elements).' % len(register))\n    except Exception:\n        notes.append('the Excel is open - close it and Run again to get the REGISTER written')\n    if notes:\n        out.append('')\n        out.append('Notes:')\n        out.extend('  ' + n for n in notes)\n\n\n# ======================================================================== Dynamo entry point\ntry:\n    IN\n    _IN_DYNAMO = True\nexcept NameError:\n    _IN_DYNAMO = False\n\nif _IN_DYNAMO:\n    import clr\n    clr.AddReference('RevitAPI')\n    clr.AddReference('RevitServices')\n    from RevitServices.Persistence import DocumentManager\n    from RevitServices.Transactions import TransactionManager\n\n    def file_path(x):\n        if x is None:\n            return ''\n        for a in ('FullName', 'FullPath'):\n            v = getattr(x, a, None)\n            if v:\n                return str(v)\n        s = str(x)\n        return '' if s.strip().lower() in ('', 'no file selected.', 'none', 'null') else s.strip().strip('\"')\n\n    def good_xl(p):\n        if not p:\n            return ''\n        base = os.path.basename(p).lower()\n        if base.startswith('no file selected') or not base.endswith(('.xlsx', '.xlsm')):\n            return ''\n        return p\n\n    out = []\n    doc = DocumentManager.Instance.CurrentDBDocument\n    _sub = None\n    try:\n        XL = good_xl(file_path(IN[0]))\n        APPLY = bool(IN[1])\n        log('--- numbering started  xl \"%s\" apply %s' % (XL, APPLY))\n        if not XL:\n            folder = os.path.dirname(doc.PathName) if doc.PathName else os.path.join(os.environ.get('USERPROFILE', ''), 'Documents')\n            XL = os.path.join(folder, '%s_NUMBERING.xlsx' % doc.Title)\n        if APPLY and os.path.exists(XL):\n            from Autodesk.Revit.DB import SubTransaction\n            TransactionManager.Instance.EnsureInTransaction(doc)\n            _sub = SubTransaction(doc)\n            _sub.Start()\n        run(doc, XL, APPLY, out)\n        if _sub is not None:\n            _sub.Commit()\n            TransactionManager.Instance.TransactionTaskDone()\n    except Exception as ex:\n        try:\n            if _sub is not None:\n                _sub.RollBack()\n                out.append('Nothing was changed in Revit (the whole run was undone).')\n            TransactionManager.Instance.TransactionTaskDone()\n        except Exception:\n            pass\n        out.insert(0, 'FAILED: ' + str(ex))\n        log(traceback.format_exc())\n    log('\\n'.join(out))\n    OUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "309c2923834249aab68e7b7e75d2b8f5",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "78c62500e9aa4ee4bb15dab1bfa226d1",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ba51c2adb5d74722b6c3f24875ac1663",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9f80e8edde5e4c94b3f0db12addfbac2",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "7765f2d35d294e36b7d46cbc1c446edd",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6ba3f9cbe59244ec8c8a512ad42e0ed9",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1b39a9f3af0f49c89439903791ab7065",
+      "End": "928b2441b30344ee9a351304a8b897a5",
+      "Id": "8db9e943dd2d4c4c8347d6620d17eeac",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+      "End": "78c62500e9aa4ee4bb15dab1bfa226d1",
+      "Id": "214eda578eb44848aa8f6d57e738f8dc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f805a5952b2846c5a4872752b6961cd7",
+      "End": "ba51c2adb5d74722b6c3f24875ac1663",
+      "Id": "b44c055868ff455794b85560e171b70a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9f80e8edde5e4c94b3f0db12addfbac2",
+      "End": "7765f2d35d294e36b7d46cbc1c446edd",
+      "Id": "a0e1649146934e6c9288ab381f57dc21",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e2835dc20f1e422e863fde75e70e9c40",
+        "Name": "NUMBERING Excel file (Browse...)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "86337e6929b34db8a0abe470f28ed0e9",
+        "Name": "File From Path (watches the Excel)",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 260.0,
+        "Y": 120.0
+      },
+      {
+        "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+        "Name": "APPLY to Revit  (off = only preview)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 330.0
+      },
+      {
+        "Id": "309c2923834249aab68e7b7e75d2b8f5",
+        "Name": "CAD2BIM  Numbering  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "af47e320509e4da19a9962e952db73a6",
+        "Title": "1  EXCEL FILE  (Browse... -> your <project>_NUMBERING.xlsx)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "e2835dc20f1e422e863fde75e70e9c40",
+          "86337e6929b34db8a0abe470f28ed0e9"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 270.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "44e9864518994faea45dcf42523397a7",
+        "Title": "2  OPTIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3c535e8d6607453bbb34dd05968bb1cd"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 235.0,
+        "Width": 440.0,
+        "Height": 275.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 330.0,
+        "InitialHeight": 180.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "98e601d8fcfa4f93acad74fa07847ac8",
+        "Title": "3  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "309c2923834249aab68e7b7e75d2b8f5",
+          "f858a1cd0a8f4aaf9052d486f19bcc36"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "228cfec93ba34bab9e3dcbe4666d1d92",
+        "Title": "HOW TO USE  -  1st run: leave the file empty -> <project>_NUMBERING.xlsx is made next to the .rvt\nSETTINGS tab: method BY ROOM / BY LEVEL / SEQUENTIAL, prefixes, digits, keep existing marks, tag in floor plans.  Save + close, Browse..., Run.\nDoors take the room they open into + A, B, C...  REGISTER tab lists old -> new marks.  APPLY off = preview only.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

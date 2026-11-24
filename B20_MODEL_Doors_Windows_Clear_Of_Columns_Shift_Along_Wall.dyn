@@ -1,0 +1,488 @@
+{
+  "Uuid": "01f8352c-f7ee-4beb-98b9-58571dd66fcd",
+  "IsCustomNode": false,
+  "Description": "OPENINGS CLEAR: doors / windows clashing with columns slide along their wall to the nearest free place",
+  "Name": "B20_MODEL_Doors_Windows_Clear_Of_Columns_Shift_Along_Wall",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "3cea2df3988f4f989eaefceac4224d51",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "330e9921b7624fcbbf230b7fc9b99097",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "VIEW"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "bc5af5251c1943e5acfb2f9fe2f1fa53",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9385e465dc9d412b9f563d00d84c7a16",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "100"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "269e905f88454b12beb256b7a5fc8864",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cf42430d7a3d4f6fbad53d67ac757713",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "1200"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "5f113778df164967ba1dde09b7d6c428",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "308ee708093b4f8289d2bfeda057ccbd",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "19fd56b01cc24396a0de32889a5044cf",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8e46db7ee41142d088892132bbce52f6",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "1e5377d1962e474f9e0f6fcf6d4d7a7a",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4884492a23fa475894290d5398a44243",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# -*- coding: utf-8 -*-\n# =====================================================================\n#  B20 DOORS + WINDOWS CLEAR OF COLUMNS   (Revit 2026)   v1\n#  Finds doors / windows whose opening (width + clearance) clashes with a column standing in the same wall at the same\n#  height, and slides them along their wall to the nearest free place:\n#    clear of every column (structural + architectural, any family), of the other openings in that wall and of the\n#    wall ends, and not further than the max shift.  No free place -> not moved, listed as CHECK.\n#  SCOPE  VIEW = doors / windows visible in the open plan,  ALL = the whole model.\n#  Run again = nothing moves once it is clean.  One undo.  PREVIEW (make = False) lists the clashes, moves nothing.\n#  Runs in pyRevit (IronPython 2.7) and Dynamo CPython3.\n# =====================================================================\nimport math, os\n\nimport clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *                           # noqa\n\nMMF = 1.0 / 304.8\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'B20_openings_log.txt')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as f:\n            f.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\ndef tname(o):\n    try:\n        return o.GetType().Name\n    except Exception:\n        return type(o).__name__\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\ndef open_view(doc, uidoc):\n    try:\n        v = uidoc.ActiveView if uidoc is not None else doc.ActiveView\n    except Exception:\n        v = doc.ActiveView\n    if v is not None and tname(v) == 'ViewPlan' and not v.IsTemplate:\n        return v\n    try:\n        for uv in uidoc.GetOpenUIViews():\n            ov = doc.GetElement(uv.ViewId)\n            if ov is not None and tname(ov) == 'ViewPlan' and not ov.IsTemplate:\n                return ov\n    except Exception:\n        pass\n    return None\n\n\ndef opening_width(fi):\n    for bip in (BuiltInParameter.DOOR_WIDTH, BuiltInParameter.WINDOW_WIDTH, BuiltInParameter.FAMILY_WIDTH_PARAM,\n                BuiltInParameter.FAMILY_ROUGH_WIDTH_PARAM):\n        for src in (fi, fi.Symbol):\n            try:\n                p = src.get_Parameter(bip)\n                if p is not None and p.AsDouble() > 0:\n                    return p.AsDouble() / MMF\n            except Exception:\n                pass\n    for nm in ('Rough Width', 'Width'):\n        for src in (fi, fi.Symbol):\n            try:\n                p = src.LookupParameter(nm)\n                if p is not None and p.AsDouble() > 0:\n                    return p.AsDouble() / MMF\n            except Exception:\n                pass\n    return 900.0\n\n\ndef label(fi):\n    try:\n        m = fi.get_Parameter(BuiltInParameter.ALL_MODEL_MARK).AsString()\n    except Exception:\n        m = ''\n    try:\n        lv = fi.Document.GetElement(fi.LevelId).Name\n    except Exception:\n        lv = ''\n    kind = 'Door' if fi.Category is not None and idv(fi.Category.Id) == int(BuiltInCategory.OST_Doors) else 'Window'\n    return '{0} {1}{2}'.format(kind, m or '#' + str(idv(fi.Id)), ' ({0})'.format(lv) if lv else '')\n\n\ndef columns(doc):\n    \"\"\"[(xmin, ymin, xmax, ymax, zmin, zmax)] mm of every column (structural + architectural)\"\"\"\n    out = []\n    for bic in (BuiltInCategory.OST_StructuralColumns, BuiltInCategory.OST_Columns):\n        for e in FilteredElementCollector(doc).OfCategory(bic).WhereElementIsNotElementType():\n            try:\n                bb = e.get_BoundingBox(None)\n                if bb is not None:\n                    out.append((bb.Min.X / MMF, bb.Min.Y / MMF, bb.Max.X / MMF, bb.Max.Y / MMF, bb.Min.Z / MMF, bb.Max.Z / MMF))\n            except Exception:\n                pass\n    return out\n\n\ndef _merge(iv):\n    iv = sorted(iv)\n    out = []\n    for a, b in iv:\n        if out and a <= out[-1][1]:\n            out[-1] = (out[-1][0], max(out[-1][1], b))\n        else:\n            out.append((a, b))\n    return out\n\n\ndef wall_frame(w):\n    c = w.Location.Curve\n    if tname(c) != 'Line':\n        return None\n    a, b = c.GetEndPoint(0), c.GetEndPoint(1)\n    a2, b2 = (a.X / MMF, a.Y / MMF), (b.X / MMF, b.Y / MMF)\n    L = math.hypot(b2[0] - a2[0], b2[1] - a2[1])\n    if L < 1.0:\n        return None\n    d = ((b2[0] - a2[0]) / L, (b2[1] - a2[1]) / L)\n    return a2, d, L, w.Width / MMF\n\n\ndef blocked_on_wall(fr, cols, z0, z1):\n    \"\"\"intervals along the wall (mm) taken by columns standing in it between heights z0..z1\"\"\"\n    a, d, L, t = fr\n    nrm = (-d[1], d[0])\n    out = []\n    for x0, y0, x1, y1, c0, c1 in cols:\n        if c1 <= z0 + 1 or c0 >= z1 - 1:\n            continue\n        corners = ((x0, y0), (x1, y0), (x1, y1), (x0, y1))\n        ts = [(p[0] - a[0]) * d[0] + (p[1] - a[1]) * d[1] for p in corners]\n        ns = [(p[0] - a[0]) * nrm[0] + (p[1] - a[1]) * nrm[1] for p in corners]\n        if min(ns) > t / 2.0 + 25 or max(ns) < -t / 2.0 - 25:      # not in this wall\n            continue\n        if max(ts) < -t or min(ts) > L + t:\n            continue\n        out.append((min(ts), max(ts)))\n    return out\n\n\ndef free_spot(t0, half, blocked, lo, hi, max_shift):\n    \"\"\"nearest centre position to t0 where [c-half, c+half] misses every blocked interval, inside [lo, hi]\"\"\"\n    bad = _merge([(a - half, b + half) for a, b in blocked])\n    def ok(c):\n        return lo - 1e-6 <= c <= hi + 1e-6 and all(not (a + 1e-6 < c < b - 1e-6) for a, b in bad)\n    if ok(t0):\n        return t0\n    cands = [lo, hi] + [x for a, b in bad for x in (a, b)]\n    cands = sorted([c for c in cands if ok(c) and abs(c - t0) <= max_shift + 1e-6], key=lambda c: abs(c - t0))\n    return cands[0] if cands else None\n\n\ndef run(doc, uidoc, scope='VIEW', clearance=100.0, max_shift=1200.0, doors=True, windows=True, make=True):\n    clearance, max_shift = float(clearance or 0.0), float(max_shift or 1200.0)\n    view = open_view(doc, uidoc)\n    use_view = str(scope or 'VIEW').strip().upper().startswith('V') and view is not None\n    cats = []\n    if doors:\n        cats.append(BuiltInCategory.OST_Doors)\n    if windows:\n        cats.append(BuiltInCategory.OST_Windows)\n    if not cats:\n        raise Exception('Pick doors and / or windows.')\n    inserts = []\n    for bic in cats:\n        col = FilteredElementCollector(doc, view.Id) if use_view else FilteredElementCollector(doc)\n        for fi in col.OfCategory(bic).WhereElementIsNotElementType():\n            if tname(fi) == 'FamilyInstance' and fi.Host is not None and tname(fi.Host) == 'Wall':\n                inserts.append(fi)\n    cols = columns(doc)\n    out = ['{0} door(s) / window(s) checked in {1} against {2} column(s)'.format(\n        len(inserts), '\"{0}\"'.format(view.Name) if use_view else 'the whole model', len(cols))]\n    by_wall = {}\n    for fi in inserts:\n        by_wall.setdefault(idv(fi.Host.Id), []).append(fi)\n    plan, clash, stuck = [], 0, []\n    for wid, group in by_wall.items():\n        w = group[0].Host\n        fr = wall_frame(w)\n        if fr is None:\n            continue\n        a, d, L, t = fr\n        info = []\n        for fi in group:\n            try:\n                lp = fi.Location.Point\n                bb = fi.get_BoundingBox(None)\n                info.append([fi, (lp.X / MMF - a[0]) * d[0] + (lp.Y / MMF - a[1]) * d[1], opening_width(fi),\n                             bb.Min.Z / MMF if bb else 0.0, bb.Max.Z / MMF if bb else 1e9])\n            except Exception as ex:\n                log('insert: ' + str(ex))\n        for k, (fi, t0, wd, z0, z1) in enumerate(info):\n            colb = blocked_on_wall(fr, cols, z0, z1)\n            half = wd / 2.0 + clearance\n            hit = any(a_ - half < t0 < b_ + half for a_, b_ in colb)\n            if not hit:\n                continue\n            clash += 1\n            others = [(o[1] - o[2] / 2.0 - clearance, o[1] + o[2] / 2.0 + clearance) for j, o in enumerate(info) if j != k]\n            c = free_spot(t0, half, colb + others, half, L - half, max_shift)\n            if c is None:\n                stuck.append(label(fi))\n                continue\n            plan.append((fi, c - t0, d))\n            info[k][1] = c                                  # later openings in this wall see the new place\n    out.append('  {0} clash(es) with a column'.format(clash))\n    if not make:\n        out.insert(0, 'PREVIEW (RUN = False): nothing moved')\n        for fi, dt, d in plan:\n            out.append('  would move {0} by {1:+.0f} mm'.format(label(fi), dt))\n    else:\n        moved = []\n\n        def work():\n            for fi, dt, d in plan:\n                try:\n                    fi.Location.Move(XYZ(d[0] * dt * MMF, d[1] * dt * MMF, 0))\n                    moved.append('  moved {0} by {1:+.0f} mm'.format(label(fi), dt))\n                except Exception as ex:\n                    stuck.append('{0} ({1})'.format(label(fi), str(ex).splitlines()[0][:60]))\n        t = Transaction(doc, 'B20 Doors + windows clear of columns')\n        t.Start()\n        try:\n            work()\n        except Exception:\n            t.RollBack()\n            raise\n        t.Commit()\n        out.insert(0, 'Doors + windows moved clear of columns: {0}'.format(len(moved)))\n        out += moved[:25]\n        if len(moved) > 25:\n            out.append('  ... and {0} more'.format(len(moved) - 25))\n    for s in stuck[:15]:\n        out.append('CHECK no room to move {0} (within {1:.0f} mm) - move the column or the opening by hand'.format(s, max_shift))\n    if not clash:\n        out.append('All clear - no door or window touches a column.')\n    log('\\n'.join(out))\n    return out\n\n\n# =====================================================================\n#  DYNAMO / DYNAMO PLAYER PART  -  inputs:\n#    0  Scope            VIEW = doors / windows in the open plan,  ALL = whole model\n#    1  Clearance mm     100  (gap between opening and column, covers the frame)\n#    2  Max shift mm     1200 (further = not moved, listed to check)\n#    3  Doors            True\n#    4  Windows          True\n#    5  RUN              False = PREVIEW (lists the clashes),  True = move them\n#  Run again = nothing moves once clean.  Ctrl+Z in Revit undoes.\n# =====================================================================\nimport traceback\n\ntry:\n    IN                                                    # noqa - Dynamo\n    DYNAMO = True\nexcept NameError:\n    DYNAMO = False\nTM = None\ndoc = globals().get('doc')\nuidoc = globals().get('uidoc')\nif DYNAMO:\n    try:\n        clr.AddReference('RevitServices')\n        from RevitServices.Persistence import DocumentManager\n        from RevitServices.Transactions import TransactionManager\n        _d = DocumentManager.Instance.CurrentDBDocument\n        if _d is not None:\n            doc = _d\n            try:\n                uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n            except Exception:\n                pass\n            TM = TransactionManager\n    except Exception:\n        pass\n    RAW = list(IN)\nelse:\n    RAW = list(globals().get('OPEN_INPUTS', []))\n\n\ndef _inp(i, default):\n    try:\n        v = RAW[i]\n    except Exception:\n        return default\n    if v is None or (isinstance(v, str) and not v.strip()):\n        return default\n    return v\n\n\ndef _num(i, default):\n    try:\n        return float(str(_inp(i, default)).lower().replace('mm', '').strip())\n    except Exception:\n        return float(default)\n\n\ndef _flag(i, default):\n    v = _inp(i, default)\n    if isinstance(v, str):\n        return v.strip().upper() in ('TRUE', 'YES', '1', 'Y')\n    return bool(v)\n\n\nout = []\ntry:\n    if doc is None:\n        raise Exception('No Revit document.')\n    if TM is not None:\n        TM.Instance.ForceCloseTransaction()\n    out = run(doc, uidoc, str(_inp(0, 'VIEW')), _num(1, 100), _num(2, 1200), _flag(3, True), _flag(4, True), _flag(5, False))\nexcept Exception as ex:\n    out.append('FAILED: ' + str(ex))\n    log(traceback.format_exc())\nif DYNAMO and not globals().get('NO_DIALOG'):\n    try:\n        clr.AddReference('RevitAPIUI')\n        from Autodesk.Revit.UI import TaskDialog\n        td = TaskDialog('B20 Openings clear')\n        td.MainInstruction = 'Failed' if any(l.startswith('FAILED') for l in out) else (\n            'Preview - nothing moved' if out and out[0].startswith('PREVIEW') else 'Doors + windows clear')\n        td.MainContent = '\\n'.join(out)[:1900]\n        td.Show()\n    except Exception:\n        pass\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "a4c656d8342d430ba279de0855e3c082",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "80ce88d15c2043d091ce37d256ec4b22",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6a5f39dcebeb443bbbd93f82475362e8",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c93d9e08d1364bc0b0b5532791ad418a",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c41ee37b49bd4990baaa858239aae612",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "eb27d39fd4774d06a8c53365e65ae5e7",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ec12f01d0a1045a580acc680a1c9b6e5",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a0c136e3786c4d44a6c1a7e750d46c02",
+          "Name": "OUT",
+          "Description": "Result of the Python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 760.0,
+      "WatchHeight": 520.0,
+      "Id": "099905b02cbd47bab3370319c000a969",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "a246443f1fb84be48316d963fc165149",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a93980fece024be59932d8825da8de4c",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "330e9921b7624fcbbf230b7fc9b99097",
+      "End": "80ce88d15c2043d091ce37d256ec4b22",
+      "Id": "a46979f64aec4aa7b6ec2374a04a72b4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9385e465dc9d412b9f563d00d84c7a16",
+      "End": "6a5f39dcebeb443bbbd93f82475362e8",
+      "Id": "296628c88bd44e1093a24124d879192d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "cf42430d7a3d4f6fbad53d67ac757713",
+      "End": "c93d9e08d1364bc0b0b5532791ad418a",
+      "Id": "8bad9759c67c420dbe82e2917a47bc4e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "308ee708093b4f8289d2bfeda057ccbd",
+      "End": "c41ee37b49bd4990baaa858239aae612",
+      "Id": "789d8b8fd7ed4d879cc93f6fac68e8a4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8e46db7ee41142d088892132bbce52f6",
+      "End": "eb27d39fd4774d06a8c53365e65ae5e7",
+      "Id": "dfe56ea1ecb54e70bc815e64a85e30db",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4884492a23fa475894290d5398a44243",
+      "End": "ec12f01d0a1045a580acc680a1c9b6e5",
+      "Id": "7998c2b020a64a348dfc53bb264e13c4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a0c136e3786c4d44a6c1a7e750d46c02",
+      "End": "a246443f1fb84be48316d963fc165149",
+      "Id": "25fcced00ce84622aeac7afd4c580bfe",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "3cea2df3988f4f989eaefceac4224d51",
+        "Name": "0  Scope: VIEW / ALL",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Id": "bc5af5251c1943e5acfb2f9fe2f1fa53",
+        "Name": "1  Clearance mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 150
+      },
+      {
+        "Id": "269e905f88454b12beb256b7a5fc8864",
+        "Name": "2  Max shift mm",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0,
+        "Y": 300
+      },
+      {
+        "Id": "5f113778df164967ba1dde09b7d6c428",
+        "Name": "3  Doors",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 0
+      },
+      {
+        "Id": "19fd56b01cc24396a0de32889a5044cf",
+        "Name": "4  Windows",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560,
+        "Y": 150
+      },
+      {
+        "Id": "1e5377d1962e474f9e0f6fcf6d4d7a7a",
+        "Name": "5  RUN (False = preview)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1120,
+        "Y": 0
+      },
+      {
+        "Id": "a4c656d8342d430ba279de0855e3c082",
+        "Name": "B20 OPENINGS CLEAR ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1700.0,
+        "Y": 200.0
+      },
+      {
+        "Id": "099905b02cbd47bab3370319c000a969",
+        "Name": "RESULT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2050.0,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "4d5b0055a79a43239faac71c9ad329ad",
+        "Title": "1  CHECK",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3cea2df3988f4f989eaefceac4224d51",
+          "bc5af5251c1943e5acfb2f9fe2f1fa53",
+          "269e905f88454b12beb256b7a5fc8864"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 585,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 490,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "38bc022beeab4de98e9ceb0876ce9cee",
+        "Title": "2  WHAT TO MOVE",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "5f113778df164967ba1dde09b7d6c428",
+          "19fd56b01cc24396a0de32889a5044cf"
+        ],
+        "HasNestedGroups": false,
+        "Left": 540.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 435,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 340,
+        "TextblockHeight": 85.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "56cb4bee744d4ac7b21dd32f63375225",
+        "Title": "3  RUN",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "1e5377d1962e474f9e0f6fcf6d4d7a7a"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1100.0,
+        "Top": -95.0,
+        "Width": 520.0,
+        "Height": 285,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 190,
+        "TextblockHeight": 85.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "53ccf4c192f7479fb06d4d2e3d84c537",
+        "Title": "HOW TO USE:  open the plan (or ALL = whole model).  Every door / window whose opening (width + clearance 1) touches a column in the same wall at the same height slides along its wall to the nearest free place - clear of columns, the other openings and the wall ends - not further than 2.  No room = not moved, listed as CHECK.  Works with any column family (B19 or your own).  RUN False = list the clashes only.  Run again = nothing moves once clean.",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -420.0,
+        "Width": 1600.0,
+        "Height": 260.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -420.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 40.0,
+    "Y": 300.0,
+    "Zoom": 0.5
+  }
+}

@@ -1,0 +1,445 @@
+{
+  "Uuid": "8f2bd7fa-0b70-40e1-b80d-0ac2ca30004e",
+  "IsCustomNode": false,
+  "Description": "Project set-up from an Excel: Project Information, ISO 19650 codes, shared parameters (Status, Revision ...), units, starting view",
+  "Name": "CAD2BIM_Project_Setup",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "e2835dc20f1e422e863fde75e70e9c40",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1b39a9f3af0f49c89439903791ab7065",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "",
+      "InputValue": "No file selected."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "928b2441b30344ee9a351304a8b897a5",
+          "Name": "path",
+          "Description": "Path to the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+          "Name": "file",
+          "Description": "File object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a file object from the given path",
+      "Id": "86337e6929b34db8a0abe470f28ed0e9"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f805a5952b2846c5a4872752b6961cd7",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b925d23d7193473fad0e6b987eb78666",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "541e337a1ae84661ad4e944f087fb612",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "098c0f6232c940f39689de2f975e87ad",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5ec052b7587a474cb4cf23dbe97bf542",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - PROJECT SETUP FROM EXCEL\n#  one Excel = the project set-up: Project Information, ISO 19650 codes, shared parameters, units, starting view\n#  first run with no Excel: the Excel is created next to the .rvt from the current Revit project information\n#  edit the Excel, save, Run -> Revit follows.  Plain .xlsx, no Excel needed to run.\nimport os\nimport re\nimport traceback\n\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\n\n\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\n\n\nimport os\nimport re\nimport zipfile\nimport xml.etree.ElementTree as ET\n\n# ======================================================================== tiny .xlsx reader / writer\nNS = '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'\nRNS = '{http://schemas.openxmlformats.org/officeDocument/2006/relationships}'\n\n\ndef _esc(s):\n    s = re.sub(u'[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f]', '', u'%s' % s)\n    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('\"', '&quot;')\n\n\ndef _ref(ci, ri):\n    s, ci = '', ci + 1\n    while ci:\n        ci, rem = divmod(ci - 1, 26)\n        s = chr(65 + rem) + s\n    return '%s%d' % (s, ri + 1)\n\n\ndef _colidx(ref):\n    n = 0\n    for ch in ''.join(c for c in ref if c.isalpha()):\n        n = n * 26 + (ord(ch.upper()) - 64)\n    return n - 1\n\n\ndef xlsx_read(path, sheet_name):\n    z = zipfile.ZipFile(path)\n    try:\n        shared = []\n        if 'xl/sharedStrings.xml' in z.namelist():\n            for si in ET.fromstring(z.read('xl/sharedStrings.xml')).iter(NS + 'si'):\n                shared.append(''.join(t.text or '' for t in si.iter(NS + 't')))\n        wb = ET.fromstring(z.read('xl/workbook.xml'))\n        rmap = dict((r.get('Id'), r.get('Target')) for r in ET.fromstring(z.read('xl/_rels/workbook.xml.rels')))\n        target = None\n        for sh in wb.iter(NS + 'sheet'):\n            if sh.get('name', '').strip().upper() == sheet_name.upper():\n                target = rmap.get(sh.get(RNS + 'id'))\n        if target is None:\n            return None\n        target = target.lstrip('/')\n        if not target.startswith('xl/'):\n            target = 'xl/' + target\n        root = ET.fromstring(z.read(target))\n    finally:\n        z.close()\n    rows = []\n    for r in root.iter(NS + 'row'):\n        vals = {}\n        for c in r.iter(NS + 'c'):\n            t, v = c.get('t'), c.find(NS + 'v')\n            if t == 's' and v is not None:\n                val = shared[int(v.text)]\n            elif t == 'inlineStr':\n                val = ''.join(x.text or '' for x in c.iter(NS + 't'))\n            elif v is not None and v.text not in (None, ''):\n                val = v.text\n                if t not in ('str', 'e', 'b'):\n                    try:\n                        fl = float(val)\n                        val = str(int(fl)) if fl == int(fl) else str(fl)\n                    except ValueError:\n                        pass\n            else:\n                val = ''\n            vals[_colidx(c.get('r'))] = (val or '').strip()\n        rno = int(r.get('r')) if r.get('r') else len(rows) + 1\n        while len(rows) < rno - 1:\n            rows.append([])\n        rows.append([vals.get(i, '') for i in range(max(vals) + 1)] if vals else [])\n    return rows\n\n\nSTYLES = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<styleSheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">'\n          '<fonts count=\"5\"><font><sz val=\"11\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"10\"/><color rgb=\"FFFFFFFF\"/><name val=\"Arial\"/></font>'\n          '<font><sz val=\"11\"/><color rgb=\"FF0000FF\"/><name val=\"Arial\"/></font>'\n          '<font><b/><sz val=\"14\"/><name val=\"Arial\"/></font>'\n          '<font><i/><sz val=\"10\"/><color rgb=\"FF595959\"/><name val=\"Arial\"/></font></fonts>'\n          '<fills count=\"4\"><fill><patternFill patternType=\"none\"/></fill><fill><patternFill patternType=\"gray125\"/></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FF1F3864\"/><bgColor indexed=\"64\"/></patternFill></fill>'\n          '<fill><patternFill patternType=\"solid\"><fgColor rgb=\"FFF2F2F2\"/><bgColor indexed=\"64\"/></patternFill></fill></fills>'\n          '<borders count=\"2\"><border><left/><right/><top/><bottom/><diagonal/></border>'\n          '<border><left style=\"thin\"><color rgb=\"FFBFBFBF\"/></left><right style=\"thin\"><color rgb=\"FFBFBFBF\"/></right>'\n          '<top style=\"thin\"><color rgb=\"FFBFBFBF\"/></top><bottom style=\"thin\"><color rgb=\"FFBFBFBF\"/></bottom><diagonal/></border></borders>'\n          '<cellStyleXfs count=\"1\"><xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\"/></cellStyleXfs>'\n          '<cellXfs count=\"7\">'\n          '<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\"/>'                                         # 0 normal\n          '<xf numFmtId=\"49\" fontId=\"1\" fillId=\"2\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\" applyAlignment=\"1\">'\n          '<alignment wrapText=\"1\" vertical=\"center\" horizontal=\"center\"/></xf>'                                  # 1 header\n          '<xf numFmtId=\"49\" fontId=\"2\" fillId=\"0\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyBorder=\"1\"/>'  # 2 blue input (text)\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 3 grey calculated\n          '<xf numFmtId=\"0\" fontId=\"3\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyFont=\"1\"/>'                           # 4 title\n          '<xf numFmtId=\"49\" fontId=\"4\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\"/>'     # 5 note\n          '<xf numFmtId=\"49\" fontId=\"0\" fillId=\"3\" borderId=\"1\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\"/>'  # 6 grey key\n          '</cellXfs><cellStyles count=\"1\"><cellStyle name=\"Normal\" xfId=\"0\" builtinId=\"0\"/></cellStyles></styleSheet>')\n\n\ndef _sheet_xml(rows, widths, freeze=None, validations=None, col_styles=None, heights=None):\n    \"\"\"rows: list of lists; a cell = value, or (value, style), or ('=formula', cached, style)\"\"\"\n    cs = col_styles or {}\n    out = ['<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n           '<worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">']\n    if freeze:\n        out.append('<sheetViews><sheetView workbookViewId=\"0\"><pane ySplit=\"%d\" topLeftCell=\"A%d\" activePane=\"bottomLeft\" '\n                   'state=\"frozen\"/></sheetView></sheetViews>' % (freeze, freeze + 1))\n    out.append('<cols>' + ''.join('<col min=\"%d\" max=\"%d\" width=\"%s\" customWidth=\"1\"%s/>'\n                                  % (i + 1, i + 1, w, (' style=\"%d\"' % cs[i]) if i in cs else '')\n                                  for i, w in enumerate(widths)) + '</cols><sheetData>')\n    for ri, row in enumerate(rows):\n        cells = []\n        for ci, cell in enumerate(row):\n            ref, style, f = _ref(ci, ri), cs.get(ci, 0), None\n            if isinstance(cell, tuple):\n                if len(cell) == 3:\n                    f, val, style = cell\n                else:\n                    val, style = cell\n            else:\n                val = cell\n            sa = ' s=\"%d\"' % style if style else ''\n            if f:\n                cells.append('<c r=\"%s\"%s t=\"str\"><f>%s</f><v>%s</v></c>' % (ref, sa, _esc(f.lstrip('=')), _esc(val)))\n            elif val is None or val == '':\n                if style:\n                    cells.append('<c r=\"%s\"%s/>' % (ref, sa))\n            else:\n                cells.append('<c r=\"%s\"%s t=\"inlineStr\"><is><t xml:space=\"preserve\">%s</t></is></c>' % (ref, sa, _esc(val)))\n        ht = (' ht=\"%s\" customHeight=\"1\"' % heights[ri]) if heights and ri in heights else ''\n        out.append('<row r=\"%d\"%s>%s</row>' % (ri + 1, ht, ''.join(cells)))\n    out.append('</sheetData>')\n    if validations:\n        out.append('<dataValidations count=\"%d\">' % len(validations))\n        for sqref, formula in validations:\n            out.append('<dataValidation type=\"list\" allowBlank=\"1\" showErrorMessage=\"0\" sqref=\"%s\"><formula1>%s</formula1>'\n                       '</dataValidation>' % (sqref, _esc(formula)))\n        out.append('</dataValidations>')\n    out.append('</worksheet>')\n    return ''.join(out)\n\n\ndef xlsx_write(path, sheets):\n    \"\"\"sheets: list of (name, sheet_xml)\"\"\"\n    n = len(sheets)\n    ct = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">'\n          '<Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>'\n          '<Default Extension=\"xml\" ContentType=\"application/xml\"/>'\n          '<Override PartName=\"/xl/workbook.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml\"/>'\n          '<Override PartName=\"/xl/styles.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml\"/>'\n          + ''.join('<Override PartName=\"/xl/worksheets/sheet%d.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml\"/>' % (i + 1)\n                    for i in range(n)) + '</Types>')\n    rels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n            '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n            '<Relationship Id=\"rId1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\" Target=\"xl/workbook.xml\"/>'\n            '</Relationships>')\n    wb = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n          '<workbook xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" '\n          'xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">'\n          '<bookViews><workbookView activeTab=\"0\"/></bookViews><sheets>'\n          + ''.join('<sheet name=\"%s\" sheetId=\"%d\" r:id=\"rId%d\"/>' % (_esc(s[0]), i + 1, i + 1) for i, s in enumerate(sheets))\n          + '</sheets><calcPr calcId=\"191029\" fullCalcOnLoad=\"1\"/></workbook>')\n    wrels = ('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>'\n             '<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">'\n             + ''.join('<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet\" '\n                       'Target=\"worksheets/sheet%d.xml\"/>' % (i + 1, i + 1) for i in range(n))\n             + '<Relationship Id=\"rId%d\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles\" '\n               'Target=\"styles.xml\"/></Relationships>' % (n + 1))\n    tmp = path + '.tmp'\n    z = zipfile.ZipFile(tmp, 'w', zipfile.ZIP_DEFLATED)\n    try:\n        z.writestr('[Content_Types].xml', ct)\n        z.writestr('_rels/.rels', rels)\n        z.writestr('xl/workbook.xml', wb)\n        z.writestr('xl/_rels/workbook.xml.rels', wrels)\n        z.writestr('xl/styles.xml', STYLES)\n        for i, (name, xml) in enumerate(sheets):\n            z.writestr('xl/worksheets/sheet%d.xml' % (i + 1), xml.encode('utf-8'))\n    finally:\n        z.close()\n    try:\n        if os.path.exists(path):\n            os.remove(path)\n        os.rename(tmp, path)\n    except Exception:\n        os.remove(tmp)\n        raise\n\n\n\n\n# PROJECT tab: (label, Revit built-in parameter name or 'shared:<name>' or special, default, note)\nPROJECT_ROWS = [\n    ('Project Name', 'PROJECT_NAME', '', 'Project Information > Project Name'),\n    ('Project Number', 'PROJECT_NUMBER', '', 'Project Information > Project Number'),\n    ('Client Name', 'CLIENT_NAME', '', ''),\n    ('Project Address', 'PROJECT_ADDRESS', '', ''),\n    ('Building Name', 'PROJECT_BUILDING_NAME', '', ''),\n    ('Author', 'PROJECT_AUTHOR', '', ''),\n    ('Project Status', 'PROJECT_STATUS', '', 'e.g. Concept / Schematic / Tender / Construction'),\n    ('Project Issue Date', 'PROJECT_ISSUE_DATE', '', 'e.g. 09/11/26'),\n    ('Organization Name', 'PROJECT_ORGANIZATION_NAME', '', 'your company'),\n    ('Organization Description', 'PROJECT_ORGANIZATION_DESCRIPTION', '', ''),\n    ('ISO Project Code', 'shared:ISO Project Code', '2524', 'ISO 19650 field 1 (same as the Sheets script SETTINGS)'),\n    ('ISO Originator', 'shared:ISO Originator', 'SD', 'ISO 19650 field 2'),\n    ('ISO Volume', 'shared:ISO Volume', 'ZZ', 'ISO 19650 field 3 - ZZ = all volumes'),\n    ('Project Stage', 'shared:Project Stage', '', 'e.g. Stage 2 Concept / Stage 4 Technical Design'),\n    ('Units', 'special:units', 'METRIC', 'METRIC = mm, m2, m3 (2 decimals)   KEEP = leave the template units'),\n    ('Starting view (sheet number)', 'special:start', '', 'e.g. a cover sheet number - opens first when the model opens'),\n]\n# PARAMETERS tab defaults: name, type, categories, instance/type, group\nPARAM_ROWS = [\n    ('Status', 'Text', 'Sheets', 'Instance', 'Identity Data', 'ISO 19650 suitability (S0..S7, A1..) - used by the Sheets script'),\n    ('Status Description', 'Text', 'Sheets', 'Instance', 'Identity Data', 'e.g. Suitable for information'),\n    ('Revision', 'Text', 'Sheets', 'Instance', 'Identity Data', 'P01, C01 ... - used by the Sheets script'),\n    ('ISO Project Code', 'Text', 'Project Information', 'Instance', 'Identity Data', ''),\n    ('ISO Originator', 'Text', 'Project Information', 'Instance', 'Identity Data', ''),\n    ('ISO Volume', 'Text', 'Project Information', 'Instance', 'Identity Data', ''),\n    ('Project Stage', 'Text', 'Project Information', 'Instance', 'Identity Data', ''),\n    ('Target Area', 'Area', 'Rooms', 'Instance', 'Data', 'brief area per room (Rooms script compares it with the real area)'),\n]\nCATS = {'sheets': 'OST_Sheets', 'project information': 'OST_ProjectInformation', 'rooms': 'OST_Rooms',\n        'doors': 'OST_Doors', 'windows': 'OST_Windows', 'walls': 'OST_Walls', 'floors': 'OST_Floors',\n        'ceilings': 'OST_Ceilings', 'views': 'OST_Views', 'title blocks': 'OST_TitleBlocks',\n        'furniture': 'OST_Furniture', 'areas': 'OST_Areas', 'levels': 'OST_Levels'}\nTYPES = ['Text', 'Number', 'Integer', 'YesNo', 'Length', 'Area', 'Volume']\nGROUPS = ['Identity Data', 'Text', 'Data', 'Other', 'Constraints', 'Dimensions', 'Construction', 'General']\n\n\ndef write_book(path, values, params, title):\n    pr = [[('CAD2BIM  PROJECT SETUP  -  ' + (title or 'PROJECT'), 4)], [('SETTING', 1), ('VALUE', 1), ('NOTE', 1)]]\n    for lab, key, d, note in PROJECT_ROWS:\n        pr.append([(lab, 6), (values.get(lab, d), 2), (note, 5)])\n    pa = [[('SHARED PARAMETERS  -  added to Revit (never duplicated)', 4)],\n          [('PARAMETER NAME', 1), ('TYPE', 1), ('CATEGORIES (; separated)', 1), ('INSTANCE / TYPE', 1), ('GROUP', 1), ('NOTE', 1)]]\n    for row in params:\n        row = (list(row) + [''] * 6)[:6]\n        pa.append([(row[0], 2), (row[1], 2), (row[2], 2), (row[3], 2), (row[4], 2), (row[5], 5)])\n    for i in range(30):\n        pa.append([('', 2)] * 5)\n    end = len(pa)\n    val = [('B%d:B%d' % (3, end), '\"%s\"' % ','.join(TYPES)), ('D%d:D%d' % (3, end), '\"Instance,Type\"'),\n           ('E%d:E%d' % (3, end), '\"%s\"' % ','.join(GROUPS))]\n    help_rows = [[('HOW TO USE', 4)], [],\n                 ['1.  PROJECT tab: type the project information in the blue cells (rows you leave empty are not changed in Revit).'],\n                 ['2.  PARAMETERS tab: shared parameters to add (Status, Revision ... are ready). Add rows for your own.'],\n                 ['    CATEGORIES: Sheets; Project Information; Rooms; Doors; Windows; Walls; Floors; Ceilings; Views; Title Blocks; Areas'],\n                 ['    The shared parameter file CAD2BIM_SharedParameters.txt is kept next to this Excel - keep it with the project.'],\n                 ['3.  Save, close, run the Dynamo graph CAD2BIM_Project_Setup (APPLY on).  Run it again any time - nothing is duplicated.'],\n                 ['4.  Status / Revision on the title block: open the title block family, add labels for the shared parameters'],\n                 ['    Status and Revision (from CAD2BIM_SharedParameters.txt), load it back into the project.'],\n                 [], ['Blue = you type.   Grey = fixed.']]\n    xlsx_write(path, [('PROJECT', _sheet_xml(pr, [32, 40, 80], freeze=2)),\n                      ('PARAMETERS', _sheet_xml(pa, [26, 12, 34, 16, 18, 70], freeze=2, validations=val)),\n                      ('HOW TO USE', _sheet_xml(help_rows, [130]))])\n\n\ndef read_book(path):\n    rows = xlsx_read(path, 'PROJECT')\n    if rows is None:\n        raise Exception('the Excel has no PROJECT tab - leave the file box empty once to create a new Excel')\n    values = {}\n    labels = [r[0] for r in PROJECT_ROWS]\n    for r in rows:\n        if len(r) >= 2 and r[0] in labels:\n            values[r[0]] = r[1].strip()\n    params = []\n    for r in (xlsx_read(path, 'PARAMETERS') or []):\n        r = (list(r) + [''] * 6)[:6]\n        if r[0] and r[0].upper() != 'PARAMETER NAME' and not r[0].upper().startswith('SHARED PARAMETERS'):\n            params.append(r)\n    return values, params\n\n\n# ======================================================================== Revit part\ndef run(doc, app, XL, APPLY, PARAMS, EXPORT, out):\n    from Autodesk.Revit.DB import (BuiltInParameter, BuiltInCategory, Category, FilteredElementCollector, ViewSheet,\n                                   StorageType, ExternalDefinitionCreationOptions, SpecTypeId, GroupTypeId,\n                                   FormatOptions, UnitTypeId, SymbolTypeId, StartingViewSettings)\n    pi = doc.ProjectInformation\n\n    def get_pi(key):\n        if key.startswith('shared:'):\n            p = pi.LookupParameter(key[7:])\n        elif key.startswith('special:'):\n            return None\n        else:\n            p = pi.get_Parameter(getattr(BuiltInParameter, key))\n        if p is None:\n            return None\n        return p.AsString() or ''\n\n    def current_values():\n        v = {}\n        for lab, key, d, n in PROJECT_ROWS:\n            cur = get_pi(key)\n            v[lab] = cur if cur else d\n        sv = StartingViewSettings.GetStartingViewSettings(doc)\n        try:\n            s = doc.GetElement(sv.ViewId)\n            if isinstance(s, ViewSheet):\n                v['Starting view (sheet number)'] = s.SheetNumber\n        except Exception:\n            pass\n        return v\n\n    if EXPORT or not os.path.exists(XL):\n        params = PARAM_ROWS\n        if os.path.exists(XL):\n            try:\n                _, params = read_book(XL)\n            except Exception:\n                params = PARAM_ROWS\n        write_book(XL, current_values(), params, doc.Title)\n        out.append('CAD2BIM PROJECT SETUP  -  EXCEL %s' % ('EXPORTED' if EXPORT else 'CREATED'))\n        out.append('File   : ' + XL)\n        out.append('Fill the blue cells (PROJECT + PARAMETERS), save, Browse... to this file and Run.')\n        if EXPORT:\n            out.append('Switch \"EXPORT\" back OFF.')\n        return\n\n    values, params = read_book(XL)\n    acts, notes = [], []\n\n    # ---------------- 1 shared parameters\n    if PARAMS and params:\n        bound = set()\n        it = doc.ParameterBindings.ForwardIterator()\n        while it.MoveNext():\n            bound.add(it.Key.Name)\n        todo = [p for p in params if p[0] not in bound]\n        for p in params:\n            if p[0] in bound:\n                notes.append('parameter \"%s\" already in the project - kept' % p[0])\n        if todo and APPLY:\n            sp_file = os.path.join(os.path.dirname(XL), 'CAD2BIM_SharedParameters.txt')\n            old = app.SharedParametersFilename\n            try:\n                if not os.path.exists(sp_file):\n                    open(sp_file, 'w').close()\n                app.SharedParametersFilename = sp_file\n                df = app.OpenSharedParameterFile()\n                if df is None:\n                    raise Exception('cannot open the shared parameter file ' + sp_file)\n                grp = next((x for x in df.Groups if x.Name == 'CAD2BIM'), None) or df.Groups.Create('CAD2BIM')\n                spec = {'text': SpecTypeId.String.Text, 'number': SpecTypeId.Number, 'integer': SpecTypeId.Int.Integer,\n                        'yesno': SpecTypeId.Boolean.YesNo, 'length': SpecTypeId.Length, 'area': SpecTypeId.Area,\n                        'volume': SpecTypeId.Volume}\n                gmap = {'identity data': GroupTypeId.IdentityData, 'text': GroupTypeId.Text, 'data': GroupTypeId.Data,\n                        'other': GroupTypeId.General, 'general': GroupTypeId.General, 'constraints': GroupTypeId.Constraints,\n                        'dimensions': GroupTypeId.Geometry, 'construction': GroupTypeId.Construction}\n                for name, typ, cats, inst, group, note in todo:\n                    st = spec.get(typ.strip().lower().replace('/', '').replace(' ', ''), SpecTypeId.String.Text)\n                    d = next((x for x in grp.Definitions if x.Name == name), None)\n                    if d is None:\n                        d = grp.Definitions.Create(ExternalDefinitionCreationOptions(name, st))\n                    cs = app.Create.NewCategorySet()\n                    bad = []\n                    for c in [c.strip() for c in re.split(r'[;,]', cats) if c.strip()]:\n                        bic = CATS.get(c.lower())\n                        cat = Category.GetCategory(doc, getattr(BuiltInCategory, bic)) if bic else None\n                        if cat is None:\n                            bad.append(c)\n                        else:\n                            cs.Insert(cat)\n                    if cs.IsEmpty:\n                        notes.append('parameter \"%s\": no valid category (%s) - skipped' % (name, cats))\n                        continue\n                    b = app.Create.NewTypeBinding(cs) if inst.strip().lower().startswith('type') else app.Create.NewInstanceBinding(cs)\n                    ok = doc.ParameterBindings.Insert(d, b, gmap.get(group.strip().lower(), GroupTypeId.IdentityData))\n                    acts.append('PARAMETER  %-22s %s  ->  %s%s' % (name, typ or 'Text', cats,\n                                                                  '' if ok else '  (Revit refused it)'))\n                    if bad:\n                        notes.append('parameter \"%s\": unknown categories %s' % (name, ', '.join(bad)))\n            finally:\n                try:\n                    app.SharedParametersFilename = old\n                except Exception:\n                    pass\n        elif todo:\n            acts.extend('would add PARAMETER %s (%s)' % (p[0], p[2]) for p in todo)\n\n    # ---------------- 2 project information\n    if APPLY:\n        doc.Regenerate()\n    for lab, key, d, n in PROJECT_ROWS:\n        val = values.get(lab, '')\n        if key.startswith('special:') or val == '':\n            continue\n        if key.startswith('shared:'):\n            p = pi.LookupParameter(key[7:])\n            if p is None:\n                notes.append('\"%s\": no such parameter on Project Information yet (keep ADD PARAMETERS on)' % lab)\n                continue\n        else:\n            p = pi.get_Parameter(getattr(BuiltInParameter, key))\n        if p is None or p.IsReadOnly or p.StorageType != StorageType.String:\n            continue\n        if (p.AsString() or '') != val:\n            if APPLY:\n                p.Set(val)\n            acts.append('%sPROJECT    %-28s -> %s' % ('' if APPLY else 'would set ', lab, val))\n\n    # ---------------- 3 units\n    def sym(*names):                                  # symbol names differ between Revit versions\n        for n in names:\n            s = getattr(SymbolTypeId, n, None)\n            if s is not None:\n                return s\n        return None\n\n    if values.get('Units', 'KEEP').strip().upper().startswith('MET'):\n        try:\n            units = doc.GetUnits()\n            changed = []\n            for spec, unit, sym_id, acc, label in (\n                    (SpecTypeId.Length, UnitTypeId.Millimeters, None, 1.0, 'length mm'),\n                    (SpecTypeId.Area, UnitTypeId.SquareMeters, sym('MSup2', 'MeterSup2'), 0.01, 'area m2'),\n                    (SpecTypeId.Volume, UnitTypeId.CubicMeters, sym('MSup3', 'MeterSup3'), 0.01, 'volume m3')):\n                cur = units.GetFormatOptions(spec)\n                if cur.GetUnitTypeId().TypeId != unit.TypeId:\n                    fo = FormatOptions(unit)\n                    fo.Accuracy = acc\n                    if sym_id is not None:\n                        try:\n                            fo.SetSymbolTypeId(sym_id)\n                        except Exception:\n                            pass\n                    units.SetFormatOptions(spec, fo)\n                    changed.append(label)\n            if changed:\n                if APPLY:\n                    doc.SetUnits(units)\n                acts.append('%sUNITS      %s' % ('' if APPLY else 'would set ', ', '.join(changed)))\n        except Exception as ex:\n            notes.append('units not changed: %s' % ex)\n\n    # ---------------- 4 starting view\n    sv_no = values.get('Starting view (sheet number)', '').strip()\n    if sv_no:\n        sh = next((s for s in FilteredElementCollector(doc).OfClass(ViewSheet) if s.SheetNumber == sv_no), None)\n        if sh is None:\n            notes.append('starting view: no sheet numbered \"%s\" (make it first with CAD2BIM_Sheets_From_Excel)' % sv_no)\n        else:\n            svs = StartingViewSettings.GetStartingViewSettings(doc)\n            if svs.ViewId is None or svs.ViewId.Value != sh.Id.Value:\n                if APPLY:\n                    svs.ViewId = sh.Id\n                acts.append('%sSTART VIEW %s %s' % ('' if APPLY else 'would set ', sh.SheetNumber, sh.Name))\n\n    out.append('CAD2BIM PROJECT SETUP  -  %s' % ('APPLIED' if APPLY else 'CHECK ONLY (APPLY is off - Revit not changed)'))\n    out.append('File   : ' + XL)\n    if acts:\n        out.append('Changes:')\n        out.extend('  ' + a for a in acts)\n    else:\n        out.append('Revit already matches the Excel - nothing to change.')\n    if notes:\n        out.append('')\n        out.append('Notes:')\n        out.extend('  ' + n for n in notes)\n\n\n# ======================================================================== Dynamo entry point\ntry:\n    IN\n    _IN_DYNAMO = True\nexcept NameError:\n    _IN_DYNAMO = False\n\nif _IN_DYNAMO:\n    import clr\n    clr.AddReference('RevitAPI')\n    clr.AddReference('RevitServices')\n    from RevitServices.Persistence import DocumentManager\n    from RevitServices.Transactions import TransactionManager\n\n    def file_path(x):\n        if x is None:\n            return ''\n        for a in ('FullName', 'FullPath'):\n            v = getattr(x, a, None)\n            if v:\n                return str(v)\n        s = str(x)\n        return '' if s.strip().lower() in ('', 'no file selected.', 'none', 'null') else s.strip().strip('\"')\n\n    def good_xl(p):\n        if not p:\n            return ''\n        base = os.path.basename(p).lower()\n        if base.startswith('no file selected') or not base.endswith(('.xlsx', '.xlsm')):\n            return ''\n        return p\n\n    out = []\n    doc = DocumentManager.Instance.CurrentDBDocument\n    app = DocumentManager.Instance.CurrentUIApplication.Application\n    _sub = None\n    try:\n        XL = good_xl(file_path(IN[0]))\n        APPLY, PARAMS, EXPORT = bool(IN[1]), bool(IN[2]), bool(IN[3])\n        log('--- project setup started  xl \"%s\" apply %s params %s export %s' % (XL, APPLY, PARAMS, EXPORT))\n        if not XL:\n            folder = os.path.dirname(doc.PathName) if doc.PathName else os.path.join(os.environ.get('USERPROFILE', ''), 'Documents')\n            XL = os.path.join(folder, '%s_PROJECT_SETUP.xlsx' % doc.Title)\n        _sub = None\n        if APPLY:\n            from Autodesk.Revit.DB import SubTransaction\n            TransactionManager.Instance.EnsureInTransaction(doc)\n            _sub = SubTransaction(doc)                # all-or-nothing: a failure undoes everything of this run\n            _sub.Start()\n        run(doc, app, XL, APPLY, PARAMS, EXPORT, out)\n        if APPLY:\n            _sub.Commit()\n            TransactionManager.Instance.TransactionTaskDone()\n    except Exception as ex:\n        try:\n            if _sub is not None:\n                _sub.RollBack()\n            out.append('Nothing was changed in Revit (the whole run was undone).')\n        except Exception:\n            pass\n        try:\n            TransactionManager.Instance.TransactionTaskDone()\n        except Exception:\n            pass\n        msg = str(ex)\n        if 'being used by another process' in msg or 'Permission denied' in msg:\n            msg = 'the Excel file is open - close it (only the first run / EXPORT writes to the Excel)'\n        out.insert(0, 'FAILED: ' + msg)\n        log(traceback.format_exc())\n    log('\\n'.join(out))\n    OUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "309c2923834249aab68e7b7e75d2b8f5",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "78c62500e9aa4ee4bb15dab1bfa226d1",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d0918cfefb204e30b64f9ea2e6ccd16e",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dbcd5869ffb246098900785635f3c244",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "baf48b30ed804d4ab1ef8767f8a98b97",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9f80e8edde5e4c94b3f0db12addfbac2",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "7765f2d35d294e36b7d46cbc1c446edd",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6ba3f9cbe59244ec8c8a512ad42e0ed9",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1b39a9f3af0f49c89439903791ab7065",
+      "End": "928b2441b30344ee9a351304a8b897a5",
+      "Id": "dea3b99022bb43398109029d1c5194ba",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0eadb6066a7e4ba793c3f1e6e2cedd9c",
+      "End": "78c62500e9aa4ee4bb15dab1bfa226d1",
+      "Id": "5237a0237570403ba267a38d094c6259",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f805a5952b2846c5a4872752b6961cd7",
+      "End": "d0918cfefb204e30b64f9ea2e6ccd16e",
+      "Id": "5a4ed35f93ec411b88481d56726e2490",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "541e337a1ae84661ad4e944f087fb612",
+      "End": "dbcd5869ffb246098900785635f3c244",
+      "Id": "07592c0fc4cf4574856d34d15ae57ac8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5ec052b7587a474cb4cf23dbe97bf542",
+      "End": "baf48b30ed804d4ab1ef8767f8a98b97",
+      "Id": "ef6309058b4a4e0b8f2122c6a53f134b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9f80e8edde5e4c94b3f0db12addfbac2",
+      "End": "7765f2d35d294e36b7d46cbc1c446edd",
+      "Id": "19628ddae1c843dba8f4be86cf44ed35",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e2835dc20f1e422e863fde75e70e9c40",
+        "Name": "PROJECT SETUP Excel file (Browse...)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "86337e6929b34db8a0abe470f28ed0e9",
+        "Name": "File From Path (watches the Excel)",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 260.0,
+        "Y": 120.0
+      },
+      {
+        "Id": "3c535e8d6607453bbb34dd05968bb1cd",
+        "Name": "APPLY to Revit  (off = only report)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 330.0
+      },
+      {
+        "Id": "b925d23d7193473fad0e6b987eb78666",
+        "Name": "ADD shared parameters from the PARAMETERS tab",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 465.0
+      },
+      {
+        "Id": "098c0f6232c940f39689de2f975e87ad",
+        "Name": "EXPORT Revit project info to the Excel  (overwrites it - switch off after)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 600.0
+      },
+      {
+        "Id": "309c2923834249aab68e7b7e75d2b8f5",
+        "Name": "CAD2BIM  Project Setup  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "f858a1cd0a8f4aaf9052d486f19bcc36",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "32d29e53a6b0417bb0458f70cfde59c7",
+        "Title": "1  EXCEL FILE  (Browse... -> your <project>_PROJECT_SETUP.xlsx)",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "e2835dc20f1e422e863fde75e70e9c40",
+          "86337e6929b34db8a0abe470f28ed0e9"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 270.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 175.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "c41b5f40fd0f457b8d5e838d0af9976a",
+        "Title": "2  OPTIONS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3c535e8d6607453bbb34dd05968bb1cd",
+          "b925d23d7193473fad0e6b987eb78666",
+          "098c0f6232c940f39689de2f975e87ad"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 235.0,
+        "Width": 440.0,
+        "Height": 545.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 330.0,
+        "InitialHeight": 450.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "d71908e357d24db28b16b7e22083fd85",
+        "Title": "3  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "309c2923834249aab68e7b7e75d2b8f5",
+          "f858a1cd0a8f4aaf9052d486f19bcc36"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "eb8586983ea44c8b9f1cd8fa1236de27",
+        "Title": "HOW TO USE  -  1st run: leave the file empty -> <project>_PROJECT_SETUP.xlsx is made next to the .rvt from the Revit project information\nThen Browse... to that Excel.  Fill PROJECT (name, number, client, ISO codes, units, starting view) and PARAMETERS (Status, Revision ... ready).\nSave + close the Excel, Run -> Project Information, shared parameters, units and starting view are set.  Run again any time - never duplicates.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

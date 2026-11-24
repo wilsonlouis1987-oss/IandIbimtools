@@ -1,0 +1,1008 @@
+{
+  "Uuid": "438d10dd-80e3-4ff7-91de-7611a8317707",
+  "IsCustomNode": false,
+  "Description": "Doors from CAD / Revit swing lines: same place, CAD width, 2100 high, single / double, hinge + swing",
+  "Name": "CAD2BIM_Doors_From_CAD",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementsSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [],
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fd580ffdee474d2495d04b3f545f0868",
+          "Name": "Elements",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select multiple elements from the Revit document.",
+      "Id": "a97f72a03a66406ea401e0be8654316f"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "c64d7da7f8424c7abecd6509a68367a3",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "428bb08ba6bc4735b957566339ae8b4e",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4e73b466442847bf8575a7c9cd8f1120",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2b77a4944d7a4469a564f0e4107c4a52",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "ce902ffb53854532b4d85ccd165aec5a",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c199cab4d3784aae90e13d62f430bf19",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "49a258a1b48a41f58dfa6b6f6b96cfaf",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "aac22892a2a14a6bb54f9166dc68a03e",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "AUTO"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "4ea175bbff274297939f861035f464c6",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9d275f6378fb4663b0cfdadce0f0dbae",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "2ae21eded7c148faa2f8176cfbae40a5",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "52fbf9e8751548c8a641baf119bc72e1",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b88b50b5021847618adbd8f0b1be8a76",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7f72d9a5ef3d4ec7ac855ac80bd8daa8",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 3000.0,
+      "MinimumValue": 1800.0,
+      "StepValue": 50.0,
+      "Id": "24ce41b8c3ec4e91a93ffe7ce32e2557",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "df42860f4ed14c8aa962bea502172797",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 2100.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 5.0,
+      "Id": "bc38847b18c648cbabdd35b4504f2893",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "48616dbe8ddc41d49179916e54a0a2cd",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 10.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 900.0,
+      "MinimumValue": 300.0,
+      "StepValue": 50.0,
+      "Id": "566b2e503439482fa1e5b80f196f7451",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d246eb70f036462fba24769608a91172",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 500.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 2000.0,
+      "MinimumValue": 900.0,
+      "StepValue": 50.0,
+      "Id": "23bd92af45a64a20a436d52a22630079",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8d90cb1da3124d1b9a253b9f6aa07f2a",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 1300.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "1b5bab120e0f492f8fa6a299f9546517",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9e8adfe2ef3041d8ab9fa64a60721fdb",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "88e68e982bc04daa8f2d023fc03ad75f",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d61de57adaf545f5bcc86f11e17eb5b1",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "a6ac6bf887ce4227b232d0c2d2147276",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c3784e7832ee432cb91d789ceaac2fe3",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "f61770a110fb458f8e1a9a1be7e72862",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "112667d61f4b40f9b4bc1b6041c54247",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# CAD2BIM - DOORS FROM CAD + REVIT LINES (professional)\n#  reads door symbols (swing ARC = leaf, centre = hinge) from linked CAD (any layer / door layers) and from\n#  Revit detail / model lines; single leaf -> single door, two leaves meeting -> double door\n#  width = CAD width, height = 2100 (controlled), placed in the wall at the same location, same hinge + swing side.\n#  all doors or only the selected walls / lines / doors.  Re-run = updated, never doubled.\nimport os\nLOG = os.path.join(os.environ.get('APPDATA', ''), 'pyRevit', 'CAD2BIM_dynamo_log.txt')\ndef log(msg):\n    try:\n        with open(LOG, 'a') as fh:\n            fh.write(str(msg) + '\\n')\n    except Exception:\n        pass\nlog('--- doors v1 started')\nimport clr, math, re, traceback\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\nfrom Autodesk.Revit.DB.Architecture import *\nfrom Autodesk.Revit.DB.Structure import StructuralType\nclr.AddReference('RevitServices')\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nclr.AddReference('System')\nfrom System.Collections.Generic import List\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\nMMF = 1.0 / 304.8\nCOL_PARAMS = [('b', 'h'), ('Width', 'Depth'), ('Width', 'Length')]\nout = []\n\n\ndef num(v, d=0.0):\n    try:\n        return float(v)\n    except Exception:\n        return d\n\n\ndef f(v):\n    return '{0:.0f}'.format(v)\n\n\ndef idv(eid):\n    try:\n        return eid.Value\n    except Exception:\n        return eid.IntegerValue\n\n\n_CAT = {}\ndef catid(bic):\n    if bic not in _CAT:\n        _CAT[bic] = idv(Category.GetCategory(doc, bic).Id)\n    return _CAT[bic]\n\n\ndef cat_is(e, bic):\n    return e is not None and e.Category is not None and idv(e.Category.Id) == catid(bic)\n\n\ndef tname(t):\n    p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM)\n    return p.AsString() if p else ''\n\n\ndef setp(e, bip, val):\n    p = e.get_Parameter(bip)\n    if p is not None and not p.IsReadOnly:\n        p.Set(val)\n        return True\n    return False\n\n\ndef getd(e, bip):\n    p = e.get_Parameter(bip)\n    return p.AsDouble() if p is not None else None\n\n\ndef getlvl(e, bip):\n    p = e.get_Parameter(bip)\n    if p is None:\n        return None\n    x = doc.GetElement(p.AsElementId())\n    return x if isinstance(x, Level) else None\n\n\n\ndef tagged(e):\n    p = e.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n    return (p.AsString() or '') if p is not None else ''\n\n\ndef to_mm(v):\n    return v / MMF\n\n\ndef pt(p):\n    return (to_mm(p.X), to_mm(p.Y))\n\n\ndef layer_name(g, inherited):\n    name = None\n    try:\n        gs = doc.GetElement(g.GraphicsStyleId)\n        if gs is not None and gs.GraphicsStyleCategory is not None:\n            name = gs.GraphicsStyleCategory.Name\n    except Exception:\n        name = None\n    if not name or name == '0':\n        return inherited or name or '0'\n    return name\n\n\nCIRCLES = {}\n\n\n\n\n# ================================================================== DOOR ENGINE\nTAG = 'CAD2BIM-DOOR'\nDOOR_WORDS = ('DOOR', 'DR', 'A-DOOR', 'DOORS', 'OPENING', 'SHUTTER')\n\n\ndef v2(p):\n    return (p.X / MMF, p.Y / MMF)\n\n\ndef dist2(a, b):\n    return math.hypot(a[0] - b[0], a[1] - b[1])\n\n\ndef arc_info(arc, src, lid, layer=''):\n    \"\"\"door leaf from a swing arc: hinge = centre, r = leaf width, two ends, sweep (deg), mid point\"\"\"\n    try:\n        if not arc.IsBound:\n            return None\n        r = arc.Radius / MMF\n        a0, a1 = arc.GetEndParameter(0), arc.GetEndParameter(1)\n        sweep = abs(math.degrees(a1 - a0))\n        if not (60.0 <= sweep <= 120.0):\n            return None\n        return {'h': v2(arc.Center), 'r': r, 'e': [v2(arc.GetEndPoint(0)), v2(arc.GetEndPoint(1))],\n                'm': v2(arc.Evaluate(0.5, True)), 'src': src, 'lid': lid, 'layer': layer}\n    except Exception:\n        return None\n\n\ndef cad_arcs(name_txt, layer_txt, levels):\n    cads = [c for c in FilteredElementCollector(doc).OfClass(ImportInstance)]\n    if name_txt:\n        cads = [c for c in cads if c.Category is not None and name_txt.lower() in c.Category.Name.lower()]\n    auto = layer_txt.upper() in ('', 'AUTO', '*', 'ALL')\n    keys = [k.strip().upper() for k in layer_txt.split(',') if k.strip()] if not auto else []\n    res, layers_hit = [], {}\n    for c in cads:\n        lid = None\n        try:\n            if c.ViewSpecific:\n                v = doc.GetElement(c.OwnerViewId)\n                if isinstance(v, ViewPlan) and v.GenLevel is not None:\n                    lid = idv(v.GenLevel.Id)\n            if lid is None and c.LevelId is not None and idv(c.LevelId) > 0:\n                lid = idv(c.LevelId)\n            if lid is None:\n                z = c.GetTotalTransform().Origin.Z\n                below = [l for l in levels if l.Elevation <= z + 0.05]\n                lid = idv((below[-1] if below else levels[0]).Id)\n        except Exception:\n            lid = None\n        opt = Options()\n        if c.ViewSpecific:\n            opt.View = doc.GetElement(c.OwnerViewId)\n        found = []\n\n        def walk(geom, inherited):\n            for g in geom:\n                ln = layer_name(g, inherited)\n                if isinstance(g, GeometryInstance):\n                    walk(g.GetInstanceGeometry(), ln)\n                elif isinstance(g, Arc):\n                    a = arc_info(g, 'CAD', lid, ln)\n                    if a is not None:\n                        found.append(a)\n        try:\n            for g in c.get_Geometry(opt):\n                if isinstance(g, GeometryInstance):\n                    walk(g.GetInstanceGeometry(), None)\n        except Exception as ex:\n            log('cad read: {0}'.format(ex))\n        door_layers = [a for a in found if any(k in (a['layer'] or '').upper() for k in (keys or DOOR_WORDS))]\n        use = door_layers if (door_layers or keys) else found      # AUTO: door layers, else every arc\n        for a in use:\n            layers_hit[a['layer']] = layers_hit.get(a['layer'], 0) + 1\n        res.extend(use)\n    return res, layers_hit, len(cads)\n\n\ndef revit_lines(style_txt, levels, only_ids=None):\n    \"\"\"arcs + straight lines from Revit detail / model lines -> (arcs, lines)\"\"\"\n    arcs, lines = [], []\n    for ce in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Lines).WhereElementIsNotElementType():\n        if not isinstance(ce, CurveElement):\n            continue\n        if only_ids is not None and idv(ce.Id) not in only_ids:\n            continue\n        try:\n            if style_txt:\n                ls = ce.LineStyle\n                if ls is None or style_txt.upper() not in ls.Name.upper():\n                    continue\n            cv = ce.GeometryCurve\n            if ce.ViewSpecific:\n                v = doc.GetElement(ce.OwnerViewId)\n                if not isinstance(v, ViewPlan) or v.GenLevel is None:\n                    continue\n                lid = idv(v.GenLevel.Id)\n            else:\n                z = cv.GetEndPoint(0).Z\n                below = [l for l in levels if l.Elevation <= z + 0.05]\n                lid = idv((below[-1] if below else levels[0]).Id)\n            if isinstance(cv, Arc):\n                a = arc_info(cv, 'Revit line', lid)\n                if a is not None:\n                    a['eid'] = idv(ce.Id)\n                    arcs.append(a)\n            elif isinstance(cv, Line):\n                lines.append({'p': v2(cv.GetEndPoint(0)), 'q': v2(cv.GetEndPoint(1)), 'lid': lid, 'eid': idv(ce.Id)})\n        except Exception as ex:\n            log('line {0}: {1}'.format(idv(ce.Id), ex))\n    return arcs, lines\n\n\n# ------------------------------------------------------------------ walls\ndef walls_by_level():\n    d = {}\n    for w in FilteredElementCollector(doc).OfClass(Wall).WhereElementIsNotElementType():\n        try:\n            if w.WallType.Kind != WallKind.Basic or not isinstance(w.Location.Curve, Line):\n                continue\n            ln = w.Location.Curve\n            p, q = v2(ln.GetEndPoint(0)), v2(ln.GetEndPoint(1))\n            L = dist2(p, q)\n            if L < 1.0:\n                continue\n            d.setdefault(idv(w.LevelId), []).append({'w': w, 'p': p, 'u': ((q[0] - p[0]) / L, (q[1] - p[1]) / L),\n                                                     'L': L, 'half': w.Width / MMF / 2.0})\n        except Exception:\n            pass\n    return d\n\n\ndef host_for(a, b, walls, sel_walls):\n    \"\"\"wall that runs along a -> b (door opening chord), with the projected centre (mm) and the wall normal\"\"\"\n    dx, dy = b[0] - a[0], b[1] - a[1]\n    L = math.hypot(dx, dy)\n    if L < 1.0:\n        return None\n    ux, uy = dx / L, dy / L\n    mid = ((a[0] + b[0]) / 2.0, (a[1] + b[1]) / 2.0)\n    best = None\n    for W in walls:\n        if sel_walls is not None and idv(W['w'].Id) not in sel_walls:\n            continue\n        if abs(ux * W['u'][0] + uy * W['u'][1]) < 0.985:\n            continue\n        rx, ry = mid[0] - W['p'][0], mid[1] - W['p'][1]\n        t = rx * W['u'][0] + ry * W['u'][1]\n        off = rx * -W['u'][1] + ry * W['u'][0]              # signed distance from the wall centre line\n        if t < -50 or t > W['L'] + 50:\n            continue\n        if abs(off) > W['half'] + 350.0:\n            continue\n        if best is None or abs(off) < best[0]:\n            best = (abs(off), W, t, off)\n    if best is None:\n        return None\n    _, W, t, off = best\n    c = (W['p'][0] + W['u'][0] * t, W['p'][1] + W['u'][1] * t)\n    return {'W': W, 'c': c, 'n': (-W['u'][1], W['u'][0])}\n\n\ndef leaf_on_wall(a, walls, sel_walls):\n    \"\"\"which arc end is the CLOSED position (on the wall line)? -> door candidate\"\"\"\n    best = None\n    for k in (0, 1):\n        e = a['e'][k]\n        h = host_for(a['h'], e, walls, sel_walls)\n        if h is None:\n            continue\n        d = abs((e[0] - h['c'][0]) * h['n'][0] + (e[1] - h['c'][1]) * h['n'][1])\n        if best is None or d < best[0]:\n            best = (d, k, h)\n    if best is None:\n        return None\n    _, k, h = best\n    W = h['W']\n    side = (a['m'][0] - h['c'][0]) * h['n'][0] + (a['m'][1] - h['c'][1]) * h['n'][1]\n    return {'hinge': a['h'], 'closed': a['e'][k], 'r': a['r'], 'W': W, 'side': 1 if side >= 0 else -1, 'src': a['src'],\n            'eid': a.get('eid')}\n\n\ndef snap_on_wall(W, pt_):\n    rx, ry = pt_[0] - W['p'][0], pt_[1] - W['p'][1]\n    t = rx * W['u'][0] + ry * W['u'][1]\n    return (W['p'][0] + W['u'][0] * t, W['p'][1] + W['u'][1] * t), t\n\n\n# ------------------------------------------------------------------ door types\ndef door_symbols():\n    syms = [s for s in FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Doors).OfClass(FamilySymbol)]\n    return syms\n\n\ndef lib_door(kind):\n    \"\"\"load a Single-/Double-Flush door from the Revit library if the project has none\"\"\"\n    imperial = False\n    try:\n        imperial = doc.DisplayUnitSystem == DisplayUnit.IMPERIAL\n    except Exception:\n        pass\n    root = os.path.join(os.environ.get('ProgramData', r'C:\\ProgramData'), 'Autodesk', 'RVT ' + doc.Application.VersionNumber,\n                        'Libraries')\n    want = ['Double-Flush', 'Double-Glass'] if kind == 'double' else ['Single-Flush', 'Single-Panel']\n    langs = ['English-Imperial', 'English_I', 'English'] if imperial else ['English', 'English-Imperial', 'English_I']\n    for lg in langs:\n        base = os.path.join(root, lg)\n        if not os.path.isdir(base):\n            continue\n        for dp, dn, fn in os.walk(base):\n            for w in want:\n                for f_ in fn:\n                    if f_.lower().endswith('.rfa') and w.lower() in f_.lower() and 'vision' not in f_.lower():\n                        p = os.path.join(dp, f_)\n                        try:\n                            doc.LoadFamily(p)\n                            log('loaded door family ' + p)\n                            return os.path.splitext(f_)[0]\n                        except Exception as ex:\n                            log('load {0}: {1}'.format(p, ex))\n    return None\n\n\ndef is_double(s):\n    n = (s.Family.Name + ' ' + tname(s)).upper()\n    return 'DOUBLE' in n or 'DBL' in n or '2 PANEL' in n or 'PAIR' in n\n\n\ndef base_symbol(kind, name_txt):\n    syms = door_symbols()\n    cand = [s for s in syms if (is_double(s) if kind == 'double' else not is_double(s))]\n    if name_txt:\n        named = [s for s in syms if name_txt.upper() in (s.Family.Name + ' ' + tname(s)).upper()]\n        if named:\n            return named[0]\n    pref = [s for s in cand if 'FLUSH' in s.Family.Name.upper()]\n    if pref or cand:\n        return (pref or cand)[0]\n    fam = lib_door(kind)\n    if fam:\n        syms = door_symbols()\n        cand = [s for s in syms if s.Family.Name == fam]\n        if cand:\n            return cand[0]\n    return None\n\n\ndef set_len(s, names, mm):\n    for n in names:\n        bip = getattr(BuiltInParameter, n, None)\n        p = s.get_Parameter(bip) if bip is not None else None\n        if p is None:\n            p = s.LookupParameter(n)\n        if p is not None and not p.IsReadOnly:\n            try:\n                p.Set(mm * MMF)\n                return True\n            except Exception:\n                pass\n    return False\n\n\n_TYPES = {}\n\n\ndef set_type(e, t):\n    try:\n        e.Symbol = t\n    except Exception:\n        setp(e, BuiltInParameter.ELEM_TYPE_PARAM, t.Id)\n\n\ndef door_type(kind, w_mm, h_mm, name_txt):\n    key = (kind, int(round(w_mm)), int(round(h_mm)))\n    if key in _TYPES:\n        return _TYPES[key]\n    base = base_symbol(kind, name_txt)\n    if base is None:\n        raise Exception('no {0} door family in the project or the Revit library - load one (Insert > Load Family)'.format(kind))\n    name = 'A_DR_{0}_{1:04d}x{2:04d}'.format('DBL' if kind == 'double' else 'SGL', key[1], key[2])\n    s = None\n    for sid in base.Family.GetFamilySymbolIds():\n        e = doc.GetElement(sid)\n        if tname(e) == name:\n            s = e\n            break\n    if s is None:\n        s = base.Duplicate(name)\n    ok_w = set_len(s, ['DOOR_WIDTH', 'FAMILY_WIDTH_PARAM', 'Width', 'Rough Width'], key[1])\n    ok_h = set_len(s, ['DOOR_HEIGHT', 'FAMILY_HEIGHT_PARAM', 'Height', 'Rough Height'], key[2])\n    if not ok_w or not ok_h:\n        log('door type {0}: width set {1}, height set {2}'.format(name, ok_w, ok_h))\n    if not s.IsActive:\n        s.Activate()\n    _TYPES[key] = s\n    return s\n\n\n# ------------------------------------------------------------------ swing / hinge check from the door's plan symbol\ndef plan_view(lid):\n    for v in FilteredElementCollector(doc).OfClass(ViewPlan):\n        try:\n            if not v.IsTemplate and v.ViewType == ViewType.FloorPlan and v.GenLevel is not None and idv(v.GenLevel.Id) == lid:\n                return v\n        except Exception:\n            pass\n    return None\n\n\ndef swing_arcs(d, view):\n    opt = Options()\n    opt.View = view\n    res = []\n\n    def walk(geom):\n        for g in geom:\n            if isinstance(g, GeometryInstance):\n                walk(g.GetInstanceGeometry())\n            elif isinstance(g, Arc) and g.IsBound:\n                res.append(g)\n    try:\n        walk(d.get_Geometry(opt))\n    except Exception:\n        pass\n    return res\n\n\ndef match_swing(d, cand, view):\n    \"\"\"flip facing / hand until the door's swing arc sits like the drawn one\"\"\"\n    if view is None:\n        return 'no plan view'\n    doc.Regenerate()\n    W = cand['W']\n    n = (-W['u'][1], W['u'][0])\n    for step in range(2):\n        arcs = swing_arcs(d, view)\n        if not arcs:\n            return 'no swing in family'\n        arc = max(arcs, key=lambda a: a.Radius)\n        m = v2(arc.Evaluate(0.5, True))\n        c = cand['c']\n        side = 1 if (m[0] - c[0]) * n[0] + (m[1] - c[1]) * n[1] >= 0 else -1\n        if side != cand['side']:\n            d.flipFacing()\n            doc.Regenerate()\n            continue\n        if cand['kind'] == 'single':\n            hc = v2(arc.Center)\n            if dist2(hc, cand['hinge']) > cand['w'] / 2.0:\n                d.flipHand()\n                doc.Regenerate()\n        return 'ok'\n    return 'ok'\n\n\ntry:\n    PICKED = IN[0]\n    ALL = bool(IN[1])\n    USE_CAD, CAD_TXT, LAYER_TXT = bool(IN[2]), str(IN[3] or '').strip(), str(IN[4] or 'AUTO').strip()\n    USE_RVT, STYLE = bool(IN[5]), str(IN[6] or '').strip()\n    LINE_OPEN = bool(IN[7])\n    H, RND = num(IN[8], 2100), num(IN[9], 10)\n    WMIN, WMAX = num(IN[10], 500), num(IN[11], 1300)\n    SGL_TXT, DBL_TXT = str(IN[12] or '').strip(), str(IN[13] or '').strip()\n    MATCH, DO = bool(IN[14]), bool(IN[15])\n    log('inputs all {0} cad {1} \"{2}\" \"{3}\" rvt {4} \"{5}\" lineopen {6} | H {7} round {8} leaf {9}-{10} | '\n        'sgl \"{11}\" dbl \"{12}\" | swing {13} run {14}'.format(ALL, USE_CAD, CAD_TXT, LAYER_TXT, USE_RVT, STYLE, LINE_OPEN,\n                                                           H, RND, WMIN, WMAX, SGL_TXT, DBL_TXT, MATCH, DO))\n    levels = sorted([l for l in FilteredElementCollector(doc).OfClass(Level)], key=lambda l: l.Elevation)\n    lvl_by_id = dict((idv(l.Id), l) for l in levels)\n\n    # ---------------- selection: walls -> only those walls, lines -> only those lines, doors -> resize those doors\n    sel_walls = sel_lines = None\n    sel_doors = []\n    if not ALL:\n        picked = PICKED if isinstance(PICKED, (list, tuple)) else ([PICKED] if PICKED is not None else [])\n        els = []\n        for x in picked:\n            e = getattr(x, 'InternalElement', None)\n            if e is None:\n                try:\n                    e = doc.GetElement(ElementId(int(x.Id)))\n                except Exception:\n                    e = x\n            els.append(e)\n        if not els:\n            els = [doc.GetElement(i) for i in uidoc.Selection.GetElementIds()]\n        ws = [idv(e.Id) for e in els if isinstance(e, Wall)]\n        ls = [idv(e.Id) for e in els if isinstance(e, CurveElement)]\n        sel_doors = [e for e in els if isinstance(e, FamilyInstance) and e.Category is not None and\n                     idv(e.Category.Id) == catid(BuiltInCategory.OST_Doors)]\n        sel_walls = set(ws) if ws else None\n        sel_lines = set(ls) if ls else None\n        if not (ws or ls or sel_doors):\n            raise Exception('Nothing picked - click SELECT and pick walls, door lines or doors (or switch on ALL doors)')\n\n    walls = walls_by_level()\n    arcs, lines, cad_layers, n_cad = [], [], {}, 0\n    if USE_CAD and sel_lines is None:\n        a_, cad_layers, n_cad = cad_arcs(CAD_TXT, LAYER_TXT, levels)\n        arcs.extend(a_)\n    if USE_RVT:\n        a_, l_ = revit_lines(STYLE, levels, sel_lines)\n        arcs.extend(a_)\n        lines.extend(l_ if LINE_OPEN else [])\n    arcs = [a for a in arcs if WMIN * 0.45 <= a['r'] <= WMAX]\n    log('door arcs {0} (cad layers {1}), revit straight lines {2}'.format(len(arcs), cad_layers, len(lines)))\n\n    # ---------------- leaves on walls\n    leaves = []\n    for a in arcs:\n        lw = walls.get(a['lid']) if a['lid'] is not None else None\n        cands = lw if lw else [W for v in walls.values() for W in v]\n        lf = leaf_on_wall(a, cands, sel_walls)\n        if lf is not None:\n            lf['lid'] = idv(lf['W']['w'].LevelId)\n            leaves.append(lf)\n    # duplicates (same leaf drawn twice, CAD + Revit)\n    uniq = []\n    for lf in leaves:\n        if any(dist2(lf['hinge'], u['hinge']) < 30 and abs(lf['r'] - u['r']) < 30 for u in uniq):\n            continue\n        uniq.append(lf)\n    leaves = uniq\n    # pair leaves into double doors: same wall, closed ends meet, hinges r1 + r2 apart\n    used, cands = set(), []\n    for i, a in enumerate(leaves):\n        if i in used:\n            continue\n        mate = None\n        for j in range(i + 1, len(leaves)):\n            b = leaves[j]\n            if j in used or idv(b['W']['w'].Id) != idv(a['W']['w'].Id):\n                continue\n            if dist2(a['closed'], b['closed']) < 60 and abs(dist2(a['hinge'], b['hinge']) - (a['r'] + b['r'])) < 80:\n                mate = j\n                break\n        if mate is not None:\n            b = leaves[mate]\n            used.update([i, mate])\n            c, _ = snap_on_wall(a['W'], ((a['hinge'][0] + b['hinge'][0]) / 2.0, (a['hinge'][1] + b['hinge'][1]) / 2.0))\n            cands.append({'kind': 'double', 'w': a['r'] + b['r'], 'c': c, 'W': a['W'], 'side': a['side'],\n                          'hinge': a['hinge'], 'src': a['src'], 'lid': a['lid']})\n        else:\n            used.add(i)\n            c, _ = snap_on_wall(a['W'], ((a['hinge'][0] + a['closed'][0]) / 2.0, (a['hinge'][1] + a['closed'][1]) / 2.0))\n            cands.append({'kind': 'single', 'w': a['r'], 'c': c, 'W': a['W'], 'side': a['side'], 'hinge': a['hinge'],\n                          'src': a['src'], 'lid': a['lid']})\n    # straight Revit lines drawn along a wall = opening (no swing info)\n    for ln in lines:\n        lw = walls.get(ln['lid'], [])\n        h = host_for(ln['p'], ln['q'], lw, sel_walls)\n        if h is None:\n            continue\n        if abs((ln['p'][0] - h['c'][0]) * h['n'][0] + (ln['p'][1] - h['c'][1]) * h['n'][1]) > h['W']['half'] + 30:\n            continue\n        L = dist2(ln['p'], ln['q'])\n        if not (WMIN <= L <= 2 * WMAX):\n            continue\n        if any(dist2(h['c'], c['c']) < max(L, c['w']) / 2.0 for c in cands):\n            continue\n        cands.append({'kind': 'double' if L > WMAX else 'single', 'w': L, 'c': h['c'], 'W': h['W'], 'side': 1,\n                      'hinge': ln['p'], 'src': 'Revit line (opening)', 'lid': idv(h['W']['w'].LevelId), 'noswing': True})\n\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    # ---------------- selected existing doors: just set the height (keep their width)\n    resized = 0\n    for d in sel_doors:\n        try:\n            s = d.Symbol\n            wp = s.get_Parameter(BuiltInParameter.DOOR_WIDTH) or s.LookupParameter('Width')\n            w_mm = wp.AsDouble() / MMF if wp is not None else 900\n            nt = door_type('double' if is_double(s) else 'single', w_mm, H, '' if not is_double(s) else DBL_TXT)\n            if idv(nt.Id) != idv(s.Id):\n                set_type(d, nt)\n            resized += 1\n        except Exception as ex:\n            log('resize door {0}: {1}'.format(idv(d.Id), ex))\n\n    # ---------------- place / update\n    existing = list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Doors).WhereElementIsNotElementType())\n    made, updated, kept, failed = 0, 0, 0, []\n    stats = {'single': 0, 'double': 0}\n    sizes = {}\n    views = {}\n    for c in cands:\n        w_mm = c['w']\n        if c['kind'] == 'single' and w_mm < WMIN:\n            continue\n        if RND > 0:\n            w_mm = round(w_mm / RND) * RND\n        W = c['W']\n        wall = W['w']\n        lvl = lvl_by_id.get(idv(wall.LevelId))\n        z = lvl.Elevation if lvl is not None else 0.0\n        pt_ = XYZ(c['c'][0] * MMF, c['c'][1] * MMF, z)\n        try:\n            # a door already there?  script door -> update, other door -> keep\n            near = None\n            for e in existing:\n                try:\n                    lp = e.Location.Point\n                    if dist2(v2(lp), c['c']) < max(200.0, w_mm / 3.0) and abs(lp.Z - z) < 3.0:\n                        near = e\n                        break\n                except Exception:\n                    pass\n            if near is not None and not tagged(near).startswith(TAG):\n                kept += 1\n                continue\n            sym = door_type(c['kind'], w_mm, H, DBL_TXT if c['kind'] == 'double' else SGL_TXT)\n            if near is not None:\n                if idv(near.Symbol.Id) != idv(sym.Id):\n                    set_type(near, sym)\n                d = near\n                updated += 1\n            else:\n                d = doc.Create.NewFamilyInstance(pt_, sym, wall, lvl, StructuralType.NonStructural)\n                existing.append(d)\n                made += 1\n            p = d.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)\n            if p is not None:\n                p.Set(TAG + '|' + c['src'])\n            setp(d, BuiltInParameter.INSTANCE_SILL_HEIGHT_PARAM, 0.0)\n            if MATCH and not c.get('noswing'):\n                lid = idv(wall.LevelId)\n                if lid not in views:\n                    views[lid] = plan_view(lid)\n                r = match_swing(d, c, views[lid])\n                if r != 'ok':\n                    log('swing {0}: {1}'.format(idv(d.Id), r))\n            stats[c['kind']] += 1\n            k = '{0} {1:.0f} x {2:.0f}'.format('DOUBLE' if c['kind'] == 'double' else 'single', w_mm, H)\n            sizes[k] = sizes.get(k, 0) + 1\n        except Exception as ex:\n            failed.append('{0} door {1:.0f} at ({2:.0f}, {3:.0f}): {4}'.format(c['kind'], w_mm, c['c'][0], c['c'][1], ex))\n            log(traceback.format_exc())\n    TransactionManager.Instance.TransactionTaskDone()\n\n    out.append('CAD2BIM DOORS  -  DONE  ({0})'.format('ALL doors' if ALL else 'selection'))\n    src = []\n    if USE_CAD:\n        src.append('CAD {0} links, door arcs on layers: {1}'.format(\n            n_cad, ', '.join('{0} ({1})'.format(k or '0', v) for k, v in sorted(cad_layers.items())) or 'none'))\n    if USE_RVT:\n        src.append('Revit lines')\n    out.append('Read from     : ' + ' + '.join(src))\n    out.append('Door symbols  : {0} leaves on walls -> {1} single + {2} double doors'.format(\n        len(leaves), sum(1 for c in cands if c['kind'] == 'single'), sum(1 for c in cands if c['kind'] == 'double')))\n    out.append('Placed        : {0} new, {1} updated, {2} kept (a door was already there)'.format(made, updated, kept))\n    out.append('Height        : {0:.0f} mm for all, width = CAD width (rounded to {1:.0f} mm)'.format(H, RND))\n    for k in sorted(sizes):\n        out.append('  {0:<26} x {1}'.format(k, sizes[k]))\n    if resized:\n        out.append('Selected doors set to {0:.0f} high: {1}'.format(H, resized))\n    if MATCH:\n        out.append('Hinge side + swing direction copied from the drawing')\n    if failed:\n        out.append('Problems ({0}):'.format(len(failed)))\n        out.extend('  ' + x for x in failed[:12])\n    out.append('Save / Sync with Central to keep the changes.')\nexcept Exception as ex:\n    try:\n        TransactionManager.Instance.ForceCloseTransaction()\n    except Exception:\n        pass\n    out.insert(0, 'FAILED: ' + str(ex))\n    log(traceback.format_exc())\nlog('\\n'.join(out))\nOUT = out\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "73348b28b66447cfbd01c273dc6fedef",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "99c173614ea74297bfabc20675f707bd",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "77aefbf834ba4f0ea087d0586eda6a53",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d8c0dcff682249beb29b0a567b7352f4",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6bcdb96b8c1b409aa6e1554f17e47c9e",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d9335865346a4c8fb11f039a61af7c2b",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "08795b32ea1542e79dfccfc058519fea",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4d8ce77d87a04cce897032c305be24c8",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9f9aedc9e8aa4245bb7cfc5efb68a2c6",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3d1c93bc33ca40c8921e600380383d30",
+          "Name": "IN[8]",
+          "Description": "Input #8",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dc8b3ad4a5c545c9bf8380bf9bf9d2dd",
+          "Name": "IN[9]",
+          "Description": "Input #9",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "56468c4a5298402b82a987f2536523d7",
+          "Name": "IN[10]",
+          "Description": "Input #10",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "562fa4950d8b429c906b5701fdebf2f4",
+          "Name": "IN[11]",
+          "Description": "Input #11",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cada7293553c41c19e70bdf87313cbd6",
+          "Name": "IN[12]",
+          "Description": "Input #12",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e4c1cdeb7d184593b7c0a1e85a76fd71",
+          "Name": "IN[13]",
+          "Description": "Input #13",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6388cadf229f4b82b3322f89c63d712b",
+          "Name": "IN[14]",
+          "Description": "Input #14",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c2033d1b2f654966b3b40796a4f99cc8",
+          "Name": "IN[15]",
+          "Description": "Input #15",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "39d4b160d0194955a90ca033657104a6",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 360.0,
+      "Id": "1acfae98ce7e4988b502729534971514",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "e42dc5654dd14bdca2cff8ee7a40af4c",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2f824a580d3341dab20aac948fe82897",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "fd580ffdee474d2495d04b3f545f0868",
+      "End": "99c173614ea74297bfabc20675f707bd",
+      "Id": "adb414f7f59f403c996208262cfc6306",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "428bb08ba6bc4735b957566339ae8b4e",
+      "End": "77aefbf834ba4f0ea087d0586eda6a53",
+      "Id": "fa801855f6074e91ba7d2ccd93ad717a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2b77a4944d7a4469a564f0e4107c4a52",
+      "End": "d8c0dcff682249beb29b0a567b7352f4",
+      "Id": "5d12172d43074fbf9dcc58ce39959b1d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c199cab4d3784aae90e13d62f430bf19",
+      "End": "6bcdb96b8c1b409aa6e1554f17e47c9e",
+      "Id": "f8ece0db620342b69a8172c8d661ec8a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "aac22892a2a14a6bb54f9166dc68a03e",
+      "End": "d9335865346a4c8fb11f039a61af7c2b",
+      "Id": "13848e531e2e47b0b5e56407eacffa93",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9d275f6378fb4663b0cfdadce0f0dbae",
+      "End": "08795b32ea1542e79dfccfc058519fea",
+      "Id": "51625d81ad0049cea632964eacf08dd8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "52fbf9e8751548c8a641baf119bc72e1",
+      "End": "4d8ce77d87a04cce897032c305be24c8",
+      "Id": "e11f55327f864d2c8d9e6ea00de5c7b0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7f72d9a5ef3d4ec7ac855ac80bd8daa8",
+      "End": "9f9aedc9e8aa4245bb7cfc5efb68a2c6",
+      "Id": "449639e44c754bca8771061c342dd453",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "df42860f4ed14c8aa962bea502172797",
+      "End": "3d1c93bc33ca40c8921e600380383d30",
+      "Id": "57da52cdbccf4b6c995f1c8533162c3d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "48616dbe8ddc41d49179916e54a0a2cd",
+      "End": "dc8b3ad4a5c545c9bf8380bf9bf9d2dd",
+      "Id": "a9daef6ddc524ed4b8abb68017587304",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d246eb70f036462fba24769608a91172",
+      "End": "56468c4a5298402b82a987f2536523d7",
+      "Id": "53d2ccbebd7a45b880c4641fc66b4668",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8d90cb1da3124d1b9a253b9f6aa07f2a",
+      "End": "562fa4950d8b429c906b5701fdebf2f4",
+      "Id": "e1773ece1d5a4bd8b86389245d4754af",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9e8adfe2ef3041d8ab9fa64a60721fdb",
+      "End": "cada7293553c41c19e70bdf87313cbd6",
+      "Id": "e97b6958196c4783a1895f463559150f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d61de57adaf545f5bcc86f11e17eb5b1",
+      "End": "e4c1cdeb7d184593b7c0a1e85a76fd71",
+      "Id": "33b04acc48a64dcc9ed1347f7ad1b11d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c3784e7832ee432cb91d789ceaac2fe3",
+      "End": "6388cadf229f4b82b3322f89c63d712b",
+      "Id": "459cffef2f534244a97b7ef76bb59a65",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "112667d61f4b40f9b4bc1b6041c54247",
+      "End": "c2033d1b2f654966b3b40796a4f99cc8",
+      "Id": "c44d101313b94375b1eb799b8c2267a6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "39d4b160d0194955a90ca033657104a6",
+      "End": "e42dc5654dd14bdca2cff8ee7a40af4c",
+      "Id": "abba42a63ce14618a29c64592e18fafe",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.7186",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "a97f72a03a66406ea401e0be8654316f",
+        "Name": "SELECT  walls / door lines / doors  (click Select, pick, Finish)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "c64d7da7f8424c7abecd6509a68367a3",
+        "Name": "ALL doors  (off = only the selection: walls, door lines, or doors to resize)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "4e73b466442847bf8575a7c9cd8f1120",
+        "Name": "Linked CAD  (door swing arcs)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 420.0
+      },
+      {
+        "Id": "ce902ffb53854532b4d85ccd165aec5a",
+        "Name": "CAD name contains  ( blank = all CAD links )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 555.0
+      },
+      {
+        "Id": "49a258a1b48a41f58dfa6b6f6b96cfaf",
+        "Name": "CAD door layers  ( AUTO = DOOR / DR layers, else every swing arc )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 690.0
+      },
+      {
+        "Id": "4ea175bbff274297939f861035f464c6",
+        "Name": "Revit lines  (detail / model lines: swing arc)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 825.0
+      },
+      {
+        "Id": "2ae21eded7c148faa2f8176cfbae40a5",
+        "Name": "Revit line style contains  ( blank = any )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 960.0
+      },
+      {
+        "Id": "b88b50b5021847618adbd8f0b1be8a76",
+        "Name": "Straight Revit line drawn ALONG a wall = door opening",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1095.0
+      },
+      {
+        "Id": "24ce41b8c3ec4e91a93ffe7ce32e2557",
+        "Name": "Door HEIGHT (mm)  - all doors",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "bc38847b18c648cbabdd35b4504f2893",
+        "Name": "Round CAD width to (mm)  ( 0 = exact )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 135.0
+      },
+      {
+        "Id": "566b2e503439482fa1e5b80f196f7451",
+        "Name": "Smallest single door width (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 270.0
+      },
+      {
+        "Id": "23bd92af45a64a20a436d52a22630079",
+        "Name": "Largest single leaf (mm)  - wider = double door",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 405.0
+      },
+      {
+        "Id": "1b5bab120e0f492f8fa6a299f9546517",
+        "Name": "Single door family contains  ( blank = auto / Single-Flush )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 700.0
+      },
+      {
+        "Id": "88e68e982bc04daa8f2d023fc03ad75f",
+        "Name": "Double door family contains  ( blank = auto / Double-Flush )",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 835.0
+      },
+      {
+        "Id": "a6ac6bf887ce4227b232d0c2d2147276",
+        "Name": "Same hinge side + swing as the drawing",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 970.0
+      },
+      {
+        "Id": "f61770a110fb458f8e1a9a1be7e72862",
+        "Name": "PLACE / UPDATE DOORS",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 1105.0
+      },
+      {
+        "Id": "73348b28b66447cfbd01c273dc6fedef",
+        "Name": "CAD2BIM  Doors  ENGINE",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "1acfae98ce7e4988b502729534971514",
+        "Name": "REPORT",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1500.0,
+        "Y": 550.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "bbe609cfe31f40d38a800d54654e4e88",
+        "Title": "1  WHICH DOORS",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "a97f72a03a66406ea401e0be8654316f",
+          "c64d7da7f8424c7abecd6509a68367a3"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 405.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 310.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF7FC8FF"
+      },
+      {
+        "Id": "fad4348c7e4f454ca123612bf0790453",
+        "Title": "2  READ DOORS FROM",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "4e73b466442847bf8575a7c9cd8f1120",
+          "ce902ffb53854532b4d85ccd165aec5a",
+          "49a258a1b48a41f58dfa6b6f6b96cfaf",
+          "4ea175bbff274297939f861035f464c6",
+          "2ae21eded7c148faa2f8176cfbae40a5",
+          "b88b50b5021847618adbd8f0b1be8a76"
+        ],
+        "HasNestedGroups": false,
+        "Left": -20.0,
+        "Top": 325.0,
+        "Width": 440.0,
+        "Height": 945.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 420.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFC8C8C8"
+      },
+      {
+        "Id": "072cf2bac53a4a6fadbd5035f1f94427",
+        "Title": "3  DOOR SIZE",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "24ce41b8c3ec4e91a93ffe7ce32e2557",
+          "bc38847b18c648cbabdd35b4504f2893",
+          "566b2e503439482fa1e5b80f196f7451",
+          "23bd92af45a64a20a436d52a22630079"
+        ],
+        "HasNestedGroups": false,
+        "Left": 460.0,
+        "Top": -95.0,
+        "Width": 440.0,
+        "Height": 675.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 580.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFFFB458"
+      },
+      {
+        "Id": "c655bc4e54334473a4055f0a6b272f74",
+        "Title": "4  FAMILIES + BUILD",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "1b5bab120e0f492f8fa6a299f9546517",
+          "88e68e982bc04daa8f2d023fc03ad75f",
+          "a6ac6bf887ce4227b232d0c2d2147276",
+          "f61770a110fb458f8e1a9a1be7e72862"
+        ],
+        "HasNestedGroups": false,
+        "Left": 460.0,
+        "Top": 605.0,
+        "Width": 440.0,
+        "Height": 675.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 700.0,
+        "InitialHeight": 580.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FF9FDF8F"
+      },
+      {
+        "Id": "8a18f16b363144ba86ec4aba0f229608",
+        "Title": "5  ENGINE + REPORT",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "73348b28b66447cfbd01c273dc6fedef",
+          "1acfae98ce7e4988b502729534971514"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1480.0,
+        "Top": 55.0,
+        "Width": 700.0,
+        "Height": 950.0,
+        "FontSize": 24.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 150.0,
+        "InitialHeight": 850.0,
+        "TextblockHeight": 85.0,
+        "Background": "#FFE8E8E8"
+      },
+      {
+        "Id": "04f890b612064ce8be5487f6e060757f",
+        "Title": "HOW TO USE  -  link the CAD and / or draw the door swing with Revit lines (arc), Run\nEvery swing arc next to a wall becomes a door in that wall at the same place: width = CAD width, height = 2100 (your setting), same hinge + swing.\nTwo leaves meeting in the middle = DOUBLE door.  Types A_DR_SGL_0900x2100 / A_DR_DBL_1500x2100.  Existing doors are kept; script doors are updated.\nSelection mode: pick walls (doors only in them), door lines (only those), or doors (set their height).  Run again any time - never doubled.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 0.0,
+        "Top": -330.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}
