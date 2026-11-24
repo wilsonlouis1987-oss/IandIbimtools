@@ -1,151 +1,157 @@
-import streamlit as st
-import pandas as pd
-import math
+"""I&I BIM Tools - searchable catalogue of Dynamo graphs (.dyn) for Revit.
+
+The app reads every .dyn file in this folder, shows its description and
+lets you download it. The graphs themselves run only inside Revit / Dynamo.
+"""
+
+import json
 from pathlib import Path
 
-# Set the title and favicon that appear in the Browser's tab bar.
-st.set_page_config(
-    page_title='GDP dashboard',
-    page_icon=':earth_americas:', # This is an emoji shortcode. Could be a URL too.
-)
+import streamlit as st
 
-# -----------------------------------------------------------------------------
-# Declare some useful functions.
+ROOT = Path(__file__).parent
+
+CATEGORIES = {
+    "A": "Setup",
+    "B": "Model",
+    "C": "Interior",
+    "D": "Drawings",
+    "E": "Issue",
+}
+
+CATEGORY_HELP = {
+    "A": "Project start-up: units, levels, worksets, view templates, schedules",
+    "B": "Modelling: grids, walls, doors, stairs, slabs, structure from CAD or plan",
+    "C": "Interiors: rooms, ceilings, skirting, door/window numbering",
+    "D": "Drawings: sheets, annotation, tile and RCP plans, details",
+    "E": "Issue: QA check, PDF / DWG / IFC export, transmittals",
+}
+
+st.set_page_config(page_title="I&I BIM Tools", page_icon=":triangular_ruler:", layout="wide")
+
 
 @st.cache_data
-def get_gdp_data():
-    """Grab GDP data from a CSV file.
+def load_tools():
+    """Read every .dyn file in the repo and collect its basic information."""
+    tools = []
+    for path in sorted(ROOT.glob("*.dyn")):
+        parts = path.stem.split("_")
+        code = parts[0]
+        letter = code[:1].upper()
+        title = " ".join(parts[2:]) if len(parts) > 2 else path.stem
 
-    This uses caching to avoid having to read the file every time. If we were
-    reading from an HTTP endpoint instead of a file, it's a good idea to set
-    a maximum age to the cache with the TTL argument: @st.cache_data(ttl='1d')
-    """
+        description, nodes = "", None
+        try:
+            data = json.loads(path.read_text(encoding="utf-8-sig"))
+            description = (data.get("Description") or "").strip()
+            nodes = len(data.get("Nodes", []))
+        except (OSError, ValueError):
+            description = "Could not read the description from this file."
 
-    # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
-    DATA_FILENAME = Path(__file__).parent/'data/gdp_data.csv'
-    raw_gdp_df = pd.read_csv(DATA_FILENAME)
+        tools.append(
+            {
+                "file": path.name,
+                "path": path,
+                "code": code,
+                "letter": letter,
+                "category": CATEGORIES.get(letter, "Other"),
+                "title": title,
+                "description": description,
+                "nodes": nodes,
+                "size_kb": round(path.stat().st_size / 1024),
+            }
+        )
+    return tools
 
-    MIN_YEAR = 1960
-    MAX_YEAR = 2022
 
-    # The data above has columns like:
-    # - Country Name
-    # - Country Code
-    # - [Stuff I don't care about]
-    # - GDP for 1960
-    # - GDP for 1961
-    # - GDP for 1962
-    # - ...
-    # - GDP for 2022
-    #
-    # ...but I want this instead:
-    # - Country Name
-    # - Country Code
-    # - Year
-    # - GDP
-    #
-    # So let's pivot all those year-columns into two: Year and GDP
-    gdp_df = raw_gdp_df.melt(
-        ['Country Code'],
-        [str(x) for x in range(MIN_YEAR, MAX_YEAR + 1)],
-        'Year',
-        'GDP',
+tools = load_tools()
+
+# ----------------------------------------------------------------------------
+# Header
+
+st.title(":triangular_ruler: I&I BIM Tools")
+st.caption("Dynamo graphs for Revit - setup, modelling, interiors, drawings and issue.")
+
+c1, c2, c3 = st.columns(3)
+c1.metric("Dynamo graphs", len(tools))
+c2.metric("Categories", len({t["letter"] for t in tools}))
+c3.metric("Works with", "Revit 2026 + Dynamo 3.x")
+
+with st.expander("How to use"):
+    st.markdown(
+        """
+1. Find the tool you need with the search box or the category filter.
+2. Click **Download** to save the `.dyn` file.
+3. In Revit, open **Manage > Dynamo**, then **Open** and pick the file.
+4. Read the description, set the inputs (many graphs use an Excel list or a linked CAD file) and press **Run**.
+
+The graphs run only inside Revit. This page is the library, not an online runner.
+        """
     )
 
-    # Convert years from string to integers
-    gdp_df['Year'] = pd.to_numeric(gdp_df['Year'])
+# ----------------------------------------------------------------------------
+# Filters
 
-    return gdp_df
+with st.sidebar:
+    st.header("Find a tool")
+    query = st.text_input("Search", placeholder="e.g. tile, stairs, export")
+    chosen = st.multiselect(
+        "Category",
+        options=list(CATEGORIES.keys()),
+        default=list(CATEGORIES.keys()),
+        format_func=lambda k: f"{k} - {CATEGORIES[k]}",
+    )
+    st.markdown("---")
+    for key, text in CATEGORY_HELP.items():
+        st.caption(f"**{key} - {CATEGORIES[key]}**: {text}")
 
-gdp_df = get_gdp_data()
-
-# -----------------------------------------------------------------------------
-# Draw the actual page
-
-# Set the title that appears at the top of the page.
-'''
-# :earth_americas: GDP dashboard
-
-Browse GDP data from the [World Bank Open Data](https://data.worldbank.org/) website. As you'll
-notice, the data only goes to 2022 right now, and datapoints for certain years are often missing.
-But it's otherwise a great (and did I mention _free_?) source of data.
-'''
-
-# Add some spacing
-''
-''
-
-min_value = gdp_df['Year'].min()
-max_value = gdp_df['Year'].max()
-
-from_year, to_year = st.slider(
-    'Which years are you interested in?',
-    min_value=min_value,
-    max_value=max_value,
-    value=[min_value, max_value])
-
-countries = gdp_df['Country Code'].unique()
-
-if not len(countries):
-    st.warning("Select at least one country")
-
-selected_countries = st.multiselect(
-    'Which countries would you like to view?',
-    countries,
-    ['DEU', 'FRA', 'GBR', 'BRA', 'MEX', 'JPN'])
-
-''
-''
-''
-
-# Filter the data
-filtered_gdp_df = gdp_df[
-    (gdp_df['Country Code'].isin(selected_countries))
-    & (gdp_df['Year'] <= to_year)
-    & (from_year <= gdp_df['Year'])
+q = query.strip().lower()
+shown = [
+    t
+    for t in tools
+    if t["letter"] in chosen
+    and (not q or q in (t["file"] + " " + t["description"]).lower())
 ]
 
-st.header('GDP over time', divider='gray')
+st.subheader(f"{len(shown)} tool{'s' if len(shown) != 1 else ''}")
 
-''
+if not shown:
+    st.info("No tools match. Try a different word or select more categories.")
 
-st.line_chart(
-    filtered_gdp_df,
-    x='Year',
-    y='GDP',
-    color='Country Code',
-)
+# ----------------------------------------------------------------------------
+# Tool list
 
-''
-''
-
-
-first_year = gdp_df[gdp_df['Year'] == from_year]
-last_year = gdp_df[gdp_df['Year'] == to_year]
-
-st.header(f'GDP in {to_year}', divider='gray')
-
-''
-
-cols = st.columns(4)
-
-for i, country in enumerate(selected_countries):
-    col = cols[i % len(cols)]
-
-    with col:
-        first_gdp = first_year[first_year['Country Code'] == country]['GDP'].iat[0] / 1000000000
-        last_gdp = last_year[last_year['Country Code'] == country]['GDP'].iat[0] / 1000000000
-
-        if math.isnan(first_gdp):
-            growth = 'n/a'
-            delta_color = 'off'
-        else:
-            growth = f'{last_gdp / first_gdp:,.2f}x'
-            delta_color = 'normal'
-
-        st.metric(
-            label=f'{country} GDP',
-            value=f'{last_gdp:,.0f}B',
-            delta=growth,
-            delta_color=delta_color
+for t in shown:
+    label = f"{t['code']} - {t['title']}"
+    with st.expander(label):
+        st.markdown(f"**Category:** {t['category']}")
+        st.write(t["description"] or "No description saved in this graph.")
+        meta = [f"File size: {t['size_kb']} KB"]
+        if t["nodes"] is not None:
+            meta.append(f"Top-level nodes: {t['nodes']}")
+        st.caption(" | ".join(meta))
+        st.download_button(
+            "Download .dyn",
+            data=t["path"].read_bytes(),
+            file_name=t["file"],
+            mime="application/json",
+            key=f"dl_{t['file']}",
         )
+
+# ----------------------------------------------------------------------------
+# Extras
+
+pattern = ROOT / "RANDOM_RUBBLE_STONE.pat"
+if pattern.exists():
+    st.subheader("Revit fill pattern")
+    st.write("Random rubble stone hatch, used by the compound wall details (D07).")
+    st.download_button(
+        "Download RANDOM_RUBBLE_STONE.pat",
+        data=pattern.read_bytes(),
+        file_name=pattern.name,
+        mime="text/plain",
+        key="dl_pattern",
+    )
+
+st.markdown("---")
+st.caption("I&I BIM Engineering Consultant - licensed under Apache 2.0.")
