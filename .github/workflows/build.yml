@@ -1,0 +1,23 @@
+name: Build BIM Installer
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Inno Setup
+        run: choco install innosetup -y
+
+      - name: Compile Installer
+        run: '"C:\Program Files (x86)\Inno Setup 6\ISCC.exe" setup.iss'
+
+      - name: Upload Installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: I_and_I_BIM_Tools_Installer
+          path: Output\I_and_I_BIM_Tools_Installer.exe
